@@ -6,7 +6,7 @@
 	<label>Purple Ivy</label>
 	<category>Plant</category>
 	<altitudeLayer>LowPlant</altitudeLayer>
-	<useStandardHealth>True</useStandardHealth>
+	<useHitPoints>True</useHitPoints>
 	<statBases>
 		<MaxHealth>50</MaxHealth>
 		<Flammability>1.0</Flammability>

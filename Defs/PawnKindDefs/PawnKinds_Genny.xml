@@ -4,9 +4,8 @@
 	<PawnKindDef>
 		<defName>Genny_Centipede</defName>
     <label>Centipede hatchling</label>
-	<combatPower>400</combatPower>
+	<combatPower>100</combatPower>
     <race>Genny_Centipede</race>
-    <pointsCost>100</pointsCost>
 		<defaultFactionType>Genny</defaultFactionType>
 		<aiAvoidCover>true</aiAvoidCover>
     <isFighter>true</isFighter>

@@ -7,7 +7,7 @@
     <thingClass>Equipment</thingClass>
     <equipmentType>Primary</equipmentType>
     <pathCost>10</pathCost>
-    <useStandardHealth>True</useStandardHealth>
+    <useHitPoints>True</useHitPoints>
     <selectable>True</selectable>
     <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
     <statBases>

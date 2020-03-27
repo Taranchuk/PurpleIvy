@@ -9,7 +9,7 @@
 		<texPath>Things/GenTurretBase</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
-    <altitudeLayer>Waist</altitudeLayer>
+    <altitudeLayer>Terrain</altitudeLayer>
     <statBases>
       <MaxHealth>50</MaxHealth>
       <Flammability>1.0</Flammability>
@@ -40,7 +40,7 @@
 		<texPath>Things/GenMortarBase</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
-    <altitudeLayer>Waist</altitudeLayer>
+    <altitudeLayer>Terrain</altitudeLayer>
     <hasInteractionSquare>True</hasInteractionSquare>
     <interactionSquareOffset>(0,0,-1)</interactionSquareOffset>
     <statBases>

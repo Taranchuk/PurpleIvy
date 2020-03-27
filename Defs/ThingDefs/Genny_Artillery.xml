@@ -8,7 +8,7 @@
     <label>gun</label>
     <equipmentType>Primary</equipmentType>
     <pathCost>10</pathCost>
-    <useStandardHealth>True</useStandardHealth>
+    <useHitPoints>True</useHitPoints>
     <selectable>True</selectable>
     <statBases>
       <MaxHealth>100</MaxHealth>

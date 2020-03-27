@@ -9,5 +9,5 @@ using Verse;
 //        {
 //            DefOfHelper.BindDefsFor<ThingDef>(typeof(ThingDefOf));
 //        }
-//    }
+//    } 
 //}

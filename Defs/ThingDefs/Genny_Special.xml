@@ -13,7 +13,7 @@
 	</graphicData>
     <overdraw>false</overdraw>
     <altitudeLayer>MetaOverlays</altitudeLayer>
-    <useStandardHealth>false</useStandardHealth>
+    <useHitPoints>false</useHitPoints>
     <shaderType>CutoutFlying</shaderType>
   </ThingDef>
 
@@ -29,7 +29,7 @@
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <overdraw>false</overdraw>
-    <altitudeLayer>BuildingTall</altitudeLayer>
+    <altitudeLayer>BuildingOnTop</altitudeLayer>
     <useStandardHealth>true</useStandardHealth>
     <statBases>
       <MaxHealth>500</MaxHealth>
@@ -55,7 +55,7 @@
 	</graphicData>
     <overdraw>false</overdraw>
     <passability>Impassable</passability>
-    <altitudeLayer>Waist</altitudeLayer>
+    <altitudeLayer>Terrain</altitudeLayer>
     <useStandardHealth>true</useStandardHealth>
     <combatTargetBuilding>true</combatTargetBuilding>
     <selectable>false</selectable>
@@ -85,7 +85,7 @@
 	</graphicData>
     <overdraw>false</overdraw>
     <passability>Impassable</passability>
-    <altitudeLayer>Waist</altitudeLayer>
+    <altitudeLayer>Terrain</altitudeLayer>
     <useStandardHealth>true</useStandardHealth>
     <combatTargetBuilding>true</combatTargetBuilding>
     <selectable>false</selectable>
@@ -112,7 +112,7 @@
 	</graphicData>
     <overdraw>false</overdraw>
     <passability>Impassable</passability>
-    <altitudeLayer>Waist</altitudeLayer>
+    <altitudeLayer>Terrain</altitudeLayer>
     <useStandardHealth>true</useStandardHealth>
     <combatTargetBuilding>true</combatTargetBuilding>
     <selectable>false</selectable>

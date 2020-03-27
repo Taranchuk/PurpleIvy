@@ -4,6 +4,7 @@ using Verse;
 using Verse.Sound;
 namespace RimWorld
 {
+    [StaticConstructorOnStartup]
     public class MeteorIncoming : Thing
     {
         protected const int MinTicksToImpact = 120;

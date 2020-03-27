@@ -5,22 +5,21 @@
   <BodyPartDef>
     <defName>SmellReceptor</defName>
     <label>Smell Receptor</label>
-	<health>10</health>
+	<hitPoints>10</hitPoints>
 	<frostbiteVulnerability>5</frostbiteVulnerability>
 
-	<oldInjuryBaseChance>0.08</oldInjuryBaseChance>
+	<permanentInjuryChanceFactor>0.08</permanentInjuryChanceFactor>
 	<skinCovered>true</skinCovered>
   </BodyPartDef>
   
   <BodyPartDef>
     <defName>LeftEyeCluster</defName>
     <label>Left Ocelli cluster</label>
-	<health>10</health>
+	<hitPoints>10</hitPoints>
 	<frostbiteVulnerability>5</frostbiteVulnerability>
 
-	<oldInjuryBaseChance>1</oldInjuryBaseChance>
+	<permanentInjuryChanceFactor>1</permanentInjuryChanceFactor>
 	<skinCovered>false</skinCovered>
-	<useDestroyedOutLabel>true</useDestroyedOutLabel>
 <tags>
 	<li>SightSource</li>
 </tags> 
@@ -30,12 +29,11 @@
   <BodyPartDef>
     <defName>RightEyeCluster</defName>
     <label>Right Ocelli cluster</label>
-	<health>10</health>
+	<hitPoints>10</hitPoints>
 	<frostbiteVulnerability>5</frostbiteVulnerability>
 
-	<oldInjuryBaseChance>1</oldInjuryBaseChance>
+	<permanentInjuryChanceFactor>1</permanentInjuryChanceFactor>
 	<skinCovered>false</skinCovered>
-	<useDestroyedOutLabel>true</useDestroyedOutLabel>
 <tags>
 	<li>SightSource</li>
 </tags> 
@@ -45,10 +43,10 @@
   <BodyPartDef>
     <defName>LeftAntennae</defName>
     <label>Left Antennae</label>
-	<health>10</health>
+	<hitPoints>10</hitPoints>
 	<frostbiteVulnerability>5</frostbiteVulnerability>
 
-	<oldInjuryBaseChance>0.08</oldInjuryBaseChance>
+	<permanentInjuryChanceFactor>0.08</permanentInjuryChanceFactor>
 	<skinCovered>true</skinCovered>
 <tags>
 	<li>HearingSource</li>
@@ -58,10 +56,10 @@
   <BodyPartDef>
     <defName>RightAntennae</defName>
     <label>Right Antennae</label>
-	<health>10</health>
+	<hitPoints>10</hitPoints>
 	<frostbiteVulnerability>5</frostbiteVulnerability>
 
-	<oldInjuryBaseChance>0.08</oldInjuryBaseChance>
+	<permanentInjuryChanceFactor>0.08</permanentInjuryChanceFactor>
 	<skinCovered>true</skinCovered>
 <tags>
 	<li>HearingSource</li>
@@ -71,12 +69,13 @@
   <BodyPartDef>
 	<defName>CentipedeBodyFirstRing</defName>
 	<label>first body segment</label>
-	<health>100</health>
+	<hitPoints>100</hitPoints>
 	<frostbiteVulnerability>5</frostbiteVulnerability>
 
-	<oldInjuryBaseChance>0</oldInjuryBaseChance>
+	<permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
 	<skinCovered>false</skinCovered>
-	<isSolid>true</isSolid>
+	<solid>true</solid>
+	<bleedRate>0</bleedRate>
 	<tags>
 	<li>ManipulationLimbCore</li>
 	<li>ManipulationLimbDigit</li>
@@ -90,12 +89,14 @@
   <BodyPartDef>
 	<defName>CentipedeBodySecondRing</defName>
 	<label>second body segment</label>
-	<health>85</health>
+	<hitPoints>85</hitPoints>
 	<frostbiteVulnerability>5</frostbiteVulnerability>
 
-	<oldInjuryBaseChance>0</oldInjuryBaseChance>
+	<permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
 	<skinCovered>false</skinCovered>
-	<isSolid>true</isSolid>
+	<solid>true</solid>
+	<bleedRate>0</bleedRate>
+
 	<tags>
 	<li>ManipulationLimbCore</li>
 	<li>ManipulationLimbDigit</li>
@@ -109,12 +110,13 @@
   <BodyPartDef>
 	<defName>CentipedeBodyThirdRing</defName>
 	<label>third body segment</label>
-	<health>70</health>
+	<hitPoints>70</hitPoints>
 	<frostbiteVulnerability>5</frostbiteVulnerability>
 
-	<oldInjuryBaseChance>0</oldInjuryBaseChance>
+	<permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
 	<skinCovered>false</skinCovered>
-	<isSolid>true</isSolid>
+	<solid>true</solid>
+	<bleedRate>0</bleedRate>
 	<tags>
 	<li>ManipulationLimbCore</li>
 	<li>ManipulationLimbDigit</li>
