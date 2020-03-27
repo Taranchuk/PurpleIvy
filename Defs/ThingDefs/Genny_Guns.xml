@@ -2,9 +2,8 @@
 <Defs>
 
 
-  <ThingDef Name="BaseGenGun" Abstract="True">
+  <ThingDef Name="PI1_BaseGenGun" Abstract="True">
     <category>Item</category>
-    <eType>Equipment</eType>
     <thingClass>Equipment</thingClass>
     <equipmentType>Primary</equipmentType>
     <pathCost>10</pathCost>
@@ -14,6 +13,7 @@
     <statBases>
       <MaxHealth>100</MaxHealth>
       <Flammability>1.0</Flammability>
+	<Mass>5</Mass>
     </statBases>
     <altitudeLayer>Item</altitudeLayer>
     <alwaysHaulable>True</alwaysHaulable>
@@ -26,23 +26,16 @@
     </comps>
   </ThingDef>
 
-  <ThingDef Name="BaseBullet" Abstract="True">
-    <category>Projectile</category>
-    <tickerType>Normal</tickerType>
-    <altitudeLayer>Projectile</altitudeLayer>
-    <thingClass>Bullet</thingClass>
-    <label>bullet</label>
-    <useStandardHealth>False</useStandardHealth>
-    <neverMultiSelect>True</neverMultiSelect>
-    <shaderType>Transparent</shaderType>
-  </ThingDef>
 
   <!-- ================ Improvised turret gun ============== -->
 
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_GenTurret</defName>
     <label>Mucilage</label>
-    <graphicPathSingle>Things/Bullet_Slime</graphicPathSingle>
+	<graphicData>
+		<texPath>Things/Bullet_Slime</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
       <damageAmountBase>1</damageAmountBase>
@@ -50,9 +43,10 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="BaseGenGun">
+  <ThingDef ParentName="PI1_BaseGenGun">
     <defName>GunTurretGun</defName>
     <label>Corchorus</label>
+	<thingClass>ThingWithComps</thingClass>
     <menuHidden>true</menuHidden>
     <description>A genetically modified Chorchorus plant species, its able to fire its Mucilage slime at will.</description>
     <graphicPathSingle>Things/GenTurretGun</graphicPathSingle>
@@ -61,6 +55,11 @@
     <weaponTags>
       <li>TurretGun</li>
     </weaponTags>
+    <comps>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+    </comps>
     <verbs>
       <li>
         <verbClass>Verb_Shoot</verbClass>

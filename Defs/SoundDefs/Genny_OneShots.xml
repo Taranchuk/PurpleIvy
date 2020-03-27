@@ -4,6 +4,8 @@
 
   <SoundDef>
     <defName>GenTurretFire</defName>  
+<context>MapOnly</context>
+
     <eventNames />  
     <maxSimultaneous>1</maxSimultaneous>  
     <subSounds>
@@ -27,6 +29,8 @@
   
   <SoundDef>
     <defName>GenMortarFire</defName>  
+<context>MapOnly</context>
+
     <eventNames />  
     <maxSimultaneous>1</maxSimultaneous>  
     <subSounds>
@@ -50,6 +54,7 @@
   
   <SoundDef>
     <defName>GenMortarHit</defName>  
+<context>MapOnly</context>
     <eventNames />  
     <maxVoices>2</maxVoices>  
     <subSounds>

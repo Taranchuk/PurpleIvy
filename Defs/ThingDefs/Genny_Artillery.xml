@@ -2,9 +2,8 @@
 <Defs>
 
 
-  <ThingDef Name="BaseGenGun" Abstract="True">
+  <ThingDef Name="PI_BaseGenGun" Abstract="True">
     <category>Item</category>
-    <eType>Equipment</eType>
     <thingClass>Equipment</thingClass>
     <label>gun</label>
     <equipmentType>Primary</equipmentType>
@@ -26,26 +25,16 @@
     </comps>
   </ThingDef>
 
-  <ThingDef Name="BaseBullet" Abstract="True">
-    <category>Projectile</category>
-    <tickerType>Normal</tickerType>
-    <altitudeLayer>Projectile</altitudeLayer>
-    <thingClass>Bullet</thingClass>
-    <label>bullet</label>
-    <useStandardHealth>False</useStandardHealth>
-    <neverMultiSelect>True</neverMultiSelect>
-    <shaderType>Transparent</shaderType>
-  </ThingDef>
-
-
-
 
   <!-- ================== Seed mortar ================== -->
 
   <ThingDef ParentName="BaseBullet">
     <defName>Bullet_GenMortar</defName>
     <label>Oxalis Seed</label>
-    <graphicPathSingle>Things/OxalisSeed</graphicPathSingle>
+	<graphicData>
+		<texPath>Things/OxalisSeed</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
     <shaderType>MotePostLight</shaderType>
     <projectile>
       <damageDef>Bullet</damageDef>
@@ -56,16 +45,23 @@
     </projectile>
   </ThingDef>
   
-  <ThingDef ParentName="BaseGenGun">
+  <ThingDef ParentName="PI_BaseGenGun">
     <defName>Artillery_MortarGenny</defName>
     <label>Oxalis</label>
     <description>A genetically modified Oxalis plant species, its able to fire its seeds huge distances.</description>
+    <thingClass>ThingWithComps</thingClass>
     <menuHidden>True</menuHidden>
     <destroyOnDrop>True</destroyOnDrop>
+	<tradeability>None</tradeability>
     <weaponTags>
       <li>Artillery</li>
       <li>Artillery_BaseDestroyer</li>
     </weaponTags>
+    <comps>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+    </comps>
     <verbs>
       <li>
         <verbClass>Verb_Shoot</verbClass>

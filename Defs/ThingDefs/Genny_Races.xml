@@ -1,48 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs> 
 
-  <ThingDef Name="BasePawn" Abstract="True">
-    <eType>Pawn</eType>
-    <thingClass>Pawn</thingClass>
-    <category>Pawn</category>
-    <selectable>true</selectable>
-    <tickerType>Normal</tickerType>
-    <altitudeLayer>Pawn</altitudeLayer>
-    <useStandardHealth>false</useStandardHealth>
-    <hasTooltip>true</hasTooltip>
-    <soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
-    <statBases>
-      <Flammability>0</Flammability>
-    </statBases>
-    <inspectorTabs>
-      <li>ITab_Pawn_Thoughts</li>
-      <li>ITab_Pawn_Prisoner</li>
-      <li>ITab_Pawn_Gear</li>
-      <li>ITab_Pawn_Character</li>
-      <li>ITab_Pawn_Health</li>
-    </inspectorTabs>
-    <drawGUIOverlay>true</drawGUIOverlay>
-  </ThingDef>
-
-
-
-
-
   <!-- ============================ Gennys ========================== -->
 
-  <ThingDef ParentName="BasePawn" Name="BaseGenny" Abstract="True">
-    <soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
-    <race>
-      <hasStory>false</hasStory>
-      <needsRest>false</needsRest>
-      <hasGenders>false</hasGenders>
-      <isFlesh>false</isFlesh>
-      <diet>NeverEats</diet>
-    </race>
-  </ThingDef>
-
   <!-- Centipede -->
-  <ThingDef ParentName="BaseGenny">
+  <ThingDef>
     <defName>Genny_Centipede</defName>
     <label>Centipede hatchling</label>
     <description>The natural fauna the mechanoid Centipede is derived from. Created when scientists at a research station attempted to make insects more adaptable to the environments of space.</description>
@@ -62,7 +24,13 @@
         <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
       </li>
     </verbs>
+    <soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
     <race>
+      <hasStory>false</hasStory>
+      <needsRest>false</needsRest>
+      <hasGenders>false</hasGenders>
+      <isFlesh>false</isFlesh>
+      <diet>NeverEats</diet>
       <thinkTree>Genny</thinkTree>
       <body>CentipedeHatchling</body>
       <bodySize>1.0</bodySize>

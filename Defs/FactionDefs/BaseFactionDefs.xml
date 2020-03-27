@@ -24,6 +24,23 @@
       <min>-100</min>
       <max>-100</max>
     </naturalColonyGoodwill>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.95</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Offworld</li>
+        </categories>
+        <commonality>0.05</commonality>
+      </li>
+    </backstoryFilters>
+    <hairTags>
+      <li>Rural</li>
+    </hairTags>
     <spawnGroups>
       <li>
         <selectionWeight>100</selectionWeight>

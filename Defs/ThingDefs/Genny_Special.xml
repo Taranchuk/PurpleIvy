@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
-  <ThingDef Name="BuildingBase" Abstract="True">
-    <category>Building</category>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-    <selectable>true</selectable>
-    <drawerType>MapMeshAndRealTime</drawerType>
-  </ThingDef>
   
   <ThingDef>
     <defName>MeteorIncoming</defName>
-    <eType>ItemSkyFalling</eType>
     <label>Meteor (incoming)</label>
     <thingClass>MeteorIncoming</thingClass>
     <category>Ethereal</category>
     <tickerType>Normal</tickerType>
-    <graphicPathSingle>Things/Meteor</graphicPathSingle>
+	<graphicData>
+		<texPath>Things/Meteor</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
     <overdraw>false</overdraw>
     <altitudeLayer>MetaOverlays</altitudeLayer>
     <useStandardHealth>false</useStandardHealth>
@@ -27,10 +22,12 @@
     <defName>Meteor</defName>
     <label>Meteor</label>
     <category>Building</category>
-    <eType>DropPod</eType>
     <thingClass>Meteor</thingClass>
     <tickerType>Normal</tickerType>
-    <graphicPathSingle>Things/Meteor</graphicPathSingle>
+	<graphicData>
+		<texPath>Things/Meteor</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
     <overdraw>false</overdraw>
     <altitudeLayer>BuildingTall</altitudeLayer>
     <useStandardHealth>true</useStandardHealth>
@@ -50,10 +47,12 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Meteorite</defName>
     <label>Meteorite</label>
-    <eType>BuildingComplex</eType>
     <thingClass>Building_Meteorite</thingClass>
     <tickerType>Normal</tickerType>
-    <graphicPathSingle>Things/Meteor</graphicPathSingle>
+	<graphicData>
+		<texPath>Things/Meteor</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
     <overdraw>false</overdraw>
     <passability>Impassable</passability>
     <altitudeLayer>Waist</altitudeLayer>
@@ -78,10 +77,12 @@
   <ThingDef ParentName="BuildingBase">
     <defName>EggSac</defName>
     <label>Egg Sac</label>
-    <eType>BuildingComplex</eType>
     <thingClass>Building_EggSac</thingClass>
     <tickerType>Rare</tickerType>
-    <graphicPathSingle>Things/EggSac</graphicPathSingle>
+	<graphicData>
+		<texPath>Things/EggSac</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
     <overdraw>false</overdraw>
     <passability>Impassable</passability>
     <altitudeLayer>Waist</altitudeLayer>
@@ -103,10 +104,12 @@
   <ThingDef ParentName="BuildingBase">
     <defName>GasPump</defName>
     <label>Gaseous Pustule</label>
-    <eType>BuildingComplex</eType>
     <thingClass>Building_GasPump</thingClass>
     <tickerType>Rare</tickerType>
-    <graphicPathSingle>Things/GasPump</graphicPathSingle>
+	<graphicData>
+		<texPath>Things/GasPump</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
     <overdraw>false</overdraw>
     <passability>Impassable</passability>
     <altitudeLayer>Waist</altitudeLayer>
