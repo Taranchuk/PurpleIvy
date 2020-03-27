@@ -4,12 +4,24 @@
 	<PawnKindDef>
 		<defName>Genny_Centipede</defName>
     <label>Centipede hatchling</label>
+	<combatPower>400</combatPower>
     <race>Genny_Centipede</race>
     <pointsCost>100</pointsCost>
 		<defaultFactionType>Genny</defaultFactionType>
 		<aiAvoidCover>true</aiAvoidCover>
     <isFighter>true</isFighter>
-    <standardBodyGraphicPathMulti>Things/Pawn/Genny/GCentipede</standardBodyGraphicPathMulti>         
+	<lifeStages>
+		<li>
+			<bodyGraphicData>
+				<texPath>Things/Pawn/Genny/GCentipede</texPath>
+				<graphicClass>Graphic_Multi</graphicClass>
+				<drawSize>3</drawSize>
+				<shadowData>
+					<volume>(0.6, 0.8, 0.6)</volume>
+				</shadowData>
+			</bodyGraphicData>
+		</li>
+	</lifeStages>
   </PawnKindDef> 
 
 </Defs>     

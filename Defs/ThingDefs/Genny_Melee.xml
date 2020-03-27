@@ -34,7 +34,11 @@
     <label>Chorcorus Tendril</label>
 	<thingClass>ThingWithComps</thingClass>
     <description>Reliable and deadly in melee combat.</description>
-    <graphicPathSingle>Things/Tendril_Chorcorus</graphicPathSingle>
+	<graphicData>
+		<texPath>Things/Tendril_Chorcorus</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+
     <soundInteract>InteractPistol</soundInteract>
     <tradersCarry>True</tradersCarry>
     <baseMarketValue>100</baseMarketValue>
@@ -61,7 +65,10 @@
 	<thingClass>ThingWithComps</thingClass>
 
     <description>A spiney tendril from the genetically modified Oxalis plant.</description>
-    <graphicPathSingle>Things/Tendril_Oxalis</graphicPathSingle>
+	<graphicData>
+		<texPath>Things/Tendril_Oxalis</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>    
     <soundInteract>InteractPistol</soundInteract>
     <tradersCarry>False</tradersCarry>
     <baseMarketValue>100</baseMarketValue>

@@ -29,7 +29,6 @@
     <building>
       <turretGunDef>GunTurretGun</turretGunDef>
       <turretburstCooldownTicks>200</turretburstCooldownTicks>
-      <turretTopgraphicPathSingle>Things/GenTurretGun</turretTopgraphicPathSingle>
     </building>
   </ThingDef>
 
@@ -63,7 +62,6 @@
       <turretGunDef>Artillery_MortarGenny</turretGunDef>
       <turretBurstWarmupTicks>300</turretBurstWarmupTicks>
       <turretburstCooldownTicks>3000</turretburstCooldownTicks>
-      <turretTopgraphicPathSingle>Things/GenMortarGun</turretTopgraphicPathSingle>
       <buildingTags>
         <li>Artillery</li>
         <li>Artillery_BaseDestroyer</li>

@@ -21,9 +21,10 @@
 	<oldInjuryBaseChance>1</oldInjuryBaseChance>
 	<skinCovered>false</skinCovered>
 	<useDestroyedOutLabel>true</useDestroyedOutLabel>
-	<activities>
-		<li>Sight_source</li>
-	</activities>
+<tags>
+	<li>SightSource</li>
+</tags> 
+
   </BodyPartDef>
   
   <BodyPartDef>
@@ -35,9 +36,10 @@
 	<oldInjuryBaseChance>1</oldInjuryBaseChance>
 	<skinCovered>false</skinCovered>
 	<useDestroyedOutLabel>true</useDestroyedOutLabel>
-	<activities>
-		<li>Sight_source</li>
-	</activities>
+<tags>
+	<li>SightSource</li>
+</tags> 
+
   </BodyPartDef>
   
   <BodyPartDef>
@@ -48,9 +50,9 @@
 
 	<oldInjuryBaseChance>0.08</oldInjuryBaseChance>
 	<skinCovered>true</skinCovered>
-	<activities>
-		<li>Hearing_source</li>
-	</activities>
+<tags>
+	<li>HearingSource</li>
+</tags> 
   </BodyPartDef>
   
   <BodyPartDef>
@@ -61,9 +63,9 @@
 
 	<oldInjuryBaseChance>0.08</oldInjuryBaseChance>
 	<skinCovered>true</skinCovered>
-	<activities>
-		<li>Hearing_source</li>
-	</activities>
+<tags>
+	<li>HearingSource</li>
+</tags> 
   </BodyPartDef>
 
   <BodyPartDef>
@@ -75,10 +77,14 @@
 	<oldInjuryBaseChance>0</oldInjuryBaseChance>
 	<skinCovered>false</skinCovered>
 	<isSolid>true</isSolid>
-	<activities>
-		<li>Moving_tool</li>
-		<li>Manipulation_tool</li>
-	</activities>
+	<tags>
+	<li>ManipulationLimbCore</li>
+	<li>ManipulationLimbDigit</li>
+	<li>ManipulationLimbSegment</li>
+	<li>MovingLimbCore</li>
+	<li>MovingLimbDigit</li>
+	<li>MovingLimbSegment</li>
+	</tags>
   </BodyPartDef>
   
   <BodyPartDef>
@@ -90,10 +96,14 @@
 	<oldInjuryBaseChance>0</oldInjuryBaseChance>
 	<skinCovered>false</skinCovered>
 	<isSolid>true</isSolid>
-	<activities>
-		<li>Moving_tool</li>
-		<li>Manipulation_tool</li>
-	</activities>
+	<tags>
+	<li>ManipulationLimbCore</li>
+	<li>ManipulationLimbDigit</li>
+	<li>ManipulationLimbSegment</li>
+	<li>MovingLimbCore</li>
+	<li>MovingLimbDigit</li>
+	<li>MovingLimbSegment</li>
+	</tags>
   </BodyPartDef>
   
   <BodyPartDef>
@@ -105,10 +115,14 @@
 	<oldInjuryBaseChance>0</oldInjuryBaseChance>
 	<skinCovered>false</skinCovered>
 	<isSolid>true</isSolid>
-	<activities>
-		<li>Moving_tool</li>
-		<li>Manipulation_tool</li>
-	</activities>
+	<tags>
+	<li>ManipulationLimbCore</li>
+	<li>ManipulationLimbDigit</li>
+	<li>ManipulationLimbSegment</li>
+	<li>MovingLimbCore</li>
+	<li>MovingLimbDigit</li>
+	<li>MovingLimbSegment</li>
+	</tags>
   </BodyPartDef>
 
 </Defs>
