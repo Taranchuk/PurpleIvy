@@ -21,7 +21,7 @@ namespace PurpleIvy
                 openDelay = 1,
                 leaveSlag = false
             }); 
-            Find.LetterStack.ReceiveLetter("MeteoritePurple".Translate(), "MeteoritePurpleDesc".Translate(), LetterDefOf.NeutralEvent); //"Look a giant flying purple rock....its purple it has to be something good...right?"
+            Find.LetterStack.ReceiveLetter("MeteoritePurple".Translate(), "MeteoritePurpleDesc".Translate(), LetterDefOf.NeutralEvent, new TargetInfo(intVec, map, false)); //"Look a giant flying purple rock....its purple it has to be something good...right?"
             return true;
         } 
     }

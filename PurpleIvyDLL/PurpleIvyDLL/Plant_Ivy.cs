@@ -28,9 +28,16 @@ namespace PurpleIvy
 
         public void SpawnIvy(IntVec3 dir)
         {
-            Plant newivy = new Plant();
-            newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
-            GenSpawn.Spawn(newivy, dir, this.Map);
+            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, Map), (Thing t) =>          (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+            {
+                foreach (var t in GridsUtility.GetThingList(dir, this.Map))
+                {
+                    Log.Message(t.Label);
+                }
+                Plant newivy = new Plant();
+                newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
+                GenSpawn.Spawn(newivy, dir, this.Map);
+            }
         }
 
         public bool IvyInCell(IntVec3 dir)

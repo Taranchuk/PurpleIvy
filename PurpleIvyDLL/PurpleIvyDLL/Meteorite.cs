@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 using RimWorld;
+using System.Linq;
 
 namespace PurpleIvy
 {
@@ -28,18 +29,31 @@ namespace PurpleIvy
                 {
                     if (current.GetPlant(this.Map) == null)
                     {
-                        //not a plant, spawn ivy
-                        Plant newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
-                        GenSpawn.Spawn(newivy, current, this.Map);
+                        if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                        {
+                            foreach (var t in GridsUtility.GetThingList(current, this.Map))
+                            {
+                                Log.Message(t.Label);
+                            }
+                            Plant newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
+                            GenSpawn.Spawn(newivy, current, this.Map);
+                        }
                     }
                     else
                     {
                         Plant plant = current.GetPlant(this.Map);
                         if (plant.def.defName != "PurpleIvy")
                         {
-                            plant.Destroy();
-                            Plant newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
-                            GenSpawn.Spawn(newivy, current, this.Map);
+                            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                            {
+                                foreach (var t in GridsUtility.GetThingList(current, this.Map))
+                                {
+                                    Log.Message(t.Label);
+                                }
+                                plant.Destroy();
+                                Plant newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
+                                GenSpawn.Spawn(newivy, current, this.Map);
+                            }
                         }
                         else
                         {
