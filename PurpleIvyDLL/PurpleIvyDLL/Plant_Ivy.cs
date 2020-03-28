@@ -284,20 +284,16 @@ namespace PurpleIvy
         }
             if (this.TickCount > 10)
             {
-                foreach (Thing thing in base.Map.listerThings.AllThings.FindAll(delegate (Thing x)
-                    {
-                        Pawn pawn = x as Pawn;
-                        return pawn != null;
-                    }))
-                    {
-                        bool flag2 = base.Position.InHorDistOf(thing.Position, 3f);
-                        if (flag2)
-                        {
-                            Hediff hediff = HediffMaker.MakeHediff(HediffDefOf.PoisonousPurpleHediff, (Pawn)thing, null);
-                            hediff.Severity = 0.1f;
-                            ((Pawn)thing).health.AddHediff(hediff, null, null, null);
-                        }
-                    }
+                foreach (Thing thing in this.Map.thingGrid.ThingsListAt(this.Position))
+                     {
+                         if (thing is Pawn)
+                         {
+                            Log.Message(thing.Label);
+                             Hediff hediff = HediffMaker.MakeHediff  (HediffDefOf.PoisonousPurpleHediff, (Pawn)thing, null);
+                             hediff.Severity = 0.1f;
+                             ((Pawn)thing).health.AddHediff(hediff, null, null, null);
+                         }
+                     }
                 this.TickCount = 0;
             }
             else
