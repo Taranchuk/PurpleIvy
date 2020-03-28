@@ -4,9 +4,9 @@ using Verse;
 
 namespace PurpleIvy
 {
-    public class CompProperties_Glowerx : CompProperties
+    public class CompProperties_GlowerX : CompProperties
     {
-        public CompProperties_Glowerx()
+        public CompProperties_GlowerX() 
         {
             this.compClass = typeof(CompGlowerX);
         }
