@@ -99,8 +99,7 @@
 	</building>
     <selectable>false</selectable>
     <comps>
-			<li Class="PurpleIvy.CompProperties_GlowerX">
-				<compClass>PurpleIvy.CompGlowerX</compClass>
+			<li Class="CompProperties_Glower">
 				<glowRadius>3</glowRadius>
 				<glowColor>(150,255,255,0)</glowColor>
 			</li>
