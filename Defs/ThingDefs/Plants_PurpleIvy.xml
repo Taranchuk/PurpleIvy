@@ -12,7 +12,7 @@
 		<Flammability>1.0</Flammability>
 	</statBases>  
 	<thingClass>PurpleIvy.Plant_Ivy</thingClass>    
-	<tickerType>Rare</tickerType>
+	<tickerType>Long</tickerType>
 	<description>A genetically modified version of the Earth plant species "Glechoma hederacea".</description>
 	<graphicData>
 		<texPath>Things/Plant/PurpleIvy</texPath>

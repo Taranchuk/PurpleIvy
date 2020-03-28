@@ -122,9 +122,9 @@ namespace PurpleIvy
             return true;
         }
         
-        public override void TickRare()
+        public override void TickLong()
         {
-            base.TickRare();
+            base.TickLong(); 
             this.SpreadTick--;
             if (this.growthInt >= 1)
             {
