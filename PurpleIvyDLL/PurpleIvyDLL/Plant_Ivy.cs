@@ -158,7 +158,10 @@ namespace PurpleIvy
                         {
                             //And by eat i mean replace - TODO can you damage floors over time?                   
                             //Replace with soil - TODO for now, maybe change to regen tile later if possible
-                            this.Map.terrainGrid.SetTerrain(dir, TerrainDef.Named("Soil"));
+                            //this.Map.terrainGrid.SetTerrain(dir, TerrainDef.Named("Soil"));
+                             
+                            //this.Map.terrainGrid.TerrainAt(dir)
+
                             //if theres no ivy here
                             if (!IvyInCell(dir))
                             {
