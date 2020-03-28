@@ -12,7 +12,7 @@
 		<Flammability>1.0</Flammability>
 	</statBases>  
 	<thingClass>PurpleIvy.Plant_Ivy</thingClass>    
-	<tickerType>Long</tickerType>
+	<tickerType>Normal</tickerType>
 	<description>A genetically modified version of the Earth plant species "Glechoma hederacea".</description>
 	<graphicData>
 		<texPath>Things/Plant/PurpleIvy</texPath>
@@ -26,7 +26,6 @@
 	<selectable>true</selectable>
 
 	<fillPercent>0.25</fillPercent>
-	<pathCost>90</pathCost>
 	<neverMultiSelect>True</neverMultiSelect>
 	<drawerType>MapMeshOnly</drawerType>
 	<plant>

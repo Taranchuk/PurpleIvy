@@ -11,6 +11,7 @@ namespace PurpleIvy
     {
         private int SpreadTick;
         private int OrigSpreadTick;
+        private int TickCount;
         private bool MutateTry;
         Thing stuckPawn = null;
         Thing stuckCorpse = null;
@@ -121,160 +122,345 @@ namespace PurpleIvy
             }
             return true;
         }
-        
-        public override void TickLong()
+
+        public override void Tick()
         {
-            base.TickLong(); 
-            this.SpreadTick--;
-            if (this.growthInt >= 1)
+            base.Tick();
+            if (Find.TickManager.TicksGame % 750 == 0)
             {
-                //check things in cell and react
-                CheckThings(Position);
-            }
-            if (this.SpreadTick == 0)
-            {
-                //Pick a random direction cell
-                IntVec3 dir = new IntVec3();
-                dir = GenAdj.RandomAdjacentCellCardinal(Position);
-                //If in bounds
-                if (dir.InBounds(this.Map))
+                base.TickLong();
+                this.SpreadTick--;
+                if (this.growthInt >= 1)
                 {
-                    //If we find a tasty floor lets eat it nomnomnom
-                    TerrainDef terrain = dir.GetTerrain(this.Map);
-                    if (terrain != null)
+                    //check things in cell and react
+                    CheckThings(Position);
+                }
+                if (this.SpreadTick == 0)
+                {
+                    //Pick a random direction cell
+                    IntVec3 dir = new IntVec3();
+                    dir = GenAdj.RandomAdjacentCellCardinal(Position);
+                    //If in bounds
+                    if (dir.InBounds(this.Map))
                     {
-                        //Only eat floor if not natural
-                        if (terrain.defName != "Sand" &&
-                            terrain.defName != "Soil" &&
-                            terrain.defName != "MarshyTerrain" &&
-                            terrain.defName != "SoilRich" &&
-                            terrain.defName != "Mud" &&
-                            terrain.defName != "Marsh" &&
-                            terrain.defName != "Gravel" &&
-                            terrain.defName != "RoughStone" &&
-                            terrain.defName != "WaterDeep" &&
-                            terrain.defName != "WaterShallow" &&
-                            terrain.defName != "RoughHewnRock")
+                        //If we find a tasty floor lets eat it nomnomnom
+                        TerrainDef terrain = dir.GetTerrain(this.Map);
+                        if (terrain != null)
                         {
-                            //And by eat i mean replace - TODO can you damage floors over time?                   
-                            //Replace with soil - TODO for now, maybe change to regen tile later if possible
-                            //this.Map.terrainGrid.SetTerrain(dir, TerrainDef.Named("Soil"));
-                             
-                            //this.Map.terrainGrid.TerrainAt(dir)
-
-                            //if theres no ivy here
-                            if (!IvyInCell(dir))
+                            //Only eat floor if not natural
+                            if (terrain.defName != "Sand" &&
+                                terrain.defName != "Soil" &&
+                                terrain.defName != "MarshyTerrain" &&
+                                terrain.defName != "SoilRich" &&
+                                terrain.defName != "Mud" &&
+                                terrain.defName != "Marsh" &&
+                                terrain.defName != "Gravel" &&
+                                terrain.defName != "RoughStone" &&
+                                terrain.defName != "WaterDeep" &&
+                                terrain.defName != "WaterShallow" &&
+                                terrain.defName != "RoughHewnRock")
                             {
-                                if (dir.GetPlant(this.Map) == null)
+                                //And by eat i mean replace - TODO can you damage floors over time?                   
+                                //Replace with soil - TODO for now, maybe change to regen tile later if possible
+                                //this.Map.terrainGrid.SetTerrain(dir, TerrainDef.Named("Soil"));
+
+                                //this.Map.terrainGrid.TerrainAt(dir)
+
+                                //if theres no ivy here
+                                if (!IvyInCell(dir))
                                 {
-                                    //no plant, move on
+                                    if (dir.GetPlant(this.Map) == null)
+                                    {
+                                        //no plant, move on
+                                    }
+                                    else
+                                    {
+                                        //Found plant, Kill it
+                                        Plant plant = dir.GetPlant(this.Map);
+                                        plant.Destroy();
+                                    }
+                                    //Spawn more Ivy
+                                    SpawnIvy(dir);
                                 }
-                                else
+                            }
+                            //Its natural floor
+                            else if (terrain.defName != "WaterDeep" &&
+                                     terrain.defName != "WaterShallow" &&
+                                     terrain.defName != "MarshyTerrain")
+                            {
+                                //if theres no ivy here
+                                if (!IvyInCell(dir))
                                 {
-                                    //Found plant, Kill it
-                                    Plant plant = dir.GetPlant(this.Map);
-                                    plant.Destroy();
+                                    if (dir.GetPlant(this.Map) == null)
+                                    {
+                                        //no plant, move on
+                                    }
+                                    else
+                                    {
+                                        //Found plant, Kill it
+                                        Plant plant = dir.GetPlant(this.Map);
+                                        plant.Destroy();
+                                    }
+                                    //Spawn more Ivy
+                                    SpawnIvy(dir);
                                 }
-                                //Spawn more Ivy
-                                SpawnIvy(dir);
+                            }
+                            //its water or something I dont know of
+                            else
+                            {
+
                             }
                         }
-                        //Its natural floor
-                        else if (terrain.defName != "WaterDeep" &&
-                                 terrain.defName != "WaterShallow" &&
-                                 terrain.defName != "MarshyTerrain")
-                            {
-                            //if theres no ivy here
-                            if (!IvyInCell(dir))
-                            {
-                                if (dir.GetPlant(this.Map) == null)
-                                 {
-                                    //no plant, move on
-                                 }
-                                 else
-                                 {
-                                    //Found plant, Kill it
-                                    Plant plant = dir.GetPlant(this.Map);
-                                    plant.Destroy();
-                                 }
-                                //Spawn more Ivy
-                                SpawnIvy(dir);
-                            }
-                        }
-                        //its water or something I dont know of
-                        else
+                    }
+                    SpreadTick = OrigSpreadTick;
+                }
+                if (this.MutateTry == true)
+                {
+                    Random random = new Random();
+                    int MutateRate = random.Next(1, 200);
+                    if (MutateRate == 3 || MutateRate == 23)
+                    {
+                        Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(ThingDef.Named("GasPump"));
+                        GasPump.SetFactionDirect(factionDirect);
+                        if (hasNoBuildings(Position))
                         {
-
+                            GenSpawn.Spawn(GasPump, Position, this.Map);
                         }
+                        this.MutateTry = false;
+                        //Find.History.AddGameEvent("Gas here", GameEventType.BadNonUrgent, true, Position, string.Empty);
                     }
-                }
-                SpreadTick = OrigSpreadTick;                                     
-            }
-            if (this.MutateTry == true)
-            {
-                Random random = new Random();
-                int MutateRate = random.Next(1, 200);
-                if (MutateRate == 3 || MutateRate == 23)
-                {
-                    Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(ThingDef.Named("GasPump"));
-                    GasPump.SetFactionDirect(factionDirect);
-                    if (hasNoBuildings(Position))
+                    else if (MutateRate == 4 || MutateRate == 24)
                     {
-                        GenSpawn.Spawn(GasPump, Position, this.Map);
+                        Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(ThingDef.Named("EggSac"));
+                        EggSac.SetFactionDirect(factionDirect);
+                        if (hasNoBuildings(Position))
+                        {
+                            GenSpawn.Spawn(EggSac, Position, this.Map);
+                        }
+                        this.MutateTry = false;
+                        //Find.History.AddGameEvent("Egg here", GameEventType.BadNonUrgent, true, Position, string.Empty);
                     }
-                    this.MutateTry = false;
-                    //Find.History.AddGameEvent("Gas here", GameEventType.BadNonUrgent, true, Position, string.Empty);
-                }
-                else if (MutateRate == 4 || MutateRate == 24)
-                {
-                    Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(ThingDef.Named("EggSac"));
-                    EggSac.SetFactionDirect(factionDirect);
-                    if (hasNoBuildings(Position))
+                    else if (MutateRate == 5)
                     {
-                        GenSpawn.Spawn(EggSac, Position, this.Map);
+                        Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(ThingDef.Named("Turret_GenMortarSeed"));
+                        GenMortar.SetFactionDirect(factionDirect);
+                        if (hasNoBuildings(Position))
+                        {
+                            GenSpawn.Spawn(GenMortar, Position, this.Map);
+                        }
+                        this.MutateTry = false;
+                        //Find.History.AddGameEvent("Mortar here", GameEventType.BadNonUrgent, true, Position, string.Empty);
                     }
-                    this.MutateTry = false;
-                    //Find.History.AddGameEvent("Egg here", GameEventType.BadNonUrgent, true, Position, string.Empty);
-                }
-                else if (MutateRate == 5)
-                {
-                    Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(ThingDef.Named("Turret_GenMortarSeed"));
-                    GenMortar.SetFactionDirect(factionDirect);
-                    if (hasNoBuildings(Position))
+                    else if (MutateRate == 6)
                     {
-                        GenSpawn.Spawn(GenMortar, Position, this.Map);
+                        Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(ThingDef.Named("GenTurretBase"));
+                        GenTurret.SetFactionDirect(factionDirect);
+                        if (hasNoBuildings(Position))
+                        {
+                            GenSpawn.Spawn(GenTurret, Position, this.Map);
+                        }
+                        this.MutateTry = false;
+                        //Find.History.AddGameEvent("Turret here", GameEventType.BadNonUrgent, true, Position, string.Empty);
                     }
-                    this.MutateTry = false;
-                    //Find.History.AddGameEvent("Mortar here", GameEventType.BadNonUrgent, true, Position, string.Empty);
-                }
-                else if (MutateRate == 6)
-                {
-                    Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(ThingDef.Named("GenTurretBase"));
-                    GenTurret.SetFactionDirect(factionDirect);
-                    if (hasNoBuildings(Position))
+                    else
                     {
-                        GenSpawn.Spawn(GenTurret, Position, this.Map);
+                        this.MutateTry = false;
                     }
-                    this.MutateTry = false;
-                    //Find.History.AddGameEvent("Turret here", GameEventType.BadNonUrgent, true, Position, string.Empty);
                 }
-                else
+                if (stuckPawn != null)
                 {
-                    this.MutateTry = false;
+                    int damageAmountBase = 1;
+                    DamageInfo damageInfo = new DamageInfo(this.dmgdef, damageAmountBase, 0f, -1f, this, null, null);
+                    stuckPawn.TakeDamage(damageInfo);
+                    stuckPawn = null;
                 }
-            }
-            if (stuckPawn != null)
-            {
-                int damageAmountBase = 1;
-                DamageInfo damageInfo = new DamageInfo(this.dmgdef, damageAmountBase, 0f, -1f, this, null, null);
-                stuckPawn.TakeDamage(damageInfo);
-                stuckPawn = null;
-            }
-            if (stuckCorpse != null)
-            {
-                stuckCorpse.Destroy();
-                stuckCorpse = null;
-            }
+                if (stuckCorpse != null)
+                {
+                    stuckCorpse.Destroy();
+                    stuckCorpse = null;
+                }
+            
+
         }
+            if (this.TickCount > 10)
+            {
+                foreach (Thing thing in base.Map.listerThings.AllThings.FindAll(delegate (Thing x)
+                    {
+                        Pawn pawn = x as Pawn;
+                        return pawn != null;
+                    }))
+                    {
+                        bool flag2 = base.Position.InHorDistOf(thing.Position, 3f);
+                        if (flag2)
+                        {
+                            Hediff hediff = HediffMaker.MakeHediff(HediffDefOf.PoisonousPurpleHediff, (Pawn)thing, null);
+                            hediff.Severity = 0.1f;
+                            ((Pawn)thing).health.AddHediff(hediff, null, null, null);
+                        }
+                    }
+                this.TickCount = 0;
+            }
+            else
+            {
+                this.TickCount++;
+            }
+
+        }
+
+        //public override void TickLong()
+        //{
+        //    base.TickLong();
+        //    Log.Message("TickLong");
+        //    this.SpreadTick--;
+        //    if (this.growthInt >= 1)
+        //    {
+        //        //check things in cell and react
+        //        CheckThings(Position);
+        //    }
+        //    if (this.SpreadTick == 0)
+        //    {
+        //        //Pick a random direction cell
+        //        IntVec3 dir = new IntVec3();
+        //        dir = GenAdj.RandomAdjacentCellCardinal(Position);
+        //        //If in bounds
+        //        if (dir.InBounds(this.Map))
+        //        {
+        //            //If we find a tasty floor lets eat it nomnomnom
+        //            TerrainDef terrain = dir.GetTerrain(this.Map);
+        //            if (terrain != null)
+        //            {
+        //                //Only eat floor if not natural
+        //                if (terrain.defName != "Sand" &&
+        //                    terrain.defName != "Soil" &&
+        //                    terrain.defName != "MarshyTerrain" &&
+        //                    terrain.defName != "SoilRich" &&
+        //                    terrain.defName != "Mud" &&
+        //                    terrain.defName != "Marsh" &&
+        //                    terrain.defName != "Gravel" &&
+        //                    terrain.defName != "RoughStone" &&
+        //                    terrain.defName != "WaterDeep" &&
+        //                    terrain.defName != "WaterShallow" &&
+        //                    terrain.defName != "RoughHewnRock")
+        //                {
+        //                    //And by eat i mean replace - TODO can you damage floors over /time?    /               
+        //                    //Replace with soil - TODO for now, maybe change to regen tile later /if/ possible
+        //                    //this.Map.terrainGrid.SetTerrain(dir, TerrainDef.Named("Soil"));
+        //                     
+        //                    //this.Map.terrainGrid.TerrainAt(dir)
+        //
+        //                    //if theres no ivy here
+        //                    if (!IvyInCell(dir))
+        //                    {
+        //                        if (dir.GetPlant(this.Map) == null)
+        //                        {
+        //                            //no plant, move on
+        //                        }
+        //                        else
+        //                        {
+        //                            //Found plant, Kill it
+        //                            Plant plant = dir.GetPlant(this.Map);
+        //                            plant.Destroy();
+        //                        }
+        //                        //Spawn more Ivy
+        //                        SpawnIvy(dir);
+        //                    }
+        //                }
+        //                //Its natural floor
+        //                else if (terrain.defName != "WaterDeep" &&
+        //                         terrain.defName != "WaterShallow" &&
+        //                         terrain.defName != "MarshyTerrain")
+        //                    {
+        //                    //if theres no ivy here
+        //                    if (!IvyInCell(dir))
+        //                    {
+        //                        if (dir.GetPlant(this.Map) == null)
+        //                         {
+        //                            //no plant, move on
+        //                         }
+        //                         else
+        //                         {
+        //                            //Found plant, Kill it
+        //                            Plant plant = dir.GetPlant(this.Map);
+        //                            plant.Destroy();
+        //                         }
+        //                        //Spawn more Ivy
+        //                        SpawnIvy(dir);
+        //                    }
+        //                }
+        //                //its water or something I dont know of
+        //                else
+        //                {
+        //
+        //                }
+        //            }
+        //        }
+        //        SpreadTick = OrigSpreadTick;                                     
+        //    }
+        //    if (this.MutateTry == true)
+        //    {
+        //        Random random = new Random();
+        //        int MutateRate = random.Next(1, 200);
+        //        if (MutateRate == 3 || MutateRate == 23)
+        //        {
+        //            Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing//(ThingDef.Named("GasPump"));
+        //            GasPump.SetFactionDirect(factionDirect);
+        //            if (hasNoBuildings(Position))
+        //            {
+        //                GenSpawn.Spawn(GasPump, Position, this.Map);
+        //            }
+        //            this.MutateTry = false;
+        //            //Find.History.AddGameEvent("Gas here", GameEventType.BadNonUrgent, true, //Position, string.Empty);
+        //        }
+        //        else if (MutateRate == 4 || MutateRate == 24)
+        //        {
+        //            Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(ThingDef.Named//("EggSac"));
+        //            EggSac.SetFactionDirect(factionDirect);
+        //            if (hasNoBuildings(Position))
+        //            {
+        //                GenSpawn.Spawn(EggSac, Position, this.Map);
+        //            }
+        //            this.MutateTry = false;
+        //            //Find.History.AddGameEvent("Egg here", GameEventType.BadNonUrgent, true, //Position, string.Empty);
+        //        }
+        //        else if (MutateRate == 5)
+        //        {
+        //            Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing//(ThingDef.Named("Turret_GenMortarSeed"));
+        //            GenMortar.SetFactionDirect(factionDirect);
+        //            if (hasNoBuildings(Position))
+        //            {
+        //                GenSpawn.Spawn(GenMortar, Position, this.Map);
+        //            }
+        //            this.MutateTry = false;
+        //            //Find.History.AddGameEvent("Mortar here", GameEventType.BadNonUrgent, true, //Position, string.Empty);
+        //        }
+        //        else if (MutateRate == 6)
+        //        {
+        //            Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing//(ThingDef.Named("GenTurretBase"));
+        //            GenTurret.SetFactionDirect(factionDirect);
+        //            if (hasNoBuildings(Position))
+        //            {
+        //                GenSpawn.Spawn(GenTurret, Position, this.Map);
+        //            }
+        //            this.MutateTry = false;
+        //            //Find.History.AddGameEvent("Turret here", GameEventType.BadNonUrgent, true, //Position, string.Empty);
+        //        }
+        //        else
+        //        {
+        //            this.MutateTry = false;
+        //        }
+        //    }
+        //    if (stuckPawn != null)
+        //    {
+        //        int damageAmountBase = 1;
+        //        DamageInfo damageInfo = new DamageInfo(this.dmgdef, damageAmountBase, 0f, -1f, //this, null, null);
+        //        stuckPawn.TakeDamage(damageInfo);
+        //        stuckPawn = null;
+        //    }
+        //    if (stuckCorpse != null)
+        //    {
+        //        stuckCorpse.Destroy();
+        //        stuckCorpse = null;
+        //    }
+        //}
     }
 }
