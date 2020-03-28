@@ -1,6 +1,8 @@
 ﻿using System;
 using Verse;
-//namespace RimWorld
+using RimWorld;
+
+//namespace PurpleIvy
 //{
 //    public static class ThingDefOfCustom
 //    {
@@ -8,6 +10,6 @@ using Verse;
 //        public static void RebindDefs()
 //        {
 //            DefOfHelper.BindDefsFor<ThingDef>(typeof(ThingDefOf));
-//        }
+//        } 
 //    } 
 //}

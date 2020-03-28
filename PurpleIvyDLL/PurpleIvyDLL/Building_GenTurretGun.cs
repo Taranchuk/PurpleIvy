@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace RimWorld
+using RimWorld;
+
+namespace PurpleIvy
 {
     class Building_GenTurretGun : Building_TurretGun
     {

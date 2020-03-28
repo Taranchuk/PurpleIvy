@@ -4,7 +4,9 @@ using System.Text;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
-namespace RimWorld
+using RimWorld;
+
+namespace PurpleIvy
 {
     public class Building_EggSac : Building
     {

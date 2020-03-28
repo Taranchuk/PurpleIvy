@@ -1,51 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  
-  <ThingDef>
-    <defName>MeteorIncoming</defName>
-    <label>Meteor (incoming)</label>
-    <thingClass>MeteorIncoming</thingClass>
+
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>PI_MeteorIncoming</defName>
+    <label>meteorite (incoming)</label>
+	<thingClass>PurpleIvy.MeteorIncoming</thingClass>
+    <tickerType>Normal</tickerType>
     <category>Ethereal</category>
-    <tickerType>Normal</tickerType>
-	<graphicData>
-		<texPath>Things/Meteor</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    <shaderType>CutoutFlying</shaderType>
-
-	</graphicData>
-    <altitudeLayer>MetaOverlays</altitudeLayer>
-    <useHitPoints>false</useHitPoints>
-  </ThingDef>
-
-
-  <ThingDef>
-    <defName>Meteor</defName>
-    <label>Meteor</label>
-    <category>Building</category>
-    <thingClass>Meteor</thingClass>
-    <tickerType>Normal</tickerType>
-	<graphicData>
-		<texPath>Things/Meteor</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<shadowData>
-			<volume>(0.8, 0.8, 0.6)</volume>
-			<offset>(0,0,-0.1)</offset>
-		</shadowData>
-	</graphicData>
-    <altitudeLayer>BuildingOnTop</altitudeLayer>
-    <useHitPoints>true</useHitPoints>
-    <statBases>
-      <MaxHitPoints>500</MaxHitPoints>
-      <Flammability>0</Flammability>
-      <Beauty>-1</Beauty>
-    </statBases>
-    <selectable>false</selectable>
+    <size>(2, 2)</size>
+    <graphicData>
+	  <texPath>Things/Meteor</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <shaderType>CutoutFlying</shaderType>
+      <drawSize>(10, 10)</drawSize>
+    </graphicData>
+    <skyfaller>
+      <shadowSize>(3, 3)</shadowSize>
+      <rotateGraphicTowardsDirection>true</rotateGraphicTowardsDirection>
+      <speed>1.2</speed>
+    </skyfaller>
   </ThingDef>
   
   <ThingDef ParentName="BuildingBase">
-    <defName>Meteorite</defName>
+    <defName>PI_Meteorite</defName>
     <label>Meteorite</label>
-    <thingClass>Building_Meteorite</thingClass>
+    <thingClass>PurpleIvy.Building_Meteorite</thingClass>
     <tickerType>Normal</tickerType>
 	<graphicData>
 		<texPath>Things/Meteor</texPath>
@@ -56,7 +35,7 @@
 		</shadowData>
 	</graphicData>
     <passability>Impassable</passability>
-    <altitudeLayer>Terrain</altitudeLayer>
+    <altitudeLayer>Building</altitudeLayer>
     <useHitPoints>true</useHitPoints>
     <building>
       <ai_combatDangerous>true</ai_combatDangerous>
@@ -75,7 +54,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>EggSac</defName>
     <label>Egg Sac</label>
-    <thingClass>Building_EggSac</thingClass>
+    <thingClass>PurpleIvy.Building_EggSac</thingClass>
     <tickerType>Rare</tickerType>
 	<graphicData>
 		<texPath>Things/EggSac</texPath>
@@ -102,7 +81,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>GasPump</defName>
     <label>Gaseous Pustule</label>
-    <thingClass>Building_GasPump</thingClass>
+    <thingClass>PurpleIvy.Building_GasPump</thingClass>
     <tickerType>Rare</tickerType>
 	<graphicData>
 		<texPath>Things/GasPump</texPath>

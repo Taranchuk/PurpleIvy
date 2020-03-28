@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
-namespace RimWorld
+using RimWorld;
+
+namespace PurpleIvy
 {
-    public static class MeteorUtility
+    public static class MeteorUtility 
     {
         private static List<List<Thing>> tempList = new List<List<Thing>>();
-        public static void MakeMeteorAt(IntVec3 loc, MeteorInfo info)
+        public static void MakeMeteorAt(Map map, IntVec3 loc, MeteorInfo info)
         {
-            MeteorIncoming meteorIncoming = (MeteorIncoming)ThingMaker.MakeThing(ThingDef.Named("MeteorIncoming"), null);
+            MeteorIncoming meteorIncoming = (MeteorIncoming)ThingMaker.MakeThing(ThingDef.Named("PI_MeteorIncoming"), null);
             meteorIncoming.contents = info;
-            GenSpawn.Spawn(meteorIncoming, loc, meteorIncoming.Map);
+            GenSpawn.Spawn(meteorIncoming, loc, map);
         }
         public static void DropThingsNear(IntVec3 dropCenter, IEnumerable<Thing> things, int openDelay = 110, bool canInstaDropDuringInit = true, bool leaveSlag = false)
         {
@@ -65,8 +67,8 @@ namespace RimWorld
                         meteorInfo.containedThings.Add(current4);
                     }
                     meteorInfo.openDelay = openDelay;
-                    meteorInfo.leaveSlag = leaveSlag;
-                    MeteorUtility.MakeMeteorAt(intVec, meteorInfo);
+                    meteorInfo.leaveSlag = leaveSlag; 
+                    MeteorUtility.MakeMeteorAt(current[0].Map, intVec, meteorInfo);
                 }
             }
         }

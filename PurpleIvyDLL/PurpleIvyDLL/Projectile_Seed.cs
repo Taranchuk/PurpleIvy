@@ -5,7 +5,9 @@ using Verse.Sound;
 using System.Collections.Generic;
 using System.Linq;
 using Verse.AI;
-namespace RimWorld
+using RimWorld;
+
+namespace PurpleIvy
 {
     public class Projectile_Seed : Projectile
     {

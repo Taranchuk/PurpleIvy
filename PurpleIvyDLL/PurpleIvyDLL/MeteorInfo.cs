@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Verse;
-namespace RimWorld
+using RimWorld;
+
+namespace PurpleIvy
 {
     public class MeteorInfo : IExposable
     {

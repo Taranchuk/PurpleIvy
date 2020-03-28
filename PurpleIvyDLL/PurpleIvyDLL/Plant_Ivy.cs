@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Verse;
 using Verse.Sound;
-namespace RimWorld
+using RimWorld;
+
+namespace PurpleIvy
 {
     public class Plant_Ivy : Plant
     {

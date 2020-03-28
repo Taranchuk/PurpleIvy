@@ -2,7 +2,9 @@
 using UnityEngine;
 using Verse;
 using Verse.Sound;
-namespace RimWorld
+using RimWorld;
+
+namespace PurpleIvy
 {
     [StaticConstructorOnStartup]
     public class MeteorIncoming : Thing
@@ -81,9 +83,9 @@ namespace RimWorld
             {
                 MoteMaker.ThrowAirPuffUp(base.Position.ToVector3Shifted(), this.Map);
             }
-            Meteor meteor = (Meteor)ThingMaker.MakeThing(ThingDef.Named("Meteor"));
+            Meteor meteor = new Meteor(ThingDef.Named("PI_Meteorite"));
             meteor.info = this.contents;
-            GenSpawn.Spawn(meteor, base.Position, this.Map, base.Rotation);
+            GenSpawn.Spawn(meteor.meteor, base.Position, this.Map, base.Rotation);
             this.Destroy(DestroyMode.Vanish);
         }
     }

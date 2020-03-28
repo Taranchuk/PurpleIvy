@@ -4,7 +4,7 @@
   <!-- ============================ Gennys ========================== -->
 
   <!-- Centipede -->
-<ThingDef>
+  <ThingDef ParentName="BaseMechanoid">
 	<defName>Genny_Centipede</defName>
 	<label>Centipede hatchling</label>
 	<description>The natural fauna the mechanoid Centipede is derived from. Created when scientists at a research station attempted to make insects more adaptable to the environments of space.</description>

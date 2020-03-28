@@ -4,7 +4,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>GenTurretBase</defName>
     <label>Chorcorus</label>
-    <thingClass>Building_GenMortarGun</thingClass>
+    <thingClass>PurpleIvy.Building_GenMortarGun</thingClass>
 	<graphicData>
 		<texPath>Things/GenTurretBase</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -34,7 +34,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Turret_GenMortarSeed</defName>
     <label>Oxalis Seedpod</label>
-    <thingClass>Building_GenTurretGun</thingClass>
+    <thingClass>PurpleIvy.Building_GenTurretGun</thingClass>
 	<graphicData>
 		<texPath>Things/GenMortarBase</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
