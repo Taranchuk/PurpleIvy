@@ -12,7 +12,7 @@
 	  <texPath>Things/Meteor</texPath>
       <graphicClass>Graphic_Single</graphicClass>
 	  <shaderType>CutoutFlying</shaderType>
-      <drawSize>(10, 10)</drawSize>
+      <drawSize>(2, 2)</drawSize>
     </graphicData>
     <skyfaller>
       <shadowSize>(3, 3)</shadowSize>
