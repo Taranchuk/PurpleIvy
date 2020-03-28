@@ -9,7 +9,6 @@
     <pathCost>10</pathCost>
     <useHitPoints>True</useHitPoints>
     <selectable>True</selectable>
-    <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
     <statBases>
       <MaxHealth>100</MaxHealth>
       <Flammability>1.0</Flammability>
@@ -38,10 +37,11 @@
 		<texPath>Things/Tendril_Chorcorus</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
+	<statBases>
+		<MarketValue>100</MarketValue>
+	</statBases>
 
     <soundInteract>InteractPistol</soundInteract>
-    <tradersCarry>True</tradersCarry>
-    <baseMarketValue>100</baseMarketValue>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <comps>
       <li>
@@ -51,9 +51,8 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <cooldownTicks>100</cooldownTicks>
         <hasStandardCommand>true</hasStandardCommand>
-        <meleeDamageAmount>12</meleeDamageAmount>
+        <meleeDamageBaseAmount>12</meleeDamageBaseAmount>
         <meleeDamageDef>Stab</meleeDamageDef>
       </li>
     </verbs>
@@ -70,8 +69,9 @@
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>    
     <soundInteract>InteractPistol</soundInteract>
-    <tradersCarry>False</tradersCarry>
-    <baseMarketValue>100</baseMarketValue>
+	<statBases>
+		<MarketValue>100</MarketValue>
+	</statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <comps>
       <li>
@@ -81,9 +81,8 @@
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
-        <cooldownTicks>140</cooldownTicks>
         <hasStandardCommand>true</hasStandardCommand>
-        <meleeDamageAmount>19</meleeDamageAmount>
+        <meleeDamageBaseAmount>19</meleeDamageBaseAmount>
         <meleeDamageDef>Cut</meleeDamageDef>
       </li>
     </verbs>

@@ -34,8 +34,8 @@
 	<graphicData>
 		<texPath>Things/OxalisSeed</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>TransparentPostLight</shaderType>
 	</graphicData>
-    <shaderType>MotePostLight</shaderType>
     <projectile>
       <damageDef>Bullet</damageDef>
       <damageAmountBase>20</damageAmountBase>
@@ -67,11 +67,8 @@
         <verbClass>Verb_Shoot</verbClass>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <hasStandardCommand>true</hasStandardCommand>
-        <projectileDef>Bullet_GenMortar</projectileDef>
-        <forcedMissRadius>10</forcedMissRadius>
-        <ai_IsIncendiary>false</ai_IsIncendiary>
-        <warmupTicks>300</warmupTicks>
-        <cooldownTicks>3000</cooldownTicks>
+	<defaultProjectile>Bullet_GenMortar</defaultProjectile>
+        <warmupTime>300</warmupTime>
         <minRange>20</minRange>
         <range>200</range>
         <accuracyTouch>0.79</accuracyTouch>
@@ -79,7 +76,7 @@
         <accuracyMedium>0.18</accuracyMedium>
         <accuracyLong>0.06</accuracyLong>
         <burstShotCount>1</burstShotCount>
-        <fireSound>GenMortarFire</fireSound>
+        <soundCast>GenMortarFire</soundCast>
       </li>
     </verbs>
   </ThingDef>

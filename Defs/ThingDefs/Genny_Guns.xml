@@ -9,7 +9,6 @@
     <pathCost>10</pathCost>
     <useHitPoints>True</useHitPoints>
     <selectable>True</selectable>
-    <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
     <statBases>
       <MaxHealth>100</MaxHealth>
       <Flammability>1.0</Flammability>
@@ -55,7 +54,6 @@
 	</graphicData>
 
     <soundInteract>InteractRifle</soundInteract>
-    <canBeSpawningInventory>false</canBeSpawningInventory>
     <weaponTags>
       <li>TurretGun</li>
     </weaponTags>
@@ -67,10 +65,9 @@
     <verbs>
       <li>
         <verbClass>Verb_Shoot</verbClass>
-        <cooldownTicks>40</cooldownTicks>
         <hasStandardCommand>true</hasStandardCommand>
-        <projectileDef>Bullet_GenTurret</projectileDef>
-        <warmupTicks>108</warmupTicks>
+        <defaultProjectile>Bullet_GenTurret</defaultProjectile>
+        <warmupTime>108</warmupTime>
         <range>20.9</range>
         <accuracyTouch>0.89</accuracyTouch>
         <accuracyShort>0.74</accuracyShort>
@@ -78,7 +75,7 @@
         <accuracyLong>0.32</accuracyLong>
         <ticksBetweenBurstShots>16</ticksBetweenBurstShots>
         <burstShotCount>1</burstShotCount>
-        <fireSound>GenTurretFire</fireSound>
+        <soundCast>GenTurretFire</soundCast>
       </li>
     </verbs>
   </ThingDef>

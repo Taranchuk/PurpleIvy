@@ -14,21 +14,24 @@
 	<tickerType>Rare</tickerType>
 	<thingClass>Plant_Ivy</thingClass>    
 	<description>A genetically modified version of the Earth plant species "Glechoma hederacea".</description>
-	<graphicPathFolderRandom>Things/Plant/PurpleIvy</graphicPathFolderRandom>
+	<graphicData>
+		<texPath>Things/Plant/PurpleIvy</texPath>
+		<graphicClass>Graphic_Random</graphicClass>
+		<shaderType>CutoutPlant</shaderType>
+		<shadowData>
+			<volume>(0.3, 0.2, 0.15)</volume>
+			<offset>(0,0,-0.1)</offset>
+		</shadowData>
+	</graphicData>
 	<selectable>true</selectable>
-	<sunShadowInfo>
-		<baseWidth>0.2</baseWidth>
-		<baseHeight>0.2</baseHeight>
-		<tallness>0.2</tallness>
-	</sunShadowInfo>
+
 	<fillPercent>0.25</fillPercent>
 	<pathCost>90</pathCost>
 	<neverMultiSelect>True</neverMultiSelect>
 	<drawerType>MapMeshOnly</drawerType>
-	<shaderType>CutoutPlant</shaderType>
 	<plant>
 		<shootsSeeds>false</shootsSeeds>
-		<harvestWork>9000f</harvestWork>
+		<harvestWork>9000</harvestWork>
 		<harvestDestroys>false</harvestDestroys>
 		<harvestingSound>Harvest_Standard</harvestingSound>
 		<harvestFinishSound>Harvest_Standard_Finish</harvestFinishSound>
@@ -39,7 +42,7 @@
 			<min>0.4</min>
 			<max>0.6</max>
 		</visualSizeRange>
-		<growMinGlow>Overlit</growMinGlow>
+		<growMinGlow>0.3</growMinGlow>
 		<seedShootMinGrowthPercent>0.6</seedShootMinGrowthPercent>
 		<growthPer20kTicks>2.5</growthPer20kTicks>
 		<topWindExposure>0.6</topWindExposure>

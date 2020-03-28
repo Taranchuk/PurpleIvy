@@ -10,11 +10,12 @@
 	<graphicData>
 		<texPath>Things/Meteor</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
+    <shaderType>CutoutFlying</shaderType>
+
 	</graphicData>
     <overdraw>false</overdraw>
     <altitudeLayer>MetaOverlays</altitudeLayer>
     <useHitPoints>false</useHitPoints>
-    <shaderType>CutoutFlying</shaderType>
   </ThingDef>
 
 
@@ -30,7 +31,7 @@
 	</graphicData>
     <overdraw>false</overdraw>
     <altitudeLayer>BuildingOnTop</altitudeLayer>
-    <useStandardHealth>true</useStandardHealth>
+    <useHitPoints>true</useHitPoints>
     <statBases>
       <MaxHealth>500</MaxHealth>
       <Flammability>0</Flammability>
@@ -56,8 +57,10 @@
     <overdraw>false</overdraw>
     <passability>Impassable</passability>
     <altitudeLayer>Terrain</altitudeLayer>
-    <useStandardHealth>true</useStandardHealth>
-    <combatTargetBuilding>true</combatTargetBuilding>
+    <useHitPoints>true</useHitPoints>
+    <building>
+      <ai_combatDangerous>true</ai_combatDangerous>
+    </building>
     <selectable>false</selectable>
     <statBases>
       <MaxHealth>500</MaxHealth>
@@ -86,8 +89,10 @@
     <overdraw>false</overdraw>
     <passability>Impassable</passability>
     <altitudeLayer>Terrain</altitudeLayer>
-    <useStandardHealth>true</useStandardHealth>
-    <combatTargetBuilding>true</combatTargetBuilding>
+    <useHitPoints>true</useHitPoints>
+    <building>
+      <ai_combatDangerous>true</ai_combatDangerous>
+    </building>
     <selectable>false</selectable>
     <statBases>
       <MaxHealth>200</MaxHealth>
@@ -113,8 +118,10 @@
     <overdraw>false</overdraw>
     <passability>Impassable</passability>
     <altitudeLayer>Terrain</altitudeLayer>
-    <useStandardHealth>true</useStandardHealth>
-    <combatTargetBuilding>true</combatTargetBuilding>
+    <useHitPoints>true</useHitPoints>
+	<building>
+		<ai_combatDangerous>true</ai_combatDangerous>
+	</building>
     <selectable>false</selectable>
     <comps>
 			<li>

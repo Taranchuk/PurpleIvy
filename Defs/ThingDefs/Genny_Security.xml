@@ -23,12 +23,12 @@
     <castEdgeShadows>true</castEdgeShadows>
     <fillPercent>0.4</fillPercent>
     <overdraw>true</overdraw>
-    <combatTargetBuilding>true</combatTargetBuilding>
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <building>
+      <ai_combatDangerous>true</ai_combatDangerous>
       <turretGunDef>GunTurretGun</turretGunDef>
-      <turretburstCooldownTicks>200</turretburstCooldownTicks>
+      <turretBurstCooldownTime>200</turretBurstCooldownTime>
     </building>
   </ThingDef>
 
@@ -41,8 +41,8 @@
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <altitudeLayer>Terrain</altitudeLayer>
-    <hasInteractionSquare>True</hasInteractionSquare>
-    <interactionSquareOffset>(0,0,-1)</interactionSquareOffset>
+	<hasInteractionCell>true</hasInteractionCell>
+	<interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <statBases>
       <MaxHealth>50</MaxHealth>
       <Flammability>1.0</Flammability>
@@ -56,12 +56,12 @@
     <castEdgeShadows>true</castEdgeShadows>
     <fillPercent>0.4</fillPercent>
     <overdraw>true</overdraw>
-    <combatTargetBuilding>true</combatTargetBuilding>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <building>
+      <ai_combatDangerous>true</ai_combatDangerous>
       <turretGunDef>Artillery_MortarGenny</turretGunDef>
-      <turretBurstWarmupTicks>300</turretBurstWarmupTicks>
-      <turretburstCooldownTicks>3000</turretburstCooldownTicks>
+      <turretBurstWarmupTime>300</turretBurstWarmupTime>
+      <turretBurstCooldownTime>3000</turretBurstCooldownTime>
       <buildingTags>
         <li>Artillery</li>
         <li>Artillery_BaseDestroyer</li>
