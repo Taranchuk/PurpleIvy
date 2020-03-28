@@ -16,26 +16,27 @@ namespace PurpleIvy
             base.SpawnSetup(map, respawningAfterLoad);
             this.SetFactionDirect(factionDirect);
         }
-
-        public override void TickRare()
+        public override void Tick()
         {
-            base.TickRare();
-            if (EcosystemFull(this.Map)) 
+            base.Tick(); 
+            if (Find.TickManager.TicksGame % 750 == 0)
             {
-                return;
+                if (EcosystemFull(this.Map))
+                {
+                    return;
+                }
+                Random random = new Random();
+                int Spawnrate = random.Next(1, 50);
+                if (Spawnrate == 5)
+                {
+                    PawnKindDef pawnKindDef = PawnKindDef.Named("Genny_Centipede");
+                    Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
+                    NewPawn.kindDef = pawnKindDef;
+                    NewPawn.SetFactionDirect(factionDirect);
+                    NewPawn.thinker = new Pawn_Thinker(NewPawn);
+                    GenSpawn.Spawn(NewPawn, Position, this.Map);
+                }
             }
-            Random random = new Random();
-            int Spawnrate = random.Next(1, 50);
-            if (Spawnrate == 5)
-            {
-                PawnKindDef pawnKindDef = PawnKindDef.Named("Genny_Centipede");
-                Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                NewPawn.kindDef = pawnKindDef;
-                NewPawn.SetFactionDirect(factionDirect);
-                NewPawn.thinker = new Pawn_Thinker(NewPawn);
-                GenSpawn.Spawn(NewPawn, Position, this.Map);
-            }
-            
         }
 
         public static bool EcosystemFull(Map map)

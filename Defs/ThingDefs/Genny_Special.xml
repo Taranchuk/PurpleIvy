@@ -55,7 +55,7 @@
     <defName>EggSac</defName>
     <label>Egg Sac</label>
     <thingClass>PurpleIvy.Building_EggSac</thingClass>
-    <tickerType>Rare</tickerType>
+    <tickerType>Normal</tickerType>
 	<graphicData>
 		<texPath>Things/EggSac</texPath>
 		<graphicClass>Graphic_Single</graphicClass>

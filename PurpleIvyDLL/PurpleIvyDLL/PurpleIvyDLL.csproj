@@ -297,8 +297,6 @@
     <Compile Include="Building_EggSac.cs" />
     <Compile Include="Building_GenMortarGun.cs" />
     <Compile Include="Building_GenTurretGun.cs" />
-    <Compile Include="CompProperties_GlowerX.cs" />
-    <Compile Include="CompGlowerX.cs" />
     <Compile Include="Meteor.cs" />
     <Compile Include="MeteorIncoming.cs" />
     <Compile Include="MeteorInfo.cs" />
