@@ -11,15 +11,15 @@
     <comps>
       <li Class="HediffCompProperties_Disappears">
         <disappearsAfterTicks>
-          <min>500</min>
-          <max>1000</max>
+          <min>1000</min>
+          <max>2000</max>
         </disappearsAfterTicks>
       </li>
     </comps>
     <stages>
       <li>
 	  <statOffsets>
-		  <MoveSpeed>-1.00</MoveSpeed>
+		  <MoveSpeed>-50.00</MoveSpeed>
 	  </statOffsets>
       </li>
     </stages>
