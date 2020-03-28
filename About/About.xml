@@ -2,6 +2,9 @@
 <ModMetaData>
 	<name>Purple Ivy</name>
 	<author>Skullywag</author>
-	<targetVersion>Alpha 7</targetVersion>
-	<description>Plantlife that chokes the world.</description>
+	<supportedVersions>
+		<li>1.1</li>
+	</supportedVersions>
+	<packageId>Skullywag.PurpleIvy</packageId>
+  	<description>Plantlife that chokes the world.</description>
 </ModMetaData>

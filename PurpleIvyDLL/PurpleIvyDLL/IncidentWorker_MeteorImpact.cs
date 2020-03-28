@@ -9,7 +9,7 @@ namespace PurpleIvy
         private const float FogClearRadius = 4.5f;
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            Map map = (Map)parms.target;
+            Map map = (Map)parms.target; 
             ThingDef skyfaller = DefDatabase<ThingDef>.GetNamed("PI_MeteorIncoming", true);
             ThingDef meteor = DefDatabase<ThingDef>.GetNamed("PI_Meteorite", true);
             IntVec3 intVec = CellFinderLoose.RandomCellWith((IntVec3 sq) => GenGrid.Standable(sq, map) && !GridsUtility.Roofed(sq, map) && !GridsUtility.Fogged(sq, map), map);

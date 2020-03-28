@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-
-  <ThingDef Name="PI_BaseGenGun" Abstract="True">
-    <category>Item</category>
-    <thingClass>Equipment</thingClass>
-    <label>gun</label>
-    <equipmentType>Primary</equipmentType>
-    <pathCost>10</pathCost>
-    <useHitPoints>True</useHitPoints>
-    <selectable>True</selectable>
-    <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
-      <Flammability>1.0</Flammability>
-    </statBases>
-    <altitudeLayer>Item</altitudeLayer>
-    <alwaysHaulable>True</alwaysHaulable>
-    <tickerType>Never</tickerType>
-    <techLevel>Spacer</techLevel>
-    <comps>
-      <li>
-        <compClass>CompForbiddable</compClass>
-      </li>
-    </comps>
-  </ThingDef>
-
-
   <!-- ================== Seed mortar ================== -->
 
   <ThingDef ParentName="BaseBullet">
@@ -45,11 +20,15 @@
     </projectile>
   </ThingDef>
   
-  <ThingDef ParentName="PI_BaseGenGun">
+  <ThingDef ParentName="BaseWeapon">
     <defName>Artillery_MortarGenny</defName>
     <label>Oxalis</label>
     <description>A genetically modified Oxalis plant species, its able to fire its seeds huge distances.</description>
-    <thingClass>ThingWithComps</thingClass>
+	<graphicData>
+		<texPath>Things/GenMortarGun</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+	<thingClass>ThingWithComps</thingClass>
     <menuHidden>True</menuHidden>
     <destroyOnDrop>True</destroyOnDrop>
 	<tradeability>None</tradeability>
@@ -57,6 +36,17 @@
       <li>Artillery</li>
       <li>Artillery_BaseDestroyer</li>
     </weaponTags>
+    <pathCost>10</pathCost>
+    <useHitPoints>True</useHitPoints>
+    <selectable>True</selectable>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <alwaysHaulable>True</alwaysHaulable>
+    <tickerType>Never</tickerType>
+    <techLevel>Spacer</techLevel>
     <comps>
       <li>
         <compClass>CompEquippable</compClass>

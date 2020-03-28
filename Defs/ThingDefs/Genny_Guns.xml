@@ -1,83 +1,68 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+	<!-- ================ Improvised turret gun ============== -->
 
+	<ThingDef ParentName="BaseBullet">
+		<defName>Bullet_GenTurret</defName>
+		<label>Mucilage</label>
+		<graphicData>
+			<texPath>Things/Bullet_Slime</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<speed>32</speed>
+		</projectile>
+	</ThingDef>
 
-  <ThingDef Name="PI1_BaseGenGun" Abstract="True">
-    <category>Item</category>
-    <thingClass>Equipment</thingClass>
-    <equipmentType>Primary</equipmentType>
-    <pathCost>10</pathCost>
-    <useHitPoints>True</useHitPoints>
-    <selectable>True</selectable>
-    <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
-      <Flammability>1.0</Flammability>
-	<Mass>5</Mass>
-    </statBases>
-    <altitudeLayer>Item</altitudeLayer>
-    <alwaysHaulable>True</alwaysHaulable>
-    <tickerType>Never</tickerType>
-    <techLevel>Spacer</techLevel>
-    <comps>
-      <li>
-        <compClass>CompForbiddable</compClass>
-      </li>
-    </comps>
-  </ThingDef>
-
-
-  <!-- ================ Improvised turret gun ============== -->
-
-  <ThingDef ParentName="BaseBullet">
-    <defName>Bullet_GenTurret</defName>
-    <label>Mucilage</label>
-	<graphicData>
-		<texPath>Things/Bullet_Slime</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>1</damageAmountBase>
-      <speed>32</speed>
-    </projectile>
-  </ThingDef>
-
-  <ThingDef ParentName="PI1_BaseGenGun">
-    <defName>GunTurretGun</defName>
-    <label>Corchorus</label>
-	<thingClass>ThingWithComps</thingClass>
-    <menuHidden>true</menuHidden>
-    <description>A genetically modified Chorchorus plant species, its able to fire its Mucilage slime at will.</description>
-	<graphicData>
-		<texPath>Things/GenTurretGun</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-
-    <soundInteract>InteractRifle</soundInteract>
-    <weaponTags>
-      <li>TurretGun</li>
-    </weaponTags>
-    <comps>
-      <li>
-        <compClass>CompEquippable</compClass>
-      </li>
-    </comps>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_GenTurret</defaultProjectile>
-        <warmupTime>108</warmupTime>
-        <range>20.9</range>
-        <accuracyTouch>0.89</accuracyTouch>
-        <accuracyShort>0.74</accuracyShort>
-        <accuracyMedium>0.51</accuracyMedium>
-        <accuracyLong>0.32</accuracyLong>
-        <ticksBetweenBurstShots>16</ticksBetweenBurstShots>
-        <burstShotCount>1</burstShotCount>
-        <soundCast>GenTurretFire</soundCast>
-      </li>
-    </verbs>
-  </ThingDef>
+	<ThingDef ParentName="BaseWeapon">
+		<defName>GunTurretGun</defName>
+		<label>Corchorus</label>
+		<thingClass>ThingWithComps</thingClass>
+		<menuHidden>true</menuHidden>
+		<description>A genetically modified Chorchorus plant species, its able to fire its Mucilage slime at will.</description>
+		<graphicData>
+			<texPath>Things/GenTurretGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>InteractRifle</soundInteract>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+		<pathCost>10</pathCost>
+		<useHitPoints>True</useHitPoints>
+		<selectable>True</selectable>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<Mass>5</Mass>
+		</statBases>
+		<altitudeLayer>Item</altitudeLayer>
+		<alwaysHaulable>True</alwaysHaulable>
+		<tickerType>Never</tickerType>
+		<techLevel>Spacer</techLevel>
+		<comps>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+		</comps>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_GenTurret</defaultProjectile>
+				<warmupTime>108</warmupTime>
+				<range>20.9</range>
+				<accuracyTouch>0.89</accuracyTouch>
+				<accuracyShort>0.74</accuracyShort>
+				<accuracyMedium>0.51</accuracyMedium>
+				<accuracyLong>0.32</accuracyLong>
+				<ticksBetweenBurstShots>16</ticksBetweenBurstShots>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>GenTurretFire</soundCast>
+			</li>
+		</verbs>
+	</ThingDef>
 
 </Defs>
