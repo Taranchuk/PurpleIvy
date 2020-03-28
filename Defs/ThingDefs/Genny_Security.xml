@@ -11,7 +11,7 @@
 	</graphicData>
     <altitudeLayer>Terrain</altitudeLayer>
     <statBases>
-      <MaxHealth>50</MaxHealth>
+      <MaxHitPoints>50</MaxHitPoints>
       <Flammability>1.0</Flammability>
       <WorkToBuild>0</WorkToBuild>
       <Beauty>-60</Beauty>
@@ -22,7 +22,6 @@
     <passability>Impassable</passability>
     <castEdgeShadows>true</castEdgeShadows>
     <fillPercent>0.4</fillPercent>
-    <overdraw>true</overdraw>
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <building>
@@ -44,7 +43,7 @@
 	<hasInteractionCell>true</hasInteractionCell>
 	<interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <statBases>
-      <MaxHealth>50</MaxHealth>
+      <MaxHitPoints>50</MaxHitPoints>
       <Flammability>1.0</Flammability>
       <WorkToBuild>0</WorkToBuild>
       <Beauty>-60</Beauty>
@@ -55,7 +54,6 @@
     <passability>Impassable</passability>
     <castEdgeShadows>true</castEdgeShadows>
     <fillPercent>0.4</fillPercent>
-    <overdraw>true</overdraw>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <building>
       <ai_combatDangerous>true</ai_combatDangerous>
@@ -67,9 +65,9 @@
         <li>Artillery_BaseDestroyer</li>
       </buildingTags>
     </building>
-    <placementRestricters>
-      <li>PlacementRestricter_NotUnderRoof</li>
-    </placementRestricters>
+	<placeWorkers>
+		<li>PlaceWorker_NotUnderRoof</li>
+	</placeWorkers>
   </ThingDef>
 
 </Defs>

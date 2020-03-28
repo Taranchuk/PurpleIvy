@@ -11,7 +11,7 @@
     <useHitPoints>True</useHitPoints>
     <selectable>True</selectable>
     <statBases>
-      <MaxHealth>100</MaxHealth>
+      <MaxHitPoints>100</MaxHitPoints>
       <Flammability>1.0</Flammability>
     </statBases>
     <altitudeLayer>Item</altitudeLayer>

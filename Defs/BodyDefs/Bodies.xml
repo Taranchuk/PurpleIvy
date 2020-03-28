@@ -10,7 +10,7 @@
 			<height>Middle</height>
 			<depth>Outside</depth>
 			<groups>
-				<li>CoveredByNaturalArmor</li>
+				<li>Torso</li>
 			</groups>
 			<parts>
 				<li>
@@ -19,16 +19,12 @@
 					<height>Top</height>
 					<groups>
 						<li>HeadAttackTool</li>
-						<li>CoveredByNaturalArmor</li>
 					</groups>
 					<parts>
 						<li>
 							<def>Brain</def>
 							<coverage>0.2</coverage>
 							<depth>Inside</depth>
-							<groups>
-								<li>CoveredByNaturalArmor</li>
-							</groups>
 						</li>
 						<li>
 							<def>LeftEyeCluster</def>
@@ -55,16 +51,10 @@
 				<li>
 					<def>CentipedeBodySecondRing</def>
 					<coverage>0.75</coverage>
-					<groups>
-						<li>CoveredByNaturalArmor</li>
-					</groups>
 					<parts>
 						<li>
 							<def>CentipedeBodyThirdRing</def>
 							<coverage>0.8</coverage>
-							<groups>
-								<li>CoveredByNaturalArmor</li>
-							</groups>
 						</li>
 					</parts>
 				</li>

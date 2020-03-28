@@ -13,7 +13,6 @@
     <shaderType>CutoutFlying</shaderType>
 
 	</graphicData>
-    <overdraw>false</overdraw>
     <altitudeLayer>MetaOverlays</altitudeLayer>
     <useHitPoints>false</useHitPoints>
   </ThingDef>
@@ -28,21 +27,19 @@
 	<graphicData>
 		<texPath>Things/Meteor</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
+		<shadowData>
+			<volume>(0.8, 0.8, 0.6)</volume>
+			<offset>(0,0,-0.1)</offset>
+		</shadowData>
 	</graphicData>
-    <overdraw>false</overdraw>
     <altitudeLayer>BuildingOnTop</altitudeLayer>
     <useHitPoints>true</useHitPoints>
     <statBases>
-      <MaxHealth>500</MaxHealth>
+      <MaxHitPoints>500</MaxHitPoints>
       <Flammability>0</Flammability>
       <Beauty>-1</Beauty>
     </statBases>
     <selectable>false</selectable>
-    <sunShadowInfo>
-      <baseWidth>0.8</baseWidth>
-      <baseHeight>0.8</baseHeight>
-      <tallness>0.6</tallness>
-    </sunShadowInfo>
   </ThingDef>
   
   <ThingDef ParentName="BuildingBase">
@@ -53,8 +50,11 @@
 	<graphicData>
 		<texPath>Things/Meteor</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
+		<shadowData>
+			<volume>(0.8, 0.8, 0.6)</volume>
+			<offset>(0,0,-0.1)</offset>
+		</shadowData>
 	</graphicData>
-    <overdraw>false</overdraw>
     <passability>Impassable</passability>
     <altitudeLayer>Terrain</altitudeLayer>
     <useHitPoints>true</useHitPoints>
@@ -63,18 +63,13 @@
     </building>
     <selectable>false</selectable>
     <statBases>
-      <MaxHealth>500</MaxHealth>
+      <MaxHitPoints>500</MaxHitPoints>
       <Flammability>5.0</Flammability>
       <Beauty>-30</Beauty>     
     </statBases>
     <killedLeavings>
-      <Metal>300</Metal>
+      <Steel>300</Steel>
     </killedLeavings>
-    <sunShadowInfo>
-      <baseWidth>0.8</baseWidth>
-      <baseHeight>0.8</baseHeight>
-      <tallness>0.6</tallness>
-    </sunShadowInfo>
   </ThingDef>
   
   <ThingDef ParentName="BuildingBase">
@@ -85,8 +80,11 @@
 	<graphicData>
 		<texPath>Things/EggSac</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
+		<shadowData>
+			<volume>(0.3, 0.3, 0.3)</volume>
+			<offset>(0,0,-0.1)</offset>
+		</shadowData>
 	</graphicData>
-    <overdraw>false</overdraw>
     <passability>Impassable</passability>
     <altitudeLayer>Terrain</altitudeLayer>
     <useHitPoints>true</useHitPoints>
@@ -95,15 +93,10 @@
     </building>
     <selectable>false</selectable>
     <statBases>
-      <MaxHealth>200</MaxHealth>
+      <MaxHitPoints>200</MaxHitPoints>
       <Flammability>3.0</Flammability>
       <Beauty>-50</Beauty>     
     </statBases>
-    <sunShadowInfo>
-      <baseWidth>0.3</baseWidth>
-      <baseHeight>0.3</baseHeight>
-      <tallness>0.3</tallness>
-    </sunShadowInfo>
   </ThingDef>
   
   <ThingDef ParentName="BuildingBase">
@@ -114,8 +107,11 @@
 	<graphicData>
 		<texPath>Things/GasPump</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
+		<shadowData>
+			<volume>(0.3, 0.3, 0.3)</volume>
+			<offset>(0,0,-0.1)</offset>
+		</shadowData>
 	</graphicData>
-    <overdraw>false</overdraw>
     <passability>Impassable</passability>
     <altitudeLayer>Terrain</altitudeLayer>
     <useHitPoints>true</useHitPoints>
@@ -124,22 +120,17 @@
 	</building>
     <selectable>false</selectable>
     <comps>
-			<li>
+			<li Class="CompProperties_Glower">
 				<compClass>CompGlowerX</compClass>
 				<glowRadius>3</glowRadius>
 				<glowColor>(150,255,255,0)</glowColor>
 			</li>
 		</comps>
     <statBases>
-      <MaxHealth>200</MaxHealth>
+      <MaxHitPoints>200</MaxHitPoints>
       <Flammability>3.0</Flammability>
       <Beauty>-50</Beauty>     
     </statBases>
-    <sunShadowInfo>
-      <baseWidth>0.3</baseWidth>
-      <baseHeight>0.3</baseHeight>
-      <tallness>0.3</tallness>
-    </sunShadowInfo>
   </ThingDef>
   
 </Defs>

@@ -7,10 +7,11 @@
     <defName>GennyDuty</defName>
     <thinkRoot Class="ThinkNode_Priority">
       <subNodes>
-        <li Class="ThinkNode_ConditionalHasSquadBrain">
+        <!--<li Class="ThinkNode_ConditionalHasSquadBrain">-->
+	<li Class="ThinkNode_ConditionalHasLord">
           <subNodes>
             <li Class="ThinkNode_Duty">
-              <dutyNodes>
+              <subNodes>
 
                 <!-- Hunt enemies individual -->
                 <li>
@@ -28,7 +29,7 @@
                   </value>
                 </li> 
               
-              </dutyNodes>
+              </subNodes>
             </li>
 
             <!-- If no duty issued a job -->

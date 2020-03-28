@@ -8,8 +8,6 @@
 	<defName>Genny_Centipede</defName>
 	<label>Centipede hatchling</label>
 	<description>The natural fauna the mechanoid Centipede is derived from. Created when scientists at a research station attempted to make insects more adaptable to the environments of space.</description>
-	<overdraw>false</overdraw>
-	<targetHitChanceFactor>1.0</targetHitChanceFactor>
 	<statBases>
 		<MoveSpeed>1.63</MoveSpeed>
 		<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
@@ -49,12 +47,13 @@
 		<soundMeleeHitBuilding>Pawn_Melee_MechanoidBash_HitBuilding</soundMeleeHitBuilding>
 		<soundMeleeMiss>Pawn_Melee_MechanoidBash_Miss</soundMeleeMiss>
 	</race>
+	<!--
 	<sunShadowInfo>
 		<baseWidth>0.6</baseWidth>
 		<baseHeight>0.6</baseHeight>
 		<tallness>0.3</tallness>
 	</sunShadowInfo>
-
+	-->
 	<butcherProducts>
 		<Steel>50</Steel>
 		<Plasteel>10</Plasteel>
