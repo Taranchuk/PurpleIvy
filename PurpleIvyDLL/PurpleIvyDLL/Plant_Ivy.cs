@@ -140,7 +140,7 @@ namespace PurpleIvy
         public override void Tick()
         {
             base.Tick();
-            if (Find.TickManager.TicksGame % 750 == 0)
+            if (Find.TickManager.TicksGame % 350 == 0)
             {
                 base.TickLong();
                 this.SpreadTick--;
