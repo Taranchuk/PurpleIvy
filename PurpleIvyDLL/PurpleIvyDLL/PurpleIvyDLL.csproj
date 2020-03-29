@@ -299,6 +299,7 @@
     <Compile Include="Building_GenMortarGun.cs" />
     <Compile Include="Building_GenTurretGun.cs" />
     <Compile Include="HediffDefOf.cs" />
+    <Compile Include="Pawn_InfectedCorpse.cs" />
     <Compile Include="Meteor.cs" />
     <Compile Include="MeteorIncoming.cs" />
     <Compile Include="MeteorInfo.cs" />

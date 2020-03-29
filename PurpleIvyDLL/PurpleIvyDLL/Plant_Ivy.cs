@@ -13,8 +13,6 @@ namespace PurpleIvy
         private int OrigSpreadTick;
         private int TickCount;
         private bool MutateTry;
-        Thing stuckPawn = null;
-        Thing stuckCorpse = null;
         Faction factionDirect = Find.FactionManager.FirstFactionOfDef(DefDatabase<FactionDef>.GetNamed("Genny", true));
         DamageDef dmgdef = DefDatabase<DamageDef>.GetNamed("Scratch", true);
 
@@ -90,9 +88,14 @@ namespace PurpleIvy
                     //If we find a corpse
                     if (list[i] != null && list[i].def.IsCorpse)
                     {
-                        //Consume it - TODO see if i can decompose the corpse fast then destroy the skeleton
+                        list[i].def.thingClass = typeof(InfectedCorpse);
+                        //Corpse corpse = (Corpse)list[i];
+                        //InfectedCorpse infectedCorpse = (InfectedCorpse)ThingMaker.MakeThing
+                        //    (ThingDef.Named("InfectedCorpse"), null);
+                        //infectedCorpse.InnerPawn = corpse.InnerPawn;
+                        //GenSpawn.Spawn(infectedCorpse, corpse.Position, this.Map);
+                        //list[i].Destroy();
 
-                        stuckCorpse = list[i];
                         //speedup the spread a little
                         SpreadTick--;
                         SpreadTick--;
@@ -106,12 +109,15 @@ namespace PurpleIvy
                         if (list[i] != null && list[i].def.defName != "Genny_Centipede" && list[i].def.defName != "Genny_ParasiteAlpha" && list[i].def.defName != "Genny_ParasiteBeta")
                         {
                             //Could do some mutatey zombie stuff here, but for now save the pawn and injur it outside this loop
-                            stuckPawn = list[i];
+                            Thing stuckPawn = list[i];
+                            DamageInfo damageInfo = new DamageInfo(this.dmgdef, 1, 0f, -1f, this, null, null);
+                            stuckPawn.TakeDamage(damageInfo);
                         }
                     }
                 }
             }
         }
+
 
         public bool isSurroundedByIvy(IntVec3 dir)
         {
@@ -292,22 +298,6 @@ namespace PurpleIvy
                         this.MutateTry = false;
                     }
                 }
-                if (stuckPawn != null)
-                {
-                    int damageAmountBase = 1;
-                    DamageInfo damageInfo = new DamageInfo(this.dmgdef, damageAmountBase, 0f, -1f, this, null, null);
-                    stuckPawn.TakeDamage(damageInfo);
-                    stuckPawn = null;
-                }
-                if (stuckCorpse != null)
-                {
-                    Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(ThingDef.Named("ParasiteEgg"));
-                    GenSpawn.Spawn(ParasiteEgg, stuckCorpse.Position, stuckCorpse.Map);
-                    stuckCorpse.Destroy();
-                    stuckCorpse = null;
-                }
-            
-
         }
             if (this.TickCount > 10)
             {
