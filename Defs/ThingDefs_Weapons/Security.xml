@@ -50,7 +50,7 @@
     </statBases>
     <tickerType>Normal</tickerType>
     <description>A genetically modified Oxalis plant species, its able to fire its seeds huge distances.</description>
-    <size>(2,2)</size>
+    <size>(1,1)</size>
     <passability>Impassable</passability>
     <castEdgeShadows>true</castEdgeShadows>
     <fillPercent>0.4</fillPercent>
