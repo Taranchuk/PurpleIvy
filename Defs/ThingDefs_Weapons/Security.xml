@@ -40,8 +40,10 @@
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <altitudeLayer>Terrain</altitudeLayer>
+<!--
 	<hasInteractionCell>true</hasInteractionCell>
 	<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+-->
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
       <Flammability>1.0</Flammability>
