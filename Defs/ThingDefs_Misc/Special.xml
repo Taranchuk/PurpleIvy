@@ -40,14 +40,17 @@
     <building>
       <ai_combatDangerous>true</ai_combatDangerous>
     </building>
-    <selectable>false</selectable>
+    <selectable>true</selectable>
     <statBases>
       <MaxHitPoints>500</MaxHitPoints>
       <Flammability>5.0</Flammability>
       <Beauty>-30</Beauty>     
     </statBases>
     <killedLeavings>
-      <Steel>300</Steel>
+      <Plasteel>75</Plasteel>
+      <Silver>500</Silver>
+	      <Uranium>20</Uranium>
+	      <Gold>100</Gold>
     </killedLeavings>
   </ThingDef>
   
@@ -70,7 +73,7 @@
     <building>
       <ai_combatDangerous>true</ai_combatDangerous>
     </building>
-    <selectable>false</selectable>
+    <selectable>true</selectable>
     <statBases>
       <MaxHitPoints>200</MaxHitPoints>
       <Flammability>3.0</Flammability>
@@ -98,7 +101,7 @@
     <building>
       <ai_combatDangerous>true</ai_combatDangerous>
     </building>
-    <selectable>false</selectable>
+    <selectable>true</selectable>
     <statBases>
       <MaxHitPoints>200</MaxHitPoints>
       <Flammability>3.0</Flammability>
@@ -125,7 +128,7 @@
 	<building>
 		<ai_combatDangerous>true</ai_combatDangerous>
 	</building>
-    <selectable>false</selectable>
+    <selectable>true</selectable>
     <comps>
 			<li Class="CompProperties_Glower">
 				<glowRadius>3</glowRadius>
