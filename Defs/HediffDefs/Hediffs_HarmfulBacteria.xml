@@ -19,7 +19,7 @@
     <stages>
       <li>
 	      
-	<vomitMtbDays>0.7</vomitMtbDays>
+	<vomitMtbDays>0.8</vomitMtbDays>
 	<capMods>
 	<li>
 	<capacity>Consciousness</capacity>
@@ -35,19 +35,19 @@
 	</li>
 	<li>
 	<capacity>Eating</capacity>
-	<offset>-0.25</offset>
+	<offset>-0.20</offset>
 	</li>
 	<li>
 	<capacity>Sight</capacity>
-	<offset>-0.25</offset>
+	<offset>-0.30</offset>
 	</li>
 	<li>
 	<capacity>Hearing</capacity>
-	<offset>-0.25</offset>
+	<offset>-0.15</offset>
 	</li>
 	<li>
 	<capacity>Breathing</capacity>
-	<offset>-0.25</offset>
+	<offset>-0.30</offset>
 	</li>
         </capMods>      
 	      
