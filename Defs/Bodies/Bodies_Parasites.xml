@@ -57,16 +57,6 @@
                   <coverage>0.15</coverage>
                 </li>
                 <li>
-                  <def>Antenna</def>
-                  <coverage>0.10</coverage>
-                  <customLabel>left antenna</customLabel>
-                </li>
-                <li>
-                  <def>Antenna</def>
-                  <coverage>0.10</coverage>
-                  <customLabel>right antenna</customLabel>
-                </li>
-                <li>
                   <def>InsectNostril</def>
                   <coverage>0.07</coverage>
                 </li>
