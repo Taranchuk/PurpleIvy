@@ -15,7 +15,7 @@ namespace PurpleIvy
         public MeteorInfo contents;
         protected int ticksToImpact = 120;
         private bool soundPlayed;
-        private static readonly SoundDef LandSound = SoundDef.Named("DropPodFall");
+        private static readonly SoundDef LandSound = SoundDef.Named("DropPod_Fall");
         private static readonly SoundDef ExplodeSound = SoundDef.Named("Explosion_Bomb");
         private static readonly Material ShadowMat = MaterialPool.MatFrom("Things/Special/DropPodShadow", ShaderDatabase.Transparent);
         public override Vector3 DrawPos

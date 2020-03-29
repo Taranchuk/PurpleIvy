@@ -293,6 +293,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Building_ParasiteEgg.cs" />
     <Compile Include="Building_GasPump.cs" />
     <Compile Include="Building_EggSac.cs" />
     <Compile Include="Building_GenMortarGun.cs" />

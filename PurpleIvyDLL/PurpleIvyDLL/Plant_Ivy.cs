@@ -29,7 +29,7 @@ namespace PurpleIvy
 
         public void SpawnIvy(IntVec3 dir)
         {
-            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, Map), (Thing t) =>          (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, Map), (Thing t) =>          (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock | t.def.defName == "PurpleIvy")))
             {
                 foreach (var t in GridsUtility.GetThingList(dir, this.Map))
                 {
@@ -191,6 +191,7 @@ namespace PurpleIvy
                                     {
                                         //Found plant, Kill it
                                         Plant plant = dir.GetPlant(this.Map);
+					Log.Message("1 Destroy plant " + plant.Label);
                                         plant.Destroy();
                                     }
                                     //Spawn more Ivy
@@ -213,6 +214,8 @@ namespace PurpleIvy
                                     {
                                         //Found plant, Kill it
                                         Plant plant = dir.GetPlant(this.Map);
+					Log.Message("2 Destroy plant " + plant.Label);
+
                                         plant.Destroy();
                                     }
                                     //Spawn more Ivy
@@ -250,6 +253,17 @@ namespace PurpleIvy
                         if (hasNoBuildings(Position))
                         {
                             GenSpawn.Spawn(EggSac, Position, this.Map);
+                        }
+                        this.MutateTry = false;
+                        //Find.History.AddGameEvent("Egg here", GameEventType.BadNonUrgent, true, Position, string.Empty);
+                    }
+                    else if (MutateRate == 8 || MutateRate == 16)
+                    {
+                        Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(ThingDef.Named("ParasiteEgg"));
+                        ParasiteEgg.SetFactionDirect(factionDirect);
+                        if (hasNoBuildings(Position))
+                        {
+                            GenSpawn.Spawn(ParasiteEgg, Position, this.Map);
                         }
                         this.MutateTry = false;
                         //Find.History.AddGameEvent("Egg here", GameEventType.BadNonUrgent, true, Position, string.Empty);
@@ -300,7 +314,7 @@ namespace PurpleIvy
             {
                 foreach (Thing thing in this.Map.thingGrid.ThingsListAt(this.Position))
                      {
-                         if (thing is Pawn && thing.def.defName != "Genny_Centipede")
+                         if (thing is Pawn && thing.def.defName != "Genny_Centipede" && thing.def.defName != "Genny_ParasiteAlpha" && thing.def.defName != "Genny_ParasiteBeta")
                          {
                             Log.Message(thing.Label);
                              Hediff hediff = HediffMaker.MakeHediff  (HediffDefOf.PoisonousPurpleHediff, (Pawn)thing, null);

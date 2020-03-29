@@ -78,6 +78,34 @@
     </statBases>
   </ThingDef>
   
+  
+    <ThingDef ParentName="BuildingBase">
+    <defName>ParasiteEgg</defName>
+    <label>Parasite egg</label>
+    <thingClass>PurpleIvy.Building_ParasiteEgg</thingClass>
+    <tickerType>Normal</tickerType>
+	<graphicData>
+		<texPath>Things/ParasiteEgg</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shadowData>
+			<volume>(0.3, 0.3, 0.3)</volume>
+			<offset>(0,0,-0.1)</offset>
+		</shadowData>
+	</graphicData>
+    <passability>Impassable</passability>
+    <altitudeLayer>Terrain</altitudeLayer>
+    <useHitPoints>true</useHitPoints>
+    <building>
+      <ai_combatDangerous>true</ai_combatDangerous>
+    </building>
+    <selectable>false</selectable>
+    <statBases>
+      <MaxHitPoints>200</MaxHitPoints>
+      <Flammability>3.0</Flammability>
+      <Beauty>-50</Beauty>     
+    </statBases>
+  </ThingDef>
+  
   <ThingDef ParentName="BuildingBase">
     <defName>GasPump</defName>
     <label>Gaseous Pustule</label>

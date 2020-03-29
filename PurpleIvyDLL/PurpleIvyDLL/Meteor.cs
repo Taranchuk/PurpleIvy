@@ -11,7 +11,7 @@ namespace PurpleIvy
         public MeteorInfo info;
         private ThingDef thingDef;
         public Thing meteor;
-        private static readonly SoundDef OpenSound = SoundDef.Named("DropPodOpen");
+        private static readonly SoundDef OpenSound = SoundDef.Named("DropPod_Open");
 
         public Meteor(ThingDef thingDef)
         {
@@ -44,7 +44,7 @@ namespace PurpleIvy
             {
                 for (int i = 0; i < 1; i++)
                 {
-                    Thing thing = ThingMaker.MakeThing(ThingDef.Named("ChunkSlag"), null);
+                    Thing thing = ThingMaker.MakeThing(ThingDef.Named("ChunkSlagSteel"), null);
                     GenPlace.TryPlaceThing(thing, base.Position, this.Map, ThingPlaceMode.Near);
                 }
             }
@@ -60,7 +60,7 @@ namespace PurpleIvy
             {
                 for (int i = 0; i < 1; i++)
                 {
-                    Thing thing = ThingMaker.MakeThing(ThingDef.Named("ChunkSlag"), null);
+                    Thing thing = ThingMaker.MakeThing(ThingDef.Named("ChunkSlagSteel"), null);
                     GenPlace.TryPlaceThing(thing, base.Position, this.Map, ThingPlaceMode.Near);
                 }
             }
