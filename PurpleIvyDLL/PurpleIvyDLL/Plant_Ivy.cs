@@ -301,6 +301,8 @@ namespace PurpleIvy
                 }
                 if (stuckCorpse != null)
                 {
+                    Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(ThingDef.Named("ParasiteEgg"));
+                    GenSpawn.Spawn(ParasiteEgg, stuckCorpse.Position, stuckCorpse.Map);
                     stuckCorpse.Destroy();
                     stuckCorpse = null;
                 }
