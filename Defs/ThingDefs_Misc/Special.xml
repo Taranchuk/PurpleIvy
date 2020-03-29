@@ -47,10 +47,11 @@
       <Beauty>-30</Beauty>     
     </statBases>
     <killedLeavings>
-      <Plasteel>75</Plasteel>
-      <Silver>500</Silver>
+              <Plasteel>30</Plasteel>
+              <Silver>300</Silver>
 	      <Uranium>20</Uranium>
-	      <Gold>100</Gold>
+	      <Gold>50</Gold>
+	      <PurpleIvy>50</PurpleIvy>
     </killedLeavings>
   </ThingDef>
   
@@ -79,6 +80,8 @@
       <Flammability>3.0</Flammability>
       <Beauty>-50</Beauty>     
     </statBases>
+	      <killedLeavings>
+	      <PurpleIvy>15</PurpleIvy>
   </ThingDef>
   
   
@@ -107,6 +110,8 @@
       <Flammability>3.0</Flammability>
       <Beauty>-50</Beauty>     
     </statBases>
+	      <killedLeavings>
+	      <PurpleIvy>10</PurpleIvy>
   </ThingDef>
   
   <ThingDef ParentName="BuildingBase">
@@ -140,6 +145,8 @@
       <Flammability>3.0</Flammability>
       <Beauty>-50</Beauty>     
     </statBases>
+	      <killedLeavings>
+	      <PurpleIvy>10</PurpleIvy>
   </ThingDef>
   
 </Defs>
