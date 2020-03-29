@@ -6,7 +6,7 @@
     <defName>HarmfulBacteriaHediff</defName>
     <label>Harmful Bacteria</label>
     <labelNoun>Harmful Bacteria</labelNoun>
-	<description>Harmful bacteria in the alien vegetation has caused breathing and sight problems</description>
+	<description>Harmful bacteria in the alien vegetation has caused temporary breathing and sight problems</description>
 	<isBad>true</isBad>
     <comps>
       <li Class="HediffCompProperties_Disappears">
