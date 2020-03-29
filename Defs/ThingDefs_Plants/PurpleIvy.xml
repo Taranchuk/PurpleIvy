@@ -49,7 +49,7 @@
 		<topWindExposure>0.6</topWindExposure>
 		<wildClusterRadius>15</wildClusterRadius>
 		<!--<seedShootRadius>15</seedShootRadius>-->
-		<lifespanDaysPerGrowDays>10</lifespanDaysPerGrowDays>
+		<lifespanDaysPerGrowDays>0</lifespanDaysPerGrowDays>
 		<!--<lifeSpan>600000</lifeSpan>-->
 		<!--<fertilityFactorGrowthRate>1.5</fertilityFactorGrowthRate>-->
 		<!--<fertilityFactorPlantChance>1.5</fertilityFactorPlantChance>-->
