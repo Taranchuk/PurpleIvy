@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<HediffDef>
+	<hediffClass>HediffWithComps</hediffClass>
+	<defaultLabelColor>(0.5, 0.1, 0.5)</defaultLabelColor>
+    <defName>MucilageslimeHediff</defName>
+    <label>Mucilage Slime</label>
+    <labelNoun>Mucilage Slime</labelNoun>
+	<description>Harmful slime from an alien species has caused breathing and sight problems</description>
+	<isBad>true</isBad>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>
+          <min>3000</min>
+          <max>4000</max>
+        </disappearsAfterTicks>
+      </li>
+    </comps>
+    <stages>
+      <li>
+	  <statOffsets>
+		  <MoveSpeed>0.00</MoveSpeed>
+	  </statOffsets>
+	          <vomitMtbDays>1.0</vomitMtbDays>
+		<capMods>
+			  <li>
+				<capacity>Consciousness</capacity>
+				<offset>-0.25</offset>
+			  </li>
+			  <li>
+				<capacity>Moving</capacity>
+				<offset>-0.30</offset>
+			  </li>
+			  <li>
+				<capacity>Manipulation</capacity>
+				<offset>-0.25</offset>
+			  </li>
+			  <li>
+				<capacity>Eating</capacity>
+				<offset>-0.20</offset>
+			  </li>
+			  <li>
+				<capacity>Sight</capacity>
+				<offset>-0.30</offset>
+			  </li>
+			  <li>
+				<capacity>Hearing</capacity>
+				<offset>-0.15</offset>
+			  </li>
+			  <li>
+				<capacity>Breathing</capacity>
+				<offset>-0.30</offset>
+			  </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+  
+</Defs>
