@@ -103,7 +103,7 @@ namespace PurpleIvy
                     {
 
                         //And its not a hatchling
-                        if (list[i] != null && list[i].def.defName != "Genny_Centipede")
+                        if (list[i] != null && list[i].def.defName != "Genny_Centipede" && list[i].def.defName != "Genny_ParasiteAlpha" && list[i].def.defName != "Genny_ParasiteBeta")
                         {
                             //Could do some mutatey zombie stuff here, but for now save the pawn and injur it outside this loop
                             stuckPawn = list[i];
@@ -191,7 +191,6 @@ namespace PurpleIvy
                                     {
                                         //Found plant, Kill it
                                         Plant plant = dir.GetPlant(this.Map);
-					Log.Message("1 Destroy plant " + plant.Label);
                                         plant.Destroy();
                                     }
                                     //Spawn more Ivy
@@ -214,8 +213,6 @@ namespace PurpleIvy
                                     {
                                         //Found plant, Kill it
                                         Plant plant = dir.GetPlant(this.Map);
-					Log.Message("2 Destroy plant " + plant.Label);
-
                                         plant.Destroy();
                                     }
                                     //Spawn more Ivy
