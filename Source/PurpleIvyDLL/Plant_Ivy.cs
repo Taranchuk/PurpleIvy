@@ -4,6 +4,7 @@ using System.Text;
 using Verse;
 using Verse.Sound;
 using RimWorld;
+using UnityEngine;
 
 namespace PurpleIvy
 {
@@ -19,7 +20,7 @@ namespace PurpleIvy
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            Random random = new Random();
+            System.Random random = new System.Random();
             SpreadTick = random.Next(15, 25);
             OrigSpreadTick = SpreadTick;
             MutateTry = true;
@@ -89,20 +90,23 @@ namespace PurpleIvy
                     if (list[i] != null && list[i].Faction != factionDirect && list[i].def.IsCorpse)
                     {
                         Corpse corpse = (Corpse)list[i];
-                        CompProperties_AlienInfection compProperties = new CompProperties_AlienInfection();
-                        compProperties.compClass = typeof(AlienInfection);
-                        compProperties.numberOfCreaturesPerSpawn = 1;
-                        compProperties.typesOfCreatures = new List<string>()
+                        if (corpse.TryGetComp<AlienInfection>() == null)
                         {
-                            "Genny_ParasiteBeta"
-                        };
-                        compProperties.maxNumberOfCreatures = 20;
-                        AlienInfection infected = new AlienInfection
-                        {
-                            parent = corpse
-                        };
-                        corpse.AllComps.Add(infected);
-                        infected.Initialize(compProperties);
+                            CompProperties_AlienInfection compProperties = new CompProperties_AlienInfection();
+                            compProperties.compClass = typeof(AlienInfection);
+                            compProperties.numberOfCreaturesPerSpawn = 1;
+                            compProperties.typesOfCreatures = new List<string>()
+                            {
+                                "Genny_ParasiteBeta"
+                            };
+                            compProperties.maxNumberOfCreatures = 20;
+                            AlienInfection infected = new AlienInfection
+                            {
+                                parent = corpse
+                            };
+                            corpse.AllComps.Add(infected);
+                            infected.Initialize(compProperties);
+                        }
 
                         //speedup the spread a little
                         SpreadTick--;
@@ -150,9 +154,38 @@ namespace PurpleIvy
             return true;
         }
 
-        public override void Tick()
+        public void ThrowMote(Vector3 loc, float size, Map map, float smokeSpeedDelay)
+        {
+            if ((float)Find.TickManager.TicksGame % smokeSpeedDelay == 0f)
+            {
+                foreach (Thing thing in base.Map.thingGrid.ThingsAt(this.Position))
+                {
+                    if (thing.def.defName == "Spores")
+                    {
+                        return;
+                    }
+                }
+                ThingDef thingDef = DefDatabase<ThingDef>.GetNamed("Spores");
+                MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(thingDef, null);
+                //if (!GenView.ShouldSpawnMotesAt(loc, map))
+                //{
+                //    return;
+                //}
+                //moteThrown.Scale = Rand.Range(1.5f, 3f) * size;
+                //moteThrown.rotationRate = Rand.Range(-25f, 50f);
+                moteThrown.exactPosition = loc;
+               // moteThrown.SetVelocity((float)Rand.Range(25, 50), Rand.Range(0.5f, 0.75f));
+                GenSpawn.Spawn(moteThrown, IntVec3Utility.ToIntVec3(loc), map, 0);
+            }
+        }
+
+    public override void Tick()
         {
             base.Tick();
+            //if (this.Growth > 0.75f)
+            //{
+            //    this.ThrowMote(this.DrawPos, this.RotatedSize.Magnitude / 4f, this.Map, 500);
+            //}
             if (Find.TickManager.TicksGame % 350 == 0)
             {
                 base.TickLong();
@@ -205,7 +238,7 @@ namespace PurpleIvy
                 }
                 if (this.MutateTry == true)
                 {
-                    Random random = new Random();
+                    System.Random random = new System.Random();
                     int MutateRate = random.Next(1, 200);
                     if (MutateRate == 3 || MutateRate == 23)
                     {

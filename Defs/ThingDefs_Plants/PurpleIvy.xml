@@ -1,59 +1,66 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ThingDef>
-	<defName>PurpleIvy</defName>
-	<label>Purple Ivy</label>
-	<category>Plant</category>
-	<altitudeLayer>LowPlant</altitudeLayer>
-	<useHitPoints>True</useHitPoints>
-	<statBases>
-		<MaxHitPoints>50</MaxHitPoints>
-		<Flammability>1.0</Flammability>
-	</statBases>  
-	<thingClass>PurpleIvy.Plant_Ivy</thingClass>    
-	<tickerType>Normal</tickerType>
-	<description>A genetically modified version of the Earth plant species "Glechoma hederacea".</description>
-	<graphicData>
-		<texPath>Things/Plant/PurpleIvy</texPath>
-		<graphicClass>Graphic_Random</graphicClass>
-		<shaderType>CutoutPlant</shaderType>
-		<shadowData>
-			<volume>(0.3, 0.2, 0.15)</volume>
-			<offset>(0,0,-0.1)</offset>
-		</shadowData>
-	</graphicData>
-	<selectable>true</selectable>
+	<ThingDef>
+		<defName>PurpleIvy</defName>
+		<label>Purple Ivy</label>
+		<category>Plant</category>
+		<altitudeLayer>LowPlant</altitudeLayer>
+		<useHitPoints>True</useHitPoints>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+		</statBases>  
+		<thingClass>PurpleIvy.Plant_Ivy</thingClass>    
+		<tickerType>Normal</tickerType>
+		<description>A genetically modified version of the Earth plant species "Glechoma hederacea".</description>
+		<graphicData>
+			<texPath>Things/Plant/PurpleIvy</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+			<shaderType>CutoutPlant</shaderType>
+			<shadowData>
+				<volume>(0.3, 0.2, 0.15)</volume>
+				<offset>(0,0,-0.1)</offset>
+			</shadowData>
+		</graphicData>
+		<selectable>true</selectable>
 
-	<fillPercent>0.25</fillPercent>
-	<neverMultiSelect>True</neverMultiSelect>
-	<drawerType>MapMeshOnly</drawerType>
-	<plant>
-		<harvestWork>9000</harvestWork>
-		<soundHarvesting>Harvest_Standard</soundHarvesting>
-		<soundHarvestFinish>Harvest_Standard_Finish</soundHarvestFinish>
-		<sowWork>150</sowWork>
-		<fertilityMin>0.001</fertilityMin>
-		<fertilitySensitivity>0.3</fertilitySensitivity>
-		<growDays>0.5</growDays>
- 		<dieIfLeafless>false</dieIfLeafless>
-      		<neverBlightable>true</neverBlightable>
-		<maxMeshCount>9</maxMeshCount>
-		<visualSizeRange>
-			<min>0.4</min>
-			<max>0.7</max>
-		</visualSizeRange>
-		<growMinGlow>0.3</growMinGlow>
-		<!--<seedShootMinGrowthPercent>0.6</seedShootMinGrowthPercent>-->
-		<!--<growthPer20kTicks>2.5</growthPer20kTicks>-->
-		<topWindExposure>0.6</topWindExposure>
-		<wildClusterRadius>15</wildClusterRadius>
-		<!--<seedShootRadius>15</seedShootRadius>-->
-		<lifespanDaysPerGrowDays>0</lifespanDaysPerGrowDays>
-		<!--<lifeSpan>600000</lifeSpan>-->
-		<!--<fertilityFactorGrowthRate>1.5</fertilityFactorGrowthRate>-->
-		<!--<fertilityFactorPlantChance>1.5</fertilityFactorPlantChance>-->
-	</plant>
-</ThingDef>
+		<fillPercent>0.25</fillPercent>
+		<neverMultiSelect>True</neverMultiSelect>
+		<drawerType>MapMeshOnly</drawerType>
+		<comps>
+			<li Class="PurpleIvy.CompProperties_GasProducer">
+				<gasType>Spores</gasType>
+				<rate>0.5</rate>
+				<radius>2</radius>
+			</li>
+		</comps>
+		<plant>
+			<harvestWork>9000</harvestWork>
+			<soundHarvesting>Harvest_Standard</soundHarvesting>
+			<soundHarvestFinish>Harvest_Standard_Finish</soundHarvestFinish>
+			<sowWork>150</sowWork>
+			<fertilityMin>0.001</fertilityMin>
+			<fertilitySensitivity>0.3</fertilitySensitivity>
+			<growDays>0.5</growDays>
+			<dieIfLeafless>false</dieIfLeafless>
+			<neverBlightable>true</neverBlightable>
+			<maxMeshCount>9</maxMeshCount>
+			<visualSizeRange>
+				<min>0.4</min>
+				<max>0.7</max>
+			</visualSizeRange>
+			<growMinGlow>0.3</growMinGlow>
+			<!--<seedShootMinGrowthPercent>0.6</seedShootMinGrowthPercent>-->
+			<!--<growthPer20kTicks>2.5</growthPer20kTicks>-->
+			<topWindExposure>0.6</topWindExposure>
+			<wildClusterRadius>15</wildClusterRadius>
+			<!--<seedShootRadius>15</seedShootRadius>-->
+			<lifespanDaysPerGrowDays>0</lifespanDaysPerGrowDays>
+			<!--<lifeSpan>600000</lifeSpan>-->
+			<!--<fertilityFactorGrowthRate>1.5</fertilityFactorGrowthRate>-->
+			<!--<fertilityFactorPlantChance>1.5</fertilityFactorPlantChance>-->
+		</plant>
+	</ThingDef>
 
 </Defs>
