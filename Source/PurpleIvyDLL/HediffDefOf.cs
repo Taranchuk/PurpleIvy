@@ -26,3 +26,4 @@ namespace PurpleIvy
         public static HediffDef SurgicalCut;
     }
 }
+

@@ -298,8 +298,9 @@
     <Compile Include="Building_EggSac.cs" />
     <Compile Include="Building_GenMortarGun.cs" />
     <Compile Include="Building_GenTurretGun.cs" />
+    <Compile Include="CompProperties_AlienInfection.cs" />
     <Compile Include="HediffDefOf.cs" />
-    <Compile Include="CompInfected.cs" />
+    <Compile Include="Comp_AlienInfection.cs" />
     <Compile Include="Meteor.cs" />
     <Compile Include="MeteorIncoming.cs" />
     <Compile Include="MeteorInfo.cs" />
@@ -309,7 +310,6 @@
     <Compile Include="Plant_Ivy.cs" />
     <Compile Include="Projectile_Seed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThingDefOfCustom.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

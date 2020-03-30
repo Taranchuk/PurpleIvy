@@ -89,15 +89,20 @@ namespace PurpleIvy
                     if (list[i] != null && list[i].def.IsCorpse)
                     {
                         Corpse corpse = (Corpse)list[i];
-                        CompProperties compProperties = new CompProperties();
-                        compProperties.compClass = typeof(Infected);
-
-                        Infected infected = new Infected
+                        CompProperties_AlienInfection compProperties = new CompProperties_AlienInfection();
+                        compProperties.compClass = typeof(AlienInfection);
+                        compProperties.numberOfCreaturesPerSpawn = 1;
+                        compProperties.typesOfCreatures = new List<string>()
+                        {
+                            "Genny_ParasiteBeta"
+                        };
+                        compProperties.maxNumberOfCreatures = 20;
+                        AlienInfection infected = new AlienInfection
                         {
                             parent = corpse
                         };
                         corpse.AllComps.Add(infected);
-                        infected.Initialize(null);
+                        infected.Initialize(compProperties);
 
                         //speedup the spread a little
                         SpreadTick--;
@@ -120,7 +125,6 @@ namespace PurpleIvy
                 }
             }
         }
-
 
         public bool isSurroundedByIvy(IntVec3 dir)
         {
@@ -308,7 +312,6 @@ namespace PurpleIvy
                      {
                          if (thing is Pawn && thing.def.defName != "Genny_Centipede" && thing.def.defName != "Genny_ParasiteAlpha" && thing.def.defName != "Genny_ParasiteBeta")
                          {
-                            Log.Message(thing.Label);
                              Hediff hediff = HediffMaker.MakeHediff  (HediffDefOf.PoisonousPurpleHediff, (Pawn)thing, null);
                              hediff.Severity = 0.1f;
                              ((Pawn)thing).health.AddHediff(hediff, null, null, null);
@@ -324,3 +327,4 @@ namespace PurpleIvy
         }
     }
 }
+
