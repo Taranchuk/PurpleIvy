@@ -13,8 +13,8 @@ namespace PurpleIvy
         Faction factionDirect = Find.FactionManager.FirstFactionOfDef(DefDatabase<FactionDef>.GetNamed("Genny", true));
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            base.SpawnSetup(map, respawningAfterLoad);
             this.SetFactionDirect(factionDirect);
+            base.SpawnSetup(map, respawningAfterLoad);
         }
         //public override void Tick()
         //{

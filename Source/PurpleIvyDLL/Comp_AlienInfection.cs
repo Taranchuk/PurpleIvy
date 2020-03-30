@@ -14,9 +14,9 @@ namespace PurpleIvy
                 return this.props as CompProperties_AlienInfection;
             }
         }
-        public override void CompTickRare()
+
+        public void startSpawn()
         {
-            base.CompTickRare();
             if (this.Props.typesOfCreatures != null)
             {
                 if (currentCountOfCreatures < this.Props.maxNumberOfCreatures)
@@ -39,10 +39,10 @@ namespace PurpleIvy
                                 Log.Message(i.ToString() + " - " + this.parent.Label + " produces a parasite");
                                 PawnKindDef pawnKindDef = PawnKindDef.Named(defName);
                                 Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                                if (this.Props.growthTick > 0)
+                                if (this.Props.ageTick > 0)
                                 {
-                                    NewPawn.ageTracker.AgeBiologicalTicks = this.Props.growthTick;
-                                    NewPawn.ageTracker.AgeChronologicalTicks = this.Props.growthTick;
+                                    NewPawn.ageTracker.AgeBiologicalTicks = this.Props.ageTick;
+                                    NewPawn.ageTracker.AgeChronologicalTicks = this.Props.ageTick;
                                 }
                                 else
                                 {
@@ -56,6 +56,19 @@ namespace PurpleIvy
                     }
                 }
             }
+        }
+        public override void CompTick()
+        {
+            base.CompTick();
+            if (Find.TickManager.TicksGame % 250 == 0)
+            {
+                this.startSpawn();
+            }
+        }
+        public override void CompTickRare()
+        {
+            base.CompTickRare();
+            this.startSpawn();
         }
 
         public override void PostExposeData()

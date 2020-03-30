@@ -271,6 +271,7 @@ namespace PurpleIvy
                     {
                         Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(ThingDef.Named("ParasiteEgg"));
                         ParasiteEgg.SetFactionDirect(factionDirect);
+                        ParasiteEgg.InitializeComps();
                         if (hasNoBuildings(Position))
                         {
                             GenSpawn.Spawn(ParasiteEgg, Position, this.Map);
