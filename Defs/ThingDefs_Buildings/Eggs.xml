@@ -14,7 +14,6 @@
 				<offset>(0,0,-0.1)</offset>
 			</shadowData>
 		</graphicData>
-		<passability>Impassable</passability>
 		<altitudeLayer>Terrain</altitudeLayer>
 		<useHitPoints>true</useHitPoints>
 		<building>
@@ -29,8 +28,9 @@
 				</typesOfCreatures>
 				<numberOfCreaturesPerSpawn>1</numberOfCreaturesPerSpawn>
 				<!--<numberOfCreaturesPerSpawnRandom></numberOfCreaturesPerSpawnRandom>-->
-				<maxNumberOfCreatures/>
+				<maxNumberOfCreatures>5</maxNumberOfCreatures>
 				<ageTick>50000</ageTick>
+				<ticksPerSpawn>30000</ticksPerSpawn>
 				<!--<incubationPeriod></incubationPeriod>-->
 			</li> 
 		</comps>
@@ -58,7 +58,6 @@
 				<offset>(0,0,-0.1)</offset>
 			</shadowData>
 		</graphicData>
-		<passability>Impassable</passability>
 		<altitudeLayer>Terrain</altitudeLayer>
 		<useHitPoints>true</useHitPoints>
 		<building>
@@ -73,8 +72,10 @@
 				</typesOfCreatures>
 				<!--<numberOfCreaturesPerSpawn></numberOfCreaturesPerSpawn>-->
 				<numberOfCreaturesPerSpawnRandom>3</numberOfCreaturesPerSpawnRandom>
-				<maxNumberOfCreatures/>
+				<maxNumberOfCreatures>20</maxNumberOfCreatures>
 				<ageTick>50000</ageTick>
+				<ticksPerSpawn>3000</ticksPerSpawn>
+
 				<!--<incubationPeriod></incubationPeriod>-->
 			</li> 
 		</comps>

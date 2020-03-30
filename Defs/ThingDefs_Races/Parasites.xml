@@ -109,7 +109,7 @@
 				<capacities>
 					<li>Blunt</li>
 				</capacities>
-				<power>17</power>
+				<power>6</power>
 				<cooldownTime>2.6</cooldownTime>
 				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
@@ -119,7 +119,7 @@
 		<race>
 			<intelligence>ToolUser</intelligence>
 			<thinkTreeMain>Genny</thinkTreeMain>
-			<body>ParasiteAlpha</body>
+			<body>ParasiteBeta</body>
 			<baseBodySize>1.0</baseBodySize>
 			<baseHealthScale>1.0</baseHealthScale>
 			<lifeExpectancy>6</lifeExpectancy>

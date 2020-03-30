@@ -86,7 +86,7 @@ namespace PurpleIvy
                 {
 
                     //If we find a corpse
-                    if (list[i] != null && list[i].def.IsCorpse)
+                    if (list[i] != null && list[i].Faction != factionDirect && list[i].def.IsCorpse)
                     {
                         Corpse corpse = (Corpse)list[i];
                         CompProperties_AlienInfection compProperties = new CompProperties_AlienInfection();
@@ -114,7 +114,7 @@ namespace PurpleIvy
                     {
 
                         //And its not a hatchling
-                        if (list[i] != null && list[i].def.defName != "Genny_Centipede" && list[i].def.defName != "Genny_ParasiteAlpha" && list[i].def.defName != "Genny_ParasiteBeta")
+                        if (list[i] != null && list[i].Faction != factionDirect)
                         {
                             //Could do some mutatey zombie stuff here, but for now save the pawn and injur it outside this loop
                             Thing stuckPawn = list[i];
@@ -170,48 +170,10 @@ namespace PurpleIvy
                     //If in bounds
                     if (dir.InBounds(this.Map))
                     {
-                        //If we find a tasty floor lets eat it nomnomnom
                         TerrainDef terrain = dir.GetTerrain(this.Map);
                         if (terrain != null)
                         {
-                            //Only eat floor if not natural
-                            if (terrain.defName != "Sand" &&
-                                terrain.defName != "Soil" &&
-                                terrain.defName != "MarshyTerrain" &&
-                                terrain.defName != "SoilRich" &&
-                                terrain.defName != "Mud" &&
-                                terrain.defName != "Marsh" &&
-                                terrain.defName != "Gravel" &&
-                                terrain.defName != "RoughStone" &&
-                                terrain.defName != "WaterDeep" &&
-                                terrain.defName != "WaterShallow" &&
-                                terrain.defName != "RoughHewnRock")
-                            {
-                                //And by eat i mean replace - TODO can you damage floors over time?                   
-                                //Replace with soil - TODO for now, maybe change to regen tile later if possible
-                                //this.Map.terrainGrid.SetTerrain(dir, TerrainDef.Named("Soil"));
-
-                                //this.Map.terrainGrid.TerrainAt(dir)
-
-                                //if theres no ivy here
-                                if (!IvyInCell(dir))
-                                {
-                                    if (dir.GetPlant(this.Map) == null)
-                                    {
-                                        //no plant, move on
-                                    }
-                                    else
-                                    {
-                                        //Found plant, Kill it
-                                        Plant plant = dir.GetPlant(this.Map);
-                                        plant.Destroy();
-                                    }
-                                    //Spawn more Ivy
-                                    SpawnIvy(dir);
-                                }
-                            }
-                            //Its natural floor
-                            else if (terrain.defName != "WaterDeep" &&
+                            if (terrain.defName != "WaterDeep" &&
                                      terrain.defName != "WaterShallow" &&
                                      terrain.defName != "MarshyTerrain")
                             {
@@ -254,7 +216,6 @@ namespace PurpleIvy
                             GenSpawn.Spawn(GasPump, Position, this.Map);
                         }
                         this.MutateTry = false;
-                        //Find.History.AddGameEvent("Gas here", GameEventType.BadNonUrgent, true, Position, string.Empty);
                     }
                     else if (MutateRate == 4 || MutateRate == 24)
                     {
@@ -265,7 +226,6 @@ namespace PurpleIvy
                             GenSpawn.Spawn(EggSac, Position, this.Map);
                         }
                         this.MutateTry = false;
-                        //Find.History.AddGameEvent("Egg here", GameEventType.BadNonUrgent, true, Position, string.Empty);
                     }
                     else if (MutateRate == 8 || MutateRate == 16)
                     {
@@ -277,7 +237,6 @@ namespace PurpleIvy
                             GenSpawn.Spawn(ParasiteEgg, Position, this.Map);
                         }
                         this.MutateTry = false;
-                        //Find.History.AddGameEvent("Egg here", GameEventType.BadNonUrgent, true, Position, string.Empty);
                     }
                     else if (MutateRate == 5)
                     {
@@ -288,7 +247,6 @@ namespace PurpleIvy
                             GenSpawn.Spawn(GenMortar, Position, this.Map);
                         }
                         this.MutateTry = false;
-                        //Find.History.AddGameEvent("Mortar here", GameEventType.BadNonUrgent, true, Position, string.Empty);
                     }
                     else if (MutateRate == 6)
                     {
@@ -299,7 +257,6 @@ namespace PurpleIvy
                             GenSpawn.Spawn(GenTurret, Position, this.Map);
                         }
                         this.MutateTry = false;
-                        //Find.History.AddGameEvent("Turret here", GameEventType.BadNonUrgent, true, Position, string.Empty);
                     }
                     else
                     {
@@ -310,14 +267,19 @@ namespace PurpleIvy
             if (this.TickCount > 10)
             {
                 foreach (Thing thing in this.Map.thingGrid.ThingsListAt(this.Position))
-                     {
-                         if (thing is Pawn && thing.def.defName != "Genny_Centipede" && thing.def.defName != "Genny_ParasiteAlpha" && thing.def.defName != "Genny_ParasiteBeta")
-                         {
-                             Hediff hediff = HediffMaker.MakeHediff  (HediffDefOf.PoisonousPurpleHediff, (Pawn)thing, null);
-                             hediff.Severity = 0.1f;
-                             ((Pawn)thing).health.AddHediff(hediff, null, null, null);
-                         }
-                     }
+                {
+                    if (thing is Pawn && thing.Faction != factionDirect)
+                    {
+                        Hediff hediff = HediffMaker.MakeHediff(HediffDefOf.PoisonousPurpleHediff,
+                            (Pawn)thing, null);
+                        hediff.Severity = 0.1f;
+                        ((Pawn)thing).health.AddHediff(hediff, null, null, null);
+                        Hediff hediff2 = HediffMaker.MakeHediff(HediffDefOf.HarmfulBacteriaHediff,
+                        (Pawn)thing, null);
+                        hediff2.Severity = 0.1f;
+                        ((Pawn)thing).health.AddHediff(hediff2, null, null, null);
+                    }
+                }
                 this.TickCount = 0;
             }
             else

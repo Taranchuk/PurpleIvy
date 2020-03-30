@@ -15,11 +15,11 @@ namespace PurpleIvy
             }
         }
 
-        public void startSpawn()
+        public void StartSpawn()
         {
             if (this.Props.typesOfCreatures != null)
             {
-                if (currentCountOfCreatures < this.Props.maxNumberOfCreatures)
+                if (this.Props.maxNumberOfCreatures == 0 || currentCountOfCreatures < this.Props.maxNumberOfCreatures)
                 {
                     foreach (string defName in this.Props.typesOfCreatures)
                     {
@@ -36,9 +36,9 @@ namespace PurpleIvy
                         {
                             foreach (var i in Enumerable.Range(0, numberOfSpawn))
                             {
-                                Log.Message(i.ToString() + " - " + this.parent.Label + " produces a parasite");
                                 PawnKindDef pawnKindDef = PawnKindDef.Named(defName);
                                 Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
+                                Log.Message(i.ToString() + " - " + this.parent.Label + " produces " + NewPawn.Label);
                                 if (this.Props.ageTick > 0)
                                 {
                                     NewPawn.ageTracker.AgeBiologicalTicks = this.Props.ageTick;
@@ -51,6 +51,7 @@ namespace PurpleIvy
                                 }
                                 NewPawn.SetFactionDirect(factionDirect);
                                 GenSpawn.Spawn(NewPawn, this.parent.Position, this.parent.Map);
+                                currentCountOfCreatures++;
                             }
                         }
                     }
@@ -60,15 +61,17 @@ namespace PurpleIvy
         public override void CompTick()
         {
             base.CompTick();
-            if (Find.TickManager.TicksGame % 250 == 0)
+            if (Find.TickManager.TicksGame % this.Props.ticksPerSpawn == 0)
             {
-                this.startSpawn();
+                Log.Message("StartSpawn 1");
+                this.StartSpawn();
             }
         }
         public override void CompTickRare()
         {
             base.CompTickRare();
-            this.startSpawn();
+            Log.Message("StartSpawn 2");
+            this.StartSpawn();
         }
 
         public override void PostExposeData()

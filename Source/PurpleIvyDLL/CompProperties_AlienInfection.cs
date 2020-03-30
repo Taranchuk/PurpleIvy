@@ -17,6 +17,7 @@ namespace PurpleIvy
         public int maxNumberOfCreatures = 0;
         public int incubationPeriod = 0;
         public int ageTick = 0;
+        public int ticksPerSpawn = 0;
 
     }
 }
