@@ -88,13 +88,16 @@ namespace PurpleIvy
                     //If we find a corpse
                     if (list[i] != null && list[i].def.IsCorpse)
                     {
-                        list[i].def.thingClass = typeof(InfectedCorpse);
-                        //Corpse corpse = (Corpse)list[i];
-                        //InfectedCorpse infectedCorpse = (InfectedCorpse)ThingMaker.MakeThing
-                        //    (ThingDef.Named("InfectedCorpse"), null);
-                        //infectedCorpse.InnerPawn = corpse.InnerPawn;
-                        //GenSpawn.Spawn(infectedCorpse, corpse.Position, this.Map);
-                        //list[i].Destroy();
+                        Corpse corpse = (Corpse)list[i];
+                        CompProperties compProperties = new CompProperties();
+                        compProperties.compClass = typeof(Infected);
+
+                        Infected infected = new Infected
+                        {
+                            parent = corpse
+                        };
+                        corpse.AllComps.Add(infected);
+                        infected.Initialize(null);
 
                         //speedup the spread a little
                         SpreadTick--;
