@@ -24,17 +24,9 @@
 			</shadowData>
 		</graphicData>
 		<selectable>true</selectable>
-
 		<fillPercent>0.25</fillPercent>
 		<neverMultiSelect>True</neverMultiSelect>
 		<drawerType>MapMeshOnly</drawerType>
-		<comps>
-			<li Class="PurpleIvy.CompProperties_GasProducer">
-				<gasType>Spores</gasType>
-				<rate>0.5</rate>
-				<radius>2</radius>
-			</li>
-		</comps>
 		<plant>
 			<harvestWork>9000</harvestWork>
 			<soundHarvesting>Harvest_Standard</soundHarvesting>
@@ -42,7 +34,7 @@
 			<sowWork>150</sowWork>
 			<fertilityMin>0.001</fertilityMin>
 			<fertilitySensitivity>0.3</fertilitySensitivity>
-			<growDays>0.5</growDays>
+			<growDays>10</growDays>
 			<dieIfLeafless>false</dieIfLeafless>
 			<neverBlightable>true</neverBlightable>
 			<maxMeshCount>9</maxMeshCount>

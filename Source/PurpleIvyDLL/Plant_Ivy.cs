@@ -154,38 +154,44 @@ namespace PurpleIvy
             return true;
         }
 
-        public void ThrowMote(Vector3 loc, float size, Map map, float smokeSpeedDelay)
+        public void ThrowGas()
         {
-            if ((float)Find.TickManager.TicksGame % smokeSpeedDelay == 0f)
+            foreach (Thing thing in base.Map.thingGrid.ThingsAt(this.Position))
             {
-                foreach (Thing thing in base.Map.thingGrid.ThingsAt(this.Position))
+                if (thing.def.defName == "Spores")
                 {
-                    if (thing.def.defName == "Spores")
-                    {
-                        return;
-                    }
+                    return;
                 }
-                ThingDef thingDef = DefDatabase<ThingDef>.GetNamed("Spores");
-                MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(thingDef, null);
-                //if (!GenView.ShouldSpawnMotesAt(loc, map))
-                //{
-                //    return;
-                //}
-                //moteThrown.Scale = Rand.Range(1.5f, 3f) * size;
-                //moteThrown.rotationRate = Rand.Range(-25f, 50f);
-                moteThrown.exactPosition = loc;
-               // moteThrown.SetVelocity((float)Rand.Range(25, 50), Rand.Range(0.5f, 0.75f));
-                GenSpawn.Spawn(moteThrown, IntVec3Utility.ToIntVec3(loc), map, 0);
             }
+            System.Random rand = new System.Random();
+            foreach (IntVec3 intVec in GenAdj.OccupiedRect(this.Position, this.Rotation, IntVec2.One))//.ExpandedBy(2).Cells)
+            {
+                if (GenGrid.InBounds(intVec, this.Map) && rand.NextDouble() < (double)0.5)
+                {
+                    Thing thing = ThingMaker.MakeThing(ThingDef.Named("Spores"), null);
+                    GenSpawn.Spawn(thing, intVec, this.Map, 0);
+                }
+            }
+            //ThingDef thingDef = DefDatabase<ThingDef>.GetNamed("Spores");
+            //MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(thingDef, null);
+            ////if (!GenView.ShouldSpawnMotesAt(loc, map))
+            ////{
+            ////    return;
+            ////}
+            ////moteThrown.Scale = Rand.Range(1.5f, 3f) * size;
+            ////moteThrown.rotationRate = Rand.Range(-25f, 50f);
+            //moteThrown.exactPosition = loc;
+            /// moteThrown.SetVelocity((float)Rand.Range(25, 50), Rand.Range(0.5f, 0.75f));
+            //GenSpawn.Spawn(moteThrown, IntVec3Utility.ToIntVec3(loc), map, 0);
         }
 
     public override void Tick()
         {
             base.Tick();
-            //if (this.Growth > 0.75f)
-            //{
-            //    this.ThrowMote(this.DrawPos, this.RotatedSize.Magnitude / 4f, this.Map, 500);
-            //}
+            if (this.Growth > 0.75f)
+            {
+                this.ThrowGas();
+            }
             if (Find.TickManager.TicksGame % 350 == 0)
             {
                 base.TickLong();
