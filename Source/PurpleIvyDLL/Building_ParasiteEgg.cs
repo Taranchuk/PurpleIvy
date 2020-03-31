@@ -10,7 +10,7 @@ namespace PurpleIvy
 {
     public class Building_ParasiteEgg : Building
     {
-        Faction factionDirect = Find.FactionManager.FirstFactionOfDef(DefDatabase<FactionDef>.GetNamed("Genny", true));
+        Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             this.SetFactionDirect(factionDirect);

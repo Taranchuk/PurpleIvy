@@ -12,10 +12,8 @@ namespace PurpleIvy
     {
         private int SpreadTick;
         private int OrigSpreadTick;
-        private int TickCount;
         private bool MutateTry;
-        Faction factionDirect = Find.FactionManager.FirstFactionOfDef(DefDatabase<FactionDef>.GetNamed("Genny", true));
-        DamageDef dmgdef = DefDatabase<DamageDef>.GetNamed("Scratch", true);
+        Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
@@ -122,7 +120,7 @@ namespace PurpleIvy
                         {
                             //Could do some mutatey zombie stuff here, but for now save the pawn and injur it outside this loop
                             Thing stuckPawn = list[i];
-                            DamageInfo damageInfo = new DamageInfo(this.dmgdef, 1, 0f, -1f, this, null, null);
+                            DamageInfo damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
                             stuckPawn.TakeDamage(damageInfo);
                         }
                     }
@@ -215,11 +213,11 @@ namespace PurpleIvy
                 {
                     if (thing is Pawn && thing.Faction != factionDirect)
                     {
-                        Hediff hediff = HediffMaker.MakeHediff(HediffDefOf.PoisonousPurpleHediff,
+                        Hediff hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
                             (Pawn)thing, null);
                         hediff.Severity = 0.1f;
                         ((Pawn)thing).health.AddHediff(hediff, null, null, null);
-                        Hediff hediff2 = HediffMaker.MakeHediff(HediffDefOf.HarmfulBacteriaHediff,
+                        Hediff hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
                         (Pawn)thing, null);
                         hediff2.Severity = 0.1f;
                         ((Pawn)thing).health.AddHediff(hediff2, null, null, null);
@@ -232,7 +230,7 @@ namespace PurpleIvy
                         Plant plant = thing as Plant;
                         if (plant != null && plant.def.defName != "PurpleIvy")
                         {
-                            plant.TakeDamage(new DamageInfo(DamageDefOf.Flame, 5));
+                            plant.TakeDamage(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 5));
                         }
                     }
                 }
@@ -265,24 +263,8 @@ namespace PurpleIvy
                                 //if theres no ivy here
                                 if (!IvyInCell(dir))
                                 {
-                                    //if (dir.GetPlant(this.Map) == null)
-                                    //{
-                                    //    //no plant, move on
-                                    //}
-                                    //else
-                                    //{
-                                    //    //Found plant, Kill it
-                                    //    Plant plant = dir.GetPlant(this.Map);
-                                    //    plant.Destroy();
-                                    //}
-                                    //Spawn more Ivy
                                     SpawnIvy(dir);
                                 }
-                            }
-                            //its water or something I dont know of
-                            else
-                            {
-
                             }
                         }
                     }

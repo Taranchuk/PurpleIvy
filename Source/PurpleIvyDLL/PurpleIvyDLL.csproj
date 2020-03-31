@@ -299,7 +299,8 @@
     <Compile Include="Building_GenMortarGun.cs" />
     <Compile Include="Building_GenTurretGun.cs" />
     <Compile Include="CompProperties_AlienInfection.cs" />
-    <Compile Include="HediffDefOf.cs" />
+    <Compile Include="DamageWorker_ToxicSting.cs" />
+    <Compile Include="PurpleIvyDefOf.cs" />
     <Compile Include="Comp_AlienInfection.cs" />
     <Compile Include="Meteor.cs" />
     <Compile Include="MeteorIncoming.cs" />
