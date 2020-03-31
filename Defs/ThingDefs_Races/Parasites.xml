@@ -76,7 +76,7 @@
 			<fleshType>Insectoid</fleshType>
 			<needsRest>false</needsRest>
 			<hasGenders>false</hasGenders>
-			<foodType>None</foodType>
+			<foodType>Meat, Fluid, Corpse, AnimalProduct, Meal, Processed, Liquor, Kibble, VegetarianAnimal, VegetarianRoughAnimal, CarnivoreAnimal, CarnivoreAnimalStrict, OmnivoreAnimal, OmnivoreRoughAnimal, DendrovoreAnimal, OvivoreAnimal, OmnivoreHuman</foodType>
 			<bloodDef>Filth_BloodInsect</bloodDef>
 			
 		</race>
@@ -156,7 +156,7 @@
 			<fleshType>Insectoid</fleshType>
 			<needsRest>false</needsRest>
 			<hasGenders>false</hasGenders>
-			<foodType>None</foodType>
+			<foodType>Meat, Fluid, Corpse, AnimalProduct, Meal, Processed, Liquor, Kibble, VegetarianAnimal, VegetarianRoughAnimal, CarnivoreAnimal, CarnivoreAnimalStrict, OmnivoreAnimal, OmnivoreRoughAnimal, DendrovoreAnimal, OvivoreAnimal, OmnivoreHuman</foodType>
 			<bloodDef>Filth_BloodInsect</bloodDef>
 			
 		</race>
@@ -231,6 +231,12 @@
 			<soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
 			<soundMeleeHitBuilding>Pawn_Melee_SmallScratch_HitBuilding</soundMeleeHitBuilding>
 			<soundMeleeMiss>PPawn_Melee_SmallScratch_Miss</soundMeleeMiss>
+			
+			<fleshType>Insectoid</fleshType>
+			<needsRest>false</needsRest>
+			<hasGenders>false</hasGenders>
+			<foodType>Meat, Fluid, Corpse, AnimalProduct, Meal, Processed, Liquor, Kibble, VegetarianAnimal, VegetarianRoughAnimal, CarnivoreAnimal, CarnivoreAnimalStrict, OmnivoreAnimal, OmnivoreRoughAnimal, DendrovoreAnimal, OvivoreAnimal, OmnivoreHuman</foodType>
+			<bloodDef>Filth_BloodInsect</bloodDef>
 		</race>
 		<!--
 	<butcherProducts>

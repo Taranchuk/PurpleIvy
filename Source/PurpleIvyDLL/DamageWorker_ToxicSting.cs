@@ -16,10 +16,7 @@ namespace PurpleIvy
             }
             Map map = victim.Map;
             DamageWorker.DamageResult damageResult = base.Apply(dinfo, victim);
-            //if (!damageResult.deflected && !dinfo.InstantPermanentInjury)
-            //{
-            //    victim.TryAttachFire(Rand.Range(0.15f, 0.25f));
-            //}
+
             if (victim.Destroyed && map != null && pawn == null)
             {
                 foreach (IntVec3 c in victim.OccupiedRect())
