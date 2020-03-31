@@ -36,9 +36,15 @@
 			</li>
 		</tools>
 		<soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(66, 245, 84,0)</glowColor>
+			</li>
+		</comps>
 		<race>
 			<intelligence>ToolUser</intelligence>
-			<thinkTreeMain>Genny</thinkTreeMain>
+			<thinkTreeMain>Mechanoid</thinkTreeMain>
 			<body>ParasiteAlpha</body>
 			<baseBodySize>1.0</baseBodySize>
 			<baseHealthScale>1.0</baseHealthScale>
@@ -118,7 +124,7 @@
 		<soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
 		<race>
 			<intelligence>ToolUser</intelligence>
-			<thinkTreeMain>Genny</thinkTreeMain>
+			<thinkTreeMain>Mechanoid</thinkTreeMain>
 			<body>ParasiteBeta</body>
 			<baseBodySize>1.0</baseBodySize>
 			<baseHealthScale>1.0</baseHealthScale>
@@ -198,7 +204,7 @@
 		<soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
 		<race>
 			<intelligence>ToolUser</intelligence>
-			<thinkTreeMain>Genny</thinkTreeMain>
+			<thinkTreeMain>Mechanoid</thinkTreeMain>
 			<body>ParasiteOmega</body>
 			<baseBodySize>1.0</baseBodySize>
 			<baseHealthScale>1.0</baseHealthScale>

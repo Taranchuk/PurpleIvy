@@ -28,7 +28,7 @@
 	<soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
 	<race>
 		<intelligence>ToolUser</intelligence>
-		<thinkTreeMain>Genny</thinkTreeMain>
+		<thinkTreeMain>Mechanoid</thinkTreeMain>
 		<body>CentipedeHatchling</body>
 		<baseBodySize>1.0</baseBodySize>
 		<baseHealthScale>1.0</baseHealthScale>
