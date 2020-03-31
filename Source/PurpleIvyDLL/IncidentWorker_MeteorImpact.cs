@@ -6,7 +6,6 @@ namespace PurpleIvy
 {
     public class IncidentWorker_MeteorImpact : IncidentWorker
     {
-        private const float FogClearRadius = 4.5f;
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
             Map map = (Map)parms.target; 

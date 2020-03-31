@@ -35,8 +35,11 @@ namespace PurpleIvy
                             {
                                 Log.Message(t.Label);
                             }
-                            Plant newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
-                            GenSpawn.Spawn(newivy, current, this.Map);
+                            if (GenGrid.InBounds(this.Position, this.Map))
+                            {
+                                Plant newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
+                                GenSpawn.Spawn(newivy, current, this.Map);
+                            }
                         }
                     }
                     else
@@ -50,9 +53,13 @@ namespace PurpleIvy
                                 {
                                     Log.Message(t.Label);
                                 }
-                                plant.Destroy();
-                                Plant newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
-                                GenSpawn.Spawn(newivy, current, this.Map);
+                                if (GenGrid.InBounds(this.Position, this.Map))
+                                {
+                                    plant.Destroy();
+                                    Plant newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
+                                    GenSpawn.Spawn(newivy, current, this.Map);
+                                }
+
                             }
                         }
                         else

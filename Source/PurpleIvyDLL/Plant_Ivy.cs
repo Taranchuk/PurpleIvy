@@ -14,7 +14,7 @@ namespace PurpleIvy
         private int OrigSpreadTick;
         private bool MutateTry;
         Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
-
+        private Thing Spores = null;
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
@@ -155,20 +155,16 @@ namespace PurpleIvy
 
         public void ThrowGasOrAdjustGasSize()
         {
-            foreach (Thing thing in this.Map.thingGrid.ThingsAt(this.Position))
+            if (this.Spores != null)
             {
-                if (thing.def.defName.Contains("Spores"))
-                {
-                    thing.Graphic.drawSize.x = this.Growth;
-                    thing.Graphic.drawSize.y = this.Growth;
-                    thing.Graphic.color.a = 100 - (this.Growth * 100);
-                    //thing.Graphic.color.r = 0;// 100 - (this.Growth * 100);
-                    //thing.Graphic.color.g = 0;// 100 - (this.Growth * 100);
-                    //thing.Graphic.color.b = 0;// 100 - (this.Growth * 100);
-                    return;
-                }
+                this.Spores.Graphic.drawSize.x = this.Growth + 0.25f;
+                this.Spores.Graphic.drawSize.y = this.Growth + 0.25f;
+                this.Spores.Graphic.color.a = this.Growth;
+                //thing.Graphic.color.r = 0;// 100 - (this.Growth * 100);
+                //thing.Graphic.color.g = 0;// 100 - (this.Growth * 100);
+                //thing.Graphic.color.b = 0;// 100 - (this.Growth * 100);
             }
-            if (GenGrid.InBounds(this.Position, this.Map))
+            else if (GenGrid.InBounds(this.Position, this.Map))
             {
                 ThingDef oldThingDef = ThingDef.Named("Spores");
                 ThingDef thingDef = new ThingDef
@@ -200,6 +196,7 @@ namespace PurpleIvy
                 GenSpawn.Spawn(thing, this.Position, this.Map, 0);
                 thing.Graphic.drawSize.x = this.Growth;
                 thing.Graphic.drawSize.y = this.Growth;
+                this.Spores = thing;
             }
         }
 
@@ -209,18 +206,22 @@ namespace PurpleIvy
             base.Tick();
             if (this.Growth >= 0.25f)
             {
-                foreach (Thing thing in this.Map.thingGrid.ThingsListAt(this.Position))
+                if (Find.TickManager.TicksGame % 25 == 0)
                 {
-                    if (thing is Pawn && thing.Faction != factionDirect)
+                    this.ThrowGasOrAdjustGasSize();
+                    foreach (Thing thing in this.Map.thingGrid.ThingsListAt(this.Position))
                     {
-                        Hediff hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
+                        if (thing is Pawn && thing.Faction != factionDirect)
+                        {
+                            Hediff hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
+                                (Pawn)thing, null);
+                            hediff.Severity = 0.1f;
+                            ((Pawn)thing).health.AddHediff(hediff, null, null, null);
+                            Hediff hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
                             (Pawn)thing, null);
-                        hediff.Severity = 0.1f;
-                        ((Pawn)thing).health.AddHediff(hediff, null, null, null);
-                        Hediff hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
-                        (Pawn)thing, null);
-                        hediff2.Severity = 0.1f;
-                        ((Pawn)thing).health.AddHediff(hediff2, null, null, null);
+                            hediff2.Severity = 0.1f;
+                            ((Pawn)thing).health.AddHediff(hediff2, null, null, null);
+                        }
                     }
                 }
                 if (Find.TickManager.TicksGame % 250 == 0)
@@ -234,7 +235,6 @@ namespace PurpleIvy
                         }
                     }
                 }
-                this.ThrowGasOrAdjustGasSize();
             }
             if (Find.TickManager.TicksGame % 350 == 0)
             {
@@ -331,6 +331,20 @@ namespace PurpleIvy
                     }
                 }
         }
+        }
+
+        public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+        {
+            base.Destroy(mode);
+            if (this.Spores != null)
+            {
+                this.Spores.Destroy();
+            }
+        }
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_References.Look<Thing>(ref this.Spores, "Spores", false);
         }
     }
 }

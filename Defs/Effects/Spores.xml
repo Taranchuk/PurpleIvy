@@ -6,7 +6,7 @@
 		<label>spores</label>
 		<graphicData>
 			<texPath>Things/Gas/Puff</texPath>
-			<drawSize>(0.25,0.25)</drawSize> 		
+			<drawSize>(0.75,0.75)</drawSize> 		
 			<color>(255.0,51.0,51.0,127.5)</color>
 		</graphicData>
 		<gas>
