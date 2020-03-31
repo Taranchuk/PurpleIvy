@@ -97,7 +97,7 @@ namespace PurpleIvy
                             compProperties.numberOfCreaturesPerSpawn = 1;
                             compProperties.typesOfCreatures = new List<string>()
                             {
-                                "Genny_ParasiteBeta"
+                                "Genny_ParasiteOmega"
                             };
                             compProperties.maxNumberOfCreatures = 20;
                             AlienInfection infected = new AlienInfection
