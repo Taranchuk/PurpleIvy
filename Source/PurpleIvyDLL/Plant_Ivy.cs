@@ -161,13 +161,12 @@ namespace PurpleIvy
             {
                 if (thing.def.defName.Contains("Spores"))
                 {
-
                     thing.Graphic.drawSize.x = this.Growth;
                     thing.Graphic.drawSize.y = this.Growth;
-                    Log.Message(thing.ThingID + " - " + this.Growth.ToString() 
-                        + " - " + thing.Graphic.drawSize.x.ToString() + " - " 
-                        + thing.Graphic.drawSize.y.ToString() + " - "
-                        + thing.def.graphicData.drawSize.x.ToString() + " - " + thing.def.graphicData.drawSize.y.ToString());
+                    thing.Graphic.color.a = 100 - (this.Growth * 100);
+                    //thing.Graphic.color.r = 0;// 100 - (this.Growth * 100);
+                    //thing.Graphic.color.g = 0;// 100 - (this.Growth * 100);
+                    //thing.Graphic.color.b = 0;// 100 - (this.Growth * 100);
                     return;
                 }
             }
@@ -210,8 +209,33 @@ namespace PurpleIvy
         public override void Tick()
         {
             base.Tick();
-            if (this.Growth >= 0f)
+            if (this.Growth >= 0.25f)
             {
+                foreach (Thing thing in this.Map.thingGrid.ThingsListAt(this.Position))
+                {
+                    if (thing is Pawn && thing.Faction != factionDirect)
+                    {
+                        Hediff hediff = HediffMaker.MakeHediff(HediffDefOf.PoisonousPurpleHediff,
+                            (Pawn)thing, null);
+                        hediff.Severity = 0.1f;
+                        ((Pawn)thing).health.AddHediff(hediff, null, null, null);
+                        Hediff hediff2 = HediffMaker.MakeHediff(HediffDefOf.HarmfulBacteriaHediff,
+                        (Pawn)thing, null);
+                        hediff2.Severity = 0.1f;
+                        ((Pawn)thing).health.AddHediff(hediff2, null, null, null);
+                    }
+                }
+                if (Find.TickManager.TicksGame % 250 == 0)
+                {
+                    foreach (Thing thing in this.Map.thingGrid.ThingsAt(this.Position))
+                    {
+                        Plant plant = thing as Plant;
+                        if (plant != null && plant.def.defName != "PurpleIvy")
+                        {
+                            plant.TakeDamage(new DamageInfo(DamageDefOf.Flame, 5));
+                        }
+                    }
+                }
                 this.ThrowGasOrAdjustGasSize();
             }
             if (Find.TickManager.TicksGame % 350 == 0)
@@ -241,16 +265,16 @@ namespace PurpleIvy
                                 //if theres no ivy here
                                 if (!IvyInCell(dir))
                                 {
-                                    if (dir.GetPlant(this.Map) == null)
-                                    {
-                                        //no plant, move on
-                                    }
-                                    else
-                                    {
-                                        //Found plant, Kill it
-                                        Plant plant = dir.GetPlant(this.Map);
-                                        plant.Destroy();
-                                    }
+                                    //if (dir.GetPlant(this.Map) == null)
+                                    //{
+                                    //    //no plant, move on
+                                    //}
+                                    //else
+                                    //{
+                                    //    //Found plant, Kill it
+                                    //    Plant plant = dir.GetPlant(this.Map);
+                                    //    plant.Destroy();
+                                    //}
                                     //Spawn more Ivy
                                     SpawnIvy(dir);
                                 }
@@ -325,29 +349,6 @@ namespace PurpleIvy
                     }
                 }
         }
-            if (this.TickCount > 10)
-            {
-                foreach (Thing thing in this.Map.thingGrid.ThingsListAt(this.Position))
-                {
-                    if (thing is Pawn && thing.Faction != factionDirect)
-                    {
-                        Hediff hediff = HediffMaker.MakeHediff(HediffDefOf.PoisonousPurpleHediff,
-                            (Pawn)thing, null);
-                        hediff.Severity = 0.1f;
-                        ((Pawn)thing).health.AddHediff(hediff, null, null, null);
-                        Hediff hediff2 = HediffMaker.MakeHediff(HediffDefOf.HarmfulBacteriaHediff,
-                        (Pawn)thing, null);
-                        hediff2.Severity = 0.1f;
-                        ((Pawn)thing).health.AddHediff(hediff2, null, null, null);
-                    }
-                }
-                this.TickCount = 0;
-            }
-            else
-            {
-                this.TickCount++;
-            }
-
         }
     }
 }
