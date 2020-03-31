@@ -1,18 +1,65 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
-
 <Defs>
+	<ThinkTreeDef>
+		<defName>Genny</defName>
+		<thinkRoot Class="ThinkNode_Priority">
+			<subNodes>
+				<!-- Keep lying down if we have to -->
+				<li Class="ThinkNode_ConditionalMustKeepLyingDown">
+					<subNodes>
+						<!-- Do a queued job if possible -->
+						<li Class="ThinkNode_QueuedJob">
+							<inBedOnly>true</inBedOnly>
+						</li>
+						<!-- Keep lying down -->
+						<li Class="JobGiver_KeepLyingDown"/>
+					</subNodes>
+				</li>
+				<li Class="ThinkNode_Subtree">
+					<treeDef>Downed</treeDef>
+				</li>
+				<li Class="ThinkNode_Subtree">
+					<treeDef>BurningResponse</treeDef>
+				</li>
+				<li Class="ThinkNode_Subtree">
+					<treeDef>MentalStateCritical</treeDef>
+				</li>
 
-  <ThinkTreeDef>
-    <defName>Genny</defName>
-    <thinkRoot Class="ThinkNode_Priority">
-      <subNodes>
-        
-	<li Class="JobGiver_Berserk"/>
-        <li Class="JobGiver_WanderCurrentRoom"/>
-        <li Class="JobGiver_IdleError"/>
-        
-      </subNodes>
-    </thinkRoot>
-  </ThinkTreeDef>
+				<li Class="ThinkNode_Tagger">
+					<tagToGive>SatisfyingNeeds</tagToGive>
+					<subNodes>
+						<li Class="ThinkNode_PrioritySorter">
+							<subNodes>
+								<li Class="JobGiver_GetFood"/>
+							</subNodes>
+						</li>
+					</subNodes>
+				</li>
+				<li Class="JobGiver_Berserk"/>
+				<li Class="JobGiver_Manhunter"/>
+				<!-- React to close melee threat -->
+				<li Class="JobGiver_ReactToCloseMeleeThreat"/>
+				<!-- Do a queued job -->
+				<li Class="ThinkNode_QueuedJob"/>
+				<!-- Lord directives -->
+				<li Class="ThinkNode_Subtree">
+					<treeDef>LordDuty</treeDef>
+				</li>
+				<!-- Wander -->
+				<li Class="ThinkNode_Tagger">
+					<tagToGive>Idle</tagToGive>
+					<subNodes>
+						<li Class="JobGiver_WanderAnywhere">
+							<maxDanger>Deadly</maxDanger>
+							<ticksBetweenWandersRange>
+								<min>300</min>
+								<max>345</max>
+							</ticksBetweenWandersRange>
+						</li>
+					</subNodes>
+				</li>
+				<li Class="JobGiver_IdleError"/>
+			</subNodes>
+		</thinkRoot>
+	</ThinkTreeDef> 
 </Defs>

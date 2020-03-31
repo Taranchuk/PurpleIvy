@@ -14,10 +14,10 @@
 		<soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
 		<race>
 			<intelligence>ToolUser</intelligence>
-			<thinkTreeMain>Animal</thinkTreeMain>
-			<thinkTreeConstant>AnimalConstant</thinkTreeConstant>
+			<thinkTreeMain>Genny</thinkTreeMain>
+			<!--<thinkTreeConstant>AnimalConstant</thinkTreeConstant>
 			<herdAnimal>false</herdAnimal>
-			<predator>true</predator>
+			<predator>true</predator>-->
 			<manhunterOnDamageChance>1</manhunterOnDamageChance>
 			<soundCallIntervalRange>1000~2000</soundCallIntervalRange>
 			<soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>

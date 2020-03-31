@@ -7,7 +7,7 @@
 		<graphicData>
 			<texPath>Things/Gas/Puff</texPath>
 			<drawSize>(0.75,0.75)</drawSize> 		
-			<color>(255.0,51.0,51.0,127.5)</color>
+			<color>(255.0,51.0,51.0,125.5)</color>
 		</graphicData>
 		<gas>
 			<expireSeconds>

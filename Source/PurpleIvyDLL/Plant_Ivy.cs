@@ -159,7 +159,8 @@ namespace PurpleIvy
             {
                 this.Spores.Graphic.drawSize.x = this.Growth + 0.25f;
                 this.Spores.Graphic.drawSize.y = this.Growth + 0.25f;
-                this.Spores.Graphic.color.a = 1.0f - this.Growth;
+                this.Spores.Graphic.color.a = this.Growth;
+
                 //thing.Graphic.color.r = 0;// 100 - (this.Growth * 100);
                 //thing.Graphic.color.g = 0;// 100 - (this.Growth * 100);
                 //thing.Graphic.color.b = 0;// 100 - (this.Growth * 100);
@@ -340,11 +341,6 @@ namespace PurpleIvy
             {
                 this.Spores.Destroy();
             }
-        }
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_References.Look<Thing>(ref this.Spores, "Spores", false);
         }
     }
 }
