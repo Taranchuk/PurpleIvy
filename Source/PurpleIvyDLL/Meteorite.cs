@@ -27,44 +27,28 @@ namespace PurpleIvy
             {
                 foreach (IntVec3 current in GenAdj.CellsAdjacentCardinal(this))
                 {
-                    if (current.GetPlant(this.Map) == null)
+                    if (GenGrid.InBounds(current, this.Map))
                     {
-                        if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                        if (current.GetPlant(this.Map) == null)
                         {
-                            foreach (var t in GridsUtility.GetThingList(current, this.Map))
-                            {
-                                Log.Message(t.Label);
-                            }
-                            if (GenGrid.InBounds(this.Position, this.Map))
+                            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
                             {
                                 Plant newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
                                 GenSpawn.Spawn(newivy, current, this.Map);
                             }
                         }
-                    }
-                    else
-                    {
-                        Plant plant = current.GetPlant(this.Map);
-                        if (plant.def.defName != "PurpleIvy")
+                        else
                         {
-                            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                            Plant plant = current.GetPlant(this.Map);
+                            if (plant.def.defName != "PurpleIvy")
                             {
-                                foreach (var t in GridsUtility.GetThingList(current, this.Map))
-                                {
-                                    Log.Message(t.Label);
-                                }
-                                if (GenGrid.InBounds(this.Position, this.Map))
+                                if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
                                 {
                                     plant.Destroy();
                                     Plant newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
                                     GenSpawn.Spawn(newivy, current, this.Map);
                                 }
-
                             }
-                        }
-                        else
-                        {
-                            //dont destroy other ivy
                         }
                     }
                 }
@@ -73,4 +57,3 @@ namespace PurpleIvy
         }
     }
 }
-
