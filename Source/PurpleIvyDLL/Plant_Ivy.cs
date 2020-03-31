@@ -173,6 +173,7 @@ namespace PurpleIvy
             }
             if (GenGrid.InBounds(this.Position, this.Map))
             {
+                ThingDef oldThingDef = ThingDef.Named("Spores");
                 ThingDef thingDef = new ThingDef
                 {
                     defName = "Spores" + this.ThingID,
@@ -183,11 +184,12 @@ namespace PurpleIvy
                     tickerType = TickerType.Normal,
                     graphicData = new GraphicData
                     {
-                        texPath = "Things/Gas/Puff",
+                        texPath = oldThingDef.graphicData.texPath,
                         graphicClass = typeof(Graphic_Gas),
                         shaderType = ShaderTypeDefOf.Transparent,
-                        drawSize = new Vector2(0.25f, 0.25f),
-                        color = Color.red
+                        drawSize = new Vector2(oldThingDef.graphicData.drawSize.x,
+                        oldThingDef.graphicData.drawSize.y),
+                        color = new ColorInt(oldThingDef.graphicData.color).ToColor
                     },
                     gas = new GasProperties
                     {
@@ -197,24 +199,6 @@ namespace PurpleIvy
                         rotationSpeed = 10f
                     }
                 };
-
-                //		<defName>Spores</defName>
-                //		<label>spores</label>
-                //		<graphicData>
-                //			<texPath>Things/Gas/Puff</texPath>
-                //			<drawSize>(0.25,0.25)</drawSize> 		
-                //			<color>(255.0,51.0,51.0,127.5)</color>
-                //		</graphicData>
-                //		<gas>
-                //			<expireSeconds>
-                //				<min>29000</min>
-                //				<max>31000</max>
-                //			</expireSeconds>
-                //			<blockTurretTracking>true</blockTurretTracking>
-                //			<accuracyPenalty>0.7</accuracyPenalty>
-                //			<rotationSpeed>10</rotationSpeed>
-                //		</gas>
-
                 Thing thing = ThingMaker.MakeThing(thingDef, null);
                 GenSpawn.Spawn(thing, this.Position, this.Map, 0);
                 thing.Graphic.drawSize.x = this.Growth;
