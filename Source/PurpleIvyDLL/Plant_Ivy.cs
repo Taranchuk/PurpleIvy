@@ -154,43 +154,81 @@ namespace PurpleIvy
             return true;
         }
 
-        public void ThrowGas()
+
+        public void ThrowGasOrAdjustGasSize()
         {
-            foreach (Thing thing in base.Map.thingGrid.ThingsAt(this.Position))
+            foreach (Thing thing in this.Map.thingGrid.ThingsAt(this.Position))
             {
-                if (thing.def.defName == "Spores")
+                if (thing.def.defName.Contains("Spores"))
                 {
+
+                    thing.Graphic.drawSize.x = this.Growth;
+                    thing.Graphic.drawSize.y = this.Growth;
+                    Log.Message(thing.ThingID + " - " + this.Growth.ToString() 
+                        + " - " + thing.Graphic.drawSize.x.ToString() + " - " 
+                        + thing.Graphic.drawSize.y.ToString() + " - "
+                        + thing.def.graphicData.drawSize.x.ToString() + " - " + thing.def.graphicData.drawSize.y.ToString());
                     return;
                 }
             }
-            System.Random rand = new System.Random();
-            foreach (IntVec3 intVec in GenAdj.OccupiedRect(this.Position, this.Rotation, IntVec2.One))//.ExpandedBy(2).Cells)
+            if (GenGrid.InBounds(this.Position, this.Map))
             {
-                if (GenGrid.InBounds(intVec, this.Map) && rand.NextDouble() < (double)0.5)
+                ThingDef thingDef = new ThingDef
                 {
-                    Thing thing = ThingMaker.MakeThing(ThingDef.Named("Spores"), null);
-                    GenSpawn.Spawn(thing, intVec, this.Map, 0);
-                }
+                    defName = "Spores" + this.ThingID,
+                    thingClass = typeof(Gas),
+                    category = ThingCategory.Gas,
+                    altitudeLayer = AltitudeLayer.Gas,
+                    useHitPoints = false,
+                    tickerType = TickerType.Normal,
+                    graphicData = new GraphicData
+                    {
+                        texPath = "Things/Gas/Puff",
+                        graphicClass = typeof(Graphic_Gas),
+                        shaderType = ShaderTypeDefOf.Transparent,
+                        drawSize = new Vector2(0.25f, 0.25f),
+                        color = Color.red
+                    },
+                    gas = new GasProperties
+                    {
+                        expireSeconds = new FloatRange(29000f, 31000f),
+                        blockTurretTracking = true,
+                        accuracyPenalty = 0.7f,
+                        rotationSpeed = 10f
+                    }
+                };
+
+                //		<defName>Spores</defName>
+                //		<label>spores</label>
+                //		<graphicData>
+                //			<texPath>Things/Gas/Puff</texPath>
+                //			<drawSize>(0.25,0.25)</drawSize> 		
+                //			<color>(255.0,51.0,51.0,127.5)</color>
+                //		</graphicData>
+                //		<gas>
+                //			<expireSeconds>
+                //				<min>29000</min>
+                //				<max>31000</max>
+                //			</expireSeconds>
+                //			<blockTurretTracking>true</blockTurretTracking>
+                //			<accuracyPenalty>0.7</accuracyPenalty>
+                //			<rotationSpeed>10</rotationSpeed>
+                //		</gas>
+
+                Thing thing = ThingMaker.MakeThing(thingDef, null);
+                GenSpawn.Spawn(thing, this.Position, this.Map, 0);
+                thing.Graphic.drawSize.x = this.Growth;
+                thing.Graphic.drawSize.y = this.Growth;
             }
-            //ThingDef thingDef = DefDatabase<ThingDef>.GetNamed("Spores");
-            //MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(thingDef, null);
-            ////if (!GenView.ShouldSpawnMotesAt(loc, map))
-            ////{
-            ////    return;
-            ////}
-            ////moteThrown.Scale = Rand.Range(1.5f, 3f) * size;
-            ////moteThrown.rotationRate = Rand.Range(-25f, 50f);
-            //moteThrown.exactPosition = loc;
-            /// moteThrown.SetVelocity((float)Rand.Range(25, 50), Rand.Range(0.5f, 0.75f));
-            //GenSpawn.Spawn(moteThrown, IntVec3Utility.ToIntVec3(loc), map, 0);
         }
 
-    public override void Tick()
+
+        public override void Tick()
         {
             base.Tick();
-            if (this.Growth > 0.75f)
+            if (this.Growth >= 0f)
             {
-                this.ThrowGas();
+                this.ThrowGasOrAdjustGasSize();
             }
             if (Find.TickManager.TicksGame % 350 == 0)
             {

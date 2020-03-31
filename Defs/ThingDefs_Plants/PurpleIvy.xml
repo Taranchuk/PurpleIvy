@@ -39,8 +39,8 @@
 			<neverBlightable>true</neverBlightable>
 			<maxMeshCount>9</maxMeshCount>
 			<visualSizeRange>
-				<min>0.4</min>
-				<max>0.7</max>
+				<min>0</min>
+				<max>1</max>
 			</visualSizeRange>
 			<growMinGlow>0.3</growMinGlow>
 			<!--<seedShootMinGrowthPercent>0.6</seedShootMinGrowthPercent>-->
