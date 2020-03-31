@@ -2,26 +2,45 @@
 <Defs> 
 
 	<!-- ============================ Gennys ========================== -->
+	<ThingDef Name="BaseParasite" ParentName="BasePawn" Abstract="True">
+		<thingClass>Pawn</thingClass>
+		<statBases>
+			<PsychicSensitivity>1</PsychicSensitivity>
+			<ToxicSensitivity>1</ToxicSensitivity>
+			<Flammability>0</Flammability>
+			<ComfyTemperatureMin>-100</ComfyTemperatureMin>
+			<ComfyTemperatureMax>250</ComfyTemperatureMax>
+		</statBases>
+		<soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
+		<race>
+			<intelligence>ToolUser</intelligence>
+			<thinkTreeMain>Animal</thinkTreeMain>
+			<thinkTreeConstant>AnimalConstant</thinkTreeConstant>
+			<herdAnimal>false</herdAnimal>
+			<predator>true</predator>
+			<manhunterOnDamageChance>1</manhunterOnDamageChance>
+			<soundCallIntervalRange>1000~2000</soundCallIntervalRange>
+			<soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
+			<soundMeleeHitBuilding>Pawn_Melee_SmallScratch_HitBuilding</soundMeleeHitBuilding>
+			<soundMeleeMiss>Pawn_Melee_SmallScratch_Miss</soundMeleeMiss>
+			<fleshType>Insectoid</fleshType>
+			<needsRest>false</needsRest>
+			<hasGenders>false</hasGenders>
+			<foodType>Meat, Fluid, Corpse, AnimalProduct, Meal, Processed, Liquor, CarnivoreAnimal, CarnivoreAnimalStrict,  OvivoreAnimal, OmnivoreHuman</foodType>
+			<bloodDef>Filth_BloodInsect</bloodDef>
+		</race>
+	</ThingDef>
 
-	<ThingDef ParentName="BasePawn">
+	<ThingDef ParentName="BaseParasite">
 		<defName>Genny_ParasiteAlpha</defName>
 		<label>Big alien parasite</label>
 		<description>Big alien parasite</description>
-		<thingClass>Pawn</thingClass>
-		
 		<statBases>
 			<MoveSpeed>0.63</MoveSpeed>
 			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
-			
-			<PsychicSensitivity>0.5</PsychicSensitivity>
-			<ToxicSensitivity>0</ToxicSensitivity>
-			<Flammability>0</Flammability>
-			<ComfyTemperatureMin>-100</ComfyTemperatureMin>
-			<ComfyTemperatureMax>250</ComfyTemperatureMax>
-			<MeatAmount>50</MeatAmount>
 			<ArmorRating_Heat>2.00</ArmorRating_Heat>
-			
+			<MeatAmount>50</MeatAmount>
 		</statBases>
 		<tools>
 			<li>
@@ -33,9 +52,18 @@
 				<cooldownTime>2.6</cooldownTime>
 				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<!--
+				<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+							<def>AlienToxicSting</def>
+							<amount>14</amount>
+						</li>
+					</extraMeleeDamages>
+				</surpriseAttack>
+				-->
 			</li>
 		</tools>
-		<soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
 		<comps>
 			<li Class="CompProperties_Glower">
 				<glowRadius>2</glowRadius>
@@ -43,12 +71,10 @@
 			</li>
 		</comps>
 		<race>
-			<intelligence>ToolUser</intelligence>
-			<thinkTreeMain>Mechanoid</thinkTreeMain>
 			<body>ParasiteAlpha</body>
 			<baseBodySize>1.0</baseBodySize>
+			<baseHungerRate>2.0</baseHungerRate>
 			<baseHealthScale>1.0</baseHealthScale>
-			<soundCallIntervalRange>1000~2000</soundCallIntervalRange>
 			<lifeExpectancy>6</lifeExpectancy>
 			<lifeStageAges>
 				<li>
@@ -68,46 +94,18 @@
 					<soundAngry>Pawn_BigInsect_Angry</soundAngry>
 				</li>
 			</lifeStageAges>
-			<soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
-			<soundMeleeHitBuilding>Pawn_Melee_SmallScratch_HitBuilding</soundMeleeHitBuilding>
-			<soundMeleeMiss>Pawn_Melee_SmallScratch_Miss</soundMeleeMiss>
-			
-			
-			<fleshType>Insectoid</fleshType>
-			<needsRest>false</needsRest>
-			<hasGenders>false</hasGenders>
-			<foodType>Meat, Fluid, Corpse, AnimalProduct, Meal, Processed, Liquor, Kibble, VegetarianAnimal, VegetarianRoughAnimal, CarnivoreAnimal, CarnivoreAnimalStrict, OmnivoreAnimal, OmnivoreRoughAnimal, DendrovoreAnimal, OvivoreAnimal, OmnivoreHuman</foodType>
-			<bloodDef>Filth_BloodInsect</bloodDef>
-			
 		</race>
-
-		<!--
-	<butcherProducts>
-		<Steel>50</Steel>
-		<Plasteel>10</Plasteel>
-		<ComponentIndustrial>2</ComponentIndustrial>
-	</butcherProducts>
-	-->
 	</ThingDef>
-	
-		<ThingDef ParentName="BasePawn">
+	<ThingDef ParentName="BaseParasite">
 		<defName>Genny_ParasiteBeta</defName>
 		<label>Medium alien parasite</label>
 		<description>Medium alien parasite</description>
-		<thingClass>Pawn</thingClass>
 		<statBases>
 			<MoveSpeed>0.80</MoveSpeed>
 			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
-			
-			<PsychicSensitivity>0.5</PsychicSensitivity>
-			<ToxicSensitivity>0</ToxicSensitivity>
-			<Flammability>0</Flammability>
-			<ComfyTemperatureMin>-100</ComfyTemperatureMin>
-			<ComfyTemperatureMax>250</ComfyTemperatureMax>
 			<MeatAmount>50</MeatAmount>
 			<ArmorRating_Heat>2.00</ArmorRating_Heat>
-			
 		</statBases>
 		<tools>
 			<li>
@@ -119,17 +117,24 @@
 				<cooldownTime>2.6</cooldownTime>
 				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<!--
+				<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+							<def>AlienToxicSting</def>
+							<amount>14</amount>
+						</li>
+					</extraMeleeDamages>
+				</surpriseAttack>
+				-->
 			</li>
 		</tools>
-		<soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
 		<race>
-			<intelligence>ToolUser</intelligence>
-			<thinkTreeMain>Mechanoid</thinkTreeMain>
 			<body>ParasiteBeta</body>
 			<baseBodySize>1.0</baseBodySize>
 			<baseHealthScale>1.0</baseHealthScale>
-			<soundCallIntervalRange>1000~2000</soundCallIntervalRange>
 			<lifeExpectancy>5</lifeExpectancy>
+			<baseHungerRate>2.0</baseHungerRate>
 			<lifeStageAges>
 				<li>
 					<def>ParasiteLarva</def>
@@ -148,17 +153,8 @@
 					<soundAngry>Pawn_BigInsect_Angry</soundAngry>
 				</li>
 			</lifeStageAges>
-			<soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
-			<soundMeleeHitBuilding>Pawn_Melee_SmallScratch_HitBuilding</soundMeleeHitBuilding>
-			<soundMeleeMiss>Pawn_Melee_SmallScratch_Miss</soundMeleeMiss>
-			
-			
-			<fleshType>Insectoid</fleshType>
-			<needsRest>false</needsRest>
-			<hasGenders>false</hasGenders>
-			<foodType>Meat, Fluid, Corpse, AnimalProduct, Meal, Processed, Liquor, Kibble, VegetarianAnimal, VegetarianRoughAnimal, CarnivoreAnimal, CarnivoreAnimalStrict, OmnivoreAnimal, OmnivoreRoughAnimal, DendrovoreAnimal, OvivoreAnimal, OmnivoreHuman</foodType>
-			<bloodDef>Filth_BloodInsect</bloodDef>
-			
+
+
 		</race>
 
 		<!--
@@ -170,24 +166,16 @@
 	-->
 	</ThingDef>
 
-	<ThingDef ParentName="BasePawn">
+	<ThingDef ParentName="BaseParasite">
 		<defName>Genny_ParasiteOmega</defName>
 		<label>Small alien parasite</label>
 		<description>Small alien parasite.</description>
-		<thingClass>Pawn</thingClass>
 		<statBases>
 			<MoveSpeed>2.63</MoveSpeed>
 			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
-			
-			<PsychicSensitivity>0.5</PsychicSensitivity>
-			<ToxicSensitivity>0</ToxicSensitivity>
-			<Flammability>0</Flammability>
-			<ComfyTemperatureMin>-100</ComfyTemperatureMin>
-			<ComfyTemperatureMax>250</ComfyTemperatureMax>
 			<MeatAmount>50</MeatAmount>
 			<ArmorRating_Heat>2.00</ArmorRating_Heat>
-			
 		</statBases>
 		<tools>
 			<li>
@@ -199,15 +187,23 @@
 				<cooldownTime>2.6</cooldownTime>
 				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<!--
+				<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+							<def>AlienToxicSting</def>
+							<amount>14</amount>
+						</li>
+					</extraMeleeDamages>
+				</surpriseAttack>
+				-->
 			</li>
 		</tools>
-		<soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
 		<race>
-			<intelligence>ToolUser</intelligence>
-			<thinkTreeMain>Mechanoid</thinkTreeMain>
 			<body>ParasiteOmega</body>
 			<baseBodySize>1.0</baseBodySize>
 			<baseHealthScale>1.0</baseHealthScale>
+			<baseHungerRate>2.0</baseHungerRate>
 			<lifeExpectancy>6</lifeExpectancy>
 			<lifeStageAges>
 				<li>
@@ -227,16 +223,6 @@
 					<soundAngry>Pawn_Spelopede_Angry</soundAngry>
 				</li>
 			</lifeStageAges>
-			<soundCallIntervalRange>1000~2000</soundCallIntervalRange>
-			<soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
-			<soundMeleeHitBuilding>Pawn_Melee_SmallScratch_HitBuilding</soundMeleeHitBuilding>
-			<soundMeleeMiss>PPawn_Melee_SmallScratch_Miss</soundMeleeMiss>
-			
-			<fleshType>Insectoid</fleshType>
-			<needsRest>false</needsRest>
-			<hasGenders>false</hasGenders>
-			<foodType>Meat, Fluid, Corpse, AnimalProduct, Meal, Processed, Liquor, Kibble, VegetarianAnimal, VegetarianRoughAnimal, CarnivoreAnimal, CarnivoreAnimalStrict, OmnivoreAnimal, OmnivoreRoughAnimal, DendrovoreAnimal, OvivoreAnimal, OmnivoreHuman</foodType>
-			<bloodDef>Filth_BloodInsect</bloodDef>
 		</race>
 		<!--
 	<butcherProducts>

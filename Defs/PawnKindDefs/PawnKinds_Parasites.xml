@@ -3,7 +3,7 @@
 
 	<PawnKindDef Name="BaseParasiteAlpha" Abstract="True">
 		<label>Big alien parasite</label>
-		<combatPower>50</combatPower>
+		<combatPower>1000</combatPower>
 		<race>Genny_ParasiteAlpha</race>
 		<defaultFactionType>Genny</defaultFactionType>
 		<aiAvoidCover>true</aiAvoidCover>
@@ -17,7 +17,6 @@
 				<bodyGraphicData>
 					<texPath>Things/Pawn/ParasiteAlpha/ParasiteAlpha_A</texPath>
 					<drawSize>1</drawSize>
-					<!--<color>(114,107,84)</color>-->
 				</bodyGraphicData>
 				<dessicatedBodyGraphicData>
 					<texPath>Things/Pawn/ParasiteAlpha/ParasiteAlpha_Dessicated</texPath>
@@ -28,7 +27,6 @@
 				<bodyGraphicData>
 					<texPath>Things/Pawn/ParasiteAlpha/ParasiteAlpha_A</texPath>
 					<drawSize>1.25</drawSize>
-					<!--<color>(114,107,84)</color>-->
 				</bodyGraphicData>
 				<dessicatedBodyGraphicData>
 					<texPath>Things/Pawn/ParasiteAlpha/ParasiteAlpha_Dessicated</texPath>
@@ -39,7 +37,6 @@
 				<bodyGraphicData>
 					<texPath>Things/Pawn/ParasiteAlpha/ParasiteAlpha_A</texPath>
 					<drawSize>1.5</drawSize>
-					<!--<color>(114,107,84)</color>-->
 					<shadowData>
 						<volume>(0.2, 0.3, 0.2)</volume>
 						<offset>(0,0,0)</offset>
@@ -52,7 +49,6 @@
 			</li>
 		</lifeStages>
 	</PawnKindDef> 
-	
 		<PawnKindDef ParentName="BaseParasiteAlpha">
 		<defName>Genny_ParasiteAlphaB</defName>
 		<lifeStages>
@@ -141,7 +137,7 @@
 	
 		<PawnKindDef Name="BaseParasiteBeta" Abstract="True">
 		<label>Medium alien parasite</label>
-		<combatPower>25</combatPower>
+		<combatPower>500</combatPower>
 		<race>Genny_ParasiteBeta</race>
 		<defaultFactionType>Genny</defaultFactionType>
 		<aiAvoidCover>true</aiAvoidCover>
@@ -368,7 +364,7 @@
 	<PawnKindDef>
 		<defName>Genny_ParasiteOmega</defName>
 		<label>Small alien parasite</label>
-		<combatPower>10</combatPower>
+		<combatPower>200</combatPower>
 		<race>Genny_ParasiteOmega</race>
 		<defaultFactionType>Genny</defaultFactionType>
 		<aiAvoidCover>true</aiAvoidCover>
@@ -414,4 +410,4 @@
 		</lifeStages>
 	</PawnKindDef> 
 
-</Defs>     
+</Defs>
