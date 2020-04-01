@@ -50,22 +50,15 @@ namespace PurpleIvy
                                 Corpse corpse = (Corpse)victim.ParentHolder;
                                 if (corpse.TryGetComp<AlienInfection>() == null)
                                 {
-                                    CompProperties_AlienInfection compProperties = new CompProperties_AlienInfection();
-                                    compProperties.compClass = typeof(AlienInfection);
-                                    compProperties.numberOfCreaturesPerSpawn = 1;
-                                    compProperties.typesOfCreatures = new List<string>()
+                                    Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
+                                    var comp = dummyCorpse.TryGetComp<AlienInfection>();
+                                    comp.parent = corpse;
+                                    comp.Props.typesOfCreatures = new List<string>()
                                     {
                                         actor.kindDef.defName
                                     };
-                                    compProperties.maxNumberOfCreatures = 20;
-                                    compProperties.ageTick = 0;
-                                    compProperties.ticksPerSpawn = 10000;
-                                    AlienInfection infected = new AlienInfection
-                                    {
-                                        parent = corpse
-                                    };
-                                    corpse.AllComps.Add(infected);
-                                    infected.Initialize(compProperties);
+                                    corpse.AllComps.Add(comp);
+                                    Log.Message("Adding infected comp to " + corpse.Label);
                                 }
                             }
                         }

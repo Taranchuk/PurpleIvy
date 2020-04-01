@@ -28,10 +28,6 @@ namespace PurpleIvy
         {
             if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, Map), (Thing t) =>          (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock | t.def.defName == "PurpleIvy")))
             {
-                foreach (var t in GridsUtility.GetThingList(dir, this.Map))
-                {
-                    Log.Message(t.Label);
-                }
                 Plant newivy = new Plant();
                 newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
                 GenSpawn.Spawn(newivy, dir, this.Map);
@@ -90,21 +86,15 @@ namespace PurpleIvy
                         Corpse corpse = (Corpse)list[i];
                         if (corpse.TryGetComp<AlienInfection>() == null)
                         {
-                            CompProperties_AlienInfection compProperties = new CompProperties_AlienInfection();
-                            compProperties.compClass = typeof(AlienInfection);
-                            compProperties.numberOfCreaturesPerSpawn = 1;
-                            compProperties.typesOfCreatures = new List<string>()
+                            Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
+                            var comp = dummyCorpse.TryGetComp<AlienInfection>();
+                            comp.parent = corpse;
+                            comp.Props.typesOfCreatures = new List<string>()
                             {
                                 "Genny_ParasiteOmega"
                             };
-                            compProperties.maxNumberOfCreatures = 20;
-                            compProperties.ticksPerSpawn = 10000;
-                            AlienInfection infected = new AlienInfection
-                            {
-                                parent = corpse
-                            };
-                            corpse.AllComps.Add(infected);
-                            infected.Initialize(compProperties);
+                            corpse.AllComps.Add(comp);
+                            Log.Message("Adding infected comp to " + corpse.Label);
                         }
 
                         //speedup the spread a little

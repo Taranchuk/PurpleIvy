@@ -19,6 +19,9 @@ namespace PurpleIvy
 
         public static JobDef PI_Kill;
 
+        public static ThingDef InfectedCorpseDummy;
+
+
 
     }
 }
