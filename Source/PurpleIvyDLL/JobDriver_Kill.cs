@@ -35,17 +35,47 @@ namespace PurpleIvy
                         }
                         if (actor.meleeVerbs.TryMeleeAttack(thing, null, true))
                         {
-                            Log.Message("TryMeleeAttack");
                             this.numMeleeAttacksLanded++;
                             if (this.numMeleeAttacksLanded >= curJob.maxNumMeleeAttacks)
                             {
                                 this.EndJobWith(JobCondition.Succeeded);
                             }
                         }
-                        if (thing.def.IsCorpse)
+                        try
                         {
-                            Log.Message(thing.Label + " killed");
+                            Pawn victim = (Pawn)thing;
+                            //(Corpse)victim.ParentHolder
+                            if (victim.Dead && 10f >= Rand.Range(0f, 100f))
+                            {
+                                Log.Message(thing.Label + " killed! Now trying to attach an infected comp");
+                                Corpse corpse = (Corpse)victim.ParentHolder;
+                                if (corpse.TryGetComp<AlienInfection>() == null)
+                                {
+                                    CompProperties_AlienInfection compProperties = new CompProperties_AlienInfection();
+                                    compProperties.compClass = typeof(AlienInfection);
+                                    compProperties.numberOfCreaturesPerSpawn = 1;
+                                    compProperties.typesOfCreatures = new List<string>()
+                                    {
+                                        actor.kindDef.defName
+                                    };
+                                    compProperties.maxNumberOfCreatures = 20;
+                                    compProperties.ageTick = 0;
+                                    AlienInfection infected = new AlienInfection
+                                    {
+                                        parent = corpse
+                                    };
+                                    corpse.AllComps.Add(infected);
+                                    infected.Initialize(compProperties);
+                                }
+                            }
                         }
+                        catch (Exception ex)
+                        {
+                            Log.Message("it seems there is a error" +
+                                " with the pawn or it is not killed " + thing.Label);
+                            Log.Message(ex.Message);
+                        }
+
                     }
                 }
             };

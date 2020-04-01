@@ -11,28 +11,19 @@ namespace PurpleIvy
     {
         protected override Job TryGiveJob(Pawn pawn)
         {
-            //if (Rand.Value < 0.5f)
-            //{
-            //    Job job = JobMaker.MakeJob(JobDefOf.Wait_Combat);
-            //    job.expiryInterval = 90;
-            //    return job;
-            //}
             if (pawn.TryGetAttackVerb(null, false) == null)
             {
-                Log.Message(pawn + " JobGiver_GennyBerserk : ThinkNode_JobGiver - return null; - 5", true);
                 return null;
             }
             Pawn pawn2 = this.FindPawnTarget(pawn);
             if (pawn2 != null)
             {
-                Log.Message(pawn + " choose target: " + pawn2.Label);
                 if (!pawn2.Downed)
                 {
                     Job job2 = JobMaker.MakeJob(JobDefOf.AttackMelee, pawn2);
                     job2.maxNumMeleeAttacks = 1;
                     job2.expiryInterval = Rand.Range(420, 900);
                     job2.canBash = true;
-                    Log.Message(pawn + " return attack " + pawn2.Label);
                     return job2;
                 }
                 else if (pawn2.Downed)
@@ -42,14 +33,10 @@ namespace PurpleIvy
                     job2.expiryInterval = Rand.Range(420, 900);
                     job2.canBash = true;
                     job2.killIncappedTarget = true;
-                    Log.Message(pawn + " return kill " + pawn2.Label);
                     return job2;
                 }
-                Log.Error(pawn2.Label + " not downed or downed, " +
-                    "idk what’s going on here, but just in case I return null");
                 return null;
             }
-            Log.Message(pawn + " return null");
             return null;
         }
 

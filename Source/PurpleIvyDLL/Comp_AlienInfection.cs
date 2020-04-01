@@ -63,7 +63,6 @@ namespace PurpleIvy
             base.CompTick();
             if (Find.TickManager.TicksGame % this.Props.ticksPerSpawn == 0)
             {
-                Log.Message("StartSpawn 1");
                 this.StartSpawn();
             }
         }
