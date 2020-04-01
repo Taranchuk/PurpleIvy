@@ -59,7 +59,7 @@ namespace PurpleIvy
             return (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, delegate (Thing x)
             {
                 Pawn pawn2 = x as Pawn;
-                return pawn2 != null && pawn2.Spawned && pawn.CanReach(pawn, PathEndMode.ClosestTouch, Danger.Deadly, 
+                return pawn2 != null && pawn2.Spawned && pawn.CanReach(pawn2, PathEndMode.ClosestTouch, Danger.Deadly, 
                     false, TraverseMode.ByPawn);
             }, 0f, 50f);
         }
