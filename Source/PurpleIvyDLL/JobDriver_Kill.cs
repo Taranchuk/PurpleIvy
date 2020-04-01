@@ -44,7 +44,6 @@ namespace PurpleIvy
                         try
                         {
                             Pawn victim = (Pawn)thing;
-                            //(Corpse)victim.ParentHolder
                             if (victim.Dead && 10f >= Rand.Range(0f, 100f))
                             {
                                 Log.Message(thing.Label + " killed! Now trying to attach an infected comp");
@@ -60,6 +59,7 @@ namespace PurpleIvy
                                     };
                                     compProperties.maxNumberOfCreatures = 20;
                                     compProperties.ageTick = 0;
+                                    compProperties.ticksPerSpawn = 10000;
                                     AlienInfection infected = new AlienInfection
                                     {
                                         parent = corpse

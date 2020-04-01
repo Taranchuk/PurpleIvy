@@ -98,6 +98,7 @@ namespace PurpleIvy
                                 "Genny_ParasiteOmega"
                             };
                             compProperties.maxNumberOfCreatures = 20;
+                            compProperties.ticksPerSpawn = 10000;
                             AlienInfection infected = new AlienInfection
                             {
                                 parent = corpse
