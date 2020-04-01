@@ -68,8 +68,7 @@ namespace PurpleIvy
             CompRottable compRottable = this.parent.TryGetComp<CompRottable>();
             if (compRottable != null && compRottable.Stage < RotStage.Dessicated)
             {
-                Log.Message("GameCondition_PurpleFog : GameCondition - DoCellSteadyEffects - compRottable.RotProgress += 3000f; - 23", true);
-                compRottable.RotProgress += 3000f;
+                compRottable.RotProgress += this.Props.rotProgressPerSpawn;
                 FilthMaker.TryMakeFilth(this.parent.Position, this.parent.Map, ThingDefOf.Filth_Blood);
             }
         }

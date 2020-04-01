@@ -64,12 +64,6 @@
 				-->
 			</li>
 		</tools>
-		<comps>
-			<li Class="CompProperties_Glower">
-				<glowRadius>2</glowRadius>
-				<glowColor>(66, 245, 84,0)</glowColor>
-			</li>
-		</comps>
 		<race>
 			<body>ParasiteAlpha</body>
 			<baseBodySize>1.0</baseBodySize>

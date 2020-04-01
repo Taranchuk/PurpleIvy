@@ -31,7 +31,6 @@ namespace PurpleIvy
             {
                 this.Spores.Destroy(DestroyMode.Vanish);
             }
-            PurpleIvyData.Plants.Remove(this);
         }
 
         public void SpawnIvy(IntVec3 dir)

@@ -10,8 +10,6 @@ namespace PurpleIvy
 {
     public class MapComponent_WeatherControl : MapComponent
     {
-        private float transparency = 0f;
-        private int oldValue = 0;
         public MapComponent_WeatherControl(Map map) : base(map)
         {
 

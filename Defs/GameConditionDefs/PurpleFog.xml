@@ -4,7 +4,7 @@
   <GameConditionDef>
     <defName>PurpleFogGameCondition</defName>
     <conditionClass>PurpleIvy.GameCondition_PurpleFog</conditionClass>
-    <label>Purple fog</label>
+    <label>Strange fog</label>
     <description>A plume of toxic dust from some distant source is slowly settling over this entire region. Any living thing not under a roof will be slowly poisoned, and items left outside will corrode.</description>
     <descriptionFuture>a cloud of toxic fallout will blanket the area around [map_definite] for [gameConditionDuration_duration], killing outdoor plant and animal life</descriptionFuture>
     <endMessage>The worst of the toxic fallout has settled.</endMessage>

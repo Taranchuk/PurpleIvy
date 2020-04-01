@@ -14,6 +14,7 @@
 			<maxNumberOfCreatures>20</maxNumberOfCreatures>
 			<ageTick>0</ageTick>
 			<ticksPerSpawn>10000</ticksPerSpawn>
+			<rotProgressPerSpawn>3000</rotProgressPerSpawn>
 			<!--<incubationPeriod></incubationPeriod>-->
 		</li> 
 	</comps>
