@@ -18,6 +18,8 @@ namespace PurpleIvy
         public int incubationPeriod = 0;
         public int ageTick = 0;
         public int ticksPerSpawn = 0;
+        public int rotProgressPerspawn = 0;
+
 
     }
 }

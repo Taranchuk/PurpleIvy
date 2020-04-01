@@ -24,6 +24,16 @@ namespace PurpleIvy
             MutateTry = true;
         }
 
+        public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+        {
+            base.Destroy(mode);
+            if (this.Spores != null)
+            {
+                this.Spores.Destroy(DestroyMode.Vanish);
+            }
+            PurpleIvyData.Plants.Remove(this);
+        }
+
         public void SpawnIvy(IntVec3 dir)
         {
             if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, Map), (Thing t) =>          (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock | t.def.defName == "PurpleIvy")))
@@ -143,7 +153,6 @@ namespace PurpleIvy
             return true;
         }
 
-
         public void ThrowGasOrAdjustGasSize()
         {
             if (this.Spores != null)
@@ -191,7 +200,6 @@ namespace PurpleIvy
                 this.Spores = thing;
             }
         }
-
 
         public override void Tick()
         {
@@ -323,15 +331,6 @@ namespace PurpleIvy
                     }
                 }
         }
-        }
-
-        public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
-        {
-            base.Destroy(mode);
-            if (this.Spores != null)
-            {
-                this.Spores.Destroy();
-            }
         }
     }
 }

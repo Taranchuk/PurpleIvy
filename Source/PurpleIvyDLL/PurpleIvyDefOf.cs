@@ -21,7 +21,11 @@ namespace PurpleIvy
 
         public static ThingDef InfectedCorpseDummy;
 
+        public static ThingDef PurpleIvy;
 
+        public static WeatherDef PurpleFog;
+
+        public static GameConditionDef PurpleFogGameCondition;
 
     }
 }

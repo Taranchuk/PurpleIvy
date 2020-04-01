@@ -52,10 +52,25 @@ namespace PurpleIvy
                                 NewPawn.SetFactionDirect(factionDirect);
                                 GenSpawn.Spawn(NewPawn, this.parent.Position, this.parent.Map);
                                 currentCountOfCreatures++;
+                                if (this.parent is Corpse)
+                                {
+                                    DoDamageToCorpse();
+                                }
                             }
                         }
                     }
                 }
+            }
+        }
+
+        public void DoDamageToCorpse()
+        {
+            CompRottable compRottable = this.parent.TryGetComp<CompRottable>();
+            if (compRottable != null && compRottable.Stage < RotStage.Dessicated)
+            {
+                Log.Message("GameCondition_PurpleFog : GameCondition - DoCellSteadyEffects - compRottable.RotProgress += 3000f; - 23", true);
+                compRottable.RotProgress += 3000f;
+                FilthMaker.TryMakeFilth(this.parent.Position, this.parent.Map, ThingDefOf.Filth_Blood);
             }
         }
         public override void CompTick()

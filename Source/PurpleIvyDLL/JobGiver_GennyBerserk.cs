@@ -90,3 +90,4 @@ namespace PurpleIvy
         private const int MaxMeleeChaseTicks = 900;
     }
 }
+
