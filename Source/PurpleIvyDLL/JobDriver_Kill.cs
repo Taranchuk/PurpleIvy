@@ -33,13 +33,18 @@ namespace PurpleIvy
                         {
                             this.EndJobWith(JobCondition.Succeeded);
                         }
-                        if (actor.meleeVerbs.TryMeleeAttack(thing, null, false))
+                        if (actor.meleeVerbs.TryMeleeAttack(thing, null, true))
                         {
+                            Log.Message("TryMeleeAttack");
                             this.numMeleeAttacksLanded++;
                             if (this.numMeleeAttacksLanded >= curJob.maxNumMeleeAttacks)
                             {
                                 this.EndJobWith(JobCondition.Succeeded);
                             }
+                        }
+                        if (thing.def.IsCorpse)
+                        {
+                            Log.Message(thing.Label + " killed");
                         }
                     }
                 }

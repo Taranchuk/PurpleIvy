@@ -21,8 +21,6 @@
 
 				<li Class="JobGiver_ReactToCloseMeleeThreat"/>
 
-				<li Class="PurpleIvy.JobGiver_GennyBerserk"/>
-
 				<li Class="ThinkNode_Tagger">
 					<tagToGive>SatisfyingNeeds</tagToGive>
 					<subNodes>
@@ -33,6 +31,10 @@
 						</li>
 					</subNodes>
 				</li>
+				
+				<li Class="PurpleIvy.JobGiver_GennyBerserk"/>
+
+
 				<!-- Do a queued job -->
 				<li Class="ThinkNode_QueuedJob"/>
 				<!-- Lord directives -->
