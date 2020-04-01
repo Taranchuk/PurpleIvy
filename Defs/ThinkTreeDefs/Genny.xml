@@ -18,12 +18,10 @@
 				<li Class="ThinkNode_Subtree">
 					<treeDef>Downed</treeDef>
 				</li>
-				<li Class="ThinkNode_Subtree">
-					<treeDef>BurningResponse</treeDef>
-				</li>
-				<li Class="ThinkNode_Subtree">
-					<treeDef>MentalStateCritical</treeDef>
-				</li>
+
+				<li Class="JobGiver_ReactToCloseMeleeThreat"/>
+
+				<li Class="PurpleIvy.JobGiver_GennyBerserk"/>
 
 				<li Class="ThinkNode_Tagger">
 					<tagToGive>SatisfyingNeeds</tagToGive>
@@ -35,10 +33,6 @@
 						</li>
 					</subNodes>
 				</li>
-				<li Class="JobGiver_Berserk"/>
-				<li Class="JobGiver_Manhunter"/>
-				<!-- React to close melee threat -->
-				<li Class="JobGiver_ReactToCloseMeleeThreat"/>
 				<!-- Do a queued job -->
 				<li Class="ThinkNode_QueuedJob"/>
 				<!-- Lord directives -->
@@ -52,8 +46,8 @@
 						<li Class="JobGiver_WanderAnywhere">
 							<maxDanger>Deadly</maxDanger>
 							<ticksBetweenWandersRange>
-								<min>300</min>
-								<max>345</max>
+								<min>1</min>
+								<max>60</max>
 							</ticksBetweenWandersRange>
 						</li>
 					</subNodes>

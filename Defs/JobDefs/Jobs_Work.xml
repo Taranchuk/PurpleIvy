@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--============= Item hauling ===============-->
+
+  <JobDef>
+    <defName>PI_Kill</defName>
+    <driverClass>PurpleIvy.JobDriver_Kill</driverClass>
+    <reportString>killing TargetA.</reportString>
+    <suspendable>false</suspendable>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+  
+</Defs>

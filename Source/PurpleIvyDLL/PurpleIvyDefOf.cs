@@ -17,6 +17,8 @@ namespace PurpleIvy
 
         public static FactionDef Genny;
 
+        public static JobDef PI_Kill;
+
 
     }
 }
