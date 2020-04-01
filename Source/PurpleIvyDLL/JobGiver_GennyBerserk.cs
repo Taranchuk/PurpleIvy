@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -44,6 +45,9 @@ namespace PurpleIvy
                     Log.Message(pawn + " return kill " + pawn2.Label);
                     return job2;
                 }
+                Log.Error(pawn2.Label + " not downed or downed, " +
+                    "idk what’s going on here, but just in case I return null");
+                return null;
             }
             Log.Message(pawn + " return null");
             return null;
@@ -51,17 +55,33 @@ namespace PurpleIvy
 
         private Pawn FindPawnTarget(Pawn pawn)
         {
-            //Predicate<Thing> predicate = (Thing p) => p != null && p != pawn 
-            //&& p.Faction != pawn.Faction;
-            //return (Pawn)GenClosest.ClosestThing_Global(pawn.Position,
-            //    pawn.Map.mapPawns.AllPawnsSpawned, 200f, predicate);
-
-            return (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, delegate (Thing x)
+            Pawn victim = null;
+            victim = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, delegate (Thing x)
             {
                 Pawn pawn2 = x as Pawn;
-                return pawn2 != null && pawn2.Spawned && pawn.CanReach(pawn2, PathEndMode.ClosestTouch, Danger.Deadly, 
+                return pawn2 != null && pawn2.Spawned && pawn.CanReach(pawn2, PathEndMode.ClosestTouch, Danger.Deadly,
                     false, TraverseMode.ByPawn);
             }, 0f, 50f);
+            if (victim == null)
+            {
+                List<Pawn> tmpPredatorCandidates = new List<Pawn>();
+                TraverseParms traverseParms = TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false);
+                RegionTraverser.BreadthFirstTraverse(pawn.Position, pawn.Map, (Region from, Region to)
+                    => to.Allows(traverseParms, true), delegate (Region x)
+                    {
+                        List<Thing> list = x.ListerThings.ThingsInGroup(ThingRequestGroup.Pawn);
+                        for (int j = 0; j < list.Count; j++)
+                        {
+                            tmpPredatorCandidates.Add((Pawn)list[j]);
+                        }
+                        return false;
+                    }, 999999, RegionType.Set_Passable);
+                Predicate<Thing> predicate = (Thing p) => p != null && p != pawn 
+                && p.Faction != pawn.Faction;
+                victim = (Pawn)GenClosest.ClosestThing_Global(pawn.Position,
+                    tmpPredatorCandidates, 50f, predicate);
+            }
+            return victim;
         }
 
         private const float MaxAttackDistance = 40f;
