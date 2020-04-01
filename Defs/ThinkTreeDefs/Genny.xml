@@ -47,10 +47,7 @@
 					<subNodes>
 						<li Class="JobGiver_WanderAnywhere">
 							<maxDanger>Deadly</maxDanger>
-							<ticksBetweenWandersRange>
-								<min>1</min>
-								<max>60</max>
-							</ticksBetweenWandersRange>
+						<ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
 						</li>
 					</subNodes>
 				</li>

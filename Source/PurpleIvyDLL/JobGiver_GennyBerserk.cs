@@ -56,31 +56,39 @@ namespace PurpleIvy
         private Pawn FindPawnTarget(Pawn pawn)
         {
             Pawn victim = null;
-            victim = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, delegate (Thing x)
-            {
-                Pawn pawn2 = x as Pawn;
-                return pawn2 != null && pawn2.Spawned && pawn.CanReach(pawn2, PathEndMode.ClosestTouch, Danger.Deadly,
-                    false, TraverseMode.ByPawn);
-            }, 0f, 50f);
-            if (victim == null)
-            {
-                List<Pawn> tmpPredatorCandidates = new List<Pawn>();
-                TraverseParms traverseParms = TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false);
-                RegionTraverser.BreadthFirstTraverse(pawn.Position, pawn.Map, (Region from, Region to)
-                    => to.Allows(traverseParms, true), delegate (Region x)
-                    {
-                        List<Thing> list = x.ListerThings.ThingsInGroup(ThingRequestGroup.Pawn);
-                        for (int j = 0; j < list.Count; j++)
-                        {
-                            tmpPredatorCandidates.Add((Pawn)list[j]);
-                        }
-                        return false;
-                    }, 999999, RegionType.Set_Passable);
-                Predicate<Thing> predicate = (Thing p) => p != null && p != pawn 
-                && p.Faction != pawn.Faction;
-                victim = (Pawn)GenClosest.ClosestThing_Global(pawn.Position,
-                    tmpPredatorCandidates, 50f, predicate);
-            }
+            Predicate<Thing> predicate = (Thing p) => p != null && p != pawn 
+            && p.Faction != pawn.Faction;
+            List<Pawn> allPawns = pawn.Map.mapPawns.AllPawns;
+            victim = (Pawn)GenClosest.ClosestThing_Global_Reachable(pawn.Position,
+                pawn.Map, allPawns, PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false)
+                , 50f, predicate);
+
+            //
+            //victim = (Pawn)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedReachable, delegate (Thing x)
+            //{
+            //    Pawn pawn2 = x as Pawn;
+            //    return pawn2 != null && pawn2.Spawned && pawn.CanReach(pawn2, PathEndMode.ClosestTouch, Danger.Deadly,
+            //        false, TraverseMode.ByPawn);
+            //}, 0f, 50f);
+            //if (victim == null)
+            //{
+            //    List<Pawn> tmpPredatorCandidates = new List<Pawn>();
+            //    TraverseParms traverseParms = TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false);
+            //    RegionTraverser.BreadthFirstTraverse(pawn.Position, pawn.Map, (Region from, Region to)
+            //        => to.Allows(traverseParms, true), delegate (Region x)
+            //        {
+            //            List<Thing> list = x.ListerThings.ThingsInGroup(ThingRequestGroup.Pawn);
+            //            for (int j = 0; j < list.Count; j++)
+            //            {
+            //                tmpPredatorCandidates.Add((Pawn)list[j]);
+            //            }
+            //            return false;
+            //        }, 999999, RegionType.Set_Passable);
+            //    Predicate<Thing> predicate = (Thing p) => p != null && p != pawn 
+            //    && p.Faction != pawn.Faction;
+            //    victim = (Pawn)GenClosest.ClosestThing_Global(pawn.Position,
+            //        tmpPredatorCandidates, 50f, predicate);
+            //}
             return victim;
         }
 
