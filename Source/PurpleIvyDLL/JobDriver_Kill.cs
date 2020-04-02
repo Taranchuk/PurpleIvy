@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -33,6 +34,7 @@ namespace PurpleIvy
                         {
                             this.EndJobWith(JobCondition.Succeeded);
                         }
+                        Pawn victim = (Pawn)thing;
                         if (actor.meleeVerbs.TryMeleeAttack(thing, null, true))
                         {
                             this.numMeleeAttacksLanded++;
@@ -40,25 +42,57 @@ namespace PurpleIvy
                             {
                                 this.EndJobWith(JobCondition.Succeeded);
                             }
-                        }
-                        try
-                        {
-                            Pawn victim = (Pawn)thing;
-                            if (victim.Dead && 10f >= Rand.Range(0f, 100f))
+                            if (10f >= Rand.Range(0f, 100f))
                             {
-                                Log.Message(thing.Label + " killed! Now trying to attach an infected comp");
-                                Corpse corpse = (Corpse)victim.ParentHolder;
-                                if (corpse.TryGetComp<AlienInfection>() == null)
+                                if (thing.TryGetComp<AlienInfection>() == null)
                                 {
                                     Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
                                     var comp = dummyCorpse.TryGetComp<AlienInfection>();
-                                    comp.parent = corpse;
+                                    comp.parent = victim;
                                     comp.Props.typesOfCreatures = new List<string>()
                                     {
                                         actor.kindDef.defName
                                     };
+                                    comp.Props.incubationPeriod = new IntRange(10000, 40000);
+
+                                    comp.Props.IncubationData = new IncubationData();
+                                    comp.Props.IncubationData.tickStartHediff = new IntRange(2000, 4000);
+                                    comp.Props.IncubationData.deathChance = 90f;
+                                    comp.Props.IncubationData.hediff = HediffDefOf.Pregnant.defName;
+                                    victim.AllComps.Add(comp);
+                                    Log.Message("Adding infected comp to living creature " + victim.Label);
+                                }
+                            }
+                        }
+                        try
+                        {
+                            if (victim.Dead)
+                            {
+                                var comp = victim.TryGetComp<AlienInfection>();
+                                Corpse corpse = (Corpse)victim.ParentHolder;
+                                if (comp != null)
+                                {
+                                    Log.Message("Moving infected comp from living creature to corpse " + corpse.Label);
                                     corpse.AllComps.Add(comp);
-                                    Log.Message("Adding infected comp to " + corpse.Label);
+                                }
+                                if (corpse.TryGetComp<AlienInfection>() == null)
+                                {
+                                    if (10f >= Rand.Range(0f, 100f))
+                                    {
+                                        Log.Message(thing.Label + " killed! Now trying to attach an infected comp");
+                                        if (corpse.TryGetComp<AlienInfection>() == null)
+                                        {
+                                            Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
+                                            comp = dummyCorpse.TryGetComp<AlienInfection>();
+                                            comp.parent = corpse;
+                                            comp.Props.typesOfCreatures = new List<string>()
+                                            {
+                                                actor.kindDef.defName
+                                            };
+                                            corpse.AllComps.Add(comp);
+                                            Log.Message("Adding infected comp to " + corpse.Label);
+                                        }
+                                    }
                                 }
                             }
                         }

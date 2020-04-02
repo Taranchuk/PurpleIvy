@@ -27,10 +27,18 @@ namespace PurpleIvy
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
             base.Destroy(mode);
-            if (this.Spores != null)
+            try
             {
-                this.Spores.Destroy(DestroyMode.Vanish);
+                if (this.Spores != null)
+                {
+                    this.Spores.Destroy(DestroyMode.Vanish);
+                }
             }
+            catch
+            {
+                ;
+            }
+
         }
 
         public void SpawnIvy(IntVec3 dir)

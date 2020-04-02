@@ -298,6 +298,7 @@
     <Compile Include="Building_EggSac.cs" />
     <Compile Include="Building_GenMortarGun.cs" />
     <Compile Include="Building_GenTurretGun.cs" />
+    <Compile Include="IncubationData.cs" />
     <Compile Include="CompProperties_AlienInfection.cs" />
     <Compile Include="JobDriver_Kill.cs" />
     <Compile Include="JobGiver_GennyBerserk.cs" />

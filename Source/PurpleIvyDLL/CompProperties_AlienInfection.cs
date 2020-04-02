@@ -18,7 +18,8 @@ namespace PurpleIvy
         public IntRange ageTick = new IntRange(0, 0);
         public IntRange ticksPerSpawn = new IntRange(0, 0);
         public IntRange rotProgressPerSpawn = new IntRange(0, 0);
-
+        public IncubationData IncubationData = new IncubationData();
+        public bool resetIncubation = false;
 
     }
 }

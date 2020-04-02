@@ -15,13 +15,31 @@ namespace PurpleIvy
             }
         }
 
+        public override void Initialize(CompProperties props)
+        {
+            base.Initialize(props);
+            this.startIncubation = Find.TickManager.TicksGame;
+        }
+
         public void StartSpawn()
         {
+            if (this.startIncubation + this.Props.IncubationData.tickStartHediff.RandomInRange > Find.TickManager.TicksGame)
+            {
+                if (this.Props.IncubationData.hediff != null)
+                {
+                    Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named(this.Props.IncubationData.hediff),
+                    (Pawn)this.parent, null);
+                    ((Pawn)this.parent).health.AddHediff(hediff, null, null, null);
+                }
+            }
             if (this.Props.incubationPeriod.RandomInRange > 0)
             {
                 if (this.startIncubation + this.Props.incubationPeriod.RandomInRange > Find.TickManager.TicksGame)
                 {
-                    this.startIncubation = 0;
+                    if (this.Props.resetIncubation == true)
+                    {
+                        this.startIncubation = 0;
+                    }
                 }
                 else
                 {
@@ -55,12 +73,15 @@ namespace PurpleIvy
                                     NewPawn.ageTracker.AgeChronologicalTicks = 0;
                                 }
                                 NewPawn.SetFactionDirect(factionDirect);
-                                GenSpawn.Spawn(NewPawn, this.parent.Position, this.parent.Map);
-                                currentCountOfCreatures++;
                                 if (this.parent is Corpse)
                                 {
-                                    DoDamageToCorpse();
+                                    HatchFromCorpse(NewPawn);
                                 }
+                                else if (this.parent is Pawn)
+                                {
+                                    HatchFromPawn(NewPawn);
+                                }
+                                currentCountOfCreatures++;
                             }
                         }
                     }
@@ -68,13 +89,41 @@ namespace PurpleIvy
             }
         }
 
-        public void DoDamageToCorpse()
+        public void HatchFromCorpse(Pawn NewPawn)
         {
             CompRottable compRottable = this.parent.TryGetComp<CompRottable>();
             if (compRottable != null && compRottable.Stage < RotStage.Dessicated)
             {
                 compRottable.RotProgress += this.Props.rotProgressPerSpawn.RandomInRange;
                 FilthMaker.TryMakeFilth(this.parent.Position, this.parent.Map, ThingDefOf.Filth_Blood);
+            }
+            GenSpawn.Spawn(NewPawn, this.parent.Position, this.parent.Map);
+
+        }
+
+        public void HatchFromPawn(Pawn NewPawn)
+        {
+            Pawn host = (Pawn)this.parent;
+            this.parent.TakeDamage(new DamageInfo(DamageDefOf.SurgicalCut, 25f));
+            if (host.Dead)
+            {
+                Corpse corpse = (Corpse)this.parent.ParentHolder;
+                corpse.AllComps.Add(this);
+                FilthMaker.TryMakeFilth(corpse.Position, corpse.Map, ThingDefOf.Filth_Blood);
+                GenSpawn.Spawn(NewPawn, corpse.Position, corpse.Map);
+            }
+            else if (this.Props.IncubationData.deathChance >= Rand.Range(0f, 100f))
+            {
+                this.parent.Kill();
+                Corpse corpse = (Corpse)this.parent.ParentHolder;
+                corpse.AllComps.Add(this);
+                FilthMaker.TryMakeFilth(corpse.Position, corpse.Map, ThingDefOf.Filth_Blood);
+                GenSpawn.Spawn(NewPawn, corpse.Position, corpse.Map);
+            }
+            else
+            {
+                Log.Message(" - HatchFromPawn - GenSpawn.Spawn(NewPawn, this.parent.Position, this.parent.Map); - 7", true);
+                GenSpawn.Spawn(NewPawn, this.parent.Position, this.parent.Map);
             }
         }
         public override void CompTick()
@@ -88,7 +137,6 @@ namespace PurpleIvy
         public override void CompTickRare()
         {
             base.CompTickRare();
-            Log.Message("StartSpawn 2");
             this.StartSpawn();
         }
 
