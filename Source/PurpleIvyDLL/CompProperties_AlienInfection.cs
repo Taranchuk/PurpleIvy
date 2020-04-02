@@ -12,13 +12,12 @@ namespace PurpleIvy
         }
 
         public List<string> typesOfCreatures = null;
-        public int numberOfCreaturesPerSpawn = 0;
-        public int numberOfCreaturesPerSpawnRandom = 0;
         public int maxNumberOfCreatures = 0;
-        public int incubationPeriod = 0;
-        public int ageTick = 0;
-        public int ticksPerSpawn = 0;
-        public int rotProgressPerSpawn = 0;
+        public IntRange numberOfCreaturesPerSpawn = new IntRange(0, 0);
+        public IntRange incubationPeriod = new IntRange(0, 0);
+        public IntRange ageTick = new IntRange(0, 0);
+        public IntRange ticksPerSpawn = new IntRange(0, 0);
+        public IntRange rotProgressPerSpawn = new IntRange(0, 0);
 
 
     }

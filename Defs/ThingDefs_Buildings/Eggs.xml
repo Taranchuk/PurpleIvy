@@ -29,11 +29,10 @@
 					<li>Genny_ParasiteAlphaC</li>
 				</typesOfCreatures>
 				<numberOfCreaturesPerSpawn>1</numberOfCreaturesPerSpawn>
-				<!--<numberOfCreaturesPerSpawnRandom></numberOfCreaturesPerSpawnRandom>-->
 				<maxNumberOfCreatures>5</maxNumberOfCreatures>
-				<ageTick>50000</ageTick>
-				<ticksPerSpawn>30000</ticksPerSpawn>
-				<!--<incubationPeriod></incubationPeriod>-->
+				<ageTick>40000~50000</ageTick>
+				<ticksPerSpawn>2000~3000</ticksPerSpawn>
+				<incubationPeriod>30000~40000</incubationPeriod>
 			</li> 
 		</comps>
 		<statBases>
@@ -72,13 +71,11 @@
 				<typesOfCreatures>
 					<li>Genny_ParasiteOmega</li>
 				</typesOfCreatures>
-				<!--<numberOfCreaturesPerSpawn></numberOfCreaturesPerSpawn>-->
-				<numberOfCreaturesPerSpawnRandom>3</numberOfCreaturesPerSpawnRandom>
+				<numberOfCreaturesPerSpawn>1~3</numberOfCreaturesPerSpawn>
 				<maxNumberOfCreatures>20</maxNumberOfCreatures>
-				<ageTick>50000</ageTick>
-				<ticksPerSpawn>3000</ticksPerSpawn>
-
-				<!--<incubationPeriod></incubationPeriod>-->
+				<ageTick>40000~50000</ageTick>
+				<ticksPerSpawn>2000~3000</ticksPerSpawn>
+				<incubationPeriod>30000~40000</incubationPeriod>
 			</li> 
 		</comps>
 		<statBases>

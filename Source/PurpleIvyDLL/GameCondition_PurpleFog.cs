@@ -16,7 +16,7 @@ namespace PurpleIvy
             }
         }
 
-        public float oldValue = 0f;
+        public float fogProgress = 0f;
 
         public override void Init()
         {
@@ -33,6 +33,23 @@ namespace PurpleIvy
         public override void GameConditionTick()
         {
             List<Map> affectedMaps = base.AffectedMaps;
+            int count = Find.CurrentMap.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+            if (count < 250)
+            {
+                this.fogProgress = 0f;
+                if (count < 200)
+                {
+                    this.End();
+                    Find.LetterStack.ReceiveLetter("PurpleFogReceded".Translate(),
+                        "PurpleFogRecededDesc".Translate(), LetterDefOf.PositiveEvent);
+                }
+            }
+            else
+            {
+                count -= 250;
+                this.fogProgress = ((float)count / (float)1000 * 100f) / 100f;
+            }
+
             if (Find.TickManager.TicksGame % 3451 == 0)
             {
                 for (int i = 0; i < affectedMaps.Count; i++)
@@ -60,6 +77,10 @@ namespace PurpleIvy
 
         public static void DoPawnToxicDamage(Pawn p)
         {
+            if (p.Faction.def == PurpleIvyDefOf.Genny)
+            {
+                return;
+            }
             if (p.Spawned && p.Position.Roofed(p.Map))
             {
                 return;
@@ -115,17 +136,7 @@ namespace PurpleIvy
 
         public override float SkyTargetLerpFactor(Map map)
         {
-            int count = Find.CurrentMap.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count - 250;
-            int finalCount = 1000;
-            if (count <= finalCount)
-            {
-                float result = ((float)count / (float)finalCount * 100f) / 100f;
-
-                Log.Message("Count - " + count.ToString() + " - " 
-                    + result.ToString());
-                return result;
-            }
-            return 1f;
+            return this.fogProgress;
         }
 
         public override SkyTarget? SkyTarget(Map map)
@@ -151,6 +162,12 @@ namespace PurpleIvy
         public override List<SkyOverlay> SkyOverlays(Map map)
         {
             return this.overlays;
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look<float>(ref this.fogProgress, "fogProgress", 0f, true);
         }
 
         private const float MaxSkyLerpFactor = 0.5f;
