@@ -54,7 +54,6 @@ namespace PurpleIvy
                                         actor.kindDef.defName
                                     };
                                     comp.Props.incubationPeriod = new IntRange(10000, 40000);
-
                                     comp.Props.IncubationData = new IncubationData();
                                     comp.Props.IncubationData.tickStartHediff = new IntRange(2000, 4000);
                                     comp.Props.IncubationData.deathChance = 90f;

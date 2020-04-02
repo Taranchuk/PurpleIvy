@@ -21,9 +21,9 @@ namespace PurpleIvy
             this.startIncubation = Find.TickManager.TicksGame;
         }
 
-        public void StartSpawn()
+        public void TryStartSpawn()
         {
-            if (this.startIncubation + this.Props.IncubationData.tickStartHediff.RandomInRange > Find.TickManager.TicksGame)
+            if (this.startIncubation + this.Props.IncubationData.tickStartHediff.RandomInRange < Find.TickManager.TicksGame)
             {
                 if (this.Props.IncubationData.hediff != null)
                 {
@@ -34,7 +34,7 @@ namespace PurpleIvy
             }
             if (this.Props.incubationPeriod.RandomInRange > 0)
             {
-                if (this.startIncubation + this.Props.incubationPeriod.RandomInRange > Find.TickManager.TicksGame)
+                if (this.startIncubation + this.Props.incubationPeriod.RandomInRange < Find.TickManager.TicksGame)
                 {
                     if (this.Props.resetIncubation == true)
                     {
@@ -122,7 +122,6 @@ namespace PurpleIvy
             }
             else
             {
-                Log.Message(" - HatchFromPawn - GenSpawn.Spawn(NewPawn, this.parent.Position, this.parent.Map); - 7", true);
                 GenSpawn.Spawn(NewPawn, this.parent.Position, this.parent.Map);
             }
         }
@@ -131,13 +130,13 @@ namespace PurpleIvy
             base.CompTick();
             if (Find.TickManager.TicksGame % this.Props.ticksPerSpawn.RandomInRange == 0)
             {
-                this.StartSpawn();
+                this.TryStartSpawn();
             }
         }
         public override void CompTickRare()
         {
             base.CompTickRare();
-            this.StartSpawn();
+            this.TryStartSpawn();
         }
 
         public override void PostExposeData()
@@ -152,4 +151,3 @@ namespace PurpleIvy
         public int startIncubation = 0;
     }
 }
-
