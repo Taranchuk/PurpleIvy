@@ -303,7 +303,6 @@
     <Compile Include="CompProperties_AlienInfection.cs" />
     <Compile Include="JobDriver_Kill.cs" />
     <Compile Include="JobGiver_GennyBerserk.cs" />
-    <Compile Include="DamageWorker_ToxicSting.cs" />
     <Compile Include="GameCondition_PurpleFog.cs" />
     <Compile Include="MapComponent_WeatherControl.cs" />
     <Compile Include="PurpleIvyDefOf.cs" />

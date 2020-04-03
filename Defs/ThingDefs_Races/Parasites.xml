@@ -43,7 +43,7 @@
 			<li>
 				<label>head</label>
 				<capacities>
-					<li>Blunt</li>
+					<li>AlienToxicSting</li>
 				</capacities>
 				<power>17</power>
 				<cooldownTime>2.6</cooldownTime>
@@ -100,7 +100,7 @@
 			<li>
 				<label>head</label>
 				<capacities>
-					<li>Blunt</li>
+					<li>AlienToxicSting</li>
 				</capacities>
 				<power>13</power>
 				<cooldownTime>2.6</cooldownTime>
@@ -168,7 +168,7 @@
 			<li>
 				<label>head</label>
 				<capacities>
-					<li>Blunt</li>
+					<li>AlienToxicSting</li>
 				</capacities>
 				<power>6</power>
 				<cooldownTime>2.6</cooldownTime>

@@ -194,3 +194,4 @@ namespace PurpleIvy
         private const float CorpseRotProgressAdd = 3000f;
     }
 }
+

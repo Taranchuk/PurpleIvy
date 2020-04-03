@@ -5,8 +5,14 @@ using System.Linq;
 
 namespace PurpleIvy
 {
+
     public class AlienInfection : ThingComp
     {
+        Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
+        public int currentCountOfCreatures = 0;
+        public int startIncubation = 0;
+        public int prevTick = 0;
+
         public CompProperties_AlienInfection Props
         {
             get
@@ -25,7 +31,7 @@ namespace PurpleIvy
         {
             if (this.startIncubation + this.Props.IncubationData.tickStartHediff.RandomInRange < Find.TickManager.TicksGame)
             {
-                if (this.Props.IncubationData.hediff != null)
+                if (this.parent is Pawn && this.Props.IncubationData.hediff != null)
                 {
                     Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named(this.Props.IncubationData.hediff),
                     (Pawn)this.parent, null);
@@ -38,7 +44,7 @@ namespace PurpleIvy
                 {
                     if (this.Props.resetIncubation == true)
                     {
-                        this.startIncubation = 0;
+                        this.startIncubation = Find.TickManager.TicksGame;
                     }
                 }
                 else
@@ -128,10 +134,7 @@ namespace PurpleIvy
         public override void CompTick()
         {
             base.CompTick();
-            if (Find.TickManager.TicksGame % this.Props.ticksPerSpawn.RandomInRange == 0)
-            {
-                this.TryStartSpawn();
-            }
+            this.TryStartSpawn();
         }
         public override void CompTickRare()
         {
@@ -144,10 +147,8 @@ namespace PurpleIvy
             base.PostExposeData();
             Scribe_Values.Look<int>(ref this.currentCountOfCreatures, "currentCountOfCreatures", 0, false);
             Scribe_Values.Look<int>(ref this.startIncubation, "startIncubation", 0, false);
-        }
+            Scribe_Values.Look<int>(ref this.prevTick, "prevTick", 0, false);
 
-        Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
-        private int currentCountOfCreatures = 0;
-        public int startIncubation = 0;
+        }
     }
 }

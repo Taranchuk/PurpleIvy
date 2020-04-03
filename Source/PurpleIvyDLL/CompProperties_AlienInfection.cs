@@ -6,10 +6,6 @@ namespace PurpleIvy
 {
     public class CompProperties_AlienInfection : CompProperties
     {
-        public CompProperties_AlienInfection()
-        {
-            this.compClass = typeof(AlienInfection);
-        }
 
         public List<string> typesOfCreatures = null;
         public int maxNumberOfCreatures = 0;
@@ -20,6 +16,11 @@ namespace PurpleIvy
         public IntRange rotProgressPerSpawn = new IntRange(0, 0);
         public IncubationData IncubationData = new IncubationData();
         public bool resetIncubation = false;
+
+        public CompProperties_AlienInfection()
+        {
+            this.compClass = typeof(AlienInfection);
+        }
 
     }
 }
