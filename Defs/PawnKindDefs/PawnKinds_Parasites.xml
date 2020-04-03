@@ -404,7 +404,7 @@
 				</bodyGraphicData>
 				<dessicatedBodyGraphicData>
 					<texPath>Things/Pawn/ParasiteOmega/ParasiteOmega_DessicatedAdult</texPath>
-					<drawSize>1.5</drawSize>
+					<drawSize>0.7</drawSize>
 				</dessicatedBodyGraphicData>
 			</li>
 		</lifeStages>
