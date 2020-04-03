@@ -14,30 +14,34 @@ namespace PurpleIvy
             AlienInfection comp = new AlienInfection();
             comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
             comp.parent = this.pawn;
-            string parasite = GenCollection.RandomElement<PawnKindDef>(
+            PawnKindDef parasite = GenCollection.RandomElement<PawnKindDef>(
             DefDatabase<PawnKindDef>.AllDefsListForReading
-            .Where(x => x.defName.Contains("Genny_Parasite")).ToList()).defName;
+            .Where(x => x.defName.Contains("Genny_Parasite")).ToList());
             comp.Props.typesOfCreatures = new List<string>()
             {
-                parasite
+                parasite.defName
             };
-            if (parasite == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
+            if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
             {
                 IntRange range = new IntRange(1, 1);
                 comp.totalNumberOfCreatures = range.RandomInRange;
                 comp.Props.maxNumberOfCreatures = range;
             }
-            else if (parasite == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
+            else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
             {
                 IntRange range = new IntRange(1, 3);
                 comp.totalNumberOfCreatures = range.RandomInRange;
                 comp.Props.maxNumberOfCreatures = range;
             }
-            else if (parasite == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
+            else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
             {
                 IntRange range = new IntRange(1, 10);
                 comp.totalNumberOfCreatures = range.RandomInRange;
                 comp.Props.maxNumberOfCreatures = range;
+            }
+            else
+            {
+                Log.Error("1 Something went wrong while adding infected comp: " + comp.parent + " - " + parasite);
             }
             comp.Props.incubationPeriod = new IntRange(10000, 40000);
             comp.Props.IncubationData = new IncubationData();

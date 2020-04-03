@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  
   <!-- Special non-humanoid factions -->
-
   <FactionDef>
     <defName>Genny</defName>
     <label>Genetically modified creatures</label>
     <description>A science experiment gone wrong.</description>
-    <pawnsPlural>Gennies</pawnsPlural>
+    <pawnsPlural>gennies</pawnsPlural>
+    <pawnSingular>genny</pawnSingular>
     <canMakeRandomly>false</canMakeRandomly>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
 	<permanentEnemy>true</permanentEnemy>
@@ -26,6 +25,5 @@
 	<colorSpectrum>
 		<li>(150,150,150)</li>
 	</colorSpectrum>
-  </FactionDef>   
-
+  </FactionDef> 
 </Defs>

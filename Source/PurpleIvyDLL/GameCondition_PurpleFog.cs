@@ -33,22 +33,26 @@ namespace PurpleIvy
         public override void GameConditionTick()
         {
             List<Map> affectedMaps = base.AffectedMaps;
-            int count = Find.CurrentMap.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
-            if (count < 250)
+            if (Find.TickManager.TicksGame % 60 == 0) // for performance
             {
-                this.fogProgress = 0f;
-                if (count < 200)
+                int count = Find.CurrentMap.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                if (count < 250)
                 {
-                    this.End();
-                    Find.LetterStack.ReceiveLetter("PurpleFogReceded".Translate(),
-                        "PurpleFogRecededDesc".Translate(), LetterDefOf.PositiveEvent);
+                    this.fogProgress = 0f;
+                    if (count < 200)
+                    {
+                        this.End();
+                        Find.LetterStack.ReceiveLetter("PurpleFogReceded".Translate(),
+                            "PurpleFogRecededDesc".Translate(), LetterDefOf.PositiveEvent);
+                    }
+                }
+                else
+                {
+                    count -= 250;
+                    this.fogProgress = ((float)count / (float)1000 * 100f) / 100f;
                 }
             }
-            else
-            {
-                count -= 250;
-                this.fogProgress = ((float)count / (float)1000 * 100f) / 100f;
-            }
+
 
             if (Find.TickManager.TicksGame % 3451 == 0)
             {
@@ -71,13 +75,13 @@ namespace PurpleIvy
             List<Pawn> allPawnsSpawned = map.mapPawns.AllPawnsSpawned;
             for (int i = 0; i < allPawnsSpawned.Count; i++)
             {
-                GameCondition_ToxicFallout.DoPawnToxicDamage(allPawnsSpawned[i]);
+                GameCondition_PurpleFog.DoPawnToxicDamage(allPawnsSpawned[i]);
             }
         }
 
         public static void DoPawnToxicDamage(Pawn p)
         {
-            if (p.Faction.def == PurpleIvyDefOf.Genny)
+            if (p.Faction?.def?.defName == PurpleIvyDefOf.Genny.defName)
             {
                 return;
             }

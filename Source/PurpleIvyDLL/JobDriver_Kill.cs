@@ -54,26 +54,29 @@ namespace PurpleIvy
                                     {
                                         actor.kindDef.defName
                                     };
-                                    if (actor.kindDef.defName == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
+                                    if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
                                     {
                                         IntRange range = new IntRange(1, 1);
                                         comp.totalNumberOfCreatures = range.RandomInRange;
                                         comp.Props.maxNumberOfCreatures = range;
                                     }
-                                    else if (actor.kindDef.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
+                                    else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
                                     {
                                         IntRange range = new IntRange(1, 3);
                                         comp.totalNumberOfCreatures = range.RandomInRange;
                                         comp.Props.maxNumberOfCreatures = range;
                                     }
-                                    else if (actor.kindDef.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
+                                    else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
                                     {
                                         IntRange range = new IntRange(1, 10);
                                         comp.totalNumberOfCreatures = range.RandomInRange;
                                         comp.Props.maxNumberOfCreatures = range;
                                     }
-                                    Log.Message("comp.Props.maxNumberOfCreatures - " +
-                                            comp.Props.maxNumberOfCreatures.ToString());                                    comp.Props.incubationPeriod = new IntRange(10000, 40000);
+                                    else
+                                    {
+                                        Log.Error("2 Something went wrong while adding infected comp: " + comp.parent + " - " + actor);
+                                    }
+                                    comp.Props.incubationPeriod = new IntRange(10000, 40000);
                                     comp.Props.IncubationData = new IncubationData();
                                     comp.Props.IncubationData.tickStartHediff = new IntRange(2000, 4000);
                                     comp.Props.IncubationData.deathChance = 90f;
@@ -92,8 +95,6 @@ namespace PurpleIvy
                                 if (comp != null)
                                 {
                                     Log.Message("Moving infected comp from living creature to corpse " + corpse.Label);
-                                    Log.Message("comp.Props.maxNumberOfCreatures - " +
-                                    comp.Props.maxNumberOfCreatures.ToString());
                                     corpse.AllComps.Add(comp);
                                 }
                                 if (corpse.TryGetComp<AlienInfection>() == null)
@@ -111,23 +112,27 @@ namespace PurpleIvy
                                             {
                                                 actor.kindDef.defName
                                             };
-                                            if (actor.kindDef.defName == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
+                                            if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
                                             {
                                                 IntRange range = new IntRange(1, 1);
                                                 comp.totalNumberOfCreatures = range.RandomInRange;
                                                 comp.Props.maxNumberOfCreatures = range;
                                             }
-                                            else if (actor.kindDef.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
+                                            else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
                                             {
                                                 IntRange range = new IntRange(1, 3);
                                                 comp.totalNumberOfCreatures = range.RandomInRange;
                                                 comp.Props.maxNumberOfCreatures = range;
                                             }
-                                            else if (actor.kindDef.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
+                                            else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
                                             {
                                                 IntRange range = new IntRange(1, 10);
                                                 comp.totalNumberOfCreatures = range.RandomInRange;
                                                 comp.Props.maxNumberOfCreatures = range;
+                                            }
+                                            else
+                                            {
+                                                Log.Error("3 Something went wrong while adding infected comp: " + comp.parent + " - " + actor);
                                             }
                                             corpse.AllComps.Add(comp);
                                             Log.Message("Adding infected comp to " + corpse.Label);

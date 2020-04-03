@@ -94,7 +94,7 @@ namespace PurpleIvy
                                     NewPawn.ageTracker.AgeBiologicalTicks = 0;
                                     NewPawn.ageTracker.AgeChronologicalTicks = 0;
                                 }
-                                NewPawn.SetFactionDirect(factionDirect);
+                                NewPawn.SetFaction(factionDirect);
                                 if (this.parent is Corpse)
                                 {
                                     HatchFromCorpse(NewPawn);
@@ -123,7 +123,6 @@ namespace PurpleIvy
         {
             base.PostPostMake();
             this.totalNumberOfCreatures = Props.maxNumberOfCreatures.RandomInRange;
-            Log.Message(this.parent + " - totalNumberOfCreatures: " + this.totalNumberOfCreatures.ToString());
         }
         public void HatchFromCorpse(Pawn NewPawn)
         {
@@ -263,3 +262,4 @@ namespace PurpleIvy
         }
     }
 }
+
