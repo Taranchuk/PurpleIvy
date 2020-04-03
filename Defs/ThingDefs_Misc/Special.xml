@@ -44,7 +44,7 @@
 		<selectable>true</selectable>
 		<statBases>
 			<MaxHitPoints>500</MaxHitPoints>
-			<Flammability>5.0</Flammability>
+			<Flammability>0.0</Flammability>
 			<Beauty>-30</Beauty>     
 		</statBases>
 		<killedLeavings>
