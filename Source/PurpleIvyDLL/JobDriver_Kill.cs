@@ -46,14 +46,34 @@ namespace PurpleIvy
                             {
                                 if (thing.TryGetComp<AlienInfection>() == null)
                                 {
-                                    Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
-                                    var comp = dummyCorpse.TryGetComp<AlienInfection>();
+                                    ThingDef dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
+                                    AlienInfection comp = new AlienInfection();
+                                    comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
                                     comp.parent = victim;
                                     comp.Props.typesOfCreatures = new List<string>()
                                     {
                                         actor.kindDef.defName
                                     };
-                                    comp.Props.incubationPeriod = new IntRange(10000, 40000);
+                                    if (actor.kindDef.defName == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
+                                    {
+                                        IntRange range = new IntRange(1, 1);
+                                        comp.totalNumberOfCreatures = range.RandomInRange;
+                                        comp.Props.maxNumberOfCreatures = range;
+                                    }
+                                    else if (actor.kindDef.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
+                                    {
+                                        IntRange range = new IntRange(1, 3);
+                                        comp.totalNumberOfCreatures = range.RandomInRange;
+                                        comp.Props.maxNumberOfCreatures = range;
+                                    }
+                                    else if (actor.kindDef.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
+                                    {
+                                        IntRange range = new IntRange(1, 10);
+                                        comp.totalNumberOfCreatures = range.RandomInRange;
+                                        comp.Props.maxNumberOfCreatures = range;
+                                    }
+                                    Log.Message("comp.Props.maxNumberOfCreatures - " +
+                                            comp.Props.maxNumberOfCreatures.ToString());                                    comp.Props.incubationPeriod = new IntRange(10000, 40000);
                                     comp.Props.IncubationData = new IncubationData();
                                     comp.Props.IncubationData.tickStartHediff = new IntRange(2000, 4000);
                                     comp.Props.IncubationData.deathChance = 90f;
@@ -72,6 +92,8 @@ namespace PurpleIvy
                                 if (comp != null)
                                 {
                                     Log.Message("Moving infected comp from living creature to corpse " + corpse.Label);
+                                    Log.Message("comp.Props.maxNumberOfCreatures - " +
+                                    comp.Props.maxNumberOfCreatures.ToString());
                                     corpse.AllComps.Add(comp);
                                 }
                                 if (corpse.TryGetComp<AlienInfection>() == null)
@@ -81,13 +103,32 @@ namespace PurpleIvy
                                         Log.Message(thing.Label + " killed! Now trying to attach an infected comp");
                                         if (corpse.TryGetComp<AlienInfection>() == null)
                                         {
-                                            Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
-                                            comp = dummyCorpse.TryGetComp<AlienInfection>();
+                                            ThingDef dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
+                                            comp = new AlienInfection();
+                                            comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
                                             comp.parent = corpse;
                                             comp.Props.typesOfCreatures = new List<string>()
                                             {
                                                 actor.kindDef.defName
                                             };
+                                            if (actor.kindDef.defName == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
+                                            {
+                                                IntRange range = new IntRange(1, 1);
+                                                comp.totalNumberOfCreatures = range.RandomInRange;
+                                                comp.Props.maxNumberOfCreatures = range;
+                                            }
+                                            else if (actor.kindDef.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
+                                            {
+                                                IntRange range = new IntRange(1, 3);
+                                                comp.totalNumberOfCreatures = range.RandomInRange;
+                                                comp.Props.maxNumberOfCreatures = range;
+                                            }
+                                            else if (actor.kindDef.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
+                                            {
+                                                IntRange range = new IntRange(1, 10);
+                                                comp.totalNumberOfCreatures = range.RandomInRange;
+                                                comp.Props.maxNumberOfCreatures = range;
+                                            }
                                             corpse.AllComps.Add(comp);
                                             Log.Message("Adding infected comp to " + corpse.Label);
                                         }

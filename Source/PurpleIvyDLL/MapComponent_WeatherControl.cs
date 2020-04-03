@@ -39,6 +39,21 @@ namespace PurpleIvy
                     }
                 }
             }
+            if (Find.TickManager.TicksGame % 60000 == 0)
+            {
+                Log.Message("Total PurpleIvy count on the map: " + 
+                    this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count.ToString());
+                Log.Message("Total Genny_ParasiteAlpha count on the map: " +
+                    this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteAlpha).Count.ToString());
+                Log.Message("Total Genny_ParasiteBeta count on the map: " +
+    this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteBeta).Count.ToString());
+                Log.Message("Total Genny_ParasiteOmega count on the map: " +
+    this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteOmega).Count.ToString());
+                Log.Message("Total EggSac count on the map: " +
+    this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count.ToString());
+                Log.Message("Total ParasiteEgg count on the map: " +
+this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count.ToString());
+            }
         }
     }
 }

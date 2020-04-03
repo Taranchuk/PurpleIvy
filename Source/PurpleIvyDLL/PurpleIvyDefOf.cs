@@ -27,6 +27,17 @@ namespace PurpleIvy
 
         public static GameConditionDef PurpleFogGameCondition;
 
+        public static ThingDef Genny_ParasiteAlpha;
+
+        public static ThingDef Genny_ParasiteBeta;
+
+        public static ThingDef Genny_ParasiteOmega;
+
+        public static ThingDef EggSac;
+
+        public static ThingDef ParasiteEgg;
+
+
     }
 }
 

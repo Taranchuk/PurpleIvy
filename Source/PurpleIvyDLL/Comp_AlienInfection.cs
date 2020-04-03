@@ -12,7 +12,7 @@ namespace PurpleIvy
         Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
         public int currentCountOfCreatures = 0;
         public int startOfIncubation = 0;
-        public int prevTick = 0;
+        public int totalNumberOfCreatures = 0;
 
         public CompProperties_AlienInfection Props
         {
@@ -48,11 +48,12 @@ namespace PurpleIvy
                 if (this.startOfIncubation + this.Props.incubationPeriod.RandomInRange
                     < Find.TickManager.TicksGame)
                 {
-                    if (this.Props.maxNumberOfCreatures <= this.currentCountOfCreatures &&
+                    if (this.totalNumberOfCreatures <= this.currentCountOfCreatures &&
                         this.Props.resetIncubation == true)
                     {
                         this.startOfIncubation = Find.TickManager.TicksGame;
                         this.currentCountOfCreatures = 0;
+                        this.totalNumberOfCreatures = this.Props.maxNumberOfCreatures.RandomInRange;
                     }
 
                     if (this.startOfIncubation + this.Props.incubationPeriod.RandomInRange
@@ -70,7 +71,7 @@ namespace PurpleIvy
 
             if (this.Props.typesOfCreatures != null)
             {
-                if (this.Props.maxNumberOfCreatures == 0 || currentCountOfCreatures < this.Props.maxNumberOfCreatures)
+                if (this.totalNumberOfCreatures == 0 || currentCountOfCreatures < this.totalNumberOfCreatures)
                 {
                     foreach (string defName in this.Props.typesOfCreatures)
                     {
@@ -81,7 +82,7 @@ namespace PurpleIvy
                             {
                                 PawnKindDef pawnKindDef = PawnKindDef.Named(defName);
                                 Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                                Log.Message(i.ToString() + " - " + this.parent.Label + " produces " + NewPawn.Label);
+                                Log.Message(this.parent + " produces " + NewPawn.Label);
                                 if (this.Props.ageTick.RandomInRange > 0)
                                 {
                                     int ageTick = this.Props.ageTick.RandomInRange;
@@ -118,7 +119,12 @@ namespace PurpleIvy
                 }
             }
         }
-
+        public override void PostPostMake()
+        {
+            base.PostPostMake();
+            this.totalNumberOfCreatures = Props.maxNumberOfCreatures.RandomInRange;
+            Log.Message(this.parent + " - totalNumberOfCreatures: " + this.totalNumberOfCreatures.ToString());
+        }
         public void HatchFromCorpse(Pawn NewPawn)
         {
             CompRottable compRottable = this.parent.TryGetComp<CompRottable>();
@@ -158,7 +164,10 @@ namespace PurpleIvy
         public override void CompTick()
         {
             base.CompTick();
-            this.TryStartSpawn();
+            if (Find.TickManager.TicksGame % 250 == 0)
+            {
+                this.TryStartSpawn();
+            }
         }
 
         public override string CompInspectStringExtra()
@@ -249,7 +258,7 @@ namespace PurpleIvy
             base.PostExposeData();
             Scribe_Values.Look<int>(ref this.currentCountOfCreatures, "currentCountOfCreatures", 0, false);
             Scribe_Values.Look<int>(ref this.startOfIncubation, "startOfIncubation", 0, false);
-            Scribe_Values.Look<int>(ref this.prevTick, "prevTick", 0, false);
+            Scribe_Values.Look<int>(ref this.totalNumberOfCreatures, "totalNumberOfCreatures", 0, false);
 
         }
     }

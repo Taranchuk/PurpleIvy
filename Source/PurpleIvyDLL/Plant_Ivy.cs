@@ -103,13 +103,17 @@ namespace PurpleIvy
                         Corpse corpse = (Corpse)list[i];
                         if (corpse.TryGetComp<AlienInfection>() == null)
                         {
-                            Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
-                            var comp = dummyCorpse.TryGetComp<AlienInfection>();
+                            ThingDef dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
+                            AlienInfection comp = new AlienInfection();
+                            comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
                             comp.parent = corpse;
                             comp.Props.typesOfCreatures = new List<string>()
                             {
                                 "Genny_ParasiteOmega"
                             };
+                            IntRange range = new IntRange(1, 10);
+                            comp.totalNumberOfCreatures = range.RandomInRange;
+                            comp.Props.maxNumberOfCreatures = range;
                             corpse.AllComps.Add(comp);
                             Log.Message("Adding infected comp to " + corpse.Label);
                         }

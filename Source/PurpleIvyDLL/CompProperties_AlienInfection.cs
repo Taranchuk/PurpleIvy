@@ -8,7 +8,7 @@ namespace PurpleIvy
     {
 
         public List<string> typesOfCreatures = null;
-        public int maxNumberOfCreatures = 0;
+        public IntRange maxNumberOfCreatures = new IntRange(0, 0);
         public IntRange numberOfCreaturesPerSpawn = new IntRange(0, 0);
         public IntRange incubationPeriod = new IntRange(0, 0);
         public IntRange ageTick = new IntRange(0, 0);
