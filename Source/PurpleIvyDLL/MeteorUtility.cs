@@ -13,7 +13,14 @@ namespace PurpleIvy
         {
             MeteorIncoming meteorIncoming = (MeteorIncoming)ThingMaker.MakeThing(ThingDef.Named("PI_MeteorIncoming"), null);
             meteorIncoming.contents = info;
-            GenSpawn.Spawn(meteorIncoming, loc, map);
+            if (GenGrid.InBounds(loc, map))
+            {
+                GenSpawn.Spawn(meteorIncoming, loc, map);
+            }
+            else
+            {
+                GenSpawn.Spawn(meteorIncoming, CellFinder.RandomCell(map), map);
+            }
         }
         public static void DropThingsNear(IntVec3 dropCenter, IEnumerable<Thing> things, int openDelay = 110, bool canInstaDropDuringInit = true, bool leaveSlag = false)
         {

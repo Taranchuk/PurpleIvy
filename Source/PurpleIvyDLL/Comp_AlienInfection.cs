@@ -2,6 +2,7 @@
 using RimWorld;
 using Verse;
 using System.Linq;
+using System.Text;
 
 namespace PurpleIvy
 {
@@ -10,7 +11,7 @@ namespace PurpleIvy
     {
         Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
         public int currentCountOfCreatures = 0;
-        public int startIncubation = 0;
+        public int startOfIncubation = 0;
         public int prevTick = 0;
 
         public CompProperties_AlienInfection Props
@@ -24,27 +25,41 @@ namespace PurpleIvy
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
-            this.startIncubation = Find.TickManager.TicksGame;
+            this.startOfIncubation = Find.TickManager.TicksGame;
         }
 
         public void TryStartSpawn()
         {
-            if (this.startIncubation + this.Props.IncubationData.tickStartHediff.RandomInRange < Find.TickManager.TicksGame)
+            if (this.Props.IncubationData.tickStartHediff.min > 0 &&
+                this.startOfIncubation + this.Props.IncubationData.tickStartHediff.RandomInRange
+                < Find.TickManager.TicksGame)
             {
                 if (this.parent is Pawn && this.Props.IncubationData.hediff != null)
                 {
                     Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named(this.Props.IncubationData.hediff),
                     (Pawn)this.parent, null);
                     ((Pawn)this.parent).health.AddHediff(hediff, null, null, null);
+                    this.Props.IncubationData.tickStartHediff.min = 0;
                 }
             }
-            if (this.Props.incubationPeriod.RandomInRange > 0)
+
+            if (this.Props.incubationPeriod.min > 0)
             {
-                if (this.startIncubation + this.Props.incubationPeriod.RandomInRange < Find.TickManager.TicksGame)
+                if (this.startOfIncubation + this.Props.incubationPeriod.RandomInRange
+                    < Find.TickManager.TicksGame)
                 {
-                    if (this.Props.resetIncubation == true)
+                    if (this.Props.maxNumberOfCreatures <= this.currentCountOfCreatures &&
+                        this.Props.resetIncubation == true)
                     {
-                        this.startIncubation = Find.TickManager.TicksGame;
+                        this.startOfIncubation = Find.TickManager.TicksGame;
+                        this.currentCountOfCreatures = 0;
+                    }
+
+                    if (this.startOfIncubation + this.Props.incubationPeriod.RandomInRange
+                        + this.Props.ticksPerSpawn.RandomInRange
+                        > Find.TickManager.TicksGame)
+                    {
+                        return;
                     }
                 }
                 else
@@ -86,6 +101,15 @@ namespace PurpleIvy
                                 else if (this.parent is Pawn)
                                 {
                                     HatchFromPawn(NewPawn);
+                                }
+                                else if (this.parent is Building)
+                                {
+                                    GenSpawn.Spawn(NewPawn, this.parent.Position, this.parent.Map);
+                                }
+                                else
+                                {
+                                    Log.Error("Unknown parent. Cant spawn. " +
+                                        "Parent: " + this.parent.Label);
                                 }
                                 currentCountOfCreatures++;
                             }
@@ -136,6 +160,84 @@ namespace PurpleIvy
             base.CompTick();
             this.TryStartSpawn();
         }
+
+        public override string CompInspectStringExtra()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(string.Concat(new string[]
+            {
+                Translator.Translate("birthTime"),
+                ": ", (this.startOfIncubation + this.Props.incubationPeriod.min
+                    - Find.TickManager.TicksGame).ToString(), "~",
+                (this.startOfIncubation + this.Props.incubationPeriod.max
+                    - Find.TickManager.TicksGame).ToString()
+            }));
+
+            stringBuilder.AppendLine(string.Concat(new string[]
+            {
+                Translator.Translate("TypesOfCreatures"),
+                ":"
+            }));
+            foreach (string type in this.Props.typesOfCreatures)
+            {
+                    stringBuilder.AppendLine(string.Concat(new string[]
+                    {
+                        "\t", type
+                    }));
+            }
+            stringBuilder.AppendLine(string.Concat(new string[]
+            {
+                    Translator.Translate("MaxNumberOfCreatures"),
+                    ": ", this.Props.maxNumberOfCreatures.ToString()
+            }));
+            stringBuilder.AppendLine(string.Concat(new string[]
+            {
+                    Translator.Translate("numberOfCreaturesPerSpawn"),
+                    ": ", this.Props.numberOfCreaturesPerSpawn.min.ToString(), "~",
+                    this.Props.numberOfCreaturesPerSpawn.max.ToString()
+            }));
+
+            stringBuilder.AppendLine(string.Concat(new string[]
+            {
+                Translator.Translate("incubationPeriod"),
+                ": ", this.Props.incubationPeriod.min.ToString(), "~",
+                this.Props.incubationPeriod.max.ToString()
+            }));
+            stringBuilder.AppendLine(string.Concat(new string[]
+            {
+                Translator.Translate("ageTick"),
+                ": ", this.Props.ageTick.min.ToString(), "~",
+                this.Props.ageTick.max.ToString()
+            }));
+            stringBuilder.AppendLine(string.Concat(new string[]
+            {
+                Translator.Translate("ticksPerSpawn"),
+                ": ", this.Props.ticksPerSpawn.min.ToString(), "~",
+                this.Props.ticksPerSpawn.max.ToString()
+            }));
+            stringBuilder.AppendLine(string.Concat(new string[]
+            {
+               Translator.Translate("rotProgressPerSpawn"),
+               ": ", this.Props.rotProgressPerSpawn.min.ToString(), "~",
+               this.Props.rotProgressPerSpawn.max.ToString()
+            }));
+            stringBuilder.AppendLine(string.Concat(new string[]
+            {
+               Translator.Translate("resetIncubation"),
+               ": ", this.Props.resetIncubation.ToString()
+            }));
+            stringBuilder.AppendLine(string.Concat(new string[]
+            {
+               Translator.Translate("currentCountOfCreatures"),
+               ": ", this.currentCountOfCreatures.ToString()
+            }));
+            stringBuilder.AppendLine(string.Concat(new string[]
+            {
+               Translator.Translate("startOfIncubation"),
+               ": ", this.startOfIncubation.ToString()
+            }));
+            return GenText.TrimEndNewlines(stringBuilder.ToString());
+        }
         public override void CompTickRare()
         {
             base.CompTickRare();
@@ -146,7 +248,7 @@ namespace PurpleIvy
         {
             base.PostExposeData();
             Scribe_Values.Look<int>(ref this.currentCountOfCreatures, "currentCountOfCreatures", 0, false);
-            Scribe_Values.Look<int>(ref this.startIncubation, "startIncubation", 0, false);
+            Scribe_Values.Look<int>(ref this.startOfIncubation, "startOfIncubation", 0, false);
             Scribe_Values.Look<int>(ref this.prevTick, "prevTick", 0, false);
 
         }
