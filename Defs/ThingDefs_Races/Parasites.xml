@@ -13,8 +13,8 @@
 		</statBases>
 		<soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
 		<race>
-			<intelligence>ToolUser</intelligence>
 			<thinkTreeMain>Genny</thinkTreeMain>
+			<trainability>None</trainability>
 			<manhunterOnDamageChance>1</manhunterOnDamageChance>
 			<soundCallIntervalRange>1000~2000</soundCallIntervalRange>
 			<soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
