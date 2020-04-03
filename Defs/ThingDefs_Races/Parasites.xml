@@ -15,9 +15,6 @@
 		<race>
 			<intelligence>ToolUser</intelligence>
 			<thinkTreeMain>Genny</thinkTreeMain>
-			<!--<thinkTreeConstant>AnimalConstant</thinkTreeConstant>
-			<herdAnimal>false</herdAnimal>
-			<predator>true</predator>-->
 			<manhunterOnDamageChance>1</manhunterOnDamageChance>
 			<soundCallIntervalRange>1000~2000</soundCallIntervalRange>
 			<soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
@@ -52,16 +49,14 @@
 				<cooldownTime>2.6</cooldownTime>
 				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-				<!--
 				<surpriseAttack>
 					<extraMeleeDamages>
 						<li>
-							<def>AlienToxicSting</def>
+							<def>Stun</def>
 							<amount>14</amount>
 						</li>
 					</extraMeleeDamages>
 				</surpriseAttack>
-				-->
 			</li>
 		</tools>
 		<race>
@@ -77,11 +72,11 @@
 				</li>
 				<li>
 					<def>ParasiteJuvenile</def>
-					<minAge>0.01</minAge>
+					<minAge>0.1</minAge>
 				</li>
 				<li>
 					<def>ParasiteAdult</def>
-					<minAge>0.03</minAge>
+					<minAge>0.3</minAge>
 					<soundWounded>Pawn_BigInsect_Pain</soundWounded>
 					<soundDeath>Pawn_BigInsect_Death</soundDeath>
 					<soundCall>Pawn_BigInsect_Call</soundCall>
@@ -111,16 +106,14 @@
 				<cooldownTime>2.6</cooldownTime>
 				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-				<!--
 				<surpriseAttack>
 					<extraMeleeDamages>
 						<li>
-							<def>AlienToxicSting</def>
+							<def>Stun</def>
 							<amount>14</amount>
 						</li>
 					</extraMeleeDamages>
 				</surpriseAttack>
-				-->
 			</li>
 		</tools>
 		<race>
@@ -136,11 +129,11 @@
 				</li>
 				<li>
 					<def>ParasiteJuvenile</def>
-					<minAge>0.01</minAge>
+					<minAge>0.1</minAge>
 				</li>
 				<li>
 					<def>ParasiteAdult</def>
-					<minAge>0.03</minAge>
+					<minAge>0.3</minAge>
 					<soundWounded>Pawn_BigInsect_Pain</soundWounded>
 					<soundDeath>Pawn_BigInsect_Death</soundDeath>
 					<soundCall>Pawn_BigInsect_Call</soundCall>
@@ -181,16 +174,14 @@
 				<cooldownTime>2.6</cooldownTime>
 				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-				<!--
 				<surpriseAttack>
 					<extraMeleeDamages>
 						<li>
-							<def>AlienToxicSting</def>
+							<def>Stun</def>
 							<amount>14</amount>
 						</li>
 					</extraMeleeDamages>
 				</surpriseAttack>
-				-->
 			</li>
 		</tools>
 		<race>
@@ -206,11 +197,11 @@
 				</li>
 				<li>
 					<def>ParasiteJuvenile</def>
-					<minAge>0.01</minAge>
+					<minAge>0.1</minAge>
 				</li>
 				<li>
 					<def>ParasiteAdult</def>
-					<minAge>0.03</minAge>
+					<minAge>0.3</minAge>
 					<soundWounded>Pawn_Spelopede_Pain</soundWounded>
 					<soundDeath>Pawn_Spelopede_Death</soundDeath>
 					<soundCall>Pawn_Spelopede_Call</soundCall>

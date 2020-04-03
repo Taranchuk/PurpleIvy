@@ -10,7 +10,6 @@ namespace PurpleIvy
     {
         public override void PostAdd(DamageInfo? dinfo)
         {
-            Log.Message("NEW QUEST");
             Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
             var comp = dummyCorpse.TryGetComp<AlienInfection>();
             comp.parent = this.pawn;
@@ -23,9 +22,9 @@ namespace PurpleIvy
             };
             comp.Props.incubationPeriod = new IntRange(10000, 40000);
             comp.Props.IncubationData = new IncubationData();
-            //comp.Props.IncubationData.tickStartHediff = new IntRange(2000, 4000);
+            comp.Props.IncubationData.tickStartHediff = new IntRange(2000, 4000);
             comp.Props.IncubationData.deathChance = 90f;
-            //comp.Props.IncubationData.hediff = HediffDefOf.Pregnant.defName;
+            comp.Props.IncubationData.hediff = HediffDefOf.Pregnant.defName;
             this.pawn.AllComps.Add(comp);
         }
 

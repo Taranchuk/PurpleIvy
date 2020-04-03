@@ -19,8 +19,6 @@
 					<treeDef>Downed</treeDef>
 				</li>
 
-				<li Class="JobGiver_ReactToCloseMeleeThreat"/>
-
 				<li Class="ThinkNode_Tagger">
 					<tagToGive>SatisfyingNeeds</tagToGive>
 					<subNodes>
@@ -35,19 +33,13 @@
 				<li Class="PurpleIvy.JobGiver_GennyBerserk"/>
 
 
-				<!-- Do a queued job -->
-				<li Class="ThinkNode_QueuedJob"/>
-				<!-- Lord directives -->
-				<li Class="ThinkNode_Subtree">
-					<treeDef>LordDuty</treeDef>
-				</li>
 				<!-- Wander -->
 				<li Class="ThinkNode_Tagger">
 					<tagToGive>Idle</tagToGive>
 					<subNodes>
 						<li Class="JobGiver_WanderAnywhere">
 							<maxDanger>Deadly</maxDanger>
-						<ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+							<ticksBetweenWandersRange>40~100</ticksBetweenWandersRange>
 						</li>
 					</subNodes>
 				</li>
