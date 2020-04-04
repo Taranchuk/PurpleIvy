@@ -16,7 +16,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseWeapon">
+	<ThingDef ParentName="BaseWeaponTurret">
 		<defName>GunTurretGun</defName>
 		<label>Corchorus</label>
 		<thingClass>ThingWithComps</thingClass>
@@ -42,11 +42,6 @@
 		<alwaysHaulable>True</alwaysHaulable>
 		<tickerType>Never</tickerType>
 		<techLevel>Spacer</techLevel>
-		<comps>
-			<li>
-				<compClass>CompEquippable</compClass>
-			</li>
-		</comps>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>

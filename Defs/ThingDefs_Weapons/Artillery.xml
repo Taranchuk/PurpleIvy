@@ -20,7 +20,7 @@
     </projectile>
   </ThingDef>
   
-  <ThingDef ParentName="BaseWeapon">
+<ThingDef ParentName="BaseArtilleryWeapon">
     <defName>Artillery_MortarGenny</defName>
     <label>Oxalis</label>
     <description>A genetically modified Oxalis plant species, its able to fire its seeds huge distances.</description>
@@ -47,11 +47,6 @@
     <alwaysHaulable>True</alwaysHaulable>
     <tickerType>Never</tickerType>
     <techLevel>Spacer</techLevel>
-    <comps>
-      <li>
-        <compClass>CompEquippable</compClass>
-      </li>
-    </comps>
     <verbs>
       <li>
         <verbClass>Verb_Shoot</verbClass>
