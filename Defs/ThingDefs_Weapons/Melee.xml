@@ -11,7 +11,7 @@
     <selectable>True</selectable>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
-      <Flammability>1.0</Flammability>
+      <Flammability>0.3</Flammability>
 	<Mass>5</Mass>
 
     </statBases>

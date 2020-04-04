@@ -12,7 +12,7 @@
     <altitudeLayer>Terrain</altitudeLayer>
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
-      <Flammability>1.0</Flammability>
+      <Flammability>0.3</Flammability>
       <WorkToBuild>0</WorkToBuild>
       <Beauty>-60</Beauty>
     </statBases>
@@ -46,7 +46,7 @@
 -->
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
-      <Flammability>1.0</Flammability>
+      <Flammability>0.3</Flammability>
       <WorkToBuild>0</WorkToBuild>
       <Beauty>-60</Beauty>
     </statBases>

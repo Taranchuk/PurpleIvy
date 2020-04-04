@@ -15,6 +15,7 @@ namespace PurpleIvy
         private bool MutateTry;
         private int mutateChance;
         private int mutateRate;
+        ThingDef sporesThingDef = ThingDef.Named("Spores");
         Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
         private Thing Spores = null;
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -76,7 +77,31 @@ namespace PurpleIvy
             return false;
         }
 
-        public void CheckThings(IntVec3 pos)
+        public bool isSurroundedByIvy(IntVec3 dir)
+        {
+            foreach (IntVec3 current in GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)))
+            {
+                if (!IvyInCell(current))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool hasNoBuildings(IntVec3 dir)
+        {
+            foreach (IntVec3 current in GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)))
+            {
+                if (!current.Standable(this.Map))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public void DoDamageToThings(IntVec3 pos)
         {
             List<Thing> list = new List<Thing>();
             try
@@ -144,30 +169,6 @@ namespace PurpleIvy
                     }
                 }
             }
-        }
-
-        public bool isSurroundedByIvy(IntVec3 dir)
-        {
-            foreach (IntVec3 current in GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)))
-            {
-                if (!IvyInCell(current))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        public bool hasNoBuildings(IntVec3 dir)
-        {
-            foreach (IntVec3 current in GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)))
-            {
-                if (!current.Standable(this.Map))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         public void SpreadBuildings()
@@ -264,17 +265,12 @@ namespace PurpleIvy
         {
             if (this.Spores != null)
             {
-                this.Spores.Graphic.drawSize.x = this.Growth;
-                this.Spores.Graphic.drawSize.y = this.Growth;
-                this.Spores.Graphic.color.a = this.Growth - 0.1f;
-
-                //thing.Graphic.color.r = 0;// 100 - (this.Growth * 100);
-                //thing.Graphic.color.g = 0;// 100 - (this.Growth * 100);
-                //thing.Graphic.color.b = 0;// 100 - (this.Growth * 100);
+                this.Spores.Graphic.drawSize.x = (this.Growth * 4f) - 1f;
+                this.Spores.Graphic.drawSize.y = (this.Growth * 4f) - 1f;
+                this.Spores.Graphic.color.a = this.Growth;
             }
             else if (GenGrid.InBounds(this.Position, this.Map))
             {
-                ThingDef oldThingDef = ThingDef.Named("Spores");
                 ThingDef thingDef = new ThingDef
                 {
                     defName = "Spores" + this.ThingID,
@@ -285,12 +281,11 @@ namespace PurpleIvy
                     tickerType = TickerType.Normal,
                     graphicData = new GraphicData
                     {
-                        texPath = oldThingDef.graphicData.texPath,
+                        texPath = sporesThingDef.graphicData.texPath,
                         graphicClass = typeof(Graphic_Gas),
                         shaderType = ShaderTypeDefOf.Transparent,
-                        drawSize = new Vector2(oldThingDef.graphicData.drawSize.x,
-                        oldThingDef.graphicData.drawSize.y),
-                        color = new ColorInt(oldThingDef.graphicData.color).ToColor
+                        drawSize = new Vector2((this.Growth * 4f) - 1f, (this.Growth * 4f) - 1f),
+                        color = new ColorInt(sporesThingDef.graphicData.color).ToColor
                     },
                     gas = new GasProperties
                     {
@@ -302,8 +297,6 @@ namespace PurpleIvy
                 };
                 Thing thing = ThingMaker.MakeThing(thingDef, null);
                 GenSpawn.Spawn(thing, this.Position, this.Map, 0);
-                thing.Graphic.drawSize.x = this.Growth;
-                thing.Graphic.drawSize.y = this.Growth;
                 this.Spores = thing;
             }
         }
@@ -314,6 +307,10 @@ namespace PurpleIvy
             if (Find.TickManager.TicksGame % 2000 == 0)
             {
                 base.TickLong();
+                if (this.Growth >= 0.25f)
+                {
+                    this.ThrowGasOrAdjustGasSize();
+                }
             }
             if (Find.TickManager.TicksGame % 350 == 0)
             {
@@ -323,8 +320,7 @@ namespace PurpleIvy
                 }
                 if (this.Growth >= 0.25f)
                 {
-                    this.ThrowGasOrAdjustGasSize();
-                    this.CheckThings(Position);
+                    this.DoDamageToThings(Position);
                     this.SpreadBuildings();
                 }
             }

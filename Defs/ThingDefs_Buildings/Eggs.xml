@@ -38,7 +38,7 @@
 		</comps>
 		<statBases>
 			<MaxHitPoints>200</MaxHitPoints>
-			<Flammability>3.0</Flammability>
+			<Flammability>0.3</Flammability>
 			<Beauty>-50</Beauty>     
 		</statBases>
 		<killedLeavings>
@@ -82,7 +82,7 @@
 		</comps>
 		<statBases>
 			<MaxHitPoints>200</MaxHitPoints>
-			<Flammability>3.0</Flammability>
+			<Flammability>0.3</Flammability>
 			<Beauty>-50</Beauty>     
 		</statBases>
 		<killedLeavings>

@@ -179,9 +179,12 @@ namespace PurpleIvy
 
         private SkyColorSet PurpleFogColors =
             new SkyColorSet(
-            new Color(1.0f, 0f, 1.0f),
+            new Color(0.368f, 0f, 1f),
             new Color(0.920f, 0.920f, 0.920f),
-            new Color(1.0f, 0f, 1.0f), 0.85f);
+            new Color(0.368f, 0f, 1f), 0.85f);
+
+        //0.368f, 0f, 1f
+        //1.0f, 0f, 1.0f
 
         private List<SkyOverlay> overlays = new List<SkyOverlay>
         {
