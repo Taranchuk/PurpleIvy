@@ -68,7 +68,7 @@ namespace PurpleIvy
                                     }
                                     else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
                                     {
-                                        IntRange range = new IntRange(1, 10);
+                                        IntRange range = new IntRange(1, 5);
                                         comp.maxNumberOfCreatures = range.RandomInRange;
                                         comp.Props.maxNumberOfCreatures = range;
                                     }
@@ -126,7 +126,7 @@ namespace PurpleIvy
                                             }
                                             else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
                                             {
-                                                IntRange range = new IntRange(1, 10);
+                                                IntRange range = new IntRange(1, 5);
                                                 comp.maxNumberOfCreatures = range.RandomInRange;
                                                 comp.Props.maxNumberOfCreatures = range;
                                             }

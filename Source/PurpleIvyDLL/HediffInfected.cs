@@ -35,7 +35,7 @@ namespace PurpleIvy
             }
             else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
             {
-                IntRange range = new IntRange(1, 10);
+                IntRange range = new IntRange(1, 5);
                 comp.maxNumberOfCreatures = range.RandomInRange;
                 comp.Props.maxNumberOfCreatures = range;
             }

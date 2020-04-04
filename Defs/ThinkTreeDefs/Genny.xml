@@ -7,10 +7,6 @@
 				<!-- Keep lying down if we have to -->
 				<li Class="ThinkNode_ConditionalMustKeepLyingDown">
 					<subNodes>
-						<!-- Do a queued job if possible -->
-						<li Class="ThinkNode_QueuedJob">
-							<inBedOnly>true</inBedOnly>
-						</li>
 						<!-- Keep lying down -->
 						<li Class="JobGiver_KeepLyingDown"/>
 					</subNodes>
@@ -31,13 +27,6 @@
 				</li>
 				
 				<li Class="PurpleIvy.JobGiver_GennyBerserk"/>
-
-				<!-- Do a queued job -->
-				<li Class="ThinkNode_QueuedJob"/>
-				<!-- Lord directives -->
-				<li Class="ThinkNode_Subtree">
-					<treeDef>LordDuty</treeDef>
-				</li>
 				
 				<!-- Wander -->
 				<li Class="ThinkNode_Tagger">
@@ -49,7 +38,6 @@
 						</li>
 					</subNodes>
 				</li>
-				<li Class="JobGiver_IdleError"/>
 			</subNodes>
 		</thinkRoot>
 	</ThinkTreeDef> 

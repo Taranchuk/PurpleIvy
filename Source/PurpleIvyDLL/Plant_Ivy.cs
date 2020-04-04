@@ -139,7 +139,7 @@ namespace PurpleIvy
                                 Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
                                 var comp = dummyCorpse.TryGetComp<AlienInfection>();
                                 comp.parent = corpse;
-                                IntRange range = new IntRange(1, 10);
+                                IntRange range = new IntRange(1, 5);
                                 comp.Props.maxNumberOfCreatures = range;
                                 comp.maxNumberOfCreatures = range.RandomInRange;
                                 comp.Props.typesOfCreatures = new List<string>()
