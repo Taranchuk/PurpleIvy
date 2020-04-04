@@ -21,10 +21,21 @@ namespace PurpleIvy
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            System.Random random = new System.Random();
-            SpreadTick = random.Next(1, 3);
-            OrigSpreadTick = SpreadTick;
-            MutateTry = true;
+            if (this.Growth < 1)
+            {
+                System.Random random = new System.Random();
+                SpreadTick = random.Next(1, 3);
+                OrigSpreadTick = SpreadTick;
+                MutateTry = true;
+            }
+        }
+        public override void PostMapInit()
+        {
+            base.PostMapInit();
+            if (this.Growth >= 0.25f)
+            {
+                this.ThrowGasOrAdjustGasSize();
+            }
         }
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
@@ -324,6 +335,13 @@ namespace PurpleIvy
                     this.SpreadBuildings();
                 }
             }
+        }
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look<int>(ref this.SpreadTick, "SpreadTick", 0, true);
+            Scribe_Values.Look<int>(ref this.OrigSpreadTick, "OrigSpreadTick", 0, true);
+            Scribe_Values.Look<bool>(ref this.MutateTry, "MutateTry", true, true);
         }
     }
 }

@@ -67,7 +67,7 @@
 		</ambientSounds>
 		<overlayClasses>
 			<li>WeatherOverlay_Fog</li>
-			<li>WeatherOverlay_Rain</li>
+			<li>PurpleIvy.WeatherOverlay_PurpleRain</li>
 		</overlayClasses>
 		<commonalityRainfallFactor>
 			<points>

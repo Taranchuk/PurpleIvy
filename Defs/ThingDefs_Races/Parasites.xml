@@ -23,7 +23,8 @@
 			<fleshType>Insectoid</fleshType>
 			<needsRest>false</needsRest>
 			<hasGenders>false</hasGenders>
-			<foodType>Meat, Fluid, Corpse, AnimalProduct, Meal, Processed, Liquor, CarnivoreAnimal, CarnivoreAnimalStrict,  OvivoreAnimal, OmnivoreHuman</foodType>
+			<foodType>Meat, Corpse</foodType>
+			<!--<foodType>Meat, Fluid, Corpse, AnimalProduct, Meal, Processed, Liquor, CarnivoreAnimal, CarnivoreAnimalStrict,  OvivoreAnimal, OmnivoreHuman</foodType>-->
 			<bloodDef>Filth_BloodInsect</bloodDef>
 		</race>
 	</ThingDef>
