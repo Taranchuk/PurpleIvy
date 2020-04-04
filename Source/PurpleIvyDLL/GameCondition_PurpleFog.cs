@@ -55,6 +55,19 @@ namespace PurpleIvy
 
             if (Find.TickManager.TicksGame % 3451 == 0)
             {
+                System.Random random = new System.Random();
+                int chance = (int)(this.fogProgress * 100);
+                Log.Message("Chance of rain: " + chance.ToString());
+                if (random.Next(0, 100) < chance)
+                {
+                    Log.Message("Success!");
+                    WeatherDef purpleFoggyRain = PurpleIvyDefOf.PurpleFoggyRain;
+                    purpleFoggyRain.durationRange = new IntRange(1000, 10000);
+                    foreach (Map map in this.AffectedMaps)
+                    {
+                        map.weatherManager.TransitionTo(purpleFoggyRain);
+                    }
+                }
                 for (int i = 0; i < affectedMaps.Count; i++)
                 {
                     this.DoPawnsToxicDamage(affectedMaps[i]);
@@ -76,6 +89,11 @@ namespace PurpleIvy
             {
                 GameCondition_PurpleFog.DoPawnToxicDamage(allPawnsSpawned[i]);
             }
+        }
+
+        public override WeatherDef ForcedWeather()
+        {
+            return PurpleIvyDefOf.PurpleFog;
         }
 
         public static void DoPawnToxicDamage(Pawn p)

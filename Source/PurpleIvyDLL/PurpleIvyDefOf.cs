@@ -25,6 +25,8 @@ namespace PurpleIvy
 
         public static WeatherDef PurpleFog;
 
+        public static WeatherDef PurpleFoggyRain;
+
         public static GameConditionDef PurpleFogGameCondition;
 
         public static ThingDef Genny_ParasiteAlpha;
