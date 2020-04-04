@@ -62,7 +62,7 @@
 		<race>
 			<body>ParasiteAlpha</body>
 			<baseBodySize>1.0</baseBodySize>
-			<baseHungerRate>2.0</baseHungerRate>
+			<baseHungerRate>0.5</baseHungerRate>
 			<baseHealthScale>1.0</baseHealthScale>
 			<lifeExpectancy>6</lifeExpectancy>
 			<lifeStageAges>
@@ -121,7 +121,7 @@
 			<baseBodySize>1.0</baseBodySize>
 			<baseHealthScale>1.0</baseHealthScale>
 			<lifeExpectancy>5</lifeExpectancy>
-			<baseHungerRate>2.0</baseHungerRate>
+			<baseHungerRate>0.7</baseHungerRate>
 			<lifeStageAges>
 				<li>
 					<def>ParasiteLarva</def>
@@ -188,7 +188,7 @@
 			<body>ParasiteOmega</body>
 			<baseBodySize>1.0</baseBodySize>
 			<baseHealthScale>1.0</baseHealthScale>
-			<baseHungerRate>2.0</baseHungerRate>
+			<baseHungerRate>1</baseHungerRate>
 			<lifeExpectancy>6</lifeExpectancy>
 			<lifeStageAges>
 				<li>
