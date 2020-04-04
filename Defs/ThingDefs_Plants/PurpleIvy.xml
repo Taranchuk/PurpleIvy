@@ -34,7 +34,7 @@
 			<sowWork>150</sowWork>
 			<fertilityMin>0.001</fertilityMin>
 			<fertilitySensitivity>0.3</fertilitySensitivity>
-			<growDays>10</growDays>
+			<growDays>3</growDays>
 			<dieIfLeafless>false</dieIfLeafless>
 			<neverBlightable>true</neverBlightable>
 			<maxMeshCount>9</maxMeshCount>

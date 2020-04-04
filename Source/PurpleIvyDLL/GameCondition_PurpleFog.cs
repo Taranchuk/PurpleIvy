@@ -53,7 +53,6 @@ namespace PurpleIvy
                 }
             }
 
-
             if (Find.TickManager.TicksGame % 3451 == 0)
             {
                 for (int i = 0; i < affectedMaps.Count; i++)

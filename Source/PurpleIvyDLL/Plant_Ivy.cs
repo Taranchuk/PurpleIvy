@@ -10,13 +10,19 @@ namespace PurpleIvy
 {
     public class Plant_Ivy : Plant
     {
+        private int SpreadTick;
+        private int OrigSpreadTick;
         private bool MutateTry;
+        private int mutateChance;
+        private int mutateRate;
         Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
         private Thing Spores = null;
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
             System.Random random = new System.Random();
+            SpreadTick = random.Next(1, 5);
+            OrigSpreadTick = SpreadTick;
             MutateTry = true;
         }
 
@@ -39,7 +45,7 @@ namespace PurpleIvy
 
         public void SpawnIvy(IntVec3 dir)
         {
-            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, Map), (Thing t) =>          (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock | t.def.defName == "PurpleIvy")))
+            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock | t.def.defName == "PurpleIvy")))
             {
                 Plant newivy = new Plant();
                 newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
@@ -70,15 +76,82 @@ namespace PurpleIvy
             return false;
         }
 
+        public void CheckThings(IntVec3 pos)
+        {
+            List<Thing> list = new List<Thing>();
+            try
+            {
+                list = this.Map.thingGrid.ThingsListAt(pos);
+            }
+            catch
+            {
+                return;
+            }
+            //Loop over things if there are things
+            if (list != null && list.Count > 0)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i] != null && list[i].Faction != factionDirect)
+                    {
+                        //If we find a corpse
+                        if (list[i].def.IsCorpse)
+                        {
+                            Corpse corpse = (Corpse)list[i];
+                            if (corpse.TryGetComp<AlienInfection>() == null)
+                            {
+                                Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
+                                var comp = dummyCorpse.TryGetComp<AlienInfection>();
+                                comp.parent = corpse;
+                                comp.Props.typesOfCreatures = new List<string>()
+                            {
+                                "Genny_ParasiteOmega"
+                            };
+                                corpse.AllComps.Add(comp);
+                                Log.Message("Adding infected comp to " + corpse.Label);
+                            }
+                            //speedup the spread a little
+                            SpreadTick--;
+                            SpreadTick--;
+                            SpreadTick--;
+                        }
+                        //If we find a pawn and its not a hatchling
+                        else if (list[i] is Pawn)
+                        {
+                            Pawn stuckPawn = (Pawn)list[i];
+                            DamageInfo damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
+                            stuckPawn.TakeDamage(damageInfo);
+                            Hediff hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
+                            stuckPawn, null);
+                            hediff.Severity = 0.1f;
+                            (stuckPawn).health.AddHediff(hediff, null, null, null);
+                            Hediff hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
+                            stuckPawn, null);
+                            hediff2.Severity = 0.1f;
+                            (stuckPawn).health.AddHediff(hediff2, null, null, null);
+                        }
+                        //If we find a plant
+                        else if (list[i] is Plant)
+                        {
+                            if (list[i].def.defName != "PurpleIvy")
+                            {
+                                list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 1));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         public bool isSurroundedByIvy(IntVec3 dir)
         {
             foreach (IntVec3 current in GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)))
-			{
-				if(!IvyInCell(current))
+            {
+                if (!IvyInCell(current))
                 {
                     return false;
                 }
-			}
+            }
             return true;
         }
 
@@ -94,13 +167,109 @@ namespace PurpleIvy
             return true;
         }
 
+        public void SpreadBuildings()
+        {
+            if (this.MutateTry == true && hasNoBuildings(Position))
+            {
+                System.Random random = new System.Random(this.Position.GetHashCode());
+                mutateChance = random.Next(1, 100);
+                if (5 >= mutateChance)
+                {
+                    random = new System.Random(this.ThingID.GetHashCode());
+                    mutateRate = random.Next(1, 100);
+                    if (mutateRate >= 0 && mutateRate <= 5)
+                    {
+                        Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(ThingDef.Named("GasPump"));
+                        GasPump.SetFactionDirect(factionDirect);
+                        GenSpawn.Spawn(GasPump, Position, this.Map);
+                        Log.Message(GasPump + " - " + mutateRate.ToString());
+                        this.MutateTry = false;
+                    }
+                    else if (mutateRate >= 6 && mutateRate <= 10)
+                    {
+                        Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(ThingDef.Named("Turret_GenMortarSeed"));
+                        GenMortar.SetFactionDirect(factionDirect);
+                        GenSpawn.Spawn(GenMortar, Position, this.Map);
+                        Log.Message(GenMortar + " - " + mutateRate.ToString());
+                        this.MutateTry = false;
+                    }
+                    else if (mutateRate >= 11 && mutateRate <= 15)
+                    {
+                        Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(ThingDef.Named("GenTurretBase"));
+                        GenTurret.SetFactionDirect(factionDirect);
+                        GenSpawn.Spawn(GenTurret, Position, this.Map);
+                        this.MutateTry = false;
+                        Log.Message(GenTurret + " - " + mutateRate.ToString());
+                    }
+                    else if (mutateRate >= 16 && mutateRate <= 18)
+                    {
+                        Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(ThingDef.Named("EggSac"));
+                        EggSac.SetFactionDirect(factionDirect);
+                        GenSpawn.Spawn(EggSac, Position, this.Map);
+                        this.MutateTry = false;
+                        Log.Message(EggSac + " - " + mutateRate.ToString());
+                    }
+                    else if (mutateRate >= 19 && mutateRate <= 23)
+                    {
+                        Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(ThingDef.Named("ParasiteEgg"));
+                        ParasiteEgg.SetFactionDirect(factionDirect);
+                        ParasiteEgg.InitializeComps();
+                        GenSpawn.Spawn(ParasiteEgg, Position, this.Map);
+                        Log.Message(ParasiteEgg + " - " + mutateRate.ToString());
+                        this.MutateTry = false;
+                    }
+                    else
+                    {
+                        this.MutateTry = false;
+                    }
+                }
+            }
+        }
+        public void SpreadPlants()
+        {
+            this.SpreadTick--;
+            if (this.SpreadTick <= 0)
+            {
+                //Pick a random direction cell
+                IntVec3 dir = new IntVec3();
+                dir = GenAdj.RandomAdjacentCellCardinal(Position);
+                //If in bounds
+                try
+                {
+                    if (dir.InBounds(this.Map))
+                    {
+                        TerrainDef terrain = dir.GetTerrain(this.Map);
+                        if (terrain != null)
+                        {
+                            if (terrain.defName != "WaterDeep" &&
+                                     terrain.defName != "WaterShallow" &&
+                                     terrain.defName != "MarshyTerrain")
+                            {
+                                //if theres no ivy here
+                                if (!IvyInCell(dir))
+                                {
+                                    SpawnIvy(dir);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("ERROR:" + ex.Message);
+                }
+
+                SpreadTick = OrigSpreadTick;
+            }
+        }
+
         public void ThrowGasOrAdjustGasSize()
         {
             if (this.Spores != null)
             {
-                this.Spores.Graphic.drawSize.x = this.Growth + 0.25f;
-                this.Spores.Graphic.drawSize.y = this.Growth + 0.25f;
-                this.Spores.Graphic.color.a = this.Growth;
+                this.Spores.Graphic.drawSize.x = this.Growth;
+                this.Spores.Graphic.drawSize.y = this.Growth;
+                this.Spores.Graphic.color.a = this.Growth - 0.1f;
 
                 //thing.Graphic.color.r = 0;// 100 - (this.Growth * 100);
                 //thing.Graphic.color.g = 0;// 100 - (this.Growth * 100);
@@ -142,168 +311,26 @@ namespace PurpleIvy
             }
         }
 
-        public void CheckThings(IntVec3 pos)
-        {
-            List<Thing> list = new List<Thing>();
-            try
-            {
-                list = this.Map.thingGrid.ThingsListAt(pos);
-            }
-            catch
-            {
-                return;
-            }
-            //Loop over things if there are things
-            if (list != null && list.Count > 0)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    //If we find a corpse
-                    if (list[i] != null && list[i].Faction != factionDirect && list[i].def.IsCorpse)
-                    {
-                        Corpse corpse = (Corpse)list[i];
-                        if (corpse.TryGetComp<AlienInfection>() == null)
-                        {
-                            ThingDef dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
-                            AlienInfection comp = new AlienInfection();
-                            comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
-                            comp.parent = corpse;
-                            comp.Props.typesOfCreatures = new List<string>()
-                            {
-                                "Genny_ParasiteOmega"
-                            };
-                            IntRange range = new IntRange(1, 10);
-                            comp.totalNumberOfCreatures = range.RandomInRange;
-                            comp.Props.maxNumberOfCreatures = range;
-                            corpse.AllComps.Add(comp);
-                            Log.Message("Adding infected comp to " + corpse.Label);
-                        }
-                    }
-                    //If we find a pawn
-                    else if (list[i] != null && list[i] is Pawn)
-                    {
-                        //And its not a hatchling
-                        if (list[i] != null && list[i].Faction != factionDirect)
-                        {
-                            Pawn stuckPawn = (Pawn)list[i];
-                            DamageInfo damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
-                            stuckPawn.TakeDamage(damageInfo);
-
-                            Hediff hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
-                            stuckPawn, null);
-                            hediff.Severity = 0.1f;
-                            (stuckPawn).health.AddHediff(hediff, null, null, null);
-                            Hediff hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
-                            stuckPawn, null);
-                            hediff2.Severity = 0.1f;
-                            (stuckPawn).health.AddHediff(hediff2, null, null, null);
-                        }
-                    }
-                    //If we find a plant
-                    else if (list[i] != null && list[i] is Plant && list[i].def.defName != "PurpleIvy")
-                    {
-                        list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 5));
-                    }
-                }
-            }
-        }
-
         public override void Tick()
         {
             base.Tick();
-            if (this.Growth >= 0.25f)
+            if (Find.TickManager.TicksGame % 2000 == 0)
             {
-                if (Find.TickManager.TicksGame % 2500 == 0)
-                {
-                    this.ThrowGasOrAdjustGasSize();
-                    CheckThings(Position);
-                }
+                base.TickLong();
             }
             if (Find.TickManager.TicksGame % 350 == 0)
             {
-                base.TickLong();
-                //Pick a random direction cell
-                IntVec3 dir = new IntVec3();
-                dir = GenAdj.RandomAdjacentCellCardinal(Position);
-                //If in bounds
-                if (dir.InBounds(this.Map))
+                if (this.Growth >= 0.1f)
                 {
-                    TerrainDef terrain = dir.GetTerrain(this.Map);
-                    if (terrain != null)
-                    {
-                        if (terrain.defName != "WaterDeep" &&
-                                 terrain.defName != "WaterShallow" &&
-                                 terrain.defName != "MarshyTerrain")
-                        {
-                            //if theres no ivy here
-                            if (!IvyInCell(dir))
-                            {
-                                SpawnIvy(dir);
-                            }
-                        }
-                    }
+                    this.SpreadPlants();
                 }
-                if (this.MutateTry == true)
+                if (this.Growth >= 0.25f)
                 {
-                    System.Random random = new System.Random();
-                    int MutateRate = random.Next(1, 100);
-                    if (MutateRate == 3 || MutateRate == 23)
-                    {
-                        Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(ThingDef.Named("GasPump"));
-                        GasPump.SetFactionDirect(factionDirect);
-                        if (hasNoBuildings(Position))
-                        {
-                            GenSpawn.Spawn(GasPump, Position, this.Map);
-                        }
-                        this.MutateTry = false;
-                    }
-                    else if (MutateRate == 4 || MutateRate == 24)
-                    {
-                        Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(ThingDef.Named("EggSac"));
-                        EggSac.SetFactionDirect(factionDirect);
-                        if (hasNoBuildings(Position))
-                        {
-                            GenSpawn.Spawn(EggSac, Position, this.Map);
-                        }
-                        this.MutateTry = false;
-                    }
-                    else if (MutateRate == 8 || MutateRate == 16)
-                    {
-                        Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(ThingDef.Named("ParasiteEgg"));
-                        ParasiteEgg.SetFactionDirect(factionDirect);
-                        ParasiteEgg.InitializeComps();
-                        if (hasNoBuildings(Position))
-                        {
-                            GenSpawn.Spawn(ParasiteEgg, Position, this.Map);
-                        }
-                        this.MutateTry = false;
-                    }
-                    else if (MutateRate == 5)
-                    {
-                        Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(ThingDef.Named("Turret_GenMortarSeed"));
-                        GenMortar.SetFactionDirect(factionDirect);
-                        if (hasNoBuildings(Position))
-                        {
-                            GenSpawn.Spawn(GenMortar, Position, this.Map);
-                        }
-                        this.MutateTry = false;
-                    }
-                    else if (MutateRate == 6)
-                    {
-                        Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(ThingDef.Named("GenTurretBase"));
-                        GenTurret.SetFactionDirect(factionDirect);
-                        if (hasNoBuildings(Position))
-                        {
-                            GenSpawn.Spawn(GenTurret, Position, this.Map);
-                        }
-                        this.MutateTry = false;
-                    }
-                    else
-                    {
-                        this.MutateTry = false;
-                    }
+                    this.ThrowGasOrAdjustGasSize();
+                    this.CheckThings(Position);
+                    this.SpreadBuildings();
                 }
-        }
+            }
         }
     }
 }
