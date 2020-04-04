@@ -57,19 +57,19 @@ namespace PurpleIvy
                                     if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
                                     {
                                         IntRange range = new IntRange(1, 1);
-                                        comp.totalNumberOfCreatures = range.RandomInRange;
+                                        comp.maxNumberOfCreatures = range.RandomInRange;
                                         comp.Props.maxNumberOfCreatures = range;
                                     }
                                     else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
                                     {
                                         IntRange range = new IntRange(1, 3);
-                                        comp.totalNumberOfCreatures = range.RandomInRange;
+                                        comp.maxNumberOfCreatures = range.RandomInRange;
                                         comp.Props.maxNumberOfCreatures = range;
                                     }
                                     else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
                                     {
                                         IntRange range = new IntRange(1, 10);
-                                        comp.totalNumberOfCreatures = range.RandomInRange;
+                                        comp.maxNumberOfCreatures = range.RandomInRange;
                                         comp.Props.maxNumberOfCreatures = range;
                                     }
                                     else
@@ -82,7 +82,7 @@ namespace PurpleIvy
                                     comp.Props.IncubationData.deathChance = 90f;
                                     comp.Props.IncubationData.hediff = HediffDefOf.Pregnant.defName;
                                     victim.AllComps.Add(comp);
-                                    Log.Message("Adding infected comp to living creature " + victim.Label);
+                                    Log.Message("Adding infected comp to living creature " + victim);
                                 }
                             }
                         }
@@ -94,14 +94,14 @@ namespace PurpleIvy
                                 Corpse corpse = (Corpse)victim.ParentHolder;
                                 if (comp != null)
                                 {
-                                    Log.Message("Moving infected comp from living creature to corpse " + corpse.Label);
+                                    Log.Message("Moving infected comp from living creature to corpse " + corpse);
                                     corpse.AllComps.Add(comp);
                                 }
                                 if (corpse.TryGetComp<AlienInfection>() == null)
                                 {
                                     if (10f >= Rand.Range(0f, 100f))
                                     {
-                                        Log.Message(thing.Label + " killed! Now trying to attach an infected comp");
+                                        Log.Message(thing + " killed! Now trying to attach an infected comp");
                                         if (corpse.TryGetComp<AlienInfection>() == null)
                                         {
                                             ThingDef dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
@@ -115,19 +115,19 @@ namespace PurpleIvy
                                             if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
                                             {
                                                 IntRange range = new IntRange(1, 1);
-                                                comp.totalNumberOfCreatures = range.RandomInRange;
+                                                comp.maxNumberOfCreatures = range.RandomInRange;
                                                 comp.Props.maxNumberOfCreatures = range;
                                             }
                                             else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
                                             {
                                                 IntRange range = new IntRange(1, 3);
-                                                comp.totalNumberOfCreatures = range.RandomInRange;
+                                                comp.maxNumberOfCreatures = range.RandomInRange;
                                                 comp.Props.maxNumberOfCreatures = range;
                                             }
                                             else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
                                             {
                                                 IntRange range = new IntRange(1, 10);
-                                                comp.totalNumberOfCreatures = range.RandomInRange;
+                                                comp.maxNumberOfCreatures = range.RandomInRange;
                                                 comp.Props.maxNumberOfCreatures = range;
                                             }
                                             else
@@ -135,7 +135,7 @@ namespace PurpleIvy
                                                 Log.Error("3 Something went wrong while adding infected comp: " + comp.parent + " - " + actor);
                                             }
                                             corpse.AllComps.Add(comp);
-                                            Log.Message("Adding infected comp to " + corpse.Label);
+                                            Log.Message("Adding infected comp to " + corpse);
                                         }
                                     }
                                 }
@@ -144,7 +144,7 @@ namespace PurpleIvy
                         catch (Exception ex)
                         {
                             Log.Message("it seems there is a error" +
-                                " with the pawn or it is not killed " + thing.Label);
+                                " with the pawn or it is not killed " + thing);
                             Log.Message(ex.Message);
                         }
 

@@ -24,19 +24,19 @@ namespace PurpleIvy
             if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
             {
                 IntRange range = new IntRange(1, 1);
-                comp.totalNumberOfCreatures = range.RandomInRange;
+                comp.maxNumberOfCreatures = range.RandomInRange;
                 comp.Props.maxNumberOfCreatures = range;
             }
             else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
             {
                 IntRange range = new IntRange(1, 3);
-                comp.totalNumberOfCreatures = range.RandomInRange;
+                comp.maxNumberOfCreatures = range.RandomInRange;
                 comp.Props.maxNumberOfCreatures = range;
             }
             else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
             {
                 IntRange range = new IntRange(1, 10);
-                comp.totalNumberOfCreatures = range.RandomInRange;
+                comp.maxNumberOfCreatures = range.RandomInRange;
                 comp.Props.maxNumberOfCreatures = range;
             }
             else

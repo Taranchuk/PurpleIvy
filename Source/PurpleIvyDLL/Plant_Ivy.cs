@@ -103,12 +103,15 @@ namespace PurpleIvy
                                 Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
                                 var comp = dummyCorpse.TryGetComp<AlienInfection>();
                                 comp.parent = corpse;
+                                IntRange range = new IntRange(1, 10);
+                                comp.Props.maxNumberOfCreatures = range;
+                                comp.maxNumberOfCreatures = range.RandomInRange;
                                 comp.Props.typesOfCreatures = new List<string>()
-                            {
-                                "Genny_ParasiteOmega"
-                            };
+                                {
+                                    "Genny_ParasiteOmega"
+                                };
                                 corpse.AllComps.Add(comp);
-                                Log.Message("Adding infected comp to " + corpse.Label);
+                                Log.Message("Adding infected comp to " + corpse);
                             }
                             //speedup the spread a little
                             SpreadTick--;

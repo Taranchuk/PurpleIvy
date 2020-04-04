@@ -12,7 +12,7 @@ namespace PurpleIvy
         Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
         public int currentCountOfCreatures = 0;
         public int startOfIncubation = 0;
-        public int totalNumberOfCreatures = 0;
+        public int maxNumberOfCreatures = 0;
 
         public CompProperties_AlienInfection Props
         {
@@ -48,12 +48,12 @@ namespace PurpleIvy
                 if (this.startOfIncubation + this.Props.incubationPeriod.RandomInRange
                     < Find.TickManager.TicksGame)
                 {
-                    if (this.totalNumberOfCreatures <= this.currentCountOfCreatures &&
+                    if (this.maxNumberOfCreatures <= this.currentCountOfCreatures &&
                         this.Props.resetIncubation == true)
                     {
                         this.startOfIncubation = Find.TickManager.TicksGame;
                         this.currentCountOfCreatures = 0;
-                        this.totalNumberOfCreatures = this.Props.maxNumberOfCreatures.RandomInRange;
+                        this.maxNumberOfCreatures = this.Props.maxNumberOfCreatures.RandomInRange;
                     }
 
                     if (this.startOfIncubation + this.Props.incubationPeriod.RandomInRange
@@ -71,7 +71,7 @@ namespace PurpleIvy
 
             if (this.Props.typesOfCreatures != null)
             {
-                if (this.totalNumberOfCreatures == 0 || currentCountOfCreatures < this.totalNumberOfCreatures)
+                if (this.maxNumberOfCreatures == 0 || currentCountOfCreatures < this.maxNumberOfCreatures)
                 {
                     foreach (string defName in this.Props.typesOfCreatures)
                     {
@@ -110,7 +110,7 @@ namespace PurpleIvy
                                 else
                                 {
                                     Log.Error("Unknown parent. Cant spawn. " +
-                                        "Parent: " + this.parent.Label);
+                                        "Parent: " + this.parent);
                                 }
                                 currentCountOfCreatures++;
                             }
@@ -122,7 +122,7 @@ namespace PurpleIvy
         public override void PostPostMake()
         {
             base.PostPostMake();
-            this.totalNumberOfCreatures = Props.maxNumberOfCreatures.RandomInRange;
+            this.maxNumberOfCreatures = Props.maxNumberOfCreatures.RandomInRange;
         }
         public void HatchFromCorpse(Pawn NewPawn)
         {
@@ -241,6 +241,11 @@ namespace PurpleIvy
             }));
             stringBuilder.AppendLine(string.Concat(new string[]
             {
+                Translator.Translate("totalNumberOfCreatures"),
+                ": ", this.maxNumberOfCreatures.ToString()
+            }));
+            stringBuilder.AppendLine(string.Concat(new string[]
+            {
                Translator.Translate("startOfIncubation"),
                ": ", this.startOfIncubation.ToString()
             }));
@@ -257,8 +262,7 @@ namespace PurpleIvy
             base.PostExposeData();
             Scribe_Values.Look<int>(ref this.currentCountOfCreatures, "currentCountOfCreatures", 0, false);
             Scribe_Values.Look<int>(ref this.startOfIncubation, "startOfIncubation", 0, false);
-            Scribe_Values.Look<int>(ref this.totalNumberOfCreatures, "totalNumberOfCreatures", 0, false);
-
+            Scribe_Values.Look<int>(ref this.maxNumberOfCreatures, "maxNumberOfCreatures", 0, false);
         }
     }
 }
