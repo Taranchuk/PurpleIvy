@@ -27,7 +27,7 @@ namespace PurpleIvy
             {
                 int count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
                 {
-                    if (count >= 250 && !map.gameConditionManager.ConditionIsActive(PurpleIvyDefOf.PurpleFogGameCondition))
+                    if (count >= 500 && !map.gameConditionManager.ConditionIsActive(PurpleIvyDefOf.PurpleFogGameCondition))
                     {
                         GameCondition_PurpleFog gameCondition =
                             (GameCondition_PurpleFog)GameConditionMaker.MakeConditionPermanent
@@ -53,6 +53,12 @@ namespace PurpleIvy
     this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count.ToString());
                 Log.Message("Total ParasiteEgg count on the map: " +
 this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count.ToString());
+                Log.Message("Total GasPump count on the map: " +
+this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.GasPump).Count.ToString());
+                Log.Message("Total GenTurretBase count on the map: " +
+this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.GenTurretBase).Count.ToString());
+                Log.Message("Total Turret_GenMortarSeed count on the map: " +
+this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Turret_GenMortarSeed).Count.ToString());
             }
         }
     }

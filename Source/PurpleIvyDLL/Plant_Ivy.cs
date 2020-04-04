@@ -176,13 +176,13 @@ namespace PurpleIvy
             {
                 System.Random random = new System.Random(this.Position.GetHashCode());
                 mutateChance = random.Next(1, 100);
-                if (5 >= mutateChance)
+                if (30 >= mutateChance)
                 {
                     random = new System.Random(this.ThingID.GetHashCode());
                     mutateRate = random.Next(1, 100);
                     if (mutateRate >= 0 && mutateRate <= 5)
                     {
-                        Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(ThingDef.Named("GasPump"));
+                        Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(PurpleIvyDefOf.GasPump);
                         GasPump.SetFactionDirect(factionDirect);
                         GenSpawn.Spawn(GasPump, Position, this.Map);
                         Log.Message(GasPump + " - " + mutateRate.ToString());
@@ -190,7 +190,7 @@ namespace PurpleIvy
                     }
                     else if (mutateRate >= 6 && mutateRate <= 10)
                     {
-                        Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(ThingDef.Named("Turret_GenMortarSeed"));
+                        Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
                         GenMortar.SetFactionDirect(factionDirect);
                         GenSpawn.Spawn(GenMortar, Position, this.Map);
                         Log.Message(GenMortar + " - " + mutateRate.ToString());
@@ -198,7 +198,7 @@ namespace PurpleIvy
                     }
                     else if (mutateRate >= 11 && mutateRate <= 15)
                     {
-                        Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(ThingDef.Named("GenTurretBase"));
+                        Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase);
                         GenTurret.SetFactionDirect(factionDirect);
                         GenSpawn.Spawn(GenTurret, Position, this.Map);
                         this.MutateTry = false;
@@ -206,7 +206,7 @@ namespace PurpleIvy
                     }
                     else if (mutateRate >= 16 && mutateRate <= 18)
                     {
-                        Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(ThingDef.Named("EggSac"));
+                        Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
                         EggSac.SetFactionDirect(factionDirect);
                         GenSpawn.Spawn(EggSac, Position, this.Map);
                         this.MutateTry = false;
@@ -214,7 +214,7 @@ namespace PurpleIvy
                     }
                     else if (mutateRate >= 19 && mutateRate <= 23)
                     {
-                        Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(ThingDef.Named("ParasiteEgg"));
+                        Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
                         ParasiteEgg.SetFactionDirect(factionDirect);
                         ParasiteEgg.InitializeComps();
                         GenSpawn.Spawn(ParasiteEgg, Position, this.Map);

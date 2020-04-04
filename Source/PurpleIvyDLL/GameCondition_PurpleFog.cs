@@ -36,10 +36,10 @@ namespace PurpleIvy
             if (Find.TickManager.TicksGame % 60 == 0) // for performance
             {
                 int count = Find.CurrentMap.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
-                if (count < 250)
+                if (count < 500)
                 {
                     this.fogProgress = 0f;
-                    if (count < 200)
+                    if (count < 400)
                     {
                         this.End();
                         Find.LetterStack.ReceiveLetter("PurpleFogReceded".Translate(),
@@ -48,8 +48,8 @@ namespace PurpleIvy
                 }
                 else
                 {
-                    count -= 250;
-                    this.fogProgress = ((float)count / (float)1000 * 100f) / 100f;
+                    count -= 500;
+                    this.fogProgress = ((float)count / (float)1500 * 100f) / 100f;
                 }
             }
 

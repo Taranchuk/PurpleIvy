@@ -37,6 +37,14 @@ namespace PurpleIvy
 
         public static ThingDef ParasiteEgg;
 
+        public static ThingDef GenTurretBase;
+
+        public static ThingDef Turret_GenMortarSeed;
+
+        public static ThingDef GasPump;
+
+
+
     }
 }
 
