@@ -12,7 +12,7 @@ namespace PurpleIvy
     {
         private int SpreadTick;
         private int OrigSpreadTick;
-        private bool MutateTry;
+        public bool MutateTry;
         private int mutateChance;
         private int mutateRate;
         ThingDef sporesThingDef = ThingDef.Named("Spores");
@@ -168,6 +168,7 @@ namespace PurpleIvy
                             stuckPawn, null);
                             hediff2.Severity = 0.1f;
                             (stuckPawn).health.AddHediff(hediff2, null, null, null);
+                            
                         }
                         //If we find a plant
                         else if (list[i] is Plant)

@@ -16,7 +16,7 @@ namespace PurpleIvy
             }
         }
 
-        public float fogProgress = 0f;
+        public Dictionary<Map, float> fogProgress = new Dictionary<Map, float>();
 
         public int weatherEndingTick = 0;
 
@@ -30,19 +30,10 @@ namespace PurpleIvy
             purpleFog.durationRange = new IntRange(10000000, 10000000);
             foreach (Map map in this.AffectedMaps)
             {
-                map.weatherManager.TransitionTo(purpleFog);
-            }
-        }
-
-        public override void GameConditionTick()
-        {
-            List<Map> affectedMaps = base.AffectedMaps;
-            if (Find.TickManager.TicksGame % 60 == 0) // for performance
-            {
-                int count = Find.CurrentMap.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
                 if (count < 500)
                 {
-                    this.fogProgress = 0f;
+                    this.fogProgress[map] = 0f;
                     if (count < 400)
                     {
                         this.End();
@@ -53,63 +44,83 @@ namespace PurpleIvy
                 else
                 {
                     count -= 500;
-                    this.fogProgress = ((float)count / (float)1500 * 100f) / 100f;
+                    this.fogProgress[map] = ((float)count / (float)1500 * 100f) / 100f;
                 }
+                map.weatherManager.TransitionTo(purpleFog);
+            }
+        }
 
-                if (Find.CurrentMap.weatherManager.curWeather != PurpleIvyDefOf.PurpleFog &&
-                    Find.TickManager.TicksGame > this.weatherEndingTick)
+        public override void GameConditionTick()
+        {
+            List<Map> affectedMaps = base.AffectedMaps;
+            foreach (Map map in affectedMaps)
+            {
+                if (Find.TickManager.TicksGame % 60 == 0) // for performance
                 {
-                    WeatherDef purpleFog = PurpleIvyDefOf.PurpleFog;
-                    purpleFog.durationRange = new IntRange(10000000, 10000000);
-                    foreach (Map map in this.AffectedMaps)
+                    int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                    if (count < 500)
                     {
-                        Log.Message("Transitioning to purple fog");
+                        this.fogProgress[map] = 0f;
+                        if (count < 400)
+                        {
+                            this.End();
+                            Find.LetterStack.ReceiveLetter("PurpleFogReceded".Translate(),
+                                "PurpleFogRecededDesc".Translate(), LetterDefOf.PositiveEvent);
+                        }
+                    }
+                    else
+                    {
+                        count -= 500;
+                        this.fogProgress[map] = ((float)count / (float)1500 * 100f) / 100f;
+                    }
+                    Log.Message(map + " - total plants " + count.ToString() + " = fog progress - " + this.fogProgress[map].ToString());
+                    if (map.weatherManager.curWeather != PurpleIvyDefOf.PurpleFog &&
+                        Find.TickManager.TicksGame > this.weatherEndingTick)
+                    {
+                        WeatherDef purpleFog = PurpleIvyDefOf.PurpleFog;
+                        purpleFog.durationRange = new IntRange(10000000, 10000000);
+                        Log.Message("Transitioning to purple fog in the " + map);
                         map.weatherManager.TransitionTo(purpleFog);
                         delay = new IntRange(1000, 10000).RandomInRange + Find.TickManager.TicksGame;
                     }
-                }
-            }
 
-            if (Find.TickManager.TicksGame % 3451 == 0)
-            {
-                Log.Message(Find.CurrentMap.weatherManager.curWeather.defName);
-                if (Find.CurrentMap.weatherManager.curWeather != PurpleIvyDefOf.PurpleFoggyRain 
-                    && this.delay < Find.TickManager.TicksGame)
+                }
+
+                if (Find.TickManager.TicksGame % 3451 == 0)
                 {
-                    System.Random random = new System.Random();
-                    int chance = (int)(this.fogProgress * 100);
-                    Log.Message("Chance of rain: " + chance.ToString());
-                    if (random.Next(0, 100) < chance)
+                    Log.Message(map.weatherManager.curWeather.defName);
+                    if (map.weatherManager.curWeather != PurpleIvyDefOf.PurpleFoggyRain
+                        && this.delay < Find.TickManager.TicksGame)
                     {
-                        Log.Message("Success!");
-                        WeatherDef purpleFoggyRain = PurpleIvyDefOf.PurpleFoggyRain;
-                        WeatherOverlay_PurpleRain weatherOverlay = new WeatherOverlay_PurpleRain();
-                        foreach (var overlay in purpleFoggyRain.Worker.overlays)
+                        System.Random random = new System.Random();
+                        int chance = (int)(this.fogProgress[map] * 100);
+                        Log.Message("Chance of rain: " + chance.ToString());
+                        if (random.Next(0, 100) < chance)
                         {
-                            if (overlay is WeatherOverlay_PurpleRain)
+                            Log.Message("Success!");
+                            WeatherDef purpleFoggyRain = PurpleIvyDefOf.PurpleFoggyRain;
+                            WeatherOverlay_PurpleRain weatherOverlay = new WeatherOverlay_PurpleRain();
+                            foreach (var overlay in purpleFoggyRain.Worker.overlays)
                             {
-                                overlay.worldOverlayMat = MaterialPool.MatFrom("Weather/PurpleRainOverlayWorld2", ShaderDatabase.MetaOverlay);
-                                break;
+                                if (overlay is WeatherOverlay_PurpleRain)
+                                {
+                                    overlay.worldOverlayMat = MaterialPool.MatFrom("Weather/PurpleRainOverlayWorld2", ShaderDatabase.MetaOverlay);
+                                    break;
+                                }
                             }
-                        }
-                        weatherEndingTick = new IntRange(10000, 60000).RandomInRange + Find.TickManager.TicksGame;
-                        foreach (Map map in this.AffectedMaps)
-                        {
-                            Log.Message("Transitioning to purple rain");
+                            weatherEndingTick = new IntRange(10000, 60000).RandomInRange + Find.TickManager.TicksGame;
+                            Log.Message("Transitioning to purple rain in the " + map);
                             map.weatherManager.TransitionTo(purpleFoggyRain);
                         }
                     }
+                    this.DoPawnsToxicDamage(map);
                 }
-                for (int i = 0; i < affectedMaps.Count; i++)
+                for (int j = 0; j < this.overlays.Count; j++)
                 {
-                    this.DoPawnsToxicDamage(affectedMaps[i]);
-                }
-            }
-            for (int j = 0; j < this.overlays.Count; j++)
-            {
-                for (int k = 0; k < affectedMaps.Count; k++)
-                {
-                    this.overlays[j].TickOverlay(affectedMaps[k]);
+                    for (int k = 0; k < affectedMaps.Count; k++)
+                    {
+                        this.overlays[j].TickOverlay(affectedMaps[k]);
+                    }
                 }
             }
         }
@@ -184,7 +195,7 @@ namespace PurpleIvy
 
         public override float SkyTargetLerpFactor(Map map)
         {
-            return this.fogProgress;
+            return this.fogProgress[map];
         }
 
         public override SkyTarget? SkyTarget(Map map)
@@ -215,9 +226,24 @@ namespace PurpleIvy
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<float>(ref this.fogProgress, "fogProgress", 0f, true);
             Scribe_Values.Look<int>(ref this.weatherEndingTick, "weatherEndingTick", 0, true);
             Scribe_Values.Look<int>(ref this.delay, "delay", 0, true);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                foreach (Map map in AffectedMaps)
+                {
+                    int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                    if (count < 500)
+                    {
+                        this.fogProgress[map] = 0f;
+                    }
+                    else
+                    {
+                        count -= 500;
+                        this.fogProgress[map] = ((float)count / (float)1500 * 100f) / 100f;
+                    }
+                }
+            }
         }
 
         private const float MaxSkyLerpFactor = 0.5f;

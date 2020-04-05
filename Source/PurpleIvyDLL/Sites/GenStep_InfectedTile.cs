@@ -110,8 +110,8 @@ namespace PurpleIvy
             }
             Thing meteor = ThingMaker.MakeThing(ThingDef.Named("PI_Meteorite"));
             GenSpawn.Spawn(meteor, intVec, map);
-            Log.Message("Spawned meteor " + intVec.ToString());
-            foreach (IntVec3 vec in GenRadial.RadialCellsAround(meteor.Position, 15, true))
+            var radialCells = GenRadial.RadialCellsAround(meteor.Position, 20, true).ToList();
+            foreach (IntVec3 vec in radialCells)
             {
                 if (!SpreadBuilding(vec, map))
                 {
@@ -122,16 +122,45 @@ namespace PurpleIvy
                         GenSpawn.Spawn(newivy, vec, map);
                         newivy.Growth = this.growth;
                     }
+
                 }
                 this.growth = this.growth - 0.001f;
             }
-            Log.Message(map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count.ToString(), true);
+
+            foreach (var i in Enumerable.Range(1, 3))
+            {
+                IntVec3 spawnPlace = radialCells.Where(x => GenGrid.Walkable(x, map)).RandomElement();
+                radialCells.Remove(spawnPlace);
+                PawnKindDef pawnKindDef = PawnKindDef.Named("Genny_ParasiteAlphaA");
+                Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
+                NewPawn.SetFaction(PurpleIvyData.factionDirect);
+                NewPawn.ageTracker.AgeBiologicalTicks = 40000;
+                NewPawn.ageTracker.AgeChronologicalTicks = 40000;
+                GenSpawn.Spawn(NewPawn, spawnPlace, map);
+            }
+
+            foreach (var i in Enumerable.Range(1, 20))
+            {
+                IntVec3 spawnPlace = radialCells.Where(x => GenGrid.Walkable(x, map)).RandomElement();
+                radialCells.Remove(spawnPlace);
+                PawnKindDef pawnKindDef = PawnKindDef.Named("Genny_ParasiteOmega");
+                Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
+                NewPawn.SetFaction(PurpleIvyData.factionDirect);
+                NewPawn.ageTracker.AgeBiologicalTicks = 40000;
+                NewPawn.ageTracker.AgeChronologicalTicks = 40000;
+                GenSpawn.Spawn(NewPawn, spawnPlace, map);
+            }
+            foreach (Plant_Ivy ivy in map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy))
+            {
+                if (ivy.Growth > 25)
+                {
+                    ivy.MutateTry = false;
+                }
+            }
             GameCondition_PurpleFog gameCondition =
             (GameCondition_PurpleFog)GameConditionMaker.MakeConditionPermanent
             (PurpleIvyDefOf.PurpleFogGameCondition);
             map.gameConditionManager.RegisterCondition(gameCondition);
-            int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
-            gameCondition.fogProgress = ((float)count / (float)1500 * 100f) / 100f;
         }
         public float growth = 1f;
         public int numberOfRecursion = 100;
