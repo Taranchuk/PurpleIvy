@@ -168,6 +168,11 @@ namespace PurpleIvy
                 this.TryStartSpawn();
             }
         }
+        public override void CompTickRare()
+        {
+            base.CompTickRare();
+            this.TryStartSpawn();
+        }
 
         public override string CompInspectStringExtra()
         {
@@ -250,11 +255,6 @@ namespace PurpleIvy
                ": ", this.startOfIncubation.ToString()
             }));
             return GenText.TrimEndNewlines(stringBuilder.ToString());
-        }
-        public override void CompTickRare()
-        {
-            base.CompTickRare();
-            this.TryStartSpawn();
         }
 
         public override void PostExposeData()

@@ -14,5 +14,15 @@
 		<li>Caravan</li>
 	</targetTags>
 	</IncidentDef>
+	
+	<IncidentDef>
+		<defName>PI_InfectedTile</defName>
+		<workerClass>PurpleIvy.IncidentWorker_InfectedTile</workerClass>
+		<baseChance>0.5</baseChance>
+    <category>ThreatBig</category>
+	<targetTags>
+		<li>Map_PlayerHome</li>
+	</targetTags>
+	</IncidentDef>
 
 </Defs>

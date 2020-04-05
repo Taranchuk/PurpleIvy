@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>  
+
+	<WorldObjectDef>
+		<defName>InfectedTile</defName>
+		<worldObjectClass>Site</worldObjectClass>
+		<expandingIcon>true</expandingIcon>
+		<expandingIconPriority>70</expandingIconPriority>
+		<comps>
+			<li Class="WorldObjectCompProperties_Timeout" />
+			<li Class="WorldObjectCompProperties_TimedForcedExit"/>
+			<li Class="WorldObjectCompProperties_ItemStashContents" />
+			<li Class="WorldObjectCompProperties_FormCaravan" />
+			<li Class="PurpleIvy.WorldObjectCompProperties_InfectedTile" />
+
+		</comps>
+	</WorldObjectDef>
+<!--
+	<WorldObjectDef>
+		<defName>RD_AdventureMedical</defName>
+		<worldObjectClass>Site</worldObjectClass>
+		<expandingIcon>true</expandingIcon>
+		<expandingIconPriority>70</expandingIconPriority>
+		<comps>
+			<li Class="ReconAndDiscovery.Missions.WorldObjectCompProperties_MedicalEmergency" />
+			<li Class="WorldObjectCompProperties_Timeout" />
+			<li Class="WorldObjectCompProperties_TimedForcedExit"/>
+			<li Class="WorldObjectCompProperties_ItemStashContents" />
+			<li Class="WorldObjectCompProperties_FormCaravan" />
+		</comps>
+	</WorldObjectDef>
+
+	<WorldObjectDef>
+		<defName>RD_AdventurePeaceTalks</defName>
+		<worldObjectClass>Site</worldObjectClass>
+		<expandingIcon>true</expandingIcon>
+		<expandingIconPriority>70</expandingIconPriority>
+		<comps>
+			<li Class="ReconAndDiscovery.Missions.WorldObjectCompProperties_PeaceTalks" />
+			<li Class="WorldObjectCompProperties_Timeout" />
+			<li Class="WorldObjectCompProperties_TimedForcedExit"/>
+			<li Class="WorldObjectCompProperties_ItemStashContents" />
+			<li Class="WorldObjectCompProperties_FormCaravan" />
+		</comps>
+	</WorldObjectDef>
+
+
+	<WorldObjectDef>
+		<defName>RD_AdventureDestroyThing</defName>
+		<worldObjectClass>Site</worldObjectClass>
+		<expandingIcon>true</expandingIcon>
+		<expandingIconPriority>70</expandingIconPriority>
+		<comps>
+			<li Class="WorldObjectCompProperties_Timeout" />
+			<li Class="WorldObjectCompProperties_TimedForcedExit"/>
+			<li Class="WorldObjectCompProperties_FormCaravan" />
+			<li Class="ReconAndDiscovery.Missions.WorldObjectCompProperties_DestroyThing" />
+		</comps>
+	</WorldObjectDef>
+
+	<WorldObjectDef>
+		<defName>RD_AdventureThingCounter</defName>
+		<worldObjectClass>Site</worldObjectClass>
+		<expandingIcon>true</expandingIcon>
+		<expandingIconPriority>70</expandingIconPriority>
+		<comps>
+			<li Class="WorldObjectCompProperties_FormCaravan" />
+			<li Class="WorldObjectCompProperties_Timeout" />
+			<li Class="WorldObjectCompProperties_TimedForcedExit"/>
+			<li Class="ReconAndDiscovery.Missions.WorldObjectCompProperties_CountThings" />
+		</comps>
+	</WorldObjectDef>
+-->
+</Defs>

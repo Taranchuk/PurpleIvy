@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>  
+ 
+  <SitePartDef>
+    <defName>InfectedSite</defName>
+    <label>Infected site</label>
+	<description>The site that became infected with purple plants.</description>
+    <siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
+    <expandingIconTexture>World/WorldObjects/Expanding/Sites/Ambush</expandingIconTexture>
+	<forceExitAndRemoveMapCountdownDurationDays>20</forceExitAndRemoveMapCountdownDurationDays>
+  </SitePartDef>
+
+</Defs>
