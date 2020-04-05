@@ -152,7 +152,7 @@ namespace PurpleIvy
             }
             foreach (Plant_Ivy ivy in map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy))
             {
-                if (ivy.Growth > 25)
+                if (ivy.Growth > 10)
                 {
                     ivy.MutateTry = false;
                 }
