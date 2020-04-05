@@ -84,7 +84,24 @@ namespace PurpleIvy
         }
 
 
-
+        public int getRadius(Map map)
+        {
+            int counter = Find.WorldObjects.WorldObjectAt(map.Tile, PurpleIvyDefOf.InfectedTile)
+                .GetComponent<WorldObjectComp_InfectedTile>().counter;
+            int radius = 0;
+            foreach (KeyValuePair<int,int> test in PurpleIvyData.RadiusData)
+            {
+                if (counter > test.Value)
+                {
+                    radius = test.Key;
+                }
+                else if (counter < test.Value)
+                {
+                    return radius;
+                }
+            }
+            return radius;
+        }
         public override void Generate(Map map, GenStepParams parms)
         {
             IntVec3 intVec = new IntVec3();
@@ -110,7 +127,11 @@ namespace PurpleIvy
             }
             Thing meteor = ThingMaker.MakeThing(ThingDef.Named("PI_Meteorite"));
             GenSpawn.Spawn(meteor, intVec, map);
-            var radialCells = GenRadial.RadialCellsAround(meteor.Position, 20, true).ToList();
+
+            int radius = getRadius(map);
+            Log.Message(radius.ToString());
+            var radialCells = GenRadial.RadialCellsAround(meteor.Position, radius, true)
+                .ToList();
             foreach (IntVec3 vec in radialCells)
             {
                 if (!SpreadBuilding(vec, map))
@@ -157,12 +178,15 @@ namespace PurpleIvy
                     ivy.MutateTry = false;
                 }
             }
-            GameCondition_PurpleFog gameCondition =
-            (GameCondition_PurpleFog)GameConditionMaker.MakeConditionPermanent
-            (PurpleIvyDefOf.PurpleFogGameCondition);
-            map.gameConditionManager.RegisterCondition(gameCondition);
+            if (map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count - 500 > 500)
+            {
+                GameCondition_PurpleFog gameCondition =
+                (GameCondition_PurpleFog)GameConditionMaker.MakeConditionPermanent
+                (PurpleIvyDefOf.PurpleFogGameCondition);
+                map.gameConditionManager.RegisterCondition(gameCondition);
+            }
         }
+
         public float growth = 1f;
-        public int numberOfRecursion = 100;
     }
 }

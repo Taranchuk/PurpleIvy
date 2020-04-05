@@ -9,7 +9,6 @@ namespace PurpleIvy
 
     public class AlienInfection : ThingComp
     {
-        Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
         public int currentCountOfCreatures = 0;
         public int startOfIncubation = 0;
         public int maxNumberOfCreatures = 0;
@@ -94,7 +93,7 @@ namespace PurpleIvy
                                     NewPawn.ageTracker.AgeBiologicalTicks = 0;
                                     NewPawn.ageTracker.AgeChronologicalTicks = 0;
                                 }
-                                NewPawn.SetFaction(factionDirect);
+                                NewPawn.SetFaction(PurpleIvyData.factionDirect);
                                 if (this.parent is Corpse)
                                 {
                                     HatchFromCorpse(NewPawn);

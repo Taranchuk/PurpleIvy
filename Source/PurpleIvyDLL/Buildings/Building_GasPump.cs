@@ -11,11 +11,10 @@ namespace PurpleIvy
     public class Building_GasPump : Building
     {
         private int pumpfreq = 10;
-        Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            this.SetFactionDirect(factionDirect);
+            this.SetFactionDirect(PurpleIvyData.factionDirect);
         }
 
         public override void TickRare()

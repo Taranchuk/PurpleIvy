@@ -303,7 +303,7 @@
     <Compile Include="Sites\GenStep_InfectedTile.cs" />
     <Compile Include="Sites\WorldObjectCompProperties_InfectedTile.cs" />
     <Compile Include="Sites\WorldObjectComp_InfectedTile.cs" />
-    <Compile Include="IncidentWorker_InfectedTile.cs" />
+    <Compile Include="Incidents\IncidentWorker_InfectedTile.cs" />
     <Compile Include="IncubationData.cs" />
     <Compile Include="AlienInfection\CompProperties_AlienInfection.cs" />
     <Compile Include="Jobs\JobDriver_Kill.cs" />
@@ -317,7 +317,7 @@
     <Compile Include="Buildings\MeteorInfo.cs" />
     <Compile Include="Buildings\Meteorite.cs" />
     <Compile Include="Buildings\MeteorUtility.cs" />
-    <Compile Include="IncidentWorker_MeteorImpact.cs" />
+    <Compile Include="Incidents\IncidentWorker_MeteorImpact.cs" />
     <Compile Include="Plant_Ivy.cs" />
     <Compile Include="Projectile_Seed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

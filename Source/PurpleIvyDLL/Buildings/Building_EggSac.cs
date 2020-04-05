@@ -10,10 +10,9 @@ namespace PurpleIvy
 {
     public class Building_EggSac : Building
     {
-        Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            this.SetFactionDirect(factionDirect);
+            this.SetFactionDirect(PurpleIvyData.factionDirect);
             base.SpawnSetup(map, respawningAfterLoad);
         }
     }

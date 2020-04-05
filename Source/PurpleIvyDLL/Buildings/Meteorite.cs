@@ -12,11 +12,10 @@ namespace PurpleIvy
     public class Building_Meteorite : Building
     {
         private int spawnticks = 1200;
-        Faction factionDirect = Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            this.SetFactionDirect(factionDirect);
+            this.SetFactionDirect(PurpleIvyData.factionDirect);
         }
 
         public override void Tick()
