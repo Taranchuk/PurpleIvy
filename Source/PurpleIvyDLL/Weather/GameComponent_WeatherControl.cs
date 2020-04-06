@@ -49,8 +49,8 @@ namespace PurpleIvy
                 {
                     totalFogProgress += fog.Value;
                 }
-                Log.Message("Total fog progress on the world map: " + totalFogProgress.ToString());
-                if (totalFogProgress >= 1f)
+                Log.Message("Total fog progress on the world map: " + totalFogProgress.ToString(), true);
+                if (totalFogProgress > 1f)
                 {
                     foreach (Map map in Find.Maps)
                     {
@@ -62,18 +62,17 @@ namespace PurpleIvy
                                 gameCondition =
                                 (GameCondition_PurpleFog)GameConditionMaker.MakeConditionPermanent
                                 (PurpleIvyDefOf.PurpleFogGameCondition);
-                                gameCondition.forcedFogProgress = true;
+                                float result = (totalFogProgress - 1f) / 4;
+                                gameCondition.outerSource = result;
                                 map.gameConditionManager.RegisterCondition(gameCondition);
                                 Find.LetterStack.ReceiveLetter("PurpleFogСomesFromInfectedSites.".Translate(),
                                 "PurpleFogСomesFromInfectedSitesDesc".Translate(), LetterDefOf.ThreatBig, LookTargets.Invalid);
                             }
-                            float result = (totalFogProgress - 1f - 0.003f) / 3;
-                            if (result < 0)
+                            else
                             {
-                                result = 0f;
+                                float result = (totalFogProgress - 1f) / 4;
+                                gameCondition.outerSource = result;
                             }
-                            gameCondition.fogProgress[map] = result;
-                            Log.Message("Home map fog progress: " + gameCondition.fogProgress[map].ToString());
                         }
                     }
                 }

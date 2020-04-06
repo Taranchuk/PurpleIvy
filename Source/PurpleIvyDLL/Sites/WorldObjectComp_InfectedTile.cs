@@ -29,10 +29,10 @@ namespace PurpleIvy
             base.CompTick();
             if (this.active)
             {
-                if (Find.TickManager.TicksGame % 250 == 0)
+                if (Find.TickManager.TicksGame % 500 == 0)
                 {
                     this.counter++;
-                    if (this.counter > 1000 && this.delay < Find.TickManager.TicksGame)
+                    if (this.counter > 750 && this.delay < Find.TickManager.TicksGame)
                     {
                         int num;
                         Predicate<int> predicate = (int x) => !Find.WorldObjects.AnyWorldObjectAt
