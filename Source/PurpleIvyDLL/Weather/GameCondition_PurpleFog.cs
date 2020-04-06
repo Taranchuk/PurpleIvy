@@ -24,18 +24,21 @@ namespace PurpleIvy
 
         public bool forcedFogProgress = false;
 
-        public WeatherDef forcedWeather = null;
 
+        public int weatherAge = 0;
+
+        public WeatherDef purpleFog = PurpleIvyDefOf.PurpleFog;
+
+        public WeatherDef purpleFoggyRain = PurpleIvyDefOf.PurpleFoggyRain;
         public override void Init()
         {
             LessonAutoActivator.TeachOpportunity(ConceptDefOf.ForbiddingDoors, OpportunityType.Critical);
             LessonAutoActivator.TeachOpportunity(ConceptDefOf.AllowedAreas, OpportunityType.Critical);
-
+            purpleFog.durationRange = new IntRange(10000, 10000);
+            purpleFoggyRain.durationRange = new IntRange(10000, 10000);
             foreach (Map map in this.AffectedMaps)
             {
-                WeatherDef purpleFog = PurpleIvyDefOf.PurpleFog;
-                int age = map.weatherManager.curWeatherAge;
-
+                weatherAge = map.weatherManager.curWeatherAge;
                 if (this.forcedFogProgress != true)
                 {
                     int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
@@ -59,16 +62,15 @@ namespace PurpleIvy
                 if (fog != true)
                 {
                     Log.Message("Transitioning to purple fog in the " + map);
-                    map.weatherManager.TransitionTo(purpleFog);
+                    map.weatherManager.TransitionTo(PurpleIvyDefOf.PurpleFog);
                 }
                 else
                 {
                     Log.Message("Transitioning to purple fog in the " + map);
                     map.weatherManager.TransitionTo(WeatherDefOf.Clear);
-                    map.weatherManager.TransitionTo(purpleFog);
-                    map.weatherManager.curWeatherAge = age;
+                    map.weatherManager.TransitionTo(PurpleIvyDefOf.PurpleFog);
+                    map.weatherManager.curWeatherAge = weatherAge;
                 }
-                this.forcedWeather = purpleFog;
             }
         }
 
@@ -77,6 +79,7 @@ namespace PurpleIvy
             List<Map> affectedMaps = base.AffectedMaps;
             foreach (Map map in affectedMaps)
             {
+                //Log.Message(map.weatherManager.curWeather + " - " + map.weatherManager.lastWeather + " - " + map.weatherManager.curWeatherAge.ToString(), true);
                 if (Find.TickManager.TicksGame % 60 == 0) // for performance
                 {
                     if (this.forcedFogProgress != true)
@@ -104,10 +107,6 @@ namespace PurpleIvy
                         Find.TickManager.TicksGame > this.weatherEndingTick 
                         && (fog != true || map.weatherManager.curWeather == PurpleIvyDefOf.PurpleFoggyRain))
                     {
-                        WeatherDef purpleFog = PurpleIvyDefOf.PurpleFog;
-                        purpleFog.durationRange = new IntRange(10000000, 10000000);
-                        this.forcedWeather = purpleFog;
-
                         Log.Message("Transitioning to purple fog in the " + map);
                         map.weatherManager.TransitionTo(purpleFog);
                         delay = new IntRange(10000, 60000).RandomInRange + Find.TickManager.TicksGame;
@@ -127,7 +126,6 @@ namespace PurpleIvy
                         {
                             Log.Message("Chance of rain: " + chance.ToString());
                             Log.Message("Success!");
-                            WeatherDef purpleFoggyRain = PurpleIvyDefOf.PurpleFoggyRain;
                             WeatherOverlay_PurpleRain weatherOverlay = new WeatherOverlay_PurpleRain();
                             foreach (var overlay in purpleFoggyRain.Worker.overlays)
                             {
@@ -139,7 +137,6 @@ namespace PurpleIvy
                             }
                             weatherEndingTick = new IntRange(10000, 60000).RandomInRange + Find.TickManager.TicksGame;
                             Log.Message("Transitioning to purple rain in the " + map);
-                            this.forcedWeather = purpleFoggyRain;
                             map.weatherManager.TransitionTo(purpleFoggyRain);
                         }
                     }
@@ -253,10 +250,10 @@ namespace PurpleIvy
         //    return this.overlays;
         //}
 
-        public override WeatherDef ForcedWeather()
-        {
-            return this.forcedWeather;
-        }
+        //public override WeatherDef ForcedWeather()
+        //{
+        //    return this.forcedWeather;
+        //}
 
         public override void ExposeData()
         {
@@ -266,6 +263,8 @@ namespace PurpleIvy
             Scribe_Values.Look<bool>(ref this.forcedFogProgress, "forcedFogProgress", false, true);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                purpleFog.durationRange = new IntRange(10000, 10000);
+                purpleFoggyRain.durationRange = new IntRange(10000, 10000);
                 if (this.forcedFogProgress != true)
                 {
                     foreach (Map map in AffectedMaps)

@@ -29,6 +29,7 @@ namespace PurpleIvy
         public override void LoadedGame()
         {
             base.LoadedGame();
+            PurpleIvyData.TotalFogProgress = new Dictionary<WorldObjectComp_InfectedTile, float>(); ;
             foreach (var worldObject in Find.WorldObjects.AllWorldObjects)
             {
                 var comp = worldObject.GetComponent<WorldObjectComp_InfectedTile>();
@@ -48,7 +49,7 @@ namespace PurpleIvy
                 {
                     totalFogProgress += fog.Value;
                 }
-                //Log.Message("Total fog progress on the world map: " + totalFogProgress.ToString());
+                Log.Message("Total fog progress on the world map: " + totalFogProgress.ToString());
                 if (totalFogProgress >= 1f)
                 {
                     foreach (Map map in Find.Maps)
@@ -72,7 +73,7 @@ namespace PurpleIvy
                                 result = 0f;
                             }
                             gameCondition.fogProgress[map] = result;
-                            //Log.Message("Home map fog progress: " + gameCondition.fogProgress[map].ToString());
+                            Log.Message("Home map fog progress: " + gameCondition.fogProgress[map].ToString());
                         }
                     }
                 }

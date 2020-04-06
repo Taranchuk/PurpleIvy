@@ -54,7 +54,7 @@ namespace PurpleIvy
                             Find.WorldObjects.Add(site);
                             Find.LetterStack.ReceiveLetter("InfectedTileSpreading".Translate(),
                                 "InfectedTileSpreadingDesc".Translate(), LetterDefOf.ThreatBig, site);
-                            this.delay = Find.TickManager.TicksGame + 250000;
+                            this.delay = Find.TickManager.TicksGame + new IntRange(220000, 270000).RandomInRange;
                         }
                     }
                 }
