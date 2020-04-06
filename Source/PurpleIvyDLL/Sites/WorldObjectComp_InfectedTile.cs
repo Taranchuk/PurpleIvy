@@ -32,7 +32,7 @@ namespace PurpleIvy
                 if (Find.TickManager.TicksGame % 250 == 0)
                 {
                     this.counter++;
-                    if (this.counter > 1000 && this.spreadTile == true)
+                    if (this.counter > 1000 && this.delay < Find.TickManager.TicksGame)
                     {
                         int num;
                         Predicate<int> predicate = (int x) => !Find.WorldObjects.AnyWorldObjectAt
@@ -54,24 +54,32 @@ namespace PurpleIvy
                             Find.WorldObjects.Add(site);
                             Find.LetterStack.ReceiveLetter("InfectedTileSpreading".Translate(),
                                 "InfectedTileSpreadingDesc".Translate(), LetterDefOf.ThreatBig, site);
-                            spreadTile = false;
+                            this.delay = Find.TickManager.TicksGame + 250000;
                         }
                     }
                 }
-                MapParent mapParent = this.parent as MapParent;
-                if (mapParent != null && mapParent.Map != null)
+                if (Find.TickManager.TicksGame % 60 == 0)
                 {
-                    if (mapParent.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count <= 0)
+                    MapParent mapParent = this.parent as MapParent;
+                    if (mapParent != null && mapParent.Map != null)
                     {
-                         this.StopQuest();
+                        int count = mapParent.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                        if (count > 0)
+                        {
+                            Log.Message("Change counter " + counter.ToString() + " to " + count.ToString());
+                            this.counter = count;
+                        }
+                        else if (count <= 0)
+                        {
+                            this.counter = 0;
+                            GameCondition_PurpleFog gameCondition = mapParent.Map
+                                .gameConditionManager.GetActiveCondition<GameCondition_PurpleFog>();
+                            this.StopQuest();
+                        }
                     }
+                    PurpleIvyData.TotalFogProgress[this] = PurpleIvyData.getFogProgress(this.counter);
                 }
             }
-        }
-
-        public override void PostMapGenerate()
-        {
-            base.PostMapGenerate();
         }
 
         public override void PostExposeData()
@@ -80,7 +88,7 @@ namespace PurpleIvy
             Scribe_Values.Look<bool>(ref this.active, "active", false, false);
             Scribe_Values.Look<int>(ref this.counter, "counter", 0, false);
             Scribe_Values.Look<int>(ref this.infectedTile, "infectedTile", 0, false);
-            Scribe_Values.Look<bool>(ref this.spreadTile, "spreadTile", false, false);
+            Scribe_Values.Look<int>(ref this.delay, "delay", 0, false);
             Scribe_Defs.Look<GameConditionDef>(ref this.gameConditionCaused, "gameConditionCaused");
         }
 
@@ -116,7 +124,7 @@ namespace PurpleIvy
 
         public int infectedTile;
 
-        private bool spreadTile = true;
+        public int delay;
 
         public GameConditionDef gameConditionCaused;
 

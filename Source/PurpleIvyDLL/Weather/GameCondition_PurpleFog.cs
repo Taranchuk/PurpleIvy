@@ -22,6 +22,8 @@ namespace PurpleIvy
 
         public int delay = 0;
 
+        public bool forcedFogProgress = false;
+
         public override void Init()
         {
             LessonAutoActivator.TeachOpportunity(ConceptDefOf.ForbiddingDoors, OpportunityType.Critical);
@@ -30,32 +32,7 @@ namespace PurpleIvy
             purpleFog.durationRange = new IntRange(10000000, 10000000);
             foreach (Map map in this.AffectedMaps)
             {
-                int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
-                if (count < 500)
-                {
-                    this.fogProgress[map] = 0f;
-                    if (count < 400)
-                    {
-                        this.End();
-                        Find.LetterStack.ReceiveLetter("PurpleFogReceded".Translate(),
-                            "PurpleFogRecededDesc".Translate(), LetterDefOf.PositiveEvent);
-                    }
-                }
-                else
-                {
-                    count -= 500;
-                    this.fogProgress[map] = ((float)count / (float)1500 * 100f) / 100f;
-                }
-                map.weatherManager.TransitionTo(purpleFog);
-            }
-        }
-
-        public override void GameConditionTick()
-        {
-            List<Map> affectedMaps = base.AffectedMaps;
-            foreach (Map map in affectedMaps)
-            {
-                if (Find.TickManager.TicksGame % 60 == 0) // for performance
+                if (this.forcedFogProgress != true)
                 {
                     int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
                     if (count < 500)
@@ -70,10 +47,39 @@ namespace PurpleIvy
                     }
                     else
                     {
-                        count -= 500;
-                        this.fogProgress[map] = ((float)count / (float)1500 * 100f) / 100f;
+                        this.fogProgress[map] = PurpleIvyData.getFogProgress(count);
                     }
-                    Log.Message(map + " - total plants " + count.ToString() + " = fog progress - " + this.fogProgress[map].ToString());
+                }
+                map.weatherManager.TransitionTo(purpleFog);
+            }
+        }
+
+        public override void GameConditionTick()
+        {
+            List<Map> affectedMaps = base.AffectedMaps;
+            foreach (Map map in affectedMaps)
+            {
+                if (Find.TickManager.TicksGame % 60 == 0) // for performance
+                {
+                    if (this.forcedFogProgress != true)
+                    {
+                        int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                        if (count < 500)
+                        {
+                            this.fogProgress[map] = 0f;
+                            if (count < 400)
+                            {
+                                this.End();
+                                Find.LetterStack.ReceiveLetter("PurpleFogReceded".Translate(),
+                                    "PurpleFogRecededDesc".Translate(), LetterDefOf.PositiveEvent);
+                            }
+                        }
+                        else
+                        {
+                            this.fogProgress[map] = PurpleIvyData.getFogProgress(count);
+                        }
+                        Log.Message(map + " - total plants " + count.ToString() + " = fog progress - " + this.fogProgress[map].ToString());
+                    }
                     if (map.weatherManager.curWeather != PurpleIvyDefOf.PurpleFog &&
                         Find.TickManager.TicksGame > this.weatherEndingTick)
                     {
@@ -228,19 +234,22 @@ namespace PurpleIvy
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.weatherEndingTick, "weatherEndingTick", 0, true);
             Scribe_Values.Look<int>(ref this.delay, "delay", 0, true);
+            Scribe_Values.Look<bool>(ref this.forcedFogProgress, "forcedFogProgress", false, true);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                foreach (Map map in AffectedMaps)
+                if (this.forcedFogProgress != true)
                 {
-                    int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
-                    if (count < 500)
+                    foreach (Map map in AffectedMaps)
                     {
-                        this.fogProgress[map] = 0f;
-                    }
-                    else
-                    {
-                        count -= 500;
-                        this.fogProgress[map] = ((float)count / (float)1500 * 100f) / 100f;
+                        int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                        if (count < 500)
+                        {
+                            this.fogProgress[map] = 0f;
+                        }
+                        else
+                        {
+                            this.fogProgress[map] = PurpleIvyData.getFogProgress(count);
+                        }
                     }
                 }
             }

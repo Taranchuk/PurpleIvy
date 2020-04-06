@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using RimWorld.BaseGen;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 
@@ -89,15 +90,11 @@ namespace PurpleIvy
             int counter = Find.WorldObjects.WorldObjectAt(map.Tile, PurpleIvyDefOf.InfectedTile)
                 .GetComponent<WorldObjectComp_InfectedTile>().counter;
             int radius = 0;
-            foreach (KeyValuePair<int,int> test in PurpleIvyData.RadiusData)
+            foreach (KeyValuePair<int,int> raduisData in PurpleIvyData.RadiusData)
             {
-                if (counter > test.Value)
+                if (counter < raduisData.Value)
                 {
-                    radius = test.Key;
-                }
-                else if (counter < test.Value)
-                {
-                    return radius;
+                    return raduisData.Value;
                 }
             }
             return radius;
@@ -129,21 +126,25 @@ namespace PurpleIvy
             GenSpawn.Spawn(meteor, intVec, map);
 
             int radius = getRadius(map);
-            Log.Message(radius.ToString());
+            Log.Message("Radius: " + radius.ToString());
             var radialCells = GenRadial.RadialCellsAround(meteor.Position, radius, true)
                 .ToList();
+            int plantCount = 0;
+            int counter = map.Parent.GetComponent<WorldObjectComp_InfectedTile>().counter;
+
             foreach (IntVec3 vec in radialCells)
             {
                 if (!SpreadBuilding(vec, map))
                 {
-                    if (GenGrid.InBounds(vec, map) && GenGrid.Standable(vec, map))
+                    if (plantCount < counter && GenGrid.InBounds(vec, map) 
+                        && GenGrid.Standable(vec, map))
                     {
                         Plant newivy = new Plant();
                         newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
                         GenSpawn.Spawn(newivy, vec, map);
                         newivy.Growth = this.growth;
+                        plantCount++;
                     }
-
                 }
                 this.growth = this.growth - 0.001f;
             }

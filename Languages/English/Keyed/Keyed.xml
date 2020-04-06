@@ -9,4 +9,6 @@
 	<InfectedTileDesc>You notice something is wrong in the sky. Maybe it's worth sending a squad and scouting the situation there.</InfectedTileDesc>
 	<InfectedTileSpreading>The infection is spreading!</InfectedTileSpreading>
 	<InfectedTileSpreadingDesc>The infection is spreading!</InfectedTileSpreadingDesc>
+	<PurpleFogСomesFromInfectedSites>Purple fog comes from infected sites</PurpleFogСomesFromInfectedSites>
+	<PurpleFogСomesFromInfectedSitesDesc>Purple fog comes from infected sites</PurpleFogСomesFromInfectedSitesDesc>
 </LanguageData>

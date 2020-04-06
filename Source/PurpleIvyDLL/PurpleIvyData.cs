@@ -5,6 +5,7 @@ using Verse;
 
 namespace PurpleIvy
 {
+    [StaticConstructorOnStartup]
     public static class PurpleIvyData
     {
         public static Faction factionDirect
@@ -14,6 +15,11 @@ namespace PurpleIvy
                 return Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
             }
         }
+        public static float getFogProgress(int count)
+        {
+            return (((float)count - 500) / (float)1500 * 100f) / 100f;
+        }
+        public static Dictionary<WorldObjectComp_InfectedTile, float> TotalFogProgress = new Dictionary<WorldObjectComp_InfectedTile, float>();
 
         public static Dictionary<int, int> RadiusData = new Dictionary<int, int>()
                 {
