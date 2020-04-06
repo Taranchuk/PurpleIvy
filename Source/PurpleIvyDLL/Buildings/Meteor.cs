@@ -9,7 +9,6 @@ namespace PurpleIvy
     {
         public int age;
         public MeteorInfo info;
-        private ThingDef thingDef;
         public Thing meteor;
         private static readonly SoundDef OpenSound = SoundDef.Named("DropPod_Open");
 
