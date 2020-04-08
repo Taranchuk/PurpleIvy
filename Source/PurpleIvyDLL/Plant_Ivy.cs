@@ -213,14 +213,14 @@ namespace PurpleIvy
                         GenSpawn.Spawn(GenTurret, Position, this.Map);
                         this.MutateTry = false;
                     }
-                    else if (mutateRate >= 16 && mutateRate <= 18)
+                    else if (mutateRate >= 16 && mutateRate <= 17)
                     {
                         Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
                         EggSac.SetFactionDirect(PurpleIvyData.factionDirect);
                         GenSpawn.Spawn(EggSac, Position, this.Map);
                         this.MutateTry = false;
                     }
-                    else if (mutateRate >= 19 && mutateRate <= 23)
+                    else if (mutateRate >= 18 && mutateRate <= 23)
                     {
                         Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
                         ParasiteEgg.SetFactionDirect(PurpleIvyData.factionDirect);
@@ -332,8 +332,10 @@ namespace PurpleIvy
                 if (this.Growth >= 0.25f)
                 {
                     this.DoDamageToThings(Position);
+                    //Log.Message("Spread buildings");
                     this.SpreadBuildings();
                 }
+
             }
         }
         public override void ExposeData()

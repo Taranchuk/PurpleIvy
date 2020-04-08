@@ -15,10 +15,66 @@ namespace PurpleIvy
                 return Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
             }
         }
+
+        public static float getFogProgressWithOuterSources(int count, WorldObjectComp_InfectedTile comp, out bool comeFromOuterSource)
+        {
+            float result = PurpleIvyData.getFogProgress(count);
+            float outerSource = 0f;
+            foreach (KeyValuePair<WorldObjectComp_InfectedTile, float> data in PurpleIvyData.TotalFogProgress)
+            {
+                if (data.Key != comp)
+                {
+                    outerSource += data.Value;
+                }
+            }
+            outerSource = outerSource / 4;
+            outerSource -= 0.5f;
+            if (outerSource < 0f)
+            {
+                outerSource = 0f;
+            }
+            if (result == 0f && outerSource > 0f)
+            {
+                comeFromOuterSource = true;
+            }
+            else
+            {
+                comeFromOuterSource = false;
+            }
+            return result + outerSource;
+        }
+
         public static float getFogProgress(int count)
         {
-            return ((float)count / (float)1000 * 100f) / 100f;
+            float result = ((float)(count - 500) / (float)1000 * 100f) / 100f;
+            if (result < 0f)
+            {
+                result = 0f;
+            }
+            return result;
         }
+
+        public static List<string> Genny_ParasiteAlpha = new List<string>
+        {
+            "Genny_ParasiteAlphaA",
+            "Genny_ParasiteAlphaB",
+            "Genny_ParasiteAlphaC"
+        };
+
+        public static List<string> Genny_ParasiteBeta = new List<string>
+        {
+            "Genny_ParasiteBetaA",
+            "Genny_ParasiteBetaB",
+            "Genny_ParasiteBetaC",
+            "Genny_ParasiteBetaD",
+            "Genny_ParasiteBetaE"
+        };
+
+        public static List<string> Genny_ParasiteOmega = new List<string>
+        {
+            "Genny_ParasiteOmega"
+        };
+
         public static Dictionary<WorldObjectComp_InfectedTile, float> TotalFogProgress = new Dictionary<WorldObjectComp_InfectedTile, float>();
 
         public static Dictionary<int, int> RadiusData = new Dictionary<int, int>()

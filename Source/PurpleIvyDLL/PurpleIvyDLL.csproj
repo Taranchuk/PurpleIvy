@@ -299,9 +299,12 @@
     <Compile Include="Buildings\Building_GenMortarGun.cs" />
     <Compile Include="Buildings\Building_GenTurretGun.cs" />
     <Compile Include="HediffInfected.cs" />
+    <Compile Include="Incidents\IncidentWorker_RaidAliens.cs" />
+    <Compile Include="Incidents\IncidentWorker_Ambush_AlienParasites.cs" />
     <Compile Include="PurpleIvyData.cs" />
     <Compile Include="Sites\GenStep_InfectedTile.cs" />
     <Compile Include="Sites\WorldObjectCompProperties_InfectedTile.cs" />
+    <Compile Include="Sites\Site_InfectedSite.cs" />
     <Compile Include="Sites\WorldObjectComp_InfectedTile.cs" />
     <Compile Include="Incidents\IncidentWorker_InfectedTile.cs" />
     <Compile Include="IncubationData.cs" />

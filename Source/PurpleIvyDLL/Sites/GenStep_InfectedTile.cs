@@ -61,14 +61,14 @@ namespace PurpleIvy
                         GenSpawn.Spawn(GenTurret, dir, map);
                         return true;
                     }
-                    else if (mutateRate >= 16 && mutateRate <= 18)
+                    else if (mutateRate >= 16 && mutateRate <= 17)
                     {
                         Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
                         EggSac.SetFactionDirect(PurpleIvyData.factionDirect);
                         GenSpawn.Spawn(EggSac, dir, map);
                         return true;
                     }
-                    else if (mutateRate >= 19 && mutateRate <= 23)
+                    else if (mutateRate >= 18 && mutateRate <= 23)
                     {
                         Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
                         ParasiteEgg.SetFactionDirect(PurpleIvyData.factionDirect);
@@ -94,7 +94,7 @@ namespace PurpleIvy
             {
                 if (counter < raduisData.Value)
                 {
-                    return raduisData.Value;
+                    return raduisData.Key;
                 }
             }
             return radius;
@@ -130,8 +130,10 @@ namespace PurpleIvy
             var radialCells = GenRadial.RadialCellsAround(meteor.Position, radius, true)
                 .ToList();
             int plantCount = 0;
-            int counter = map.Parent.GetComponent<WorldObjectComp_InfectedTile>().counter;
-
+            var infectedComp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
+            int counter = infectedComp.counter;
+            float origGrowth = 1f;
+            float growth = 1f;
             foreach (IntVec3 vec in radialCells)
             {
                 if (!SpreadBuilding(vec, map))
@@ -142,18 +144,18 @@ namespace PurpleIvy
                         Plant newivy = new Plant();
                         newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
                         GenSpawn.Spawn(newivy, vec, map);
-                        newivy.Growth = this.growth;
+                        newivy.Growth = growth;
+                        growth -= (origGrowth / (float)counter);
                         plantCount++;
                     }
                 }
-                this.growth = this.growth - 0.001f;
             }
 
-            foreach (var i in Enumerable.Range(1, 3))
+            foreach (var i in Enumerable.Range(1, map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count * 10))
             {
                 IntVec3 spawnPlace = radialCells.Where(x => GenGrid.Walkable(x, map)).RandomElement();
                 radialCells.Remove(spawnPlace);
-                PawnKindDef pawnKindDef = PawnKindDef.Named("Genny_ParasiteAlphaA");
+                PawnKindDef pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteAlpha.RandomElement());
                 Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
                 NewPawn.SetFaction(PurpleIvyData.factionDirect);
                 NewPawn.ageTracker.AgeBiologicalTicks = 40000;
@@ -161,11 +163,11 @@ namespace PurpleIvy
                 GenSpawn.Spawn(NewPawn, spawnPlace, map);
             }
 
-            foreach (var i in Enumerable.Range(1, 20))
+            foreach (var i in Enumerable.Range(1, map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count * 10))
             {
                 IntVec3 spawnPlace = radialCells.Where(x => GenGrid.Walkable(x, map)).RandomElement();
                 radialCells.Remove(spawnPlace);
-                PawnKindDef pawnKindDef = PawnKindDef.Named("Genny_ParasiteOmega");
+                PawnKindDef pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteOmega.RandomElement());
                 Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
                 NewPawn.SetFaction(PurpleIvyData.factionDirect);
                 NewPawn.ageTracker.AgeBiologicalTicks = 40000;
@@ -174,12 +176,16 @@ namespace PurpleIvy
             }
             foreach (Plant_Ivy ivy in map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy))
             {
-                if (ivy.Growth > 10)
+                if (ivy.Growth > 0.1f)
                 {
                     ivy.MutateTry = false;
                 }
             }
-            if (map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count - 500 > 500)
+            int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+            Log.Message("New map created! plants - " + map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count.ToString());
+            var comp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
+            bool temp;
+            if (comp != null && PurpleIvyData.getFogProgressWithOuterSources(count, comp, out temp) > 0f)
             {
                 GameCondition_PurpleFog gameCondition =
                 (GameCondition_PurpleFog)GameConditionMaker.MakeConditionPermanent

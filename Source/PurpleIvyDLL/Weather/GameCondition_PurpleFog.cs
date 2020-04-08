@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 
@@ -22,8 +24,6 @@ namespace PurpleIvy
 
         public int delay = 0;
 
-        public float outerSource = 0f;
-
         public int weatherAge = 0;
 
         public WeatherDef purpleFog = PurpleIvyDefOf.PurpleFog;
@@ -37,14 +37,24 @@ namespace PurpleIvy
             purpleFoggyRain.durationRange = new IntRange(10000, 10000);
             foreach (Map map in this.AffectedMaps)
             {
+                this.fogProgress[map] = 0f;
                 int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
-                this.fogProgress[map] = PurpleIvyData.getFogProgress(count) + this.outerSource;
-
-                if (this.fogProgress[map] <= 0)
+                var comp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
+                if (comp != null)
                 {
-                    this.End();
-                    Find.LetterStack.ReceiveLetter("PurpleFogReceded".Translate(),
-                        "PurpleFogRecededDesc".Translate(), LetterDefOf.PositiveEvent);
+                    bool temp;
+                    this.fogProgress[map] = PurpleIvyData.getFogProgressWithOuterSources(count, comp, out temp);
+                    if (this.fogProgress[map] <= 0)
+                    {
+                        this.End();
+                        Find.LetterStack.ReceiveLetter("PurpleFogReceded".Translate(),
+                            "PurpleFogRecededDesc".Translate(), LetterDefOf.PositiveEvent);
+                    }
+                }
+                else
+                {
+
+                    Log.Message("1 Comp null - GameCondition_PurpleFog");
                 }
                 weatherAge = map.weatherManager.curWeatherAge;
                 bool fog = map.weatherManager.CurWeatherPerceived.overlayClasses
@@ -73,13 +83,23 @@ namespace PurpleIvy
                 if (Find.TickManager.TicksGame % 60 == 0) // for performance
                 {
                     int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
-                    this.fogProgress[map] = PurpleIvyData.getFogProgress(count) + this.outerSource;
-                    if (this.fogProgress[map] <= 0)
+                    var comp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
+                    if (comp != null)
                     {
-                        this.End();
-                        Find.LetterStack.ReceiveLetter("PurpleFogReceded".Translate(),
-                            "PurpleFogRecededDesc".Translate(), LetterDefOf.PositiveEvent);
+                        bool temp;
+                        this.fogProgress[map] = PurpleIvyData.getFogProgressWithOuterSources(count, comp, out temp);
+                        if (this.fogProgress[map] <= 0)
+                        {
+                            this.End();
+                            Find.LetterStack.ReceiveLetter("PurpleFogReceded".Translate(),
+                                "PurpleFogRecededDesc".Translate(), LetterDefOf.PositiveEvent);
+                        }
                     }
+                    else
+                    {
+                        Log.Message("2 Comp null - GameCondition_PurpleFog");
+                    }
+
                     Log.Message(map + " - total plants " + count.ToString() + " = fog progress - " + this.fogProgress[map].ToString(), true);
                     bool fog = map.weatherManager.CurWeatherPerceived.overlayClasses
                     .Contains(typeof(WeatherOverlay_Fog));
@@ -96,7 +116,6 @@ namespace PurpleIvy
             
                 if (Find.TickManager.TicksGame % 3451 == 0)
                 {
-                    Log.Message(map.weatherManager.curWeather.defName);
                     if (map.weatherManager.curWeather != PurpleIvyDefOf.PurpleFoggyRain
                         && this.delay < Find.TickManager.TicksGame && this.fogProgress[map] >= 33)
                     {
@@ -212,21 +231,23 @@ namespace PurpleIvy
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.weatherEndingTick, "weatherEndingTick", 0, true);
             Scribe_Values.Look<int>(ref this.delay, "delay", 0, true);
-            Scribe_Values.Look<float>(ref this.outerSource, "outerSource", 0f, true);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 purpleFog.durationRange = new IntRange(10000, 10000);
                 purpleFoggyRain.durationRange = new IntRange(10000, 10000);
                 foreach (Map map in AffectedMaps)
                 {
-                    int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
-                    this.fogProgress[map] = PurpleIvyData.getFogProgress(count) + this.outerSource;
-                    //if (this.fogProgress[map] <= 0)
-                    //{
-                    //    this.End();
-                    //    Find.LetterStack.ReceiveLetter("PurpleFogReceded".Translate(),
-                    //        "PurpleFogRecededDesc".Translate(), LetterDefOf.PositiveEvent);
-                    //}
+                    var comp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
+                    if (comp != null)
+                    {
+                        int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                        bool temp;
+                        this.fogProgress[map] = PurpleIvyData.getFogProgressWithOuterSources(count, comp, out temp);
+                    }
+                    else
+                    {
+                        Log.Message("3 Comp null - GameCondition_PurpleFog");
+                    }
                 }
             }
         }

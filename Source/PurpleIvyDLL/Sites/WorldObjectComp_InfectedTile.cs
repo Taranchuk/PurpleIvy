@@ -35,8 +35,9 @@ namespace PurpleIvy
                     if (this.counter > 750 && this.delay < Find.TickManager.TicksGame)
                     {
                         int num;
-                        Predicate<int> predicate = (int x) => !Find.WorldObjects.AnyWorldObjectAt
+                        Predicate<int> predicate = (int x) => this.infectedTile != x && !Find.WorldObjects.AnyWorldObjectAt
                         (x, PurpleIvyDefOf.InfectedTile);
+                        // Find.WorldObjects.WorldObjectAt(x, null).GetComponent<WorldObjectComp_InfectedTile>() == null &&
                         if (TileFinder.TryFindPassableTileWithTraversalDistance(this.parent.Tile,
                             0, 1, out num, predicate, false, true, false))
                         {
@@ -66,14 +67,15 @@ namespace PurpleIvy
                         int count = mapParent.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
                         if (count > 0)
                         {
-                            Log.Message("Change counter " + counter.ToString() + " to " + count.ToString());
                             this.counter = count;
                         }
                         else if (count <= 0)
                         {
                             this.counter = 0;
-                            GameCondition_PurpleFog gameCondition = mapParent.Map
-                                .gameConditionManager.GetActiveCondition<GameCondition_PurpleFog>();
+                        }
+                        bool temp;
+                        if (PurpleIvyData.getFogProgressWithOuterSources(this.counter, this.parent.GetComponent<WorldObjectComp_InfectedTile>(), out temp) <= 0f)
+                        {
                             this.StopQuest();
                         }
                     }
@@ -100,11 +102,10 @@ namespace PurpleIvy
         public void StopQuest()
         {
             this.active = false;
-            Settlement settlement = Find.World.worldObjects.SettlementAt(this.infectedTile);
-            bool flag = settlement != null && settlement.HasMap;
-            if (flag)
+            MapParent infectedSite = Find.World.worldObjects.ObjectsAt(this.infectedTile) as MapParent;
+            if (infectedSite != null && infectedSite.Map != null)
             {
-                GameConditionManager gameConditionManager = settlement.Map.gameConditionManager;
+                GameConditionManager gameConditionManager = infectedSite.Map.gameConditionManager;
                 if (gameConditionManager.ConditionIsActive(this.gameConditionCaused))
                 {
                     gameConditionManager.ActiveConditions.Remove(gameConditionManager.GetActiveCondition(this.gameConditionCaused));
@@ -125,6 +126,10 @@ namespace PurpleIvy
         public int infectedTile;
 
         public int delay;
+
+        public int AlienPower;
+
+        public int AlienPowerSpent;
 
         public GameConditionDef gameConditionCaused;
 

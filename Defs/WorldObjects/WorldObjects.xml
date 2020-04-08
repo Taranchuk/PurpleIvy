@@ -3,7 +3,7 @@
 
 	<WorldObjectDef>
 		<defName>InfectedTile</defName>
-		<worldObjectClass>Site</worldObjectClass>
+		<worldObjectClass>PurpleIvy.InfectedSite</worldObjectClass>
 		<expandingIcon>true</expandingIcon>
 		<expandingIconPriority>70</expandingIconPriority>
 		<comps>
@@ -12,7 +12,6 @@
 			<li Class="WorldObjectCompProperties_ItemStashContents" />
 			<li Class="WorldObjectCompProperties_FormCaravan" />
 			<li Class="PurpleIvy.WorldObjectCompProperties_InfectedTile" />
-
 		</comps>
 	</WorldObjectDef>
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 using Verse.Noise;
@@ -35,49 +36,31 @@ namespace PurpleIvy
                 var comp = worldObject.GetComponent<WorldObjectComp_InfectedTile>();
                 if (comp != null)
                 {
-                    PurpleIvyData.TotalFogProgress[comp] = comp.counter;
+                    bool temp;
+                    PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(comp.counter);
                 }
             }
         }
-        public override void GameComponentTick()
-        {
-            base.GameComponentTick();
-            if (PurpleIvyData.TotalFogProgress != null && Find.TickManager.TicksGame % 60 == 0)
-            {
-                float totalFogProgress = 0f;
-                foreach (var fog in PurpleIvyData.TotalFogProgress)
-                {
-                    totalFogProgress += fog.Value;
-                }
-                Log.Message("Total fog progress on the world map: " + totalFogProgress.ToString(), true);
-                if (totalFogProgress > 1f)
-                {
-                    foreach (Map map in Find.Maps)
-                    {
-                        if (map.IsPlayerHome)
-                        {
-                            GameCondition_PurpleFog gameCondition = map.gameConditionManager.GetActiveCondition<GameCondition_PurpleFog>();
-                            if (gameCondition == null)
-                            {
-                                gameCondition =
-                                (GameCondition_PurpleFog)GameConditionMaker.MakeConditionPermanent
-                                (PurpleIvyDefOf.PurpleFogGameCondition);
-                                float result = (totalFogProgress - 1f) / 4;
-                                gameCondition.outerSource = result;
-                                map.gameConditionManager.RegisterCondition(gameCondition);
-                                Find.LetterStack.ReceiveLetter("PurpleFogСomesFromInfectedSites.".Translate(),
-                                "PurpleFogСomesFromInfectedSitesDesc".Translate(), LetterDefOf.ThreatBig, LookTargets.Invalid);
-                            }
-                            else
-                            {
-                                float result = (totalFogProgress - 1f) / 4;
-                                gameCondition.outerSource = result;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+
+        // for testing purposes
+        //public override void GameComponentTick()
+        //{
+        //    base.GameComponentTick();
+        //    bool temp;
+        //    if (Find.TickManager.TicksGame % 60 == 0)
+        //    {
+        //        foreach (var worldObject in Find.WorldObjects.AllWorldObjects)
+        //        {
+        //            var comp = worldObject.GetComponent<WorldObjectComp_InfectedTile>();
+        //            if (comp != null)
+        //            {
+        //                Log.Message(comp.parent + " infected: " + comp.counter + " counter, "
+        //                + PurpleIvyData.getFogProgressWithOuterSources(comp.counter, comp, out temp)
+        //                .ToString() + " getFogProgressWithOuterSources", true);
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
 

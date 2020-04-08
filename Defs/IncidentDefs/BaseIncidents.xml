@@ -5,24 +5,67 @@
 		<defName>PI_MeteorImpact</defName>
 		<workerClass>PurpleIvy.IncidentWorker_MeteorImpact</workerClass>
 		<baseChance>0.5</baseChance>
-    <category>ThreatBig</category>
-	<targetTags>
-		<li>Map_PlayerHome</li>
-		<li>Map_TempIncident</li>
-		<li>Map_Misc</li>
-		<li>Map_RaidBeacon</li>
-		<li>Caravan</li>
-	</targetTags>
+		<category>ThreatBig</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+			<li>Map_TempIncident</li>
+			<li>Map_Misc</li>
+			<li>Map_RaidBeacon</li>
+			<li>Caravan</li>
+		</targetTags>
 	</IncidentDef>
-	
+
 	<IncidentDef>
 		<defName>PI_InfectedTile</defName>
 		<workerClass>PurpleIvy.IncidentWorker_InfectedTile</workerClass>
 		<baseChance>0.5</baseChance>
-    <category>ThreatBig</category>
-	<targetTags>
-		<li>Map_PlayerHome</li>
-	</targetTags>
+		<category>ThreatBig</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
 	</IncidentDef>
+
+	<IncidentDef>
+		<defName>PI_RaidAliens</defName>
+		<label>alien raid</label>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>PurpleIvy.IncidentWorker_RaidAliens</workerClass>
+		<baseChance>7.4</baseChance>
+		<category>ThreatBig</category>
+		<pointsScaleable>true</pointsScaleable>
+		<tale>Raid</tale>
+	</IncidentDef> 
+	<IncidentDef>
+		<defName>PI_AlienAmbush</defName>
+		<label>alien ambush</label>
+		<category>ThreatBig</category>
+		<targetTags>
+			<li>Caravan</li>
+		</targetTags>
+		<workerClass>PurpleIvy.IncidentWorker_Ambush_AlienParasites</workerClass>
+		<pointsScaleable>false</pointsScaleable>
+		<baseChance>1.0</baseChance>
+		<minRefireDays>0</minRefireDays>
+		<letterText>{0} has been ambushed by {1}!</letterText>
+		<letterLabel>Parasites attacked the caravan</letterLabel>
+		<letterDef>ThreatBig</letterDef>
+		<tale>CaravanAmbushedByAliens</tale>
+		<mtbDaysByBiome>
+			<TemperateForest>20</TemperateForest>
+			<BorealForest>20</BorealForest>
+			<TropicalRainforest>20</TropicalRainforest>
+			<AridShrubland>20</AridShrubland>
+			<Desert>30</Desert>
+			<Tundra>30</Tundra>
+			<TropicalSwamp>30</TropicalSwamp>
+			<TemperateSwamp>30</TemperateSwamp>
+			<ColdBog>35</ColdBog>
+			<ExtremeDesert>35</ExtremeDesert>
+			<IceSheet>40</IceSheet>
+			<SeaIce>60</SeaIce>
+		</mtbDaysByBiome>
+	</IncidentDef> 
 
 </Defs>
