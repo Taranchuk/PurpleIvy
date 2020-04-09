@@ -38,7 +38,7 @@ namespace PurpleIvy
                 int mutateChance = random.Next(1, 100);
                 if (30 >= mutateChance)
                 {
-                    random = new System.Random(map.GetHashCode());
+                    random = new System.Random(dir.GetHashCode() + dir.GetHashCode());
                     int mutateRate = random.Next(1, 100);
                     if (mutateRate >= 0 && mutateRate <= 5)
                     {
@@ -192,6 +192,24 @@ namespace PurpleIvy
                 (PurpleIvyDefOf.PurpleFogGameCondition);
                 map.gameConditionManager.RegisterCondition(gameCondition);
             }
+            Log.Message("Total PurpleIvy count on the map: " +
+            map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count.ToString(), true);
+            Log.Message("Total Genny_ParasiteAlpha count on the map: " +
+            map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteAlpha).Count.ToString(), true);
+            Log.Message("Total Genny_ParasiteBeta count on the map: " +
+            map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteBeta).Count.ToString(), true);
+            Log.Message("Total Genny_ParasiteOmega count on the map: " +
+            map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteOmega).Count.ToString(), true);
+            Log.Message("Total EggSac count on the map: " +
+            map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count.ToString(), true);
+            Log.Message("Total ParasiteEgg count on the map: " +
+            map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count.ToString(), true);
+            Log.Message("Total GasPump count on the map: " +
+            map.listerThings.ThingsOfDef(PurpleIvyDefOf.GasPump).Count.ToString(), true);
+            Log.Message("Total GenTurretBase count on the map: " +
+            map.listerThings.ThingsOfDef(PurpleIvyDefOf.GenTurretBase).Count.ToString(), true);
+            Log.Message("Total Turret_GenMortarSeed count on the map: " +
+            map.listerThings.ThingsOfDef(PurpleIvyDefOf.Turret_GenMortarSeed).Count.ToString(), true);
         }
 
         public float growth = 1f;

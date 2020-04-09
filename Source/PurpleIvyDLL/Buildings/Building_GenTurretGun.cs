@@ -22,6 +22,11 @@ namespace PurpleIvy
                 GenPlace.TryPlaceThing(weaponDrop, Position, this.Map, ThingPlaceMode.Near);
             }
         }
+
+        //public override void Tick()
+        //{
+        //    base.Tick();
+        //}
     }
 }
 

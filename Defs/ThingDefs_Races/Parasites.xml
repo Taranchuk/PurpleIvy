@@ -15,6 +15,7 @@
 		<race>
 			<thinkTreeMain>Genny</thinkTreeMain>
 			<trainability>None</trainability>
+			<wildness>1</wildness>
 			<manhunterOnDamageChance>1</manhunterOnDamageChance>
 			<soundCallIntervalRange>1000~2000</soundCallIntervalRange>
 			<soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>

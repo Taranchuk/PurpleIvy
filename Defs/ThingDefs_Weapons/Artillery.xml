@@ -1,69 +1,52 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+	<!-- ================== Seed mortar ================== -->
+	<ThingDef ParentName="BaseBullet">
+		<defName>Bullet_GenMortar</defName>
+		<label>Oxalis Seed</label>
+		<graphicData>
+			<texPath>Things/OxalisSeed</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<speed>32</speed>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
+		</projectile>
+	</ThingDef>
 
-  <!-- ================== Seed mortar ================== -->
-
-  <ThingDef ParentName="BaseBullet">
-    <defName>Bullet_GenMortar</defName>
-    <label>Oxalis Seed</label>
-	<graphicData>
-		<texPath>Things/OxalisSeed</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<shaderType>TransparentPostLight</shaderType>
-	</graphicData>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>20</damageAmountBase>
-      <speed>32</speed>
-      <flyOverhead>true</flyOverhead>
-      <soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
-    </projectile>
-  </ThingDef>
-  
-<ThingDef ParentName="BaseArtilleryWeapon">
-    <defName>Artillery_MortarGenny</defName>
-    <label>Oxalis</label>
-    <description>A genetically modified Oxalis plant species, its able to fire its seeds huge distances.</description>
-	<graphicData>
-		<texPath>Things/GenMortarGun</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-	<thingClass>ThingWithComps</thingClass>
-    <menuHidden>True</menuHidden>
-    <destroyOnDrop>True</destroyOnDrop>
-	<tradeability>None</tradeability>
-    <weaponTags>
-      <li>Artillery</li>
-      <li>Artillery_BaseDestroyer</li>
-    </weaponTags>
-    <pathCost>10</pathCost>
-    <useHitPoints>True</useHitPoints>
-    <selectable>True</selectable>
-    <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
-      <Flammability>0.3</Flammability>
-    </statBases>
-    <altitudeLayer>Item</altitudeLayer>
-    <alwaysHaulable>True</alwaysHaulable>
-    <tickerType>Never</tickerType>
-    <techLevel>Spacer</techLevel>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-        <hasStandardCommand>true</hasStandardCommand>
-	<defaultProjectile>Bullet_GenMortar</defaultProjectile>
-        <warmupTime>300</warmupTime>
-        <minRange>20</minRange>
-        <range>200</range>
-        <accuracyTouch>0.79</accuracyTouch>
-        <accuracyShort>0.42</accuracyShort>
-        <accuracyMedium>0.18</accuracyMedium>
-        <accuracyLong>0.06</accuracyLong>
-        <burstShotCount>1</burstShotCount>
-        <soundCast>GenMortarFire</soundCast>
-      </li>
-    </verbs>
-  </ThingDef>
-
+	<ThingDef ParentName="BaseArtilleryWeapon">
+		<defName>Artillery_MortarGenny</defName>
+		<label>Oxalis</label>
+		<description>A genetically modified Oxalis plant species, its able to fire its seeds huge distances.</description>
+		<graphicData>
+			<texPath>Things/GenMortarGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<weaponTags>
+			<li>Artillery_BaseDestroyer</li>
+		</weaponTags>
+		<tradeability>None</tradeability>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_GenMortar</defaultProjectile>
+				<warmupTime>1.2</warmupTime>
+				<minRange>30</minRange>
+				<range>500</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>Mortar_LaunchA</soundCast>
+				<muzzleFlashScale>16</muzzleFlashScale>
+				<requireLineOfSight>false</requireLineOfSight>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+	</ThingDef>
 </Defs>

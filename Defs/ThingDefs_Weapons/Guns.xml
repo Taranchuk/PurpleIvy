@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!-- ================ Improvised turret gun ============== -->
-
 	<ThingDef ParentName="BaseBullet">
 		<defName>Bullet_GenTurret</defName>
 		<label>Mucilage</label>
@@ -19,45 +18,35 @@
 	<ThingDef ParentName="BaseWeaponTurret">
 		<defName>GunTurretGun</defName>
 		<label>Corchorus</label>
-		<thingClass>ThingWithComps</thingClass>
 		<menuHidden>true</menuHidden>
 		<description>A genetically modified Chorchorus plant species, its able to fire its Mucilage slime at will.</description>
 		<graphicData>
 			<texPath>Things/GenTurretGun</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<soundInteract>InteractRifle</soundInteract>
-		<weaponTags>
-			<li>TurretGun</li>
-		</weaponTags>
-		<pathCost>10</pathCost>
-		<useHitPoints>True</useHitPoints>
-		<selectable>True</selectable>
 		<statBases>
-			<MaxHitPoints>100</MaxHitPoints>
-			<Flammability>0.3</Flammability>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.64</AccuracyShort>
+			<AccuracyMedium>0.41</AccuracyMedium>
+			<AccuracyLong>0.22</AccuracyLong>
+			<RangedWeapon_Cooldown>4.8</RangedWeapon_Cooldown>
+			<DeteriorationRate>0</DeteriorationRate>
 			<Mass>5</Mass>
+			<Flammability>0</Flammability>
 		</statBases>
-		<altitudeLayer>Item</altitudeLayer>
-		<alwaysHaulable>True</alwaysHaulable>
-		<tickerType>Never</tickerType>
-		<techLevel>Spacer</techLevel>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_GenTurret</defaultProjectile>
-				<warmupTime>108</warmupTime>
-				<range>20.9</range>
-				<accuracyTouch>0.89</accuracyTouch>
-				<accuracyShort>0.74</accuracyShort>
-				<accuracyMedium>0.51</accuracyMedium>
-				<accuracyLong>0.32</accuracyLong>
-				<ticksBetweenBurstShots>16</ticksBetweenBurstShots>
+				<warmupTime>0</warmupTime>
+				<range>28.9</range>
+				<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
 				<burstShotCount>1</burstShotCount>
-				<soundCast>GenTurretFire</soundCast>
+				<soundCast>GunShotA</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
 			</li>
 		</verbs>
 	</ThingDef>
-
 </Defs>

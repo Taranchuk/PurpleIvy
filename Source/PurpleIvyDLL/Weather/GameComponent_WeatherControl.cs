@@ -36,7 +36,6 @@ namespace PurpleIvy
                 var comp = worldObject.GetComponent<WorldObjectComp_InfectedTile>();
                 if (comp != null)
                 {
-                    bool temp;
                     PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(comp.counter);
                 }
             }

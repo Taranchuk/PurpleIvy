@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="BuildingBase">
+		<defName>GenTurretBase</defName>
+		<label>Chorcorus</label>
+		<description>A genetically modified Chorchorus plant species, its able to fire its Mucilage slime at will.</description>
+		<thingClass>PurpleIvy.Building_GenTurretGun</thingClass>
+		<graphicData>
+			<texPath>Things/GenTurretBase</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(0.27,0.25,0.27)</volume>
+				<offset>(0,0,0)</offset>
+			</shadowData>
+		</graphicData>
+		<castEdgeShadows>true</castEdgeShadows>
+		<size>(1,1)</size>
+		<altitudeLayer>Building</altitudeLayer>
+		<stealable>false</stealable>
+		<rotatable>false</rotatable>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>0.7</Flammability>
+			<Mass>8</Mass>
+			<Beauty>-20</Beauty>
+			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+		</statBases>
+		<tickerType>Normal</tickerType>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+		<fillPercent>0.4</fillPercent>
+		<hasTooltip>true</hasTooltip>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<building>
+			<combatPower>45</combatPower>
+			<ai_combatDangerous>true</ai_combatDangerous>
+			<turretGunDef>GunTurretGun</turretGunDef>
+			<turretBurstCooldownTime>4.8</turretBurstCooldownTime>
+		</building>
+	</ThingDef>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>Turret_GenMortarSeed</defName>
+		<label>Oxalis Seedpod</label>
+		<thingClass>PurpleIvy.Building_GenTurretGun</thingClass>
+		<graphicData>
+			<texPath>Things/GenMortarBase</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(0.27,0.25,0.27)</volume>
+				<offset>(0,0,0)</offset>
+			</shadowData>
+		</graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+		<castEdgeShadows>true</castEdgeShadows>
+		<stealable>false</stealable>
+		<rotatable>false</rotatable>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<Flammability>0.3</Flammability>
+			<WorkToBuild>0</WorkToBuild>
+			<Beauty>-60</Beauty>
+		</statBases>
+		<tickerType>Normal</tickerType>
+		<description>A genetically modified Oxalis plant species, its able to fire its seeds huge distances.</description>
+		<size>(1,1)</size>
+		<passability>Impassable</passability>
+		<fillPercent>0.4</fillPercent>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<building>
+			<ai_combatDangerous>true</ai_combatDangerous>
+			<turretGunDef>Artillery_MortarGenny</turretGunDef>
+			<turretBurstWarmupTime>3</turretBurstWarmupTime>
+			<turretBurstCooldownTime>30</turretBurstCooldownTime>
+			<buildingTags>
+				<li>Artillery</li>
+				<li>Artillery_BaseDestroyer</li>
+			</buildingTags>
+		</building>
+		<placeWorkers>
+			<li>PlaceWorker_NotUnderRoof</li>
+		</placeWorkers>
+	</ThingDef>
+
+</Defs>

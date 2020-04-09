@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -29,7 +30,7 @@ namespace PurpleIvy
             base.CompTick();
             if (this.active)
             {
-                if (Find.TickManager.TicksGame % 500 == 0)
+                if (Find.TickManager.TicksGame % 600 == 0)
                 {
                     this.counter++;
                     if (this.counter > 750 && this.delay < Find.TickManager.TicksGame)
@@ -37,7 +38,6 @@ namespace PurpleIvy
                         int num;
                         Predicate<int> predicate = (int x) => this.infectedTile != x && !Find.WorldObjects.AnyWorldObjectAt
                         (x, PurpleIvyDefOf.InfectedTile);
-                        // Find.WorldObjects.WorldObjectAt(x, null).GetComponent<WorldObjectComp_InfectedTile>() == null &&
                         if (TileFinder.TryFindPassableTileWithTraversalDistance(this.parent.Tile,
                             0, 1, out num, predicate, false, true, false))
                         {
@@ -82,6 +82,32 @@ namespace PurpleIvy
                     PurpleIvyData.TotalFogProgress[this] = PurpleIvyData.getFogProgress(this.counter);
                 }
             }
+        }
+
+        public List<Pawn> generateAliens()
+        {
+            List<Pawn> list = new List<Pawn>();
+
+            return null;
+        }
+        public void AlienAmbush(Caravan caravan)
+        {
+            LongEventHandler.QueueLongEvent(delegate ()
+            {
+                IncidentParms incidentParms = StorytellerUtility.DefaultParmsNow
+                (IncidentCategoryDefOf.ThreatBig, caravan);
+                List<Pawn> list = this.generateAliens();
+                Map map = CaravanIncidentUtility.SetupCaravanAttackMap(caravan, list, false);
+                for (int i = 0; i < list.Count; i++)
+                {
+                    list[i].mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.ManhunterPermanent, null, false, false, null, false);
+                }
+                Find.TickManager.CurTimeSpeed = 0;
+                GlobalTargetInfo globalTargetInfo = (!GenCollection.Any<Pawn>(list))
+                ? GlobalTargetInfo.Invalid : new GlobalTargetInfo(list[0].Position, map, false);
+                Find.LetterStack.ReceiveLetter("AlienAmbush".Translate(), "AlienAmbushDesc".Translate()
+                    , LetterDefOf.ThreatBig, globalTargetInfo, null, null, null, null);
+            }, "GeneratingMapForNewEncounter", false, null, true);
         }
 
         public override void PostExposeData()
