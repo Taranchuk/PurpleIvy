@@ -21,6 +21,18 @@ namespace PurpleIvy
 
         }
 
+        public override void GameComponentUpdate()
+        {
+            base.GameComponentUpdate();
+            if (WorldRendererUtility.WorldRenderedNow && Current.ProgramState == ProgramState.Playing)
+            {
+                foreach (var comp in PurpleIvyData.TotalFogProgress)
+                {
+                    comp.Key.DrawWorldRadiusRing(comp.Key.infectedTile, comp.Key.radius);
+                }
+            }
+        }
+
         public override void StartedNewGame()
         {
             base.StartedNewGame();

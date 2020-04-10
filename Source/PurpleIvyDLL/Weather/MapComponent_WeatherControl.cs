@@ -27,7 +27,9 @@ namespace PurpleIvy
             {
                 int count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
                 bool comeFromOuterSource;
-                if (PurpleIvyData.getFogProgressWithOuterSources(count, null, out comeFromOuterSource) > 0f && 
+                var tempComp = new WorldObjectComp_InfectedTile();
+                tempComp.infectedTile = map.Tile;
+                if (PurpleIvyData.getFogProgressWithOuterSources(count, tempComp, out comeFromOuterSource) > 0f && 
                     !map.gameConditionManager.ConditionIsActive(PurpleIvyDefOf.PurpleFogGameCondition))
                 {
                     GameCondition_PurpleFog gameCondition =
@@ -56,8 +58,8 @@ namespace PurpleIvy
                         comp.gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;
                         comp.counter = count;
                         comp.infectedTile = map.Tile;
+                        comp.radius = (int)(count / 100);
                         map.Parent.AllComps.Add(comp);
-                        bool temp;
                         PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(count);
                         Log.Message("Adding comp to: " + map.Parent.ToString());
                     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
+using UnityEngine;
 using Verse;
 
 namespace PurpleIvy
@@ -25,6 +26,50 @@ namespace PurpleIvy
             return base.CompInspectStringExtra();
         }
 
+        public void DrawWorldRadiusRing(int center, int radius)
+        {
+            if (radius < 0)
+            {
+                return;
+            }
+            if (this.cachedEdgeTilesForCenter != center || this.cachedEdgeTilesForRadius != radius || this.cachedEdgeTilesForWorldSeed != Find.World.info.Seed)
+            {
+                this.cachedEdgeTilesForCenter = center;
+                this.cachedEdgeTilesForRadius = radius;
+                this.cachedEdgeTilesForWorldSeed = Find.World.info.Seed;
+                this.cachedEdgeTiles.Clear();
+                Find.WorldFloodFiller.FloodFill(center, (int tile) => true, delegate (int tile, int dist)
+                {
+                    if (dist > radius + 1)
+                    {
+                        return true;
+                    }
+                    if (dist == radius + 1)
+                    {
+                        this.cachedEdgeTiles.Add(tile);
+                    }
+                    return false;
+                }, int.MaxValue, null);
+                WorldGrid worldGrid = Find.WorldGrid;
+                Vector3 c = worldGrid.GetTileCenter(center);
+                Vector3 n = c.normalized;
+                this.cachedEdgeTiles.Sort(delegate (int a, int b)
+                {
+                    float num = Vector3.Dot(n, Vector3.Cross(worldGrid.GetTileCenter(a) - c, worldGrid.GetTileCenter(b) - c));
+                    if (Mathf.Abs(num) < 0.0001f)
+                    {
+                        return 0;
+                    }
+                    if (num < 0f)
+                    {
+                        return -1;
+                    }
+                    return 1;
+                });
+            }
+            GenDraw.DrawWorldLineStrip(this.cachedEdgeTiles, PurpleIvyData.OneSidedWorldLineMatPurple, 5f);
+        }
+
         public override void CompTick()
         {
             base.CompTick();
@@ -33,6 +78,11 @@ namespace PurpleIvy
                 if (Find.TickManager.TicksGame % 600 == 0)
                 {
                     this.counter++;
+                    int newRadius = (int)(this.counter / 100);
+                    if (this.radius != newRadius)
+                    {
+                        this.radius = newRadius;
+                    }
                     if (this.counter > 750 && this.delay < Find.TickManager.TicksGame)
                     {
                         int num;
@@ -51,6 +101,7 @@ namespace PurpleIvy
                             site.GetComponent<WorldObjectComp_InfectedTile>().gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;
                             site.GetComponent<WorldObjectComp_InfectedTile>().counter = 0;
                             site.GetComponent<WorldObjectComp_InfectedTile>().infectedTile = site.Tile;
+                            site.GetComponent<WorldObjectComp_InfectedTile>().radius = (int)(0 / 100);
                             site.GetComponent<TimeoutComp>().StartTimeout(30 * 60000);
                             Find.WorldObjects.Add(site);
                             Find.LetterStack.ReceiveLetter("InfectedTileSpreading".Translate(),
@@ -116,6 +167,9 @@ namespace PurpleIvy
             Scribe_Values.Look<bool>(ref this.active, "active", false, false);
             Scribe_Values.Look<int>(ref this.counter, "counter", 0, false);
             Scribe_Values.Look<int>(ref this.infectedTile, "infectedTile", 0, false);
+            Scribe_Values.Look<int>(ref this.AlienPower, "AlienPower", 0, false);
+            Scribe_Values.Look<int>(ref this.AlienPowerSpent, "AlienPowerSpent", 0, false);
+            Scribe_Values.Look<int>(ref this.radius, "radius", 0, false);
             Scribe_Values.Look<int>(ref this.delay, "delay", 0, false);
             Scribe_Defs.Look<GameConditionDef>(ref this.gameConditionCaused, "gameConditionCaused");
         }
@@ -149,6 +203,8 @@ namespace PurpleIvy
 
         public int counter;
 
+        public int radius;
+
         public int infectedTile;
 
         public int delay;
@@ -159,6 +215,13 @@ namespace PurpleIvy
 
         public GameConditionDef gameConditionCaused;
 
+        private List<int> cachedEdgeTiles = new List<int>();
+
+        private int cachedEdgeTilesForCenter = -1;
+
+        private int cachedEdgeTilesForRadius = -1;
+
+        private int cachedEdgeTilesForWorldSeed = -1;
 
     }
 }

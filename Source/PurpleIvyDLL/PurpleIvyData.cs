@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using RimWorld;
+using RimWorld.Planet;
+using UnityEngine;
 using Verse;
 
 namespace PurpleIvy
@@ -8,6 +10,9 @@ namespace PurpleIvy
     [StaticConstructorOnStartup]
     public static class PurpleIvyData
     {
+
+        public static readonly Material OneSidedWorldLineMatPurple = MaterialPool.MatFrom(GenDraw.OneSidedLineTexPath, ShaderDatabase.WorldOverlayTransparent, new Color(0.368f, 0f, 1f), WorldMaterials.DynamicObjectRenderQueue);
+
         public static Faction factionDirect
         {
             get
@@ -24,7 +29,12 @@ namespace PurpleIvy
             {
                 if (data.Key != comp)
                 {
-                    outerSource += data.Value;
+                    if (Find.WorldGrid.TraversalDistanceBetween
+                        (comp.infectedTile, data.Key.infectedTile, true, int.MaxValue) - 1 <= data.Key.radius)
+                    {
+                        Log.Message("outerSource from " + data.Key);
+                        outerSource += data.Value;
+                    }
                 }
             }
             outerSource = outerSource / 4;
