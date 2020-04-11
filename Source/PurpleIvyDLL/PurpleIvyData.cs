@@ -11,8 +11,6 @@ namespace PurpleIvy
     public static class PurpleIvyData
     {
 
-        public static readonly Material OneSidedWorldLineMatPurple = MaterialPool.MatFrom(GenDraw.OneSidedLineTexPath, ShaderDatabase.WorldOverlayTransparent, new Color(0.368f, 0f, 1f), WorldMaterials.DynamicObjectRenderQueue);
-
         public static Faction factionDirect
         {
             get
@@ -21,6 +19,7 @@ namespace PurpleIvy
             }
         }
 
+        public static Color PurpleColor = new Color(0.368f, 0f, 1f);
         public static float getFogProgressWithOuterSources(int count, WorldObjectComp_InfectedTile comp, out bool comeFromOuterSource)
         {
             float result = PurpleIvyData.getFogProgress(count);

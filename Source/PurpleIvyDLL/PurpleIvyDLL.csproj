@@ -33,6 +33,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\..\..\Files\devmods\SourceDLLs\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\..\Files\devmods\SourceDLLs\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
@@ -298,8 +302,11 @@
     <Compile Include="Buildings\Building_EggSac.cs" />
     <Compile Include="Buildings\Building_GenMortarGun.cs" />
     <Compile Include="Buildings\Building_GenTurretGun.cs" />
+    <Compile Include="HarmonyPatches\HarmonyPatchesInit.cs" />
+    <Compile Include="HarmonyPatches\WeatherChecker.cs" />
     <Compile Include="HediffInfected.cs" />
     <Compile Include="PurpleIvyData.cs" />
+    <Compile Include="Sites\BiomeWorker_AlienBiome.cs" />
     <Compile Include="Sites\GenStep_InfectedTile.cs" />
     <Compile Include="Sites\WorldObjectCompProperties_InfectedTile.cs" />
     <Compile Include="Sites\Site_InfectedSite.cs" />

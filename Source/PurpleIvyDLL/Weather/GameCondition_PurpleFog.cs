@@ -203,7 +203,17 @@ namespace PurpleIvy
         
         public override float SkyTargetLerpFactor(Map map)
         {
-            return this.fogProgress[map];
+            if (this.fogProgress.ContainsKey(map))
+            {
+                return this.fogProgress[map];
+            }
+            else
+            {
+                Log.Error("Something went wrong with the map " + map + ". It was not represented in " +
+                    "the fogProgress dictionary. The value is reset to 0");
+                this.fogProgress[map] = 0f;
+                return this.fogProgress[map];
+            }
         }
 
         public override SkyTarget? SkyTarget(Map map)

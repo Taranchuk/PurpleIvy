@@ -26,50 +26,30 @@ namespace PurpleIvy
             return base.CompInspectStringExtra();
         }
 
-        public void DrawWorldRadiusRing(int center, int radius)
+        public void fillRadius()
         {
-            if (radius < 0)
+            List<int> tiles = new List<int>();
+            Find.WorldFloodFiller.FloodFill(this.infectedTile, (int tile) => true, delegate (int tile, int dist)
             {
-                return;
-            }
-            if (this.cachedEdgeTilesForCenter != center || this.cachedEdgeTilesForRadius != radius || this.cachedEdgeTilesForWorldSeed != Find.World.info.Seed)
+                if (dist > this.radius + 1)
+                {
+                    return true;
+                }
+                Log.Message("Add tile: " + tile.ToString());
+                tiles.Add(tile);
+                return false;
+            }, int.MaxValue, null);
+            foreach (int tile in tiles)
             {
-                this.cachedEdgeTilesForCenter = center;
-                this.cachedEdgeTilesForRadius = radius;
-                this.cachedEdgeTilesForWorldSeed = Find.World.info.Seed;
-                this.cachedEdgeTiles.Clear();
-                Find.WorldFloodFiller.FloodFill(center, (int tile) => true, delegate (int tile, int dist)
+                var origBiome = Find.WorldGrid[tile].biome;
+                if (!origBiome.defName.StartsWith("PI_"))
                 {
-                    if (dist > radius + 1)
-                    {
-                        return true;
-                    }
-                    if (dist == radius + 1)
-                    {
-                        this.cachedEdgeTiles.Add(tile);
-                    }
-                    return false;
-                }, int.MaxValue, null);
-                WorldGrid worldGrid = Find.WorldGrid;
-                Vector3 c = worldGrid.GetTileCenter(center);
-                Vector3 n = c.normalized;
-                this.cachedEdgeTiles.Sort(delegate (int a, int b)
-                {
-                    float num = Vector3.Dot(n, Vector3.Cross(worldGrid.GetTileCenter(a) - c, worldGrid.GetTileCenter(b) - c));
-                    if (Mathf.Abs(num) < 0.0001f)
-                    {
-                        return 0;
-                    }
-                    if (num < 0f)
-                    {
-                        return -1;
-                    }
-                    return 1;
-                });
+                    Log.Message("Change biome");
+                    var infectedBiome = BiomeDef.Named("PI_" + origBiome.defName);
+                    Find.WorldGrid[tile].biome = infectedBiome;
+                }
             }
-            GenDraw.DrawWorldLineStrip(this.cachedEdgeTiles, PurpleIvyData.OneSidedWorldLineMatPurple, 5f);
         }
-
         public override void CompTick()
         {
             base.CompTick();
@@ -82,6 +62,7 @@ namespace PurpleIvy
                     if (this.radius != newRadius)
                     {
                         this.radius = newRadius;
+                        this.fillRadius();
                     }
                     if (this.counter > 750 && this.delay < Find.TickManager.TicksGame)
                     {
@@ -102,6 +83,7 @@ namespace PurpleIvy
                             site.GetComponent<WorldObjectComp_InfectedTile>().counter = 0;
                             site.GetComponent<WorldObjectComp_InfectedTile>().infectedTile = site.Tile;
                             site.GetComponent<WorldObjectComp_InfectedTile>().radius = (int)(0 / 100);
+                            site.GetComponent<WorldObjectComp_InfectedTile>().fillRadius();
                             site.GetComponent<TimeoutComp>().StartTimeout(30 * 60000);
                             Find.WorldObjects.Add(site);
                             Find.LetterStack.ReceiveLetter("InfectedTileSpreading".Translate(),
@@ -214,14 +196,6 @@ namespace PurpleIvy
         public int AlienPowerSpent;
 
         public GameConditionDef gameConditionCaused;
-
-        private List<int> cachedEdgeTiles = new List<int>();
-
-        private int cachedEdgeTilesForCenter = -1;
-
-        private int cachedEdgeTilesForRadius = -1;
-
-        private int cachedEdgeTilesForWorldSeed = -1;
 
     }
 }

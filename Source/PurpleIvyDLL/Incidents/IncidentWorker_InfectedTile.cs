@@ -32,6 +32,7 @@ namespace PurpleIvy
                 site.GetComponent<WorldObjectComp_InfectedTile>().counter = 500;
                 site.GetComponent<WorldObjectComp_InfectedTile>().infectedTile = site.Tile;
                 site.GetComponent<WorldObjectComp_InfectedTile>().radius = (int)(500 / 100);
+                site.GetComponent<WorldObjectComp_InfectedTile>().fillRadius();
                 site.GetComponent<TimeoutComp>().StartTimeout(30 * 60000);
                 Find.WorldObjects.Add(site);
                 Find.LetterStack.ReceiveLetter("InfectedTile".Translate(), 
