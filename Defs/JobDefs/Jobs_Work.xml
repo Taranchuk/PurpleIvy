@@ -10,4 +10,12 @@
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
   
+	<JobDef>
+    <defName>PI_AttackMelee</defName>
+    <driverClass>PurpleIvy.JobDriver_AttackMeleePlus</driverClass>
+    <reportString>melee attacking TargetA.</reportString>
+    <alwaysShowWeapon>true</alwaysShowWeapon>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+  
 </Defs>

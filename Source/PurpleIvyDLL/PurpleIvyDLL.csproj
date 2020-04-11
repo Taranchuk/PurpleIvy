@@ -304,6 +304,7 @@
     <Compile Include="Buildings\Building_GenTurretGun.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatchesInit.cs" />
     <Compile Include="HarmonyPatches\ApplyWeatherOnNewMaps.cs" />
+    <Compile Include="Jobs\JobDriver_AttackMelee.cs" />
     <Compile Include="WorldRendering.cs" />
     <Compile Include="HediffInfected.cs" />
     <Compile Include="PurpleIvyData.cs" />

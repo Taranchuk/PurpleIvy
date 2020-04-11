@@ -66,10 +66,11 @@ namespace PurpleIvy
 
         private Job MeleeAttackJob(Pawn pawn, Thing target)
         {
-            Job job = JobMaker.MakeJob(JobDefOf.AttackMelee, target);
+            Job job = JobMaker.MakeJob(PurpleIvyDefOf.PI_AttackMelee, target);
             job.maxNumMeleeAttacks = 1;
             job.expiryInterval = Rand.Range(420, 900);
             job.attackDoorIfTargetLost = true;
+            job.canBash = true;
             return job;
         }
         private Building FindTurretTarget(Pawn pawn)

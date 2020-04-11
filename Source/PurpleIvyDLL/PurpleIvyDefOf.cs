@@ -19,6 +19,8 @@ namespace PurpleIvy
 
         public static JobDef PI_Kill;
 
+        public static JobDef PI_AttackMelee;
+
         public static ThingDef InfectedCorpseDummy;
 
         public static ThingDef PurpleIvy;
