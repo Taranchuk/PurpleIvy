@@ -303,7 +303,7 @@
     <Compile Include="Buildings\Building_GenMortarGun.cs" />
     <Compile Include="Buildings\Building_GenTurretGun.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatchesInit.cs" />
-    <Compile Include="HarmonyPatches\WeatherChecker.cs" />
+    <Compile Include="HarmonyPatches\ApplyWeatherOnNewMaps.cs" />
     <Compile Include="WorldRendering.cs" />
     <Compile Include="HediffInfected.cs" />
     <Compile Include="PurpleIvyData.cs" />

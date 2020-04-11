@@ -54,7 +54,7 @@ namespace PurpleIvy
                     {
                         var comp = new WorldObjectComp_InfectedTile();
                         comp.parent = map.Parent;
-                        comp.StartQuest();
+                        comp.StartInfection();
                         comp.gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;
                         comp.counter = count;
                         comp.infectedTile = map.Tile;

@@ -27,7 +27,7 @@ namespace PurpleIvy
                 site.AddPart(new SitePart(site, PurpleIvyDefOf.InfectedSite, 
                     PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
                     (StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.factionDirect)));
-                site.GetComponent<WorldObjectComp_InfectedTile>().StartQuest();
+                site.GetComponent<WorldObjectComp_InfectedTile>().StartInfection();
                 site.GetComponent<WorldObjectComp_InfectedTile>().gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;
                 site.GetComponent<WorldObjectComp_InfectedTile>().counter = 500;
                 site.GetComponent<WorldObjectComp_InfectedTile>().infectedTile = site.Tile;
