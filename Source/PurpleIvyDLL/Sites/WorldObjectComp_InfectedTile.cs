@@ -47,6 +47,8 @@ namespace PurpleIvy
                     Log.Message("Change biome");
                     var infectedBiome = BiomeDef.Named("PI_" + origBiome.defName);
                     Find.WorldGrid[tile].biome = infectedBiome;
+                    WorldUpdater.WorldUpdater2();
+                    WorldUpdater.RenderSingleTile(tile, Find.WorldGrid[tile].biome.DrawMaterial, WorldUpdater.LayersSubMeshes["WorldLayer_Terrain"]);
                 }
             }
         }
