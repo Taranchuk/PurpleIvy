@@ -304,9 +304,10 @@
     <Compile Include="Buildings\Building_GenTurretGun.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatchesInit.cs" />
     <Compile Include="HarmonyPatches\ApplyWeatherOnNewMaps.cs" />
+    <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
     <Compile Include="Jobs\JobDriver_AttackMelee.cs" />
     <Compile Include="WorldRendering.cs" />
-    <Compile Include="HediffInfected.cs" />
+    <Compile Include="AlienInfection\HediffInfected.cs" />
     <Compile Include="PurpleIvyData.cs" />
     <Compile Include="Sites\BiomeWorker_AlienBiome.cs" />
     <Compile Include="Sites\GenStep_InfectedTile.cs" />
@@ -314,12 +315,12 @@
     <Compile Include="Sites\Site_InfectedSite.cs" />
     <Compile Include="Sites\WorldObjectComp_InfectedTile.cs" />
     <Compile Include="Incidents\IncidentWorker_InfectedTile.cs" />
-    <Compile Include="IncubationData.cs" />
+    <Compile Include="AlienInfection\IncubationData.cs" />
     <Compile Include="AlienInfection\CompProperties_AlienInfection.cs" />
     <Compile Include="Jobs\JobDriver_Kill.cs" />
     <Compile Include="Jobs\JobGiver_GennyBerserk.cs" />
     <Compile Include="Weather\GameCondition_PurpleFog.cs" />
-    <Compile Include="Weather\GameComponent_WeatherControl.cs" />
+    <Compile Include="GameComponent_WorldEvents.cs" />
     <Compile Include="Weather\MapComponent_WeatherControl.cs" />
     <Compile Include="PurpleIvyDefOf.cs" />
     <Compile Include="AlienInfection\Comp_AlienInfection.cs" />
@@ -329,7 +330,7 @@
     <Compile Include="Buildings\Meteorite.cs" />
     <Compile Include="Buildings\MeteorUtility.cs" />
     <Compile Include="Incidents\IncidentWorker_MeteorImpact.cs" />
-    <Compile Include="Plant_Ivy.cs" />
+    <Compile Include="Plants\Plant_Ivy.cs" />
     <Compile Include="Projectile_Seed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Weather\WeatherOverlay_PurpleRain.cs" />

@@ -51,6 +51,8 @@ namespace PurpleIvy
 
         public static SitePartDef InfectedSite;
 
+        public static IncidentDef PI_AlienRaid;
+
 
 
     }

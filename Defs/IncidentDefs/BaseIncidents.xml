@@ -25,4 +25,16 @@
 		</targetTags>
 	</IncidentDef>
 
+	<IncidentDef>
+		<defName>PI_AlienRaid</defName>
+		<label>alien raid</label>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>PurpleIvy.IncidentWorker_AlienRaid</workerClass>
+		<baseChance>0</baseChance>
+		<category>ThreatBig</category>
+		<tale>Raid</tale>
+	</IncidentDef>
+
 </Defs>

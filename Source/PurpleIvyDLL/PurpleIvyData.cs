@@ -20,6 +20,7 @@ namespace PurpleIvy
         }
 
         public static Color PurpleColor = new Color(0.368f, 0f, 1f);
+
         public static float getFogProgressWithOuterSources(int count, WorldObjectComp_InfectedTile comp, out bool comeFromOuterSource)
         {
             float result = PurpleIvyData.getFogProgress(count);
@@ -31,12 +32,11 @@ namespace PurpleIvy
                     if (Find.WorldGrid.TraversalDistanceBetween
                         (comp.infectedTile, data.Key.infectedTile, true, int.MaxValue) - 1 <= data.Key.radius)
                     {
-                        Log.Message("outerSource from " + data.Key);
                         outerSource += data.Value;
                     }
                 }
             }
-            outerSource = outerSource / 4;
+            //outerSource = outerSource / 4;
             outerSource -= 0.5f;
             if (outerSource < 0f)
             {
