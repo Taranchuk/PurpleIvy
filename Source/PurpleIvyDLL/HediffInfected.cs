@@ -10,32 +10,31 @@ namespace PurpleIvy
     {
         public override void PostAdd(DamageInfo? dinfo)
         {
-            ThingDef dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
-            AlienInfection comp = new AlienInfection();
+            var dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
+            var comp = new AlienInfection();
             comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
             comp.parent = this.pawn;
-            PawnKindDef parasite = GenCollection.RandomElement<PawnKindDef>(
-            DefDatabase<PawnKindDef>.AllDefsListForReading
-            .Where(x => x.defName.Contains("Genny_Parasite")).ToList());
+            var parasite = DefDatabase<PawnKindDef>.AllDefsListForReading
+                .Where(x => x.defName.Contains("Genny_Parasite")).ToList().RandomElement<PawnKindDef>();
             comp.Props.typesOfCreatures = new List<string>()
             {
                 parasite.defName
             };
             if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
             {
-                IntRange range = new IntRange(1, 1);
+                var range = new IntRange(1, 1);
                 comp.maxNumberOfCreatures = range.RandomInRange;
                 comp.Props.maxNumberOfCreatures = range;
             }
             else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
             {
-                IntRange range = new IntRange(1, 3);
+                var range = new IntRange(1, 3);
                 comp.maxNumberOfCreatures = range.RandomInRange;
                 comp.Props.maxNumberOfCreatures = range;
             }
             else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
             {
-                IntRange range = new IntRange(1, 5);
+                var range = new IntRange(1, 5);
                 comp.maxNumberOfCreatures = range.RandomInRange;
                 comp.Props.maxNumberOfCreatures = range;
             }
@@ -44,10 +43,12 @@ namespace PurpleIvy
                 Log.Error("1 Something went wrong while adding infected comp: " + comp.parent + " - " + parasite);
             }
             comp.Props.incubationPeriod = new IntRange(10000, 40000);
-            comp.Props.IncubationData = new IncubationData();
-            comp.Props.IncubationData.tickStartHediff = new IntRange(2000, 4000);
-            comp.Props.IncubationData.deathChance = 90f;
-            comp.Props.IncubationData.hediff = HediffDefOf.Pregnant.defName;
+            comp.Props.IncubationData = new IncubationData
+            {
+                tickStartHediff = new IntRange(2000, 4000),
+                deathChance = 90f,
+                hediff = HediffDefOf.Pregnant.defName
+            };
             this.pawn.AllComps.Add(comp);
         }
 

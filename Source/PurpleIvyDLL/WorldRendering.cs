@@ -22,7 +22,7 @@ namespace PurpleIvy
             foreach (var layer in tempLayers)
             {
                 Layers.Add(layer.GetType().Name, layer);
-                List<LayerSubMesh> meshes = fieldMeshes.GetValue(layer) as List<LayerSubMesh>;
+                var meshes = fieldMeshes.GetValue(layer) as List<LayerSubMesh>;
                 LayersSubMeshes.Add(layer.GetType().Name, meshes);
             }
         }
@@ -36,7 +36,7 @@ namespace PurpleIvy
             int i;
             LayerSubMesh subMesh = WorldUpdater.GetSubMesh(material, subMeshes, out i);
             List<int> list = new List<int>();
-            List<Tile> list2 = Enumerable.ToList<Tile>(Enumerable.Where<Tile>(Find.WorldGrid.tiles, (Tile tile) => tile.biome == b));
+            List<Tile> list2 = Find.WorldGrid.tiles.Where<Tile>((Tile tile) => tile.biome == b).ToList<Tile>();
             for (int j = 0; j < Find.WorldGrid.TilesCount; j++)
             {
                 Tile tile2 = Find.WorldGrid[j];
@@ -132,12 +132,9 @@ namespace PurpleIvy
 
         public static void FinalizeMesh(MeshParts tags, List<LayerSubMesh> subMeshes)
         {
-            for (int i = 0; i < subMeshes.Count; i++)
+            foreach (var t in subMeshes.Where(t => t.verts.Count > 0))
             {
-                if (subMeshes[i].verts.Count > 0)
-                {
-                    subMeshes[i].FinalizeMesh(tags);
-                }
+                t.FinalizeMesh(tags);
             }
         }
 
@@ -160,11 +157,9 @@ namespace PurpleIvy
             for (int i = 0; i < subMeshes.Count; i++)
             {
                 LayerSubMesh layerSubMesh = subMeshes[i];
-                if (layerSubMesh.material == material && layerSubMesh.verts.Count < 40000)
-                {
-                    subMeshIndex = i;
-                    return layerSubMesh;
-                }
+                if (layerSubMesh.material != material || layerSubMesh.verts.Count >= 40000) continue;
+                subMeshIndex = i;
+                return layerSubMesh;
             }
             LayerSubMesh layerSubMesh2 = new LayerSubMesh(new Mesh(), material);
             subMeshIndex = subMeshes.Count;
@@ -197,6 +192,12 @@ namespace PurpleIvy
                     material = WorldMaterials.ImpassableMountains;
                     floatRange = WorldUpdater.BasePosOffsetRange_ImpassableMountains;
                     break;
+                case Hilliness.Undefined:
+                    break;
+                case Hilliness.Flat:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             LayerSubMesh subMesh = WorldUpdater.GetSubMesh(material, subMeshes);
             Vector3 vector = worldGrid.GetTileCenter(tileID);
@@ -240,6 +241,12 @@ namespace PurpleIvy
                         material = WorldMaterials.ImpassableMountains;
                         floatRange = WorldUpdater.BasePosOffsetRange_ImpassableMountains;
                         break;
+                    case Hilliness.Undefined:
+                        break;
+                    case Hilliness.Flat:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
                 LayerSubMesh subMesh = WorldUpdater.GetSubMesh(material, subMeshes);
                 Vector3 vector = worldGrid.GetTileCenter(num);
@@ -260,9 +267,9 @@ namespace PurpleIvy
 
         private static void ClearSubMeshes(MeshParts parts, List<LayerSubMesh> subMeshes)
         {
-            for (int i = 0; i < subMeshes.Count; i++)
+            foreach (var t in subMeshes)
             {
-                subMeshes[i].Clear(parts);
+                t.Clear(parts);
             }
         }
         public static Dictionary<string, WorldLayer> Layers;
