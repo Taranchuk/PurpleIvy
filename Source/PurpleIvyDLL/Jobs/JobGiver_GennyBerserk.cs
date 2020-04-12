@@ -87,11 +87,18 @@ namespace PurpleIvy
             Pawn victim = null;
             Predicate<Thing> predicate = (Thing p) => p != null && p != pawn 
             && p.Faction != pawn.Faction;
-            List<Pawn> allPawns = pawn.Map.mapPawns.AllPawns;
-            victim = (Pawn)GenClosest.ClosestThing_Global_Reachable(pawn.Position,
-                pawn.Map, allPawns, PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, 
+            //List<Pawn> allPawns = pawn.Map.mapPawns.AllPawns;
+            float distance = 25f;
+            victim = (Pawn)GenClosest.ClosestThingReachable(pawn.Position,
+                pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly,
                 TraverseMode.PassDoors, false)
-                , 50f, predicate);
+                , distance, predicate);
+            
+        //worst   victim = (Pawn)GenClosest.ClosestThing_Global_Reachable(pawn.Position,
+            //    pawn.Map, allPawns, PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, 
+            //    TraverseMode.PassDoors, false)
+            //    , distance, predicate);
+
             return victim;
         }
 
