@@ -23,23 +23,9 @@ namespace PurpleIvy
             foreach (var data in PurpleIvyData.TotalFogProgress.Where(data => data.Key != comp).Where(data => Find.WorldGrid.TraversalDistanceBetween
                 (comp.infectedTile, data.Key.infectedTile, true, int.MaxValue) - 1 <= data.Key.radius))
             {
-<<<<<<< HEAD
-                if (data.Key != comp)
-                {
-                    if (Find.WorldGrid.TraversalDistanceBetween
-                        (comp.infectedTile, data.Key.infectedTile, true, int.MaxValue) - 1 <= data.Key.radius)
-                    {
-                        outerSource += data.Value;
-                    }
-                }
-            }
-            //outerSource = outerSource / 4;
-=======
-                Log.Message("outerSource from " + data.Key);
                 outerSource += data.Value;
             }
-            outerSource /= 4;
->>>>>>> EvaineQ-Patch_N.1
+            //outerSource /= 4;
             outerSource -= 0.5f;
             if (outerSource < 0f)
             {
