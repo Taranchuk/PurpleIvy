@@ -95,7 +95,7 @@
 			<MoveSpeed>0.80</MoveSpeed>
 			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
-			<MeatAmount>50</MeatAmount>
+			<MeatAmount>30</MeatAmount>
 			<ArmorRating_Heat>2.00</ArmorRating_Heat>
 		</statBases>
 		<tools>
@@ -163,7 +163,7 @@
 			<MoveSpeed>2.63</MoveSpeed>
 			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
-			<MeatAmount>50</MeatAmount>
+			<MeatAmount>10</MeatAmount>
 			<ArmorRating_Heat>2.00</ArmorRating_Heat>
 		</statBases>
 		<tools>

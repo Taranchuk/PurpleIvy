@@ -95,54 +95,57 @@ namespace PurpleIvy
             //Loop over things if there are things
             if (list != null && list.Count > 0)
             {
-                foreach (var t in list.Where(t => t != null && t.Faction != PurpleIvyData.factionDirect))
+                for (int i = 0; i < list.Count; i++)
                 {
-                    //If we find a corpse
-                    if (t.def.IsCorpse)
+                    if (list[i] != null && list[i].Faction != PurpleIvyData.factionDirect)
                     {
-                        Corpse corpse = (Corpse)t;
-                        if (corpse.TryGetComp<AlienInfection>() == null)
+                        //If we find a corpse
+                        if (list[i].def.IsCorpse)
                         {
-                            Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
-                            var comp = dummyCorpse.TryGetComp<AlienInfection>();
-                            comp.parent = corpse;
-                            IntRange range = new IntRange(1, 5);
-                            comp.Props.maxNumberOfCreatures = range;
-                            comp.maxNumberOfCreatures = range.RandomInRange;
-                            comp.Props.typesOfCreatures = new List<string>()
+                            Corpse corpse = (Corpse)list[i];
+                            if (corpse.TryGetComp<AlienInfection>() == null)
                             {
-                                "Genny_ParasiteOmega"
-                            };
-                            corpse.AllComps.Add(comp);
-                            Log.Message("Adding infected comp to " + corpse);
+                                Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
+                                var comp = dummyCorpse.TryGetComp<AlienInfection>();
+                                comp.parent = corpse;
+                                IntRange range = new IntRange(1, 5);
+                                comp.Props.maxNumberOfCreatures = range;
+                                comp.maxNumberOfCreatures = range.RandomInRange;
+                                comp.Props.typesOfCreatures = new List<string>()
+                                {
+                                    "Genny_ParasiteOmega"
+                                };
+                                corpse.AllComps.Add(comp);
+                                Log.Message("Adding infected comp to " + corpse);
+                            }
+                            //speedup the spread a little
+                            SpreadTick--;
+                            SpreadTick--;
+                            SpreadTick--;
                         }
-                        //speedup the spread a little
-                        SpreadTick--;
-                        SpreadTick--;
-                        SpreadTick--;
-                    }
-                    //If we find a pawn and its not a hatchling
-                    else if (t is Pawn)
-                    {
-                        Pawn stuckPawn = (Pawn)t;
-                        DamageInfo damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
-                        stuckPawn.TakeDamage(damageInfo);
-                        Hediff hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
-                            stuckPawn, null);
-                        hediff.Severity = 0.1f;
-                        (stuckPawn).health.AddHediff(hediff, null, null, null);
-                        Hediff hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
-                            stuckPawn, null);
-                        hediff2.Severity = 0.1f;
-                        (stuckPawn).health.AddHediff(hediff2, null, null, null);
-                            
-                    }
-                    //If we find a plant
-                    else if (t is Plant)
-                    {
-                        if (t.def.defName != "PurpleIvy")
+                        //If we find a pawn and its not a hatchling
+                        else if (list[i] is Pawn)
                         {
-                            t.TakeDamage(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 1));
+                            Pawn stuckPawn = (Pawn)list[i];
+                            DamageInfo damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
+                            stuckPawn.TakeDamage(damageInfo);
+                            Hediff hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
+                            stuckPawn, null);
+                            hediff.Severity = 0.1f;
+                            (stuckPawn).health.AddHediff(hediff, null, null, null);
+                            Hediff hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
+                            stuckPawn, null);
+                            hediff2.Severity = 0.1f;
+                            (stuckPawn).health.AddHediff(hediff2, null, null, null);
+
+                        }
+                        //If we find a plant
+                        else if (list[i] is Plant)
+                        {
+                            if (list[i].def.defName != "PurpleIvy")
+                            {
+                                list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 1));
+                            }
                         }
                     }
                 }
