@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
@@ -11,22 +12,18 @@ namespace PurpleIvy
     public static class PurpleIvyData
     {
 
-        public static Faction factionDirect
-        {
-            get
-            {
-                return Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
-            }
-        }
+        public static Faction factionDirect => Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
 
         public static Color PurpleColor = new Color(0.368f, 0f, 1f);
 
         public static float getFogProgressWithOuterSources(int count, WorldObjectComp_InfectedTile comp, out bool comeFromOuterSource)
         {
-            float result = PurpleIvyData.getFogProgress(count);
-            float outerSource = 0f;
-            foreach (KeyValuePair<WorldObjectComp_InfectedTile, float> data in PurpleIvyData.TotalFogProgress)
+            var result = PurpleIvyData.getFogProgress(count);
+            var outerSource = 0f;
+            foreach (var data in PurpleIvyData.TotalFogProgress.Where(data => data.Key != comp).Where(data => Find.WorldGrid.TraversalDistanceBetween
+                (comp.infectedTile, data.Key.infectedTile, true, int.MaxValue) - 1 <= data.Key.radius))
             {
+<<<<<<< HEAD
                 if (data.Key != comp)
                 {
                     if (Find.WorldGrid.TraversalDistanceBetween
@@ -37,6 +34,12 @@ namespace PurpleIvy
                 }
             }
             //outerSource = outerSource / 4;
+=======
+                Log.Message("outerSource from " + data.Key);
+                outerSource += data.Value;
+            }
+            outerSource /= 4;
+>>>>>>> EvaineQ-Patch_N.1
             outerSource -= 0.5f;
             if (outerSource < 0f)
             {
@@ -55,7 +58,7 @@ namespace PurpleIvy
 
         public static float getFogProgress(int count)
         {
-            float result = ((float)(count - 500) / (float)1000 * 100f) / 100f;
+            var result = ((float)(count - 500) / (float)1000 * 100f) / 100f;
             if (result < 0f)
             {
                 result = 0f;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Verse;
 using Verse.Sound;
@@ -12,21 +13,20 @@ namespace PurpleIvy
     {
         private int SpreadTick;
         private int OrigSpreadTick;
-        public bool MutateTry;
         private int mutateChance;
         private int mutateRate;
+        public bool MutateTry;
+
         ThingDef sporesThingDef = ThingDef.Named("Spores");
         private Thing Spores = null;
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            if (this.Growth < 1)
-            {
-                System.Random random = new System.Random();
-                SpreadTick = random.Next(1, 3);
-                OrigSpreadTick = SpreadTick;
-                MutateTry = true;
-            }
+            if (!(this.Growth < 1)) return;
+            var random = new System.Random();
+            SpreadTick = random.Next(1, 3);
+            OrigSpreadTick = SpreadTick;
+            MutateTry = true;
         }
         public override void PostMapInit()
         {
@@ -68,47 +68,17 @@ namespace PurpleIvy
         {
             //List all things in that random direction cell
             List<Thing> list = this.Map.thingGrid.ThingsListAt(dir);
-            if (list.Count > 0)
-            {
-                //Loop over things
-                for (int i = 0; i < list.Count; i++)
-                {
-                    //If we find a plant
-                    if (list[i] is Plant)
-                    {
-                        //If the plant is Ivy
-                        if (list[i].def.defName == "PurpleIvy")
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
+            return list.Count > 0 && list.OfType<Plant>().Any(t => t.def.defName == "PurpleIvy");
         }
 
-        public bool isSurroundedByIvy(IntVec3 dir)
+        public bool IsSurroundedByIvy(IntVec3 dir)
         {
-            foreach (IntVec3 current in GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)))
-            {
-                if (!IvyInCell(current))
-                {
-                    return false;
-                }
-            }
-            return true;
+            return GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)).All(IvyInCell);
         }
 
-        public bool hasNoBuildings(IntVec3 dir)
+        public bool HasNoBuildings(IntVec3 dir)
         {
-            foreach (IntVec3 current in GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)))
-            {
-                if (!current.Standable(this.Map))
-                {
-                    return false;
-                }
-            }
-            return true;
+            return GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)).All(current => current.Standable(this.Map));
         }
 
         public void DoDamageToThings(IntVec3 pos)
@@ -125,57 +95,54 @@ namespace PurpleIvy
             //Loop over things if there are things
             if (list != null && list.Count > 0)
             {
-                for (int i = 0; i < list.Count; i++)
+                foreach (var t in list.Where(t => t != null && t.Faction != PurpleIvyData.factionDirect))
                 {
-                    if (list[i] != null && list[i].Faction != PurpleIvyData.factionDirect)
+                    //If we find a corpse
+                    if (t.def.IsCorpse)
                     {
-                        //If we find a corpse
-                        if (list[i].def.IsCorpse)
+                        Corpse corpse = (Corpse)t;
+                        if (corpse.TryGetComp<AlienInfection>() == null)
                         {
-                            Corpse corpse = (Corpse)list[i];
-                            if (corpse.TryGetComp<AlienInfection>() == null)
+                            Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
+                            var comp = dummyCorpse.TryGetComp<AlienInfection>();
+                            comp.parent = corpse;
+                            IntRange range = new IntRange(1, 5);
+                            comp.Props.maxNumberOfCreatures = range;
+                            comp.maxNumberOfCreatures = range.RandomInRange;
+                            comp.Props.typesOfCreatures = new List<string>()
                             {
-                                Thing dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
-                                var comp = dummyCorpse.TryGetComp<AlienInfection>();
-                                comp.parent = corpse;
-                                IntRange range = new IntRange(1, 5);
-                                comp.Props.maxNumberOfCreatures = range;
-                                comp.maxNumberOfCreatures = range.RandomInRange;
-                                comp.Props.typesOfCreatures = new List<string>()
-                                {
-                                    "Genny_ParasiteOmega"
-                                };
-                                corpse.AllComps.Add(comp);
-                                Log.Message("Adding infected comp to " + corpse);
-                            }
-                            //speedup the spread a little
-                            SpreadTick--;
-                            SpreadTick--;
-                            SpreadTick--;
+                                "Genny_ParasiteOmega"
+                            };
+                            corpse.AllComps.Add(comp);
+                            Log.Message("Adding infected comp to " + corpse);
                         }
-                        //If we find a pawn and its not a hatchling
-                        else if (list[i] is Pawn)
-                        {
-                            Pawn stuckPawn = (Pawn)list[i];
-                            DamageInfo damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
-                            stuckPawn.TakeDamage(damageInfo);
-                            Hediff hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
+                        //speedup the spread a little
+                        SpreadTick--;
+                        SpreadTick--;
+                        SpreadTick--;
+                    }
+                    //If we find a pawn and its not a hatchling
+                    else if (t is Pawn)
+                    {
+                        Pawn stuckPawn = (Pawn)t;
+                        DamageInfo damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
+                        stuckPawn.TakeDamage(damageInfo);
+                        Hediff hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
                             stuckPawn, null);
-                            hediff.Severity = 0.1f;
-                            (stuckPawn).health.AddHediff(hediff, null, null, null);
-                            Hediff hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
+                        hediff.Severity = 0.1f;
+                        (stuckPawn).health.AddHediff(hediff, null, null, null);
+                        Hediff hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
                             stuckPawn, null);
-                            hediff2.Severity = 0.1f;
-                            (stuckPawn).health.AddHediff(hediff2, null, null, null);
+                        hediff2.Severity = 0.1f;
+                        (stuckPawn).health.AddHediff(hediff2, null, null, null);
                             
-                        }
-                        //If we find a plant
-                        else if (list[i] is Plant)
+                    }
+                    //If we find a plant
+                    else if (t is Plant)
+                    {
+                        if (t.def.defName != "PurpleIvy")
                         {
-                            if (list[i].def.defName != "PurpleIvy")
-                            {
-                                list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 1));
-                            }
+                            t.TakeDamage(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 1));
                         }
                     }
                 }
@@ -184,7 +151,7 @@ namespace PurpleIvy
 
         public void SpreadBuildings()
         {
-            if (this.MutateTry == true && hasNoBuildings(Position))
+            if (this.MutateTry == true && HasNoBuildings(Position))
             {
                 System.Random random = new System.Random(this.Position.GetHashCode());
                 mutateChance = random.Next(1, 100);
@@ -280,7 +247,7 @@ namespace PurpleIvy
                 this.Spores.Graphic.drawSize.y = (this.Growth * 4f) - 1f;
                 this.Spores.Graphic.color.a = this.Growth;
             }
-            else if (GenGrid.InBounds(this.Position, this.Map))
+            else if (this.Position.InBounds(this.Map))
             {
                 ThingDef thingDef = new ThingDef
                 {
