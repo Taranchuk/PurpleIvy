@@ -46,25 +46,14 @@ namespace PurpleIvy
             Log.Message("PostPostRemove");
             this.counter = 0;
             this.StopInfection();
-            this.radius = -1;
+            this.radius = -1; //-1 is set to allow filRadius remove alien biome in the place
             this.ClearAlienBiomesOuterTheSources();
             base.PostPostRemove();
-        }
-        public bool TileNotInRadiusOfOtherSites(int tile)
-        {
-            foreach (var comp in PurpleIvyData.TotalFogProgress)
-            {
-                if (Find.WorldGrid.TraversalDistanceBetween
-                (comp.Key.infectedTile, tile, true, int.MaxValue) <= comp.Key.radius)
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         public void ClearAlienBiomesOuterTheSources()
         {
+            bool dirty = false;
             for (int i = 0; i < Find.WorldGrid.TilesCount; i++)
             {
                 if (Find.WorldGrid[i].biome.defName.Contains("PI_"))
@@ -73,34 +62,70 @@ namespace PurpleIvy
                 }
             }
             foreach (int tile in this.pollutedTiles)
+            //for (int i = PurpleIvyData.TotalPollutedBiomes.Count - 1; i >= 0; i--)
             {
-                if (TileNotInRadiusOfOtherSites(tile))
+                //int tile = PurpleIvyData.TotalPollutedBiomes[i];
+                if (PurpleIvyData.TileInRadiusOfInfectedSites(tile) != true)
                 {
-                    Log.Message("Return old biome");
+                    Log.Message("Return old biome: " + tile.ToString());
                     BiomeDef origBiome = Find.WorldGrid[tile].biome;
                     BiomeDef newBiome = BiomeDef.Named(origBiome.defName.ReplaceFirst("PI_", string.Empty));
                     Find.WorldGrid[tile].biome = newBiome;
-                    WorldUpdater.WorldUpdater2();
-                    WorldUpdater.RenderSingleTile(tile, Find.WorldGrid[tile].biome.DrawMaterial, WorldUpdater.LayersSubMeshes["WorldLayer_Terrain"]);
+                    PurpleIvyData.updater.RenderSingleTile(tile, Find.WorldGrid[tile].biome.DrawMaterial, "WorldLayer_Terrain");
+                    PurpleIvyData.TotalPollutedBiomes.Remove(tile);
+                    PurpleIvyData.BiomesToRenderNow.Add(tile);
+                    dirty = true;
                 }
             }
+            //var updater = new WorldLayer_SingleTilePlus();
+            //updater.Regenerate().ExecuteEnumerable();
+            PurpleIvyData.BiomesToRenderNow = new List<int>();
+            if (dirty == true)
+            {
+                //WorldUpdater.UpdateLayer(WorldUpdater.Layers["WorldLayer_Terrain"]);
+            }
+            string tolog = "TotalPollutedBiomes: ";
+            foreach (var l in PurpleIvyData.TotalPollutedBiomes)
+            {
+                tolog += l.ToString() + ", ";
+            }
+            Log.Message(tolog);
+            tolog = "this.pollutedTiles: ";
+            foreach (var l in this.pollutedTiles)
+            {
+                tolog += l.ToString() + ", ";
+            }
+            Log.Message(tolog);
             this.pollutedTiles.Clear();
         }
 
-        public void fillRadius()
+        public int GetRadius()
         {
-            int newRadius = (int)((this.counter - 500) / 100);
-            if (newRadius < 0)
+            int radius = (int)((this.counter - 500) / 100);
+            if (radius < 0)
             {
-                newRadius = 0;
+                radius = 0;
             }
-            if (this.radius != newRadius)
+            return radius;
+        }
+
+        public void fillRadius(bool forced = false)
+        {
+            int newRadius = this.GetRadius();
+            if (this.radius != newRadius || forced == true)
             {
                 this.radius = newRadius;
                 List<int> tiles = new List<int>();
+                //for (int i = 0; i < Find.WorldGrid.TilesCount; i++)
+                //{
+                //    tiles.Add(i);
+                //}
+                //tiles = tiles.Where(x => Find.WorldGrid.TraversalDistanceBetween
+                //(this.infectedTile, x, true, int.MaxValue) <= this.radius).ToList();
                 Find.WorldFloodFiller.FloodFill(this.infectedTile, (int tile) => true, delegate (int tile, int dist)
                 {
-                    if (dist > this.radius + 1)
+                    //if (dist > this.radius + 1)
+                    if (dist > this.radius)
                     {
                         return true;
                     }
@@ -112,15 +137,16 @@ namespace PurpleIvy
                     BiomeDef origBiome = Find.WorldGrid[tile].biome;
                     if (!origBiome.defName.StartsWith("PI_"))
                     {
-                        Log.Message("Change biome");
+                        Log.Message("Change biome: " + tile.ToString());
                         BiomeDef infectedBiome = BiomeDef.Named("PI_" + origBiome.defName);
                         Find.WorldGrid[tile].biome = infectedBiome;
-                        WorldUpdater.WorldUpdater2();
-                        WorldUpdater.RenderSingleTile(tile, Find.WorldGrid[tile].biome.DrawMaterial, WorldUpdater.LayersSubMeshes["WorldLayer_Terrain"]);
+                        PurpleIvyData.updater.RenderSingleTile(tile, Find.WorldGrid[tile].biome.DrawMaterial, "WorldLayer_Terrain");
+                        PurpleIvyData.TotalPollutedBiomes.Add(tile);
+                        PurpleIvyData.BiomesToRenderNow.Add(tile);
                     }
                 }
+                this.ClearAlienBiomesOuterTheSources();
             }
-            this.ClearAlienBiomesOuterTheSources();
         }
         public override void CompTick()
         {
@@ -135,14 +161,14 @@ namespace PurpleIvy
                     {
                         int num;
                         Predicate<int> predicate = (int x) => this.infectedTile != x && !Find.WorldObjects.AnyWorldObjectAt
-                        (x, PurpleIvyDefOf.InfectedTile);
+                        (x, PurpleIvyDefOf.PI_InfectedTile);
                         if (TileFinder.TryFindPassableTileWithTraversalDistance(this.parent.Tile,
                             0, 1, out num, predicate, false, true, false))
                         {
                             Site site = null;
                             if (!Find.WorldObjects.AnyMapParentAt(num))
                             {
-                                site = (Site)WorldObjectMaker.MakeWorldObject(PurpleIvyDefOf.InfectedTile);
+                                site = (Site)WorldObjectMaker.MakeWorldObject(PurpleIvyDefOf.PI_InfectedTile);
                                 site.Tile = num;
                                 site.SetFaction(PurpleIvyData.factionDirect);
                             }
@@ -157,12 +183,14 @@ PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
                             site.AddPart(new SitePart(site, PurpleIvyDefOf.InfectedSite,
                                 PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
                                 (StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.factionDirect)));
-                            site.GetComponent<WorldObjectComp_InfectedTile>().StartInfection();
-                            site.GetComponent<WorldObjectComp_InfectedTile>().gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;
-                            site.GetComponent<WorldObjectComp_InfectedTile>().counter = 0;
-                            site.GetComponent<WorldObjectComp_InfectedTile>().infectedTile = site.Tile;
-                            site.GetComponent<WorldObjectComp_InfectedTile>().radius = (int)(0 / 100);
-                            site.GetComponent<WorldObjectComp_InfectedTile>().fillRadius();
+                            var comp = site.GetComponent<WorldObjectComp_InfectedTile>();
+                            comp.StartInfection();
+                            comp.gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;
+                            comp.counter = 0;
+                            comp.infectedTile = site.Tile;
+                            comp.radius = comp.GetRadius();
+                            PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(comp.counter);
+                            comp.fillRadius();
                             site.GetComponent<TimeoutComp>().StartTimeout(30 * 60000);
                             Find.WorldObjects.Add(site);
                             Find.LetterStack.ReceiveLetter("InfectedTileSpreading".Translate(),
@@ -180,7 +208,6 @@ PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
                         if (count > 0)
                         {
                             this.counter = count;
-                            this.fillRadius();
                         }
                         else if (count <= 0)
                         {

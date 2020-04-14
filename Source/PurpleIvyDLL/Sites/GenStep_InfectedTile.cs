@@ -87,7 +87,7 @@ namespace PurpleIvy
 
         public int getRadius(Map map)
         {
-            int counter = Find.WorldObjects.WorldObjectAt(map.Tile, PurpleIvyDefOf.InfectedTile)
+            int counter = Find.WorldObjects.WorldObjectAt(map.Tile, PurpleIvyDefOf.PI_InfectedTile)
                 .GetComponent<WorldObjectComp_InfectedTile>().counter;
             int radius = 0;
             foreach (KeyValuePair<int,int> raduisData in PurpleIvyData.RadiusData)
@@ -151,7 +151,15 @@ namespace PurpleIvy
                 }
             }
 
-            foreach (var i in Enumerable.Range(1, map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count * 10))
+            int AlphaParasitesCount = map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count * 10;
+            //int BetaParasitesCount = site.counter / 22;
+            int OmegaParasitesCount = map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count * 10;
+
+            AlphaParasitesCount = AlphaParasitesCount - (infectedComp.AlienPowerSpent / 50);
+            //BetaParasitesCount = BetaParasitesCount - (site.AlienPowerSpent / 33);
+            OmegaParasitesCount = OmegaParasitesCount - (infectedComp.AlienPowerSpent / 50);
+
+            foreach (var i in Enumerable.Range(1, AlphaParasitesCount))
             {
                 IntVec3 spawnPlace = radialCells.Where(x => GenGrid.Walkable(x, map)).RandomElement();
                 radialCells.Remove(spawnPlace);
@@ -163,7 +171,7 @@ namespace PurpleIvy
                 GenSpawn.Spawn(NewPawn, spawnPlace, map);
             }
 
-            foreach (var i in Enumerable.Range(1, map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count * 10))
+            foreach (var i in Enumerable.Range(1, OmegaParasitesCount))
             {
                 IntVec3 spawnPlace = radialCells.Where(x => GenGrid.Walkable(x, map)).RandomElement();
                 radialCells.Remove(spawnPlace);

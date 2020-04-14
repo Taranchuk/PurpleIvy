@@ -47,7 +47,11 @@ namespace PurpleIvy
 
         public static ThingDef GasPump;
 
-        public static WorldObjectDef InfectedTile;
+        public static WorldObjectDef PI_InfectedTile;
+
+        public static WorldObjectDef PI_AbandonedBase;
+
+        public static WorldObjectDef PI_DefeatedBase;
 
         public static SitePartDef InfectedSite;
 

@@ -84,9 +84,9 @@ namespace PurpleIvy
                 {
                     int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
                     var comp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
+                    bool temp;
                     if (comp != null)
                     {
-                        bool temp;
                         this.fogProgress[map] = PurpleIvyData.getFogProgressWithOuterSources(count, comp, out temp);
                         if (this.fogProgress[map] <= 0)
                         {
@@ -99,7 +99,6 @@ namespace PurpleIvy
                     {
                         Log.Message("2 Comp null - GameCondition_PurpleFog");
                     }
-
                     Log.Message(map + " - total plants " + count.ToString() + " = fog progress - " + this.fogProgress[map].ToString(), true);
                     bool fog = map.weatherManager.CurWeatherPerceived.overlayClasses
                     .Contains(typeof(WeatherOverlay_Fog));
@@ -210,8 +209,31 @@ namespace PurpleIvy
             else
             {
                 Log.Error("Something went wrong with the map " + map + ". It was not represented in " +
-                    "the fogProgress dictionary. The value is reset to 0");
-                this.fogProgress[map] = 0f;
+                    "the fogProgress dictionary.");
+                bool temp;
+                var comp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
+                if (comp == null)
+                {
+                    Log.Message("Adding new comp, due missing the one in the mapParent");
+                    comp = new WorldObjectComp_InfectedTile();
+                    int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                    comp.parent = map.Parent;
+                    comp.StartInfection();
+                    comp.gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;
+                    comp.counter = count;
+                    comp.infectedTile = map.Tile;
+                    comp.radius = comp.GetRadius();
+                    PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(comp.counter);
+                    comp.fillRadius();
+                    map.Parent.AllComps.Add(comp);
+                    PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(count);
+                    this.fogProgress[map] = PurpleIvyData.getFogProgressWithOuterSources(count, comp, out temp);
+                }
+                else
+                {
+                    this.fogProgress[map] = 0f;
+                    Log.Message("The fogProgress value is reset to 0");
+                }
                 return this.fogProgress[map];
             }
         }
