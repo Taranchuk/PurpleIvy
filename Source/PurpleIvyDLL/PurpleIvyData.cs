@@ -16,8 +16,6 @@ namespace PurpleIvy
 
         public static Color PurpleColor = new Color(0.368f, 0f, 1f);
 
-        public static WorldUpdater updater = null;
-
         public static Dictionary<WorldObjectComp_InfectedTile, float> TotalFogProgress = new Dictionary<WorldObjectComp_InfectedTile, float>();
 
         public static List<int> TotalPollutedBiomes = new List<int>();

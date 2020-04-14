@@ -308,7 +308,6 @@
     <Compile Include="Jobs\JobDriver_AttackMelee.cs" />
     <Compile Include="Sites\Site_AbandonedBase.cs" />
     <Compile Include="Sites\Site_DefeatedSite.cs" />
-    <Compile Include="WorldRendering.cs" />
     <Compile Include="AlienInfection\HediffInfected.cs" />
     <Compile Include="PurpleIvyData.cs" />
     <Compile Include="Sites\BiomeWorker_AlienBiome.cs" />
@@ -336,6 +335,7 @@
     <Compile Include="Projectile_Seed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Weather\WeatherOverlay_PurpleRain.cs" />
+    <Compile Include="Sites\WorldLayerRegenerateBiomes.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

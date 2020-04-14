@@ -46,14 +46,13 @@ namespace PurpleIvy
             Log.Message("PostPostRemove");
             this.counter = 0;
             this.StopInfection();
-            this.radius = -1; //-1 is set to allow filRadius remove alien biome in the place
+            this.radius = -1; // -1 is set to allow filRadius remove alien biome in the place
             this.ClearAlienBiomesOuterTheSources();
             base.PostPostRemove();
         }
 
         public void ClearAlienBiomesOuterTheSources()
         {
-            bool dirty = false;
             for (int i = 0; i < Find.WorldGrid.TilesCount; i++)
             {
                 if (Find.WorldGrid[i].biome.defName.Contains("PI_"))
@@ -71,18 +70,9 @@ namespace PurpleIvy
                     BiomeDef origBiome = Find.WorldGrid[tile].biome;
                     BiomeDef newBiome = BiomeDef.Named(origBiome.defName.ReplaceFirst("PI_", string.Empty));
                     Find.WorldGrid[tile].biome = newBiome;
-                    PurpleIvyData.updater.RenderSingleTile(tile, Find.WorldGrid[tile].biome.DrawMaterial, "WorldLayer_Terrain");
-                    PurpleIvyData.TotalPollutedBiomes.Remove(tile);
+                    //PurpleIvyData.TotalPollutedBiomes.Remove(tile);
                     PurpleIvyData.BiomesToRenderNow.Add(tile);
-                    dirty = true;
                 }
-            }
-            //var updater = new WorldLayer_SingleTilePlus();
-            //updater.Regenerate().ExecuteEnumerable();
-            PurpleIvyData.BiomesToRenderNow = new List<int>();
-            if (dirty == true)
-            {
-                //WorldUpdater.UpdateLayer(WorldUpdater.Layers["WorldLayer_Terrain"]);
             }
             string tolog = "TotalPollutedBiomes: ";
             foreach (var l in PurpleIvyData.TotalPollutedBiomes)
@@ -97,6 +87,7 @@ namespace PurpleIvy
             }
             Log.Message(tolog);
             this.pollutedTiles.Clear();
+            Find.World.renderer.SetDirty<WorldLayerRegenerateBiomes>();
         }
 
         public int GetRadius()
@@ -114,17 +105,12 @@ namespace PurpleIvy
             int newRadius = this.GetRadius();
             if (this.radius != newRadius || forced == true)
             {
+                //PurpleIvyData.BiomesToRenderNow = new List<int>();
                 this.radius = newRadius;
                 List<int> tiles = new List<int>();
-                //for (int i = 0; i < Find.WorldGrid.TilesCount; i++)
-                //{
-                //    tiles.Add(i);
-                //}
-                //tiles = tiles.Where(x => Find.WorldGrid.TraversalDistanceBetween
-                //(this.infectedTile, x, true, int.MaxValue) <= this.radius).ToList();
+
                 Find.WorldFloodFiller.FloodFill(this.infectedTile, (int tile) => true, delegate (int tile, int dist)
                 {
-                    //if (dist > this.radius + 1)
                     if (dist > this.radius)
                     {
                         return true;
@@ -140,7 +126,6 @@ namespace PurpleIvy
                         Log.Message("Change biome: " + tile.ToString());
                         BiomeDef infectedBiome = BiomeDef.Named("PI_" + origBiome.defName);
                         Find.WorldGrid[tile].biome = infectedBiome;
-                        PurpleIvyData.updater.RenderSingleTile(tile, Find.WorldGrid[tile].biome.DrawMaterial, "WorldLayer_Terrain");
                         PurpleIvyData.TotalPollutedBiomes.Add(tile);
                         PurpleIvyData.BiomesToRenderNow.Add(tile);
                     }

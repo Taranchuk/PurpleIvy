@@ -26,7 +26,6 @@ namespace PurpleIvy
             base.StartedNewGame();
             PurpleIvyData.TotalFogProgress = new Dictionary<WorldObjectComp_InfectedTile, float>();
             PurpleIvyData.TotalPollutedBiomes = new List<int>();
-            PurpleIvyData.updater = new WorldUpdater();
 
     }
 
@@ -35,7 +34,6 @@ namespace PurpleIvy
             base.LoadedGame();
             PurpleIvyData.TotalFogProgress = new Dictionary<WorldObjectComp_InfectedTile, float>();
             PurpleIvyData.TotalPollutedBiomes = new List<int>();
-            PurpleIvyData.updater = new WorldUpdater();
             foreach (var worldObject in Find.WorldObjects.AllWorldObjects)
             {
                 var comp = worldObject.GetComponent<WorldObjectComp_InfectedTile>();
@@ -159,11 +157,6 @@ namespace PurpleIvy
             bool temp;
             if (Find.TickManager.TicksGame % 3451 == 0) // same as for toxic weather
             {
-
-                // test 
-                //Log.Message("STARTING RENDER");
-                //PurpleIvyData.updater.UpdateLayer(PurpleIvyData.updater.Layers["WorldLayer_Terrain"]);
-
 
                 bool raidHappened = false;
                 var tempComp = new WorldObjectComp_InfectedTile();
