@@ -58,10 +58,10 @@ namespace PurpleIvy
                         comp.gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;
                         comp.counter = count;
                         comp.infectedTile = map.Tile;
-                        comp.radius = (int)(count / 100);
+                        comp.radius = comp.GetRadius();
+                        PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(comp.counter);
                         comp.fillRadius();
                         map.Parent.AllComps.Add(comp);
-                        PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(count);
                         Log.Message("Adding comp to: " + map.Parent.ToString());
                     }
                 }

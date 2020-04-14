@@ -16,12 +16,20 @@ namespace PurpleIvy
 
         public static Color PurpleColor = new Color(0.368f, 0f, 1f);
 
+        public static WorldUpdater updater = null;
+
+        public static Dictionary<WorldObjectComp_InfectedTile, float> TotalFogProgress = new Dictionary<WorldObjectComp_InfectedTile, float>();
+
+        public static List<int> TotalPollutedBiomes = new List<int>();
+
+        public static List<int> BiomesToRenderNow = new List<int>();
         public static float getFogProgressWithOuterSources(int count, WorldObjectComp_InfectedTile comp, out bool comeFromOuterSource)
         {
             var result = PurpleIvyData.getFogProgress(count);
+            //Log.Message("fog progress: " + result.ToString());
             var outerSource = 0f;
             foreach (var data in PurpleIvyData.TotalFogProgress.Where(data => data.Key != comp).Where(data => Find.WorldGrid.TraversalDistanceBetween
-                (comp.infectedTile, data.Key.infectedTile, true, int.MaxValue) - 1 <= data.Key.radius))
+                (comp.infectedTile, data.Key.infectedTile, true, int.MaxValue) <= data.Key.radius))
             {
                 outerSource += data.Value;
             }
@@ -42,9 +50,27 @@ namespace PurpleIvy
             return result + outerSource;
         }
 
+        public static bool TileInRadiusOfInfectedSites(int tile)
+        {
+            foreach (var comp in PurpleIvyData.TotalFogProgress)
+            {
+                Log.Message("Checking tile: " + tile.ToString() + " against "
+                    + comp.Key.infectedTile.ToString() + " - radius: " + comp.Key.radius.ToString()
+                    + " - distance: " + (Find.WorldGrid.TraversalDistanceBetween
+                (comp.Key.infectedTile, tile, true, int.MaxValue)).ToString());
+                if (Find.WorldGrid.TraversalDistanceBetween
+                (comp.Key.infectedTile, tile, true, int.MaxValue) <= comp.Key.radius)
+                {
+                    Log.Message("Tile in radius: " + tile.ToString());
+                    return true;
+                }
+            }
+            Log.Message("Tile not in radius: " + tile.ToString());
+            return false;
+        }
         public static float getFogProgress(int count)
         {
-            var result = ((float)(count - 500) / (float)1000 * 100f) / 100f;
+            var result = (float)(count - 500) / (float)1000;
             if (result < 0f)
             {
                 result = 0f;
@@ -72,8 +98,6 @@ namespace PurpleIvy
         {
             "Genny_ParasiteOmega"
         };
-
-        public static Dictionary<WorldObjectComp_InfectedTile, float> TotalFogProgress = new Dictionary<WorldObjectComp_InfectedTile, float>();
 
         public static Dictionary<int, int> RadiusData = new Dictionary<int, int>()
                 {

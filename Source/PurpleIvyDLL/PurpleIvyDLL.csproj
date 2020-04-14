@@ -306,6 +306,8 @@
     <Compile Include="HarmonyPatches\ApplyWeatherOnNewMaps.cs" />
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
     <Compile Include="Jobs\JobDriver_AttackMelee.cs" />
+    <Compile Include="Sites\Site_AbandonedBase.cs" />
+    <Compile Include="Sites\Site_DefeatedSite.cs" />
     <Compile Include="WorldRendering.cs" />
     <Compile Include="AlienInfection\HediffInfected.cs" />
     <Compile Include="PurpleIvyData.cs" />

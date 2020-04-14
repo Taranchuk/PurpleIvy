@@ -2,7 +2,7 @@
 <Defs>  
 
 	<WorldObjectDef>
-		<defName>InfectedTile</defName>
+		<defName>PI_InfectedTile</defName>
 		<worldObjectClass>PurpleIvy.InfectedSite</worldObjectClass>
 		<expandingIcon>true</expandingIcon>
 		<expandingIconPriority>70</expandingIconPriority>
@@ -12,6 +12,32 @@
 			<li Class="WorldObjectCompProperties_ItemStashContents" />
 			<li Class="WorldObjectCompProperties_FormCaravan" />
 			<li Class="PurpleIvy.WorldObjectCompProperties_InfectedTile" />
+		</comps>
+	</WorldObjectDef>
+
+	<WorldObjectDef>
+		<defName>PI_AbandonedBase</defName>
+		<worldObjectClass>PurpleIvy.AbandonedBase</worldObjectClass>
+		<expandingIcon>true</expandingIcon>
+		<expandingIconPriority>70</expandingIconPriority>
+		<comps>
+			<li Class="WorldObjectCompProperties_Timeout" />
+			<li Class="WorldObjectCompProperties_TimedForcedExit"/>
+			<li Class="WorldObjectCompProperties_ItemStashContents" />
+			<li Class="WorldObjectCompProperties_FormCaravan" />
+		</comps>
+	</WorldObjectDef>
+
+	<WorldObjectDef>
+		<defName>PI_DefeatedBase</defName>
+		<worldObjectClass>PurpleIvy.DefeatedBase</worldObjectClass>
+		<expandingIcon>true</expandingIcon>
+		<expandingIconPriority>70</expandingIconPriority>
+		<comps>
+			<li Class="WorldObjectCompProperties_Timeout" />
+			<li Class="WorldObjectCompProperties_TimedForcedExit"/>
+			<li Class="WorldObjectCompProperties_ItemStashContents" />
+			<li Class="WorldObjectCompProperties_FormCaravan" />
 		</comps>
 	</WorldObjectDef>
 

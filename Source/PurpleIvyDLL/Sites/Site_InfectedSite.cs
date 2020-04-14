@@ -8,6 +8,12 @@ namespace PurpleIvy
 {
     public class InfectedSite : Site
     {
+        public override string GetInspectString()
+        {
+            var comp = this.GetComponent<WorldObjectComp_InfectedTile>();
+            return comp.radius.ToString() +
+                "\n" + this.Tile + "\n" + base.GetInspectString();
+        }
         public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
         {
             if (this.Map != null)
