@@ -109,9 +109,12 @@ namespace PurpleIvy
 
         public void FinalizeMesh(MeshParts tags, List<LayerSubMesh> subMeshes)
         {
-            foreach (var t in subMeshes.Where(t => t.verts.Count > 0))
+            for (int i = 0; i < subMeshes.Count; i++)
             {
-                t.FinalizeMesh(tags);
+                if (subMeshes[i].verts.Count > 0)
+                {
+                    subMeshes[i].FinalizeMesh(tags);
+                }
             }
         }
 
@@ -134,11 +137,9 @@ namespace PurpleIvy
             for (int i = 0; i < subMeshes.Count; i++)
             {
                 LayerSubMesh layerSubMesh = subMeshes[i];
-                if (layerSubMesh.material == material && layerSubMesh.verts.Count < 40000)
-                {
-                    subMeshIndex = i;
-                    return layerSubMesh;
-                }
+                if (layerSubMesh.material != material || layerSubMesh.verts.Count >= 40000) continue;
+                subMeshIndex = i;
+                return layerSubMesh;
             }
             Mesh mesh = new Mesh();
             LayerSubMesh layerSubMesh2 = new LayerSubMesh(mesh, material);
@@ -260,11 +261,12 @@ namespace PurpleIvy
 
         private void ClearSubMeshes(MeshParts parts, List<LayerSubMesh> subMeshes)
         {
-            foreach (var t in subMeshes)
+            for (int i = 0; i < subMeshes.Count; i++)
             {
-                t.Clear(parts);
+                subMeshes[i].Clear(parts);
             }
         }
+
         public Dictionary<string, WorldLayer> Layers;
 
         public Dictionary<string, List<LayerSubMesh>> LayersSubMeshes = new Dictionary<string, List<LayerSubMesh>>();
