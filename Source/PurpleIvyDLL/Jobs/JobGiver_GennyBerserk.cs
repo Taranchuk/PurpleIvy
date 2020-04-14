@@ -17,22 +17,20 @@ namespace PurpleIvy
             //{
             //    return null;
             //}
-            Pawn pawn2 = this.FindPawnTarget(pawn);
-            if (pawn2 != null)
+            var pawn2 = FindPawnTarget(pawn);
+            if (pawn2 == null) return null;
+            if (!pawn2.Downed)
             {
-                if (!pawn2.Downed)
-                {
-                    return MeleeAttackJob(pawn, pawn2);
-                }
-                else if (pawn2.Downed)
-                {
-                    Job job2 = JobMaker.MakeJob(PurpleIvyDefOf.PI_Kill, pawn2);
-                    job2.maxNumMeleeAttacks = 1;
-                    job2.expiryInterval = Rand.Range(420, 900);
-                    job2.canBash = true;
-                    job2.killIncappedTarget = true;
-                    return job2;
-                }
+                return MeleeAttackJob(pawn, pawn2);
+            }
+            else if (pawn2.Downed)
+            {
+                var job2 = JobMaker.MakeJob(PurpleIvyDefOf.PI_Kill, pawn2);
+                job2.maxNumMeleeAttacks = 1;
+                job2.expiryInterval = Rand.Range(420, 900);
+                job2.canBash = true;
+                job2.killIncappedTarget = true;
+                return job2;
             }
             //Building building = this.FindTurretTarget(pawn);
             //if (building != null)
@@ -64,9 +62,9 @@ namespace PurpleIvy
             return null;
         }
 
-        private Job MeleeAttackJob(Pawn pawn, Thing target)
+        private static Job MeleeAttackJob(Pawn pawn, Thing target)
         {
-            Job job = JobMaker.MakeJob(PurpleIvyDefOf.PI_AttackMelee, target);
+            var job = JobMaker.MakeJob(PurpleIvyDefOf.PI_AttackMelee, target);
             job.maxNumMeleeAttacks = 1;
             job.expiryInterval = Rand.Range(420, 900);
             job.attackDoorIfTargetLost = true;
@@ -82,17 +80,17 @@ namespace PurpleIvy
                 default(IntVec3), float.MaxValue, false, true);
         }
 
-        private Pawn FindPawnTarget(Pawn pawn)
+        private static Pawn FindPawnTarget(Pawn pawn)
         {
             Pawn victim = null;
-            Predicate<Thing> predicate = (Thing p) => p != null && p != pawn 
+            bool Predicate(Thing p) => p != null && p != pawn
             && p.Faction != pawn.Faction;
             //List<Pawn> allPawns = pawn.Map.mapPawns.AllPawns;
-            float distance = 25f;
+            const float distance = 25f;
             victim = (Pawn)GenClosest.ClosestThingReachable(pawn.Position,
                 pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly,
                 TraverseMode.PassDoors, false)
-                , distance, predicate);
+                , distance, Predicate);
             
         //worst   victim = (Pawn)GenClosest.ClosestThing_Global_Reachable(pawn.Position,
             //    pawn.Map, allPawns, PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, 
