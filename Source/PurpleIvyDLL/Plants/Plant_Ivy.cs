@@ -79,6 +79,67 @@ namespace PurpleIvy
             return GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)).All(current => current.Standable(this.Map));
         }
 
+        public void DoDamageToBuildings(IntVec3 pos)
+        {
+            List<Thing> list = new List<Thing>();
+            foreach (var pos2 in GenAdj.CellsAdjacent8Way(this))
+            {
+                try
+                {
+                    list = this.Map.thingGrid.ThingsListAt(pos2);
+                }
+                catch
+                {
+                    continue;
+                }
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i] is Building && list[i].Faction != PurpleIvyData.factionDirect)
+                    {
+                        Building b = (Building)list[i];
+                        var comp = this.Map.GetComponent<MapComponent_MapEvents>();
+                        if (comp != null)
+                        {
+                            int oldDamage = 0;
+                            if (comp.ToxicDamages == null)
+                            {
+                                comp.ToxicDamages = new Dictionary<Building, int>();
+                                comp.ToxicDamages[b] = b.MaxHitPoints;
+                            }
+                            Log.Message("Taking damage to " + b);
+                            if (!comp.ToxicDamages.ContainsKey(b))
+                            {
+                                oldDamage = b.MaxHitPoints;
+                                comp.ToxicDamages[b] = b.MaxHitPoints - 1;
+                            }
+                            else
+                            {
+                                oldDamage = comp.ToxicDamages[b];
+                                comp.ToxicDamages[b] -= 1;
+                            }
+                            BuildingsToxicDamageSectionLayerUtility.Notify_BuildingHitPointsChanged((Building)list[i], oldDamage);
+                            if (comp.ToxicDamages[b] / 2 < b.MaxHitPoints)
+                            {
+                                if (b.GetComp<CompBreakdownable>() != null)
+                                {
+                                    b.GetComp<CompBreakdownable>().DoBreakdown();
+                                }
+                                if (b.GetComp<CompPowerPlantWind>() != null)
+                                {
+                                    b.GetComp<CompPowerPlantWind>().PowerOutput /= 2f;
+                                }
+                                if (b.GetComp<CompPowerTrader>() != null)
+                                {
+                                    b.GetComp<CompPowerTrader>().PowerOn = false;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         public void DoDamageToThings(IntVec3 pos)
         {
             List<Thing> list = new List<Thing>();
@@ -119,10 +180,9 @@ namespace PurpleIvy
                     SpreadTick--;
                     SpreadTick--;
                 }
-                //If we find a pawn and its not a hatchling
                 else switch (list[i])
                 {
-                    //If we find a plant
+                    //If we find a pawn and its not a hatchling
                     case Pawn _:
                     {
                         var stuckPawn = (Pawn)list[i];
@@ -138,13 +198,13 @@ namespace PurpleIvy
                         (stuckPawn).health.AddHediff(hediff2, null, null, null);
                         break;
                     }
+                    //If we find a plant
                     case Plant _:
                     {
                         if (list[i].def.defName != "PurpleIvy")
                         {
                             list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 1));
                         }
-
                         break;
                     }
                 }
@@ -290,6 +350,7 @@ namespace PurpleIvy
                 if (this.Growth >= 0.25f)
                 {
                     this.ThrowGasOrAdjustGasSize();
+                    this.DoDamageToBuildings(Position);
                 }
             }
             if (Find.TickManager.TicksGame % 350 == 0)

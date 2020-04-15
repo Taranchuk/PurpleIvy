@@ -306,7 +306,8 @@
     <Compile Include="HarmonyPatches\ApplyWeatherOnNewMaps.cs" />
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
     <Compile Include="Jobs\JobDriver_AttackMelee.cs" />
-    <Compile Include="MortarGun.cs" />
+    <Compile Include="Damages\BuildingsToxicDamageSectionLayerUtility.cs" />
+    <Compile Include="Damages\SectionLayer_BuildingsToxicDamage.cs" />
     <Compile Include="Sites\Site_AbandonedBase.cs" />
     <Compile Include="Sites\Site_DefeatedSite.cs" />
     <Compile Include="AlienInfection\HediffInfected.cs" />
@@ -324,7 +325,7 @@
     <Compile Include="Jobs\JobGiver_GennyBerserk.cs" />
     <Compile Include="Weather\GameCondition_PurpleFog.cs" />
     <Compile Include="GameComponent_WorldEvents.cs" />
-    <Compile Include="Weather\MapComponent_WeatherControl.cs" />
+    <Compile Include="MapComponent_MapEvents.cs" />
     <Compile Include="PurpleIvyDefOf.cs" />
     <Compile Include="AlienInfection\Comp_AlienInfection.cs" />
     <Compile Include="Buildings\Meteor.cs" />
@@ -334,7 +335,7 @@
     <Compile Include="Buildings\MeteorUtility.cs" />
     <Compile Include="Incidents\IncidentWorker_MeteorImpact.cs" />
     <Compile Include="Plants\Plant_Ivy.cs" />
-    <Compile Include="Projectile_Seed.cs" />
+    <Compile Include="Damages\Projectile_Seed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Weather\WeatherOverlay_PurpleRain.cs" />
   </ItemGroup>

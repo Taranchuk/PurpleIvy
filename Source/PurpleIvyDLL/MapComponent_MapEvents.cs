@@ -8,15 +8,16 @@ using Verse.Noise;
 
 namespace PurpleIvy
 {
-    public class MapComponent_WeatherControl : MapComponent
+    public class MapComponent_MapEvents : MapComponent
     {
-        public MapComponent_WeatherControl(Map map) : base(map)
+        public MapComponent_MapEvents(Map map) : base(map)
         {
 
         }
 
         public override void ExposeData()
         {
+            Scribe_Collections.Look<Building, int>(ref this.ToxicDamages, "ToxicDamages", LookMode.Reference, LookMode.Value, ref this.ToxicDamageKeys, ref this.ToxicDamageValues);
             base.ExposeData();
         }
 
@@ -88,6 +89,13 @@ this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.GenTurretBase).Count.ToString()
 this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Turret_GenMortarSeed).Count.ToString(), true);
             }
         }
+
+        public Dictionary<Building, int> ToxicDamages = new Dictionary<Building, int>();
+
+        public List<Building> ToxicDamageKeys = new List<Building>();
+
+        public List<int> ToxicDamageValues = new List<int>();
+
     }
 }
 
