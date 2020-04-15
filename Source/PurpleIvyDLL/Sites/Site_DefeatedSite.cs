@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -11,12 +12,9 @@ namespace PurpleIvy
         public override void PostMapGenerate()
         {
             base.PostMapGenerate();
-            foreach (Pawn pawn in this.Map.mapPawns.AllPawns)
+            foreach (var pawn in this.Map.mapPawns.AllPawns.Where(pawn => pawn.Faction != Faction.OfPlayer))
             {
-                if (pawn.Faction != Faction.OfPlayer)
-                {
-                    pawn.Destroy(DestroyMode.Vanish);
-                }
+                pawn.Destroy(DestroyMode.Vanish);
             }
         }
     }
