@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
@@ -26,12 +27,12 @@ namespace PurpleIvy
             {
                 yield return obj2;
             }
-            int ind = 0;
             foreach (int num in PurpleIvyData.BiomesToRenderNow)
             {
                 if (num >= 0)
                 {
                     Log.Message("RENDER: " + num.ToString());
+                    int ind = 0;
                     Material material = Find.WorldGrid[num].biome.DrawMaterial;
                     LayerSubMesh subMesh = base.GetSubMesh(material);
                     subMesh.finalized = false; 
@@ -50,12 +51,8 @@ namespace PurpleIvy
                             subMesh.tris.Add(startVertIndex + currentIndex + 1);
                             subMesh.tris.Add(startVertIndex);
                         }
-                        int num2 = currentIndex;
-                        currentIndex = num2 + 1;
+                        currentIndex++;
                     }
-                    //subMesh.FinalizeMesh(MeshParts.All);
-                    //material = null;
-                    //subMesh = null;
                     //PurpleIvyData.BiomesToRenderNow.Remove(num);
                 }
                 base.FinalizeMesh(MeshParts.All);
