@@ -11,189 +11,151 @@ namespace PurpleIvy
 {
     public class GenStep_InfectedTile : GenStep
     {
-        public override int SeedPart
+        public override int SeedPart => 54649541;
+
+        public static bool HasNoBuildings(IntVec3 dir, Map map)
         {
-            get
-            {
-                return 54649541;
-            }
+            return GenAdj.CellsAdjacent8Way(new TargetInfo(dir, map, false)).All(current => current.Standable(map));
         }
-        public bool hasNoBuildings(IntVec3 dir, Map map)
+
+        public static bool SpreadBuilding(IntVec3 dir, Map map)
         {
-            foreach (IntVec3 current in GenAdj.CellsAdjacent8Way(new TargetInfo(dir, map, false)))
+            if (!HasNoBuildings(dir, map)) return false;
+            var random = new System.Random(dir.GetHashCode());
+            var mutateChance = random.Next(1, 100);
+            if (30 < mutateChance) return false;
+            random = new System.Random(dir.GetHashCode() + dir.GetHashCode());
+            var mutateRate = random.Next(1, 100);
+            if (mutateRate >= 0 && mutateRate <= 5)
             {
-                if (!current.Standable(map))
-                {
-                    return false;
-                }
+                var gasPump = (Building_GasPump)ThingMaker.MakeThing(PurpleIvyDefOf.GasPump);
+                gasPump.SetFactionDirect(PurpleIvyData.factionDirect);
+                GenSpawn.Spawn(gasPump, dir, map);
+                return true;
             }
+            if (mutateRate >= 6 && mutateRate <= 10)
+            {
+                var genMortar = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
+                genMortar.SetFactionDirect(PurpleIvyData.factionDirect);
+                GenSpawn.Spawn(genMortar, dir, map);
+                return true;
+            }
+            if (mutateRate >= 11 && mutateRate <= 15)
+            {
+                var genTurret = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase);
+                genTurret.SetFactionDirect(PurpleIvyData.factionDirect);
+                GenSpawn.Spawn(genTurret, dir, map);
+                return true;
+            }
+            if (mutateRate >= 16 && mutateRate <= 17)
+            {
+                var eggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
+                eggSac.SetFactionDirect(PurpleIvyData.factionDirect);
+                GenSpawn.Spawn(eggSac, dir, map);
+                return true;
+            }
+            if (mutateRate < 18 || mutateRate > 23) return false;
+            var parasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
+            parasiteEgg.SetFactionDirect(PurpleIvyData.factionDirect);
+            GenSpawn.Spawn(parasiteEgg, dir, map);
             return true;
-        }
 
-        public bool SpreadBuilding(IntVec3 dir, Map map)
-        {
-            if (hasNoBuildings(dir, map))
-            {
-                System.Random random = new System.Random(dir.GetHashCode());
-                int mutateChance = random.Next(1, 100);
-                if (30 >= mutateChance)
-                {
-                    random = new System.Random(dir.GetHashCode() + dir.GetHashCode());
-                    int mutateRate = random.Next(1, 100);
-                    if (mutateRate >= 0 && mutateRate <= 5)
-                    {
-                        Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(PurpleIvyDefOf.GasPump);
-                        GasPump.SetFactionDirect(PurpleIvyData.factionDirect);
-                        GenSpawn.Spawn(GasPump, dir, map);
-                        return true;
-                    }
-                    else if (mutateRate >= 6 && mutateRate <= 10)
-                    {
-                        Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
-                        GenMortar.SetFactionDirect(PurpleIvyData.factionDirect);
-                        GenSpawn.Spawn(GenMortar, dir, map);
-                        return true;
-                    }
-                    else if (mutateRate >= 11 && mutateRate <= 15)
-                    {
-                        Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase);
-                        GenTurret.SetFactionDirect(PurpleIvyData.factionDirect);
-                        GenSpawn.Spawn(GenTurret, dir, map);
-                        return true;
-                    }
-                    else if (mutateRate >= 16 && mutateRate <= 17)
-                    {
-                        Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
-                        EggSac.SetFactionDirect(PurpleIvyData.factionDirect);
-                        GenSpawn.Spawn(EggSac, dir, map);
-                        return true;
-                    }
-                    else if (mutateRate >= 18 && mutateRate <= 23)
-                    {
-                        Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
-                        ParasiteEgg.SetFactionDirect(PurpleIvyData.factionDirect);
-                        GenSpawn.Spawn(ParasiteEgg, dir, map);
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            return false;
         }
 
 
-        public int getRadius(Map map)
+        public static int GetRadius(Map map)
         {
-            int counter = Find.WorldObjects.WorldObjectAt(map.Tile, PurpleIvyDefOf.PI_InfectedTile)
+            var counter = Find.WorldObjects.WorldObjectAt(map.Tile, PurpleIvyDefOf.PI_InfectedTile)
                 .GetComponent<WorldObjectComp_InfectedTile>().counter;
-            int radius = 0;
-            foreach (KeyValuePair<int,int> raduisData in PurpleIvyData.RadiusData)
-            {
-                if (counter < raduisData.Value)
-                {
-                    return raduisData.Key;
-                }
-            }
-            return radius;
+            const int radius = 0;
+            return PurpleIvyData.RadiusData.Where(raduisData => counter < raduisData.Value).Select(raduisData => raduisData.Key).FirstOrDefault();
         }
         public override void Generate(Map map, GenStepParams parms)
         {
-            IntVec3 intVec = new IntVec3();
-            IntVec3 invalid = IntVec3.Invalid;
-            bool flag = !RCellFinder.TryFindRandomCellNearTheCenterOfTheMapWith((IntVec3 sq) 
-                => GenGrid.Standable(sq, map)
-                && !GridsUtility.Roofed(sq, map)
-                && !GridsUtility.Fogged(sq, map)
-                && GenGrid.CanBeSeenOver(sq, map)
-                && GenGrid.Walkable(sq, map)
-                && GenGrid.InBounds(sq, map)
+            var intVec = new IntVec3();
+            var invalid = IntVec3.Invalid;
+            var flag = !RCellFinder.TryFindRandomCellNearTheCenterOfTheMapWith((IntVec3 sq) 
+                => sq.Standable(map)
+                && !sq.Roofed(map)
+                && !sq.Fogged(map)
+                && sq.CanBeSeenOver(map)
+                && sq.Walkable(map)
+                && sq.InBounds(map)
                 , map, out intVec);
             if (flag)
             {
                 invalid = IntVec3.Invalid;
                 intVec = CellFinderLoose.RandomCellWith(
-                (IntVec3 sq) => GenGrid.Standable(sq, map)
-                && !GridsUtility.Roofed(sq, map)
-                && !GridsUtility.Fogged(sq, map)
-                && GenGrid.CanBeSeenOver(sq, map)
-                && GenGrid.Walkable(sq, map)
-                && GenGrid.InBounds(sq, map), map);
+                sq => sq.Standable(map)
+                        && !sq.Roofed(map)
+                        && !sq.Fogged(map)
+                        && sq.CanBeSeenOver(map)
+                        && sq.Walkable(map)
+                        && sq.InBounds(map), map);
             }
-            Thing meteor = ThingMaker.MakeThing(ThingDef.Named("PI_Meteorite"));
+            var meteor = ThingMaker.MakeThing(ThingDef.Named("PI_Meteorite"));
             GenSpawn.Spawn(meteor, intVec, map);
 
-            int radius = getRadius(map);
+            var radius = GetRadius(map);
             Log.Message("Radius: " + radius.ToString());
             var radialCells = GenRadial.RadialCellsAround(meteor.Position, radius, true)
                 .ToList();
-            int plantCount = 0;
+            var plantCount = 0;
             var infectedComp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
-            int counter = infectedComp.counter;
-            float origGrowth = 1f;
-            float growth = 1f;
+            var counter = infectedComp.counter;
+            const float origGrowth = 1f;
+            var newivyGrowth = 1f;
             foreach (IntVec3 vec in radialCells)
             {
-                if (!SpreadBuilding(vec, map))
-                {
-                    if (plantCount < counter && GenGrid.InBounds(vec, map) 
-                        && GenGrid.Standable(vec, map))
-                    {
-                        Plant newivy = new Plant();
-                        newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
-                        GenSpawn.Spawn(newivy, vec, map);
-                        newivy.Growth = growth;
-                        growth -= (origGrowth / (float)counter);
-                        plantCount++;
-                    }
-                }
+                if (SpreadBuilding(vec, map)) continue;
+                if (plantCount >= counter || !vec.InBounds(map) || !vec.Standable(map)) continue;
+                var newivy = new Plant();
+                newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
+                GenSpawn.Spawn(newivy, vec, map);
+                newivy.Growth = newivyGrowth;
+                newivyGrowth -= (origGrowth / (float)counter);
+                plantCount++;
             }
 
-            int AlphaParasitesCount = map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count * 10;
+            var alphaParasitesCount = map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count * 10;
             //int BetaParasitesCount = site.counter / 22;
-            int OmegaParasitesCount = map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count * 10;
+            var omegaParasitesCount = map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count * 10;
 
-            AlphaParasitesCount = AlphaParasitesCount - (infectedComp.AlienPowerSpent / 50);
+            alphaParasitesCount -= (infectedComp.AlienPowerSpent / 50);
             //BetaParasitesCount = BetaParasitesCount - (site.AlienPowerSpent / 33);
-            OmegaParasitesCount = OmegaParasitesCount - (infectedComp.AlienPowerSpent / 50);
+            omegaParasitesCount -= (infectedComp.AlienPowerSpent / 50);
 
-            foreach (var i in Enumerable.Range(1, AlphaParasitesCount))
+            foreach (var i in Enumerable.Range(1, alphaParasitesCount))
             {
-                IntVec3 spawnPlace = radialCells.Where(x => GenGrid.Walkable(x, map)).RandomElement();
+                var spawnPlace = radialCells.Where(x => x.Walkable(map)).RandomElement();
                 radialCells.Remove(spawnPlace);
-                PawnKindDef pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteAlpha.RandomElement());
-                Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                NewPawn.SetFaction(PurpleIvyData.factionDirect);
-                NewPawn.ageTracker.AgeBiologicalTicks = 40000;
-                NewPawn.ageTracker.AgeChronologicalTicks = 40000;
-                GenSpawn.Spawn(NewPawn, spawnPlace, map);
+                var pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteAlpha.RandomElement());
+                var newPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
+                newPawn.SetFaction(PurpleIvyData.factionDirect);
+                newPawn.ageTracker.AgeBiologicalTicks = 40000;
+                newPawn.ageTracker.AgeChronologicalTicks = 40000;
+                GenSpawn.Spawn(newPawn, spawnPlace, map);
             }
 
-            foreach (var i in Enumerable.Range(1, OmegaParasitesCount))
+            foreach (var i in Enumerable.Range(1, omegaParasitesCount))
             {
-                IntVec3 spawnPlace = radialCells.Where(x => GenGrid.Walkable(x, map)).RandomElement();
+                var spawnPlace = radialCells.Where(x => x.Walkable(map)).RandomElement();
                 radialCells.Remove(spawnPlace);
-                PawnKindDef pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteOmega.RandomElement());
-                Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                NewPawn.SetFaction(PurpleIvyData.factionDirect);
-                NewPawn.ageTracker.AgeBiologicalTicks = 40000;
-                NewPawn.ageTracker.AgeChronologicalTicks = 40000;
-                GenSpawn.Spawn(NewPawn, spawnPlace, map);
+                var pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteOmega.RandomElement());
+                var newPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
+                newPawn.SetFaction(PurpleIvyData.factionDirect);
+                newPawn.ageTracker.AgeBiologicalTicks = 40000;
+                newPawn.ageTracker.AgeChronologicalTicks = 40000;
+                GenSpawn.Spawn(newPawn, spawnPlace, map);
             }
-            foreach (Plant_Ivy ivy in map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy))
+            foreach (var ivy in map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Cast<Plant_Ivy>().Where(ivy => ivy.Growth > 0.1f))
             {
-                if (ivy.Growth > 0.1f)
-                {
-                    ivy.MutateTry = false;
-                }
+                ivy.MutateTry = false;
             }
-            int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+            var count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
             Log.Message("New map created! plants - " + map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count.ToString());
             var comp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
-            bool temp;
-            if (comp != null && PurpleIvyData.getFogProgressWithOuterSources(count, comp, out temp) > 0f)
+            if (comp != null && PurpleIvyData.getFogProgressWithOuterSources(count, comp, out var temp) > 0f)
             {
                 GameCondition_PurpleFog gameCondition =
                 (GameCondition_PurpleFog)GameConditionMaker.MakeConditionPermanent
