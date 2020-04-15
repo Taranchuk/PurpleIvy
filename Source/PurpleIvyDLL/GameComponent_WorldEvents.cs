@@ -184,6 +184,10 @@ namespace PurpleIvy
                         var infectedSites = getInfectedTilesNearby(caravan.Tile);
                         if (infectedSites != null)
                         {
+                            if (fogProgress > 0.7f)
+                            {
+                                fogProgress = 0.7f;
+                            }
                             int raidChance = (int)(fogProgress * 100);
                             System.Random random = new System.Random(caravan.Tile);
                             Log.Message("An attempt to ambush caravan, raid chance: " + raidChance.ToString()
@@ -207,6 +211,10 @@ namespace PurpleIvy
                         if (infectedSites != null)
                         {
                             float fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
+                            if (fogProgress > 0.7f)
+                            {
+                                fogProgress = 0.7f;
+                            }
                             int raidChance = (int)(fogProgress * 100) / 10;
                             System.Random random = new System.Random(mapParent.Tile);
                             Log.Message("An attempt to raid map, raid chance: " + raidChance.ToString()

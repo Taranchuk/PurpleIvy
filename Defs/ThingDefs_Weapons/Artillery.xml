@@ -4,6 +4,7 @@
 	<ThingDef ParentName="BaseBullet">
 		<defName>Bullet_GenMortar</defName>
 		<label>Oxalis Seed</label>
+		<thingClass>PurpleIvy.Projectile_Seed</thingClass>
 		<graphicData>
 			<texPath>Things/OxalisSeed</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -14,6 +15,13 @@
 			<damageAmountBase>20</damageAmountBase>
 			<speed>32</speed>
 			<flyOverhead>true</flyOverhead>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<explosionRadius>3.9</explosionRadius>
+			<postExplosionSpawnThingDef>PurpleIvy</postExplosionSpawnThingDef>
+			<postExplosionSpawnChance>1</postExplosionSpawnChance>
+			<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
 			<soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
 		</projectile>
 	</ThingDef>
@@ -33,6 +41,7 @@
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
+				<forcedMissRadius>13</forcedMissRadius>
 				<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_GenMortar</defaultProjectile>

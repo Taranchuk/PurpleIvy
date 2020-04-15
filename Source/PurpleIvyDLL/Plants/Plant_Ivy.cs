@@ -40,14 +40,14 @@ namespace PurpleIvy
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
             base.Destroy(mode);
-            try
-            {
-                Spores?.Destroy(DestroyMode.Vanish);
-            }
-            catch
-            {
-                ;
-            }
+            //try
+            //{
+            //    Spores?.Destroy(DestroyMode.Vanish);
+            //}
+            //catch
+            //{
+            //    ;
+            //}
 
         }
 
