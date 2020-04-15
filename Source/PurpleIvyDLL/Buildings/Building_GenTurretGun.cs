@@ -13,7 +13,6 @@ namespace PurpleIvy
         private int chance;
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
-            base.Destroy(mode);
             Random random = new Random();
             chance = random.Next(1, 50);
             Thing weaponDrop = (Thing)ThingMaker.MakeThing(ThingDef.Named("MeleeWeapon_GenTurretTentacle"));
@@ -21,6 +20,7 @@ namespace PurpleIvy
             {
                 GenPlace.TryPlaceThing(weaponDrop, Position, this.Map, ThingPlaceMode.Near);
             }
+            base.Destroy(mode);
         }
 
         //public override void Tick()

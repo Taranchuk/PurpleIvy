@@ -14,13 +14,7 @@ namespace PurpleIvy
         public int maxNumberOfCreatures = 0;
         public bool prevAngle = true;
 
-        public CompProperties_AlienInfection Props
-        {
-            get
-            {
-                return this.props as CompProperties_AlienInfection;
-            }
-        }
+        public CompProperties_AlienInfection Props => this.props as CompProperties_AlienInfection;
 
         public override void Initialize(CompProperties props)
         {
@@ -36,7 +30,7 @@ namespace PurpleIvy
             {
                 if (this.parent is Pawn && this.Props.IncubationData.hediff != null)
                 {
-                    Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named(this.Props.IncubationData.hediff),
+                    var hediff = HediffMaker.MakeHediff(HediffDef.Named(this.Props.IncubationData.hediff),
                     (Pawn)this.parent, null);
                     ((Pawn)this.parent).health.AddHediff(hediff, null, null, null);
                     this.Props.IncubationData.tickStartHediff.min = 0;
@@ -45,7 +39,7 @@ namespace PurpleIvy
 
             if (this.parent is Corpse || this.parent.def.IsCorpse)
             {
-                Corpse corpse = (Corpse)this.parent;
+                var corpse = (Corpse)this.parent;
                 if (this.prevAngle == true)
                 {
                     corpse.InnerPawn.Drawer.renderer.wiggler.downedAngle += 5f;
@@ -59,9 +53,8 @@ namespace PurpleIvy
                 corpse.InnerPawn.Drawer.renderer.wiggler.WigglerTick();
             }
 
-            else if (this.parent is Pawn)
+            else if (this.parent is Pawn pawn)
             {
-                Pawn pawn = (Pawn)this.parent;
                 if (pawn.Dead)
                 {
                     Log.Message(this.parent + " dead");
@@ -75,7 +68,7 @@ namespace PurpleIvy
                         pawn.Drawer.renderer.wiggler.downedAngle -= 5f;
                         this.prevAngle = true;
                     }
-                    pawn.Drawer.renderer.RendererTick();
+                    pawn.Drawer.renderer.wiggler.WigglerTick();
                 }
                 else
                 {
@@ -113,54 +106,40 @@ namespace PurpleIvy
                 }
             }
 
-            if (this.Props.typesOfCreatures != null)
+            if (this.Props.typesOfCreatures == null) return;
+            if (this.maxNumberOfCreatures != 0 && currentCountOfCreatures >= this.maxNumberOfCreatures) return;
+            foreach (var newPawn in from defName in this.Props.typesOfCreatures let numberOfSpawn = this.Props.numberOfCreaturesPerSpawn.RandomInRange where numberOfSpawn > 0 from i in Enumerable.Range(0, numberOfSpawn) select PawnKindDef.Named(defName) into pawnKindDef select PawnGenerator.GeneratePawn(pawnKindDef, null))
             {
-                if (this.maxNumberOfCreatures == 0 || currentCountOfCreatures < this.maxNumberOfCreatures)
+                Log.Message(this.parent + " produces " + newPawn.Label);
+                if (this.Props.ageTick.RandomInRange > 0)
                 {
-                    foreach (string defName in this.Props.typesOfCreatures)
-                    {
-                        int numberOfSpawn = this.Props.numberOfCreaturesPerSpawn.RandomInRange;
-                        if (numberOfSpawn > 0)
-                        {
-                            foreach (var i in Enumerable.Range(0, numberOfSpawn))
-                            {
-                                PawnKindDef pawnKindDef = PawnKindDef.Named(defName);
-                                Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                                Log.Message(this.parent + " produces " + NewPawn.Label);
-                                if (this.Props.ageTick.RandomInRange > 0)
-                                {
-                                    int ageTick = this.Props.ageTick.RandomInRange;
-                                    NewPawn.ageTracker.AgeBiologicalTicks = ageTick;
-                                    NewPawn.ageTracker.AgeChronologicalTicks = ageTick;
-                                }
-                                else
-                                {
-                                    NewPawn.ageTracker.AgeBiologicalTicks = 0;
-                                    NewPawn.ageTracker.AgeChronologicalTicks = 0;
-                                }
-                                NewPawn.SetFaction(PurpleIvyData.factionDirect);
-                                if (this.parent is Corpse)
-                                {
-                                    HatchFromCorpse(NewPawn);
-                                }
-                                else if (this.parent is Pawn)
-                                {
-                                    HatchFromPawn(NewPawn);
-                                }
-                                else if (this.parent is Building)
-                                {
-                                    GenSpawn.Spawn(NewPawn, this.parent.Position, this.parent.Map);
-                                }
-                                else
-                                {
-                                    Log.Error("Unknown parent. Cant spawn. " +
-                                        "Parent: " + this.parent);
-                                }
-                                currentCountOfCreatures++;
-                            }
-                        }
-                    }
+                    var ageTick = this.Props.ageTick.RandomInRange;
+                    newPawn.ageTracker.AgeBiologicalTicks = ageTick;
+                    newPawn.ageTracker.AgeChronologicalTicks = ageTick;
                 }
+                else
+                {
+                    newPawn.ageTracker.AgeBiologicalTicks = 0;
+                    newPawn.ageTracker.AgeChronologicalTicks = 0;
+                }
+                newPawn.SetFaction(PurpleIvyData.factionDirect);
+                switch (this.parent)
+                {
+                    case Corpse _:
+                        HatchFromCorpse(newPawn);
+                        break;
+                    case Pawn _:
+                        HatchFromPawn(newPawn);
+                        break;
+                    case Building _:
+                        GenSpawn.Spawn(newPawn, this.parent.Position, this.parent.Map);
+                        break;
+                    default:
+                        Log.Error("Unknown parent. Cant spawn. " +
+                                  "Parent: " + this.parent);
+                        break;
+                }
+                currentCountOfCreatures++;
             }
         }
         public override void PostPostMake()
@@ -168,40 +147,40 @@ namespace PurpleIvy
             base.PostPostMake();
             this.maxNumberOfCreatures = Props.maxNumberOfCreatures.RandomInRange;
         }
-        public void HatchFromCorpse(Pawn NewPawn)
+        public void HatchFromCorpse(Pawn newPawn)
         {
-            CompRottable compRottable = this.parent.TryGetComp<CompRottable>();
+            var compRottable = this.parent.TryGetComp<CompRottable>();
             if (compRottable != null && compRottable.Stage < RotStage.Dessicated)
             {
                 compRottable.RotProgress += this.Props.rotProgressPerSpawn.RandomInRange;
                 FilthMaker.TryMakeFilth(this.parent.Position, this.parent.Map, ThingDefOf.Filth_Blood);
             }
-            GenSpawn.Spawn(NewPawn, this.parent.Position, this.parent.Map);
+            GenSpawn.Spawn(newPawn, this.parent.Position, this.parent.Map);
 
         }
 
-        public void HatchFromPawn(Pawn NewPawn)
+        public void HatchFromPawn(Pawn newPawn)
         {
-            Pawn host = (Pawn)this.parent;
+            var host = (Pawn)this.parent;
             this.parent.TakeDamage(new DamageInfo(DamageDefOf.SurgicalCut, 25f));
             if (host.Dead)
             {
-                Corpse corpse = (Corpse)this.parent.ParentHolder;
+                var corpse = (Corpse)this.parent.ParentHolder;
                 corpse.AllComps.Add(this);
                 FilthMaker.TryMakeFilth(corpse.Position, corpse.Map, ThingDefOf.Filth_Blood);
-                GenSpawn.Spawn(NewPawn, corpse.Position, corpse.Map);
+                GenSpawn.Spawn(newPawn, corpse.Position, corpse.Map);
             }
             else if (this.Props.IncubationData.deathChance >= Rand.Range(0f, 100f))
             {
                 this.parent.Kill();
-                Corpse corpse = (Corpse)this.parent.ParentHolder;
+                var corpse = (Corpse)this.parent.ParentHolder;
                 corpse.AllComps.Add(this);
                 FilthMaker.TryMakeFilth(corpse.Position, corpse.Map, ThingDefOf.Filth_Blood);
-                GenSpawn.Spawn(NewPawn, corpse.Position, corpse.Map);
+                GenSpawn.Spawn(newPawn, corpse.Position, corpse.Map);
             }
             else
             {
-                GenSpawn.Spawn(NewPawn, this.parent.Position, this.parent.Map);
+                GenSpawn.Spawn(newPawn, this.parent.Position, this.parent.Map);
             }
         }
         public override void CompTick()
@@ -220,10 +199,10 @@ namespace PurpleIvy
 
         public override string CompInspectStringExtra()
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(string.Concat(new string[]
             {
-                Translator.Translate("birthTime"),
+                "birthTime".Translate(),
                 ": ", (this.startOfIncubation + this.Props.incubationPeriod.min
                     - Find.TickManager.TicksGame).ToString(), "~",
                 (this.startOfIncubation + this.Props.incubationPeriod.max
@@ -232,73 +211,73 @@ namespace PurpleIvy
 
             stringBuilder.AppendLine(string.Concat(new string[]
             {
-                Translator.Translate("TypesOfCreatures"),
+                "TypesOfCreatures".Translate(),
                 ":"
             }));
-            foreach (string type in this.Props.typesOfCreatures)
+            foreach (var type in this.Props.typesOfCreatures)
             {
-                    stringBuilder.AppendLine(string.Concat(new string[]
-                    {
+                stringBuilder.AppendLine(string.Concat(new string[]
+                {
                         "\t", type
-                    }));
+                }));
             }
             stringBuilder.AppendLine(string.Concat(new string[]
             {
-                    Translator.Translate("MaxNumberOfCreatures"),
+                    "MaxNumberOfCreatures".Translate(),
                     ": ", this.Props.maxNumberOfCreatures.ToString()
             }));
             stringBuilder.AppendLine(string.Concat(new string[]
             {
-                    Translator.Translate("numberOfCreaturesPerSpawn"),
+                    "numberOfCreaturesPerSpawn".Translate(),
                     ": ", this.Props.numberOfCreaturesPerSpawn.min.ToString(), "~",
                     this.Props.numberOfCreaturesPerSpawn.max.ToString()
             }));
 
             stringBuilder.AppendLine(string.Concat(new string[]
             {
-                Translator.Translate("incubationPeriod"),
+                "incubationPeriod".Translate(),
                 ": ", this.Props.incubationPeriod.min.ToString(), "~",
                 this.Props.incubationPeriod.max.ToString()
             }));
             stringBuilder.AppendLine(string.Concat(new string[]
             {
-                Translator.Translate("ageTick"),
+                "ageTick".Translate(),
                 ": ", this.Props.ageTick.min.ToString(), "~",
                 this.Props.ageTick.max.ToString()
             }));
             stringBuilder.AppendLine(string.Concat(new string[]
             {
-                Translator.Translate("ticksPerSpawn"),
+                "ticksPerSpawn".Translate(),
                 ": ", this.Props.ticksPerSpawn.min.ToString(), "~",
                 this.Props.ticksPerSpawn.max.ToString()
             }));
             stringBuilder.AppendLine(string.Concat(new string[]
             {
-               Translator.Translate("rotProgressPerSpawn"),
+               "rotProgressPerSpawn".Translate(),
                ": ", this.Props.rotProgressPerSpawn.min.ToString(), "~",
                this.Props.rotProgressPerSpawn.max.ToString()
             }));
             stringBuilder.AppendLine(string.Concat(new string[]
             {
-               Translator.Translate("resetIncubation"),
+               "resetIncubation".Translate(),
                ": ", this.Props.resetIncubation.ToString()
             }));
             stringBuilder.AppendLine(string.Concat(new string[]
             {
-               Translator.Translate("currentCountOfCreatures"),
+               "currentCountOfCreatures".Translate(),
                ": ", this.currentCountOfCreatures.ToString()
             }));
             stringBuilder.AppendLine(string.Concat(new string[]
             {
-                Translator.Translate("totalNumberOfCreatures"),
+                "totalNumberOfCreatures".Translate(),
                 ": ", this.maxNumberOfCreatures.ToString()
             }));
             stringBuilder.AppendLine(string.Concat(new string[]
             {
-               Translator.Translate("startOfIncubation"),
+               "startOfIncubation".Translate(),
                ": ", this.startOfIncubation.ToString()
             }));
-            return GenText.TrimEndNewlines(stringBuilder.ToString());
+            return stringBuilder.ToString().TrimEndNewlines();
         }
 
         public override void PostExposeData()

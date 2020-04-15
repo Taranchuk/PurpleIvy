@@ -13,7 +13,7 @@ namespace PurpleIvy
 
         public override IEnumerable Regenerate()
         {
-            Log.Message("START");
+            Log.Message("Start world rendering");
             foreach (object obj in base.Regenerate())
             {
                 yield return obj;
@@ -31,7 +31,7 @@ namespace PurpleIvy
             {
                 if (num >= 0)
                 {
-                    Log.Message("RENDER: " + num.ToString());
+                    //Log.Message("RENDER: " + num.ToString());
                     int ind = 0;
                     Material material = Find.WorldGrid[num].biome.DrawMaterial;
                     LayerSubMesh subMesh = base.GetSubMesh(material);

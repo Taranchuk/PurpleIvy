@@ -52,18 +52,18 @@ namespace PurpleIvy
         {
             foreach (var comp in PurpleIvyData.TotalFogProgress)
             {
-                Log.Message("Checking tile: " + tile.ToString() + " against "
-                    + comp.Key.infectedTile.ToString() + " - radius: " + comp.Key.radius.ToString()
-                    + " - distance: " + (Find.WorldGrid.TraversalDistanceBetween
-                (comp.Key.infectedTile, tile, true, int.MaxValue)).ToString());
+                //Log.Message("Checking tile: " + tile.ToString() + " against "
+                //    + comp.Key.infectedTile.ToString() + " - radius: " + comp.Key.radius.ToString()
+                //    + " - distance: " + (Find.WorldGrid.TraversalDistanceBetween
+                //(comp.Key.infectedTile, tile, true, int.MaxValue)).ToString());
                 if (Find.WorldGrid.TraversalDistanceBetween
                 (comp.Key.infectedTile, tile, true, int.MaxValue) <= comp.Key.radius)
                 {
-                    Log.Message("Tile in radius: " + tile.ToString());
+                    //Log.Message("Tile in radius: " + tile.ToString());
                     return true;
                 }
             }
-            Log.Message("Tile not in radius: " + tile.ToString());
+            //Log.Message("Tile not in radius: " + tile.ToString());
             return false;
         }
         public static float getFogProgress(int count)

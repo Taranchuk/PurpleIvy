@@ -70,23 +70,30 @@ namespace PurpleIvy
                     BiomeDef origBiome = Find.WorldGrid[tile].biome;
                     BiomeDef newBiome = BiomeDef.Named(origBiome.defName.ReplaceFirst("PI_", string.Empty));
                     Find.WorldGrid[tile].biome = newBiome;
-                    //PurpleIvyData.TotalPollutedBiomes.Remove(tile);
+                    PurpleIvyData.TotalPollutedBiomes.Remove(tile);
                     PurpleIvyData.BiomesToRenderNow.Add(tile);
                 }
             }
-            string tolog = "TotalPollutedBiomes: ";
-            foreach (var l in PurpleIvyData.TotalPollutedBiomes)
-            {
-                tolog += l.ToString() + ", ";
-            }
-            Log.Message(tolog);
-            tolog = "this.pollutedTiles: ";
-            foreach (var l in this.pollutedTiles)
+            string tolog = PurpleIvyData.TotalPollutedBiomes.Count + " - TotalPollutedBiomes: ";
+            foreach (var l in PurpleIvyData.TotalPollutedBiomes.OrderBy(x => x))
             {
                 tolog += l.ToString() + ", ";
             }
             Log.Message(tolog);
             this.pollutedTiles.Clear();
+            for (int i = 0; i < Find.WorldGrid.TilesCount; i++)
+            {
+                if (Find.WorldGrid[i].biome.defName.Contains("PI_"))
+                {
+                    this.pollutedTiles.Add(i);
+                }
+            }
+            tolog = this.pollutedTiles.Count + " - this.pollutedTiles:    ";
+            foreach (var l in this.pollutedTiles.OrderBy(x => x))
+            {
+                tolog += l.ToString() + ", ";
+            }
+            Log.Message(tolog);
             Find.World.renderer.SetDirty<WorldLayerRegenerateBiomes>();
         }
 
