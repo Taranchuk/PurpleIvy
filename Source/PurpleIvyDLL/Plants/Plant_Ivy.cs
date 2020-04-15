@@ -251,9 +251,10 @@ namespace PurpleIvy
             }
             else if (this.Position.InBounds(this.Map))
             {
+                int id = Convert.ToInt32(this.ThingID);
                 ThingDef thingDef = new ThingDef
                 {
-                    defName = "Spores" + this.ThingID,
+                    defName = "Spores" + id.ToString(),
                     thingClass = typeof(Gas),
                     category = ThingCategory.Gas,
                     altitudeLayer = AltitudeLayer.Gas,
