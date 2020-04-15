@@ -18,7 +18,7 @@
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 			<soundAmbient>MortarRound_Ambient</soundAmbient>
-			<explosionRadius>3.9</explosionRadius>
+			<explosionRadius>0</explosionRadius>
 			<postExplosionSpawnThingDef>PurpleIvy</postExplosionSpawnThingDef>
 			<postExplosionSpawnChance>1</postExplosionSpawnChance>
 			<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
