@@ -42,11 +42,12 @@ namespace PurpleIvy
                 }
             }
 
-            if (this.parent is Corpse || this.parent.def.IsCorpse)
-            {
-                Log.Message("ROTATE");
-                this.parent.Rotation = ((double)Rand.Value > 0.5) ? Rot4.East : Rot4.West;
-            }
+            //if (this.parent is Corpse || this.parent.def.IsCorpse)
+            //{
+            //    Log.Message("ROTATE");
+            //    this.parent.Rotation = ((double)Rand.Value > 0.5) ? Rot4.East : Rot4.West;
+            //}
+
             if (this.Props.incubationPeriod.min > 0)
             {
                 if (this.startOfIncubation + this.Props.incubationPeriod.RandomInRange

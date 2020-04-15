@@ -37,6 +37,7 @@
 		<weaponTags>
 			<li>Artillery_BaseDestroyer</li>
 		</weaponTags>
+		
 		<tradeability>None</tradeability>
 		<verbs>
 			<li>

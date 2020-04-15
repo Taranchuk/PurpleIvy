@@ -11,8 +11,6 @@ namespace PurpleIvy
 {
     public class Projectile_Seed : Projectile_Explosive
     {
-        public Thing Gun => ThingMaker.MakeThing(this.def.building.turretGunDef, null);
-
         public override void ExposeData()
         {
             base.ExposeData();
@@ -69,6 +67,7 @@ namespace PurpleIvy
         protected virtual void Explode()
         {
             Map map = base.Map;
+            var launcher = (Building_GenMortarGun)this.launcher;
             this.Destroy(DestroyMode.Vanish);
             if (this.def.projectile.explosionEffect != null)
             {
@@ -80,22 +79,25 @@ namespace PurpleIvy
             Map map2 = map;
             float explosionRadius = this.def.projectile.explosionRadius;
             DamageDef damageDef = this.def.projectile.damageDef;
-            Thing launcher = this.launcher;
             int damageAmount = base.DamageAmount;
             float armorPenetration = base.ArmorPenetration;
             SoundDef soundExplode = this.def.projectile.soundExplode;
             ThingDef equipmentDef = this.equipmentDef;
             ThingDef def = this.def;
             Thing thing = this.intendedTarget.Thing;
-            ThingDef postExplosionSpawnThingDef = this.def.projectile.postExplosionSpawnThingDef;
+            ThingDef postExplosionSpawnThingDef = null;
+            if (launcher.plantToSpawn <= 5)
+            {
+                postExplosionSpawnThingDef = this.def.projectile.postExplosionSpawnThingDef;
+            }
             float postExplosionSpawnChance = this.def.projectile.postExplosionSpawnChance;
             int postExplosionSpawnThingCount = this.def.projectile.postExplosionSpawnThingCount;
             ThingDef preExplosionSpawnThingDef = this.def.projectile.preExplosionSpawnThingDef;
             float preExplosionSpawnChance = this.def.projectile.preExplosionSpawnChance;
             int preExplosionSpawnThingCount = this.def.projectile.preExplosionSpawnThingCount;
             GenExplosion.DoExplosion(position, map2, explosionRadius, damageDef, launcher, damageAmount, armorPenetration, soundExplode, equipmentDef, def, thing, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, this.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, preExplosionSpawnChance, preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff, new float?(this.origin.AngleToFlat(this.destination)), null);
+            launcher.plantToSpawn++;
         }
-
 
         private bool IsValidTarget(Thing t)
         {

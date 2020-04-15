@@ -10,6 +10,9 @@ namespace PurpleIvy
     class Building_GenMortarGun : Building_TurretGun
     {
         private int chance;
+
+        public int plantToSpawn = 0;
+
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
             base.Destroy(mode); 
