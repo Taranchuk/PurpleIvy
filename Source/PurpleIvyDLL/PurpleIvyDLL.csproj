@@ -308,6 +308,7 @@
     <Compile Include="Jobs\JobDriver_AttackMelee.cs" />
     <Compile Include="Damages\BuildingsToxicDamageSectionLayerUtility.cs" />
     <Compile Include="Damages\SectionLayer_BuildingsToxicDamage.cs" />
+    <Compile Include="PurpleIvyDefOf - Copy.cs" />
     <Compile Include="Sites\Site_AbandonedBase.cs" />
     <Compile Include="Sites\Site_DefeatedSite.cs" />
     <Compile Include="AlienInfection\HediffInfected.cs" />

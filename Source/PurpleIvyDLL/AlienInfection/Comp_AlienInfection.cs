@@ -12,6 +12,7 @@ namespace PurpleIvy
         public int currentCountOfCreatures = 0;
         public int startOfIncubation = 0;
         public int maxNumberOfCreatures = 0;
+        public bool prevAngle = true;
 
         public CompProperties_AlienInfection Props
         {
@@ -42,11 +43,49 @@ namespace PurpleIvy
                 }
             }
 
-            //if (this.parent is Corpse || this.parent.def.IsCorpse)
-            //{
-            //    Log.Message("ROTATE");
-            //    this.parent.Rotation = ((double)Rand.Value > 0.5) ? Rot4.East : Rot4.West;
-            //}
+            if (this.parent is Corpse || this.parent.def.IsCorpse)
+            {
+                Corpse corpse = (Corpse)this.parent;
+                if (this.prevAngle == true)
+                {
+                    corpse.InnerPawn.Drawer.renderer.wiggler.downedAngle += 5f;
+                    this.prevAngle = false;
+                }
+                else
+                {
+                    corpse.InnerPawn.Drawer.renderer.wiggler.downedAngle -= 5f;
+                    this.prevAngle = true;
+                }
+                corpse.InnerPawn.Drawer.renderer.wiggler.WigglerTick();
+            }
+
+            else if (this.parent is Pawn)
+            {
+                Pawn pawn = (Pawn)this.parent;
+                if (pawn.Dead)
+                {
+                    Log.Message(this.parent + " dead");
+                    if (this.prevAngle == true)
+                    {
+                        pawn.Drawer.renderer.wiggler.downedAngle += 5f;
+                        this.prevAngle = false;
+                    }
+                    else
+                    {
+                        pawn.Drawer.renderer.wiggler.downedAngle -= 5f;
+                        this.prevAngle = true;
+                    }
+                    pawn.Drawer.renderer.RendererTick();
+                }
+                else
+                {
+                    Log.Message(this.parent + " not corpse 1");
+                }
+            }
+            else if (!(this.parent is Building))
+            {
+                Log.Message(this.parent + " not corpse 2");
+            }
 
             if (this.Props.incubationPeriod.min > 0)
             {
