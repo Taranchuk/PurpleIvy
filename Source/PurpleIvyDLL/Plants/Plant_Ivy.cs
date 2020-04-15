@@ -251,7 +251,8 @@ namespace PurpleIvy
             }
             else if (this.Position.InBounds(this.Map))
             {
-                int id = Convert.ToInt32(this.ThingID);
+                Log.Message(this.ThingID);
+                int id = Convert.ToInt32(new String(this.ThingID.Where(Char.IsDigit).ToArray()));
                 ThingDef thingDef = new ThingDef
                 {
                     defName = "Spores" + id.ToString(),
