@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <DamageDef Name="BaseEnergyImpact" Abstract="True">
+    <workerClass>DamageWorker_AddInjury</workerClass>
+  </DamageDef>
+
+  <!--====== Energy Weapons Damage ======-->
+
+  <DamageDef ParentName="BaseEnergyImpact">
+    <defName>LaserImpact</defName>
+    <label>Laser</label>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has been Killed by an Energy Weapon.</deathMessage>
+    <hediff>LaserShot</hediff>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Bullet</impactSoundType>
+    <armorCategory>Heat</armorCategory>
+  </DamageDef>
+
+  <DamageDef ParentName="Flame">
+    <defName>LaserHit</defName>
+    <label>Skin burn</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+  </DamageDef>
+
+  <!--====== Energy Weapons End ======-->
+
+</Defs>

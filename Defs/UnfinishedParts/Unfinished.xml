@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+
+  <ThingDef Name="RaceUnfinishedItem" Abstract="True">
+    <thingClass>UnfinishedThing</thingClass>
+    <category>Item</category>
+    <label>Unfinished Item</label>
+    <graphicData>
+      <texPath>Things/Item/Unfinished/UnfinishedSculpture</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <altitudeLayer>Item</altitudeLayer>
+    <useHitPoints>true</useHitPoints>
+    <isUnfinishedThing>true</isUnfinishedThing>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <selectable>true</selectable>
+    <tradeability>None</tradeability>
+    <drawerType>RealtimeOnly</drawerType>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <DeteriorationRate>0.5</DeteriorationRate>
+      <Beauty>1</Beauty>
+      <Mass>0.50</Mass>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+    </comps>
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>5</pathCost>
+    <thingCategories>
+      <li>Unfinished</li>
+    </thingCategories>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+  </ThingDef>
+
+  <!--====== Unfinished Normal ======-->
+
+  <ThingDef ParentName="RaceUnfinishedItem">
+    <defName>UnfinishedPart</defName>
+    <label>Unfinished Bionic-Implant Part</label>
+    <statBases>
+      <Flammability>0.5</Flammability>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Prosthetics/AlienUnfinished/UnfinishedAlien</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stuffCategories Inherit="false" />
+  </ThingDef>
+
+  <!--====== Unfinished Lightning  ======-->
+
+
+  <ThingDef ParentName="RaceUnfinishedItem">
+    <defName>UnfinishedPartLightning</defName>
+    <label>Unfinished Stimulator BHC-1</label>
+    <statBases>
+      <Flammability>0.5</Flammability>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Prosthetics/UnfinishedLightning/UnfinishedStorm</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stuffCategories Inherit="false" />
+  </ThingDef>
+
+  <ThingDef ParentName="RaceUnfinishedItem">
+    <defName>UnfinishedPartLightningSecond</defName>
+    <label>Unfinished Capability-Stimulator</label>
+    <statBases>
+      <Flammability>0.5</Flammability>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Prosthetics/UnfinishedLightningSecond/UnfinishedStorm</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stuffCategories Inherit="false" />
+  </ThingDef>
+
+  <!--====== Special ======-->
+
+  <ThingDef ParentName="RaceUnfinishedItem">
+    <defName>UnfinishedPartCosmosBase</defName>
+    <label>Unfinished Growth Stimulator BO-001</label>
+    <statBases>
+      <Flammability>0.5</Flammability>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Prosthetics/UnfinishedCosmos/CosmosUnfinished</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stuffCategories Inherit="false" />
+  </ThingDef>
+
+  <!--====== Unfinished Spawn ======-->
+
+  <ThingDef ParentName="RaceUnfinishedItem">
+    <defName>UnfinishedAbilitySpawn</defName>
+    <label>Extracted Implant</label>
+    <statBases>
+      <Flammability>0.5</Flammability>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Prosthetics/SpecialSpawn/SpecialAbilitySpawn</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stuffCategories Inherit="false" />
+  </ThingDef>
+
+  <!--====== Unfinished Medical ======-->
+
+  <ThingDef ParentName="RaceUnfinishedItem">
+    <defName>UnfinishedMedical</defName>
+    <label>Unfinished Flux Medicine</label>
+    <statBases>
+      <Flammability>0.5</Flammability>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Prosthetics/PartMedical/UnfinishedPart</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stuffCategories Inherit="false" />
+  </ThingDef>
+
+</Defs>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--=============== Flux Medicine ====================-->
+
+  <ThingDef ParentName="RaceResource" Name="AdvancedRaceMedicine" Abstract="True">
+    <thingClass>Medicine</thingClass>
+    <stackLimit>25</stackLimit>
+    <uiIconForStackCount>1</uiIconForStackCount>
+    <soundInteract>Standard_Drop</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <statBases>
+      <MaxHitPoints>75</MaxHitPoints>
+    </statBases>
+    <thingCategories>
+      <li>FluxRaceMedicine</li>
+    </thingCategories>
+  </ThingDef>
+
+  <ThingDef ParentName="AdvancedRaceMedicine">
+    <defName>FluxMedicine</defName>
+    <label>Flux Medicine</label>
+    <description>A kit of Basic Flux-Medicine. Manufactured by Flux Tech Ind. It contains Nano-Bots that can help to cure every injury in a very efficient way. The Flux Medicine is also used to Manufacture "Stimulator Bionics". (The package of the Item is more Resistant to Fire then any Medicine package currently on the Market)</description>
+    <graphicData>
+      <texPath>Things/Prosthetics/Medical</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <techLevel>Ultra</techLevel>
+    <statBases>
+      <MarketValue>350</MarketValue>
+      <Mass>0.75</Mass>
+      <Flammability>0.1</Flammability>
+      <MedicalPotency>1.85</MedicalPotency>
+      <MedicalQualityMax>1.65</MedicalQualityMax>
+      <DeteriorationRate>0.1</DeteriorationRate>
+    </statBases>
+    <tradeTags>
+      <li>MedicalFlux</li>
+    </tradeTags>
+  </ThingDef>
+
+  <RecipeDef>
+    <defName>MakeFluxMedicine</defName>
+    <label>Make Flux Medicine</label>
+    <description>A kit of Basic Flux-Medicine.</description>
+    <jobString>Crafting...</jobString>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <effectWorking>AlienRecipeNormal</effectWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
+    <workAmount>18000</workAmount>
+    <unfinishedThingDef>UnfinishedMedical</unfinishedThingDef>
+    <recipeUsers>
+      <li>BioLab</li>
+    </recipeUsers>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>NightmareBrier</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>NightmareBrier</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <FluxMedicine>1</FluxMedicine>
+    </products>
+    <workSkill>Crafting</workSkill>
+    <skillRequirements>
+      <Crafting>6</Crafting>
+    </skillRequirements>
+    <researchPrerequisite>LightningResRed</researchPrerequisite>
+  </RecipeDef>
+
+  <!--=============== Flux Medicine Advanced ====================-->
+
+  <ThingDef ParentName="AdvancedRaceMedicine">
+    <defName>AdvancedMedicalFlux</defName>
+    <label>Advanced Flux Medicine</label>
+    <description>A kit of Advanced Flux-Medicine. Manufactured by Flux Tech Ind. It contains Advanced Nano-Bots that can help heal from every Injury way faster then Before. The Flux Medicine is also used to Manufacture "Stimulator Bionics". (The package of the Item is more Resistant to Fire then any Medicine package currently on the Market)</description>
+    <graphicData>
+      <texPath>Things/Prosthetics/AdvancedHeal</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <techLevel>Ultra</techLevel>
+    <statBases>
+      <MarketValue>450</MarketValue>
+      <Mass>1.0</Mass>
+      <Flammability>0.1</Flammability>
+      <MedicalPotency>1.95</MedicalPotency>
+      <MedicalQualityMax>2.00</MedicalQualityMax>
+      <DeteriorationRate>0.1</DeteriorationRate>
+    </statBases>
+    <tradeTags>
+      <li>MedicalFlux</li>
+    </tradeTags>
+  </ThingDef>
+
+  <RecipeDef>
+    <defName>MakeAdvancedMedicalFlux</defName>
+    <label>Make Flux Medicine Advanced</label>
+    <description>A kit of Advanced Flux-Medicine.</description>
+    <jobString>Crafting...</jobString>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <effectWorking>AlienRecipeNormal</effectWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
+    <workAmount>22000</workAmount>
+    <unfinishedThingDef>UnfinishedMedical</unfinishedThingDef>
+    <recipeUsers>
+      <li>BioLab</li>
+    </recipeUsers>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Magmatite</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>7</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Magmatite</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <AdvancedMedicalFlux>1</AdvancedMedicalFlux>
+    </products>
+    <workSkill>Crafting</workSkill>
+    <skillRequirements>
+      <Crafting>8</Crafting>
+    </skillRequirements>
+    <researchPrerequisite>LightningResGreen</researchPrerequisite>
+  </RecipeDef>
+
+</Defs>

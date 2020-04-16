@@ -57,6 +57,9 @@ namespace PurpleIvy
 
         public static IncidentDef PI_AlienRaid;
 
+        public static SitePartDef OldOutpost; //def changed
+
+
 
 
     }

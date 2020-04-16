@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+  <!--====== Damage Power Race ======-->
+
+
+  <DamageDef Name="BlueFire">
+    <defName>BlueFire</defName>
+    <workerClass>RaceAbilities.DamageWorker_BlueFire</workerClass>
+    <label>Burned</label>
+    <hasForcefulImpact>false</hasForcefulImpact>
+    <makesBlood>false</makesBlood>
+    <canInterruptJobs>false</canInterruptJobs>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has been Burned to death.</deathMessage>
+    <hediff>NovaBurn</hediff>
+    <armorCategory>Heat</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>15</defaultDamage>
+    <defaultArmorPenetration>5</defaultArmorPenetration>
+    <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastFlame</explosionCellMote>
+    <explosionColorCenter>(52,211,255)</explosionColorCenter>
+    <explosionColorEdge>(52,211,255)</explosionColorEdge>
+    <soundExplosion>Explosion_Flame</soundExplosion>
+    <combatLogRules>Damage_Flame</combatLogRules>
+    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+  </DamageDef>
+
+
+  <!--====== Damage Power Human ======-->
+
+
+  <DamageDef Name="RedFire">
+    <defName>RedFire</defName>
+    <workerClass>HumanAbilities.DamageWorker_RedFire</workerClass>
+    <label>Burned</label>
+    <hasForcefulImpact>false</hasForcefulImpact>
+    <makesBlood>false</makesBlood>
+    <canInterruptJobs>false</canInterruptJobs>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has been Burned to death.</deathMessage>
+    <hediff>NovaBurn</hediff>
+    <armorCategory>Heat</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>10</defaultDamage>
+    <defaultArmorPenetration>2</defaultArmorPenetration>
+    <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastFlame</explosionCellMote>
+    <explosionColorCenter>(219,98,98)</explosionColorCenter>
+    <explosionColorEdge>(219,98,98)</explosionColorEdge>
+    <soundExplosion>Explosion_Flame</soundExplosion>
+    <combatLogRules>Damage_Flame</combatLogRules>
+    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+  </DamageDef>
+
+
+  <!--====== Damage Power Human Upgraded ======-->
+
+
+  <DamageDef Name="GreenFire">
+    <defName>GreenFire</defName>
+    <workerClass>HumanUpgraded.DamageWorker_GreenFire</workerClass>
+    <label>Burned</label>
+    <hasForcefulImpact>false</hasForcefulImpact>
+    <makesBlood>false</makesBlood>
+    <canInterruptJobs>false</canInterruptJobs>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has been Burned to death.</deathMessage>
+    <hediff>NovaBurn</hediff>
+    <armorCategory>Heat</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>12</defaultDamage>
+    <defaultArmorPenetration>4</defaultArmorPenetration>
+    <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastFlame</explosionCellMote>
+    <explosionColorCenter>(153,255,15)</explosionColorCenter>
+    <explosionColorEdge>(153,255,15)</explosionColorEdge>
+    <soundExplosion>Explosion_Flame</soundExplosion>
+    <combatLogRules>Damage_Flame</combatLogRules>
+    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+  </DamageDef>
+
+</Defs>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--=============== Hediff Electrocut DamageDef-Fire Connection ================-->
+
+  <HediffDef ParentName="InjuryBase">
+    <defName>NovaBurn</defName>
+    <label>Burned</label>
+    <labelNoun>Burn</labelNoun>
+    <description>Burn</description>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.05</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>Burned</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.01875</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <canMerge>true</canMerge>
+      <destroyedLabel>Vaporized</destroyedLabel>
+      <destroyedOutLabel>Vaporized</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+
+
+</Defs>

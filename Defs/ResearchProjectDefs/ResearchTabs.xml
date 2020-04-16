@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ResearchTabDef>
+    <defName>AlienProduction</defName>
+    <label>Advanced Production</label>
+  </ResearchTabDef>
+
+  <ResearchTabDef>
+    <defName>AdvancedProduction</defName>
+    <label>Cosmos Tech</label>
+  </ResearchTabDef>
+
+</Defs>

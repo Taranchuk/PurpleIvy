@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--====== Corvian Faction ======-->
+
+  <RulePackDef>
+    <defName>AvianNamer</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>name->[AvianBaseNamer]</li>
+      </rulesStrings>
+      <rulesRaw>
+        <li Class="Rule_File">
+          <keyword>AvianBaseNamer</keyword>
+          <path>AvianNamerPack/AvianBaseNamer</path>
+        </li>
+      </rulesRaw>
+    </rulePack>
+  </RulePackDef>
+
+  <!--====== Magma Faction ======-->
+
+  <RulePackDef>
+    <defName>MagmaNamer</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>name->[MagmaBaseNamer]</li>
+      </rulesStrings>
+      <rulesRaw>
+        <li Class="Rule_File">
+          <keyword>MagmaBaseNamer</keyword>
+          <path>MagmaNamerPack/MagmaBaseNamer</path>
+        </li>
+      </rulesRaw>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

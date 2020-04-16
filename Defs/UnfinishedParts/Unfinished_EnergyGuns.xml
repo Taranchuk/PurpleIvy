@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <!--====== Energy-Weapons Unfinished ======-->
+
+    <ThingDef ParentName="RaceUnfinishedItem">
+        <defName>CosmosRifleUnfinished</defName>
+        <label>Unfinished Cosmos Energy-Rifle</label>
+        <statBases>
+            <Flammability>0.5</Flammability>
+        </statBases>
+        <graphicData>
+            <texPath>Things/EnergyWeaponsRace/UnfinishedWeapons/CosmosTechUnfinished/Cosmos_Unfinished</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <stuffCategories Inherit="false" />
+    </ThingDef>
+
+    <ThingDef ParentName="RaceUnfinishedItem">
+        <defName>CosmosPistolUnfinished</defName>
+        <label>Unfinished Cosmos Energy-Pistol</label>
+        <statBases>
+            <Flammability>0.5</Flammability>
+        </statBases>
+        <graphicData>
+            <texPath>Things/EnergyWeaponsRace/UnfinishedWeapons/CosmosTechUnfinished/CosmosPistol_Unfinished</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <stuffCategories Inherit="false" />
+    </ThingDef>
+
+    <ThingDef ParentName="RaceUnfinishedItem">
+        <defName>CosmosSniperUnfinished</defName>
+        <label>Unfinished Cosmos Energy-Sniper</label>
+        <statBases>
+            <Flammability>0.5</Flammability>
+        </statBases>
+        <graphicData>
+            <texPath>Things/EnergyWeaponsRace/UnfinishedWeapons/CosmosTechUnfinished/CosmosSniper_Unfinished</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <stuffCategories Inherit="false" />
+    </ThingDef>
+
+    <ThingDef ParentName="RaceUnfinishedItem">
+        <defName>PhaseUnfinished</defName>
+        <label>Unfinished Phase Weapon</label>
+        <statBases>
+            <Flammability>0.5</Flammability>
+        </statBases>
+        <graphicData>
+            <texPath>Things/EnergyWeaponsRace/UnfinishedWeapons/CommonUnfinished/Phase_Unfinished</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <stuffCategories Inherit="false" />
+    </ThingDef>
+
+    <ThingDef ParentName="RaceUnfinishedItem">
+        <defName>EnergyFluxUnfinished</defName>
+        <label>Unfinished Flux Weapon</label>
+        <statBases>
+            <Flammability>0.5</Flammability>
+        </statBases>
+        <graphicData>
+            <texPath>Things/EnergyWeaponsRace/UnfinishedWeapons/CommonUnfinished/Unfinished_Flux</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <stuffCategories Inherit="false" />
+    </ThingDef>
+
+</Defs>

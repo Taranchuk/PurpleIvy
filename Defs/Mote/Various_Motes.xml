@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <!--====== Working Effect Food & Effect Working Bionics ======-->
+
+    <EffecterDef>
+        <defName>AlienRecipeNormal</defName>
+        <children>
+            <li>
+                <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+                <scale>
+                    <min>0.3</min>
+                    <max>0.7</max>
+                </scale>
+                <ticksBetweenMotes>20</ticksBetweenMotes>
+                <positionLerpFactor>0.6</positionLerpFactor>
+                <positionRadius>0.6</positionRadius>
+                <moteDef>RacePreparation</moteDef>
+            </li>
+        </children>
+    </EffecterDef>
+
+    <ThingDef ParentName="FoodBitBase">
+        <defName>RacePreparation</defName>
+        <graphicData>
+            <texPath>Things/Mote/RecipeMotes/Work/RecipePreparation</texPath>
+            <shaderType>Mote</shaderType>
+        </graphicData>
+    </ThingDef>
+
+
+    <!--====== Raw Effect ======-->
+
+
+    <EffecterDef>
+        <defName>AlienVegetarian</defName>
+        <children>
+            <li>
+                <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+                <scale>
+                    <min>0.5</min>
+                    <max>0.7</max>
+                </scale>
+                <ticksBetweenMotes>20</ticksBetweenMotes>
+                <positionLerpFactor>0.35</positionLerpFactor>
+                <moteDef>AlienLeaf</moteDef>
+            </li>
+        </children>
+    </EffecterDef>
+
+
+
+    <ThingDef ParentName="FoodBitBase">
+        <defName>AlienLeaf</defName>
+        <graphicData>
+            <texPath>Things/Mote/RecipeMotes/Food/AlienMoteVegetarian</texPath>
+            <shaderType>Mote</shaderType>
+        </graphicData>
+    </ThingDef>
+
+
+    <!--====== Surgery Install Effect Blue ======-->
+
+    <EffecterDef>
+        <defName>AlienSurgery</defName>
+        <children>
+            <li>
+                <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+                <scale>
+                    <min>0.3</min>
+                    <max>0.7</max>
+                </scale>
+                <ticksBetweenMotes>20</ticksBetweenMotes>
+                <positionLerpFactor>0.6</positionLerpFactor>
+                <positionRadius>0.6</positionRadius>
+                <moteDef>AlienMote_SurgeryBitBlue</moteDef>
+            </li>
+        </children>
+    </EffecterDef>
+
+    <ThingDef ParentName="FoodBitBase">
+        <defName>AlienMote_SurgeryBitBlue</defName>
+        <graphicData>
+            <texPath>Things/Mote/RecipeMotes/Surgery/SurgeryMoteBlue</texPath>
+            <shaderType>Mote</shaderType>
+        </graphicData>
+    </ThingDef>
+
+    <!--====== Surgery Install Effect Green ======-->
+
+    <EffecterDef>
+        <defName>AlienSurgeryGreen</defName>
+        <children>
+            <li>
+                <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+                <scale>
+                    <min>0.3</min>
+                    <max>0.7</max>
+                </scale>
+                <ticksBetweenMotes>20</ticksBetweenMotes>
+                <positionLerpFactor>0.6</positionLerpFactor>
+                <positionRadius>0.6</positionRadius>
+                <moteDef>AlienMote_SurgeryBitGreen</moteDef>
+            </li>
+        </children>
+    </EffecterDef>
+
+    <ThingDef ParentName="FoodBitBase">
+        <defName>AlienMote_SurgeryBitGreen</defName>
+        <graphicData>
+            <texPath>Things/Mote/RecipeMotes/Surgery/SurgeryMoteGreen</texPath>
+            <shaderType>Mote</shaderType>
+        </graphicData>
+    </ThingDef>
+
+    <!--====== Surgery Install Effect Red ======-->
+
+    <EffecterDef>
+        <defName>AlienSurgeryRed</defName>
+        <children>
+            <li>
+                <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+                <scale>
+                    <min>0.3</min>
+                    <max>0.7</max>
+                </scale>
+                <ticksBetweenMotes>20</ticksBetweenMotes>
+                <positionLerpFactor>0.6</positionLerpFactor>
+                <positionRadius>0.6</positionRadius>
+                <moteDef>AlienMote_SurgeryBitRed</moteDef>
+            </li>
+        </children>
+    </EffecterDef>
+
+    <ThingDef ParentName="FoodBitBase">
+        <defName>AlienMote_SurgeryBitRed</defName>
+        <graphicData>
+            <texPath>Things/Mote/RecipeMotes/Surgery/SurgeryMoteRed</texPath>
+            <shaderType>Mote</shaderType>
+        </graphicData>
+    </ThingDef>
+
+    <!--====== Surgery Install Effect Violet ======-->
+
+    <EffecterDef>
+        <defName>AlienSurgeryViolet</defName>
+        <children>
+            <li>
+                <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+                <scale>
+                    <min>0.3</min>
+                    <max>0.7</max>
+                </scale>
+                <ticksBetweenMotes>20</ticksBetweenMotes>
+                <positionLerpFactor>0.6</positionLerpFactor>
+                <positionRadius>0.6</positionRadius>
+                <moteDef>AlienMote_SurgeryBitViolet</moteDef>
+            </li>
+        </children>
+    </EffecterDef>
+
+    <ThingDef ParentName="FoodBitBase">
+        <defName>AlienMote_SurgeryBitViolet</defName>
+        <graphicData>
+            <texPath>Things/Mote/RecipeMotes/Surgery/SurgeryMoteViolet</texPath>
+            <shaderType>Mote</shaderType>
+        </graphicData>
+    </ThingDef>
+
+</Defs>

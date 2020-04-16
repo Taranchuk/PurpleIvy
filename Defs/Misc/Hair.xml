@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+
+    <HairDef>
+        <defName>RaceFlowy</defName>
+        <label>Race Flowy</label>
+        <hairGender>Female</hairGender>
+        <texPath>Things/Pawn/Humanlike/Hairs/Flowy</texPath>
+        <hairTags>
+            <li>MagmaFemale</li>
+        </hairTags>
+    </HairDef>
+
+    <HairDef>
+        <defName>RaceBob</defName>
+        <label>Race Bob</label>
+        <hairGender>Female</hairGender>
+        <texPath>Things/Pawn/Humanlike/Hairs/Bob</texPath>
+        <hairTags>
+            <li>MagmaFemale</li>
+        </hairTags>
+    </HairDef>
+
+    <HairDef>
+        <defName>RaceLong</defName>
+        <label>Race Long</label>
+        <hairGender>Female</hairGender>
+        <texPath>Things/Pawn/Humanlike/Hairs/Long</texPath>
+        <hairTags>
+            <li>MagmaFemale</li>
+        </hairTags>
+    </HairDef>
+
+
+    <HairDef>
+        <defName>RaceMop</defName>
+        <label>Race Mop</label>
+        <hairGender>Any</hairGender>
+        <texPath>Things/Pawn/Humanlike/Hairs/Mop</texPath>
+        <hairTags>
+            <li>MagmaMale</li>
+        </hairTags>
+    </HairDef>
+
+    <HairDef>
+        <defName>RaceBriefPonytail</defName>
+        <label>Race Ponytail</label>
+        <hairGender>Male</hairGender>
+        <texPath>Things/Pawn/Humanlike/Hairs/Gaston</texPath>
+        <hairTags>
+            <li>MagmaMale</li>
+        </hairTags>
+    </HairDef>
+
+    <HairDef>
+        <defName>RaceScorpionTail</defName>
+        <label>Race Scorpion</label>
+        <hairGender>Any</hairGender>
+        <texPath>Things/Pawn/Humanlike/Hairs/Scorpiontail</texPath>
+        <hairTags>
+            <li>MagmaMale</li>
+        </hairTags>
+    </HairDef>
+
+    <HairDef>
+        <defName>RaceTopdog</defName>
+        <label>Race Topdog</label>
+        <hairGender>Male</hairGender>
+        <texPath>Things/Pawn/Humanlike/Hairs/Topdog</texPath>
+        <hairTags>
+            <li>MagmaMale</li>
+        </hairTags>
+    </HairDef>
+
+    <HairDef>
+        <defName>RaceShaved</defName>
+        <label>Race Shaved</label>
+        <hairGender>MaleUsually</hairGender>
+        <texPath>Things/Pawn/Humanlike/Hairs/Shaved</texPath>
+        <hairTags>
+            <li>MagmaMale</li>
+        </hairTags>
+    </HairDef>
+
+    <HairDef>
+        <defName>RaceTuft</defName>
+        <label>Race Tuft</label>
+        <hairGender>MaleUsually</hairGender>
+        <texPath>Things/Pawn/Humanlike/Hairs/Tuft</texPath>
+        <hairTags>
+            <li>MagmaMale</li>
+        </hairTags>
+    </HairDef>
+
+    <HairDef>
+        <defName>RaceMohawk</defName>
+        <label>Race Mohawk</label>
+        <hairGender>MaleUsually</hairGender>
+        <texPath>Things/Pawn/Humanlike/Hairs/Mohawk</texPath>
+        <hairTags>
+            <li>MagmaMale</li>
+        </hairTags>
+    </HairDef>
+
+
+</Defs>

@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Name="StrangePlants" Abstract="True">
+    <category>Plant</category>
+    <thingClass>Plant</thingClass>
+    <altitudeLayer>LowPlant</altitudeLayer>
+    <useHitPoints>True</useHitPoints>
+    <statBases>
+      <Flammability>1</Flammability>
+    </statBases>
+    <tickerType>Long</tickerType>
+    <selectable>False</selectable>
+    <neverMultiSelect>True</neverMultiSelect>
+    <drawerType>MapMeshOnly</drawerType>
+    <pathCostIgnoreRepeat>false</pathCostIgnoreRepeat>
+    <graphicData>
+      <graphicClass>Graphic_Random</graphicClass>
+      <shaderType>CutoutPlant</shaderType>
+    </graphicData>
+    <ingestible>
+      <foodType>Plant</foodType>
+      <preferability>RawBad</preferability>
+    </ingestible>
+    <plant>
+      <fertilityMin>0.7</fertilityMin>
+      <fertilitySensitivity>1.0</fertilitySensitivity>
+      <soundHarvesting>Harvest_Standard</soundHarvesting>
+      <soundHarvestFinish>Harvest_Standard_Finish</soundHarvestFinish>
+      <sowWork>170</sowWork>
+      <harvestWork>275</harvestWork>
+      <visualSizeRange>
+        <min>0.3</min>
+        <max>1.00</max>
+      </visualSizeRange>
+      <topWindExposure>0.1</topWindExposure>
+    </plant>
+  </ThingDef>
+
+
+
+  <ThingDef ParentName="StrangePlants">
+    <defName>PlantCreepyTulip</defName>
+    <label>Creepy Tulip</label>
+    <description>Little blue and green plant with large leaves and it's specific tulip like structure in middle. This plant produce very big and tasteful structure on top. After this structure plant have it's name it contains six large seeds with good nutrient yield.</description>
+    <statBases>
+      <MaxHitPoints>65</MaxHitPoints>
+      <Nutrition>0.15</Nutrition>
+      <Beauty>20</Beauty>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Item/Plants/CreepyTulip</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <selectable>true</selectable>
+    <pathCost>10</pathCost>
+    <ingestible />
+    <plant>
+      <fertilitySensitivity>1.0</fertilitySensitivity>
+      <growDays>5</growDays>
+      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/CreepyTulip</immatureGraphicPath>
+      <dieIfLeafless>true</dieIfLeafless>
+      <harvestTag>Standard</harvestTag>
+      <harvestedThingDef>CreepyTulip</harvestedThingDef>
+      <harvestYield>6</harvestYield>
+      <sowTags>
+        <li>Ground</li>
+        <li>Hydroponic</li>
+      </sowTags>
+      <sowMinSkill>2</sowMinSkill>
+      <sowResearchPrerequisites>
+        <li>BasicAlienPlants</li>
+      </sowResearchPrerequisites>
+      <topWindExposure>0.2</topWindExposure>
+      <visualSizeRange>
+        <min>0.3</min>
+        <max>1.0</max>
+      </visualSizeRange>
+    </plant>
+  </ThingDef>
+
+  <ThingDef ParentName="StrangePlants">
+    <defName>PlantAzureHeart</defName>
+    <label>Azure Heart</label>
+    <description>This big plant similar to dandelion have azure and blue blossom and light green leaves. This plant is harvested for it's azure blossom.</description>
+    <statBases>
+      <MaxHitPoints>65</MaxHitPoints>
+      <Nutrition>0.15</Nutrition>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Item/Plants/AzureHeart</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <selectable>true</selectable>
+    <pathCost>10</pathCost>
+    <ingestible />
+    <plant>
+      <fertilitySensitivity>1.0</fertilitySensitivity>
+      <growDays>6</growDays>
+      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/AzureHeart</immatureGraphicPath>
+      <dieIfLeafless>true</dieIfLeafless>
+      <harvestTag>Standard</harvestTag>
+      <harvestedThingDef>AzureHeart</harvestedThingDef>
+      <harvestYield>8</harvestYield>
+      <sowTags>
+        <li>Ground</li>
+        <li>Hydroponic</li>
+      </sowTags>
+      <sowMinSkill>2</sowMinSkill>
+      <sowResearchPrerequisites>
+        <li>BasicAlienPlants</li>
+      </sowResearchPrerequisites>
+      <topWindExposure>0.2</topWindExposure>
+      <visualSizeRange>
+        <min>0.3</min>
+        <max>1.0</max>
+      </visualSizeRange>
+    </plant>
+  </ThingDef>
+
+  <ThingDef ParentName="StrangePlants">
+    <defName>PlantFuneralIvy</defName>
+    <label>Funeral Ivy</label>
+    <description>Blue luminescent medium plant with big crystal in middle. This crystal structure have many tubes inside filled with luminescent chemicals. This plant is mostly harvested for it's crystal.</description>
+    <statBases>
+      <Flammability>0.5</Flammability>
+      <MaxHitPoints>150</MaxHitPoints>
+      <Nutrition>0.15</Nutrition>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>1</glowRadius>
+        <glowColor>(39,139,255)</glowColor>
+      </li>
+    </comps>
+    <graphicData>
+      <texPath>Things/Item/Plants/FuneralIvy</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <selectable>true</selectable>
+    <pathCost>20</pathCost>
+    <ingestible />
+    <plant>
+      <fertilitySensitivity>1.0</fertilitySensitivity>
+      <growDays>8</growDays>
+      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/FuneralIvy</immatureGraphicPath>
+      <dieIfLeafless>false</dieIfLeafless>
+      <harvestTag>Standard</harvestTag>
+      <harvestedThingDef>FuneralIvy</harvestedThingDef>
+      <harvestYield>2</harvestYield>
+      <sowTags>
+        <li>Ground</li>
+        <li>Hydroponic</li>
+      </sowTags>
+      <sowMinSkill>8</sowMinSkill>
+      <sowResearchPrerequisites>
+        <li>MasterAlienPlants</li>
+      </sowResearchPrerequisites>
+      <topWindExposure>0.1</topWindExposure>
+      <visualSizeRange>
+        <min>0.3</min>
+        <max>1.0</max>
+      </visualSizeRange>
+    </plant>
+  </ThingDef>
+
+  <ThingDef ParentName="StrangePlants">
+    <defName>PlantVenomousToothwort</defName>
+    <label>Venomous Toothwort</label>
+    <description>This medium plant named after it's similarity to worms emerging from ground and poisons juices is one of hardest plants you can ever try to grow. It have strong poison that gardener needs to be aware of, and it need good care to grow.</description>
+    <statBases>
+      <Flammability>1.0</Flammability>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Nutrition>0.15</Nutrition>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Item/Plants/VenomousToothwort</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <selectable>true</selectable>
+    <pathCost>35</pathCost>
+    <ingestible />
+    <plant>
+      <harvestWork>400</harvestWork>
+      <fertilitySensitivity>1.0</fertilitySensitivity>
+      <growDays>7.5</growDays>
+      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/VenomousToothwort</immatureGraphicPath>
+      <dieIfLeafless>false</dieIfLeafless>
+      <harvestTag>Standard</harvestTag>
+      <harvestedThingDef>VenomousToothwort</harvestedThingDef>
+      <harvestYield>10</harvestYield>
+      <sowTags>
+        <li>Ground</li>
+      </sowTags>
+      <sowMinSkill>6</sowMinSkill>
+      <sowResearchPrerequisites>
+        <li>VenomousAlienPlants</li>
+      </sowResearchPrerequisites>
+      <topWindExposure>0.1</topWindExposure>
+      <visualSizeRange>
+        <min>0.3</min>
+        <max>1.0</max>
+      </visualSizeRange>
+    </plant>
+  </ThingDef>
+
+  <ThingDef ParentName="StrangePlants">
+    <defName>PlantPhoenixJuniper</defName>
+    <label>Phoenix Juniper</label>
+    <description>Phoenix Juniper is medium sized plant named after person who found it. It grows in very weird but strong structures. It grow discs with seeds inside them, these discs keep them protected from any harm before seeds are ready. Plant is mostly harvested for it's immature seeds.</description>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Nutrition>0.15</Nutrition>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>1</glowRadius>
+        <glowColor>(73,176,176)</glowColor>
+      </li>
+    </comps>
+    <graphicData>
+      <texPath>Things/Item/Plants/PhoenixJuniper</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <selectable>true</selectable>
+    <pathCost>10</pathCost>
+    <ingestible />
+    <plant>
+      <fertilitySensitivity>1.0</fertilitySensitivity>
+      <growDays>6</growDays>
+      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/PhoenixJuniper</immatureGraphicPath>
+      <dieIfLeafless>true</dieIfLeafless>
+      <harvestTag>Standard</harvestTag>
+      <harvestedThingDef>PhoenixJuniper</harvestedThingDef>
+      <harvestYield>8</harvestYield>
+      <sowTags>
+        <li>Ground</li>
+        <li>Hydroponic</li>
+      </sowTags>
+      <sowMinSkill>6</sowMinSkill>
+      <sowResearchPrerequisites>
+        <li>SporeAlienPlants</li>
+      </sowResearchPrerequisites>
+      <topWindExposure>0.1</topWindExposure>
+      <visualSizeRange>
+        <min>0.3</min>
+        <max>1.0</max>
+      </visualSizeRange>
+    </plant>
+  </ThingDef>
+
+  <ThingDef ParentName="StrangePlants">
+    <defName>PlantDemonLily</defName>
+    <label>Demon Lily</label>
+    <description>This medium sized plant is named after its resemblance of upside down closed lily with demon-like colors. It grows in mushroom like structures with blisters on its main parts. These blisters keep spores protected and they will pop up when spore are mature. This plant is mostly harvested for it's immature spores.</description>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Nutrition>0.15</Nutrition>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Item/Plants/DemonLily</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <selectable>true</selectable>
+    <pathCost>10</pathCost>
+    <ingestible />
+    <plant>
+      <fertilitySensitivity>1.0</fertilitySensitivity>
+      <growDays>6</growDays>
+      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/DemonLily</immatureGraphicPath>
+      <dieIfLeafless>true</dieIfLeafless>
+      <harvestTag>Standard</harvestTag>
+      <harvestedThingDef>DemonLily</harvestedThingDef>
+      <harvestYield>8</harvestYield>
+      <sowTags>
+        <li>Ground</li>
+        <li>Hydroponic</li>
+      </sowTags>
+      <sowMinSkill>5</sowMinSkill>
+      <sowResearchPrerequisites>
+        <li>SporeAlienPlants</li>
+      </sowResearchPrerequisites>
+      <topWindExposure>0.2</topWindExposure>
+      <visualSizeRange>
+        <min>0.3</min>
+        <max>1.0</max>
+      </visualSizeRange>
+    </plant>
+  </ThingDef>
+
+
+  <ThingDef ParentName="StrangePlants">
+    <defName>PlantNightmareBrier</defName>
+    <label>Nightmare Brier</label>
+    <description>Nightmare Brier is medium plant with dark appearance and one big glowing slime blop in middle of it's branches. This is known for dark colors and fast grow that makes it scary. In worlds without natural regulators this plant can destroy ecosystem if unchecked. It is harvested for it's glowing blop.</description>
+    <statBases>
+      <Flammability>0.5</Flammability>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Nutrition>0.15</Nutrition>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>1</glowRadius>
+        <glowColor>(73,176,176)</glowColor>
+      </li>
+    </comps>
+    <graphicData>
+      <texPath>Things/Item/Plants/NightmareBrier</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <selectable>true</selectable>
+    <pathCost>10</pathCost>
+    <ingestible />
+    <plant>
+      <fertilitySensitivity>1.0</fertilitySensitivity>
+      <growDays>6</growDays>
+      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/NightmareBrier</immatureGraphicPath>
+      <dieIfLeafless>false</dieIfLeafless>
+      <harvestTag>Standard</harvestTag>
+      <harvestedThingDef>NightmareBrier</harvestedThingDef>
+      <harvestYield>6</harvestYield>
+      <sowTags>
+        <li>Ground</li>
+        <li>Hydroponic</li>
+      </sowTags>
+      <sowMinSkill>8</sowMinSkill>
+      <sowResearchPrerequisites>
+        <li>IntermidiateAlienPlants</li>
+      </sowResearchPrerequisites>
+      <topWindExposure>0.1</topWindExposure>
+      <visualSizeRange>
+        <min>0.3</min>
+        <max>1.0</max>
+      </visualSizeRange>
+    </plant>
+  </ThingDef>
+
+
+  <ThingDef ParentName="StrangePlants">
+    <defName>PlantMagmatite</defName>
+    <label>Magmatite</label>
+    <description>Magmatite is medium sized plant that have hard rock structure on its body. This plant synthesize very strong chemicals that can injure any living creature that came in contact with them.</description>
+    <statBases>
+      <Flammability>0</Flammability>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Nutrition>0.15</Nutrition>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>1</glowRadius>
+        <glowColor>(228,111,61)</glowColor>
+      </li>
+    </comps>
+    <graphicData>
+      <texPath>Things/Item/Plants/Magmatite</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <selectable>true</selectable>
+    <pathCost>10</pathCost>
+    <ingestible />
+    <plant>
+      <maxMeshCount>4</maxMeshCount>
+      <fertilitySensitivity>1.0</fertilitySensitivity>
+      <growDays>6.5</growDays>
+      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/Magmatite</immatureGraphicPath>
+      <dieIfLeafless>false</dieIfLeafless>
+      <harvestTag>Standard</harvestTag>
+      <harvestedThingDef>Magmatite</harvestedThingDef>
+      <harvestYield>8</harvestYield>
+      <sowTags>
+        <li>Ground</li>
+      </sowTags>
+      <sowMinSkill>6</sowMinSkill>
+      <sowResearchPrerequisites>
+        <li>IntermidiateAlienPlants</li>
+      </sowResearchPrerequisites>
+      <topWindExposure>0.1</topWindExposure>
+      <visualSizeRange>
+        <min>0.3</min>
+        <max>1.0</max>
+      </visualSizeRange>
+    </plant>
+  </ThingDef>
+
+  <ThingDef ParentName="StrangePlants">
+    <defName>PlantDragonGinger</defName>
+    <label>Dragon Ginger</label>
+    <description>Careful this thing may Bite! (Can only be grown inside Hydroponics)</description>
+    <statBases>
+      <MaxHitPoints>85</MaxHitPoints>
+      <Nutrition>0.15</Nutrition>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Item/Plants/DragonGinger</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <selectable>true</selectable>
+    <pathCost>10</pathCost>
+    <ingestible />
+    <plant>
+      <harvestWork>350</harvestWork>
+      <fertilitySensitivity>1.0</fertilitySensitivity>
+      <growDays>8.5</growDays>
+      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/DragonGinger</immatureGraphicPath>
+      <dieIfLeafless>false</dieIfLeafless>
+      <harvestTag>Standard</harvestTag>
+      <harvestedThingDef>DragonGinger</harvestedThingDef>
+      <harvestYield>2</harvestYield>
+      <sowTags>
+        <li>Hydroponic</li>
+      </sowTags>
+      <sowMinSkill>8</sowMinSkill>
+      <sowResearchPrerequisites>
+        <li>DragonAlienPlants</li>
+      </sowResearchPrerequisites>
+      <topWindExposure>0.1</topWindExposure>
+      <visualSizeRange>
+        <min>0.3</min>
+        <max>1.0</max>
+      </visualSizeRange>
+    </plant>
+  </ThingDef>
+
+</Defs>

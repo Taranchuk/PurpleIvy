@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--=============== Impact Effect Low Chance ================-->
+
+  <ThingDef ParentName="MoteBase">
+    <defName>LaserImpactThing</defName>
+    <graphicData>
+      <texPath>Things/MoteWeapons/SparksImpact</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.75</fadeInTime>
+      <solidTime>0.5</solidTime>
+      <fadeOutTime>0.65</fadeOutTime>
+    </mote>
+  </ThingDef>
+
+  <!--=============== Holding Glow Effect ================-->
+
+  <ThingDef ParentName="MoteBase">
+    <defName>LaserMoteWorker</defName>
+    <graphicData>
+      <texPath>Things/MoteWeapons/GlowWeapon</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.75</fadeInTime>
+      <solidTime>1.08</solidTime>
+      <fadeOutTime>0.8</fadeOutTime>
+    </mote>
+  </ThingDef>
+
+</Defs>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+	<WorkGiverDef>
+		<defName>BionicCabinet</defName>
+		<label>Crafting at the Advanced Lab.</label>
+		<giverClass>WorkGiver_DoBill</giverClass>
+		<workType>Crafting</workType>
+		<priorityInType>50</priorityInType>
+		<fixedBillGiverDefs>
+			<li>BioLab</li>
+		</fixedBillGiverDefs>
+		<verb>create</verb>
+		<gerund>creating</gerund>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+		<prioritizeSustains>true</prioritizeSustains>
+	</WorkGiverDef>
+
+	<WorkGiverDef>
+		<defName>LaserCabinet</defName>
+		<label>Crafting at the Cosmos Bench.</label>
+		<giverClass>WorkGiver_DoBill</giverClass>
+		<workType>Crafting</workType>
+		<priorityInType>50</priorityInType>
+		<fixedBillGiverDefs>
+			<li>EnergyBench</li>
+		</fixedBillGiverDefs>
+		<verb>craft</verb>
+		<gerund>crafting</gerund>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+		<prioritizeSustains>true</prioritizeSustains>
+	</WorkGiverDef>
+
+</Defs>

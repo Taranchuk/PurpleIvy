@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!--====== Food ======-->
+
+	<ThingCategoryDef>
+		<defName>AlienPlantRaw</defName>
+		<label>Alien Plant Ingredients</label>
+		<parent>FoodRaw</parent>
+		<iconPath>UI/Icons/ThingCategories/PlantFoodRaw</iconPath>
+	</ThingCategoryDef>
+
+	<!--====== Bionics ======-->
+
+	<ThingCategoryDef>
+		<defName>AlienTechBionics</defName>
+		<label>Advanced Bionics</label>
+		<parent>BodyPartsBionic</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>StimulatorsTech</defName>
+		<label>Stimulators</label>
+		<parent>BodyPartsBionic</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>FluxRaceMedicine</defName>
+		<label>Flux Medicine</label>
+		<parent>Medicine</parent>
+		<resourceReadoutRoot>true</resourceReadoutRoot>
+		<iconPath>UI/Icons/ThingCategories/Medicine</iconPath>
+	</ThingCategoryDef>
+
+	<!--====== Weapons ======-->
+
+	<ThingCategoryDef>
+		<defName>EnergyWeapons</defName>
+		<label>Energy Weapons</label>
+		<parent>Weapons</parent>
+	</ThingCategoryDef>
+
+</Defs>

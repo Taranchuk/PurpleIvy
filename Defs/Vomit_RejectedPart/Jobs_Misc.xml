@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--========= Rejected Part Job (Unused) ============-->
+
+
+  <JobDef>
+    <defName>BlueVomit</defName>
+    <driverClass>EvaineQBionics.JobDriver_BlueVomit</driverClass>
+    <playerInterruptible>false</playerInterruptible>
+    <casualInterruptible>false</casualInterruptible>
+    <reportString>Blehh..</reportString>
+    <suspendable>false</suspendable>
+  </JobDef>
+
+
+
+</Defs>

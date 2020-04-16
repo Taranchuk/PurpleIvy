@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <!--====== Human Storm Power Red ======-->
+
+
+    <ThingDef ParentName="SpecialCosmosBionics">
+        <defName>StormPower</defName>
+        <label>Stimulator BHC-1</label>
+        <description>This unstable implant grants an Ability to cast an Unstable Powerful Storm. The tile of Impact is "3x Tiles". Be careful If you try to Remove or Replace the Implant once installed, the colonist won't be able to cast the Ability anymore, though if you accidentally removed the implant, you can always reinstall it once again and the Stimulator BHC-1 will start Recharging your ability once again. Warning! This implant can have minor side effect on the colonist health, and the Implant removal can be lethal. (To correctly Cast the Bolt Make sure your view is Clear)</description>
+        <techLevel>Archotech</techLevel>
+        <graphicData>
+            <texPath>Things/Prosthetics/StormPower</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <thingCategories>
+            <li>StimulatorsTech</li>
+        </thingCategories>
+        <thingSetMakerTags>
+            <li>RewardSpecial</li>
+        </thingSetMakerTags>
+        <statBases>
+            <MarketValue>4500</MarketValue>
+            <Mass>2.5</Mass>
+            <DeteriorationRate>0.5</DeteriorationRate>
+        </statBases>
+        <stackLimit>25</stackLimit>
+        <pathCost>5</pathCost>
+        <drawGUIOverlay>true</drawGUIOverlay>
+        <uiIconForStackCount>1</uiIconForStackCount>
+        <comps>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1</glowRadius>
+                <glowColor>(255, 0, 0)</glowColor>
+            </li>
+        </comps>
+    </ThingDef>
+
+
+    <RecipeDef>
+        <defName>MakeStormPower</defName>
+        <label>Make an Unstable Heart Stimulator BHC-1</label>
+        <description>Grants an Ability to cast an Unstable Powerful Storm (With manageable Side effects on the colonist health). The tile of Impact is "3x Tiles".</description>
+        <jobString>Crafting...</jobString>
+        <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+        <effectWorking>AlienRecipeNormal</effectWorking>
+        <soundWorking>Recipe_Machining</soundWorking>
+        <workAmount>50000</workAmount>
+        <unfinishedThingDef>UnfinishedPartLightning</unfinishedThingDef>
+        <recipeUsers>
+            <li>BioLab</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>VenomousToothwort</li>
+                    </thingDefs>
+                </filter>
+                <count>30</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>FuneralIvy</li>
+                    </thingDefs>
+                </filter>
+                <count>25</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>FluxMedicine</li>
+                    </thingDefs>
+                </filter>
+                <count>8</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>VenomousToothwort</li>
+                <li>FuneralIvy</li>
+                <li>FluxMedicine</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <StormPower>1</StormPower>
+        </products>
+        <workSkill>Crafting</workSkill>
+        <skillRequirements>
+            <Crafting>10</Crafting>
+        </skillRequirements>
+        <researchPrerequisite>LightningResRed</researchPrerequisite>
+    </RecipeDef>
+
+
+    <RecipeDef ParentName="EvaineQBionicParts">
+        <defName>InstallStormPower</defName>
+        <label>Install Stimulator BHC-1</label>
+        <description>Install an Unstable Storm Implant. Once installed the subject health will start to degrade, although the Implant is not Letal but can still make the colonist life much harder then Before.</description>
+        <workerClass>Recipe_InstallArtificialBodyPart</workerClass>
+        <effectWorking>AlienSurgeryRed</effectWorking>
+        <jobString>Installing Heart Stimulator.</jobString>
+        <workAmount>5200</workAmount>
+        <skillRequirements>
+            <Medicine>12</Medicine>
+        </skillRequirements>
+        <ingredients>
+            <li>
+                <filter>
+                    <categories>
+                        <li>Medicine</li>
+                    </categories>
+                </filter>
+                <count>5</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>StormPower</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <categories>
+                <li>Medicine</li>
+            </categories>
+            <thingDefs>
+                <li>StormPower</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <appliedOnFixedBodyParts>
+            <li>Heart</li>
+        </appliedOnFixedBodyParts>
+        <addsHediff>RedLightningImpact</addsHediff>
+    </RecipeDef>
+
+
+    <HediffDef ParentName="StimulatorBionics">
+        <defName>RedLightningImpact</defName>
+        <label>Unstable Heart Stimulator</label>
+        <description>Unstable Heart Stimulator</description>
+        <labelNoun>an Unstable Stimulator</labelNoun>
+        <initialSeverity>0.0</initialSeverity>
+        <maxSeverity>6.0</maxSeverity>
+        <defaultLabelColor>(255,0,0)</defaultLabelColor>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>0.1</severityPerDay>
+            </li>
+        </comps>
+        <addedPartProps>
+            <solid>true</solid>
+            <partEfficiency>1.0</partEfficiency>
+        </addedPartProps>
+        <stages>
+            <li>
+                <minSeverity>1.0</minSeverity>
+                <label>10%</label>
+                <painFactor>0.05</painFactor>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Hearing</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+            </li>
+            <li>
+                <minSeverity>1.5</minSeverity>
+                <label>25%</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodPumping</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodFiltration</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Hearing</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+            </li>
+            <li>
+                <minSeverity>2.5</minSeverity>
+                <label>35%</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodPumping</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodFiltration</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Hearing</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                </capMods>
+            </li>
+            <li>
+                <minSeverity>3.5</minSeverity>
+                <label>50%</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodPumping</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodFiltration</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Hearing</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
+            </li>
+            <li>
+                <minSeverity>4.5</minSeverity>
+                <label>75%</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodPumping</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodFiltration</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Hearing</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                    <li>
+                        <capacity>Sight</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+            </li>
+            <li>
+                <minSeverity>6.0</minSeverity>
+                <label>100%</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodPumping</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                    <li>
+                        <capacity>BloodFiltration</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Hearing</capacity>
+                        <offset>-0.20</offset>
+                    </li>
+                    <li>
+                        <capacity>Sight</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+
+</Defs>

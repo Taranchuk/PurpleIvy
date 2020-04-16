@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--====== Energy Weapons Hediff ======-->
+
+  <HediffDef Name="InjuryLaserBase" Abstract="True">
+    <hediffClass>Hediff_Injury</hediffClass>
+    <tendable>true</tendable>
+    <displayWound>true</displayWound>
+    <labelNounPretty>{0} in the {1}</labelNounPretty>
+  </HediffDef>
+
+
+  <HediffDef ParentName="InjuryLaserBase">
+    <defName>LaserShot</defName>
+    <label>Burned</label>
+    <labelNoun>a laser burn</labelNoun>
+    <description>laser burn</description>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.35</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>Old laser burn</permanentLabel>
+        <instantlyPermanentLabel>Permanent laser injury</instantlyPermanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.0125</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <bleedRate>0.06</bleedRate>
+      <canMerge>false</canMerge>
+      <destroyedLabel>Vaporized</destroyedLabel>
+      <destroyedOutLabel>Vaporized</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+
+</Defs>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--====== Avian Storm Interaction ======-->
+
+  <TraitDef>
+    <defName>AvianStorm</defName>
+    <commonality>0.01</commonality>
+    <degreeDatas>
+      <li>
+        <label>Storm Caster</label>
+        <description>[PAWN_nameDef] is more suitable to obtain the Ability to cast Powerful storms Among his enemies. Though only the Avians are Stronger while fighting under Big Storm's. The colonist's with this trait are going to comment on the upcoming weather conditions.</description>
+      </li>
+    </degreeDatas>
+    <requiredWorkTags>
+      <li>Violent</li>
+    </requiredWorkTags>
+  </TraitDef>
+
+  <!--====== Thought_Trait Eyes ======-->
+
+  <TraitDef>
+    <defName>EyesInteractive</defName>
+    <commonality>0.01</commonality>
+    <degreeDatas>
+      <li>
+        <label>Adaptive Eyes</label>
+        <description>[PAWN_pronoun] Has mutated Eyes that can Adapt in Various light Conditions.</description>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+</Defs>

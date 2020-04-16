@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <!--====== Special ======-->
+
+
+    <ThingDef ParentName="SpecialCosmosBionics">
+        <defName>CosmosBaseImplant</defName>
+        <label>Growth Stimulator BO-001</label>
+        <description>An extremely Expensive piece of Technology, that has been produced by the Cosmos Tech Ind. This Item has no price in the whole galaxy. Initially it was used by the Avian Soldiers during the war. This implant grants the Ability to Regrow any missing body part and it doesn't stop here, the implant also allow Humans to heal from every injury with an impressive speed without almost any Side Effect on Health. (The implant needs to be installed directly into the Spine to work as intended. Warning! after the installation the colonist can suffer from Minor to Major Pain)</description>
+        <techLevel>Archotech</techLevel>
+        <graphicData>
+            <texPath>Things/Prosthetics/CosmomRegrowingTech</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <thingCategories>
+            <li>StimulatorsTech</li>
+        </thingCategories>
+        <thingSetMakerTags>
+            <li>RewardSpecial</li>
+        </thingSetMakerTags>
+        <statBases>
+            <MarketValue>6000</MarketValue>
+            <Mass>3.5</Mass>
+            <DeteriorationRate>0.5</DeteriorationRate>
+        </statBases>
+        <stackLimit>25</stackLimit>
+        <pathCost>5</pathCost>
+        <drawGUIOverlay>true</drawGUIOverlay>
+        <uiIconForStackCount>1</uiIconForStackCount>
+        <comps>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1</glowRadius>
+                <glowColor>(204, 51, 255)</glowColor>
+            </li>
+        </comps>
+    </ThingDef>
+
+
+    <RecipeDef>
+        <defName>MakeCosmosBaseImplant</defName>
+        <label>Make an Unstable Growth Stimulator BO-001</label>
+        <description>Make Growth Stimulator BO-001 that grants the Ability to Regrow any body part and Heal with an impressive speed from every injury.</description>
+        <jobString>Crafting...</jobString>
+        <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+        <effectWorking>AlienRecipeNormal</effectWorking>
+        <soundWorking>Recipe_Machining</soundWorking>
+        <workAmount>75000</workAmount>
+        <unfinishedThingDef>UnfinishedPartCosmosBase</unfinishedThingDef>
+        <recipeUsers>
+            <li>BioLab</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>DragonGinger</li>
+                    </thingDefs>
+                </filter>
+                <count>30</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>FuneralIvy</li>
+                    </thingDefs>
+                </filter>
+                <count>30</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>AdvancedMedicalFlux</li>
+                    </thingDefs>
+                </filter>
+                <count>10</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>DragonGinger</li>
+                <li>FuneralIvy</li>
+                <li>AdvancedMedicalFlux</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <CosmosBaseImplant>1</CosmosBaseImplant>
+        </products>
+        <workSkill>Crafting</workSkill>
+        <skillRequirements>
+            <Crafting>12</Crafting>
+        </skillRequirements>
+        <researchPrerequisite>SpecialResViolet</researchPrerequisite>
+    </RecipeDef>
+
+
+    <RecipeDef ParentName="EvaineQBionicParts">
+        <defName>InstallCosmosBaseImplant</defName>
+        <label>Install Growth Stimulator BO-001</label>
+        <description>Install Growth Stimulator BO-001 that allows a Humans to Regrow any Body Part and heal much faster from every injury. (The side effects can be from minor to major Pain during the regrowth process)</description>
+        <workerClass>Recipe_InstallArtificialBodyPart</workerClass>
+        <effectWorking>AlienSurgeryViolet</effectWorking>
+        <jobString>Installing Growth Stimulator.</jobString>
+        <workAmount>5600</workAmount>
+        <skillRequirements>
+            <Medicine>14</Medicine>
+        </skillRequirements>
+        <ingredients>
+            <li>
+                <filter>
+                    <categories>
+                        <li>Medicine</li>
+                    </categories>
+                </filter>
+                <count>8</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>CosmosBaseImplant</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <categories>
+                <li>Medicine</li>
+            </categories>
+            <thingDefs>
+                <li>CosmosBaseImplant</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <appliedOnFixedBodyParts>
+            <li>Spine</li>
+        </appliedOnFixedBodyParts>
+        <addsHediff>CosmosBionicsSpecial</addsHediff>
+    </RecipeDef>
+
+</Defs>

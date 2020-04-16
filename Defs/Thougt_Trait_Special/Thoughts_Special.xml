@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--====== Avian Storm Interaction ======-->
+
+  <ThoughtDef>
+    <defName>AvianStormWorker</defName>
+    <workerClass>EvaineQTraits.ThoughtWorker_AvianStorm</workerClass>
+    <requiredTraits>
+      <li>AvianStorm</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>The rain..</label>
+        <description>I love the smell of rain.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+      <li>
+        <label>The Storm..</label>
+        <description>The power of the storm is charming.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+      <li>
+        <label>The Wind..</label>
+        <description>The wind is so strong ahh...if only i had Wings.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+
+  <!--====== Thought_Trait Eyes ======-->
+
+
+  <ThoughtDef>
+    <defName>EyesWorker</defName>
+    <workerClass>EvaineQTraits.ThoughtWorker_EyesInteraction</workerClass>
+    <requiredTraits>
+      <li>EyesInteractive</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>Adaptive eyes</label>
+        <description>My eyes are Suitable for Nocturnal Incursions.</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+      <li>
+        <label>The light</label>
+        <description>My eyes tend to adapt slower in bright light conditions.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

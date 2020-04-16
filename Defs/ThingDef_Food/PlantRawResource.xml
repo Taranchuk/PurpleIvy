@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Name="RaceResource" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>75</stackLimit>
+    <statBases>
+      <Beauty>5</Beauty>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+    </comps>
+    <alwaysHaulable>true</alwaysHaulable>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <rotatable>false</rotatable>
+    <pathCost>10</pathCost>
+  </ThingDef>
+
+  <ThingDef Abstract="True" Name="RaceProductBase" ParentName="RaceResource">
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>60</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <DeteriorationRate>4</DeteriorationRate>
+      <Mass>0.05</Mass>
+    </statBases>
+    <tickerType>Rare</tickerType>
+  </ThingDef>
+
+  <ThingDef Abstract="True" Name="RaceFoodRaw" ParentName="RaceProductBase">
+    <ingestible>
+      <preferability>RawBad</preferability>
+      <tasteThought>AteRawStrange</tasteThought>
+      <ingestEffect>AlienVegetarian</ingestEffect>
+      <ingestSound>RawVegetable_Eat</ingestSound>
+    </ingestible>
+    <statBases>
+      <Nutrition>0.30</Nutrition>
+      <FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+    </statBases>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <thingCategories>
+      <li>AlienPlantRaw</li>
+    </thingCategories>
+  </ThingDef>
+
+
+  <ThingDef ParentName="RaceFoodRaw">
+    <defName>CreepyTulip</defName>
+    <label>Creepy Tulip</label>
+    <description>Seeds of Creepy Tulip with have a small nutrition yield. Can be used to Produce synthetic food.</description>
+    <soundInteract>Grain_Drop</soundInteract>
+    <soundDrop>Grain_Drop</soundDrop>
+    <graphicData>
+      <texPath>Things/Item/PlantsResources/Resource/CreepyTulip/CreepyTulip</texPath>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.3</MarketValue>
+      <Mass>0.03</Mass>
+      <Nutrition>0.30</Nutrition>
+    </statBases>
+    <ingestible>
+      <foodType>VegetableOrFruit</foodType>
+      <preferability>RawBad</preferability>
+      <tasteThought>AteRawStrange</tasteThought>
+      <ingestEffect>AlienVegetarian</ingestEffect>
+      <ingestSound>RawVegetable_Eat</ingestSound>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>5</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="RaceFoodRaw">
+    <defName>AzureHeart</defName>
+    <label>Azure Heart</label>
+    <description>The Heart from this plant can be used to produce the basics of synthetic food.</description>
+    <soundInteract>Grain_Drop</soundInteract>
+    <soundDrop>Grain_Drop</soundDrop>
+    <graphicData>
+      <texPath>Things/Item/PlantsResources/Resource/AzureHeart/AzureHeart</texPath>
+    </graphicData>
+    <statBases>
+      <MarketValue>4.1</MarketValue>
+      <Mass>0.025</Mass>
+      <Nutrition>0.30</Nutrition>
+    </statBases>
+    <ingestible>
+      <foodType>VegetableOrFruit</foodType>
+      <preferability>RawBad</preferability>
+      <tasteThought>AteRawStrange</tasteThought>
+      <ingestEffect>AlienVegetarian</ingestEffect>
+      <ingestSound>RawVegetable_Eat</ingestSound>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>5</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="RaceFoodRaw">
+    <defName>FuneralIvy</defName>
+    <label>Funeral Ivy</label>
+    <description>Liquid harvested from Funeral Ivy ready to be used in production. The Liquid from this plant can be used to create Advanced Simulators that can grant Extremely Powerful Abilities to any Pawn.</description>
+    <soundInteract>Grain_Drop</soundInteract>
+    <soundDrop>Grain_Drop</soundDrop>
+    <graphicData>
+      <texPath>Things/Item/PlantsResources/Resource/FuneralIvy/FuneralIvy</texPath>
+    </graphicData>
+    <statBases>
+      <MarketValue>10.5</MarketValue>
+      <Mass>0.5</Mass>
+      <Nutrition>0.45</Nutrition>
+    </statBases>
+    <ingestible>
+      <foodType>VegetableOrFruit</foodType>
+      <preferability>RawBad</preferability>
+      <tasteThought>AteRawStrange</tasteThought>
+      <ingestEffect>AlienVegetarian</ingestEffect>
+      <ingestSound>RawVegetable_Eat</ingestSound>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>10</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="RaceFoodRaw">
+    <defName>VenomousToothwort</defName>
+    <label>Venomous Toothwort</label>
+    <description>Venomous Toothwort slices with poisons juices packed for transportation and further production. Can be used for special food production and Advanced Stimulator's.</description>
+    <soundInteract>Grain_Drop</soundInteract>
+    <soundDrop>Grain_Drop</soundDrop>
+    <graphicData>
+      <texPath>Things/Item/PlantsResources/Resource/VenomousToothwort/VenomousToothwort</texPath>
+    </graphicData>
+    <statBases>
+      <MarketValue>8.5</MarketValue>
+      <Mass>0.025</Mass>
+      <Nutrition>0.15</Nutrition>
+    </statBases>
+    <ingestible>
+      <foodType>VegetableOrFruit</foodType>
+      <preferability>RawBad</preferability>
+      <tasteThought>AteRawStrange</tasteThought>
+      <ingestEffect>AlienVegetarian</ingestEffect>
+      <ingestSound>RawVegetable_Eat</ingestSound>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>15</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="RaceFoodRaw">
+    <defName>PhoenixJuniper</defName>
+    <label>Phoenix Juniper</label>
+    <description>The Phoenix Juniper can be used to manufacture some of the synthetic food.</description>
+    <soundInteract>Grain_Drop</soundInteract>
+    <soundDrop>Grain_Drop</soundDrop>
+    <graphicData>
+      <texPath>Things/Item/PlantsResources/Resource/PhoenixJuniper/PhoenixJuniper</texPath>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.5</MarketValue>
+      <Mass>0.15</Mass>
+      <Nutrition>0.35</Nutrition>
+    </statBases>
+    <ingestible>
+      <foodType>VegetableOrFruit</foodType>
+      <preferability>RawBad</preferability>
+      <tasteThought>AteRawStrange</tasteThought>
+      <ingestEffect>AlienVegetarian</ingestEffect>
+      <ingestSound>RawVegetable_Eat</ingestSound>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>5</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="RaceFoodRaw">
+    <defName>DemonLily</defName>
+    <label>Demon Lily</label>
+    <description>Liquid from Demon Lily has a small percentage of venom, but its not enough to kill a Human.</description>
+    <soundInteract>Grain_Drop</soundInteract>
+    <soundDrop>Grain_Drop</soundDrop>
+    <graphicData>
+      <texPath>Things/Item/PlantsResources/Resource/DemonLily/DemonLily</texPath>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.1</MarketValue>
+      <Mass>0.05</Mass>
+      <Nutrition>0.35</Nutrition>
+    </statBases>
+    <ingestible>
+      <foodType>VegetableOrFruit</foodType>
+      <preferability>RawBad</preferability>
+      <tasteThought>AteRawStrange</tasteThought>
+      <ingestEffect>AlienVegetarian</ingestEffect>
+      <ingestSound>RawVegetable_Eat</ingestSound>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>5</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="RaceFoodRaw">
+    <defName>NightmareBrier</defName>
+    <label>Nightmare Brier</label>
+    <description>Central blop of Nightmare Brier containing a strange liquid, which is a very effective chemical and ready to take root any time. This Plant can be used to fabricate Basic Flux-Medicine.</description>
+    <soundInteract>Grain_Drop</soundInteract>
+    <soundDrop>Grain_Drop</soundDrop>
+    <graphicData>
+      <texPath>Things/Item/PlantsResources/Resource/NightmareBrier/NightmareBrier</texPath>
+    </graphicData>
+    <statBases>
+      <MarketValue>3.5</MarketValue>
+      <Mass>1.5</Mass>
+      <Nutrition>0.15</Nutrition>
+    </statBases>
+    <ingestible>
+      <foodType>VegetableOrFruit</foodType>
+      <preferability>RawBad</preferability>
+      <tasteThought>AteRawStrange</tasteThought>
+      <ingestEffect>AlienVegetarian</ingestEffect>
+      <ingestSound>RawVegetable_Eat</ingestSound>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>10</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="RaceFoodRaw">
+    <defName>Magmatite</defName>
+    <label>Magmatite</label>
+    <description>Orange liquid of Magmatite containing strong chemicals inside it. The special liquid from this Plant can be used to fabricate Advanced Flux-Medicine.</description>
+    <soundInteract>Grain_Drop</soundInteract>
+    <soundDrop>Grain_Drop</soundDrop>
+    <graphicData>
+      <texPath>Things/Item/PlantsResources/Resource/Magmatite/Magmatite</texPath>
+    </graphicData>
+    <statBases>
+      <MarketValue>8.1</MarketValue>
+      <Mass>0.20</Mass>
+      <Nutrition>0.15</Nutrition>
+    </statBases>
+    <ingestible>
+      <foodType>VegetableOrFruit</foodType>
+      <preferability>RawBad</preferability>
+      <tasteThought>AteRawStrange</tasteThought>
+      <ingestEffect>AlienVegetarian</ingestEffect>
+      <ingestSound>RawVegetable_Eat</ingestSound>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>10</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="RaceFoodRaw">
+    <defName>DragonGinger</defName>
+    <label>Dragon Ginger</label>
+    <description>The Dragon Ginger and Ancient and Mysterious plant, there are none information about it. One thing is sure the harvest can be used to create Advanced Simulators that can grant Extremely Powerful Abilities to any Pawn.</description>
+    <soundInteract>Grain_Drop</soundInteract>
+    <soundDrop>Grain_Drop</soundDrop>
+    <graphicData>
+      <texPath>Things/Item/PlantsResources/Resource/DragonGinger/DragonGinger</texPath>
+    </graphicData>
+    <statBases>
+      <MarketValue>10.1</MarketValue>
+      <Mass>0.15</Mass>
+      <Nutrition>0.45</Nutrition>
+    </statBases>
+    <ingestible>
+      <foodType>VegetableOrFruit</foodType>
+      <preferability>RawBad</preferability>
+      <tasteThought>AteRawStrange</tasteThought>
+      <ingestEffect>AlienVegetarian</ingestEffect>
+      <ingestSound>RawVegetable_Eat</ingestSound>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>10</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+
+
+
+</Defs>
+

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <MentalStateDef Abstract="True" Name="CerebralStates">
+    <minTicksBeforeRecovery>800</minTicksBeforeRecovery>
+    <recoveryMtbDays>0.3</recoveryMtbDays>
+  </MentalStateDef>
+
+
+  <!--====== StormMark ======-->
+
+
+  <MentalBreakDef>
+    <defName>StormMark</defName>
+    <mentalState>StormMark</mentalState>
+    <baseCommonality>0.2</baseCommonality>
+    <intensity>Major</intensity>
+  </MentalBreakDef>
+
+
+  <MentalStateDef ParentName="CerebralStates">
+    <defName>StormMark</defName>
+    <stateClass>EvaineQMentalWorker.MentalState_StormMark</stateClass>
+    <workerClass>EvaineQMentalWorker.MentalStateWorker_StormMark</workerClass>
+    <label>Strange Visions</label>
+    <category>Misc</category>
+    <blockNormalThoughts>true</blockNormalThoughts>
+    <nameColor>(0,255,255)</nameColor>
+    <beginLetterLabel>Strange Visions</beginLetterLabel>
+    <beginLetter>{0} mind is Confused.</beginLetter>
+    <beginLetterDef>ThreatSmall</beginLetterDef>
+    <minTicksBeforeRecovery>7000</minTicksBeforeRecovery>
+    <maxTicksBeforeRecovery>60000</maxTicksBeforeRecovery>
+    <recoveryMessage>{0} mind strength is changing...</recoveryMessage>
+    <baseInspectLine>Mental state: Strange Visions</baseInspectLine>
+    <stateEffecter>BerserkStyle</stateEffecter>
+    <recoverFromSleep>true</recoverFromSleep>
+    <tale>StormMarkTale</tale>
+    <unspawnedCanDo>false</unspawnedCanDo>
+    <moodRecoveryThought>StormMarkRecovery</moodRecoveryThought>
+  </MentalStateDef>
+
+
+</Defs>

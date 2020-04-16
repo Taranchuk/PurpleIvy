@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+  <!--====== Rain Blue Storm ======-->
+
+  <WeatherDef>
+    <defName>BlueFlameStorm</defName>
+    <label>Strange Storm</label>
+    <description>This storm has a massive area of impact so be careful when wandering outside of the Colony. The Storm will start massive wildfires in entire area, but hopefully the rain will put it out. Don't stay close to trees. Caution is advised.</description>
+    <temperatureRange>
+      <min>-25</min>
+      <max>999</max>
+    </temperatureRange>
+    <windSpeedFactor>1.5</windSpeedFactor>
+    <favorability>Bad</favorability>
+    <perceivePriority>2</perceivePriority>
+    <exposedThought>UpcomingStormRace</exposedThought>
+    <accuracyMultiplier>0.6</accuracyMultiplier>
+    <rainRate>1</rainRate>
+    <moveSpeedMultiplier>0.5</moveSpeedMultiplier>
+    <ambientSounds>
+      <li>Ambient_Wind_Storm</li>
+      <li>Ambient_Rain</li>
+    </ambientSounds>
+    <durationRange>
+      <min>15000</min>
+      <max>40000</max>
+    </durationRange>
+    <eventMakers>
+      <li>
+        <averageInterval>500</averageInterval>
+        <eventClass>RaceAbilities.WeatherEvent_LightningFlash</eventClass>
+      </li>
+      <li>
+        <averageInterval>500</averageInterval>
+        <eventClass>RaceAbilities.WeatherEvent_BlueStorm</eventClass>
+      </li>
+    </eventMakers>
+    <overlayClasses>
+      <li>WeatherOverlay_Rain</li>
+    </overlayClasses>
+    <commonalityRainfallFactor>
+      <points>
+        <li>(0, 0)</li>
+        <li>(1300, 2)</li>
+        <li>(4000, 3.0)</li>
+      </points>
+    </commonalityRainfallFactor>
+    <skyColorsDay>
+      <sky>(0.8,0.8,0.8)</sky>
+      <shadow>(0.92,0.92,0.92)</shadow>
+      <overlay>(0.7,0.7,0.7)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsDay>
+    <skyColorsDusk>
+      <sky>(1,1,1)</sky>
+      <shadow>(0.92,0.92,0.92)</shadow>
+      <overlay>(0.6,0.6,0.6)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsDusk>
+    <skyColorsNightEdge>
+      <sky>(0.35,0.40,0.45)</sky>
+      <shadow>(0.92,0.92,0.92)</shadow>
+      <overlay>(0.5,0.5,0.5)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsNightEdge>
+    <skyColorsNightMid>
+      <sky>(0.35,0.40,0.45)</sky>
+      <shadow>(0.92,0.92,0.92)</shadow>
+      <overlay>(0.5,0.5,0.5)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsNightMid>
+  </WeatherDef>
+
+
+  <!--====== Dry Blue Storm ======-->
+
+
+  <WeatherDef>
+    <defName>RaceDryStormBlueFlame</defName>
+    <label>Storm of Silence</label>
+    <description>This rare weather event occur in very specific conditions, has a massive area of impact and can cause massive fires in entire area, and there is no rain to put them out for a long time. Caution is advised.</description>
+    <temperatureRange>
+      <min>-25</min>
+      <max>999</max>
+    </temperatureRange>
+    <windSpeedFactor>1.5</windSpeedFactor>
+    <favorability>VeryBad</favorability>
+    <perceivePriority>2</perceivePriority>
+    <ambientSounds>
+      <li>Ambient_Wind_Storm</li>
+    </ambientSounds>
+    <durationRange>
+      <min>15000</min>
+      <max>40000</max>
+    </durationRange>
+    <eventMakers>
+      <li>
+        <averageInterval>700</averageInterval>
+        <eventClass>RaceAbilities.WeatherEvent_LightningFlash</eventClass>
+      </li>
+      <li>
+        <averageInterval>700</averageInterval>
+        <eventClass>RaceAbilities.WeatherEvent_BlueStorm</eventClass>
+      </li>
+    </eventMakers>
+    <skyColorsDay>
+      <sky>(0.8,0.8,0.8)</sky>
+      <shadow>(0.92,0.92,0.92)</shadow>
+      <overlay>(0.7,0.7,0.7)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsDay>
+    <skyColorsDusk>
+      <sky>(1,1,1)</sky>
+      <shadow>(0.92,0.92,0.92)</shadow>
+      <overlay>(0.6,0.6,0.6)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsDusk>
+    <skyColorsNightEdge>
+      <sky>(0.35,0.40,0.45)</sky>
+      <shadow>(0.92,0.92,0.92)</shadow>
+      <overlay>(0.5,0.5,0.5)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsNightEdge>
+    <skyColorsNightMid>
+      <sky>(0.35,0.40,0.45)</sky>
+      <shadow>(0.92,0.92,0.92)</shadow>
+      <overlay>(0.5,0.5,0.5)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsNightMid>
+  </WeatherDef>
+
+
+  <!--====== EMP Storm ======-->
+
+
+  <WeatherDef>
+    <defName>EMPStorm</defName>
+    <label>EMP Storm</label>
+    <description>Warning! An EMP storm is incoming and all of the electronic Devices have a chance to not work properly. Look out for any unwelcome guests as this storm is for many tribes opportunity to strike back against developed settlements.</description>
+    <temperatureRange>
+      <min>-250</min>
+      <max>999</max>
+    </temperatureRange>
+    <windSpeedFactor>1.5</windSpeedFactor>
+    <favorability>Bad</favorability>
+    <perceivePriority>2</perceivePriority>
+    <exposedThought>EMPStorm</exposedThought>
+    <accuracyMultiplier>0.5</accuracyMultiplier>
+    <rainRate>1</rainRate>
+    <moveSpeedMultiplier>0.8</moveSpeedMultiplier>
+    <ambientSounds>
+      <li>Ambient_Wind_Storm</li>
+      <li>Ambient_Rain</li>
+    </ambientSounds>
+    <durationRange>
+      <min>15000</min>
+      <max>40000</max>
+    </durationRange>
+    <eventMakers>
+      <li>
+        <averageInterval>600</averageInterval>
+        <eventClass>RaceAbilities.WeatherEvent_LightningFlash</eventClass>
+      </li>
+      <li>
+        <averageInterval>600</averageInterval>
+        <eventClass>WeatherIsolated.WeatherEvent_EmpStorm</eventClass>
+      </li>
+    </eventMakers>
+    <overlayClasses>
+      <li>WeatherOverlay_Rain</li>
+    </overlayClasses>
+    <commonalityRainfallFactor>
+      <points>
+        <li>(0, 0)</li>
+        <li>(1300, 1)</li>
+        <li>(4000, 2.0)</li>
+      </points>
+    </commonalityRainfallFactor>
+    <skyColorsDay>
+      <sky>(0.8,0.8,0.8)</sky>
+      <shadow>(0.92,0.92,0.92)</shadow>
+      <overlay>(0.7,0.7,0.7)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsDay>
+    <skyColorsDusk>
+      <sky>(1,1,1)</sky>
+      <shadow>(0.92,0.92,0.92)</shadow>
+      <overlay>(0.6,0.6,0.6)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsDusk>
+    <skyColorsNightEdge>
+      <sky>(0.35,0.40,0.45)</sky>
+      <shadow>(0.92,0.92,0.92)</shadow>
+      <overlay>(0.5,0.5,0.5)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsNightEdge>
+    <skyColorsNightMid>
+      <sky>(0.35,0.40,0.45)</sky>
+      <shadow>(0.92,0.92,0.92)</shadow>
+      <overlay>(0.5,0.5,0.5)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsNightMid>
+  </WeatherDef>
+
+</Defs>
+
+
+
+
+
+
+
+
