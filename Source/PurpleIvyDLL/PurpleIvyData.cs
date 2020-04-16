@@ -21,18 +21,40 @@ namespace PurpleIvy
         public static List<int> TotalPollutedBiomes = new List<int>();
 
         public static List<int> BiomesToRenderNow = new List<int>();
+
+        public static float GetPartFromPercentage(float percent, float whole)
+        {
+            return (float)(percent * whole) / 100f;
+        }
+
+        public static float GetPercentageFromPartWhole(float part, int whole)
+        {
+            return 100 * part / (float)(whole) - 100f;
+        }
+    
+
         public static float getFogProgressWithOuterSources(int count, WorldObjectComp_InfectedTile comp, out bool comeFromOuterSource)
         {
             var result = PurpleIvyData.getFogProgress(count);
             //Log.Message("fog progress: " + result.ToString());
             var outerSource = 0f;
-            foreach (var data in PurpleIvyData.TotalFogProgress.Where(data => data.Key != comp).Where(data => Find.WorldGrid.TraversalDistanceBetween
-                (comp.infectedTile, data.Key.infectedTile, true, int.MaxValue) <= data.Key.radius))
+            foreach (var data in PurpleIvyData.TotalFogProgress.Where(data => data.Key != comp))
             {
-                outerSource += data.Value;
+                int distance = Find.WorldGrid.TraversalDistanceBetween(comp.infectedTile, data.Key.infectedTile, true, int.MaxValue);
+                if (distance <= data.Key.radius)
+                {
+                    float newValue = GetPartFromPercentage(GetPercentageFromPartWhole(data.Key.radius + 1, distance), data.Value);
+                    Log.Message("newValue: " + newValue);
+                    if (newValue > data.Value)
+                    {
+                        outerSource += data.Value;
+                    }
+                    else
+                    {
+                        outerSource += newValue;
+                    }
+                }
             }
-            //outerSource /= 4;
-            outerSource -= 0.5f;
             if (outerSource < 0f)
             {
                 outerSource = 0f;

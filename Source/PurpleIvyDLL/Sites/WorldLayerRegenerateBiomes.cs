@@ -53,9 +53,10 @@ namespace PurpleIvy
                         }
                         currentIndex++;
                     }
+                    subMesh.FinalizeMesh(MeshParts.All);
                     //PurpleIvyData.BiomesToRenderNow.Remove(num);
                 }
-                base.FinalizeMesh(MeshParts.All);
+                //base.FinalizeMesh(MeshParts.All);
             }
             List<int>.Enumerator enumerator2 = default(List<int>.Enumerator);
             this.elevationValues.Clear();

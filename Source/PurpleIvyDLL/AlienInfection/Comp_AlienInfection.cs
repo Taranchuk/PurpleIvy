@@ -36,48 +36,49 @@ namespace PurpleIvy
                     this.Props.IncubationData.tickStartHediff.min = 0;
                 }
             }
-
-            if (this.parent is Corpse || this.parent.def.IsCorpse)
+            if (this.currentCountOfCreatures < this.maxNumberOfCreatures)
             {
-                var corpse = (Corpse)this.parent;
-                if (this.prevAngle == true)
+                if (this.parent is Corpse || this.parent.def.IsCorpse)
                 {
-                    corpse.InnerPawn.Drawer.renderer.wiggler.downedAngle += 5f;
-                    this.prevAngle = false;
-                }
-                else
-                {
-                    corpse.InnerPawn.Drawer.renderer.wiggler.downedAngle -= 5f;
-                    this.prevAngle = true;
-                }
-                corpse.InnerPawn.Drawer.renderer.wiggler.WigglerTick();
-            }
-
-            else if (this.parent is Pawn pawn)
-            {
-                if (pawn.Dead)
-                {
-                    Log.Message(this.parent + " dead");
+                    var corpse = (Corpse)this.parent;
                     if (this.prevAngle == true)
                     {
-                        pawn.Drawer.renderer.wiggler.downedAngle += 5f;
+                        corpse.InnerPawn.Drawer.renderer.wiggler.downedAngle += 5f;
                         this.prevAngle = false;
                     }
                     else
                     {
-                        pawn.Drawer.renderer.wiggler.downedAngle -= 5f;
+                        corpse.InnerPawn.Drawer.renderer.wiggler.downedAngle -= 5f;
                         this.prevAngle = true;
                     }
-                    pawn.Drawer.renderer.wiggler.WigglerTick();
+                    corpse.InnerPawn.Drawer.renderer.wiggler.WigglerTick();
                 }
-                else
+                else if (this.parent is Pawn pawn)
                 {
-                    Log.Message(this.parent + " not corpse 1");
+                    if (pawn.Dead)
+                    {
+                        Log.Message(this.parent + " dead");
+                        if (this.prevAngle == true)
+                        {
+                            pawn.Drawer.renderer.wiggler.downedAngle += 5f;
+                            this.prevAngle = false;
+                        }
+                        else
+                        {
+                            pawn.Drawer.renderer.wiggler.downedAngle -= 5f;
+                            this.prevAngle = true;
+                        }
+                        pawn.Drawer.renderer.wiggler.WigglerTick();
+                    }
+                    else
+                    {
+                        Log.Message(this.parent + " not corpse 1");
+                    }
                 }
-            }
-            else if (!(this.parent is Building))
-            {
-                Log.Message(this.parent + " not corpse 2");
+                else if (!(this.parent is Building))
+                {
+                    Log.Message(this.parent + " not corpse 2");
+                }
             }
 
             if (this.Props.incubationPeriod.min > 0)
