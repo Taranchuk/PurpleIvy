@@ -4,6 +4,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>EggSac</defName>
 		<label>Egg Sac</label>
+		    <description>An alien egg sac, you can see something through the thin shell moving but can't make out what it is.</description>
 		<thingClass>PurpleIvy.Building_EggSac</thingClass>
 		<tickerType>Normal</tickerType>
 		<graphicData>
@@ -50,6 +51,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>ParasiteEgg</defName>
 		<label>Parasite egg</label>
+		<description>A small cluster of alien eggs, slimy in texture and appear to move ever so slightly.</description>
 		<thingClass>PurpleIvy.Building_ParasiteEgg</thingClass>
 		<tickerType>Normal</tickerType>
 		<graphicData>
