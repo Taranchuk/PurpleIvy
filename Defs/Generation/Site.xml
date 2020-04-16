@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
 	<!--====== Incidents&Item Spawn ======-->
@@ -6,7 +6,7 @@
 	<IncidentDef>
 		<defName>ProceduralGeneration</defName>
 		<label>Infested Settlement</label>
-		<category>WorldQuest</category>
+		<category>ThreatBig</category>
 		<targetTags>
 			<li>World</li>
 		</targetTags>
@@ -23,8 +23,7 @@
 	<SitePartDef>
 		<defName>ProceduralOutpost</defName>
 		<label>Infested Settlement</label>
-		<description>An infested Settlement.</description>
-		<descriptionDialogue>this base hold a lot of valuable objects so you should prepare a good caravan consistent of a good fighters to drive bugs off and pack animals to carry all valuables this base can hold.</descriptionDialogue>
+		<description>An infested Settlement. This base hold a lot of valuable objects so you should prepare a good caravan consistent of a good fighters to drive bugs off and pack animals to carry all valuables this base can hold.</description>
 		<workerClass>GenerationWorker.SitePartWorker_ProceduralGeneration</workerClass>
 		<siteTexture>World/WorldObjects/Sites/Outpost</siteTexture>
 		<expandingIconTexture>World/WorldObjects/Expanding/Sites/Outpost</expandingIconTexture>
@@ -63,13 +62,13 @@
 		</genStep>
 	</GenStepDef>
 
-	<SiteCoreDef>
+	<SitePartDef>
 		<defName>OldOutpost</defName>
 		<label>Infested Settlement</label>
 		<description>Beware the insects in this area are very aggressive.</description>
 		<siteTexture>WorldIcons/Site/OutpostSettlement</siteTexture>
 		<expandingIconTexture>WorldIcons/Site/Outpost</expandingIconTexture>
-	</SiteCoreDef>
+	</SitePartDef>
 
 	<GenStepDef>
 		<defName>ItemGeneration</defName>

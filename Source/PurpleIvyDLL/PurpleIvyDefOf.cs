@@ -58,10 +58,6 @@ namespace PurpleIvy
 
         public static IncidentDef PI_AlienRaid;
 
-        //public static SiteCoreDef OldOutpost; //def chan
-
-
-
     }
 }
 

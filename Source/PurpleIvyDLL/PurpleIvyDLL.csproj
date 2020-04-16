@@ -302,7 +302,6 @@
     <Compile Include="Buildings\Building_EggSac.cs" />
     <Compile Include="Buildings\Building_GenMortarGun.cs" />
     <Compile Include="Buildings\Building_GenTurretGun.cs" />
-    <Compile Include="HarmonyPatches\SupportSpecific.cs" />
     <Compile Include="EvaineQBionics\EffecterDefOf.cs" />
     <Compile Include="EvaineQBionics\JobDefOf.cs" />
     <Compile Include="EvaineQBionics\JobDriver_BlueVomit.cs" />
