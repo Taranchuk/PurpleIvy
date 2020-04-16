@@ -10,7 +10,7 @@ namespace HumanAbilities
 	{
 		public static bool CanEverAttachFire(this Thing t)
 		{
-			return !t.Destroyed && t.FlammableNow && t.def.category == 1 && ThingCompUtility.TryGetComp<CompAttachBase>(t) != null;
+			return !t.Destroyed && t.FlammableNow && t.def.category == ThingCategory.Pawn && ThingCompUtility.TryGetComp<CompAttachBase>(t) != null;
 		}
 
 		public static float ChanceToStartFireIn(IntVec3 c, Map map)
@@ -24,7 +24,7 @@ namespace HumanAbilities
 				{
 					return 0f;
 				}
-				if (thing.def.category != 1 && thingList[i].FlammableNow)
+				if (thing.def.category != ThingCategory.Pawn && thingList[i].FlammableNow)
 				{
 					num = Mathf.Max(num, StatExtension.GetStatValue(thing, StatDefOf.Flammability, true));
 				}
@@ -32,14 +32,14 @@ namespace HumanAbilities
 			if (num > 0f)
 			{
 				Building edifice = GridsUtility.GetEdifice(c, map);
-				if (edifice != null && edifice.def.passability == 2 && GenAdj.OccupiedRect(edifice).ContractedBy(1).Contains(c))
+				if (edifice != null && edifice.def.passability == Traversability.Impassable && GenAdj.OccupiedRect(edifice).ContractedBy(1).Contains(c))
 				{
 					return 0f;
 				}
 				List<Thing> thingList2 = GridsUtility.GetThingList(c, map);
 				for (int j = 0; j < thingList2.Count; j++)
 				{
-					if (thingList2[j].def.category == 6 && !thingList2[j].def.filth.allowsFire)
+					if (thingList2[j].def.category == ThingCategory.Filth && !thingList2[j].def.filth.allowsFire)
 					{
 						return 0f;
 					}

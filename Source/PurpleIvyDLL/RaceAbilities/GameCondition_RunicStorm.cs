@@ -28,9 +28,8 @@ namespace RaceAbilities
 			if (Find.TickManager.TicksGame > this.nextLightningTicks)
 			{
 				Vector2 vector = Rand.UnitVector2 * Rand.Range(0f, (float)this.areaRadius);
-				IntVec3 intVec;
-				intVec..ctor((int)Math.Round((double)vector.x) + this.centerLocation.x, 0, (int)Math.Round((double)vector.y) + this.centerLocation.z);
-				if (this.IsGoodLocationForStrike(intVec))
+				IntVec3 intVec = new IntVec3((int)Math.Round((double)vector.x) + this.centerLocation.x, 0, (int)Math.Round((double)vector.y) + this.centerLocation.z);
+                if (this.IsGoodLocationForStrike(intVec))
 				{
 					base.SingleMap.weatherManager.eventHandler.AddEvent(new WeatherEvent_BlueStorm(base.SingleMap, intVec));
 					this.nextLightningTicks = Find.TickManager.TicksGame + GameCondition_RunicStorm.TicksBetweenStrikes.RandomInRange;

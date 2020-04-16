@@ -18,14 +18,14 @@ namespace GenerationWorker
 			{
 				num = rp.edgeDefenseWidth.Value;
 			}
-			else if (rp.rect.Width >= 40 && rp.rect.Height >= 20 && (faction.def.techLevel >= 1 || Rand.Bool))
+			else if (rp.rect.Width >= 40 && rp.rect.Height >= 20 && (faction.def.techLevel >= TechLevel.Animal || Rand.Bool))
 			{
 				num = ((!Rand.Bool) ? 4 : 2);
 			}
 			float num2 = (float)rp.rect.Area / 144f * 0.17f;
 			BaseGen.globalSettings.minEmptyNodes = ((num2 >= 1f) ? GenMath.RoundRandom(num2) : 0);
 			Lord singlePawnLord = rp.singlePawnLord ?? LordMaker.MakeNewLord(faction, new LordJob_DefendBase(faction, rp.rect.CenterCell), map, null);
-			TraverseParms traverseParms = TraverseParms.For(1, 3, false);
+			TraverseParms traverseParms = TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false);
 			ResolveParams resolveParams = rp;
 			resolveParams.rect = rp.rect;
 			resolveParams.faction = faction;
@@ -45,7 +45,7 @@ namespace GenerationWorker
 			}
 			BaseGen.symbolStack.Push("hives", resolveParams);
 			BaseGen.symbolStack.Push("hives", rp);
-			if (faction.def.techLevel >= 1)
+			if (faction.def.techLevel >= TechLevel.Animal)
 			{
 				int num3 = Rand.Chance(1f) ? GenMath.RoundRandom((float)rp.rect.Area / 400f) : 0;
 				for (int i = 0; i < num3; i++)

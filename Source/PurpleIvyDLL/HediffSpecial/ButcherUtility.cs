@@ -18,7 +18,7 @@ namespace HediffSpecial
 						Thing thing = ThingMaker.MakeThing(thingDefCountClass.thingDef, null);
 						thing.stackCount = Math.Min(num, thingDefCountClass.thingDef.stackLimit);
 						num -= thing.stackCount;
-						GenPlace.TryPlaceThing(thing, position, map, 1, null, null);
+						GenPlace.TryPlaceThing(thing, position, map, ThingPlaceMode.Near, null, null);
 					}
 					while (num > 0);
 				}

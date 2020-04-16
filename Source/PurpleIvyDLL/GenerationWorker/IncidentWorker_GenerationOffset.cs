@@ -13,7 +13,7 @@ namespace GenerationWorker
 		{
 			int num;
 			Faction faction;
-			return base.CanFireNowSub(parms) && Find.FactionManager.RandomNonHostileFaction(false, false, false, 4) != null && this.TryFindTile(out num) && SiteMakerHelper.TryFindRandomFactionFor(SiteCoreDefOf.OldOutpost, null, ref faction, true, null);
+			return base.CanFireNowSub(parms) && Find.FactionManager.RandomNonHostileFaction(false, false, false, TechLevel.Industrial) != null && TileFinder.TryFindNewSiteTile(out num) && SiteMakerHelper.TryFindRandomFactionFor(SiteCoreDefOf.OldOutpost, null, out faction, true, null);
 		}
 
 		protected override bool TryExecuteWorker(IncidentParms parms)
@@ -21,20 +21,20 @@ namespace GenerationWorker
 			Faction faction = parms.faction;
 			if (faction == null)
 			{
-				faction = Find.FactionManager.RandomNonHostileFaction(false, false, false, 4);
+				faction = Find.FactionManager.RandomNonHostileFaction(false, false, false, TechLevel.Industrial);
 			}
 			if (faction == null)
 			{
 				return false;
 			}
 			int tile;
-			if (!this.TryFindTile(out tile))
-			{
+			if (!TileFinder.TryFindNewSiteTile(out tile))
+            {
 				return false;
 			}
 			SitePartDef sitePart;
 			Faction siteFaction;
-			if (!SiteMakerHelper.TryFindSiteParams_SingleSitePart(SiteCoreDefOf.OldOutpost, Rand.Chance(1f) ? "SiteTreatSecured" : null, ref sitePart, ref siteFaction, null, true, null))
+			if (!SiteMakerHelper.TryFindSiteParams_SingleSitePart(SiteCoreDefOf.OldOutpost, Rand.Chance(1f) ? "SiteTreatSecured" : null, out sitePart, out siteFaction, null, true, null))
 			{
 				return false;
 			}
@@ -48,16 +48,9 @@ namespace GenerationWorker
 			return true;
 		}
 
-		private bool TryFindTile(out int tile)
-		{
-			IntRange itemStashQuestSiteDistanceRange = SiteTuning.ItemStashQuestSiteDistanceRange;
-			return TileFinder.TryFindNewSiteTile(ref tile, itemStashQuestSiteDistanceRange.min, itemStashQuestSiteDistanceRange.max, false, true, -1);
-		}
-
 		protected virtual List<Thing> GenerateItems(Faction siteFaction, float siteThreatPoints)
 		{
 			ThingSetMakerParams thingSetMakerParams = default(ThingSetMakerParams);
-			thingSetMakerParams.totalMarketValueRange = new FloatRange?(SiteTuning.ItemStashQuestMarketValueRange * SiteTuning.QuestRewardMarketValueThreatPointsFactor.Evaluate(siteThreatPoints));
 			return ThingSetMakerDefOf.Gen_OldOutpost.root.Generate(thingSetMakerParams);
 		}
 
@@ -72,8 +65,7 @@ namespace GenerationWorker
 
 		private string GetLetterText(Faction alliedFaction, List<Thing> items, int days, Site site, SitePart sitePart)
 		{
-			string result = GenText.CapitalizeFirst(GrammarResolverSimpleStringExtensions.Formatted(this.def.letterText, alliedFaction.leader.LabelShort, alliedFaction.def.leaderTitle, alliedFaction.Name, GenLabel.ThingsLabel(items, "  - "), days.ToString(), SitePartUtility.GetDescriptionDialogue(site, sitePart), GenText.ToStringMoney(GenThing.GetMarketValue(items), null)));
-			GenThing.TryAppendSingleRewardInfo(ref result, items);
+			string result = GenText.CapitalizeFirst(GrammarResolverSimpleStringExtensions.Formatted(this.def.letterText, alliedFaction.leader.LabelShort, alliedFaction.def.leaderTitle, alliedFaction.Name, GenLabel.ThingsLabel(items, "  - "), days.ToString(), GenText.ToStringMoney(GenThing.GetMarketValue(items), null)));
 			return result;
 		}
 	}

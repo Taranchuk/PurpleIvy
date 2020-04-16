@@ -52,7 +52,7 @@ namespace EvaineQBionics
 			{
 				if (this.ticksLeft % 150 == 149)
 				{
-					FilthMaker.MakeFilth(this.job.targetA.Cell, base.Map, ThingDefOf.Filth_BlueVomit, GenText.LabelIndefinite(this.pawn), 1);
+					FilthMaker.TryMakeFilth(this.job.targetA.Cell, base.Map, ThingDefOf.Filth_BlueVomit, GenText.LabelIndefinite(this.pawn), 1);
 					if (this.pawn.needs.food.CurLevelPercentage > 0.1f)
 					{
 						this.pawn.needs.food.CurLevel -= this.pawn.needs.food.MaxLevel * 0.04f;
@@ -68,8 +68,8 @@ namespace EvaineQBionics
 					});
 				}
 			};
-			toil.defaultCompleteMode = 5;
-			ToilEffects.WithEffect(toil, EffecterDefOf.Blue_Vomit, 1);
+			toil.defaultCompleteMode = ToilCompleteMode.Never;
+			ToilEffects.WithEffect(toil, EffecterDefOf.Blue_Vomit, TargetIndex.A);
 			ToilEffects.PlaySustainerOrSound(toil, () => SoundDefOf.Vomit);
 			yield return toil;
 			yield break;

@@ -16,9 +16,9 @@ namespace RaceAbilities
 		{
 			Map map = (Map)parms.target;
 			int num = Mathf.RoundToInt(this.def.durationDays.RandomInRange * 60000f);
-			GameCondition_RunicStorm gameCondition_RunicStorm = (GameCondition_RunicStorm)GameConditionMaker.MakeCondition(GameConditionDefOf.RunicStorm, num, 0);
+			GameCondition_RunicStorm gameCondition_RunicStorm = (GameCondition_RunicStorm)GameConditionMaker.MakeCondition(GameConditionDefOf.RunicStorm, num);
 			map.gameConditionManager.RegisterCondition(gameCondition_RunicStorm);
-			base.SendStandardLetter(new TargetInfo(gameCondition_RunicStorm.centerLocation.ToIntVec3, map, false), null, new string[0]);
+			base.SendStandardLetter(parms, new TargetInfo(gameCondition_RunicStorm.centerLocation.ToIntVec3, map, false));
 			if (map.weatherManager.curWeather.rainRate > 0.1f)
 			{
 				map.weatherDecider.StartNextWeather();

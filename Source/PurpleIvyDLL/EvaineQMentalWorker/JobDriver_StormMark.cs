@@ -36,18 +36,18 @@ namespace EvaineQMentalWorker
 			Toil toil = new Toil();
 			toil.AddFailCondition(() => target == null || target.Destroyed || target.Downed || !target.Spawned || target.Dead);
 			toil.socialMode = 0;
-			toil.defaultCompleteMode = 2;
+			toil.defaultCompleteMode = ToilCompleteMode.PatherArrival;
 			toil.initAction = delegate()
 			{
-				toil.GetActor().pather.StartPath(target, 2);
+				toil.GetActor().pather.StartPath(target, PathEndMode.Touch);
 			};
 			return toil;
 		}
 
 		protected override IEnumerable<Toil> MakeNewToils()
 		{
-			ToilFailConditions.FailOnDespawnedOrNull<JobDriver_StormMark>(this, 1);
-			ToilFailConditions.FailOnDowned<JobDriver_StormMark>(this, 1);
+			ToilFailConditions.FailOnDespawnedOrNull<JobDriver_StormMark>(this, TargetIndex.A);
+			ToilFailConditions.FailOnDowned<JobDriver_StormMark>(this, TargetIndex.A);
 			Pawn target = base.TargetA.Thing as Pawn;
 			yield return JobDriver_StormMark.ReachTarget(target);
 			yield return JobDriver_StormMark.AbuseTarget(target);

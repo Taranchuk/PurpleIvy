@@ -20,7 +20,7 @@ namespace GenerationWorker
 		public override void Generate(Map map, GenStepParams parms)
 		{
 			CellRect cellRect;
-			if (!MapGenerator.TryGetVar<CellRect>("RectOfInterest", ref cellRect))
+			if (!MapGenerator.TryGetVar<CellRect>("RectOfInterest", out cellRect))
 			{
 				cellRect = this.FindRandomRectToDefend(map);
 			}
@@ -28,8 +28,8 @@ namespace GenerationWorker
 			if (map.ParentFaction == null || map.ParentFaction == Faction.OfPlayer)
 			{
 				faction = GenCollection.RandomElementWithFallback<Faction>(from x in Find.FactionManager.AllFactions
-				where !x.defeated && FactionUtility.HostileTo(x, Faction.OfPlayer) && !x.def.hidden && x.def.techLevel >= 4
-				select x, Find.FactionManager.RandomEnemyFaction(false, false, true, 4));
+				where !x.defeated && FactionUtility.HostileTo(x, Faction.OfPlayer) && !x.def.hidden && x.def.techLevel >= TechLevel.Industrial
+				select x, Find.FactionManager.RandomEnemyFaction(false, false, true, TechLevel.Industrial));
 			}
 			else
 			{
@@ -39,10 +39,10 @@ namespace GenerationWorker
 			CellRect rect = cellRect.ExpandedBy(7 + randomInRange).ClipInsideMap(map);
 			int value;
 			int value2;
-			if (parms.siteCoreOrPart != null)
+			if (parms.sitePart != null)
 			{
-				value = parms.siteCoreOrPart.parms.turretsCount;
-				value2 = parms.siteCoreOrPart.parms.mortarsCount;
+				value = parms.sitePart.parms.turretsCount;
+				value2 = parms.sitePart.parms.mortarsCount;
 			}
 			else
 			{
@@ -70,7 +70,7 @@ namespace GenerationWorker
 		private CellRect FindRandomRectToDefend(Map map)
 		{
 			int rectRadius = Mathf.Max(Mathf.RoundToInt((float)Mathf.Min(map.Size.x, map.Size.z) * 0.07f), 1);
-			TraverseParms traverseParams = TraverseParms.For(1, 3, false);
+			TraverseParms traverseParams = TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false);
 			IntVec3 intVec;
 			if (RCellFinder.TryFindRandomCellNearTheCenterOfTheMapWith(delegate(IntVec3 x)
 			{
@@ -94,11 +94,11 @@ namespace GenerationWorker
 					iterator.MoveNext();
 				}
 				return (float)num / (float)cellRect.Area >= 0.6f;
-			}, map, ref intVec))
+			}, map, out intVec))
 			{
 				return CellRect.CenteredOn(intVec, rectRadius);
 			}
-			if (RCellFinder.TryFindRandomCellNearTheCenterOfTheMapWith((IntVec3 x) => GenGrid.Standable(x, map), map, ref intVec))
+			if (RCellFinder.TryFindRandomCellNearTheCenterOfTheMapWith((IntVec3 x) => GenGrid.Standable(x, map), map, out intVec))
 			{
 				return CellRect.CenteredOn(intVec, rectRadius);
 			}

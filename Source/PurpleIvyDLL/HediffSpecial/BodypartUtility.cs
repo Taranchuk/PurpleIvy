@@ -39,7 +39,6 @@ namespace HediffSpecial
 							num = j;
 						}
 					}
-					part = null;
 				}
 				List<BodyPartRecord>.Enumerator enumerator = default(List<BodyPartRecord>.Enumerator);
 				currentSet.Clear();
@@ -90,7 +89,6 @@ namespace HediffSpecial
 							num = j;
 						}
 					}
-					part = null;
 				}
 				List<BodyPartRecord>.Enumerator enumerator = default(List<BodyPartRecord>.Enumerator);
 				currentSet.Clear();
@@ -141,7 +139,6 @@ namespace HediffSpecial
 							num = j;
 						}
 					}
-					part = null;
 				}
 				List<BodyPartRecord>.Enumerator enumerator = default(List<BodyPartRecord>.Enumerator);
 				currentSet.Clear();
@@ -192,7 +189,6 @@ namespace HediffSpecial
 							num = j;
 						}
 					}
-					part = null;
 				}
 				List<BodyPartRecord>.Enumerator enumerator = default(List<BodyPartRecord>.Enumerator);
 				currentSet.Clear();
@@ -235,7 +231,6 @@ namespace HediffSpecial
 							num = j;
 						}
 					}
-					part = null;
 				}
 				List<BodyPartRecord>.Enumerator enumerator = default(List<BodyPartRecord>.Enumerator);
 				currentSet.Clear();

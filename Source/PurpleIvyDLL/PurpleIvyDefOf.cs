@@ -1,4 +1,5 @@
 ﻿using System;
+using GenerationWorker;
 using RimWorld;
 using Verse;
 
@@ -57,8 +58,7 @@ namespace PurpleIvy
 
         public static IncidentDef PI_AlienRaid;
 
-        public static SitePartDef OldOutpost; //def changed
-
+        //public static SiteCoreDef OldOutpost; //def chan
 
 
 

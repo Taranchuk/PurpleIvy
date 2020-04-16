@@ -113,13 +113,13 @@ namespace RaceWeapons
 					for (int j = 0; j < list.Count; j++)
 					{
 						Thing thing = list[j];
-						if (thing.def.Fillage == 2)
+						if (thing.def.Fillage == FillCategory.Full)
 						{
 							this.destination = intVec.ToVector3Shifted() + new Vector3(Rand.Range(-0.3f, 0.3f), 0f, Rand.Range(-0.3f, 0.3f));
 							this.hitThing = thing;
 							break;
 						}
-						if (thing.def.category == 1)
+						if (thing.def.category == ThingCategory.Pawn)
 						{
 							Pawn pawn = thing as Pawn;
 							float num2 = 0.45f;
@@ -182,7 +182,7 @@ namespace RaceWeapons
 						this.Destroy(0);
 						return;
 					}
-					if (GridsUtility.GetEdifice(base.Position, base.Map) == null || GridsUtility.GetEdifice(base.Position, base.Map).def.Fillage != 2)
+					if (GridsUtility.GetEdifice(base.Position, base.Map) == null || GridsUtility.GetEdifice(base.Position, base.Map).def.Fillage != FillCategory.Full)
 					{
 						RoofCollapserImmediate.DropRoofInCells(base.Position, base.Map, null);
 					}
@@ -196,7 +196,7 @@ namespace RaceWeapons
 				for (int i = 0; i < thingList.Count; i++)
 				{
 					Thing thing = thingList[i];
-					if ((thing.def.category == 3 || thing.def.category == 1 || thing.def.category == 2 || thing.def.category == 4) && base.CanHit(thing))
+					if ((thing.def.category == ThingCategory.Building || thing.def.category == ThingCategory.Pawn || thing.def.category == ThingCategory.Item || thing.def.category == ThingCategory.Plant) && base.CanHit(thing))
 					{
 						list.Add(thing);
 					}
@@ -250,8 +250,7 @@ namespace RaceWeapons
 				int damageAmount = this.def.projectile.GetDamageAmount((float)base.DamageAmount, null);
 				ThingDef equipmentDef = this.equipmentDef;
 				float armorPenetration = this.def.projectile.GetArmorPenetration(base.ArmorPenetration, null);
-				DamageInfo damageInfo;
-				damageInfo..ctor(this.def.projectile.damageDef, (float)damageAmount, armorPenetration, this.ExactRotation.eulerAngles.y, this.launcher, null, equipmentDef, 0, null);
+				DamageInfo damageInfo = new DamageInfo(this.def.projectile.damageDef, (float)damageAmount, armorPenetration, this.ExactRotation.eulerAngles.y, this.launcher, null, equipmentDef, 0, null);
 				hitThing.TakeDamage(damageInfo);
 				Pawn pawn = hitThing as Pawn;
 				if (pawn != null && !pawn.Downed && Rand.Value < this.compED.chanceToProc)

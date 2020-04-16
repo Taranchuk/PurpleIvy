@@ -27,12 +27,8 @@ namespace RaceAbilities
 			{
 				return false;
 			}
-			Gender? gender = null;
-			if (this.def.pawnFixedGender != null)
-			{
-				gender = new Gender?(this.def.pawnFixedGender);
-			}
-			PawnKindDef pawnKindDef = this.def.pawnKind;
+
+            PawnKindDef pawnKindDef = this.def.pawnKind;
 			Faction ofPlayer = Faction.OfPlayer;
 			List<PawnKindDef> list = (from def in DefDatabase<PawnKindDef>.AllDefs
 			where def.race == ofPlayer.def.basicMemberKind.race && def.defName.Contains("BKRescuer")
@@ -50,19 +46,20 @@ namespace RaceAbilities
 			}
 			pawnKindDef.defaultFactionType = ofPlayer.def;
 			bool pawnMustBeCapableOfViolence = this.def.pawnMustBeCapableOfViolence;
-			Gender? gender2 = gender;
-			Pawn pawn = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnKindDef, ofPlayer, 2, -1, true, false, false, false, true, pawnMustBeCapableOfViolence, 20f, false, true, true, false, false, false, false, null, null, null, null, null, gender2, null, null));
+			Pawn pawn = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pawnKindDef, ofPlayer, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true, pawnMustBeCapableOfViolence, 20f, false, true, true, false, false, false, false));
 			GenSpawn.Spawn(pawn, intVec, map, 0);
-			string text = GenText.AdjustedFor(GrammarResolverSimpleStringExtensions.Formatted(this.def.letterText, NamedArgumentUtility.Named(pawn, "PAWN")), pawn, "PAWN");
-			string text2 = GenText.AdjustedFor(GrammarResolverSimpleStringExtensions.Formatted(this.def.letterLabel, NamedArgumentUtility.Named(pawn, "PAWN")), pawn, "PAWN");
-			PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref text, ref text2, pawn);
-			Find.LetterStack.ReceiveLetter(text2, text, LetterDefOf.PositiveEvent, pawn, null, null);
+
+            var taggedString1 = this.def.letterLabel.Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
+            var taggedString2 = this.def.letterText.Translate(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
+
+			PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref taggedString1, ref taggedString2, pawn);
+			Find.LetterStack.ReceiveLetter(taggedString1, taggedString2, LetterDefOf.PositiveEvent, pawn, null, null);
 			return true;
 		}
 
 		private bool TryFindEntryCell(Map map, out IntVec3 cell)
 		{
-			return CellFinder.TryFindRandomEdgeCellWith((IntVec3 c) => map.reachability.CanReachColony(c) && !GridsUtility.Fogged(c, map), map, CellFinder.EdgeRoadChance_Neutral, ref cell);
+			return CellFinder.TryFindRandomEdgeCellWith((IntVec3 c) => map.reachability.CanReachColony(c) && !GridsUtility.Fogged(c, map), map, CellFinder.EdgeRoadChance_Neutral, out cell);
 		}
 
 		private const float RelationWithColonistWeight = 20f;

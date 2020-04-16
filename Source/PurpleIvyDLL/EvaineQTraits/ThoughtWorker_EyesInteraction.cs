@@ -29,7 +29,7 @@ namespace EvaineQTraits
 			{
 				return ThoughtState.ActiveAtStage(0);
 			}
-			if (p.Map.glowGrid.PsychGlowAt(p.Position) == 2)
+			if (p.Map.glowGrid.PsychGlowAt(p.Position) == PsychGlow.Overlit)
 			{
 				return ThoughtState.ActiveAtStage(2);
 			}
