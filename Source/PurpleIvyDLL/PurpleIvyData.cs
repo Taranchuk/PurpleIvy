@@ -43,7 +43,12 @@ namespace PurpleIvy
                 int distance = Find.WorldGrid.TraversalDistanceBetween(comp.infectedTile, data.Key.infectedTile, true, int.MaxValue);
                 if (distance <= data.Key.radius)
                 {
-                    float newValue = GetPartFromPercentage(GetPercentageFromPartWhole(data.Key.radius + 1, distance), data.Value);
+                    float floatRadius = ((float)data.Key.counter - 500f) / 100f;
+                    if (floatRadius < 0)
+                    {
+                        floatRadius = 0;
+                    }
+                    float newValue = GetPartFromPercentage(GetPercentageFromPartWhole(floatRadius, distance), data.Value);
                     Log.Message("newValue: " + newValue);
                     if (newValue > data.Value)
                     {
