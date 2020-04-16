@@ -122,7 +122,7 @@ namespace PurpleIvy
                     newPawn.ageTracker.AgeBiologicalTicks = 0;
                     newPawn.ageTracker.AgeChronologicalTicks = 0;
                 }
-                newPawn.SetFaction(PurpleIvyData.factionDirect);
+                newPawn.SetFaction(PurpleIvyData.AlienFaction);
                 switch (this.parent)
                 {
                     case Corpse _:

@@ -38,7 +38,7 @@ namespace PurpleIvy
                 parms.raidStrategy.Worker.MakeLords(parms, list);
                 Find.LetterStack.ReceiveLetter("AlienRaid", "AlienRaidDesc", this.GetLetterDef(), list, parms.faction);
                 result = true;
-                Find.TickManager.CurTimeSpeed = 0;
+                Find.TickManager.CurTimeSpeed = TimeSpeed.Normal;
             }
             return result;
         }

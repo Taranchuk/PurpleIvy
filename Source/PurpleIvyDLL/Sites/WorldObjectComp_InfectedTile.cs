@@ -53,17 +53,9 @@ namespace PurpleIvy
 
         public void ClearAlienBiomesOuterTheSources()
         {
-            for (int i = 0; i < Find.WorldGrid.TilesCount; i++)
+            for (int i = PurpleIvyData.TotalPollutedBiomes.Count - 1; i >= 0; i--)
             {
-                if (Find.WorldGrid[i].biome.defName.Contains("PI_"))
-                {
-                    this.pollutedTiles.Add(i);
-                }
-            }
-            foreach (int tile in this.pollutedTiles)
-            //for (int i = PurpleIvyData.TotalPollutedBiomes.Count - 1; i >= 0; i--)
-            {
-                //int tile = PurpleIvyData.TotalPollutedBiomes[i];
+                int tile = PurpleIvyData.TotalPollutedBiomes[i];
                 if (PurpleIvyData.TileInRadiusOfInfectedSites(tile) != true)
                 {
                     Log.Message("Return old biome: " + tile.ToString());
@@ -74,26 +66,6 @@ namespace PurpleIvy
                     PurpleIvyData.BiomesToRenderNow.Add(tile);
                 }
             }
-            string tolog = PurpleIvyData.TotalPollutedBiomes.Count + " - TotalPollutedBiomes: ";
-            foreach (var l in PurpleIvyData.TotalPollutedBiomes.OrderBy(x => x))
-            {
-                tolog += l.ToString() + ", ";
-            }
-            Log.Message(tolog);
-            this.pollutedTiles.Clear();
-            for (int i = 0; i < Find.WorldGrid.TilesCount; i++)
-            {
-                if (Find.WorldGrid[i].biome.defName.Contains("PI_"))
-                {
-                    this.pollutedTiles.Add(i);
-                }
-            }
-            tolog = this.pollutedTiles.Count + " - this.pollutedTiles:    ";
-            foreach (var l in this.pollutedTiles.OrderBy(x => x))
-            {
-                tolog += l.ToString() + ", ";
-            }
-            Log.Message(tolog);
             Find.World.renderer.SetDirty<WorldLayerRegenerateBiomes>();
         }
 
@@ -162,7 +134,7 @@ namespace PurpleIvy
                             {
                                 site = (Site)WorldObjectMaker.MakeWorldObject(PurpleIvyDefOf.PI_InfectedTile);
                                 site.Tile = num;
-                                site.SetFaction(PurpleIvyData.factionDirect);
+                                site.SetFaction(PurpleIvyData.AlienFaction);
                             }
                             else
                             {
@@ -171,10 +143,10 @@ namespace PurpleIvy
                             }
                             site.AddPart(new SitePart(site, PurpleIvyDefOf.InfectedSite,
 PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
-(StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.factionDirect)));
+(StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.AlienFaction)));
                             site.AddPart(new SitePart(site, PurpleIvyDefOf.InfectedSite,
                                 PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
-                                (StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.factionDirect)));
+                                (StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.AlienFaction)));
                             var comp = site.GetComponent<WorldObjectComp_InfectedTile>();
                             comp.StartInfection();
                             comp.gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;

@@ -94,7 +94,7 @@ namespace PurpleIvy
                 }
                 for (int i = 0; i < list.Count; i++)
                 {
-                    if (list[i] is Building && list[i].Faction != PurpleIvyData.factionDirect)
+                    if (list[i] is Building && list[i].Faction != PurpleIvyData.AlienFaction)
                     {
                         Building b = (Building)list[i];
                         var comp = this.Map.GetComponent<MapComponent_MapEvents>();
@@ -155,7 +155,7 @@ namespace PurpleIvy
             if (list == null || list.Count <= 0) return;
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i] == null || list[i].Faction == PurpleIvyData.factionDirect) continue;
+                if (list[i] == null || list[i].Faction == PurpleIvyData.AlienFaction) continue;
                 //If we find a corpse
                 if (list[i].def.IsCorpse)
                 {
@@ -224,35 +224,35 @@ namespace PurpleIvy
                     if (mutateRate >= 0 && mutateRate <= 5)
                     {
                         Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(PurpleIvyDefOf.GasPump);
-                        GasPump.SetFactionDirect(PurpleIvyData.factionDirect);
+                        GasPump.SetFactionDirect(PurpleIvyData.AlienFaction);
                         GenSpawn.Spawn(GasPump, Position, this.Map);
                         this.MutateTry = false;
                     }
                     else if (mutateRate >= 6 && mutateRate <= 10)
                     {
                         Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
-                        GenMortar.SetFactionDirect(PurpleIvyData.factionDirect);
+                        GenMortar.SetFactionDirect(PurpleIvyData.AlienFaction);
                         GenSpawn.Spawn(GenMortar, Position, this.Map);
                         this.MutateTry = false;
                     }
                     else if (mutateRate >= 11 && mutateRate <= 15)
                     {
                         Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase);
-                        GenTurret.SetFactionDirect(PurpleIvyData.factionDirect);
+                        GenTurret.SetFactionDirect(PurpleIvyData.AlienFaction);
                         GenSpawn.Spawn(GenTurret, Position, this.Map);
                         this.MutateTry = false;
                     }
                     else if (mutateRate >= 16 && mutateRate <= 17)
                     {
                         Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
-                        EggSac.SetFactionDirect(PurpleIvyData.factionDirect);
+                        EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                         GenSpawn.Spawn(EggSac, Position, this.Map);
                         this.MutateTry = false;
                     }
                     else if (mutateRate >= 18 && mutateRate <= 23)
                     {
                         Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
-                        ParasiteEgg.SetFactionDirect(PurpleIvyData.factionDirect);
+                        ParasiteEgg.SetFactionDirect(PurpleIvyData.AlienFaction);
                         GenSpawn.Spawn(ParasiteEgg, Position, this.Map);
                         this.MutateTry = false;
                     }

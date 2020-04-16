@@ -73,7 +73,7 @@ namespace PurpleIvy
             {
                 PawnKindDef pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteAlpha.RandomElement());
                 Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                NewPawn.SetFaction(PurpleIvyData.factionDirect);
+                NewPawn.SetFaction(PurpleIvyData.AlienFaction);
                 NewPawn.ageTracker.AgeBiologicalTicks = 40000;
                 NewPawn.ageTracker.AgeChronologicalTicks = 40000;
                 list.Add(NewPawn);
@@ -82,7 +82,7 @@ namespace PurpleIvy
             {
                 PawnKindDef pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteAlpha.RandomElement());
                 Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                NewPawn.SetFaction(PurpleIvyData.factionDirect);
+                NewPawn.SetFaction(PurpleIvyData.AlienFaction);
                 NewPawn.ageTracker.AgeBiologicalTicks = 40000;
                 NewPawn.ageTracker.AgeChronologicalTicks = 40000;
                 list.Add(NewPawn);
@@ -91,7 +91,7 @@ namespace PurpleIvy
             {
                 PawnKindDef pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteAlpha.RandomElement());
                 Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                NewPawn.SetFaction(PurpleIvyData.factionDirect);
+                NewPawn.SetFaction(PurpleIvyData.AlienFaction);
                 NewPawn.ageTracker.AgeBiologicalTicks = 40000;
                 NewPawn.ageTracker.AgeChronologicalTicks = 40000;
                 list.Add(NewPawn);
@@ -123,7 +123,7 @@ namespace PurpleIvy
             Log.Message((map != null).ToString());
             incidentParms.target = map;
             incidentParms.points = StorytellerUtility.DefaultThreatPointsNow(map);
-            incidentParms.faction = PurpleIvyData.factionDirect;
+            incidentParms.faction = PurpleIvyData.AlienFaction;
             Dictionary<Pawn, int> pawnList = new Dictionary<Pawn, int>();
             foreach (Pawn alien in list)
             {
@@ -157,77 +157,197 @@ namespace PurpleIvy
             bool temp;
             if (Find.TickManager.TicksGame % 3451 == 0) // same as for toxic weather
             {
-
                 bool raidHappened = false;
                 var tempComp = new WorldObjectComp_InfectedTile();
-                foreach (Caravan caravan in Find.WorldObjects.Caravans)
+                Log.Message("Total polluted biomes to check: " + PurpleIvyData.TotalPollutedBiomes.Count);
+                foreach (var tile in PurpleIvyData.TotalPollutedBiomes)
                 {
-                    tempComp.infectedTile = caravan.Tile;
-                    float fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
-                    if (fogProgress > 0f)
+                    var worldObjects = Find.WorldObjects.ObjectsAt(tile);
+                    foreach (var worldObject in worldObjects)
                     {
-                        foreach (Pawn p in caravan.pawns)
+                        if (worldObject is Caravan caravan)
                         {
-                            if (p.Faction?.def?.defName != PurpleIvyDefOf.Genny.defName && p.RaceProps.IsFlesh)
+                            tempComp.infectedTile = caravan.Tile;
+                            float fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
+                            if (fogProgress > 0f)
                             {
-                                float num = fogProgress / 20; //TODO: balance it
-                                num *= p.GetStatValue(StatDefOf.ToxicSensitivity, true);
-                                if (num != 0f)
+                                foreach (Pawn p in caravan.pawns)
                                 {
-                                    HealthUtility.AdjustSeverity(p, HediffDefOf.ToxicBuildup, num);
+                                    if (p.Faction?.def?.defName != PurpleIvyDefOf.Genny.defName && p.RaceProps.IsFlesh)
+                                    {
+                                        float num = fogProgress / 20; //TODO: balance it
+                                        num *= p.GetStatValue(StatDefOf.ToxicSensitivity, true);
+                                        if (num != 0f)
+                                        {
+                                            HealthUtility.AdjustSeverity(p, HediffDefOf.ToxicBuildup, num);
+                                        }
+                                    }
+                                }
+                            }
+                            if (raidHappened != true)
+                            {
+                                var infectedSites = getInfectedTilesNearby(worldObject.Tile);
+                                if (infectedSites != null)
+                                {
+                                    if (fogProgress > 0.7f)
+                                    {
+                                        fogProgress = 0.7f;
+                                    }
+                                    int raidChance = (int)(fogProgress * 100);
+                                    System.Random random = new System.Random(caravan.Tile);
+                                    Log.Message("An attempt to ambush caravan, raid chance: " + raidChance.ToString()
+                                        + " - fogProgress: " + fogProgress.ToString());
+                                    if (raidChance >= random.Next(1, 100))
+                                    {
+                                        Log.Message("The caravan has been ambushed! RaidChance: " + raidChance.ToString()
+                                            + " - fogProgress: " + fogProgress.ToString());
+                                        this.AlienAmbush(caravan, infectedSites.RandomElement());
+                                        raidHappened = true;
+                                    }
+                                }
+                            }
+                        }
+                        else if (worldObject is MapParent mapParent)
+                        {
+                            tempComp.infectedTile = mapParent.Tile;
+                            if (raidHappened != true && mapParent.Map != null)
+                            {
+                                var infectedSites = getInfectedTilesNearby(mapParent.Tile);
+                                if (infectedSites != null)
+                                {
+                                    float fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
+                                    int raidChance = (int)(fogProgress * 100) / 10;
+                                    System.Random random = new System.Random();
+                                    int randomChance = random.Next(1, 100);
+                                    Log.Message("An attempt to raid map, raid chance: " + raidChance.ToString()
+                                        + " - randomChance: " + randomChance.ToString()
+                                        + " - fogProgress: " + fogProgress.ToString());
+                                    if (raidChance >= randomChance)
+                                    {
+                                        Log.Message("Alien Raid! RaidChance: " + raidChance.ToString()
+                                            + " - fogProgress: " + fogProgress.ToString() + " map: " + mapParent.Map.ToString());
+                                        this.AlienRaid(mapParent.Map, infectedSites.RandomElement());
+                                        raidHappened = true;
+                                    }
+                                }
+                            }
+                            if (mapParent.Faction != Faction.OfPlayer && mapParent.Faction != PurpleIvyData.AlienFaction)
+                            {
+                                float fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
+                                if (fogProgress > 0f)
+                                {
+                                    int abandonChance = (int)(fogProgress * 100) / 10;
+                                    System.Random random = new System.Random(Find.TickManager.TicksGame);
+                                    Log.Message(mapParent.Faction.ToString());
+                                    Log.Message("An attempt to abandon NPC base, abandon chance: " + abandonChance.ToString()
+                                        + " - fogProgress: " + fogProgress.ToString());
+                                    if (abandonChance >= random.Next(1, 100))
+                                    {
+                                        Log.Message("NPC base abandoned! Chance: " + abandonChance.ToString()
+                                            + " - fogProgress: " + fogProgress.ToString() + " base: " + mapParent.ToString());
+                                        Site site = (Site)WorldObjectMaker.MakeWorldObject(PurpleIvyDefOf.PI_AbandonedBase);
+                                        site.Tile = mapParent.Tile;
+                                        site.SetFaction(mapParent.Faction);
+                                        mapParent.Destroy();
+                                        Find.LetterStack.ReceiveLetter("AbandonedBase".Translate(), 
+                                            "AbandonedBaseDesc".Translate(), LetterDefOf.NeutralEvent,
+                                            site, mapParent.Faction, null, null, null);
+                                    }
+                                    else
+                                    {
+                                        int defeatChance = (int)(fogProgress * 100) / 10;
+                                        random = new System.Random(Find.TickManager.TicksGame + mapParent.Tile);
+                                        Log.Message(mapParent.Faction.ToString());
+                                        Log.Message("An attempt to defeat NPC base, defeat chance: " + abandonChance.ToString()
+                                            + " - fogProgress: " + fogProgress.ToString());
+                                        if (defeatChance >= random.Next(1, 100))
+                                        {
+                                            Log.Message("NPC base defeated! Chance: " + defeatChance.ToString()
+                                                + " - fogProgress: " + fogProgress.ToString() + " base: " + mapParent.ToString());
+                                            Site site = (Site)WorldObjectMaker.MakeWorldObject(PurpleIvyDefOf.PI_DefeatedBase);
+                                            site.Tile = mapParent.Tile;
+                                            site.SetFaction(mapParent.Faction);
+                                            mapParent.Destroy();
+                                            Find.LetterStack.ReceiveLetter("DefeatedBase".Translate(),
+                                                "DefeatedBaseDesc".Translate(), LetterDefOf.NegativeEvent,
+                                                site, mapParent.Faction, null, null, null);
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
-                    if (raidHappened != true)
-                    {
-                        var infectedSites = getInfectedTilesNearby(caravan.Tile);
-                        if (infectedSites != null)
-                        {
-                            if (fogProgress > 0.7f)
-                            {
-                                fogProgress = 0.7f;
-                            }
-                            int raidChance = (int)(fogProgress * 100);
-                            System.Random random = new System.Random(caravan.Tile);
-                            Log.Message("An attempt to ambush caravan, raid chance: " + raidChance.ToString()
-                                + " - fogProgress: " + fogProgress.ToString());
-                            if (raidChance >= random.Next(1, 100))
-                            {
-                                Log.Message("The caravan has been ambushed! RaidChance: " + raidChance.ToString()
-                                    + " - fogProgress: " + fogProgress.ToString());
-                                this.AlienAmbush(caravan, infectedSites.RandomElement());
-                                raidHappened = true;
-                            }
-                        }
-                    }
                 }
-                foreach (MapParent mapParent in Find.WorldObjects.MapParents)
-                {
-                    tempComp.infectedTile = mapParent.Tile;
-                    if (raidHappened != true && mapParent.Map != null)
-                    {
-                        var infectedSites = getInfectedTilesNearby(mapParent.Tile);
-                        if (infectedSites != null)
-                        {
-                            float fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
-                            if (fogProgress > 0.7f)
-                            {
-                                fogProgress = 0.7f;
-                            }
-                            int raidChance = (int)(fogProgress * 100) / 10;
-                            System.Random random = new System.Random(mapParent.Tile);
-                            Log.Message("An attempt to raid map, raid chance: " + raidChance.ToString()
-                                + " - fogProgress: " + fogProgress.ToString());
-                            if (raidChance >= random.Next(1, 100))
-                            {
-                                Log.Message("Alien Raid! RaidChance: " + raidChance.ToString()
-                                    + " - fogProgress: " + fogProgress.ToString() + " map: " + mapParent.Map.ToString());
-                                this.AlienRaid(mapParent.Map, infectedSites.RandomElement());
-                                raidHappened = true;
-                            }
-                        }
-                    }
+                //bool raidHappened = false;
+                //var tempComp = new WorldObjectComp_InfectedTile();
+                //foreach (Caravan caravan in Find.WorldObjects.Caravans)
+                //{
+                //    tempComp.infectedTile = caravan.Tile;
+                //    float fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
+                //    if (fogProgress > 0f)
+                //    {
+                //        foreach (Pawn p in caravan.pawns)
+                //        {
+                //            if (p.Faction?.def?.defName != PurpleIvyDefOf.Genny.defName && p.RaceProps.IsFlesh)
+                //            {
+                //                float num = fogProgress / 20; //TODO: balance it
+                //                num *= p.GetStatValue(StatDefOf.ToxicSensitivity, true);
+                //                if (num != 0f)
+                //                {
+                //                    HealthUtility.AdjustSeverity(p, HediffDefOf.ToxicBuildup, num);
+                //                }
+                //            }
+                //        }
+                //    }
+                //    if (raidHappened != true)
+                //    {
+                //        var infectedSites = getInfectedTilesNearby(caravan.Tile);
+                //        if (infectedSites != null)
+                //        {
+                //            if (fogProgress > 0.7f)
+                //            {
+                //                fogProgress = 0.7f;
+                //            }
+                //            int raidChance = (int)(fogProgress * 100);
+                //            System.Random random = new System.Random(caravan.Tile);
+                //            Log.Message("An attempt to ambush caravan, raid chance: " + raidChance.ToString()
+                //                + " - fogProgress: " + fogProgress.ToString());
+                //            if (raidChance >= random.Next(1, 100))
+                //            {
+                //                Log.Message("The caravan has been ambushed! RaidChance: " + raidChance.ToString()
+                //                    + " - fogProgress: " + fogProgress.ToString());
+                //                this.AlienAmbush(caravan, infectedSites.RandomElement());
+                //                raidHappened = true;
+                //            }
+                //        }
+                //    }
+                //}
+                //foreach (MapParent mapParent in Find.WorldObjects.MapParents)
+                //{
+                //    tempComp.infectedTile = mapParent.Tile;
+                //    if (raidHappened != true && mapParent.Map != null)
+                //    {
+                //        var infectedSites = getInfectedTilesNearby(mapParent.Tile);
+                //        if (infectedSites != null)
+                //        {
+                //            float fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
+                //            if (fogProgress > 0.7f)
+                //            {
+                //                fogProgress = 0.7f;
+                //            }
+                //            int raidChance = (int)(fogProgress * 100) / 10;
+                //            System.Random random = new System.Random(mapParent.Tile);
+                //            Log.Message("An attempt to raid map, raid chance: " + raidChance.ToString()
+                //                + " - fogProgress: " + fogProgress.ToString());
+                //            if (raidChance >= random.Next(1, 100))
+                //            {
+                //                Log.Message("Alien Raid! RaidChance: " + raidChance.ToString()
+                //                    + " - fogProgress: " + fogProgress.ToString() + " map: " + mapParent.Map.ToString());
+                //                this.AlienRaid(mapParent.Map, infectedSites.RandomElement());
+                //                raidHappened = true;
+                //            }
+                //        }
+                //    }
 
                     // the code below causes stuttering due the fog progress check, need to find workarounds
 
@@ -251,7 +371,7 @@ namespace PurpleIvy
                     //        }
                     //    }
                     //}
-                }
+                //}
             }
         }
     }

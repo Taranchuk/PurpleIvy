@@ -12,7 +12,7 @@ namespace PurpleIvy
     {
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            this.SetFactionDirect(PurpleIvyData.factionDirect);
+            this.SetFactionDirect(PurpleIvyData.AlienFaction);
             base.SpawnSetup(map, respawningAfterLoad);
         }
     }

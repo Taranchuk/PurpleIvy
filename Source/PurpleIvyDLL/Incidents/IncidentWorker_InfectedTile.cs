@@ -23,10 +23,10 @@ namespace PurpleIvy
             {
                 Site site = (Site)WorldObjectMaker.MakeWorldObject(PurpleIvyDefOf.PI_InfectedTile);
                 site.Tile = num;
-                site.SetFaction(PurpleIvyData.factionDirect);
+                site.SetFaction(PurpleIvyData.AlienFaction);
                 site.AddPart(new SitePart(site, PurpleIvyDefOf.InfectedSite, 
                     PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
-                    (StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.factionDirect)));
+                    (StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.AlienFaction)));
                 var comp = site.GetComponent<WorldObjectComp_InfectedTile>();
                 comp.StartInfection();
                 comp.gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;

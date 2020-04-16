@@ -14,7 +14,7 @@ namespace PurpleIvy
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            this.SetFactionDirect(PurpleIvyData.factionDirect);
+            this.SetFactionDirect(PurpleIvyData.AlienFaction);
         }
 
         public override void TickRare()
