@@ -67,7 +67,6 @@ namespace PurpleIvy
         {
             var counter = Find.WorldObjects.WorldObjectAt(map.Tile, PurpleIvyDefOf.PI_InfectedTile)
                 .GetComponent<WorldObjectComp_InfectedTile>().counter;
-            const int radius = 0;
             return PurpleIvyData.RadiusData.Where(raduisData => counter < raduisData.Value).Select(raduisData => raduisData.Key).FirstOrDefault();
         }
         public override void Generate(Map map, GenStepParams parms)

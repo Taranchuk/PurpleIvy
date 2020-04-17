@@ -215,7 +215,7 @@ namespace PurpleIvy
                 //Pick a random direction cell
                 IntVec3 dir = new IntVec3();
                 //dir = GenAdj.RandomAdjacentCellCardinal(Position);
-                dir = GenAdj.OccupiedRect(this).ExpandedBy(Convert.ToInt32(this.Growth * 10)).RandomCell;
+                dir = GenRadial.RadialCellsAround(this.Position, Convert.ToInt32(this.Growth * 20), true).RandomElement();
                 //If in bounds
                 try
                 {
