@@ -53,3 +53,4 @@ namespace RaceAbilities
 		private static readonly Material LightningMat = MatLoader.LoadMat("Weather/LightningBolt", -1);
 	}
 }
+

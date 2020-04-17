@@ -15,3 +15,4 @@ namespace HumanAbilities
 		public static DamageDef RedFire;
 	}
 }
+

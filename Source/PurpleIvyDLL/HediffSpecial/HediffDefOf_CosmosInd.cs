@@ -14,3 +14,4 @@ namespace HediffSpecial
 		public static HediffDef CosmosBionicsSpecial;
 	}
 }
+

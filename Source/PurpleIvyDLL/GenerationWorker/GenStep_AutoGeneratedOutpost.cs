@@ -16,7 +16,6 @@ namespace GenerationWorker
 			}
 		}
 
-
         public override void Generate(Map map, GenStepParams parms)
         {
         	CellRect rectToDefend;
@@ -77,3 +76,4 @@ namespace GenerationWorker
 		private static List<CellRect> possibleRects = new List<CellRect>();
 	}
 }
+

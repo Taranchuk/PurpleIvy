@@ -20,3 +20,4 @@ namespace HumanUpgraded
 		public static ThingDef GreenFire;
 	}
 }
+

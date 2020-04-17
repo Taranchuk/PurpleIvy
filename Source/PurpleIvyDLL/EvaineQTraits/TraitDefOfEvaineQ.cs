@@ -11,3 +11,4 @@ namespace EvaineQTraits
 		public static TraitDef AvianStorm;
 	}
 }
+

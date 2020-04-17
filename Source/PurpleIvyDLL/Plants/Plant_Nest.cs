@@ -6,6 +6,7 @@ using Verse;
 using Verse.Sound;
 using RimWorld;
 using UnityEngine;
+using Verse.AI;
 
 namespace PurpleIvy
 {
@@ -285,6 +286,36 @@ namespace PurpleIvy
             }
         }
 
+        public override string GetInspectString()
+        {
+            return "NectarAmount".Translate() + this.nectarAmount + "\n" + base.GetInspectString();
+        }
+
+        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
+        {
+            foreach (var option in base.GetFloatMenuOptions(selPawn)) 
+            {
+                yield return option;
+            }
+            if (this.nectarAmount > 0)
+            {
+                yield return new FloatMenuOption(Translator.Translate("ExtractNectar"), delegate ()
+                {
+                    if (selPawn != null)
+                    {
+                        Job job = JobMaker.MakeJob(PurpleIvyDefOf.PI_ExtractNectar, this);
+                        selPawn.jobs.TryTakeOrderedJob(job, 0);
+                    }
+                }, MenuOptionPriority.Default, null, null, 0f, null, null);
+            }
+            else
+            {
+                yield return new FloatMenuOption("NestsDoesNotHaveNectar".Translate(), null, 
+                    MenuOptionPriority.Default, null, null, 0f, null, null);
+            }
+            yield break;
+        }
+
         public override void Tick()
         {
             base.Tick();
@@ -295,6 +326,7 @@ namespace PurpleIvy
                 {
                     this.ThrowGasOrAdjustGasSize();
                     this.DoDamageToBuildings(Position);
+                    this.nectarAmount++;
                 }
             }
             if (Find.TickManager.TicksGame % 350 == 0)

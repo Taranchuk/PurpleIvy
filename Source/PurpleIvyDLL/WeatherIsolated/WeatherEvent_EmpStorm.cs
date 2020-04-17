@@ -53,3 +53,4 @@ namespace WeatherIsolated
 		private static readonly Material LightningMat = MatLoader.LoadMat("Weather/LightningBolt", -1);
 	}
 }
+

@@ -25,3 +25,4 @@ namespace EvaineQMentalWorker
 		private int lastInteractionTick = -9999;
 	}
 }
+

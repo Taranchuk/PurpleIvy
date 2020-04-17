@@ -113,3 +113,4 @@ namespace RaceAbilities
 		private int nextLightningTicks;
 	}
 }
+

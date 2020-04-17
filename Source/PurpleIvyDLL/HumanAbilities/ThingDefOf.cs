@@ -20,3 +20,4 @@ namespace HumanAbilities
 		public static ThingDef RedFire;
 	}
 }
+

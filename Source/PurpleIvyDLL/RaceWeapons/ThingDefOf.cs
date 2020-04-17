@@ -15,3 +15,4 @@ namespace RaceWeapons
 		public static ThingDef LaserMoteWorker;
 	}
 }
+

@@ -16,3 +16,4 @@ namespace GenerationWorker
 		public static ThingSetMakerDef RewardOptions;
 	}
 }
+

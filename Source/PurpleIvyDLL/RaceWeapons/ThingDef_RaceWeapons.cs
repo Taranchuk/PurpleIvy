@@ -20,3 +20,4 @@ namespace RaceWeapons
 		public int TickOffsetSecond;
 	}
 }
+

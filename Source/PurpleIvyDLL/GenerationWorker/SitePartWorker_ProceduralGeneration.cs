@@ -18,8 +18,6 @@ namespace GenerationWorker
 			return arrivedLetterPart;
 		}
 
-
-
         public override string GetPostProcessedThreatLabel(Site site, SitePart sitePart)
         {
             return string.Concat(new object[]
@@ -58,3 +56,4 @@ namespace GenerationWorker
 		}
 	}
 }
+

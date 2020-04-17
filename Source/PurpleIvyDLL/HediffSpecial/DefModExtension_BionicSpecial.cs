@@ -20,3 +20,4 @@ namespace HediffSpecial
 		public HediffDef autoHealHediff;
 	}
 }
+

@@ -12,3 +12,4 @@ namespace RaceWeapons
 		public float chanceToProc = 0.1f;
 	}
 }
+

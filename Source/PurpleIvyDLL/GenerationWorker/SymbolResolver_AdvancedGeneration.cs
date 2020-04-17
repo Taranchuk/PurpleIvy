@@ -83,3 +83,4 @@ namespace GenerationWorker
 		public static readonly FloatRange DefaultPawnsPoints = new FloatRange(1150f, 1600f);
 	}
 }
+

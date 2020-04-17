@@ -14,3 +14,4 @@ namespace WeatherIsolated
 		public static ThingDef Mote_EMPSmoke;
 	}
 }
+

@@ -145,3 +145,4 @@ namespace PurpleIvy
         private readonly List<Vector3> _vertices = new List<Vector3>();
     }
 }
+

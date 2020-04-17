@@ -118,3 +118,4 @@ namespace GenerationWorker
 		public const int DefaultGuardsCount = 0;
 	}
 }
+

@@ -313,3 +313,4 @@ namespace RaceWeapons
 		public Material drawingTexture;
 	}
 }
+

@@ -10,3 +10,4 @@ namespace EvaineQMentalWorker
 		public static JobDef StormMark;
 	}
 }
+

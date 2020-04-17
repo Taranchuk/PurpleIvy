@@ -20,3 +20,4 @@ namespace RaceAbilities
 		public static ThingDef BlueFire;
 	}
 }
+

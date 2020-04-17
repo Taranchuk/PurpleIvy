@@ -65,3 +65,4 @@ namespace RaceAbilities
 		private const float RelationWithColonistWeight = 20f;
 	}
 }
+

@@ -237,3 +237,4 @@ PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
 
     }
 }
+

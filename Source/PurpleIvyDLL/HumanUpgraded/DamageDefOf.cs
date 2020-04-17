@@ -15,3 +15,4 @@ namespace HumanUpgraded
 		public static DamageDef GreenFire;
 	}
 }
+

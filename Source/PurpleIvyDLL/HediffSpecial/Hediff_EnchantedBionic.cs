@@ -108,3 +108,4 @@ namespace HediffSpecial
 		public int ticksUntilNextGrow;
 	}
 }
+

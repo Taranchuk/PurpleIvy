@@ -62,7 +62,6 @@ namespace PurpleIvy
 
         }
 
-
         public static int GetRadius(Map map)
         {
             var counter = Find.WorldObjects.WorldObjectAt(map.Tile, PurpleIvyDefOf.PI_InfectedTile)
@@ -185,3 +184,4 @@ namespace PurpleIvy
         public float growth = 1f;
     }
 }
+

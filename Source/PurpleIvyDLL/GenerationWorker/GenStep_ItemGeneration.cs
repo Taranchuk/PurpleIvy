@@ -16,7 +16,6 @@ namespace GenerationWorker
 			}
 		}
 
-
 		protected override bool CanScatterAt(IntVec3 c, Map map)
 		{
 			if (!base.CanScatterAt(c, map))
@@ -69,3 +68,4 @@ namespace GenerationWorker
 		private const int Size = 7;
 	}
 }
+

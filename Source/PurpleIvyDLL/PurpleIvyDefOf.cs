@@ -22,6 +22,8 @@ namespace PurpleIvy
 
         public static JobDef PI_AttackMelee;
 
+        public static JobDef PI_ExtractNectar;
+
         public static ThingDef InfectedCorpseDummy;
 
         public static ThingDef PurpleIvy;
@@ -50,6 +52,8 @@ namespace PurpleIvy
 
         public static ThingDef GasPump;
 
+        public static ThingDef PI_Nectar;
+
         public static WorldObjectDef PI_InfectedTile;
 
         public static WorldObjectDef PI_AbandonedBase;
@@ -59,8 +63,6 @@ namespace PurpleIvy
         public static SitePartDef InfectedSite;
 
         public static IncidentDef PI_AlienRaid;
-
-
 
     }
 }

@@ -15,3 +15,4 @@ namespace RaceAbilities
 		public static GameConditionDef RunicStorm;
 	}
 }
+

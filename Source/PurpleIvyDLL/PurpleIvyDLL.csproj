@@ -344,7 +344,8 @@
     <Compile Include="HumanUpgraded\MoteMaker.cs" />
     <Compile Include="HumanUpgraded\ThingDefOf.cs" />
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
-    <Compile Include="Jobs\JobDriver_AttackMelee.cs" />
+    <Compile Include="Jobs\JobDriver_AttackMeleePlus.cs" />
+    <Compile Include="Jobs\JobDriver_ExtractNectar.cs" />
     <Compile Include="Damages\BuildingsToxicDamageSectionLayerUtility.cs" />
     <Compile Include="Damages\SectionLayer_BuildingsToxicDamage.cs" />
     <Compile Include="Plants\PlantUtility.cs" />
