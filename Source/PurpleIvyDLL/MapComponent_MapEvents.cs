@@ -87,6 +87,8 @@ this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.GasPump).Count.ToString(), true
 this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.GenTurretBase).Count.ToString(), true);
                 Log.Message("Total Turret_GenMortarSeed count on the map: " +
 this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Turret_GenMortarSeed).Count.ToString(), true);
+                Log.Message("Total Nest count on the map: " +
+this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest).Count.ToString(), true);
             }
         }
 

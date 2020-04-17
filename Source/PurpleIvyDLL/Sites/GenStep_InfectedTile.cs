@@ -100,6 +100,7 @@ namespace PurpleIvy
             Log.Message("Radius: " + radius.ToString());
             var radialCells = GenRadial.RadialCellsAround(meteor.Position, radius, true)
                 .ToList();
+
             var plantCount = 0;
             var infectedComp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
             var counter = infectedComp.counter;

@@ -9,11 +9,12 @@ using UnityEngine;
 
 namespace PurpleIvy
 {
-    public class Plant_Ivy : Plant
+    public class Plant_Nest : Plant
     {
-        private int mutateChance;
-        private int mutateRate;
-        public bool MutateTry;
+        private int SpreadTick;
+        private int OrigSpreadTick;
+
+        public int nectarAmount;
 
         ThingDef sporesThingDef = ThingDef.Named("Spores");
         private Thing Spores = null;
@@ -21,7 +22,9 @@ namespace PurpleIvy
         {
             base.SpawnSetup(map, respawningAfterLoad);
             if (!(this.Growth < 1)) return;
-            MutateTry = true;
+            var random = new System.Random();
+            SpreadTick = random.Next(1, 3);
+            OrigSpreadTick = SpreadTick;
         }
         public override void PostMapInit()
         {
@@ -44,6 +47,27 @@ namespace PurpleIvy
             //    ;
             //}
 
+        }
+
+        public void SpawnIvy(IntVec3 dir)
+        {
+            if (GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, Map),
+                (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock))) return;
+            Plant newivy = new Plant();
+            newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
+            GenSpawn.Spawn(newivy, dir, this.Map);
+        }
+
+        public bool IvyInCell(IntVec3 dir)
+        {
+            //List all things in that random direction cell
+            List<Thing> list = this.Map.thingGrid.ThingsListAt(dir);
+            return list.Count > 0 && list.OfType<Plant>().Any(t => t.def.defName == "PurpleIvy" || t.def.defName == "PI_Nest");
+        }
+
+        public bool IsSurroundedByIvy(IntVec3 dir)
+        {
+            return GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)).All(IvyInCell);
         }
 
         public bool HasNoBuildings(IntVec3 dir)
@@ -148,6 +172,9 @@ namespace PurpleIvy
                         Log.Message("Adding infected comp to " + corpse);
                     }
                     //speedup the spread a little
+                    SpreadTick--;
+                    SpreadTick--;
+                    SpreadTick--;
                 }
                 else switch (list[i])
                 {
@@ -172,7 +199,6 @@ namespace PurpleIvy
                     {
                         if (list[i].def.defName != "PurpleIvy" && list[i].def.defName != "PI_Nest")
                         {
-                            Log.Message("1 Take damage");
                             list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 1));
                         }
                         break;
@@ -181,63 +207,41 @@ namespace PurpleIvy
             }
         }
 
-        public void SpreadBuildings()
+        public void SpreadPlants()
         {
-            if (this.MutateTry == true && HasNoBuildings(Position))
+            this.SpreadTick--;
+            if (this.SpreadTick <= 0)
             {
-                System.Random random = new System.Random(this.Position.GetHashCode());
-                mutateChance = random.Next(1, 100);
-                if (30 >= mutateChance)
+                //Pick a random direction cell
+                IntVec3 dir = new IntVec3();
+                //dir = GenAdj.RandomAdjacentCellCardinal(Position);
+                dir = GenAdj.OccupiedRect(this).ExpandedBy(Convert.ToInt32(this.Growth * 10)).RandomCell;
+                //If in bounds
+                try
                 {
-                    random = new System.Random(this.ThingID.GetHashCode());
-                    mutateRate = random.Next(1, 100);
-                    if (mutateRate >= 0 && mutateRate <= 3)
+                    if (dir.InBounds(this.Map))
                     {
-                        Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(PurpleIvyDefOf.GasPump);
-                        GasPump.SetFactionDirect(PurpleIvyData.AlienFaction);
-                        GenSpawn.Spawn(GasPump, Position, this.Map);
-                        this.MutateTry = false;
-                    }
-                    else if (mutateRate >= 4 && mutateRate <= 6)
-                    {
-                        Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
-                        GenMortar.SetFactionDirect(PurpleIvyData.AlienFaction);
-                        GenSpawn.Spawn(GenMortar, Position, this.Map);
-                        this.MutateTry = false;
-                    }
-                    else if (mutateRate >= 7 && mutateRate <= 9)
-                    {
-                        Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase);
-                        GenTurret.SetFactionDirect(PurpleIvyData.AlienFaction);
-                        GenSpawn.Spawn(GenTurret, Position, this.Map);
-                        this.MutateTry = false;
-                    }
-                    else if (mutateRate >= 10 && mutateRate <= 14)
-                    {
-                        Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
-                        EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
-                        GenSpawn.Spawn(EggSac, Position, this.Map);
-                        this.MutateTry = false;
-                    }
-                    else if (mutateRate >= 15 && mutateRate <= 21)
-                    {
-                        Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
-                        ParasiteEgg.SetFactionDirect(PurpleIvyData.AlienFaction);
-                        GenSpawn.Spawn(ParasiteEgg, Position, this.Map);
-                        this.MutateTry = false;
-                    }
-                    else if (mutateRate >= 22 && mutateRate <= 30)
-                    {
-                        var nest = ThingMaker.MakeThing(PurpleIvyDefOf.PI_Nest);
-                        GenSpawn.Spawn(nest, Position, this.Map);
-                        this.MutateTry = false;
-                        this.Destroy(DestroyMode.Vanish);
-                    }
-                    else
-                    {
-                        this.MutateTry = false;
+                        TerrainDef terrain = dir.GetTerrain(this.Map);
+                        if (terrain != null)
+                        {
+                            if (terrain.defName != "WaterDeep" &&
+                                     terrain.defName != "WaterShallow" &&
+                                     terrain.defName != "MarshyTerrain")
+                            {
+                                //if theres no ivy here
+                                if (!IvyInCell(dir))
+                                {
+                                    SpawnIvy(dir);
+                                }
+                            }
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    Log.Error("ERROR:" + ex.Message);
+                }
+                SpreadTick = OrigSpreadTick;
             }
         }
 
@@ -295,10 +299,13 @@ namespace PurpleIvy
             }
             if (Find.TickManager.TicksGame % 350 == 0)
             {
+                if (this.Growth >= 0.1f)
+                {
+                    this.SpreadPlants();
+                }
                 if (this.Growth >= 0.25f)
                 {
                     this.DoDamageToThings(Position);
-                    this.SpreadBuildings();
                 }
 
             }
@@ -306,7 +313,9 @@ namespace PurpleIvy
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<bool>(ref this.MutateTry, "MutateTry", true, true);
+            Scribe_Values.Look<int>(ref this.SpreadTick, "SpreadTick", 0, true);
+            Scribe_Values.Look<int>(ref this.OrigSpreadTick, "OrigSpreadTick", 0, true);
+            Scribe_Values.Look<int>(ref this.nectarAmount, "nectarAmount", 0, true);
         }
     }
 }

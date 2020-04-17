@@ -38,6 +38,8 @@ namespace PurpleIvy
 
         public static ThingDef Genny_ParasiteOmega;
 
+        public static ThingDef PI_Nest;
+
         public static ThingDef EggSac;
 
         public static ThingDef ParasiteEgg;
@@ -57,6 +59,8 @@ namespace PurpleIvy
         public static SitePartDef InfectedSite;
 
         public static IncidentDef PI_AlienRaid;
+
+
 
     }
 }

@@ -37,48 +37,6 @@
     </plant>
   </ThingDef>
 
-
-
-  <ThingDef ParentName="StrangePlants">
-    <defName>PlantCreepyTulip</defName>
-    <label>Creepy Tulip</label>
-    <description>Little blue and green plant with large leaves and it's specific tulip like structure in middle. This plant produce very big and tasteful structure on top. After this structure plant have it's name it contains six large seeds with good nutrient yield.</description>
-    <statBases>
-      <MaxHitPoints>65</MaxHitPoints>
-      <Nutrition>0.15</Nutrition>
-      <Beauty>20</Beauty>
-    </statBases>
-    <graphicData>
-      <texPath>Things/Item/Plants/CreepyTulip</texPath>
-      <graphicClass>Graphic_Random</graphicClass>
-    </graphicData>
-    <selectable>true</selectable>
-    <pathCost>10</pathCost>
-    <ingestible />
-    <plant>
-      <fertilitySensitivity>1.0</fertilitySensitivity>
-      <growDays>5</growDays>
-      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/CreepyTulip</immatureGraphicPath>
-      <dieIfLeafless>true</dieIfLeafless>
-      <harvestTag>Standard</harvestTag>
-      <harvestedThingDef>CreepyTulip</harvestedThingDef>
-      <harvestYield>6</harvestYield>
-      <sowTags>
-        <li>Ground</li>
-        <li>Hydroponic</li>
-      </sowTags>
-      <sowMinSkill>2</sowMinSkill>
-      <sowResearchPrerequisites>
-        <li>BasicAlienPlants</li>
-      </sowResearchPrerequisites>
-      <topWindExposure>0.2</topWindExposure>
-      <visualSizeRange>
-        <min>0.3</min>
-        <max>1.0</max>
-      </visualSizeRange>
-    </plant>
-  </ThingDef>
-
   <ThingDef ParentName="StrangePlants">
     <defName>PlantAzureHeart</defName>
     <label>Azure Heart</label>
@@ -88,7 +46,7 @@
       <Nutrition>0.15</Nutrition>
     </statBases>
     <graphicData>
-      <texPath>Things/Item/Plants/AzureHeart</texPath>
+      <texPath>Things/Plant/AzureHeart</texPath>
       <graphicClass>Graphic_Random</graphicClass>
     </graphicData>
     <selectable>true</selectable>
@@ -97,7 +55,7 @@
     <plant>
       <fertilitySensitivity>1.0</fertilitySensitivity>
       <growDays>6</growDays>
-      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/AzureHeart</immatureGraphicPath>
+      <immatureGraphicPath>Things/Plant/ImmaturePlants/AzureHeart</immatureGraphicPath>
       <dieIfLeafless>true</dieIfLeafless>
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>AzureHeart</harvestedThingDef>
@@ -134,7 +92,7 @@
       </li>
     </comps>
     <graphicData>
-      <texPath>Things/Item/Plants/FuneralIvy</texPath>
+      <texPath>Things/Plant/FuneralIvy</texPath>
       <graphicClass>Graphic_Random</graphicClass>
     </graphicData>
     <selectable>true</selectable>
@@ -143,7 +101,7 @@
     <plant>
       <fertilitySensitivity>1.0</fertilitySensitivity>
       <growDays>8</growDays>
-      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/FuneralIvy</immatureGraphicPath>
+      <immatureGraphicPath>Things/Plant/ImmaturePlants/FuneralIvy</immatureGraphicPath>
       <dieIfLeafless>false</dieIfLeafless>
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>FuneralIvy</harvestedThingDef>
@@ -174,7 +132,7 @@
       <Nutrition>0.15</Nutrition>
     </statBases>
     <graphicData>
-      <texPath>Things/Item/Plants/VenomousToothwort</texPath>
+      <texPath>Things/Plant/VenomousToothwort</texPath>
       <graphicClass>Graphic_Random</graphicClass>
     </graphicData>
     <selectable>true</selectable>
@@ -184,7 +142,7 @@
       <harvestWork>400</harvestWork>
       <fertilitySensitivity>1.0</fertilitySensitivity>
       <growDays>7.5</growDays>
-      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/VenomousToothwort</immatureGraphicPath>
+      <immatureGraphicPath>Things/Plant/ImmaturePlants/VenomousToothwort</immatureGraphicPath>
       <dieIfLeafless>false</dieIfLeafless>
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>VenomousToothwort</harvestedThingDef>
@@ -219,7 +177,7 @@
       </li>
     </comps>
     <graphicData>
-      <texPath>Things/Item/Plants/PhoenixJuniper</texPath>
+      <texPath>Things/Plant/PhoenixJuniper</texPath>
       <graphicClass>Graphic_Random</graphicClass>
     </graphicData>
     <selectable>true</selectable>
@@ -228,7 +186,7 @@
     <plant>
       <fertilitySensitivity>1.0</fertilitySensitivity>
       <growDays>6</growDays>
-      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/PhoenixJuniper</immatureGraphicPath>
+      <immatureGraphicPath>Things/Plant/ImmaturePlants/PhoenixJuniper</immatureGraphicPath>
       <dieIfLeafless>true</dieIfLeafless>
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>PhoenixJuniper</harvestedThingDef>
@@ -258,7 +216,7 @@
       <Nutrition>0.15</Nutrition>
     </statBases>
     <graphicData>
-      <texPath>Things/Item/Plants/DemonLily</texPath>
+      <texPath>Things/Plant/DemonLily</texPath>
       <graphicClass>Graphic_Random</graphicClass>
     </graphicData>
     <selectable>true</selectable>
@@ -267,7 +225,7 @@
     <plant>
       <fertilitySensitivity>1.0</fertilitySensitivity>
       <growDays>6</growDays>
-      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/DemonLily</immatureGraphicPath>
+      <immatureGraphicPath>Things/Plant/ImmaturePlants/DemonLily</immatureGraphicPath>
       <dieIfLeafless>true</dieIfLeafless>
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>DemonLily</harvestedThingDef>
@@ -305,7 +263,7 @@
       </li>
     </comps>
     <graphicData>
-      <texPath>Things/Item/Plants/NightmareBrier</texPath>
+      <texPath>Things/Plant/NightmareBrier</texPath>
       <graphicClass>Graphic_Random</graphicClass>
     </graphicData>
     <selectable>true</selectable>
@@ -314,7 +272,7 @@
     <plant>
       <fertilitySensitivity>1.0</fertilitySensitivity>
       <growDays>6</growDays>
-      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/NightmareBrier</immatureGraphicPath>
+      <immatureGraphicPath>Things/Plant/ImmaturePlants/NightmareBrier</immatureGraphicPath>
       <dieIfLeafless>false</dieIfLeafless>
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>NightmareBrier</harvestedThingDef>
@@ -352,7 +310,7 @@
       </li>
     </comps>
     <graphicData>
-      <texPath>Things/Item/Plants/Magmatite</texPath>
+      <texPath>Things/Plant/Magmatite</texPath>
       <graphicClass>Graphic_Random</graphicClass>
     </graphicData>
     <selectable>true</selectable>
@@ -362,7 +320,7 @@
       <maxMeshCount>4</maxMeshCount>
       <fertilitySensitivity>1.0</fertilitySensitivity>
       <growDays>6.5</growDays>
-      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/Magmatite</immatureGraphicPath>
+      <immatureGraphicPath>Things/Plant/ImmaturePlants/Magmatite</immatureGraphicPath>
       <dieIfLeafless>false</dieIfLeafless>
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>Magmatite</harvestedThingDef>
@@ -391,7 +349,7 @@
       <Nutrition>0.15</Nutrition>
     </statBases>
     <graphicData>
-      <texPath>Things/Item/Plants/DragonGinger</texPath>
+      <texPath>Things/Plant/DragonGinger</texPath>
       <graphicClass>Graphic_Random</graphicClass>
     </graphicData>
     <selectable>true</selectable>
@@ -401,7 +359,7 @@
       <harvestWork>350</harvestWork>
       <fertilitySensitivity>1.0</fertilitySensitivity>
       <growDays>8.5</growDays>
-      <immatureGraphicPath>Things/Item/Plants/ImmaturePlants/DragonGinger</immatureGraphicPath>
+      <immatureGraphicPath>Things/Plant/ImmaturePlants/DragonGinger</immatureGraphicPath>
       <dieIfLeafless>false</dieIfLeafless>
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>DragonGinger</harvestedThingDef>

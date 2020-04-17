@@ -32,20 +32,20 @@ namespace PurpleIvy
                         {
                             if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
                             {
-                                Plant newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
-                                GenSpawn.Spawn(newivy, current, this.Map);
+                                Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                                GenSpawn.Spawn(newNest, current, this.Map);
                             }
                         }
                         else
                         {
                             Plant plant = current.GetPlant(this.Map);
-                            if (plant.def.defName != "PurpleIvy")
+                            if (plant.def.defName != "PI_Nest")
                             {
                                 if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
                                 {
                                     plant.Destroy();
-                                    Plant newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
-                                    GenSpawn.Spawn(newivy, current, this.Map);
+                                    Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                                    GenSpawn.Spawn(newNest, current, this.Map);
                                 }
                             }
                         }

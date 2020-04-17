@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="StrangePlants">
+		<defName>PI_Nest</defName>
+		<label>Nest</label>
+		<description>Nest</description>
+		<thingClass>PurpleIvy.Plant_Nest</thingClass> 
+		<tickerType>Normal</tickerType>
+		<statBases>
+			<MaxHitPoints>65</MaxHitPoints>
+			<Nutrition>0.15</Nutrition>
+			<Beauty>20</Beauty>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Plant/CreepyTulip</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+		</graphicData>
+		<selectable>true</selectable>
+		<pathCost>10</pathCost>
+		<ingestible />
+		<plant>
+			<fertilitySensitivity>1.0</fertilitySensitivity>
+			<immatureGraphicPath>Things/Plant/ImmaturePlants/CreepyTulip</immatureGraphicPath>
+			<dieIfLeafless>true</dieIfLeafless>
+			<harvestTag>Standard</harvestTag>
+			<harvestYield>6</harvestYield>
+			<growDays>3</growDays>
+			<topWindExposure>0.2</topWindExposure>
+			<visualSizeRange>
+				<min>0</min>
+				<max>3.0</max>
+			</visualSizeRange>
+		</plant>
+	</ThingDef>
+
+</Defs>
