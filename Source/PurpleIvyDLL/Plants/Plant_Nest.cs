@@ -241,7 +241,7 @@ namespace PurpleIvy
                 catch (Exception ex)
                 {
                     Log.Error("ERROR:" + ex.Message);
-                }
+                } 
                 SpreadTick = OrigSpreadTick;
             }
         }

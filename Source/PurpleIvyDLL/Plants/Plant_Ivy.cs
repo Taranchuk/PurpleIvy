@@ -11,17 +11,20 @@ namespace PurpleIvy
 {
     public class Plant_Ivy : Plant
     {
-        private int mutateChance;
-        private int mutateRate;
-        public bool MutateTry;
-
+        public bool CanMutate;
         ThingDef sporesThingDef = ThingDef.Named("Spores");
         private Thing Spores = null;
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            if (!(this.Growth < 1)) return;
-            MutateTry = true;
+            if (Rand.Chance(0.3f))
+            {
+                CanMutate = true;
+            }
+            else
+            {
+                CanMutate = false;
+            }
         }
         public override void PostMapInit()
         {
@@ -184,66 +187,53 @@ namespace PurpleIvy
         {
             if (HasNoBuildings(Position))
             {
-                if (Rand.Chance(0.3f))
+                int randChance = Rand.RangeInclusive(1, 100);
+                Log.Message(this + " - rand chance: " + randChance.ToString());
+                if (randChance >= 0 && randChance <= 29)
                 {
-                    int randChance = Rand.RangeInclusive(1, 100);
-                    Log.Message(this + " - rand chance: " + randChance.ToString());
-                    if (randChance >= 0 && randChance <= 29)
-                    {
-                        var nest = ThingMaker.MakeThing(PurpleIvyDefOf.PI_Nest);
-                        GenSpawn.Spawn(nest, Position, this.Map);
-                        this.MutateTry = false;
-                        Log.Message(this + " mutate into Nest");
-                        this.Destroy(DestroyMode.Vanish);
-                    }
-                    else if (randChance >= 30 && randChance <= 34)
-                    {
-                        Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(PurpleIvyDefOf.GasPump);
-                        GasPump.SetFactionDirect(PurpleIvyData.AlienFaction);
-                        GenSpawn.Spawn(GasPump, Position, this.Map);
-                        this.MutateTry = false;
-                        Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GasPump");
-
-                    }
-                    else if (randChance >= 35 && randChance <= 39)
-                    {
-                        Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
-                        GenMortar.SetFactionDirect(PurpleIvyData.AlienFaction);
-                        GenSpawn.Spawn(GenMortar, Position, this.Map);
-                        this.MutateTry = false;
-                        Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenMortar");
-
-                    }
-                    else if (randChance >= 40 && randChance <= 44)
-                    {
-                        Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase);
-                        GenTurret.SetFactionDirect(PurpleIvyData.AlienFaction);
-                        GenSpawn.Spawn(GenTurret, Position, this.Map);
-                        this.MutateTry = false;
-                        Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenTurret");
-
-                    }
-                    else if (randChance >= 45 && randChance <= 49)
-                    {
-                        Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
-                        EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
-                        GenSpawn.Spawn(EggSac, Position, this.Map);
-                        this.MutateTry = false;
-                        Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac");
-
-                    }
-                    else if (randChance >= 50 && randChance <= 59)
-                    {
-                        Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
-                        ParasiteEgg.SetFactionDirect(PurpleIvyData.AlienFaction);
-                        GenSpawn.Spawn(ParasiteEgg, Position, this.Map);
-                        this.MutateTry = false;
-                        Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into ParasiteEgg");
-                    }
+                    var nest = ThingMaker.MakeThing(PurpleIvyDefOf.PI_Nest);
+                    GenSpawn.Spawn(nest, Position, this.Map);
+                    Log.Message(this + " mutate into Nest");
+                    this.Destroy(DestroyMode.Vanish);
                 }
-                else
+                else if (randChance >= 30 && randChance <= 34)
                 {
-                    this.MutateTry = false;
+                    Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(PurpleIvyDefOf.GasPump);
+                    GasPump.SetFactionDirect(PurpleIvyData.AlienFaction);
+                    GenSpawn.Spawn(GasPump, Position, this.Map);
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GasPump");
+                
+                }
+                else if (randChance >= 35 && randChance <= 39)
+                {
+                    Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
+                    GenMortar.SetFactionDirect(PurpleIvyData.AlienFaction);
+                    GenSpawn.Spawn(GenMortar, Position, this.Map);
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenMortar");
+                
+                }
+                else if (randChance >= 40 && randChance <= 44)
+                {
+                    Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase);
+                    GenTurret.SetFactionDirect(PurpleIvyData.AlienFaction);
+                    GenSpawn.Spawn(GenTurret, Position, this.Map);
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenTurret");
+                
+                }
+                else if (randChance >= 45 && randChance <= 49)
+                {
+                    Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
+                    EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
+                    GenSpawn.Spawn(EggSac, Position, this.Map);
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac");
+                
+                }
+                else if (randChance >= 50 && randChance <= 59)
+                {
+                    Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
+                    ParasiteEgg.SetFactionDirect(PurpleIvyData.AlienFaction);
+                    GenSpawn.Spawn(ParasiteEgg, Position, this.Map);
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into ParasiteEgg");
                 }
             }
         }
@@ -298,7 +288,7 @@ namespace PurpleIvy
                 {
                     this.ThrowGasOrAdjustGasSize();
                     this.DoDamageToBuildings(Position);
-                    if (this.MutateTry == true)
+                    if (this.CanMutate == true)
                     {
                         this.TryMutate();
                     }
@@ -316,7 +306,7 @@ namespace PurpleIvy
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<bool>(ref this.MutateTry, "MutateTry", true, true);
+            Scribe_Values.Look<bool>(ref this.CanMutate, "MutateTry", true, true);
         }
     }
 }

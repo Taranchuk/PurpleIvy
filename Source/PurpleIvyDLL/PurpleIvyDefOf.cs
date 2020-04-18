@@ -64,6 +64,12 @@ namespace PurpleIvy
 
         public static IncidentDef PI_AlienRaid;
 
+        public static ThingDef EMP_Sparks;
+
+        public static ThingDef EMPGlow;
+
+        public static ThingDef Mote_EMPSmoke;
+
     }
 }
 

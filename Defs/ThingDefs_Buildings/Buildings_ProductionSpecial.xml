@@ -49,11 +49,6 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <comps>
-      <li Class="CompProperties_Explosive">
-        <explosiveRadius>4.0</explosiveRadius>
-        <explosiveDamageType>BlueFire</explosiveDamageType>
-        <chanceNeverExplodeFromDamage>1</chanceNeverExplodeFromDamage>
-      </li>
       <li Class="CompProperties_Glower">
         <glowRadius>3</glowRadius>
         <glowColor>(110, 209, 110)</glowColor>
@@ -123,11 +118,6 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <comps>
-      <li Class="CompProperties_Explosive">
-        <explosiveRadius>4.0</explosiveRadius>
-        <explosiveDamageType>RedFire</explosiveDamageType>
-        <chanceNeverExplodeFromDamage>1</chanceNeverExplodeFromDamage>
-      </li>
       <li Class="CompProperties_Glower">
         <glowRadius>3</glowRadius>
         <glowColor>(0,187,255)</glowColor>

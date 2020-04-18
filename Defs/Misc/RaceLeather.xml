@@ -1,31 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-
   <ThingDef ParentName="LeatherBase">
-    <defName>Leather_Avian</defName>
-    <label>Avian leather</label>
-    <description>A Skin from Avian's.. Some people says that it contains Magic from Otherworld...I guess we'll never find out the Truth.</description>
-    <graphicData>
-      <color>(48,49,48)</color>
-    </graphicData>
-    <statBases>
-      <MarketValue>8.0</MarketValue>
-      <StuffPower_Armor_Sharp>1.40</StuffPower_Armor_Sharp>
-      <StuffPower_Armor_Blunt>0.36</StuffPower_Armor_Blunt>
-      <StuffPower_Insulation_Cold>28</StuffPower_Insulation_Cold>
-      <StuffPower_Insulation_Heat>18</StuffPower_Insulation_Heat>
-    </statBases>
-    <stuffProps>
-      <color>(48,49,48)</color>
-      <commonality>0.0025</commonality>
-    </stuffProps>
-  </ThingDef>
-
-  <ThingDef ParentName="LeatherBase">
-    <defName>Leather_Magma</defName>
-    <label>Volcanian leather</label>
-    <description>A Skin from a Magma Soldier..Can help survive even the coldest winters.</description>
+    <defName>Leather_AlienAlpha</defName>
+    <label>Alien alpha leather</label>
+    <description>Alien alpha leather.</description>
     <graphicData>
       <color>(67,77,89)</color>
     </graphicData>
@@ -41,29 +20,5 @@
       <commonality>0.0025</commonality>
     </stuffProps>
   </ThingDef>
-
-
-  <ThingDef ParentName="LeatherBase">
-    <defName>Leather_BlueMagma</defName>
-    <label>Strange Volcanian leather</label>
-    <description>A Skin from a Blue Volcanian Soldier.. Can help survive even the coldest winters.</description>
-    <graphicData>
-      <color>(67,77,89)</color>
-    </graphicData>
-    <statBases>
-      <MarketValue>11.0</MarketValue>
-      <StuffPower_Armor_Sharp>2.00</StuffPower_Armor_Sharp>
-      <StuffPower_Armor_Blunt>0.14</StuffPower_Armor_Blunt>
-      <StuffPower_Insulation_Cold>16</StuffPower_Insulation_Cold>
-      <StuffPower_Insulation_Heat>26</StuffPower_Insulation_Heat>
-    </statBases>
-    <stuffProps>
-      <color>(67,77,89)</color>
-      <commonality>0.0025</commonality>
-    </stuffProps>
-  </ThingDef>
-
-
-
 
 </Defs>

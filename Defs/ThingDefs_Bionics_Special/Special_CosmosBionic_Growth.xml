@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-    <!--====== Special ======-->
-
-
+<!--
     <ThingDef ParentName="SpecialCosmosBionics">
         <defName>CosmosBaseImplant</defName>
         <label>Growth Stimulator BO-001</label>
@@ -93,7 +91,6 @@
         <researchPrerequisite>SpecialResViolet</researchPrerequisite>
     </RecipeDef>
 
-
     <RecipeDef ParentName="EvaineQBionicParts">
         <defName>InstallCosmosBaseImplant</defName>
         <label>Install Growth Stimulator BO-001</label>
@@ -136,5 +133,5 @@
         </appliedOnFixedBodyParts>
         <addsHediff>CosmosBionicsSpecial</addsHediff>
     </RecipeDef>
-
+-->
 </Defs>

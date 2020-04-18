@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ThingDef Name="RaceFilth" Abstract="True">
+  <ThingDef Name="AlienFilth" Abstract="True">
     <thingClass>Filth</thingClass>
     <category>Filth</category>
     <altitudeLayer>Filth</altitudeLayer>
@@ -17,46 +17,8 @@
     </statBases>
   </ThingDef>
 
-  <ThingDef ParentName="RaceFilth">
-    <defName>AvianFilth</defName>
-    <label>Avian blood</label>
-    <statBases>
-      <Beauty>-5</Beauty>
-      <Cleanliness>-5</Cleanliness>
-    </statBases>
-    <graphicData>
-      <texPath>Things/Filth/Spatter</texPath>
-      <color>(255,255,102)</color>
-    </graphicData>
-    <filth>
-      <rainWashes>true</rainWashes>
-      <cleaningWorkToReduceThickness>70</cleaningWorkToReduceThickness>
-      <canFilthAttach>true</canFilthAttach>
-    </filth>
-  </ThingDef>
-
-
-  <ThingDef ParentName="RaceFilth">
-    <defName>MagmaFilth</defName>
-    <label>Elemental blood</label>
-    <statBases>
-      <Beauty>10</Beauty>
-      <Cleanliness>-5</Cleanliness>
-    </statBases>
-    <graphicData>
-      <texPath>Things/Filth/Spatter</texPath>
-      <color>(234,148,18)</color>
-    </graphicData>
-    <filth>
-      <rainWashes>true</rainWashes>
-      <cleaningWorkToReduceThickness>70</cleaningWorkToReduceThickness>
-      <canFilthAttach>true</canFilthAttach>
-    </filth>
-  </ThingDef>
-
-
-  <ThingDef ParentName="RaceFilth">
-    <defName>BlueMagmaFilth</defName>
+  <ThingDef ParentName="AlienFilth">
+    <defName>AlienBloodFilth</defName>
     <label>Elemental blood</label>
     <statBases>
       <Beauty>10</Beauty>

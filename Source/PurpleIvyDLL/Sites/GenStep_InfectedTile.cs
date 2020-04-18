@@ -149,7 +149,7 @@ namespace PurpleIvy
             }
             foreach (var ivy in map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Cast<Plant_Ivy>().Where(ivy => ivy.Growth > 0.1f))
             {
-                ivy.MutateTry = false;
+                ivy.CanMutate = false;
             }
             var count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
             Log.Message("New map created! plants - " + map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count.ToString());

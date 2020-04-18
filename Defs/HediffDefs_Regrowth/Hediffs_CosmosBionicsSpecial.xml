@@ -2,7 +2,7 @@
 <Defs>
 
 	<!--====== Special ======-->
-
+<!--
 	<HediffDef>
 		<defName>CosmosBionicsSpecial</defName>
 		<hediffClass>HediffSpecial.Hediff_EnchantedBionic</hediffClass>
@@ -28,8 +28,9 @@
 			</li>
 		</modExtensions>
 	</HediffDef>
-
-	<HediffDef>
+-->
+<!--
+	<HediffDef ParentName="AddedBodyPartBase">
 		<defName>CosmosRegrowingTech</defName>
 		<label>Regrowing</label>
 		<description>Regrowing</description>
@@ -70,7 +71,7 @@
 			</li>
 		</modExtensions>
 	</HediffDef>
-
+-->
 	<HediffDef>
 		<defName>CosmosTech</defName>
 		<label>Cured Bodypart</label>

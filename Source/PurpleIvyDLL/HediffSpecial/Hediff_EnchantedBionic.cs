@@ -29,11 +29,11 @@ namespace HediffSpecial
 				this.TrySealWounds();
 				this.SetNextHealTick();
 			}
-			if (Current.Game.tickManager.TicksGame >= this.ticksUntilNextGrow && this.def.TryGetModExtension<DefModExtension_BionicSpecial>().regrowParts)
-			{
-				this.TryRegrowBodyparts();
-				this.SetNextGrowTick();
-			}
+			//if (Current.Game.tickManager.TicksGame >= this.ticksUntilNextGrow && this.def.TryGetModExtension<DefModExtension_BionicSpecial>().regrowParts)
+			//{
+			//	this.TryRegrowBodyparts();
+			//	this.SetNextGrowTick();
+			//}
 		}
 
 		public void TrySealWounds()
@@ -57,41 +57,41 @@ namespace HediffSpecial
 			}
 		}
 
-		public void TryRegrowBodyparts()
-		{
-			if (this.def.TryGetModExtension<DefModExtension_BionicSpecial>().protoBodyPart != null)
-			{
-				using (IEnumerator<BodyPartRecord> enumerator = this.pawn.GetFirstMatchingBodyparts(this.pawn.RaceProps.body.corePart, HediffDefOf.MissingBodyPart, this.def.TryGetModExtension<DefModExtension_BionicSpecial>().protoBodyPart, (Hediff hediff) => hediff is Hediff_AddedPart).GetEnumerator())
-				{
-					while (enumerator.MoveNext())
-					{
-						BodyPartRecord part = enumerator.Current;
-						Hediff hediff3 = this.pawn.health.hediffSet.hediffs.First((Hediff hediff) => hediff.Part == part && hediff.def == HediffDefOf.MissingBodyPart);
-						if (hediff3 != null)
-						{
-							this.pawn.health.RemoveHediff(hediff3);
-							this.pawn.health.AddHediff(this.def.TryGetModExtension<DefModExtension_BionicSpecial>().protoBodyPart, part, null, null);
-							this.pawn.health.hediffSet.DirtyCache();
-						}
-					}
-					return;
-				}
-			}
-			using (IEnumerator<BodyPartRecord> enumerator2 = this.pawn.GetFirstMatchingBodyparts(this.pawn.RaceProps.body.corePart, HediffDefOf.MissingBodyPart, HediffDefOf_CosmosInd.CosmosRegrowingTech, (Hediff hediff) => hediff is Hediff_AddedPart).GetEnumerator())
-			{
-				while (enumerator2.MoveNext())
-				{
-					BodyPartRecord part = enumerator2.Current;
-					Hediff hediff2 = this.pawn.health.hediffSet.hediffs.First((Hediff hediff) => hediff.Part == part && hediff.def == HediffDefOf.MissingBodyPart);
-					if (hediff2 != null)
-					{
-						this.pawn.health.RemoveHediff(hediff2);
-						this.pawn.health.AddHediff(HediffDefOf_CosmosInd.CosmosRegrowingTech, part, null, null);
-						this.pawn.health.hediffSet.DirtyCache();
-					}
-				}
-			}
-		}
+		//public void TryRegrowBodyparts()
+		//{
+		//	if (this.def.TryGetModExtension<DefModExtension_BionicSpecial>().protoBodyPart != null)
+		//	{
+		//		using (IEnumerator<BodyPartRecord> enumerator = this.pawn.GetFirstMatchingBodyparts(this.pawn.RaceProps.body.corePart, HediffDefOf.MissingBodyPart, this.def.TryGetModExtension<DefModExtension_BionicSpecial>().protoBodyPart, (Hediff hediff) => hediff is Hediff_AddedPart).GetEnumerator())
+		//		{
+		//			while (enumerator.MoveNext())
+		//			{
+		//				BodyPartRecord part = enumerator.Current;
+		//				Hediff hediff3 = this.pawn.health.hediffSet.hediffs.First((Hediff hediff) => hediff.Part == part && hediff.def == HediffDefOf.MissingBodyPart);
+		//				if (hediff3 != null)
+		//				{
+		//					this.pawn.health.RemoveHediff(hediff3);
+		//					this.pawn.health.AddHediff(this.def.TryGetModExtension<DefModExtension_BionicSpecial>().protoBodyPart, part, null, null);
+		//					this.pawn.health.hediffSet.DirtyCache();
+		//				}
+		//			}
+		//			return;
+		//		}
+		//	}
+		//	using (IEnumerator<BodyPartRecord> enumerator2 = this.pawn.GetFirstMatchingBodyparts(this.pawn.RaceProps.body.corePart, HediffDefOf.MissingBodyPart, HediffDefOf_CosmosInd.CosmosRegrowingTech, (Hediff hediff) => hediff is Hediff_AddedPart).GetEnumerator())
+		//	{
+		//		while (enumerator2.MoveNext())
+		//		{
+		//			BodyPartRecord part = enumerator2.Current;
+		//			Hediff hediff2 = this.pawn.health.hediffSet.hediffs.First((Hediff hediff) => hediff.Part == part && hediff.def == HediffDefOf.MissingBodyPart);
+		//			if (hediff2 != null)
+		//			{
+		//				this.pawn.health.RemoveHediff(hediff2);
+		//				this.pawn.health.AddHediff(HediffDefOf_CosmosInd.CosmosRegrowingTech, part, null, null);
+		//				this.pawn.health.hediffSet.DirtyCache();
+		//			}
+		//		}
+		//	}
+		//}
 
 		public void SetNextHealTick()
 		{
