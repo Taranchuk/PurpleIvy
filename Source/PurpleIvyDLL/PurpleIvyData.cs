@@ -22,6 +22,35 @@ namespace PurpleIvy
 
         public static List<int> BiomesToRenderNow = new List<int>();
 
+        public static bool BiomesDirty = false;
+
+        public static bool BiomesToClear = false;
+        public static void UpdateBiomes()
+        {
+            if (PurpleIvyData.BiomesToClear == true)
+            {
+                PurpleIvyData.ClearAlienBiomesOuterTheSources();
+                PurpleIvyData.BiomesToClear = false;
+            }
+            Find.World.renderer.SetDirty<WorldLayerRegenerateBiomes>();
+            PurpleIvyData.BiomesDirty = false;
+        }
+        public static void ClearAlienBiomesOuterTheSources()
+        {
+            for (int i = PurpleIvyData.TotalPollutedBiomes.Count - 1; i >= 0; i--)
+            {
+                int tile = PurpleIvyData.TotalPollutedBiomes[i];
+                if (PurpleIvyData.TileInRadiusOfInfectedSites(tile) != true)
+                {
+                    Log.Message("Return old biome: " + tile.ToString());
+                    BiomeDef origBiome = Find.WorldGrid[tile].biome;
+                    BiomeDef newBiome = BiomeDef.Named(origBiome.defName.ReplaceFirst("PI_", string.Empty));
+                    Find.WorldGrid[tile].biome = newBiome;
+                    PurpleIvyData.TotalPollutedBiomes.Remove(tile);
+                    PurpleIvyData.BiomesToRenderNow.Add(tile);
+                }
+            }
+        }
         public static float GetPartFromPercentage(float percent, float whole)
         {
             return (float)(percent * whole) / 100f;
@@ -49,7 +78,6 @@ namespace PurpleIvy
                         floatRadius = 0;
                     }
                     float newValue = GetPartFromPercentage(GetPercentageFromPartWhole(floatRadius, distance), data.Value);
-                    Log.Message("newValue: " + newValue);
                     if (newValue > data.Value)
                     {
                         outerSource += data.Value;

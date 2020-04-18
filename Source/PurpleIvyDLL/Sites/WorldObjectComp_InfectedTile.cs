@@ -27,46 +27,16 @@ namespace PurpleIvy
             return base.CompInspectStringExtra();
         }
 
-        //public override void PostDestroy()
-        //{
-        //    base.PostDestroy();
-        //    Log.Message("PostDestroy");
-        //    this.StopInfection();
-        //}
-
-        //public override void PostMyMapRemoved()
-        //{
-        //    Log.Message("PostMyMapRemoved");
-        //    this.StopInfection();
-        //    base.PostMyMapRemoved();
-        //}
-
         public override void PostPostRemove()
         {
             Log.Message("PostPostRemove");
             this.counter = 0;
             this.StopInfection();
             this.radius = -1; // -1 is set to allow filRadius remove alien biome in the place
-            this.ClearAlienBiomesOuterTheSources();
+            PurpleIvyData.BiomesDirty = true;
+            PurpleIvyData.BiomesToClear = true;
+            PurpleIvyData.UpdateBiomes();
             base.PostPostRemove();
-        }
-
-        public void ClearAlienBiomesOuterTheSources()
-        {
-            for (int i = PurpleIvyData.TotalPollutedBiomes.Count - 1; i >= 0; i--)
-            {
-                int tile = PurpleIvyData.TotalPollutedBiomes[i];
-                if (PurpleIvyData.TileInRadiusOfInfectedSites(tile) != true)
-                {
-                    Log.Message("Return old biome: " + tile.ToString());
-                    BiomeDef origBiome = Find.WorldGrid[tile].biome;
-                    BiomeDef newBiome = BiomeDef.Named(origBiome.defName.ReplaceFirst("PI_", string.Empty));
-                    Find.WorldGrid[tile].biome = newBiome;
-                    PurpleIvyData.TotalPollutedBiomes.Remove(tile);
-                    PurpleIvyData.BiomesToRenderNow.Add(tile);
-                }
-            }
-            Find.World.renderer.SetDirty<WorldLayerRegenerateBiomes>();
         }
 
         public int GetRadius()
@@ -87,7 +57,11 @@ namespace PurpleIvy
                 //PurpleIvyData.BiomesToRenderNow = new List<int>();
                 this.radius = newRadius;
                 List<int> tiles = new List<int>();
-
+                PurpleIvyData.BiomesDirty = true;
+                if (this.radius < newRadius)
+                {
+                    PurpleIvyData.BiomesToClear = true;
+                }
                 Find.WorldFloodFiller.FloodFill(this.infectedTile, (int tile) => true, delegate (int tile, int dist)
                 {
                     if (dist > this.radius)
@@ -109,7 +83,6 @@ namespace PurpleIvy
                         PurpleIvyData.BiomesToRenderNow.Add(tile);
                     }
                 }
-                this.ClearAlienBiomesOuterTheSources();
             }
         }
         public override void CompTick()

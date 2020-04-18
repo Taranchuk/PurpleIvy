@@ -28,9 +28,11 @@ namespace PurpleIvy
 
         public static ThingDef PurpleIvy;
 
-        public static WeatherDef PurpleFog;
+        public static WeatherDef PI_PurpleFog;
 
-        public static WeatherDef PurpleFoggyRain;
+        public static WeatherDef PI_PurpleFoggyRain;
+
+        public static WeatherDef PI_EMPStorm;
 
         public static GameConditionDef PurpleFogGameCondition;
 
@@ -69,6 +71,8 @@ namespace PurpleIvy
         public static ThingDef EMPGlow;
 
         public static ThingDef Mote_EMPSmoke;
+
+        public static DamageDef PI_ToxicBurn;
 
     }
 }

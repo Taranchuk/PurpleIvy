@@ -119,6 +119,7 @@ namespace PurpleIvy
         {
             IncidentParms incidentParms = StorytellerUtility.DefaultParmsNow
             (IncidentCategoryDefOf.ThreatBig, map);
+            Log.Message("ALIEN RAID: map tile - " + map.Tile + " - infected site tile: " + site.infectedTile);
             List<Pawn> list = this.generateAliensFrom(site);
             Log.Message((map != null).ToString());
             incidentParms.target = map;
@@ -155,6 +156,10 @@ namespace PurpleIvy
         {
             base.GameComponentTick();
             bool temp;
+            if (PurpleIvyData.BiomesDirty == true)
+            {
+                PurpleIvyData.UpdateBiomes();
+            }
             if (Find.TickManager.TicksGame % 3451 == 0) // same as for toxic weather
             {
                 bool raidHappened = false;
@@ -187,7 +192,7 @@ namespace PurpleIvy
                             if (raidHappened != true)
                             {
                                 var infectedSites = getInfectedTilesNearby(worldObject.Tile);
-                                if (infectedSites != null)
+                                if (infectedSites != null && infectedSites.Count > 0)
                                 {
                                     if (fogProgress > 0.7f)
                                     {
@@ -214,7 +219,7 @@ namespace PurpleIvy
                             if (raidHappened != true && mapParent.Map != null)
                             {
                                 var infectedSites = getInfectedTilesNearby(mapParent.Tile);
-                                if (infectedSites != null)
+                                if (infectedSites != null && infectedSites.Count > 0)
                                 {
                                     fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
                                     int raidChance = (int)(fogProgress * 100) / 10;

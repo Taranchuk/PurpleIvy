@@ -22,19 +22,20 @@ namespace PurpleIvy
 
         public int weatherEndingTick = 0;
 
-        public int delay = 0;
-
         public int weatherAge = 0;
 
-        public WeatherDef purpleFog = PurpleIvyDefOf.PurpleFog;
+        public WeatherDef purpleFog = PurpleIvyDefOf.PI_PurpleFog;
 
-        public WeatherDef purpleFoggyRain = PurpleIvyDefOf.PurpleFoggyRain;
+        public WeatherDef purpleFoggyRain = PurpleIvyDefOf.PI_PurpleFoggyRain;
+
+        public WeatherDef empStorm = PurpleIvyDefOf.PI_EMPStorm;
         public override void Init()
         {
             LessonAutoActivator.TeachOpportunity(ConceptDefOf.ForbiddingDoors, OpportunityType.Critical);
             LessonAutoActivator.TeachOpportunity(ConceptDefOf.AllowedAreas, OpportunityType.Critical);
             purpleFog.durationRange = new IntRange(10000, 10000);
             purpleFoggyRain.durationRange = new IntRange(10000, 10000);
+            empStorm.durationRange = new IntRange(10000, 10000);
             foreach (Map map in this.AffectedMaps)
             {
                 this.fogProgress[map] = 0f;
@@ -62,13 +63,13 @@ namespace PurpleIvy
                 if (fog != true)
                 {
                     Log.Message("Transitioning to purple fog in the " + map);
-                    map.weatherManager.TransitionTo(PurpleIvyDefOf.PurpleFog);
+                    map.weatherManager.TransitionTo(purpleFog);
                 }
                 else
                 {
                     Log.Message("Transitioning to purple fog in the " + map);
                     map.weatherManager.TransitionTo(WeatherDefOf.Clear);
-                    map.weatherManager.TransitionTo(PurpleIvyDefOf.PurpleFog);
+                    map.weatherManager.TransitionTo(purpleFog);
                     map.weatherManager.curWeatherAge = weatherAge;
                 }
             }
@@ -79,7 +80,7 @@ namespace PurpleIvy
             List<Map> affectedMaps = base.AffectedMaps;
             foreach (Map map in affectedMaps)
             {
-                //Log.Message(map.weatherManager.curWeather + " - " + map.weatherManager.lastWeather + " - " + map.weatherManager.curWeatherAge.ToString(), true);
+                Log.Message(map.weatherManager.curWeather + " - " + map.weatherManager.lastWeather, true);
                 if (Find.TickManager.TicksGame % 60 == 0) // for performance
                 {
                     int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
@@ -100,29 +101,35 @@ namespace PurpleIvy
                         Log.Message("2 Comp null - GameCondition_PurpleFog");
                     }
                     Log.Message(map + " - total plants " + count.ToString() + " = fog progress - " + this.fogProgress[map].ToString(), true);
+                    weatherAge = map.weatherManager.curWeatherAge;
                     bool fog = map.weatherManager.CurWeatherPerceived.overlayClasses
                     .Contains(typeof(WeatherOverlay_Fog));
-                    if (map.weatherManager.curWeather != PurpleIvyDefOf.PurpleFog &&
-                        Find.TickManager.TicksGame > this.weatherEndingTick
-                        && (fog != true || map.weatherManager.curWeather == PurpleIvyDefOf.PurpleFoggyRain))
+                    if (map.weatherManager.curWeather != purpleFog &&
+                        Find.TickManager.TicksGame > this.weatherEndingTick 
+                        || !map.weatherManager.curWeather.defName.StartsWith("PI_"))
                     {
+                        weatherEndingTick = new IntRange(10000, 30000).RandomInRange + Find.TickManager.TicksGame;
                         Log.Message("Transitioning to purple fog in the " + map, true);
-                        map.weatherManager.TransitionTo(purpleFog);
-                        delay = new IntRange(10000, 60000).RandomInRange + Find.TickManager.TicksGame;
+                        if (fog == true)
+                        {
+                            map.weatherManager.TransitionTo(WeatherDefOf.Clear);
+                            map.weatherManager.TransitionTo(purpleFog);
+                        }
+                        else
+                        {
+                            map.weatherManager.TransitionTo(purpleFog);
+                        }
+                        map.weatherManager.curWeatherAge = weatherAge;
                     }
-
                 }
 
                 if (Find.TickManager.TicksGame % 3451 == 0)
                 {
-                    if (map.weatherManager.curWeather != PurpleIvyDefOf.PurpleFoggyRain
-                        && this.delay < Find.TickManager.TicksGame && this.fogProgress[map] >= 33)
+                    Log.Message("weatherEndingTick: " + this.weatherEndingTick + " - TicksGame: " + Find.TickManager.TicksGame, true);
+                    if (this.weatherEndingTick < Find.TickManager.TicksGame && this.fogProgress[map] >= 0.20f)
                     {
-                        System.Random random = new System.Random();
-                        int chance = (int)(this.fogProgress[map] * 100);
-                        if (random.Next(0, 100) < chance)
+                        if (Rand.Chance(this.fogProgress[map]) && map.weatherManager.curWeather != purpleFoggyRain)
                         {
-                            Log.Message("Success! Chance of rain: " + chance.ToString(), true);
                             WeatherOverlay_PurpleRain weatherOverlay = new WeatherOverlay_PurpleRain();
                             foreach (var overlay in purpleFoggyRain.Worker.overlays)
                             {
@@ -132,16 +139,52 @@ namespace PurpleIvy
                                     break;
                                 }
                             }
-                            weatherEndingTick = new IntRange(10000, 60000).RandomInRange + Find.TickManager.TicksGame;
+                            weatherEndingTick = new IntRange(10000, 20000).RandomInRange + Find.TickManager.TicksGame;
                             Log.Message("Transitioning to purple rain in the " + map, true);
-                            map.weatherManager.TransitionTo(purpleFoggyRain);
+                            bool fog = map.weatherManager.CurWeatherPerceived.overlayClasses
+    .Contains(typeof(WeatherOverlay_Fog));
+                            weatherAge = map.weatherManager.curWeatherAge;
+                            if (fog == true)
+                            {
+                                map.weatherManager.TransitionTo(WeatherDefOf.Clear);
+                                map.weatherManager.TransitionTo(purpleFoggyRain);
+                            }
+                            else
+                            {
+                                map.weatherManager.TransitionTo(purpleFoggyRain);
+                            }
+                            map.weatherManager.curWeatherAge = weatherAge;
+                            Find.LetterStack.ReceiveLetter("PurpleRainTripleToxicDamage".Translate(), "PurpleRainTripleToxicDamageDesc".Translate(), LetterDefOf.NeutralEvent, null, null);
+                        }
+                        else if (Rand.Chance(this.fogProgress[map]) 
+                            && map.weatherManager.curWeather != empStorm)
+                        {
+
+                            weatherEndingTick = new IntRange(10000, 20000).RandomInRange + Find.TickManager.TicksGame;
+                            Log.Message("Transitioning to emp storm in the " + map, true);
+                            bool fog = map.weatherManager.CurWeatherPerceived.overlayClasses
+.Contains(typeof(WeatherOverlay_Fog));
+                            if (map.weatherManager.curWeather.defName.StartsWith("PI_"))
+                            {
+                                weatherAge = map.weatherManager.curWeatherAge;
+                            }
+                            if (fog == true)
+                            {
+                                map.weatherManager.TransitionTo(WeatherDefOf.Clear);
+                                map.weatherManager.TransitionTo(empStorm);
+                            }
+                            else
+                            {
+                                map.weatherManager.TransitionTo(empStorm);
+                            }
+                            map.weatherManager.curWeatherAge = weatherAge;
+                            Find.LetterStack.ReceiveLetter("EmpStormTripleToxicDamage".Translate(), "EmpStormTripleToxicDamageDesc".Translate(), LetterDefOf.NeutralEvent, null, null);
                         }
                     }
                     this.DoPawnsToxicDamage(map);
                 }
             }
         }
-
         private void DoPawnsToxicDamage(Map map)
         {
             List<Pawn> allPawnsSpawned = map.mapPawns.AllPawnsSpawned;
@@ -169,6 +212,11 @@ namespace PurpleIvy
             num *= p.GetStatValue(StatDefOf.ToxicSensitivity, true);
             if (num != 0f)
             {
+                if (p.Map.weatherManager.curWeather == purpleFoggyRain ||
+                    p.Map.weatherManager.curWeather == empStorm)
+                {
+                    num *= 3f;
+                }
                 HealthUtility.AdjustSeverity(p, HediffDefOf.ToxicBuildup, num);
             }
         }
@@ -262,11 +310,11 @@ namespace PurpleIvy
         {
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.weatherEndingTick, "weatherEndingTick", 0, true);
-            Scribe_Values.Look<int>(ref this.delay, "delay", 0, true);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 purpleFog.durationRange = new IntRange(10000, 10000);
                 purpleFoggyRain.durationRange = new IntRange(10000, 10000);
+                empStorm.durationRange = new IntRange(10000, 10000);
                 foreach (Map map in AffectedMaps)
                 {
                     var comp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();

@@ -17,7 +17,7 @@ namespace PurpleIvy
 
         public override void ExposeData()
         {
-            //Scribe_Collections.Look<Building, int>(ref this.ToxicDamages, "ToxicDamages", LookMode.Reference, LookMode.Value, ref this.ToxicDamageKeys, ref this.ToxicDamageValues);
+            Scribe_Collections.Look<Building, int>(ref this.ToxicDamages, "ToxicDamages", LookMode.Reference, LookMode.Value, ref this.ToxicDamageKeys, ref this.ToxicDamageValues);
             base.ExposeData();
         }
 
@@ -92,11 +92,11 @@ this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest).Count.ToString(), true
             }
         }
 
-        //public Dictionary<Building, int> ToxicDamages = new Dictionary<Building, int>();
-        //
-        //public List<Building> ToxicDamageKeys = new List<Building>();
-        //
-        //public List<int> ToxicDamageValues = new List<int>();
+        public Dictionary<Building, int> ToxicDamages = new Dictionary<Building, int>();
+        
+        public List<Building> ToxicDamageKeys = new List<Building>();
+        
+        public List<int> ToxicDamageValues = new List<int>();
 
     }
 }

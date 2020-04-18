@@ -57,18 +57,18 @@ namespace PurpleIvy
                 {
                     if (pawn.Dead)
                     {
-                        Log.Message(this.parent + " dead");
+                        var corpse = (Corpse)this.parent.ParentHolder;
                         if (this.prevAngle == true)
                         {
-                            pawn.Drawer.renderer.wiggler.downedAngle += 5f;
+                            corpse.InnerPawn.Drawer.renderer.wiggler.downedAngle += 5f;
                             this.prevAngle = false;
                         }
                         else
                         {
-                            pawn.Drawer.renderer.wiggler.downedAngle -= 5f;
+                            corpse.InnerPawn.Drawer.renderer.wiggler.downedAngle -= 5f;
                             this.prevAngle = true;
                         }
-                        pawn.Drawer.renderer.wiggler.WigglerTick();
+                        corpse.InnerPawn.Drawer.renderer.wiggler.WigglerTick();
                     }
                     else
                     {
