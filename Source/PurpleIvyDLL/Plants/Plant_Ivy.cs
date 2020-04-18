@@ -54,66 +54,66 @@ namespace PurpleIvy
             return GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)).All(current => current.Standable(this.Map));
         }
 
-        public void DoDamageToBuildings(IntVec3 pos)
-        {
-            List<Thing> list = new List<Thing>();
-            foreach (var pos2 in GenAdj.CellsAdjacent8Way(this))
-            {
-                try
-                {
-                    list = this.Map.thingGrid.ThingsListAt(pos2);
-                }
-                catch
-                {
-                    continue;
-                }
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i] is Building && list[i].Faction != PurpleIvyData.AlienFaction)
-                    {
-                        Building b = (Building)list[i];
-                        var comp = this.Map.GetComponent<MapComponent_MapEvents>();
-                        if (comp != null)
-                        {
-                            int oldDamage = 0;
-                            if (comp.ToxicDamages == null)
-                            {
-                                comp.ToxicDamages = new Dictionary<Building, int>();
-                                comp.ToxicDamages[b] = b.MaxHitPoints;
-                            }
-                            Log.Message("Taking damage to " + b);
-                            if (!comp.ToxicDamages.ContainsKey(b))
-                            {
-                                oldDamage = b.MaxHitPoints;
-                                comp.ToxicDamages[b] = b.MaxHitPoints - 1;
-                            }
-                            else
-                            {
-                                oldDamage = comp.ToxicDamages[b];
-                                comp.ToxicDamages[b] -= 1;
-                            }
-                            BuildingsToxicDamageSectionLayerUtility.Notify_BuildingHitPointsChanged((Building)list[i], oldDamage);
-                            if (comp.ToxicDamages[b] / 2 < b.MaxHitPoints)
-                            {
-                                if (b.GetComp<CompBreakdownable>() != null)
-                                {
-                                    b.GetComp<CompBreakdownable>().DoBreakdown();
-                                }
-                                if (b.GetComp<CompPowerPlantWind>() != null)
-                                {
-                                    b.GetComp<CompPowerPlantWind>().PowerOutput /= 2f;
-                                }
-                                if (b.GetComp<CompPowerTrader>() != null)
-                                {
-                                    b.GetComp<CompPowerTrader>().PowerOn = false;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                }
-            }
-        }
+        //public void DoDamageToBuildings(IntVec3 pos)
+        //{
+        //    List<Thing> list = new List<Thing>();
+        //    foreach (var pos2 in GenAdj.CellsAdjacent8Way(this))
+        //    {
+        //        try
+        //        {
+        //            list = this.Map.thingGrid.ThingsListAt(pos2);
+        //        }
+        //        catch
+        //        {
+        //            continue;
+        //        }
+        //        for (int i = 0; i < list.Count; i++)
+        //        {
+        //            if (list[i] is Building && list[i].Faction != PurpleIvyData.AlienFaction)
+        //            {
+        //                Building b = (Building)list[i];
+        //                var comp = this.Map.GetComponent<MapComponent_MapEvents>();
+        //                if (comp != null)
+        //                {
+        //                    int oldDamage = 0;
+        //                    if (comp.ToxicDamages == null)
+        //                    {
+        //                        comp.ToxicDamages = new Dictionary<Building, int>();
+        //                        comp.ToxicDamages[b] = b.MaxHitPoints;
+        //                    }
+        //                    Log.Message("Taking damage to " + b);
+        //                    if (!comp.ToxicDamages.ContainsKey(b))
+        //                    {
+        //                        oldDamage = b.MaxHitPoints;
+        //                        comp.ToxicDamages[b] = b.MaxHitPoints - 1;
+        //                    }
+        //                    else
+        //                    {
+        //                        oldDamage = comp.ToxicDamages[b];
+        //                        comp.ToxicDamages[b] -= 1;
+        //                    }
+        //                    BuildingsToxicDamageSectionLayerUtility.Notify_BuildingHitPointsChanged((Building)list[i], oldDamage);
+        //                    if (comp.ToxicDamages[b] / 2 < b.MaxHitPoints)
+        //                    {
+        //                        if (b.GetComp<CompBreakdownable>() != null)
+        //                        {
+        //                            b.GetComp<CompBreakdownable>().DoBreakdown();
+        //                        }
+        //                        if (b.GetComp<CompPowerPlantWind>() != null)
+        //                        {
+        //                            b.GetComp<CompPowerPlantWind>().PowerOutput /= 2f;
+        //                        }
+        //                        if (b.GetComp<CompPowerTrader>() != null)
+        //                        {
+        //                            b.GetComp<CompPowerTrader>().PowerOn = false;
+        //                        }
+        //                    }
+        //                    break;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
         public void DoDamageToThings(IntVec3 pos)
         {
@@ -204,7 +204,7 @@ namespace PurpleIvy
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GasPump");
                 
                 }
-                else if (randChance >= 35 && randChance <= 39)
+                else if (randChance >= 35 && randChance <= 37)
                 {
                     Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
                     GenMortar.SetFactionDirect(PurpleIvyData.AlienFaction);
@@ -212,7 +212,7 @@ namespace PurpleIvy
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenMortar");
                 
                 }
-                else if (randChance >= 40 && randChance <= 44)
+                else if (randChance >= 38 && randChance <= 43)
                 {
                     Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase);
                     GenTurret.SetFactionDirect(PurpleIvyData.AlienFaction);
@@ -220,7 +220,7 @@ namespace PurpleIvy
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenTurret");
                 
                 }
-                else if (randChance >= 45 && randChance <= 49)
+                else if (randChance >= 44 && randChance <= 49)
                 {
                     Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
@@ -287,7 +287,7 @@ namespace PurpleIvy
                 if (this.Growth >= 0.25f)
                 {
                     this.ThrowGasOrAdjustGasSize();
-                    this.DoDamageToBuildings(Position);
+                    //this.DoDamageToBuildings(Position);
                     if (this.CanMutate == true)
                     {
                         this.TryMutate();

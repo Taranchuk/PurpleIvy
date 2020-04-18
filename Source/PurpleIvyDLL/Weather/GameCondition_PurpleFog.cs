@@ -103,16 +103,16 @@ namespace PurpleIvy
                     bool fog = map.weatherManager.CurWeatherPerceived.overlayClasses
                     .Contains(typeof(WeatherOverlay_Fog));
                     if (map.weatherManager.curWeather != PurpleIvyDefOf.PurpleFog &&
-                        Find.TickManager.TicksGame > this.weatherEndingTick 
+                        Find.TickManager.TicksGame > this.weatherEndingTick
                         && (fog != true || map.weatherManager.curWeather == PurpleIvyDefOf.PurpleFoggyRain))
                     {
                         Log.Message("Transitioning to purple fog in the " + map, true);
                         map.weatherManager.TransitionTo(purpleFog);
                         delay = new IntRange(10000, 60000).RandomInRange + Find.TickManager.TicksGame;
                     }
-            
+
                 }
-            
+
                 if (Find.TickManager.TicksGame % 3451 == 0)
                 {
                     if (map.weatherManager.curWeather != PurpleIvyDefOf.PurpleFoggyRain
@@ -150,7 +150,7 @@ namespace PurpleIvy
                 this.DoPawnToxicDamage(allPawnsSpawned[i]);
             }
         }
-        
+
         public void DoPawnToxicDamage(Pawn p)
         {
             if (p.Faction?.def?.defName == PurpleIvyDefOf.Genny.defName)
@@ -172,7 +172,7 @@ namespace PurpleIvy
                 HealthUtility.AdjustSeverity(p, HediffDefOf.ToxicBuildup, num);
             }
         }
-        
+
         public override void DoCellSteadyEffects(IntVec3 c, Map map)
         {
             if (!c.Roofed(map))
@@ -199,7 +199,7 @@ namespace PurpleIvy
                 }
             }
         }
-        
+
         public override float SkyTargetLerpFactor(Map map)
         {
             if (this.fogProgress.ContainsKey(map))
@@ -242,17 +242,17 @@ namespace PurpleIvy
         {
             return new SkyTarget?(new SkyTarget(0.85f, this.PurpleFogColors, 1f, 1f));
         }
-        
+
         public override float AnimalDensityFactor(Map map)
         {
             return 0f;
         }
-        
+
         public override float PlantDensityFactor(Map map)
         {
             return 0f;
         }
-        
+
         public override bool AllowEnjoyableOutsideNow(Map map)
         {
             return false;
@@ -283,26 +283,26 @@ namespace PurpleIvy
                 }
             }
         }
-        
+
         private const float MaxSkyLerpFactor = 0.5f;
-        
+
         private const float SkyGlow = 0.85f;
-        
+
         private SkyColorSet PurpleFogColors =
             new SkyColorSet(
             new Color(0.368f, 0f, 1f),
             new Color(0.920f, 0.920f, 0.920f),
             new Color(0.368f, 0f, 1f), 0.85f);
-        
+
         //0.368f, 0f, 1f
         //1.0f, 0f, 1.0f
 
         public const int CheckInterval = 3451;
-        
+
         private const float ToxicPerDay = 0.5f;
-        
+
         private const float PlantKillChance = 0.0065f;
-        
+
         private const float CorpseRotProgressAdd = 3000f;
     }
 }

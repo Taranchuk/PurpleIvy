@@ -27,7 +27,6 @@
       <fertilitySensitivity>1.0</fertilitySensitivity>
       <soundHarvesting>Harvest_Standard</soundHarvesting>
       <soundHarvestFinish>Harvest_Standard_Finish</soundHarvestFinish>
-      <sowWork>170</sowWork>
       <harvestWork>275</harvestWork>
       <visualSizeRange>
         <min>0.3</min>
@@ -60,14 +59,6 @@
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>AzureHeart</harvestedThingDef>
       <harvestYield>8</harvestYield>
-      <sowTags>
-        <li>Ground</li>
-        <li>Hydroponic</li>
-      </sowTags>
-      <sowMinSkill>2</sowMinSkill>
-      <sowResearchPrerequisites>
-        <li>BasicAlienPlants</li>
-      </sowResearchPrerequisites>
       <topWindExposure>0.2</topWindExposure>
       <visualSizeRange>
         <min>0.3</min>
@@ -106,14 +97,6 @@
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>FuneralIvy</harvestedThingDef>
       <harvestYield>2</harvestYield>
-      <sowTags>
-        <li>Ground</li>
-        <li>Hydroponic</li>
-      </sowTags>
-      <sowMinSkill>8</sowMinSkill>
-      <sowResearchPrerequisites>
-        <li>MasterAlienPlants</li>
-      </sowResearchPrerequisites>
       <topWindExposure>0.1</topWindExposure>
       <visualSizeRange>
         <min>0.3</min>
@@ -147,13 +130,6 @@
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>VenomousToothwort</harvestedThingDef>
       <harvestYield>10</harvestYield>
-      <sowTags>
-        <li>Ground</li>
-      </sowTags>
-      <sowMinSkill>6</sowMinSkill>
-      <sowResearchPrerequisites>
-        <li>VenomousAlienPlants</li>
-      </sowResearchPrerequisites>
       <topWindExposure>0.1</topWindExposure>
       <visualSizeRange>
         <min>0.3</min>
@@ -191,14 +167,6 @@
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>PhoenixJuniper</harvestedThingDef>
       <harvestYield>8</harvestYield>
-      <sowTags>
-        <li>Ground</li>
-        <li>Hydroponic</li>
-      </sowTags>
-      <sowMinSkill>6</sowMinSkill>
-      <sowResearchPrerequisites>
-        <li>SporeAlienPlants</li>
-      </sowResearchPrerequisites>
       <topWindExposure>0.1</topWindExposure>
       <visualSizeRange>
         <min>0.3</min>
@@ -230,14 +198,6 @@
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>DemonLily</harvestedThingDef>
       <harvestYield>8</harvestYield>
-      <sowTags>
-        <li>Ground</li>
-        <li>Hydroponic</li>
-      </sowTags>
-      <sowMinSkill>5</sowMinSkill>
-      <sowResearchPrerequisites>
-        <li>SporeAlienPlants</li>
-      </sowResearchPrerequisites>
       <topWindExposure>0.2</topWindExposure>
       <visualSizeRange>
         <min>0.3</min>
@@ -277,14 +237,6 @@
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>NightmareBrier</harvestedThingDef>
       <harvestYield>6</harvestYield>
-      <sowTags>
-        <li>Ground</li>
-        <li>Hydroponic</li>
-      </sowTags>
-      <sowMinSkill>8</sowMinSkill>
-      <sowResearchPrerequisites>
-        <li>IntermidiateAlienPlants</li>
-      </sowResearchPrerequisites>
       <topWindExposure>0.1</topWindExposure>
       <visualSizeRange>
         <min>0.3</min>
@@ -325,13 +277,6 @@
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>Magmatite</harvestedThingDef>
       <harvestYield>8</harvestYield>
-      <sowTags>
-        <li>Ground</li>
-      </sowTags>
-      <sowMinSkill>6</sowMinSkill>
-      <sowResearchPrerequisites>
-        <li>IntermidiateAlienPlants</li>
-      </sowResearchPrerequisites>
       <topWindExposure>0.1</topWindExposure>
       <visualSizeRange>
         <min>0.3</min>
@@ -364,13 +309,6 @@
       <harvestTag>Standard</harvestTag>
       <harvestedThingDef>DragonGinger</harvestedThingDef>
       <harvestYield>2</harvestYield>
-      <sowTags>
-        <li>Hydroponic</li>
-      </sowTags>
-      <sowMinSkill>8</sowMinSkill>
-      <sowResearchPrerequisites>
-        <li>DragonAlienPlants</li>
-      </sowResearchPrerequisites>
       <topWindExposure>0.1</topWindExposure>
       <visualSizeRange>
         <min>0.3</min>

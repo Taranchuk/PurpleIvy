@@ -115,7 +115,7 @@ namespace PurpleIvy
         public override void CompTick()
         {
             base.CompTick();
-            if (this.active)
+            if (this.active && this.infected)
             {
                 if (Find.TickManager.TicksGame % 600 == 0)
                 {
@@ -130,6 +130,7 @@ namespace PurpleIvy
                             0, 1, out num, predicate, false, true, false))
                         {
                             Site site = null;
+                            bool infected = false;
                             if (!Find.WorldObjects.AnyMapParentAt(num))
                             {
                                 site = (Site)WorldObjectMaker.MakeWorldObject(PurpleIvyDefOf.PI_InfectedTile);
@@ -138,28 +139,40 @@ namespace PurpleIvy
                             }
                             else
                             {
-                                Log.Message("Infect other non-infected sites");
-                                site = (Site)Find.WorldObjects.MapParentAt(num);
+                                var worldObject = Find.WorldObjects.MapParentAt(num);
+                                if (worldObject is Site)
+                                {
+                                    Log.Message("Infect other non-infected sites");
+                                    site = (Site)worldObject;
+                                    infected = true;
+                                }
+                                else
+                                {
+                                    Log.Message("Error: " + worldObject.ToString());
+                                }
                             }
-                            site.AddPart(new SitePart(site, PurpleIvyDefOf.InfectedSite,
+                            if (infected == true)
+                            {
+                                site.AddPart(new SitePart(site, PurpleIvyDefOf.InfectedSite,
 PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
 (StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.AlienFaction)));
-                            site.AddPart(new SitePart(site, PurpleIvyDefOf.InfectedSite,
-                                PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
-                                (StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.AlienFaction)));
-                            var comp = site.GetComponent<WorldObjectComp_InfectedTile>();
-                            comp.StartInfection();
-                            comp.gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;
-                            comp.counter = 0;
-                            comp.infectedTile = site.Tile;
-                            comp.radius = comp.GetRadius();
-                            PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(comp.counter);
-                            comp.fillRadius();
-                            site.GetComponent<TimeoutComp>().StartTimeout(30 * 60000);
-                            Find.WorldObjects.Add(site);
-                            Find.LetterStack.ReceiveLetter("InfectedTileSpreading".Translate(),
-                                "InfectedTileSpreadingDesc".Translate(), LetterDefOf.ThreatBig, site);
-                            this.delay = Find.TickManager.TicksGame + new IntRange(220000, 270000).RandomInRange;
+                                site.AddPart(new SitePart(site, PurpleIvyDefOf.InfectedSite,
+                                    PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
+                                    (StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.AlienFaction)));
+                                var comp = site.GetComponent<WorldObjectComp_InfectedTile>();
+                                comp.StartInfection();
+                                comp.gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;
+                                comp.counter = 0;
+                                comp.infectedTile = site.Tile;
+                                comp.radius = comp.GetRadius();
+                                PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(comp.counter);
+                                comp.fillRadius();
+                                site.GetComponent<TimeoutComp>().StartTimeout(30 * 60000);
+                                Find.WorldObjects.Add(site);
+                                Find.LetterStack.ReceiveLetter("InfectedTileSpreading".Translate(),
+                                    "InfectedTileSpreadingDesc".Translate(), LetterDefOf.ThreatBig, site);
+                                this.delay = Find.TickManager.TicksGame + new IntRange(220000, 270000).RandomInRange;
+                            }
                         }
                     }
                 }
@@ -230,6 +243,8 @@ PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
         public int AlienPower;
 
         public int AlienPowerSpent;
+
+        public bool infected = true;
 
         public List<int> pollutedTiles = new List<int>();
 

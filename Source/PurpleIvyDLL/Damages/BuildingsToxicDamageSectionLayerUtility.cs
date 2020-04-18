@@ -12,7 +12,7 @@ namespace PurpleIvy
         public static void Notify_BuildingHitPointsChanged(Building b, int oldHitPoints)
         {
             var comp = b.Map.GetComponent<MapComponent_MapEvents>();
-            if (comp == null || !comp.ToxicDamages.ContainsKey(b) || comp.ToxicDamages[b] == oldHitPoints ||
+            if (comp == null || comp.ToxicDamages == null || !comp.ToxicDamages.ContainsKey(b) || comp.ToxicDamages[b] == oldHitPoints ||
                 !b.Spawned
                 || !b.def.drawDamagedOverlay)
             {
@@ -287,8 +287,10 @@ namespace PurpleIvy
             List<Thing> thingList = c.GetThingList(b.Map);
             for (int i = 0; i < thingList.Count; i++)
             {
-                if (thingList[i].def == b.def && thingList[i].Map.GetComponent<MapComponent_MapEvents>()
-                    .ToxicDamages[(Building)thingList[i]] < thingList[i].MaxHitPoints)
+                var comp = thingList[i].Map.GetComponent<MapComponent_MapEvents>();
+                if (thingList[i].def == b.def && comp != null && comp.ToxicDamages != null
+                    && comp.ToxicDamages.ContainsKey((Building)thingList[i])
+                    && comp.ToxicDamages[(Building)thingList[i]] < thingList[i].MaxHitPoints)
                 {
                     return true;
                 }

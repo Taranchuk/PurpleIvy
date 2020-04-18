@@ -264,6 +264,7 @@ namespace PurpleIvy
         }
 
         private static List<Vector2> scratches = new List<Vector2>();
+
     }
 }
 

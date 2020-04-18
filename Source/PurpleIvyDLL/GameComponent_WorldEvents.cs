@@ -210,12 +210,13 @@ namespace PurpleIvy
                         else if (worldObject is MapParent mapParent)
                         {
                             tempComp.infectedTile = mapParent.Tile;
+                            float? fogProgress = null;
                             if (raidHappened != true && mapParent.Map != null)
                             {
                                 var infectedSites = getInfectedTilesNearby(mapParent.Tile);
                                 if (infectedSites != null)
                                 {
-                                    float fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
+                                    fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
                                     int raidChance = (int)(fogProgress * 100) / 10;
                                     System.Random random = new System.Random();
                                     int randomChance = random.Next(1, 100);
@@ -233,7 +234,10 @@ namespace PurpleIvy
                             }
                             if (mapParent.Faction != Faction.OfPlayer && mapParent.Faction != PurpleIvyData.AlienFaction)
                             {
-                                float fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
+                                if (!fogProgress.HasValue)
+                                {
+                                    fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
+                                }
                                 if (fogProgress > 0f)
                                 {
                                     int abandonChance = (int)(fogProgress * 100) / 10;

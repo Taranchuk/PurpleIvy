@@ -28,8 +28,6 @@ namespace PurpleIvy
             bool comeFromOuterSource;
             var tempComp = new WorldObjectComp_InfectedTile();
             tempComp.infectedTile = __instance.Tile;
-            var result = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out comeFromOuterSource);
-            Log.Message("REsult: " + result.ToString());
             if (PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out comeFromOuterSource) > 0f &&
     !__instance.gameConditionManager.ConditionIsActive(PurpleIvyDefOf.PurpleFogGameCondition))
             {
@@ -37,6 +35,17 @@ namespace PurpleIvy
                     (GameCondition_PurpleFog)GameConditionMaker.MakeConditionPermanent
                     (PurpleIvyDefOf.PurpleFogGameCondition);
                 __instance.gameConditionManager.RegisterCondition(gameCondition);
+                tempComp.parent = __instance.Parent;
+                tempComp.StartInfection();
+                tempComp.gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;
+                tempComp.counter = 0;
+                tempComp.infected = false;
+                tempComp.infectedTile = __instance.Tile;
+                tempComp.radius = tempComp.GetRadius();
+                PurpleIvyData.TotalFogProgress[tempComp] = PurpleIvyData.getFogProgress(tempComp.counter);
+                tempComp.fillRadius();
+                __instance.Parent.AllComps.Add(tempComp);
+
             }
             Log.Message("WeatherChecker", true);
         }
