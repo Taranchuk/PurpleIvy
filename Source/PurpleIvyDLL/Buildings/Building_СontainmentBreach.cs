@@ -1,16 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
 namespace PurpleIvy
 {
-    public class Building_СontainmentBreach : Building_CryptosleepCasket
+    public class Building_СontainmentBreach : Building_WorkTable, IThingHolder
     {
+
+        public Building_СontainmentBreach()
+        {
+            this.innerContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
+        }
 
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
         {
+            foreach (FloatMenuOption fmo in base.GetFloatMenuOptions(selPawn))
+            {
+                yield return fmo;
+            }
             if (this.Alien != null)
             {
                 yield return new FloatMenuOption(Translator.Translate("ConductResearch"), delegate ()
@@ -29,6 +39,17 @@ namespace PurpleIvy
             }
             yield break;
         }
+
+        public ThingOwner GetDirectlyHeldThings()
+        {
+            return this.innerContainer;
+        }
+
+        public void GetChildHolders(List<IThingHolder> outChildren)
+        {
+            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, this.GetDirectlyHeldThings());
+        }
+
         public Pawn Alien
         {
             get
@@ -44,6 +65,22 @@ namespace PurpleIvy
                 return null;
             }
         }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Deep.Look<ThingOwner>(ref this.innerContainer, "innerContainer", new object[]
+            {
+                this
+            });
+        }
+
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+        }
+
+        public ThingOwner innerContainer;
+
     }
 }
-

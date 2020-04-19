@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+
+	<ThingCategoryDef>
+		<defName>PI_AlienResources</defName>
+		<label>alien resources</label>
+		<parent>Root</parent>
+		<iconPath>UI/Icons/ThingCategories/AnimalProductRaw</iconPath>
+	</ThingCategoryDef>
 	<!--====== Food ======-->
 
 	<ThingCategoryDef>

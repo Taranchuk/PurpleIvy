@@ -62,6 +62,12 @@ namespace PurpleIvy
 
         public static ThingDef PI_ContainmentBreach;
 
+        public static ThingDef PI_AlphaBlood;
+
+        public static ThingDef PI_BetaBlood;
+
+        public static ThingDef PI_OmegaBlood;
+
         public static WorldObjectDef PI_InfectedTile;
 
         public static WorldObjectDef PI_AbandonedBase;

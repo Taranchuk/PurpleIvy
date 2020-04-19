@@ -340,6 +340,7 @@
     <Compile Include="RaceWeapons\Projectile_HeatImpact.cs" />
     <Compile Include="RaceWeapons\ThingDefOf.cs" />
     <Compile Include="RaceWeapons\ThingDef_RaceWeapons.cs" />
+    <Compile Include="Recipes\Recipe_DrawAlienBlood.cs" />
     <Compile Include="Sites\Site_AbandonedBase.cs" />
     <Compile Include="Sites\Site_DefeatedSite.cs" />
     <Compile Include="AlienInfection\HediffInfected.cs" />

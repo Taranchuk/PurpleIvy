@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_AlphaBlood</defName>
+		<label>Alpha blood</label>
+		<description>Alpha blood.</description>
+		<graphicData>
+			<texPath>Things/Resources/AlienBlood/AlphaBlood</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.026</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>4</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_BetaBlood</defName>
+		<label>Beta blood</label>
+		<description>Beta blood.</description>
+		<graphicData>
+			<texPath>Things/Resources/AlienBlood/BetaBlood</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.026</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>4</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_OmegaBlood</defName>
+		<label>Omega blood</label>
+		<description>Omega blood.</description>
+		<graphicData>
+			<texPath>Things/Resources/AlienBlood/OmegaBlood</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.026</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>4</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+
+</Defs>

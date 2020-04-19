@@ -19,14 +19,14 @@
 
   <ThingDef ParentName="AlienFilth">
     <defName>AlienBloodFilth</defName>
-    <label>Elemental blood</label>
+    <label>alien blood</label>
     <statBases>
       <Beauty>10</Beauty>
       <Cleanliness>-5</Cleanliness>
     </statBases>
     <graphicData>
       <texPath>Things/Filth/Spatter</texPath>
-      <color>(69,99,255)</color>
+      <color>(194, 72, 218, 180)</color>
     </graphicData>
     <filth>
       <rainWashes>true</rainWashes>
