@@ -17,11 +17,24 @@
 		<alwaysShowWeapon>true</alwaysShowWeapon>
 		<casualInterruptible>false</casualInterruptible>
 	</JobDef>
-	
+
 	<JobDef>
 		<defName>PI_ExtractNectar</defName>
 		<driverClass>PurpleIvy.JobDriver_ExtractNectar</driverClass>
 		<reportString>extracts nectar from a nest</reportString>
 	</JobDef>
 
+	<JobDef>
+		<defName>PI_TakeAlienToContainmentBreach</defName>
+		<driverClass>PurpleIvy.JobDriver_TakeAlienToСontainmentBreach</driverClass>
+		<reportString>transfers TargetA to TargetB</reportString>
+	</JobDef>
+
+	<JobDef>
+		<defName>PI_ConductResearchOnAliens</defName>
+		<driverClass>PurpleIvy.JobDriver_TakeAlienToСontainmentBreach</driverClass>
+		<reportString>conducts research on aliens</reportString>
+	</JobDef>
+
+	ConductResearch
 </Defs>

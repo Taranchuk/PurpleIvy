@@ -297,6 +297,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buildings\Building_СontainmentBreach.cs" />
     <Compile Include="Buildings\Building_ParasiteEgg.cs" />
     <Compile Include="Buildings\Building_GasPump.cs" />
     <Compile Include="Buildings\Building_EggSac.cs" />
@@ -317,6 +318,7 @@
     <Compile Include="GenerationWorker\SitePartWorker_ProceduralGeneration.cs" />
     <Compile Include="GenerationWorker\SymbolResolver_AdvancedGeneration.cs" />
     <Compile Include="GenerationWorker\ThingSetMakerDefOf.cs" />
+    <Compile Include="HarmonyPatches\FloatMenuMakerMap_Patch.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatchesInit.cs" />
     <Compile Include="HarmonyPatches\ApplyWeatherOnNewMaps.cs" />
     <Compile Include="HediffSpecial\BodypartUtility.cs" />
@@ -329,6 +331,7 @@
     <Compile Include="HediffSpecial\Hediff_RegrowinBodyPart.cs" />
     <Compile Include="HediffSpecial\RemovableHediff.cs" />
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
+    <Compile Include="Jobs\JobDriver_TakeAlienToСontainmentBreach.cs" />
     <Compile Include="Jobs\JobDriver_AttackMeleePlus.cs" />
     <Compile Include="Jobs\JobDriver_ExtractNectar.cs" />
     <Compile Include="Plants\Plant_Nest.cs" />

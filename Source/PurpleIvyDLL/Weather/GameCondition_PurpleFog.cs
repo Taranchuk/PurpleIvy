@@ -80,7 +80,7 @@ namespace PurpleIvy
             List<Map> affectedMaps = base.AffectedMaps;
             foreach (Map map in affectedMaps)
             {
-                Log.Message(map.weatherManager.curWeather + " - " + map.weatherManager.lastWeather, true);
+                //Log.Message(map.weatherManager.curWeather + " - " + map.weatherManager.lastWeather, true);
                 if (Find.TickManager.TicksGame % 60 == 0) // for performance
                 {
                     int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
@@ -159,7 +159,6 @@ namespace PurpleIvy
                         else if (Rand.Chance(this.fogProgress[map]) 
                             && map.weatherManager.curWeather != empStorm)
                         {
-
                             weatherEndingTick = new IntRange(10000, 20000).RandomInRange + Find.TickManager.TicksGame;
                             Log.Message("Transitioning to emp storm in the " + map, true);
                             bool fog = map.weatherManager.CurWeatherPerceived.overlayClasses
