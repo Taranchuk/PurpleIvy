@@ -42,6 +42,7 @@
 		<reportString>draws alien blood</reportString>
 	</JobDef>
 
+<!--
 	<WorkGiverDef>
 		<defName>DoBillsConductContainmentBreach</defName>
 		<label>Conduct research on aliens</label>
@@ -58,7 +59,7 @@
 		</requiredCapacities>
 		<prioritizeSustains>true</prioritizeSustains>
 	</WorkGiverDef>
-
+-->
 	<WorkGiverDef>
 		<defName>DoBillsDrawBloodContainmentBreach</defName>
 		<label>draw alien blood</label>

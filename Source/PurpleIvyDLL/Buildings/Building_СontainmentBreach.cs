@@ -15,13 +15,27 @@ namespace PurpleIvy
             this.innerContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
         }
 
+        public override void PostMake()
+        {
+            base.PostMake();
+            this.maxNumAliens = this.def.GetModExtension<DefModExtension_СontainmentBreach>().maxNumAliens;
+            this.blackoutProtection = this.def.GetModExtension<DefModExtension_СontainmentBreach>().blackoutProtection;
+        }
+
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            this.maxNumAliens = this.def.GetModExtension<DefModExtension_СontainmentBreach>().maxNumAliens;
+            this.blackoutProtection = this.def.GetModExtension<DefModExtension_СontainmentBreach>().blackoutProtection;
+        }
+
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
         {
             foreach (FloatMenuOption fmo in base.GetFloatMenuOptions(selPawn))
             {
                 yield return fmo;
             }
-            if (this.Alien != null)
+            if (this.Aliens != null && this.Aliens.Count > 0)
             {
                 yield return new FloatMenuOption(Translator.Translate("ConductResearch"), delegate ()
                 {
@@ -50,19 +64,16 @@ namespace PurpleIvy
             ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, this.GetDirectlyHeldThings());
         }
 
-        public Pawn Alien
+        public List<Pawn> Aliens
         {
             get
             {
+                List<Pawn> Aliens = new List<Pawn>();
                 for (int i = 0; i < this.innerContainer.Count; i++)
                 {
-                    Pawn alien = this.innerContainer[i] as Pawn;
-                    if (alien != null)
-                    {
-                        return alien;
-                    }
+                    Aliens.Add((Pawn)this.innerContainer[i]);
                 }
-                return null;
+                return Aliens;
             }
         }
 
@@ -75,12 +86,11 @@ namespace PurpleIvy
             });
         }
 
-        public override void SpawnSetup(Map map, bool respawningAfterLoad)
-        {
-            base.SpawnSetup(map, respawningAfterLoad);
-        }
-
         public ThingOwner innerContainer;
 
+        public int maxNumAliens;
+
+        public bool blackoutProtection;
     }
 }
+

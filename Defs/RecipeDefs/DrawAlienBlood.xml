@@ -10,7 +10,7 @@
 		<recipeUsers>
 			<li>PI_ContainmentBreach</li>
 		</recipeUsers>
-		<workerClass>PurpleIvy.Recipe_DrawAlienBlood</workerClass>
+		<workerClass>PurpleIvy.RecipeWorkerWithJob</workerClass>
 		<workAmount>100</workAmount>
 		<targetsBodyPart>false</targetsBodyPart>
 		<ingredients>

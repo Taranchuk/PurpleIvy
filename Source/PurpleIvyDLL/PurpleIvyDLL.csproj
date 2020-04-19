@@ -297,6 +297,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buildings\DefModExtension_СontainmentBreach.cs" />
     <Compile Include="Buildings\Building_СontainmentBreach.cs" />
     <Compile Include="Buildings\Building_ParasiteEgg.cs" />
     <Compile Include="Buildings\Building_GasPump.cs" />
@@ -333,6 +334,8 @@
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
     <Compile Include="Jobs\DoBillsWorkGiverDrawAlienBlood.cs" />
     <Compile Include="Jobs\DoBillsWorkGiverAlienStudy.cs" />
+    <Compile Include="Jobs\JobDriver_DoBillPlus.cs" />
+    <Compile Include="Jobs\JobDriver_DrawAlienBlood.cs" />
     <Compile Include="Jobs\JobDriver_TakeAlienToСontainmentBreach.cs" />
     <Compile Include="Jobs\JobDriver_AttackMeleePlus.cs" />
     <Compile Include="Jobs\JobDriver_ExtractNectar.cs" />

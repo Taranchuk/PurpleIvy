@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<ThingDef ParentName="BuildingBase">
-		<defName>PI_ContainmentBreach</defName>
-		<label>PI_ContainmentBreach</label>
-		<description>PI_ContainmentBreach</description>
+	<ThingDef Name="ContainmentBreachBase" ParentName="BuildingBase" Abstract="True">
 		<thingClass>PurpleIvy.Building_СontainmentBreach</thingClass>
-		<graphicData>
-			<texPath>Things/Building/ContainmentBreach/ContainmentBreach</texPath>
-			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(2, 2)</drawSize>
-			<shadowData>
-				<volume>(0.83, 0.3, 1.7)</volume>
-			</shadowData>
-		</graphicData>
-		<researchPrerequisites>
-			<li>Cryptosleep</li>
-		</researchPrerequisites>
 		<inspectorTabs>
 			<li>ITab_Bills</li>
 		</inspectorTabs>
@@ -29,37 +15,58 @@
 		<passability>Impassable</passability>
 		<pathCost>70</pathCost>
 		<blockWind>true</blockWind>
-		<fillPercent>0.5</fillPercent>
+		<fillPercent>1</fillPercent>
 		<canOverlapZones>false</canOverlapZones>
+		<tickerType>Normal</tickerType>
+		<designationCategory>Misc</designationCategory>
+		<hasInteractionCell>true</hasInteractionCell>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<scatterableOnMapGen>false</scatterableOnMapGen>
+		<useHitPoints>true</useHitPoints>
+		<building>
+			<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+			<canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+			<ai_chillDestination>false</ai_chillDestination>
+		</building>
+		<designationHotKey>Misc1</designationHotKey>
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+			<li>PlaceWorker_ReportWorkSpeedPenalties</li>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+		</placeWorkers>
+	</ThingDef>
+
+	<ThingDef ParentName="ContainmentBreachBase">
+		<defName>PI_ContainmentBreach</defName>
+		<label>PI_ContainmentBreach</label>
+		<description>PI_ContainmentBreach</description>
+		<graphicData>
+			<texPath>Things/Building/ContainmentBreach/ContainmentBreach</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2, 2)</drawSize>
+			<shadowData>
+				<volume>(0.83, 0.3, 1.7)</volume>
+			</shadowData>
+		</graphicData>
+		<researchPrerequisites>
+			<li>Cryptosleep</li>
+		</researchPrerequisites>
 		<statBases>
 			<WorkToBuild>3200</WorkToBuild>
 			<MaxHitPoints>250</MaxHitPoints>
 			<Flammability>1.0</Flammability>
 			<Mass>40</Mass>
 		</statBases>
-		<tickerType>Normal</tickerType>
 		<size>(2,2)</size>
-
-		<designationCategory>Misc</designationCategory>
-		<hasInteractionCell>true</hasInteractionCell>
 		<interactionCellOffset>(0,0,2)</interactionCellOffset>
-		<defaultPlacingRot>South</defaultPlacingRot>
 		<costList>
 			<Steel>180</Steel>
 			<Uranium>5</Uranium>
 			<ComponentIndustrial>8</ComponentIndustrial>
 			<ComponentSpacer>2</ComponentSpacer>
-			<MedicineUltratech>25</MedicineUltratech>
 		</costList>
-
-		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
 		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
-
-
-		<scatterableOnMapGen>false</scatterableOnMapGen>
-		<useHitPoints>true</useHitPoints>
-
-
 		<building>
 			<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
 			<canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
@@ -79,74 +86,66 @@
 				<compClass>CompReportWorkSpeed</compClass>
 			</li>
 		</comps>
-		<designationHotKey>Misc1</designationHotKey>
-		<placeWorkers>
-			<li>PlaceWorker_ShowFacilitiesConnections</li>
-			<li>PlaceWorker_ReportWorkSpeedPenalties</li>
-			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
-		</placeWorkers>
+		<modExtensions>
+			<li Class="PurpleIvy.DefModExtension_СontainmentBreach">
+				<maxNumAliens>1</maxNumAliens>
+				<blackoutProtection>false</blackoutProtection>
+			</li>
+		</modExtensions>
 	</ThingDef>
-	<!--
-	<ThingDef ParentName="BenchBase">
-		<defName>PI_ContainmentBreach</defName>
-		<label>PI_ContainmentBreach</label>
-		<description>PI_ContainmentBreach</description>
-		<thingClass>PurpleIvy.Building_СontainmentBreach</thingClass>
+
+	<ThingDef ParentName="ContainmentBreachBase">
+		<defName>PI_ContainmentBreachAdv</defName>
+		<label>PI_ContainmentBreachAdv</label>
+		<description>PI_ContainmentBreachAdv</description>
 		<graphicData>
-			<texPath>Things/Building/ContainmentBreach/ContainmentBreach</texPath>
-			<graphicClass>Graphic_Multi</graphicClass>
-			<drawSize>(2, 2)</drawSize>
+			<texPath>Things/Building/ContainmentBreach/ContainmentBreachAdv</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3, 3)</drawSize>
 			<shadowData>
-				<volume>(0.83, 0.3, 1.7)</volume>
+				<volume>(1.8, 1.0, 0.2)</volume>
+				<offset>(0.0, 0.0, -0.4)</offset>
 			</shadowData>
 		</graphicData>
 		<researchPrerequisites>
 			<li>Cryptosleep</li>
 		</researchPrerequisites>
-		<inspectorTabs>
-			<li>ITab_Bills</li>
-		</inspectorTabs>
-		<altitudeLayer>Building</altitudeLayer>
-		<minifiedDef>MinifiedThing</minifiedDef>
-		<stealable>false</stealable>
-		<thingCategories>
-			<li>BuildingsMisc</li>
-		</thingCategories>
-		<passability>PassThroughOnly</passability>
-		<pathCost>70</pathCost>
-		<blockWind>true</blockWind>
-		<fillPercent>0.5</fillPercent>
-		<canOverlapZones>false</canOverlapZones>
 		<statBases>
-			<WorkToBuild>3200</WorkToBuild>
+			<WorkToBuild>4000</WorkToBuild>
 			<MaxHitPoints>250</MaxHitPoints>
 			<Flammability>1.0</Flammability>
 			<Mass>40</Mass>
 		</statBases>
-		<tickerType>Normal</tickerType>
-		<size>(2,2)</size>
-		<designationCategory>Misc</designationCategory>
-		<hasInteractionCell>true</hasInteractionCell>
+		<size>(3,3)</size>
 		<interactionCellOffset>(0,0,2)</interactionCellOffset>
-		<defaultPlacingRot>South</defaultPlacingRot>
+		<costList>
+			<Steel>3600</Steel>
+			<Uranium>10</Uranium>
+			<ComponentIndustrial>16</ComponentIndustrial>
+			<ComponentSpacer>4</ComponentSpacer>
+		</costList>
+		<constructionSkillPrerequisite>12</constructionSkillPrerequisite>
 		<building>
+			<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+			<canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
 			<ai_chillDestination>false</ai_chillDestination>
 		</building>
-		<costList>
-			<Steel>180</Steel>
-			<Uranium>5</Uranium>
-			<ComponentIndustrial>8</ComponentIndustrial>
-			<ComponentSpacer>2</ComponentSpacer>
-			<MedicineUltratech>25</MedicineUltratech>
-		</costList>
 		<comps>
-			<li Class="CompProperties_Glower">
-				<glowRadius>5</glowRadius>
-				<glowColor>(0,200,200,0)</glowColor>
+			<li Class="CompProperties_AffectedByFacilities">
+				<linkableFacilities>
+					<li>ToolCabinet</li>
+				</linkableFacilities>
+			</li>
+			<li>
+				<compClass>CompReportWorkSpeed</compClass>
 			</li>
 		</comps>
-		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
-		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+		<modExtensions>
+			<li Class="PurpleIvy.DefModExtension_СontainmentBreach">
+				<maxNumAliens>3</maxNumAliens>
+				<blackoutProtection>true</blackoutProtection>
+			</li>
+		</modExtensions>
 	</ThingDef>
-	-->
+
 </Defs>
