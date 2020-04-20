@@ -12,7 +12,6 @@
 		<thingCategories>
 			<li>BuildingsMisc</li>
 		</thingCategories>
-		<passability>Impassable</passability>
 		<pathCost>70</pathCost>
 		<blockWind>true</blockWind>
 		<fillPercent>1</fillPercent>
@@ -82,6 +81,10 @@
 					<li>ToolCabinet</li>
 				</linkableFacilities>
 			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>700</basePowerConsumption>
+			</li>
 			<li>
 				<compClass>CompReportWorkSpeed</compClass>
 			</li>
@@ -94,6 +97,8 @@
 		</modExtensions>
 	</ThingDef>
 
+
+
 	<ThingDef ParentName="ContainmentBreachBase">
 		<defName>PI_ContainmentBreachAdv</defName>
 		<label>PI_ContainmentBreachAdv</label>
@@ -101,7 +106,7 @@
 		<graphicData>
 			<texPath>Things/Building/ContainmentBreach/ContainmentBreachAdv</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(3, 3)</drawSize>
+			<drawSize>(3,3)</drawSize>
 			<shadowData>
 				<volume>(1.8, 1.0, 0.2)</volume>
 				<offset>(0.0, 0.0, -0.4)</offset>
@@ -136,6 +141,10 @@
 					<li>ToolCabinet</li>
 				</linkableFacilities>
 			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>2500</basePowerConsumption>
+			</li>
 			<li>
 				<compClass>CompReportWorkSpeed</compClass>
 			</li>
@@ -147,5 +156,5 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
-
+	-->
 </Defs>

@@ -29,6 +29,18 @@ namespace PurpleIvy
             this.blackoutProtection = this.def.GetModExtension<DefModExtension_СontainmentBreach>().blackoutProtection;
         }
 
+        public override string GetInspectString()
+        {
+            string aliens = "";
+            if (Aliens.Count > 0)
+            {
+                foreach (var alien in Aliens)
+                {
+                    aliens += alien + "\n";
+                }
+            }
+            return aliens.TrimEndNewlines() + base.GetInspectString();
+        }
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
         {
             foreach (FloatMenuOption fmo in base.GetFloatMenuOptions(selPawn))
@@ -84,7 +96,15 @@ namespace PurpleIvy
             {
                 this
             });
+            Scribe_Collections.Look<Pawn, int>(ref this.RecoveryBloodData, "RecoveryBloodData", 
+                LookMode.Reference, LookMode.Value, ref this.RecoveryBloodDataKeys, ref this.RecoveryBloodDataValues);
         }
+
+        public Dictionary<Pawn, int> RecoveryBloodData = new Dictionary<Pawn, int>();
+
+        public List<Pawn> RecoveryBloodDataKeys = new List<Pawn>();
+
+        public List<int> RecoveryBloodDataValues = new List<int>();
 
         public ThingOwner innerContainer;
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!--============= Item hauling ===============-->
 
@@ -68,6 +68,7 @@
 		<priorityInType>100</priorityInType>
 		<fixedBillGiverDefs>
 			<li>PI_ContainmentBreach</li>
+			<li>PI_ContainmentBreachAdv</li>
 		</fixedBillGiverDefs>
 		<verb>work</verb>
 		<gerund>working at</gerund>

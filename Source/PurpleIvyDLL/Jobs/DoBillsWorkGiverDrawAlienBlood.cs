@@ -10,11 +10,13 @@ namespace PurpleIvy
         public override Job JobOnThing(Pawn pawn, Thing thing, bool forced = false)
         {
             Job job = base.JobOnThing(pawn, thing, forced);
-            var workTable = (Building_СontainmentBreach)thing;
+            Log.Message("JO b TEST1 " + thing.Label);
+            //Log.Message(job.targetA.Thing.Label);
+            //var workTable = (Building_СontainmentBreach)job.targetB.Thing;
             RecipeWorkerWithJob recipeWorkerWithJob = new RecipeWorkerWithJob();
             bool flag;
-
-            if (workTable.innerContainer.Any && job != null && job.def == JobDefOf.DoBill)
+            //workTable.innerContainer.Any &&
+            if (job != null && job.def == JobDefOf.DoBill)
             {
                 recipeWorkerWithJob = (job.RecipeDef.Worker as RecipeWorkerWithJob);
                 flag = (recipeWorkerWithJob != null);
@@ -27,7 +29,7 @@ namespace PurpleIvy
             Job result;
             if (flag)
             {
-                result = new Job(recipeWorkerWithJob.DrawAlienBlood, job.targetA)
+                result = new Job(recipeWorkerWithJob.DrawAlienBlood, job.targetA, job.targetB)
                 {
                     targetQueueB = job.targetQueueB,
                     countQueue = job.countQueue,

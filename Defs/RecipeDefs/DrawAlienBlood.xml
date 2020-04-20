@@ -9,6 +9,7 @@
 		<deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
 		<recipeUsers>
 			<li>PI_ContainmentBreach</li>
+			<li>PI_ContainmentBreachAdv</li>
 		</recipeUsers>
 		<workerClass>PurpleIvy.RecipeWorkerWithJob</workerClass>
 		<workAmount>100</workAmount>

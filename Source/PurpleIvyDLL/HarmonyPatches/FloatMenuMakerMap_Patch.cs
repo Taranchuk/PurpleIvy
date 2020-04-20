@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -23,10 +24,10 @@ namespace PurpleIvy
                         ReservationUtility.CanReserveAndReach(pawn, target, PathEndMode.OnCell,
                         Danger.Deadly, 1, -1, null, true))
                     {
-                        var containmentBreach = (Building_СontainmentBreach)GenClosest.ClosestThingReachable
-                            (pawn.Position, pawn.Map, ThingRequest.ForDef(PurpleIvyDefOf.PI_ContainmentBreach)
-                            , PathEndMode.ClosestTouch, TraverseParms.For(pawn, Danger.Deadly, 0, false)
-                            , 9999f, null, null, 0, -1, false, RegionType.Set_Passable, false);
+                        var containers = target.Map.listerBuildings.AllBuildingsColonistOfClass
+                            <Building_СontainmentBreach>().Where(x => x.maxNumAliens > x.innerContainer.Count);
+                        var containmentBreach = (Building_СontainmentBreach)GenClosest.ClosestThing_Global
+                            (pawn.Position, containers, 9999f);
                         if (containmentBreach != null)
                         {
                             JobDef jobDef = PurpleIvyDefOf.PI_TakeAlienToContainmentBreach;
@@ -45,7 +46,6 @@ namespace PurpleIvy
                             opts.Add(new FloatMenuOption("NoContainersToTake".Translate(), null,
                     MenuOptionPriority.Default, null, null, 0f, null, null));
                         }
-
                     }
                 }
             }

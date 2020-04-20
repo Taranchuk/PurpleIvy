@@ -22,7 +22,7 @@ namespace PurpleIvy
         }
         protected override Toil DoBill()
         {
-            Building_WorkTable tableThing = this.job.GetTarget(TargetIndex.A).Thing as Building_WorkTable;
+            var tableThing = this.job.GetTarget(TargetIndex.A).Thing as Building_СontainmentBreach;
             CompRefuelable refuelableComp = tableThing.GetComp<CompRefuelable>();
             Toil toil = new Toil();
             toil.initAction = delegate ()
@@ -54,6 +54,56 @@ namespace PurpleIvy
                             skill.Learn(0.11f * this.job.RecipeDef.workSkillLearnFactor, false);
                         }
                     }
+                    Log.Message("TEST1");
+                    //Pawn donor = null;
+                    //if (tableThing.RecoveryBloodData != null)
+                    //{
+                    //    Log.Message("TEST2");
+                    //
+                    //    foreach (var alien in tableThing.innerContainer)
+                    //    {
+                    //        Log.Message("TEST3");
+                    //
+                    //        if (tableThing.RecoveryBloodData.ContainsKey((Pawn)alien))
+                    //        {
+                    //            Log.Message("TEST4");
+                    //
+                    //            if (tableThing.RecoveryBloodData[(Pawn)alien] <= 0)
+                    //            {
+                    //                Log.Message("TEST5");
+                    //
+                    //                donor = (Pawn)alien;
+                    //                break;
+                    //            }
+                    //        }
+                    //        else
+                    //        {
+                    //            Log.Message("TEST6");
+                    //
+                    //            donor = (Pawn)alien;
+                    //            break;
+                    //        }
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    Log.Message("TEST7");
+                    //    Log.Message(tableThing.Aliens.RandomElement().Label);
+                    //    Log.Message("TEST7.5");
+                    //    donor = (Pawn)tableThing.innerContainer[0];
+                    //}
+                    //Log.Message("TEST8");
+                    //
+                    //Log.Message("Donor: " + donor.Label);
+                    string aliens = "TESTALIENS\n";
+                    if (tableThing.Aliens.Count > 0)
+                    {
+                        foreach (var alien in tableThing.Aliens)
+                        {
+                            aliens += alien + "\n";
+                        }
+                    }
+                    Log.Message(aliens);
                     GenSpawn.Spawn(PurpleIvyDefOf.PI_AlphaBlood, tableThing.InteractionCell, thing.Map, 0);
                     Toils_Reserve.Release(TargetIndex.B);
                     Toils_Reserve.Release(TargetIndex.C);
