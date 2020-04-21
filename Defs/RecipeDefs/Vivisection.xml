@@ -1,41 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<RecipeDef>
-		<defName>PreciseVivisection</defName>
-		<label>Precise vivisection</label>
-		<description>Precise vivisection.</description>
-		<jobString>conducts vivisection on alien creature</jobString>
-		<recipeUsers>
-			<li>PI_ContainmentBreach</li>
-			<li>PI_ContainmentBreachAdv</li>
-		</recipeUsers>
-		<workAmount>300</workAmount>
-		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
-		<workSkill>Medicine</workSkill>
-		<effectWorking>Surgery</effectWorking>
-		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<ingredients>
-			<li>
-				<filter>
-					<categories>
-						<li>Corpses</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<products>
-			<Steel>3500</Steel>
-		</products>
-		<specialProducts>
-			<li>Butchery</li>
-		</specialProducts>
-		<fixedIngredientFilter>
-			<categories>
-				<li>CorpsesAlienParasites</li>
-			</categories>
-		</fixedIngredientFilter>
-	</RecipeDef> 
 
 	<RecipeDef>
 		<defName>PreciseVivisectionAlpha</defName>
@@ -56,6 +20,7 @@
 			<PI_NervousSystem>1</PI_NervousSystem>
 			<PI_Tentacles>6</PI_Tentacles>
 			<PI_ToxicSac>1</PI_ToxicSac>
+			<PI_AlphaBlood>10</PI_AlphaBlood>
 		</products>
 		<ingredients>
 			<li>
@@ -96,6 +61,8 @@
 			<PI_NervousSystem>1</PI_NervousSystem>
 			<PI_Tentacles>6</PI_Tentacles>
 			<PI_ToxicSac>1</PI_ToxicSac>
+			<PI_BetaBlood>7</PI_BetaBlood>
+
 		</products>
 		<ingredients>
 			<li>
@@ -131,6 +98,7 @@
 			<PI_NervousSystem>1</PI_NervousSystem>
 			<PI_Tentacles>6</PI_Tentacles>
 			<PI_ToxicSac>1</PI_ToxicSac>
+			<PI_OmegaBlood>5</PI_OmegaBlood>
 		</products>
 		<workAmount>300</workAmount>
 		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
