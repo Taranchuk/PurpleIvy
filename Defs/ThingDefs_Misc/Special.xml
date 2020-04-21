@@ -40,6 +40,7 @@
 		<useHitPoints>true</useHitPoints>
 		<building>
 			<ai_combatDangerous>true</ai_combatDangerous>
+			<claimable>false</claimable>
 		</building>
 		<selectable>true</selectable>
 		<statBases>
@@ -52,7 +53,7 @@
 			<Silver>300</Silver>
 			<Uranium>20</Uranium>
 			<Gold>50</Gold>
-			<PurpleIvy>50</PurpleIvy>
+			<PurpleIvy>1</PurpleIvy>
 		</killedLeavings>
 	</ThingDef>
 
@@ -74,6 +75,7 @@
 		<useHitPoints>true</useHitPoints>
 		<building>
 			<ai_combatDangerous>true</ai_combatDangerous>
+			<claimable>false</claimable>
 		</building>
 		<selectable>true</selectable>
 		<comps>
@@ -88,7 +90,7 @@
 			<Beauty>-50</Beauty>     
 		</statBases>
 		<killedLeavings>
-			<PurpleIvy>10</PurpleIvy>
+			<PurpleIvy>1</PurpleIvy>
 		</killedLeavings>
 	</ThingDef>
 
