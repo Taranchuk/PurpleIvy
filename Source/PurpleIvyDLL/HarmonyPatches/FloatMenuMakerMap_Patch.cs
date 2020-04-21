@@ -27,7 +27,7 @@ namespace PurpleIvy
                         var containers = target.Map.listerBuildings.AllBuildingsColonistOfClass
                             <Building_СontainmentBreach>().Where(x => x.maxNumAliens > x.innerContainer.Count);
                         var containmentBreach = (Building_СontainmentBreach)GenClosest.ClosestThing_Global
-                            (pawn.Position, containers, 9999f);
+                            (target.Position, containers, 9999f);
                         if (containmentBreach != null)
                         {
                             JobDef jobDef = PurpleIvyDefOf.PI_TakeAlienToContainmentBreach;

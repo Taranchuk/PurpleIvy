@@ -332,9 +332,11 @@
     <Compile Include="HediffSpecial\Hediff_RegrowinBodyPart.cs" />
     <Compile Include="HediffSpecial\RemovableHediff.cs" />
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
+    <Compile Include="Jobs\DoBillsWorkGiverConductPreciseVivisection.cs" />
     <Compile Include="Jobs\DoBillsWorkGiverDrawAlienBlood.cs" />
     <Compile Include="Jobs\DoBillsWorkGiverAlienStudy.cs" />
     <Compile Include="Jobs\JobDriver_DoBillPlus.cs" />
+    <Compile Include="Jobs\JobDriver_PreciseVivisection.cs" />
     <Compile Include="Jobs\JobDriver_DrawAlienBlood.cs" />
     <Compile Include="Jobs\JobDriver_TakeAlienToСontainmentBreach.cs" />
     <Compile Include="Jobs\JobDriver_AttackMeleePlus.cs" />

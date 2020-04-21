@@ -13,3 +13,4 @@ namespace PurpleIvy
         public bool blackoutProtection = false;
     }
 }
+

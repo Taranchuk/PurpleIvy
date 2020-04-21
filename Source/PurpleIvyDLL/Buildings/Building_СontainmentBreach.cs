@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -29,17 +30,153 @@ namespace PurpleIvy
             this.blackoutProtection = this.def.GetModExtension<DefModExtension_СontainmentBreach>().blackoutProtection;
         }
 
+        public bool HasBloodInAlien(Pawn alien)
+        {
+            bool result = false;
+            if (this.RecoveryBloodData != null && this.RecoveryBloodData.ContainsKey(alien))
+            {
+                if (this.RecoveryBloodData[alien] == 0
+                    || this.RecoveryBloodData[alien] < Find.TickManager.TicksGame)
+                {
+                    result = true;
+                }
+            }
+            else
+            {
+                result = true;
+            }
+            return result;
+        }
+        public bool HasJobOnRecipe(RecipeDef recipe)
+        {
+            bool result = false;
+            if (recipe == PurpleIvyDefOf.DrawAlienBlood)
+            {
+                foreach (var alien in this.Aliens)
+                {
+                    result = this.HasBloodInAlien(alien);
+                    if (result == true)
+                    {
+                        break;
+                    }
+                }
+            }
+            else if (recipe == PurpleIvyDefOf.DrawAlphaAlienBlood)
+            {
+                foreach (var alien in this.Aliens)
+                {
+                    if ("Genny_ParasiteAlpha" == alien.def.defName)
+                    {
+                        result = this.HasBloodInAlien(alien);
+                        if (result == true)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            else if (recipe == PurpleIvyDefOf.DrawBetaAlienBlood)
+            {
+                foreach (var alien in this.Aliens)
+                {
+                    if ("Genny_ParasiteBeta" == alien.def.defName)
+                    {
+                        result = this.HasBloodInAlien(alien);
+                        if (result == true)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            else if (recipe == PurpleIvyDefOf.DrawOmegaAlienBlood)
+            {
+                foreach (var alien in this.Aliens)
+                {
+                    if ("Genny_ParasiteOmega" == alien.def.defName)
+                    {
+                        result = this.HasBloodInAlien(alien);
+                        if (result == true)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        public bool AlienHasJobOnRecipe(Pawn alien, RecipeDef recipe)
+        {
+            bool result = false;
+            if (recipe == PurpleIvyDefOf.DrawAlienBlood)
+            {
+                result = this.HasBloodInAlien(alien);
+            }
+            else if (recipe == PurpleIvyDefOf.DrawAlphaAlienBlood)
+            {
+                if ("Genny_ParasiteAlpha" == alien.def.defName)
+                {
+                    result = this.HasBloodInAlien(alien);
+                }
+            }
+            else if (recipe == PurpleIvyDefOf.DrawBetaAlienBlood)
+            {
+                if ("Genny_ParasiteBeta" == alien.def.defName)
+                {
+                    result = this.HasBloodInAlien(alien);
+                }
+            }
+            else if (recipe == PurpleIvyDefOf.DrawOmegaAlienBlood)
+            {
+                if ("Genny_ParasiteOmega" == alien.def.defName)
+                {
+                    result = this.HasBloodInAlien(alien);
+                }
+            }
+            return result;
+        }
+
+        public ThingDef GetAlienBloodByRecipe(RecipeDef recipe)
+        {
+            ThingDef AlienBlood = null;
+            foreach (var alien in this.Aliens)
+            {
+                if (this.AlienHasJobOnRecipe(alien, recipe))
+                {
+                    string bloodType = "PI_" + alien.def.defName.Replace("Genny_Parasite", "") + "Blood";
+                    AlienBlood = DefDatabase<ThingDef>.GetNamed(bloodType, false);
+                    if (this.RecoveryBloodData == null)
+                    {
+                        this.RecoveryBloodData = new Dictionary<Pawn, int>();
+                    }
+                    this.RecoveryBloodData[alien] = new IntRange(30000, 60000).RandomInRange + Find.TickManager.TicksGame;
+                    break;
+                }
+            }
+            return AlienBlood;
+        }
         public override string GetInspectString()
         {
-            string aliens = "";
+            StringBuilder stringBuilder = new StringBuilder();
             if (Aliens.Count > 0)
             {
                 foreach (var alien in Aliens)
                 {
-                    aliens += alien + "\n";
+                    Log.Message(alien.def.defName, true);
+                    if (this.RecoveryBloodData != null && this.RecoveryBloodData.ContainsKey(alien))
+                    {
+                        stringBuilder.Append(alien + " - " + 
+                            (this.RecoveryBloodData[alien] - Find.TickManager.TicksGame) + "\n");
+                    }
+                    else
+                    {
+                        stringBuilder.Append(alien + "\n");
+                    }
                 }
             }
-            return aliens.TrimEndNewlines() + base.GetInspectString();
+            stringBuilder.Append(base.GetInspectString());
+            return stringBuilder.ToString();
         }
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
         {
@@ -96,7 +233,7 @@ namespace PurpleIvy
             {
                 this
             });
-            Scribe_Collections.Look<Pawn, int>(ref this.RecoveryBloodData, "RecoveryBloodData", 
+            Scribe_Collections.Look<Pawn, int>(ref this.RecoveryBloodData, "RecoveryBloodData",
                 LookMode.Reference, LookMode.Value, ref this.RecoveryBloodDataKeys, ref this.RecoveryBloodDataValues);
         }
 
@@ -113,4 +250,3 @@ namespace PurpleIvy
         public bool blackoutProtection;
     }
 }
-

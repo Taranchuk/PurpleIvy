@@ -8,7 +8,7 @@ using Verse.AI;
 
 namespace PurpleIvy
 {
-    public class JobDriver_DrawAlienBlood : JobDriver_DoBillPlus
+    public class JobDriver_PreciseVivisection : JobDriver_DoBillPlus
     {
         public override void ExposeData()
         {

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<BodyPartDef>
+		<defName>PI_ParasiteBody</defName>
+		<label>parasite body</label>
+		<hitPoints>40</hitPoints>
+		<skinCovered>true</skinCovered>
+	</BodyPartDef> 
+
+	<BodyPartDef>
+		<defName>PI_ParasiteMouth</defName>
+		<label>parasite mouth</label>
+		<hitPoints>20</hitPoints>
+		<permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+		<skinCovered>true</skinCovered>
+		<tags>
+			<li>EatingSource</li>
+			<li>ManipulationLimbCore</li>
+		</tags>
+	</BodyPartDef> 
+
+	<BodyPartDef>
+		<defName>PI_PlasmaNucleus</defName>
+		<label>plasma nucleus</label>
+		<hitPoints>20</hitPoints>
+		<bleedRate>5</bleedRate>
+		<skinCovered>false</skinCovered>
+		<tags>
+			<li>BloodPumpingSource</li>
+			<li>BloodFiltrationSource</li>
+			<li>MetabolismSource</li>
+			<li>BreathingSource</li>
+		</tags>
+	</BodyPartDef> 
+
+	<BodyPartDef>
+		<defName>PI_NervousSystem</defName>
+		<label>nervous system</label>
+		<hitPoints>10</hitPoints>
+		<permanentInjuryChanceFactor>9999999</permanentInjuryChanceFactor>
+		<skinCovered>false</skinCovered>
+		<tags>
+			<li>ConsciousnessSource</li>
+		</tags>
+		<canSuggestAmputation>false</canSuggestAmputation>
+	</BodyPartDef> 
+
+	<BodyPartDef>
+		<defName>PI_Tentacles</defName>
+		<label>tentacles</label>
+		<hitPoints>30</hitPoints>
+		<skinCovered>true</skinCovered>
+		<frostbiteVulnerability>1</frostbiteVulnerability>
+		<tags>
+			<li>MovingLimbCore</li>
+			<li>SightSource</li>
+			<li>HearingSource</li>
+		</tags>
+	</BodyPartDef> 
+
+	<BodyPartDef>
+		<defName>PI_ToxicSac</defName>
+		<label>toxic sac</label>
+		<hitPoints>20</hitPoints>
+		<bleedRate>5</bleedRate>
+		<skinCovered>false</skinCovered>
+		<tags>
+			<li>MetabolismSource</li>
+		</tags>
+	</BodyPartDef> 
+</Defs>

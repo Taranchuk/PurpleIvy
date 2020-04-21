@@ -30,6 +30,16 @@ namespace PurpleIvy
 
         public static JobDef PI_ConductResearchOnAliens;
 
+        public static JobDef PI_PreciseVivisection;
+
+        public static RecipeDef DrawAlienBlood;
+
+        public static RecipeDef DrawAlphaAlienBlood;
+
+        public static RecipeDef DrawBetaAlienBlood;
+
+        public static RecipeDef DrawOmegaAlienBlood;
+
         public static ThingDef InfectedCorpseDummy;
 
         public static ThingDef PurpleIvy;

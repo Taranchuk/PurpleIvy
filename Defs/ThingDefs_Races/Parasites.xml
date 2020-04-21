@@ -43,13 +43,13 @@
 		</statBases>
 		<tools>
 			<li>
-				<label>head</label>
+				<label>tentacle</label>
 				<capacities>
 					<li>AlienToxicSting</li>
 				</capacities>
 				<power>17</power>
 				<cooldownTime>2.6</cooldownTime>
-				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<linkedBodyPartsGroup>PI_TentacleAttackTool</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 				<surpriseAttack>
 					<extraMeleeDamages>
@@ -100,13 +100,13 @@
 		</statBases>
 		<tools>
 			<li>
-				<label>head</label>
+				<label>tentacle</label>
 				<capacities>
 					<li>AlienToxicSting</li>
 				</capacities>
 				<power>13</power>
 				<cooldownTime>2.6</cooldownTime>
-				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<linkedBodyPartsGroup>PI_TentacleAttackTool</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 				<surpriseAttack>
 					<extraMeleeDamages>
@@ -168,13 +168,13 @@
 		</statBases>
 		<tools>
 			<li>
-				<label>head</label>
+				<label>tentacle</label>
 				<capacities>
 					<li>AlienToxicSting</li>
 				</capacities>
 				<power>6</power>
 				<cooldownTime>2.6</cooldownTime>
-				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<linkedBodyPartsGroup>PI_TentacleAttackTool</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 				<surpriseAttack>
 					<extraMeleeDamages>

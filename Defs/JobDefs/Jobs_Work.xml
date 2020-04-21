@@ -42,7 +42,13 @@
 		<reportString>draws alien blood</reportString>
 	</JobDef>
 
-<!--
+	<JobDef>
+		<defName>PI_PreciseVivisection</defName>
+		<driverClass>PurpleIvy.JobDriver_PreciseVivisection</driverClass>
+		<reportString>conducts vivisection on alien creature</reportString>
+	</JobDef>
+
+	<!--
 	<WorkGiverDef>
 		<defName>DoBillsConductContainmentBreach</defName>
 		<label>Conduct research on aliens</label>
@@ -64,6 +70,24 @@
 		<defName>DoBillsDrawBloodContainmentBreach</defName>
 		<label>draw alien blood</label>
 		<giverClass>PurpleIvy.DoBillsWorkGiverDrawAlienBlood</giverClass>
+		<workType>Research</workType>
+		<priorityInType>100</priorityInType>
+		<fixedBillGiverDefs>
+			<li>PI_ContainmentBreach</li>
+			<li>PI_ContainmentBreachAdv</li>
+		</fixedBillGiverDefs>
+		<verb>work</verb>
+		<gerund>working at</gerund>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+		<prioritizeSustains>true</prioritizeSustains>
+	</WorkGiverDef>
+
+	<WorkGiverDef>
+		<defName>DoBillsConductPreciseVivisection</defName>
+		<label>conduct vivisection on alien creatures</label>
+		<giverClass>PurpleIvy.DoBillsWorkGiverConductPreciseVivisection</giverClass>
 		<workType>Research</workType>
 		<priorityInType>100</priorityInType>
 		<fixedBillGiverDefs>
