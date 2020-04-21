@@ -39,6 +39,7 @@
 			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
 			<ArmorRating_Heat>2.00</ArmorRating_Heat>
 			<MeatAmount>50</MeatAmount>
+			<LeatherAmount>25</LeatherAmount>
 		</statBases>
 		<tools>
 			<li>
@@ -66,8 +67,8 @@
 			<baseHungerRate>0.5</baseHungerRate>
 			<baseHealthScale>1.0</baseHealthScale>
 			<lifeExpectancy>6</lifeExpectancy>
-			<fleshType>ParasiteAlpha</fleshType>
-
+			<fleshType>FleshParasiteAlpha</fleshType>
+			<leatherDef>PI_AlienLeather</leatherDef>
 			<lifeStageAges>
 				<li>
 					<def>ParasiteLarva</def>
@@ -87,7 +88,15 @@
 				</li>
 			</lifeStageAges>
 		</race>
+		<!--
+		<butcherProducts>
+			<Steel>50</Steel>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</butcherProducts>
+		-->
 	</ThingDef>
+
 	<ThingDef ParentName="BaseParasite">
 		<defName>Genny_ParasiteBeta</defName>
 		<label>Medium alien parasite</label>
@@ -97,6 +106,7 @@
 			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
 			<MeatAmount>30</MeatAmount>
+			<LeatherAmount>15</LeatherAmount>
 			<ArmorRating_Heat>2.00</ArmorRating_Heat>
 		</statBases>
 		<tools>
@@ -125,8 +135,8 @@
 			<baseHealthScale>1.0</baseHealthScale>
 			<lifeExpectancy>5</lifeExpectancy>
 			<baseHungerRate>0.7</baseHungerRate>
-			<fleshType>ParasiteBeta</fleshType>
-
+			<fleshType>FleshParasiteBeta</fleshType>
+			<leatherDef>PI_AlienLeather</leatherDef>
 			<lifeStageAges>
 				<li>
 					<def>ParasiteLarva</def>
@@ -145,17 +155,14 @@
 					<soundAngry>Pawn_BigInsect_Angry</soundAngry>
 				</li>
 			</lifeStageAges>
-
-
 		</race>
-
 		<!--
-	<butcherProducts>
-		<Steel>50</Steel>
-		<Plasteel>10</Plasteel>
-		<ComponentIndustrial>2</ComponentIndustrial>
-	</butcherProducts>
-	-->
+		<butcherProducts>
+			<Steel>50</Steel>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</butcherProducts>
+		-->
 	</ThingDef>
 
 	<ThingDef ParentName="BaseParasite">
@@ -167,6 +174,7 @@
 			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
 			<MeatAmount>10</MeatAmount>
+			<LeatherAmount>5</LeatherAmount>
 			<ArmorRating_Heat>2.00</ArmorRating_Heat>
 		</statBases>
 		<tools>
@@ -195,7 +203,8 @@
 			<baseHealthScale>1.0</baseHealthScale>
 			<baseHungerRate>1</baseHungerRate>
 			<lifeExpectancy>6</lifeExpectancy>
-			<fleshType>ParasiteOmega</fleshType>
+			<fleshType>FleshParasiteOmega</fleshType>
+			<leatherDef>PI_AlienLeather</leatherDef>
 			<lifeStageAges>
 				<li>
 					<def>ParasiteLarva</def>
@@ -216,12 +225,12 @@
 			</lifeStageAges>
 		</race>
 		<!--
-	<butcherProducts>
-		<Steel>50</Steel>
-		<Plasteel>10</Plasteel>
-		<ComponentIndustrial>2</ComponentIndustrial>
-	</butcherProducts>
-	-->
+		<butcherProducts>
+			<Steel>50</Steel>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</butcherProducts>
+		-->
 	</ThingDef>
 
 </Defs>

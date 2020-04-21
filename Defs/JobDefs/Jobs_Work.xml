@@ -84,21 +84,4 @@
 		<prioritizeSustains>true</prioritizeSustains>
 	</WorkGiverDef>
 
-	<WorkGiverDef>
-		<defName>DoBillsConductPreciseVivisection</defName>
-		<label>conduct vivisection on alien creatures</label>
-		<giverClass>PurpleIvy.DoBillsWorkGiverConductPreciseVivisection</giverClass>
-		<workType>Research</workType>
-		<priorityInType>100</priorityInType>
-		<fixedBillGiverDefs>
-			<li>PI_ContainmentBreach</li>
-			<li>PI_ContainmentBreachAdv</li>
-		</fixedBillGiverDefs>
-		<verb>work</verb>
-		<gerund>working at</gerund>
-		<requiredCapacities>
-			<li>Manipulation</li>
-		</requiredCapacities>
-		<prioritizeSustains>true</prioritizeSustains>
-	</WorkGiverDef>
 </Defs>

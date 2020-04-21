@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<FleshTypeDef>
-		<defName>ParasiteAlpha</defName>
+		<defName>FleshParasiteAlpha</defName>
 		<ateDirect>AteInsectMeatDirect</ateDirect>
 		<ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
 		<corpseCategory>CorpsesAlienParasiteAlpha</corpseCategory>
@@ -22,7 +22,7 @@
 	</FleshTypeDef>
 
 	<FleshTypeDef>
-		<defName>ParasiteBeta</defName>
+		<defName>FleshParasiteBeta</defName>
 		<ateDirect>AteInsectMeatDirect</ateDirect>
 		<ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
 		<corpseCategory>CorpsesAlienParasiteBeta</corpseCategory>
@@ -43,7 +43,7 @@
 	</FleshTypeDef>
 
 	<FleshTypeDef>
-		<defName>ParasiteOmega</defName>
+		<defName>FleshParasiteOmega</defName>
 		<ateDirect>AteInsectMeatDirect</ateDirect>
 		<ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
 		<corpseCategory>CorpsesAlienParasiteOmega</corpseCategory>

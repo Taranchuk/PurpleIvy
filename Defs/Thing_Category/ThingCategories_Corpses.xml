@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>CorpsesAlienParasites</defName>
+		<label>Alien corpses</label>
+		<parent>Corpses</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>CorpsesAlienParasiteAlpha</defName>
+		<label>Alien alpha corpses</label>
+		<parent>CorpsesAlienParasites</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>CorpsesAlienParasiteBeta</defName>
+		<label>Alien beta corpses</label>
+		<parent>CorpsesAlienParasites</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>CorpsesAlienParasiteOmega</defName>
+		<label>Alien omega corpses</label>
+		<parent>CorpsesAlienParasites</parent>
+	</ThingCategoryDef>
+
+</Defs>

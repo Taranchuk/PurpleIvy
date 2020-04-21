@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="LeatherBase">
+		<defName>PI_AlienLeather</defName>
+		<label>alien parasite skin</label>
+		<description>alien parasite skin.</description>
+		<graphicData>
+			<color>(53,68,75)</color>
+		</graphicData>
+		<statBases>
+			<MarketValue>3.2</MarketValue>
+			<StuffPower_Armor_Sharp>1.29</StuffPower_Armor_Sharp>
+			<StuffPower_Insulation_Cold>24</StuffPower_Insulation_Cold>
+			<StuffPower_Insulation_Heat>24</StuffPower_Insulation_Heat>
+		</statBases>
+		<stuffProps>
+			<color>(53,68,75)</color>
+			<commonality>0.025</commonality>
+			<statFactors>
+				<MaxHitPoints>1.5</MaxHitPoints>
+			</statFactors>
+		</stuffProps>
+	</ThingDef>
+</Defs>

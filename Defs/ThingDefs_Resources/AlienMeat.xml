@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<!--
+	<ThingDef ParentName="OrganicProductBase">
+		<defName>PI_AlienMeat</defName>
+		<label>alien meat</label>
+		<description>Raw meat from alien parasites.</description>
+		<graphicData>
+			<texPath>Things/Item/Resource/AA_OcularJellyMeat</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<Nutrition>0.01</Nutrition>
+			<Flammability>0.1</Flammability>
+			<FoodPoisonChanceFixedHuman>0.80</FoodPoisonChanceFixedHuman>
+			<Mass>0.03</Mass>
+			<MarketValue>2</MarketValue>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Rottable">
+				<daysToRotStart>2</daysToRotStart>
+				<rotDestroys>True</rotDestroys>
+			</li>
+		</comps>
+		<ingestible>
+			<specialThoughtDirect>AteRawFood</specialThoughtDirect>
+			<foodType>Meat</foodType>
+			<preferability>DesperateOnly</preferability>
+			<ingestEffect>EatMeat</ingestEffect>
+			<ingestSound>RawMeat_Eat</ingestSound>		
+		</ingestible>
+		<thingCategories>
+			<li>MeatRaw</li>
+		</thingCategories>
+	</ThingDef>
+	-->
+</Defs>
