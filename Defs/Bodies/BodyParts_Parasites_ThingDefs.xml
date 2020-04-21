@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="BodyPartNaturalBase">
+		<defName>PI_PlasmaNucleus</defName>
+		<label>plasma nucleus</label>
+		<statBases>
+			<MarketValue>500</MarketValue>
+			<Mass>1</Mass>
+		</statBases>
+	</ThingDef> 
+
+	<ThingDef ParentName="BodyPartNaturalBase">
+		<defName>PI_NervousSystem</defName>
+		<label>nervous system</label>
+		<statBases>
+			<MarketValue>500</MarketValue>
+			<Mass>1</Mass>
+		</statBases>
+	</ThingDef> 
+
+	<ThingDef ParentName="BodyPartNaturalBase">
+		<defName>PI_Tentacles</defName>
+		<label>tentacles</label>
+		<statBases>
+			<MarketValue>200</MarketValue>
+			<Mass>1</Mass>
+		</statBases>
+	</ThingDef> 
+
+	<ThingDef ParentName="BodyPartNaturalBase">
+		<defName>PI_ToxicSac</defName>
+		<label>toxic sac</label>
+		<statBases>
+			<MarketValue>300</MarketValue>
+			<Mass>1</Mass>
+		</statBases>
+	</ThingDef> 
+</Defs>

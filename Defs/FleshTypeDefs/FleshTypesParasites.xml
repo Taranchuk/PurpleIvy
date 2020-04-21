@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<FleshTypeDef>
+		<defName>ParasiteAlpha</defName>
+		<ateDirect>AteInsectMeatDirect</ateDirect>
+		<ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
+		<corpseCategory>CorpsesAlienParasiteAlpha</corpseCategory>
+		<wounds>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundA</texture>
+				<color>0.98,1,0</color>
+			</li>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundB</texture>
+				<color>0.98,1,0</color>
+			</li>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundC</texture>
+				<color>0.98,1,0</color>
+			</li>
+		</wounds>
+	</FleshTypeDef>
+
+	<FleshTypeDef>
+		<defName>ParasiteBeta</defName>
+		<ateDirect>AteInsectMeatDirect</ateDirect>
+		<ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
+		<corpseCategory>CorpsesAlienParasiteBeta</corpseCategory>
+		<wounds>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundA</texture>
+				<color>0.98,1,0</color>
+			</li>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundB</texture>
+				<color>0.98,1,0</color>
+			</li>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundC</texture>
+				<color>0.98,1,0</color>
+			</li>
+		</wounds>
+	</FleshTypeDef>
+
+	<FleshTypeDef>
+		<defName>ParasiteOmega</defName>
+		<ateDirect>AteInsectMeatDirect</ateDirect>
+		<ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
+		<corpseCategory>CorpsesAlienParasiteOmega</corpseCategory>
+		<wounds>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundA</texture>
+				<color>0.98,1,0</color>
+			</li>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundB</texture>
+				<color>0.98,1,0</color>
+			</li>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundC</texture>
+				<color>0.98,1,0</color>
+			</li>
+		</wounds>
+	</FleshTypeDef>
+
+</Defs>

@@ -50,9 +50,9 @@ namespace PurpleIvy
         public bool HasJobOnRecipe(RecipeDef recipe)
         {
             bool result = false;
-            if (recipe == PurpleIvyDefOf.DrawAlienBlood)
+            foreach (var alien in this.Aliens)
             {
-                foreach (var alien in this.Aliens)
+                if (recipe == PurpleIvyDefOf.DrawAlienBlood)
                 {
                     result = this.HasBloodInAlien(alien);
                     if (result == true)
@@ -60,10 +60,7 @@ namespace PurpleIvy
                         break;
                     }
                 }
-            }
-            else if (recipe == PurpleIvyDefOf.DrawAlphaAlienBlood)
-            {
-                foreach (var alien in this.Aliens)
+                else if (recipe == PurpleIvyDefOf.DrawAlphaAlienBlood)
                 {
                     if ("Genny_ParasiteAlpha" == alien.def.defName)
                     {
@@ -74,10 +71,7 @@ namespace PurpleIvy
                         }
                     }
                 }
-            }
-            else if (recipe == PurpleIvyDefOf.DrawBetaAlienBlood)
-            {
-                foreach (var alien in this.Aliens)
+                else if (recipe == PurpleIvyDefOf.DrawBetaAlienBlood)
                 {
                     if ("Genny_ParasiteBeta" == alien.def.defName)
                     {
@@ -88,10 +82,7 @@ namespace PurpleIvy
                         }
                     }
                 }
-            }
-            else if (recipe == PurpleIvyDefOf.DrawOmegaAlienBlood)
-            {
-                foreach (var alien in this.Aliens)
+                else if (recipe == PurpleIvyDefOf.DrawOmegaAlienBlood)
                 {
                     if ("Genny_ParasiteOmega" == alien.def.defName)
                     {

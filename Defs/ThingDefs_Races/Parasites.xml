@@ -21,7 +21,6 @@
 			<soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
 			<soundMeleeHitBuilding>Pawn_Melee_SmallScratch_HitBuilding</soundMeleeHitBuilding>
 			<soundMeleeMiss>Pawn_Melee_SmallScratch_Miss</soundMeleeMiss>
-			<fleshType>Insectoid</fleshType>
 			<needsRest>false</needsRest>
 			<hasGenders>false</hasGenders>
 			<foodType>Meat, Corpse</foodType>
@@ -67,6 +66,8 @@
 			<baseHungerRate>0.5</baseHungerRate>
 			<baseHealthScale>1.0</baseHealthScale>
 			<lifeExpectancy>6</lifeExpectancy>
+			<fleshType>ParasiteAlpha</fleshType>
+
 			<lifeStageAges>
 				<li>
 					<def>ParasiteLarva</def>
@@ -124,6 +125,8 @@
 			<baseHealthScale>1.0</baseHealthScale>
 			<lifeExpectancy>5</lifeExpectancy>
 			<baseHungerRate>0.7</baseHungerRate>
+			<fleshType>ParasiteBeta</fleshType>
+
 			<lifeStageAges>
 				<li>
 					<def>ParasiteLarva</def>
@@ -192,6 +195,7 @@
 			<baseHealthScale>1.0</baseHealthScale>
 			<baseHungerRate>1</baseHungerRate>
 			<lifeExpectancy>6</lifeExpectancy>
+			<fleshType>ParasiteOmega</fleshType>
 			<lifeStageAges>
 				<li>
 					<def>ParasiteLarva</def>
