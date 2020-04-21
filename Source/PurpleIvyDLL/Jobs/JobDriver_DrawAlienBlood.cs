@@ -23,63 +23,59 @@ namespace PurpleIvy
         protected override Toil DoBill()
         {
             var tableThing = this.job.GetTarget(TargetIndex.A).Thing as Building_СontainmentBreach;
-            CompRefuelable refuelableComp = tableThing.GetComp<CompRefuelable>();
-            Toil toil = new Toil();
-            toil.initAction = delegate ()
+            var refuelableComp = tableThing.GetComp<CompRefuelable>();  //I think you should check this for Null, but i'm not sure where are you using it.
+            var toil = new Toil
             {
-                this.job.bill.Notify_DoBillStarted(this.pawn);
-                this.workCycleProgress = this.job.bill.recipe.workAmount;
-            };
-            toil.tickAction = delegate ()
-            {
-                Thing thing = this.job.GetTarget(TargetIndex.B).Thing;
-                if (thing == null || thing.Destroyed)
+                initAction = delegate ()
                 {
-                    this.pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true, true);
-                }
-                this.workCycleProgress -= StatExtension.GetStatValue(this.pawn, StatDefOf.WorkToMake, true);
-                tableThing.UsedThisTick();
-                if (!tableThing.CurrentlyUsableForBills() || (refuelableComp != null && !refuelableComp.HasFuel))
+                    this.job.bill.Notify_DoBillStarted(this.pawn);
+                    this.workCycleProgress = this.job.bill.recipe.workAmount;
+                },
+                tickAction = delegate ()
                 {
-                    this.pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true, true);
-                }
-                if (this.workCycleProgress <= 0f)
-                {
-                    SkillDef workSkill = this.job.RecipeDef.workSkill;
+                    var thing = this.job.GetTarget(TargetIndex.B).Thing;
+                    if (thing == null || thing.Destroyed)
+                    {
+                        this.pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true, true);
+                    }
+                    this.workCycleProgress -= this.pawn.GetStatValue(StatDefOf.WorkToMake, true);
+                    tableThing.UsedThisTick();
+                    if (!tableThing.CurrentlyUsableForBills() || (refuelableComp != null && !refuelableComp.HasFuel))
+                    {
+                        this.pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true, true);
+                    }
+
+                    if (!(this.workCycleProgress <= 0f)) return;
+                    var workSkill = this.job.RecipeDef.workSkill;
                     if (workSkill != null)
                     {
                         SkillRecord skill = this.pawn.skills.GetSkill(workSkill);
-                        if (skill != null)
-                        {
-                            skill.Learn(0.11f * this.job.RecipeDef.workSkillLearnFactor, false);
-                        }
+                        skill?.Learn(0.11f * this.job.RecipeDef.workSkillLearnFactor, false);
                     }
-                    GenSpawn.Spawn(tableThing.GetAlienBloodByRecipe(this.job.bill.recipe), 
+                    GenSpawn.Spawn(tableThing.GetAlienBloodByRecipe(this.job.bill.recipe),
                         tableThing.InteractionCell, thing.Map, 0);
                     Toils_Reserve.Release(TargetIndex.B);
                     Toils_Reserve.Release(TargetIndex.C);
                     Toils_Reserve.Release(TargetIndex.A);
-                    PawnUtility.GainComfortFromCellIfPossible(this.pawn, false);
-                    List<Thing> list = new List<Thing>();
-                    list.Add(thing);
+                    this.pawn.GainComfortFromCellIfPossible(false);
+                    var list = new List<Thing> { thing };
                     this.job.bill.Notify_IterationCompleted(this.pawn, list);
                     this.ReadyForNextToil();
                     Log.Message(thing.Label);
                     thing.Destroy(DestroyMode.Vanish);
-                }
+                },
+                defaultCompleteMode = ToilCompleteMode.Never
             };
-            toil.defaultCompleteMode = ToilCompleteMode.Never;
-            ToilEffects.WithEffect(toil, () => this.job.bill.recipe.effectWorking, TargetIndex.A);
-            ToilEffects.PlaySustainerOrSound(toil, () => toil.actor.CurJob.bill.recipe.soundWorking);
-            ToilEffects.WithProgressBar(toil, TargetIndex.A, delegate ()
+            toil.WithEffect(() => this.job.bill.recipe.effectWorking, TargetIndex.A);
+            toil.PlaySustainerOrSound(() => toil.actor.CurJob.bill.recipe.soundWorking);
+            toil.WithProgressBar(TargetIndex.A, delegate ()
             {
                 Thing thing = this.job.GetTarget(TargetIndex.B).Thing;
                 return (float)thing.HitPoints / (float)thing.MaxHitPoints;
             }, false, 0.5f);
-            ToilFailConditions.FailOn<Toil>(toil, delegate ()
+            toil.FailOn<Toil>(delegate ()
             {
-                IBillGiver billGiver = this.job.GetTarget(TargetIndex.A).Thing as IBillGiver;
-                return this.job.bill.suspended || this.job.bill.DeletedOrDereferenced || (billGiver != null && !billGiver.CurrentlyUsableForBills());
+                return this.job.bill.suspended || this.job.bill.DeletedOrDereferenced || (this.job.GetTarget(TargetIndex.A).Thing is IBillGiver billGiver && !billGiver.CurrentlyUsableForBills());
             });
             return toil;
         }
