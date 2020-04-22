@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<RecipeDef>
+		<defName>DrawKorsolianToxin</defName>
+		<label>Draw korsolian toxin</label>
+		<description>Draw korsolian toxin from alien.</description>
+		<jobString>Drawing korsolian toxin</jobString>
+		<surgerySuccessChanceFactor>1.0</surgerySuccessChanceFactor>
+		<deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+		<recipeUsers>
+			<li>PI_ContainmentBreach</li>
+			<li>PI_ContainmentBreachAdv</li>
+		</recipeUsers>
+		<workerClass>PurpleIvy.RecipeWorkerWithJob</workerClass>
+		<workAmount>100</workAmount>
+		<targetsBodyPart>false</targetsBodyPart>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>Medicine</li>
+					</categories>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>Medicine</li>
+			</categories>
+		</fixedIngredientFilter>
+	</RecipeDef> 
+	
+</Defs>

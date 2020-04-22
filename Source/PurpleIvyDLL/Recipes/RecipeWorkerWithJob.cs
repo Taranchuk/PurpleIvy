@@ -25,6 +25,14 @@ namespace PurpleIvy
             }
         }
 
+        public JobDef DrawKorsolianToxin
+        {
+            get
+            {
+                return PurpleIvyDefOf.PI_DrawKorsolianToxin;
+            }
+        }
+
         public JobDef PreciseVivisection
         {
             get

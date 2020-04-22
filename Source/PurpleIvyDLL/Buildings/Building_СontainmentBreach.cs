@@ -47,6 +47,24 @@ namespace PurpleIvy
             }
             return result;
         }
+
+        public bool HasToxinInAlien(Pawn alien)
+        {
+            bool result = false;
+            if (this.RecoveryToxinData != null && this.RecoveryToxinData.ContainsKey(alien))
+            {
+                if (this.RecoveryToxinData[alien] == 0
+                    || this.RecoveryToxinData[alien] < Find.TickManager.TicksGame)
+                {
+                    result = true;
+                }
+            }
+            else
+            {
+                result = true;
+            }
+            return result;
+        }
         public bool HasJobOnRecipe(RecipeDef recipe)
         {
             bool result = false;
@@ -93,6 +111,14 @@ namespace PurpleIvy
                         }
                     }
                 }
+                else if (recipe == PurpleIvyDefOf.DrawKorsolianToxin)
+                {
+                    result = this.HasToxinInAlien(alien);
+                    if (result == true)
+                    {
+                        break;
+                    }
+                }
             }
             return result;
         }
@@ -125,6 +151,10 @@ namespace PurpleIvy
                     result = this.HasBloodInAlien(alien);
                 }
             }
+            else if (recipe == PurpleIvyDefOf.DrawKorsolianToxin)
+            {
+                result = this.HasToxinInAlien(alien);
+            }
             return result;
         }
 
@@ -146,6 +176,25 @@ namespace PurpleIvy
                 }
             }
             return AlienBlood;
+        }
+
+        public ThingDef GetKorsolianToxin(RecipeDef recipe)
+        {
+            ThingDef KorsolianToxin = null;
+            foreach (var alien in this.Aliens)
+            {
+                if (this.AlienHasJobOnRecipe(alien, recipe))
+                {
+                    KorsolianToxin = PurpleIvyDefOf.PI_KorsolianToxin;
+                    if (this.RecoveryToxinData == null)
+                    {
+                        this.RecoveryToxinData = new Dictionary<Pawn, int>();
+                    }
+                    this.RecoveryToxinData[alien] = new IntRange(30000, 60000).RandomInRange + Find.TickManager.TicksGame;
+                    break;
+                }
+            }
+            return KorsolianToxin;
         }
         public override string GetInspectString()
         {
@@ -226,6 +275,8 @@ namespace PurpleIvy
             });
             Scribe_Collections.Look<Pawn, int>(ref this.RecoveryBloodData, "RecoveryBloodData",
                 LookMode.Reference, LookMode.Value, ref this.RecoveryBloodDataKeys, ref this.RecoveryBloodDataValues);
+            Scribe_Collections.Look<Pawn, int>(ref this.RecoveryToxinData, "RecoveryToxinData",
+                LookMode.Reference, LookMode.Value, ref this.RecoveryToxinDataKeys, ref this.RecoveryToxinDataValues);
         }
 
         public Dictionary<Pawn, int> RecoveryBloodData = new Dictionary<Pawn, int>();
@@ -233,6 +284,12 @@ namespace PurpleIvy
         public List<Pawn> RecoveryBloodDataKeys = new List<Pawn>();
 
         public List<int> RecoveryBloodDataValues = new List<int>();
+
+        public Dictionary<Pawn, int> RecoveryToxinData = new Dictionary<Pawn, int>();
+
+        public List<Pawn> RecoveryToxinDataKeys = new List<Pawn>();
+
+        public List<int> RecoveryToxinDataValues = new List<int>();
 
         public ThingOwner innerContainer;
 

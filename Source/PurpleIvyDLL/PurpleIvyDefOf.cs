@@ -26,6 +26,8 @@ namespace PurpleIvy
 
         public static JobDef PI_DrawAlienBlood;
 
+        public static JobDef PI_DrawKorsolianToxin;
+
         public static JobDef PI_TakeAlienToContainmentBreach;
 
         public static JobDef PI_ConductResearchOnAliens;
@@ -40,9 +42,13 @@ namespace PurpleIvy
 
         public static RecipeDef DrawOmegaAlienBlood;
 
+        public static RecipeDef DrawKorsolianToxin;
+
         public static ThingDef InfectedCorpseDummy;
 
         public static ThingDef PurpleIvy;
+
+        public static ThingDef PI_KorsolianToxin;
 
         public static WeatherDef PI_PurpleFog;
 
