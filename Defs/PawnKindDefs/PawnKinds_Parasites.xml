@@ -49,7 +49,7 @@
 			</li>
 		</lifeStages>
 	</PawnKindDef> 
-		<PawnKindDef ParentName="BaseParasiteAlpha">
+	<PawnKindDef ParentName="BaseParasiteAlpha">
 		<defName>Genny_ParasiteAlphaB</defName>
 		<lifeStages>
 			<li>
@@ -91,8 +91,8 @@
 			</li>
 		</lifeStages>
 	</PawnKindDef> 
-	
-		<PawnKindDef ParentName="BaseParasiteAlpha">
+
+	<PawnKindDef ParentName="BaseParasiteAlpha">
 		<defName>Genny_ParasiteAlphaC</defName>
 		<lifeStages>
 			<li>
@@ -134,8 +134,8 @@
 			</li>
 		</lifeStages>
 	</PawnKindDef> 
-	
-		<PawnKindDef Name="BaseParasiteBeta" Abstract="True">
+
+	<PawnKindDef Name="BaseParasiteBeta" Abstract="True">
 		<label>Medium alien parasite</label>
 		<combatPower>500</combatPower>
 		<race>Genny_ParasiteBeta</race>
@@ -143,8 +143,8 @@
 		<aiAvoidCover>true</aiAvoidCover>
 		<isFighter>true</isFighter>	
 	</PawnKindDef> 
-	
-		<PawnKindDef ParentName="BaseParasiteBeta">
+
+	<PawnKindDef ParentName="BaseParasiteBeta">
 		<defName>Genny_ParasiteBetaA</defName>
 		<lifeStages>
 			<li>
@@ -186,8 +186,8 @@
 			</li>
 		</lifeStages>
 	</PawnKindDef> 
-	
-		<PawnKindDef ParentName="BaseParasiteBeta">
+
+	<PawnKindDef ParentName="BaseParasiteBeta">
 		<defName>Genny_ParasiteBetaB</defName>
 		<lifeStages>
 			<li>
@@ -229,8 +229,8 @@
 			</li>
 		</lifeStages>
 	</PawnKindDef> 
-	
-		<PawnKindDef ParentName="BaseParasiteBeta">
+
+	<PawnKindDef ParentName="BaseParasiteBeta">
 		<defName>Genny_ParasiteBetaC</defName>
 		<lifeStages>
 			<li>
@@ -272,8 +272,8 @@
 			</li>
 		</lifeStages>
 	</PawnKindDef> 
-	
-			<PawnKindDef ParentName="BaseParasiteBeta">
+
+	<PawnKindDef ParentName="BaseParasiteBeta">
 		<defName>Genny_ParasiteBetaD</defName>
 		<lifeStages>
 			<li>
@@ -315,8 +315,8 @@
 			</li>
 		</lifeStages>
 	</PawnKindDef> 
-	
-			<PawnKindDef ParentName="BaseParasiteBeta">
+
+	<PawnKindDef ParentName="BaseParasiteBeta">
 		<defName>Genny_ParasiteBetaE</defName>
 		<lifeStages>
 			<li>
@@ -358,8 +358,58 @@
 			</li>
 		</lifeStages>
 	</PawnKindDef> 
-	
-	
+
+	<PawnKindDef Name="BaseParasiteGamma" Abstract="True">
+		<label>Medium alien parasite</label>
+		<combatPower>500</combatPower>
+		<race>Genny_ParasiteGamma</race>
+		<defaultFactionType>Genny</defaultFactionType>
+		<aiAvoidCover>true</aiAvoidCover>
+		<isFighter>true</isFighter>	
+	</PawnKindDef> 
+
+	<PawnKindDef ParentName="BaseParasiteGamma">
+		<defName>Genny_ParasiteGammaA</defName>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/ParasiteGamma/ParasiteGamma_A</texPath>
+					<drawSize>1.2</drawSize>
+					<!--<color>(114,107,84)</color>-->
+				</bodyGraphicData>
+				<dessicatedBodyGraphicData>
+					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
+					<drawSize>1.2</drawSize>
+				</dessicatedBodyGraphicData>
+			</li>
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/ParasiteGamma/ParasiteGamma_A</texPath>
+					<drawSize>1.5</drawSize>
+					<!--<color>(114,107,84)</color>-->
+				</bodyGraphicData>
+				<dessicatedBodyGraphicData>
+					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
+					<drawSize>1.5</drawSize>
+				</dessicatedBodyGraphicData>
+			</li>
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/ParasiteGamma/ParasiteGamma_A</texPath>
+					<drawSize>1.7</drawSize>
+					<!--<color>(114,107,84)</color>-->
+					<shadowData>
+						<volume>(0.2, 0.3, 0.2)</volume>
+						<offset>(0,0,0)</offset>
+					</shadowData>
+				</bodyGraphicData>
+				<dessicatedBodyGraphicData>
+					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
+					<drawSize>1.7</drawSize>
+				</dessicatedBodyGraphicData>
+			</li>
+		</lifeStages>
+	</PawnKindDef> 
 
 	<PawnKindDef>
 		<defName>Genny_ParasiteOmega</defName>

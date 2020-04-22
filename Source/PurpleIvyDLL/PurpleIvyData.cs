@@ -147,6 +147,11 @@ namespace PurpleIvy
             "Genny_ParasiteBetaE"
         };
 
+        public static List<string> Genny_ParasiteGamma = new List<string>
+        {
+            "Genny_ParasiteGammaA"
+        };
+
         public static List<string> Genny_ParasiteOmega = new List<string>
         {
             "Genny_ParasiteOmega"

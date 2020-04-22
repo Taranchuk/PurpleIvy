@@ -91,6 +91,13 @@ namespace PurpleIvy
                     jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
                     if (result == true) break;
                 }
+                else if (job.RecipeDef == PurpleIvyDefOf.DrawGammaAlienBlood
+    && "Genny_ParasiteGamma" == alien.def.defName)
+                {
+                    result = this.HasBloodInAlien(alien);
+                    jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
+                    if (result == true) break;
+                }
                 else if (job.RecipeDef == PurpleIvyDefOf.DrawOmegaAlienBlood && "Genny_ParasiteOmega" == alien.def.defName)
                 {
                     result = this.HasBloodInAlien(alien);
@@ -117,6 +124,13 @@ namespace PurpleIvy
                     jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
                     break;
                 }
+                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionGamma &&
+    "Genny_ParasiteGamma" == alien.def.defName)
+                {
+                    result = true;
+                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                    break;
+                }
                 else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionOmega 
                     && "Genny_ParasiteOmega" == alien.def.defName)
                 {
@@ -133,6 +147,11 @@ namespace PurpleIvy
                     jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
                 }
                 else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionBeta)
+                {
+                    result = true;
+                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                }
+                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionGamma)
                 {
                     result = true;
                     jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
@@ -163,6 +182,13 @@ namespace PurpleIvy
             else if (recipe == PurpleIvyDefOf.DrawBetaAlienBlood)
             {
                 if ("Genny_ParasiteBeta" == alien.def.defName)
+                {
+                    result = this.HasBloodInAlien(alien);
+                }
+            }
+            else if (recipe == PurpleIvyDefOf.DrawGammaAlienBlood)
+            {
+                if ("Genny_ParasiteGamma" == alien.def.defName)
                 {
                     result = this.HasBloodInAlien(alien);
                 }

@@ -88,13 +88,6 @@
 				</li>
 			</lifeStageAges>
 		</race>
-		<!--
-		<butcherProducts>
-			<Steel>50</Steel>
-			<Plasteel>10</Plasteel>
-			<ComponentIndustrial>2</ComponentIndustrial>
-		</butcherProducts>
-		-->
 	</ThingDef>
 
 	<ThingDef ParentName="BaseParasite">
@@ -156,13 +149,67 @@
 				</li>
 			</lifeStageAges>
 		</race>
-		<!--
-		<butcherProducts>
-			<Steel>50</Steel>
-			<Plasteel>10</Plasteel>
-			<ComponentIndustrial>2</ComponentIndustrial>
-		</butcherProducts>
-		-->
+	</ThingDef>
+	
+		<ThingDef ParentName="BaseParasite">
+		<defName>Genny_ParasiteGamma</defName>
+		<label>Medium alien parasite gamma</label>
+		<description>Medium alien parasite</description>
+		<statBases>
+			<MoveSpeed>0.90</MoveSpeed>
+			<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+			<MeatAmount>30</MeatAmount>
+			<LeatherAmount>15</LeatherAmount>
+			<ArmorRating_Heat>2.00</ArmorRating_Heat>
+		</statBases>
+		<tools>
+			<li>
+				<label>tentacle</label>
+				<capacities>
+					<li>AlienToxicSting</li>
+				</capacities>
+				<power>13</power>
+				<cooldownTime>2.6</cooldownTime>
+				<linkedBodyPartsGroup>PI_TentacleAttackTool</linkedBodyPartsGroup>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+							<def>Stun</def>
+							<amount>14</amount>
+						</li>
+					</extraMeleeDamages>
+				</surpriseAttack>
+			</li>
+		</tools>
+		<race>
+			<body>ParasiteGamma</body>
+			<baseBodySize>1.0</baseBodySize>
+			<baseHealthScale>1.0</baseHealthScale>
+			<lifeExpectancy>5</lifeExpectancy>
+			<baseHungerRate>0.7</baseHungerRate>
+			<fleshType>FleshParasiteGamma</fleshType>
+			<leatherDef>PI_AlienLeather</leatherDef>
+			<lifeStageAges>
+				<li>
+					<def>ParasiteLarva</def>
+					<minAge>0</minAge>
+				</li>
+				<li>
+					<def>ParasiteJuvenile</def>
+					<minAge>0.1</minAge>
+				</li>
+				<li>
+					<def>ParasiteAdult</def>
+					<minAge>0.3</minAge>
+					<soundWounded>Pawn_BigInsect_Pain</soundWounded>
+					<soundDeath>Pawn_BigInsect_Death</soundDeath>
+					<soundCall>Pawn_BigInsect_Call</soundCall>
+					<soundAngry>Pawn_BigInsect_Angry</soundAngry>
+				</li>
+			</lifeStageAges>
+		</race>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseParasite">
@@ -224,13 +271,6 @@
 				</li>
 			</lifeStageAges>
 		</race>
-		<!--
-		<butcherProducts>
-			<Steel>50</Steel>
-			<Plasteel>10</Plasteel>
-			<ComponentIndustrial>2</ComponentIndustrial>
-		</butcherProducts>
-		-->
 	</ThingDef>
 
 </Defs>

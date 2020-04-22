@@ -54,6 +54,20 @@ namespace PurpleIvy
                 GenSpawn.Spawn(eggSac, dir, map);
                 return true;
             }
+            if (mutateRate >= 18 && mutateRate <= 19)
+            {
+                var eggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSacBeta);
+                eggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
+                GenSpawn.Spawn(eggSac, dir, map);
+                return true;
+            }
+            if (mutateRate >= 20 && mutateRate <= 21)
+            {
+                var eggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSacGamma);
+                eggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
+                GenSpawn.Spawn(eggSac, dir, map);
+                return true;
+            }
             if (mutateRate < 18 || mutateRate > 23) return false;
             var parasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
             parasiteEgg.SetFactionDirect(PurpleIvyData.AlienFaction);
@@ -117,11 +131,13 @@ namespace PurpleIvy
             }
 
             var alphaParasitesCount = map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count * 10;
-            //int BetaParasitesCount = site.counter / 22;
+            int betaParasitesCount = map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacBeta).Count * 10;
+            int gammaParasitesCount = map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma).Count * 10;
             var omegaParasitesCount = map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count * 10;
 
             alphaParasitesCount -= (infectedComp.AlienPowerSpent / 50);
-            //BetaParasitesCount = BetaParasitesCount - (site.AlienPowerSpent / 33);
+            betaParasitesCount = (infectedComp.AlienPowerSpent / 50);
+            gammaParasitesCount = (infectedComp.AlienPowerSpent / 50);
             omegaParasitesCount -= (infectedComp.AlienPowerSpent / 50);
 
             foreach (var i in Enumerable.Range(1, alphaParasitesCount))
@@ -129,6 +145,29 @@ namespace PurpleIvy
                 var spawnPlace = radialCells.Where(x => x.Walkable(map)).RandomElement();
                 radialCells.Remove(spawnPlace);
                 var pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteAlpha.RandomElement());
+                var newPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
+                newPawn.SetFaction(PurpleIvyData.AlienFaction);
+                newPawn.ageTracker.AgeBiologicalTicks = 40000;
+                newPawn.ageTracker.AgeChronologicalTicks = 40000;
+                GenSpawn.Spawn(newPawn, spawnPlace, map);
+            }
+            foreach (var i in Enumerable.Range(1, betaParasitesCount))
+            {
+                var spawnPlace = radialCells.Where(x => x.Walkable(map)).RandomElement();
+                radialCells.Remove(spawnPlace);
+                var pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteBeta.RandomElement());
+                var newPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
+                newPawn.SetFaction(PurpleIvyData.AlienFaction);
+                newPawn.ageTracker.AgeBiologicalTicks = 40000;
+                newPawn.ageTracker.AgeChronologicalTicks = 40000;
+                GenSpawn.Spawn(newPawn, spawnPlace, map);
+            }
+
+            foreach (var i in Enumerable.Range(1, gammaParasitesCount))
+            {
+                var spawnPlace = radialCells.Where(x => x.Walkable(map)).RandomElement();
+                radialCells.Remove(spawnPlace);
+                var pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteGamma.RandomElement());
                 var newPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
                 newPawn.SetFaction(PurpleIvyData.AlienFaction);
                 newPawn.ageTracker.AgeBiologicalTicks = 40000;
@@ -167,10 +206,16 @@ namespace PurpleIvy
             map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteAlpha).Count.ToString(), true);
             Log.Message("Total Genny_ParasiteBeta count on the map: " +
             map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteBeta).Count.ToString(), true);
+            Log.Message("Total Genny_ParasiteGamma count on the map: " +
+map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteGamma).Count.ToString(), true);
             Log.Message("Total Genny_ParasiteOmega count on the map: " +
             map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteOmega).Count.ToString(), true);
             Log.Message("Total EggSac count on the map: " +
             map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count.ToString(), true);
+            Log.Message("Total EggSac beta count on the map: " +
+map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacBeta).Count.ToString(), true);
+            Log.Message("Total EggSac gamma count on the map: " +
+map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma).Count.ToString(), true);
             Log.Message("Total ParasiteEgg count on the map: " +
             map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count.ToString(), true);
             Log.Message("Total GasPump count on the map: " +

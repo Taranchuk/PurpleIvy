@@ -232,7 +232,20 @@ namespace PurpleIvy
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac");
-                
+                }
+                else if (randChance >= 50 && randChance <= 54)
+                {
+                    Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSacBeta);
+                    EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
+                    GenSpawn.Spawn(EggSac, Position, this.Map);
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac beta");
+                }
+                else if (randChance >= 55 && randChance <= 59)
+                {
+                    Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSacGamma);
+                    EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
+                    GenSpawn.Spawn(EggSac, Position, this.Map);
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac gamma");
                 }
                 else if (randChance >= 50 && randChance <= 59)
                 {

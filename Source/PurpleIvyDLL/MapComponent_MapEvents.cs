@@ -75,10 +75,16 @@ namespace PurpleIvy
                     this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteAlpha).Count.ToString(), true);
                 Log.Message("Total Genny_ParasiteBeta count on the map: " +
     this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteBeta).Count.ToString(), true);
+                Log.Message("Total Genny_ParasiteGamma count on the map: " +
+this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteGamma).Count.ToString(), true);
                 Log.Message("Total Genny_ParasiteOmega count on the map: " +
     this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteOmega).Count.ToString(), true);
                 Log.Message("Total EggSac count on the map: " +
     this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count.ToString(), true);
+                Log.Message("Total EggSac beta count on the map: " +
+this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacBeta).Count.ToString(), true);
+                Log.Message("Total EggSac gamma count on the map: " +
+this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma).Count.ToString(), true);
                 Log.Message("Total ParasiteEgg count on the map: " +
 this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count.ToString(), true);
                 Log.Message("Total GasPump count on the map: " +

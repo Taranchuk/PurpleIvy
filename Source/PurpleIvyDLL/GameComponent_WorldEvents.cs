@@ -58,15 +58,18 @@ namespace PurpleIvy
             List<Pawn> list = new List<Pawn>();
             int AlphaParasitesCount = site.counter / 33;
             int BetaParasitesCount = site.counter / 22;
+            int GammaParasitesCount = site.counter / 22;
             int OmegaParasitesCount = site.counter / 11;
 
             AlphaParasitesCount = (AlphaParasitesCount / 10) - (site.AlienPowerSpent / 33);
             BetaParasitesCount = (BetaParasitesCount / 10) - (site.AlienPowerSpent / 33);
+            GammaParasitesCount = (GammaParasitesCount / 10) - (site.AlienPowerSpent / 33);
             OmegaParasitesCount = (OmegaParasitesCount / 10) - (site.AlienPowerSpent / 33);
 
             Log.Message("counter: " + site.counter.ToString()
             + " AlphaParasitesCount " + AlphaParasitesCount.ToString()
             + " BetaParasitesCount " + BetaParasitesCount.ToString()
+            + " GammaParasitesCount " + GammaParasitesCount.ToString()
             + " OmegaParasitesCount " + OmegaParasitesCount.ToString());
 
             foreach (var i in Enumerable.Range(1, AlphaParasitesCount))
@@ -80,7 +83,17 @@ namespace PurpleIvy
             }
             foreach (var i in Enumerable.Range(1, BetaParasitesCount))
             {
-                PawnKindDef pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteAlpha.RandomElement());
+                PawnKindDef pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteBeta.RandomElement());
+                Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
+                NewPawn.SetFaction(PurpleIvyData.AlienFaction);
+                NewPawn.ageTracker.AgeBiologicalTicks = 40000;
+                NewPawn.ageTracker.AgeChronologicalTicks = 40000;
+                list.Add(NewPawn);
+            }
+
+            foreach (var i in Enumerable.Range(1, GammaParasitesCount))
+            {
+                PawnKindDef pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteGamma.RandomElement());
                 Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
                 NewPawn.SetFaction(PurpleIvyData.AlienFaction);
                 NewPawn.ageTracker.AgeBiologicalTicks = 40000;
@@ -89,14 +102,15 @@ namespace PurpleIvy
             }
             foreach (var i in Enumerable.Range(1, OmegaParasitesCount))
             {
-                PawnKindDef pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteAlpha.RandomElement());
+                PawnKindDef pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteOmega.RandomElement());
                 Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
                 NewPawn.SetFaction(PurpleIvyData.AlienFaction);
                 NewPawn.ageTracker.AgeBiologicalTicks = 40000;
                 NewPawn.ageTracker.AgeChronologicalTicks = 40000;
                 list.Add(NewPawn);
             }
-            site.AlienPowerSpent = AlphaParasitesCount + BetaParasitesCount + OmegaParasitesCount;
+            site.AlienPowerSpent = AlphaParasitesCount + BetaParasitesCount
+                + GammaParasitesCount + OmegaParasitesCount;
             return list;
         }
         public void AlienAmbush(Caravan caravan, WorldObjectComp_InfectedTile site)

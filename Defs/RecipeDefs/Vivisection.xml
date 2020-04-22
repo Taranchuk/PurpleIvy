@@ -82,6 +82,46 @@
 	</RecipeDef> 
 
 	<RecipeDef>
+		<defName>PreciseVivisectionGamma</defName>
+		<label>Precise vivisection (gamma)</label>
+		<description>Precise vivisection (gamma).</description>
+		<jobString>conducts vivisection on alien creature</jobString>
+		<recipeUsers>
+			<li>PI_ContainmentBreach</li>
+			<li>PI_ContainmentBreachAdv</li>
+		</recipeUsers>
+		<workAmount>300</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Medicine</workSkill>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<products>
+			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
+			<PI_NervousSystem>1</PI_NervousSystem>
+			<PI_Tentacles>6</PI_Tentacles>
+			<PI_ToxicSac>1</PI_ToxicSac>
+			<PI_GammaBlood>7</PI_GammaBlood>
+		</products>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>Corpses</li>
+					</categories>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<specialProducts>
+			<li>Butchery</li>
+		</specialProducts>
+		<fixedIngredientFilter>
+			<categories>
+				<li>CorpsesAlienParasiteGamma</li>
+			</categories>
+		</fixedIngredientFilter>
+	</RecipeDef> 
+
+	<RecipeDef>
 		<defName>PreciseVivisectionOmega</defName>
 		<label>Precise vivisection (omega)</label>
 		<description>Precise vivisection (omega).</description>

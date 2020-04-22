@@ -32,6 +32,12 @@ namespace PurpleIvy
                 comp.maxNumberOfCreatures = range.RandomInRange;
                 comp.Props.maxNumberOfCreatures = range;
             }
+            else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteGamma.defName)
+            {
+                var range = new IntRange(1, 3);
+                comp.maxNumberOfCreatures = range.RandomInRange;
+                comp.Props.maxNumberOfCreatures = range;
+            }
             else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
             {
                 var range = new IntRange(1, 5);

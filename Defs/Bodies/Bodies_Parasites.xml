@@ -186,6 +186,98 @@
 	</BodyDef>
 
 	<BodyDef>
+		<defName>ParasiteGamma</defName>
+		<label>Gamma parasite</label>
+		<corePart>
+			<def>PI_ParasiteBody</def>
+			<height>Middle</height>
+			<depth>Outside</depth>
+			<parts>
+				<li>
+					<def>PI_ParasiteMouth</def>
+					<coverage>0.02</coverage>
+					<groups>
+						<li>Teeth</li>
+					</groups>
+				</li>
+				<li>
+					<def>PI_NervousSystem</def>
+					<customLabel>nervous system</customLabel>
+					<coverage>0.05</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>PI_PlasmaNucleus</def>
+					<customLabel>plasma nucleus</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>PI_ToxicSac</def>
+					<customLabel>toxic sac</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>PI_Tentacles</def>
+					<customLabel>first tentacle</customLabel>
+					<groups>
+						<li>PI_TentacleAttackTool</li>
+					</groups>
+					<coverage>0.05</coverage>
+					<height>Bottom</height>
+				</li>
+				<li>
+					<def>PI_Tentacles</def>
+					<customLabel>second tentacle</customLabel>
+					<groups>
+						<li>PI_TentacleAttackTool</li>
+					</groups>
+					<coverage>0.05</coverage>
+					<height>Bottom</height>
+				</li>
+				<li>
+					<def>PI_Tentacles</def>
+					<customLabel>third tentacle</customLabel>
+					<groups>
+						<li>PI_TentacleAttackTool</li>
+					</groups>
+					<coverage>0.05</coverage>
+					<height>Bottom</height>
+				</li>
+
+				<li>
+					<def>PI_Tentacles</def>
+					<customLabel>fourth tentacle</customLabel>
+					<coverage>0.05</coverage>
+					<groups>
+						<li>PI_TentacleAttackTool</li>
+					</groups>
+					<height>Bottom</height>
+				</li>
+				<li>
+					<def>PI_Tentacles</def>
+					<customLabel>fifth tentacle</customLabel>
+					<groups>
+						<li>PI_TentacleAttackTool</li>
+					</groups>
+					<coverage>0.05</coverage>
+					<height>Bottom</height>
+				</li>
+				<li>
+					<def>PI_Tentacles</def>
+					<customLabel>sixth tentacle</customLabel>
+					<groups>
+						<li>PI_TentacleAttackTool</li>
+					</groups>
+					<coverage>0.05</coverage>
+					<height>Bottom</height>
+				</li>
+			</parts>
+		</corePart>
+	</BodyDef>
+
+	<BodyDef>
 		<defName>ParasiteOmega</defName>
 		<label>Omega parasite</label>
 		<corePart>

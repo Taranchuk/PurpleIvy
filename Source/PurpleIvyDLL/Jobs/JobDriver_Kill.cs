@@ -65,6 +65,12 @@ namespace PurpleIvy
                                     comp.maxNumberOfCreatures = range.RandomInRange;
                                     comp.Props.maxNumberOfCreatures = range;
                                 }
+                                else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteGamma.defName)
+                                {
+                                    var range = new IntRange(1, 3);
+                                    comp.maxNumberOfCreatures = range.RandomInRange;
+                                    comp.Props.maxNumberOfCreatures = range;
+                                }
                                 else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
                                 {
                                     var range = new IntRange(1, 5);
@@ -115,6 +121,12 @@ namespace PurpleIvy
                             comp.Props.maxNumberOfCreatures = range;
                         }
                         else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
+                        {
+                            var range = new IntRange(1, 3);
+                            comp.maxNumberOfCreatures = range.RandomInRange;
+                            comp.Props.maxNumberOfCreatures = range;
+                        }
+                        else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteGamma.defName)
                         {
                             var range = new IntRange(1, 3);
                             comp.maxNumberOfCreatures = range.RandomInRange;

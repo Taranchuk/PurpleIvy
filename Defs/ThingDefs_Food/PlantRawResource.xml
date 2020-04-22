@@ -111,35 +111,6 @@
   </ThingDef>
 
   <ThingDef ParentName="RaceFoodRaw">
-    <defName>FuneralIvy</defName>
-    <label>Funeral Ivy</label>
-    <description>Liquid harvested from Funeral Ivy ready to be used in production. The Liquid from this plant can be used to create Advanced Simulators that can grant Extremely Powerful Abilities to any Pawn.</description>
-    <soundInteract>Grain_Drop</soundInteract>
-    <soundDrop>Grain_Drop</soundDrop>
-    <graphicData>
-      <texPath>Things/Item/PlantsResources/Resource/FuneralIvy/FuneralIvy</texPath>
-    </graphicData>
-    <statBases>
-      <MarketValue>10.5</MarketValue>
-      <Mass>0.5</Mass>
-      <Nutrition>0.45</Nutrition>
-    </statBases>
-    <ingestible>
-      <foodType>VegetableOrFruit</foodType>
-      <preferability>RawBad</preferability>
-      <tasteThought>AteRawStrange</tasteThought>
-      <ingestEffect>AlienVegetarian</ingestEffect>
-      <ingestSound>RawVegetable_Eat</ingestSound>
-    </ingestible>
-    <comps>
-      <li Class="CompProperties_Rottable">
-        <daysToRotStart>10</daysToRotStart>
-        <rotDestroys>true</rotDestroys>
-      </li>
-    </comps>
-  </ThingDef>
-
-  <ThingDef ParentName="RaceFoodRaw">
     <defName>VenomousToothwort</defName>
     <label>Venomous Toothwort</label>
     <description>Venomous Toothwort slices with poisons juices packed for transportation and further production. Can be used for special food production and Advanced Stimulator's.</description>

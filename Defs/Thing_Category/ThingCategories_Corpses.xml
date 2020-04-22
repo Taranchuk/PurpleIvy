@@ -20,6 +20,12 @@
 	</ThingCategoryDef>
 
 	<ThingCategoryDef>
+		<defName>CorpsesAlienParasiteGamma</defName>
+		<label>Alien gamma corpses</label>
+		<parent>CorpsesAlienParasites</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
 		<defName>CorpsesAlienParasiteOmega</defName>
 		<label>Alien omega corpses</label>
 		<parent>CorpsesAlienParasites</parent>
