@@ -6,6 +6,7 @@
 		<label>Egg Sac</label>
 		    <description>An alien egg sac, you can see something through the thin shell moving but can't make out what it is.</description>
 		<thingClass>PurpleIvy.Building_EggSac</thingClass>
+		<minifiedDef>MinifiedEggSac</minifiedDef>
 		<tickerType>Normal</tickerType>
 		<graphicData>
 			<texPath>Things/Building/EggSac</texPath>
@@ -21,6 +22,7 @@
 			<ai_combatDangerous>true</ai_combatDangerous>
 		</building>
 		<selectable>true</selectable>
+		<claimable>true</claimable>
 		<comps>
 			<li Class="PurpleIvy.CompProperties_AlienInfection">
 				<compClass>PurpleIvy.AlienInfection</compClass>
@@ -43,7 +45,7 @@
 			<Beauty>-50</Beauty>     
 		</statBases>
 		<killedLeavings>
-			<PurpleIvy>15</PurpleIvy>
+			<PurpleIvy>1</PurpleIvy>
 		</killedLeavings>
 	</ThingDef>
 
@@ -53,6 +55,7 @@
 		<label>Parasite egg</label>
 		<description>A small cluster of alien eggs, slimy in texture and appear to move ever so slightly.</description>
 		<thingClass>PurpleIvy.Building_ParasiteEgg</thingClass>
+		<minifiedDef>MinifiedParasiteEgg</minifiedDef>
 		<tickerType>Normal</tickerType>
 		<graphicData>
 			<texPath>Things/Building/ParasiteEgg</texPath>
@@ -66,6 +69,7 @@
 		<useHitPoints>true</useHitPoints>
 		<building>
 			<ai_combatDangerous>true</ai_combatDangerous>
+			<claimable>true</claimable>
 		</building>
 		<selectable>true</selectable>
 		<comps>
@@ -88,8 +92,58 @@
 			<Beauty>-50</Beauty>     
 		</statBases>
 		<killedLeavings>
-			<PurpleIvy>10</PurpleIvy>
+			<PurpleIvy>1</PurpleIvy>
 		</killedLeavings>
 	</ThingDef>
 
+	
+  <ThingDef>
+    <defName>MinifiedEggSac</defName>
+	<ignoreConfigErrors>true</ignoreConfigErrors>
+    <label>Minified Eggs</label>
+    <thingClass>PurpleIvy.MinifiedEggSac</thingClass>
+    <category>Item</category>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <tickerType>Normal</tickerType>
+    <!-- for CompForbiddable -->
+    <drawerType>RealtimeOnly</drawerType>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+    </comps>
+    <inspectorTabs>
+      <!-- <li>ITab_Art</li> -->
+    </inspectorTabs>
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>20</pathCost>
+  </ThingDef>
+
+  <ThingDef>
+    <defName>MinifiedParasiteEgg</defName>
+	<ignoreConfigErrors>true</ignoreConfigErrors>
+    <label>Minified Parasite Eggs</label>
+    <thingClass>PurpleIvy.MinifiedParasiteEgg</thingClass>
+    <category>Item</category>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <tickerType>Normal</tickerType>
+    <!-- for CompForbiddable -->
+    <drawerType>RealtimeOnly</drawerType>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+    </comps>
+    <inspectorTabs>
+      <!-- <li>ITab_Art</li> -->
+    </inspectorTabs>
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>10</pathCost>
+  </ThingDef>
+
+	
 </Defs>
