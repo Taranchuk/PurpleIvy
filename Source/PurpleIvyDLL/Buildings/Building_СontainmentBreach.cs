@@ -65,59 +65,82 @@ namespace PurpleIvy
             }
             return result;
         }
-        public bool HasJobOnRecipe(RecipeDef recipe)
+        public bool HasJobOnRecipe(Job job, out JobDef jobDef)
         {
             bool result = false;
+            jobDef = null;
             foreach (var alien in this.Aliens)
             {
-                if (recipe == PurpleIvyDefOf.DrawAlienBlood)
+                if (job.RecipeDef == PurpleIvyDefOf.DrawAlienBlood)
                 {
                     result = this.HasBloodInAlien(alien);
-                    if (result == true)
-                    {
-                        break;
-                    }
+                    jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
+                    if (result == true) break;
                 }
-                else if (recipe == PurpleIvyDefOf.DrawAlphaAlienBlood)
+                else if (job.RecipeDef == PurpleIvyDefOf.DrawAlphaAlienBlood && 
+                    "Genny_ParasiteAlpha" == alien.def.defName)
                 {
-                    if ("Genny_ParasiteAlpha" == alien.def.defName)
-                    {
-                        result = this.HasBloodInAlien(alien);
-                        if (result == true)
-                        {
-                            break;
-                        }
-                    }
+                    result = this.HasBloodInAlien(alien);
+                    jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
+                    if (result == true) break;
                 }
-                else if (recipe == PurpleIvyDefOf.DrawBetaAlienBlood)
+                else if (job.RecipeDef == PurpleIvyDefOf.DrawBetaAlienBlood 
+                    && "Genny_ParasiteBeta" == alien.def.defName)
                 {
-                    if ("Genny_ParasiteBeta" == alien.def.defName)
-                    {
-                        result = this.HasBloodInAlien(alien);
-                        if (result == true)
-                        {
-                            break;
-                        }
-                    }
+                    result = this.HasBloodInAlien(alien);
+                    jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
+                    if (result == true) break;
                 }
-                else if (recipe == PurpleIvyDefOf.DrawOmegaAlienBlood)
+                else if (job.RecipeDef == PurpleIvyDefOf.DrawOmegaAlienBlood && "Genny_ParasiteOmega" == alien.def.defName)
                 {
-                    if ("Genny_ParasiteOmega" == alien.def.defName)
-                    {
-                        result = this.HasBloodInAlien(alien);
-                        if (result == true)
-                        {
-                            break;
-                        }
-                    }
+                    result = this.HasBloodInAlien(alien);
+                    jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
+                    if (result == true) break;
                 }
-                else if (recipe == PurpleIvyDefOf.DrawKorsolianToxin)
+                else if (job.RecipeDef == PurpleIvyDefOf.DrawKorsolianToxin)
                 {
                     result = this.HasToxinInAlien(alien);
-                    if (result == true)
-                    {
-                        break;
-                    }
+                    jobDef = PurpleIvyDefOf.PI_DrawKorsolianToxin;
+                    if (result == true) break;
+                }
+                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionAlpha 
+                    && "Genny_ParasiteAlpha" == alien.def.defName)
+                {
+                    result = true;
+                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                    break;
+                }
+                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionBeta && 
+                    "Genny_ParasiteBeta" == alien.def.defName)
+                {
+                    result = true;
+                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                    break;
+                }
+                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionOmega 
+                    && "Genny_ParasiteOmega" == alien.def.defName)
+                {
+                    result = true;
+                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                    break;
+                }
+            }
+            if (result == false)
+            {
+                if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionAlpha)
+                {
+                    result = true;
+                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                }
+                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionBeta)
+                {
+                    result = true;
+                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                }
+                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionOmega)
+                {
+                    result = true;
+                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
                 }
             }
             return result;
@@ -203,16 +226,24 @@ namespace PurpleIvy
             {
                 foreach (var alien in Aliens)
                 {
-                    Log.Message(alien.def.defName, true);
+                    var str = alien.Label;
                     if (this.RecoveryBloodData != null && this.RecoveryBloodData.ContainsKey(alien))
                     {
-                        stringBuilder.Append(alien + " - " + 
-                            (this.RecoveryBloodData[alien] - Find.TickManager.TicksGame) + "\n");
+                        str += " - " + (this.RecoveryBloodData[alien] - Find.TickManager.TicksGame);
                     }
                     else
                     {
-                        stringBuilder.Append(alien + "\n");
+                        str += " - 0";
                     }
+                    if (this.RecoveryToxinData != null && this.RecoveryToxinData.ContainsKey(alien))
+                    {
+                        str += " - " + (this.RecoveryToxinData[alien] - Find.TickManager.TicksGame);
+                    }
+                    else
+                    {
+                        str += " - 0";
+                    }
+                    stringBuilder.Append(str + "\n");
                 }
             }
             stringBuilder.Append(base.GetInspectString());
@@ -298,3 +329,4 @@ namespace PurpleIvy
         public bool blackoutProtection;
     }
 }
+

@@ -18,7 +18,7 @@ namespace PurpleIvy
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return true;
+            return this.pawn.Reserve(this.job.targetA, this.job, 1, -1, null, errorOnFailed);
         }
         protected override Toil DoBill()
         {

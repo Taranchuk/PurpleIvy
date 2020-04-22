@@ -332,9 +332,7 @@
     <Compile Include="HediffSpecial\Hediff_RegrowinBodyPart.cs" />
     <Compile Include="HediffSpecial\RemovableHediff.cs" />
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
-    <Compile Include="Jobs\DoBillsWorkGiverDrawKorsolianToxin.cs" />
-    <Compile Include="Jobs\DoBillsWorkGiverDrawAlienBlood.cs" />
-    <Compile Include="Jobs\DoBillsWorkGiverAlienStudy.cs" />
+    <Compile Include="Jobs\WorkGiver_DoAlienBill.cs" />
     <Compile Include="Jobs\JobDriver_DoBillPlus.cs" />
     <Compile Include="Jobs\JobDriver_DrawKorsolianToxin.cs" />
     <Compile Include="Jobs\JobDriver_PreciseVivisection.cs" />
@@ -348,7 +346,6 @@
     <Compile Include="RaceWeapons\Projectile_HeatImpact.cs" />
     <Compile Include="RaceWeapons\ThingDefOf.cs" />
     <Compile Include="RaceWeapons\ThingDef_RaceWeapons.cs" />
-    <Compile Include="Recipes\RecipeWorkerWithJob.cs" />
     <Compile Include="Sites\Site_AbandonedBase.cs" />
     <Compile Include="Sites\Site_DefeatedSite.cs" />
     <Compile Include="AlienInfection\HediffInfected.cs" />

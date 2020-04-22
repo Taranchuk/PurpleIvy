@@ -44,6 +44,12 @@ namespace PurpleIvy
 
         public static RecipeDef DrawKorsolianToxin;
 
+        public static RecipeDef PreciseVivisectionAlpha;
+
+        public static RecipeDef PreciseVivisectionBeta;
+
+        public static RecipeDef PreciseVivisectionOmega;
+
         public static ThingDef InfectedCorpseDummy;
 
         public static ThingDef PurpleIvy;

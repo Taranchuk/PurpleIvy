@@ -11,9 +11,8 @@
 			<li>PI_ContainmentBreachAdv</li>
 		</recipeUsers>
 		<workAmount>300</workAmount>
-		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>
-		<effectWorking>Surgery</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
 		<products>
 			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
@@ -52,9 +51,8 @@
 			<li>PI_ContainmentBreachAdv</li>
 		</recipeUsers>
 		<workAmount>300</workAmount>
-		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>
-		<effectWorking>Surgery</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
 		<products>
 			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
@@ -62,7 +60,6 @@
 			<PI_Tentacles>6</PI_Tentacles>
 			<PI_ToxicSac>1</PI_ToxicSac>
 			<PI_BetaBlood>7</PI_BetaBlood>
-
 		</products>
 		<ingredients>
 			<li>
@@ -101,9 +98,8 @@
 			<PI_OmegaBlood>5</PI_OmegaBlood>
 		</products>
 		<workAmount>300</workAmount>
-		<workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>
-		<effectWorking>Surgery</effectWorking>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
 		<ingredients>
 			<li>

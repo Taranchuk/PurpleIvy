@@ -64,7 +64,7 @@ namespace PurpleIvy
             GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher.Faction);
         }
 
-        protected virtual void Explode()
+        protected override void Explode()
         {
             Map map = base.Map;
             var launcher = (Building_GenMortarGun)this.launcher;
