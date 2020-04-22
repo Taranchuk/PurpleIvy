@@ -25,7 +25,7 @@
 			<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 		</li>
 	</tools>
-	<soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
+	<soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
 	<race>
 		<intelligence>ToolUser</intelligence>
 		<thinkTreeMain>Mechanoid</thinkTreeMain>

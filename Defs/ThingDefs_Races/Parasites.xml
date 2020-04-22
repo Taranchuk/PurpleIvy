@@ -11,7 +11,7 @@
 			<ComfyTemperatureMin>-100</ComfyTemperatureMin>
 			<ComfyTemperatureMax>250</ComfyTemperatureMax>
 		</statBases>
-		<soundImpactDefault>BulletImpactFlesh</soundImpactDefault>
+		<soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
 		<race>
 			<thinkTreeMain>Genny</thinkTreeMain>
 			<trainability>None</trainability>

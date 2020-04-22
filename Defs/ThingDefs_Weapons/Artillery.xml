@@ -22,7 +22,7 @@
 			<postExplosionSpawnThingDef>PurpleIvy</postExplosionSpawnThingDef>
 			<postExplosionSpawnChance>1</postExplosionSpawnChance>
 			<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
-			<soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
 		</projectile>
 	</ThingDef>
 

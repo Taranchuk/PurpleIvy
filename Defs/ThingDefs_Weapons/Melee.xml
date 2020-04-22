@@ -41,7 +41,7 @@
 		<MarketValue>100</MarketValue>
 	</statBases>
 
-    <soundInteract>InteractPistol</soundInteract>
+    <soundInteract>Interact_Autopistol</soundInteract>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <comps>
       <li>
@@ -68,7 +68,7 @@
 		<texPath>Things/Tendril_Oxalis</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>    
-    <soundInteract>InteractPistol</soundInteract>
+    <soundInteract>Interact_Autopistol</soundInteract>
 	<statBases>
 		<MarketValue>100</MarketValue>
 	</statBases>
