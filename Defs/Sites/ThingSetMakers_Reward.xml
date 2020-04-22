@@ -23,26 +23,6 @@
       <options>
         <li>
           <weight>1</weight>
-          <weightIfPlayerHasNoItem>5</weightIfPlayerHasNoItem>
-          <weightIfPlayerHasNoItemItem>StormPower</weightIfPlayerHasNoItemItem>
-          <thingSetMaker Class="ThingSetMaker_Conditional_MinMaxTotalMarketValue">
-            <minMaxTotalMarketValue>2500</minMaxTotalMarketValue>
-            <thingSetMaker Class="ThingSetMaker_Conditional_ResearchFinished">
-              <researchProject>MultiAnalyzer</researchProject>
-              <thingSetMaker Class="ThingSetMaker_Count">
-                <fixedParams>
-                  <filter>
-                    <thingDefs>
-                      <li>StormPower</li>
-                    </thingDefs>
-                  </filter>
-                </fixedParams>
-              </thingSetMaker>
-            </thingSetMaker>
-          </thingSetMaker>
-        </li>
-        <li>
-          <weight>1</weight>
           <thingSetMaker Class="ThingSetMaker_MarketValue">
             <fixedParams>
               <filter>
@@ -114,34 +94,6 @@
                   <li>RewardSpecial</li>
                   <li>AnimalPart</li>
                 </thingSetMakerTagsToDisallow>
-              </filter>
-            </fixedParams>
-          </thingSetMaker>
-        </li>
-        <li>
-          <weight>0.8</weight>
-          <thingSetMaker Class="ThingSetMaker_MarketValue">
-            <fixedParams>
-              <filter>
-                <thingDefs>
-                  <li>ComponentSpacer</li>
-                  <li>AlienHand</li>
-                  <li>AlienHeart</li>
-                </thingDefs>
-              </filter>
-            </fixedParams>
-          </thingSetMaker>
-        </li>
-        <li>
-          <weight>1</weight>
-          <thingSetMaker Class="ThingSetMaker_Count">
-            <fixedParams>
-              <filter>
-                <thingDefs>
-                  <li>AlienJaw</li>
-                  <li>AlienEar</li>
-                  <li>AlienFoot</li>
-                </thingDefs>
               </filter>
             </fixedParams>
           </thingSetMaker>
@@ -233,19 +185,6 @@
                   <li>FluxRifleBlue</li>
                   <li>FluxRifle</li>
                   <li>PhasePistolMagma</li>
-                  <li>AlienStomach</li>
-                  <li>AlienSpine</li>
-                  <li>AlienLung</li>
-                  <li>AlienLiver</li>
-                  <li>AlienLeg</li>
-                  <li>AlienKidney</li>
-                  <li>AlienJaw</li>
-                  <li>AlienBrain</li>
-                  <li>AlienEar</li>
-                  <li>AlienEye</li>
-                  <li>AlienFoot</li>
-                  <li>AlienHand</li>
-                  <li>AlienHeart</li>
                 </thingDefs>
                 <thingSetMakerTagsToAllow>
                   <li>SingleUseWeapon</li>

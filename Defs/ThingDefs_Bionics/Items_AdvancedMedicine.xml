@@ -45,7 +45,6 @@
     <description>A kit of Basic Flux-Medicine.</description>
     <jobString>Crafting...</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-    <effectWorking>AlienRecipeNormal</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
     <workAmount>18000</workAmount>
     <unfinishedThingDef>UnfinishedMedical</unfinishedThingDef>
@@ -116,7 +115,6 @@
     <description>A kit of Advanced Flux-Medicine.</description>
     <jobString>Crafting...</jobString>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-    <effectWorking>AlienRecipeNormal</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
     <workAmount>22000</workAmount>
     <unfinishedThingDef>UnfinishedMedical</unfinishedThingDef>

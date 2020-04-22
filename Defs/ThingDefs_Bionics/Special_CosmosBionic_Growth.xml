@@ -41,7 +41,6 @@
         <description>Make Growth Stimulator BO-001 that grants the Ability to Regrow any body part and Heal with an impressive speed from every injury.</description>
         <jobString>Crafting...</jobString>
         <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-        <effectWorking>AlienRecipeNormal</effectWorking>
         <soundWorking>Recipe_Machining</soundWorking>
         <workAmount>75000</workAmount>
         <unfinishedThingDef>UnfinishedPartCosmosBase</unfinishedThingDef>
