@@ -9,30 +9,11 @@ namespace PurpleIvy
 {
     internal class RecipeWorkerWithJob : RecipeWorker
     {
-        public JobDef AlienStudy
-        {
-            get
-            {
-                return PurpleIvyDefOf.PI_ConductResearchOnAliens;
-            }
-        }
+        public JobDef AlienStudy => PurpleIvyDefOf.PI_ConductResearchOnAliens;
 
-        public JobDef DrawAlienBlood
-        {
-            get
-            {
-                return PurpleIvyDefOf.PI_DrawAlienBlood;
-            }
-        }
+        public JobDef DrawAlienBlood => PurpleIvyDefOf.PI_DrawAlienBlood;
 
-        public JobDef PreciseVivisection
-        {
-            get
-            {
-                return PurpleIvyDefOf.PI_DrawAlienBlood;
-            }
-        }
-
+        public JobDef PreciseVivisection => PurpleIvyDefOf.PI_DrawAlienBlood;
     }
 }
 
