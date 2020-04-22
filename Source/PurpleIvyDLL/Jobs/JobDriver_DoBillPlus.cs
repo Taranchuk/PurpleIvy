@@ -12,27 +12,24 @@ namespace PurpleIvy
         {
             base.AddEndCondition(delegate ()
             {
-                Thing thing = base.GetActor().jobs.curJob.GetTarget(TargetIndex.A).Thing;
+                var thing = base.GetActor().jobs.curJob.GetTarget(TargetIndex.A).Thing;
                 if (thing is Building && !thing.Spawned)
                 {
                     return JobCondition.Incompletable;
                 }
                 return JobCondition.Ongoing;
             });
-            ToilFailConditions.FailOnBurningImmobile<JobDriver_DoBill>(this, TargetIndex.A);
-            ToilFailConditions.FailOn<JobDriver_DoBill>(this, delegate ()
+            this.FailOnBurningImmobile<JobDriver_DoBill>(TargetIndex.A);
+            this.FailOn<JobDriver_DoBill>(delegate ()
             {
-                IBillGiver billGiver = this.job.GetTarget(TargetIndex.A).Thing as IBillGiver;
-                if (billGiver != null)
+                if (!(this.job.GetTarget(TargetIndex.A).Thing is IBillGiver billGiver)) return false;
+                if (this.job.bill.DeletedOrDereferenced)
                 {
-                    if (this.job.bill.DeletedOrDereferenced)
-                    {
-                        return true;
-                    }
-                    if (!billGiver.CurrentlyUsableForBills())
-                    {
-                        return true;
-                    }
+                    return true;
+                }
+                if (!billGiver.CurrentlyUsableForBills())
+                {
+                    return true;
                 }
                 return false;
             });
