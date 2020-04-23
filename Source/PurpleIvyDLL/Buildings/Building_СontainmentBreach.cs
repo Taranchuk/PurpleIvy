@@ -86,14 +86,14 @@ namespace PurpleIvy
             jobDef = null;
             foreach (var alien in this.Aliens)
             {
-                if (job.RecipeDef == PurpleIvyDefOf.DrawAlienBlood)
+                if (job.bill.recipe == PurpleIvyDefOf.DrawAlienBlood)
                 {
                     result = this.HasBloodInAlien(alien);
                     job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
                     if (result == true) break;
                 }
-                else if (job.RecipeDef == PurpleIvyDefOf.DrawAlphaAlienBlood && 
+                else if (job.bill.recipe == PurpleIvyDefOf.DrawAlphaAlienBlood && 
                     "Genny_ParasiteAlpha" == alien.def.defName)
                 {
                     result = this.HasBloodInAlien(alien);
@@ -101,7 +101,7 @@ namespace PurpleIvy
                     jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
                     if (result == true) break;
                 }
-                else if (job.RecipeDef == PurpleIvyDefOf.DrawBetaAlienBlood 
+                else if (job.bill.recipe == PurpleIvyDefOf.DrawBetaAlienBlood 
                     && "Genny_ParasiteBeta" == alien.def.defName)
                 {
                     result = this.HasBloodInAlien(alien);
@@ -109,7 +109,7 @@ namespace PurpleIvy
                     jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
                     if (result == true) break;
                 }
-                else if (job.RecipeDef == PurpleIvyDefOf.DrawGammaAlienBlood
+                else if (job.bill.recipe == PurpleIvyDefOf.DrawGammaAlienBlood
                     && "Genny_ParasiteGamma" == alien.def.defName)
                 {
                     result = this.HasBloodInAlien(alien);
@@ -117,21 +117,21 @@ namespace PurpleIvy
                     jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
                     if (result == true) break;
                 }
-                else if (job.RecipeDef == PurpleIvyDefOf.DrawOmegaAlienBlood && "Genny_ParasiteOmega" == alien.def.defName)
+                else if (job.bill.recipe == PurpleIvyDefOf.DrawOmegaAlienBlood && "Genny_ParasiteOmega" == alien.def.defName)
                 {
                     result = this.HasBloodInAlien(alien);
                     job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
                     if (result == true) break;
                 }
-                else if (job.RecipeDef == PurpleIvyDefOf.DrawKorsolianToxin)
+                else if (job.bill.recipe == PurpleIvyDefOf.DrawKorsolianToxin)
                 {
                     result = this.HasToxinInAlien(alien);
                     job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_DrawKorsolianToxin;
                     if (result == true) break;
                 }
-                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionAlpha 
+                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionAlpha 
                     && "Genny_ParasiteAlpha" == alien.def.defName)
                 {
                     result = true;
@@ -139,7 +139,7 @@ namespace PurpleIvy
                     jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
                     break;
                 }
-                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionBeta && 
+                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionBeta && 
                     "Genny_ParasiteBeta" == alien.def.defName)
                 {
                     result = true;
@@ -147,7 +147,7 @@ namespace PurpleIvy
                     jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
                     break;
                 }
-                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionGamma &&
+                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionGamma &&
                     "Genny_ParasiteGamma" == alien.def.defName)
                 {
                     result = true;
@@ -155,7 +155,7 @@ namespace PurpleIvy
                     jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
                     break;
                 }
-                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionOmega 
+                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionOmega 
                     && "Genny_ParasiteOmega" == alien.def.defName)
                 {
                     result = true;
@@ -166,7 +166,7 @@ namespace PurpleIvy
             }
             if (result == false)
             {
-                if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionAlpha)
+                if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionAlpha)
                 {
                     var corpse = this.FindCorpse(PurpleIvyDefOf.CorpsesAlienParasiteAlpha);
                     if (corpse != null)
@@ -176,7 +176,7 @@ namespace PurpleIvy
                         job.targetB = corpse;
                     }
                 }
-                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionBeta)
+                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionBeta)
                 {
                     var corpse = this.FindCorpse(PurpleIvyDefOf.CorpsesAlienParasiteBeta);
                     if (corpse != null)
@@ -186,7 +186,7 @@ namespace PurpleIvy
                         job.targetB = corpse;
                     }
                 }
-                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionGamma)
+                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionGamma)
                 {
                     var corpse = this.FindCorpse(PurpleIvyDefOf.CorpsesAlienParasiteGamma);
                     if (corpse != null)
@@ -196,7 +196,7 @@ namespace PurpleIvy
                         job.targetB = corpse;
                     }
                 }
-                else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionOmega)
+                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionOmega)
                 {
                     var corpse = this.FindCorpse(PurpleIvyDefOf.CorpsesAlienParasiteOmega);
                     if (corpse != null)

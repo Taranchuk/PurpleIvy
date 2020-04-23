@@ -45,13 +45,13 @@ namespace PurpleIvy
                 }
                 if (this.workCycleProgress <= 0f)
                 {
-                    SkillDef workSkill = this.job.RecipeDef.workSkill;
+                    SkillDef workSkill = this.job.bill.recipe.workSkill;
                     if (workSkill != null)
                     {
                         SkillRecord skill = this.pawn.skills.GetSkill(workSkill);
                         if (skill != null)
                         {
-                            skill.Learn(0.11f * this.job.RecipeDef.workSkillLearnFactor, false);
+                            skill.Learn(0.11f * this.job.bill.recipe.workSkillLearnFactor, false);
                         }
                     }
                     GenSpawn.Spawn(tableThing.GetKorsolianToxin(this.job.bill.recipe), 

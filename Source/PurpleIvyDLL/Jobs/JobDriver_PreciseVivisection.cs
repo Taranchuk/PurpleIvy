@@ -11,9 +11,9 @@ namespace PurpleIvy
     {
         public override string GetReport()
         {
-            if (this.job.RecipeDef != null)
+            if (this.job.bill.recipe != null)
             {
-                return base.ReportStringProcessed(this.job.RecipeDef.jobString);
+                return base.ReportStringProcessed(this.job.bill.recipe.jobString);
             }
             return base.GetReport();
         }
@@ -144,7 +144,7 @@ namespace PurpleIvy
                 }
             };
             yield return Toils_Recipe.FinishRecipeAndStartStoringProduct();
-            if (!this.job.RecipeDef.products.NullOrEmpty<ThingDefCountClass>() || !this.job.RecipeDef.specialProducts.NullOrEmpty<SpecialProductType>())
+            if (!this.job.bill.recipe.products.NullOrEmpty<ThingDefCountClass>() || !this.job.bill.recipe.specialProducts.NullOrEmpty<SpecialProductType>())
             {
                 yield return Toils_Reserve.Reserve(TargetIndex.B, 1, -1, null);
                 findPlaceTarget = Toils_Haul.CarryHauledThingToCell(TargetIndex.B);

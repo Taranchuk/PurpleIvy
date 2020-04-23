@@ -46,11 +46,11 @@ namespace PurpleIvy
                     }
 
                     if (!(this.workCycleProgress <= 0f)) return;
-                    var workSkill = this.job.RecipeDef.workSkill;
+                    var workSkill = this.job.bill.recipe.workSkill;
                     if (workSkill != null)
                     {
                         SkillRecord skill = this.pawn.skills.GetSkill(workSkill);
-                        skill?.Learn(0.11f * this.job.RecipeDef.workSkillLearnFactor, false);
+                        skill?.Learn(0.11f * this.job.bill.recipe.workSkillLearnFactor, false);
                     }
                     GenSpawn.Spawn(tableThing.GetAlienBloodByRecipe(this.job.bill.recipe),
                         tableThing.InteractionCell, thing.Map, 0);
