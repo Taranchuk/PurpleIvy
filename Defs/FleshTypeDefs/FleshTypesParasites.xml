@@ -8,15 +8,15 @@
 		<wounds>
 			<li>
 				<texture>Things/Pawn/Wounds/WoundA</texture>
-				<color>0.98,1,0</color>
+				<color>(14, 0, 42)</color>
 			</li>
 			<li>
 				<texture>Things/Pawn/Wounds/WoundB</texture>
-				<color>0.98,1,0</color>
+				<color>(14, 0, 42)</color>
 			</li>
 			<li>
 				<texture>Things/Pawn/Wounds/WoundC</texture>
-				<color>0.98,1,0</color>
+				<color>(14, 0, 42)</color>
 			</li>
 		</wounds>
 	</FleshTypeDef>
@@ -29,15 +29,15 @@
 		<wounds>
 			<li>
 				<texture>Things/Pawn/Wounds/WoundA</texture>
-				<color>0.98,1,0</color>
+				<color>(14, 0, 42)</color>
 			</li>
 			<li>
 				<texture>Things/Pawn/Wounds/WoundB</texture>
-				<color>0.98,1,0</color>
+				<color>(14, 0, 42)</color>
 			</li>
 			<li>
 				<texture>Things/Pawn/Wounds/WoundC</texture>
-				<color>0.98,1,0</color>
+				<color>(14, 0, 42)</color>
 			</li>
 		</wounds>
 	</FleshTypeDef>
@@ -50,15 +50,15 @@
 		<wounds>
 			<li>
 				<texture>Things/Pawn/Wounds/WoundA</texture>
-				<color>0.98,1,0</color>
+				<color>(14, 0, 42)</color>
 			</li>
 			<li>
 				<texture>Things/Pawn/Wounds/WoundB</texture>
-				<color>0.98,1,0</color>
+				<color>(14, 0, 42)</color>
 			</li>
 			<li>
 				<texture>Things/Pawn/Wounds/WoundC</texture>
-				<color>0.98,1,0</color>
+				<color>(14, 0, 42)</color>
 			</li>
 		</wounds>
 	</FleshTypeDef>
@@ -71,15 +71,15 @@
 		<wounds>
 			<li>
 				<texture>Things/Pawn/Wounds/WoundA</texture>
-				<color>0.98,1,0</color>
+				<color>(14, 0, 42)</color>
 			</li>
 			<li>
 				<texture>Things/Pawn/Wounds/WoundB</texture>
-				<color>0.98,1,0</color>
+				<color>(14, 0, 42)</color>
 			</li>
 			<li>
 				<texture>Things/Pawn/Wounds/WoundC</texture>
-				<color>0.98,1,0</color>
+				<color>(14, 0, 42)</color>
 			</li>
 		</wounds>
 	</FleshTypeDef>
