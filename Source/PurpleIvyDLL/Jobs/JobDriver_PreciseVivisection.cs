@@ -28,12 +28,13 @@ namespace PurpleIvy
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            if (!this.pawn.Reserve(this.job.GetTarget(TargetIndex.A), this.job, 1, -1, null, errorOnFailed))
-            {
-                return false;
-            }
-            this.pawn.ReserveAsManyAsPossible(this.job.GetTargetQueue(TargetIndex.B), this.job, 1, -1, null);
-            return true;
+            return this.pawn.Reserve(this.job.GetTarget(TargetIndex.A), this.job, 1, -1, null, false);
+            ////if (!this.pawn.Reserve(this.job.GetTarget(TargetIndex.B), this.job, 1, -1, null, false))
+            ////{
+            ////    return false;
+            ////}
+            ////this.pawn.ReserveAsManyAsPossible(this.job.GetTargetQueue(TargetIndex.B), this.job, 1, -1, null);
+            //return true;
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
@@ -79,12 +80,29 @@ namespace PurpleIvy
                     }
                 }
             };
-            yield return Toils_Jump.JumpIf(gotoBillGiver, () => this.job.GetTargetQueue(TargetIndex.B).NullOrEmpty<LocalTargetInfo>());
+            //yield return Toils_Jump.JumpIf(gotoBillGiver, () => this.job.GetTargetQueue(TargetIndex.B).NullOrEmpty<LocalTargetInfo>());
             Toil extract = Toils_JobTransforms.ExtractNextTargetFromQueue(TargetIndex.B, true);
             yield return extract;
-            Toil getToHaulTarget = Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOnSomeonePhysicallyInteracting(TargetIndex.B);
+            yield return new Toil
+            {
+                initAction = delegate ()
+                {
+                    var alien = TargetB.Thing;
+                    var container = (Building_СontainmentBreach)TargetA.Thing;
+                    if (container.innerContainer.Contains(alien) && ReservationUtility.CanReserveAndReach
+                        (GetActor(), container, PathEndMode.ClosestTouch, DangerUtility.NormalMaxDanger(GetActor())
+                        , 1, -1, null, false))
+                    {
+                        Log.Message(GetActor() + " JUMP");
+                        //Toils_Reserve.Reserve(TargetIndex.A, 1);
+                        this.JumpToToil(gotoBillGiver);
+                    }
+                }
+            };
+            Toil getToHaulTarget = Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch);//.FailOnSomeonePhysicallyInteracting(TargetIndex.B);
             yield return getToHaulTarget;
-            yield return Toils_Haul.StartCarryThing(TargetIndex.B, true, false, true);
+            yield return new Toil { initAction = delegate () { base.GetActor().CurJob.count = 1; } };
+            yield return Toils_Haul.StartCarryThing(TargetIndex.B, true, false, false);
             yield return JobDriver_PreciseVivisection.JumpToCollectNextIntoHandsForBill(getToHaulTarget, TargetIndex.B);
             //yield return Toils_Haul.CarryHauledThingToCell(TargetIndex.B);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell).FailOnDestroyedOrNull(TargetIndex.B);
@@ -98,7 +116,33 @@ namespace PurpleIvy
             findPlaceTarget = null;
             yield return gotoBillGiver;
             yield return Toils_Recipe.MakeUnfinishedThingIfNeeded();
-            yield return Toils_Recipe.DoRecipeWork().FailOnDespawnedNullOrForbiddenPlacedThings().FailOnCannotTouch(TargetIndex.A, PathEndMode.InteractionCell);
+            yield return Toils_Recipe.DoRecipeWork().FailOnCannotTouch(TargetIndex.A, PathEndMode.InteractionCell);
+
+            yield return new Toil
+            {
+                initAction = delegate ()
+                {
+                    var alien = TargetB.Thing;
+                    foreach (var product in alien.ButcherProducts(base.GetActor(), 1f))
+                    {
+                        GenPlace.TryPlaceThing(product, base.GetActor().Position, base.GetActor().Map, ThingPlaceMode.Near);
+                    }
+                    var container = (Building_СontainmentBreach)TargetA.Thing;
+                    container.innerContainer.Remove(alien);
+                    alien.Destroy(DestroyMode.Vanish);
+                }
+            };
+            yield return new Toil
+            {
+                initAction = delegate ()
+                {
+                    var container = (Building_СontainmentBreach)TargetA.Thing;
+                    if (GetActor().Map.reservationManager.ReservedBy(container, GetActor(), GetActor().CurJob))
+                    {
+                        GetActor().Map.reservationManager.Release(container, GetActor(), GetActor().CurJob);
+                    }
+                }
+            };
             yield return Toils_Recipe.FinishRecipeAndStartStoringProduct();
             if (!this.job.RecipeDef.products.NullOrEmpty<ThingDefCountClass>() || !this.job.RecipeDef.specialProducts.NullOrEmpty<SpecialProductType>())
             {
@@ -115,6 +159,12 @@ namespace PurpleIvy
                 toil = null;
                 findPlaceTarget = null;
             }
+            yield return new Toil
+            {
+                initAction = delegate () {
+                    Log.Message("Job ended");
+                }
+            };
             yield break;
         }
 
@@ -169,4 +219,3 @@ namespace PurpleIvy
         }
     }
 }
-

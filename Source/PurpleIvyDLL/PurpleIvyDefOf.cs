@@ -122,6 +122,14 @@ namespace PurpleIvy
 
         public static DamageDef PI_ToxicBurn;
 
+        public static ThingCategoryDef CorpsesAlienParasiteAlpha;
+
+        public static ThingCategoryDef CorpsesAlienParasiteBeta;
+
+        public static ThingCategoryDef CorpsesAlienParasiteGamma;
+
+        public static ThingCategoryDef CorpsesAlienParasiteOmega;
+
     }
 }
 

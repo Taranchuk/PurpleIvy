@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Verse.AI.Group;
 
 namespace PurpleIvy
 {
@@ -30,7 +32,7 @@ namespace PurpleIvy
             this.blackoutProtection = this.def.GetModExtension<DefModExtension_СontainmentBreach>().blackoutProtection;
         }
 
-        public bool HasBloodInAlien(Pawn alien)
+        public bool HasBloodInAlien(Thing alien)
         {
             bool result = false;
             if (this.RecoveryBloodData != null && this.RecoveryBloodData.ContainsKey(alien))
@@ -48,7 +50,7 @@ namespace PurpleIvy
             return result;
         }
 
-        public bool HasToxinInAlien(Pawn alien)
+        public bool HasToxinInAlien(Thing alien)
         {
             bool result = false;
             if (this.RecoveryToxinData != null && this.RecoveryToxinData.ContainsKey(alien))
@@ -65,6 +67,19 @@ namespace PurpleIvy
             }
             return result;
         }
+
+        public Thing FindCorpse(ThingCategoryDef category)
+        {
+            Thing corpse = null;
+            var corpses = this.Map.listerThings.ThingsInGroup(ThingRequestGroup.Corpse).
+    Where(x => x != null && x.def.thingCategories.Contains
+    (PurpleIvyDefOf.CorpsesAlienParasiteAlpha)).ToList();
+            if (corpses != null && corpses.Count > 0)
+            {
+                corpse = corpses[0];
+            }
+            return corpse;
+        }
         public bool HasJobOnRecipe(Job job, out JobDef jobDef)
         {
             bool result = false;
@@ -74,6 +89,7 @@ namespace PurpleIvy
                 if (job.RecipeDef == PurpleIvyDefOf.DrawAlienBlood)
                 {
                     result = this.HasBloodInAlien(alien);
+                    job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
                     if (result == true) break;
                 }
@@ -81,6 +97,7 @@ namespace PurpleIvy
                     "Genny_ParasiteAlpha" == alien.def.defName)
                 {
                     result = this.HasBloodInAlien(alien);
+                    job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
                     if (result == true) break;
                 }
@@ -88,25 +105,29 @@ namespace PurpleIvy
                     && "Genny_ParasiteBeta" == alien.def.defName)
                 {
                     result = this.HasBloodInAlien(alien);
+                    job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
                     if (result == true) break;
                 }
                 else if (job.RecipeDef == PurpleIvyDefOf.DrawGammaAlienBlood
-    && "Genny_ParasiteGamma" == alien.def.defName)
+                    && "Genny_ParasiteGamma" == alien.def.defName)
                 {
                     result = this.HasBloodInAlien(alien);
+                    job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
                     if (result == true) break;
                 }
                 else if (job.RecipeDef == PurpleIvyDefOf.DrawOmegaAlienBlood && "Genny_ParasiteOmega" == alien.def.defName)
                 {
                     result = this.HasBloodInAlien(alien);
+                    job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
                     if (result == true) break;
                 }
                 else if (job.RecipeDef == PurpleIvyDefOf.DrawKorsolianToxin)
                 {
                     result = this.HasToxinInAlien(alien);
+                    job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_DrawKorsolianToxin;
                     if (result == true) break;
                 }
@@ -114,6 +135,7 @@ namespace PurpleIvy
                     && "Genny_ParasiteAlpha" == alien.def.defName)
                 {
                     result = true;
+                    job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
                     break;
                 }
@@ -121,13 +143,15 @@ namespace PurpleIvy
                     "Genny_ParasiteBeta" == alien.def.defName)
                 {
                     result = true;
+                    job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
                     break;
                 }
                 else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionGamma &&
-    "Genny_ParasiteGamma" == alien.def.defName)
+                    "Genny_ParasiteGamma" == alien.def.defName)
                 {
                     result = true;
+                    job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
                     break;
                 }
@@ -135,6 +159,7 @@ namespace PurpleIvy
                     && "Genny_ParasiteOmega" == alien.def.defName)
                 {
                     result = true;
+                    job.targetB = alien;
                     jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
                     break;
                 }
@@ -143,29 +168,49 @@ namespace PurpleIvy
             {
                 if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionAlpha)
                 {
-                    result = true;
-                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                    var corpse = this.FindCorpse(PurpleIvyDefOf.CorpsesAlienParasiteAlpha);
+                    if (corpse != null)
+                    {
+                        result = true;
+                        jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                        job.targetB = corpse;
+                    }
                 }
                 else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionBeta)
                 {
-                    result = true;
-                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                    var corpse = this.FindCorpse(PurpleIvyDefOf.CorpsesAlienParasiteBeta);
+                    if (corpse != null)
+                    {
+                        result = true;
+                        jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                        job.targetB = corpse;
+                    }
                 }
                 else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionGamma)
                 {
-                    result = true;
-                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                    var corpse = this.FindCorpse(PurpleIvyDefOf.CorpsesAlienParasiteGamma);
+                    if (corpse != null)
+                    {
+                        result = true;
+                        jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                        job.targetB = corpse;
+                    }
                 }
                 else if (job.RecipeDef == PurpleIvyDefOf.PreciseVivisectionOmega)
                 {
-                    result = true;
-                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                    var corpse = this.FindCorpse(PurpleIvyDefOf.CorpsesAlienParasiteOmega);
+                    if (corpse != null)
+                    {
+                        result = true;
+                        jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                        job.targetB = corpse;
+                    }
                 }
             }
             return result;
         }
 
-        public bool AlienHasJobOnRecipe(Pawn alien, RecipeDef recipe)
+        public bool AlienHasJobOnRecipe(Thing alien, RecipeDef recipe)
         {
             bool result = false;
             if (recipe == PurpleIvyDefOf.DrawAlienBlood)
@@ -218,7 +263,7 @@ namespace PurpleIvy
                     AlienBlood = DefDatabase<ThingDef>.GetNamed(bloodType, false);
                     if (this.RecoveryBloodData == null)
                     {
-                        this.RecoveryBloodData = new Dictionary<Pawn, int>();
+                        this.RecoveryBloodData = new Dictionary<Thing, int>();
                     }
                     this.RecoveryBloodData[alien] = new IntRange(30000, 60000).RandomInRange + Find.TickManager.TicksGame;
                     break;
@@ -237,7 +282,7 @@ namespace PurpleIvy
                     KorsolianToxin = PurpleIvyDefOf.PI_KorsolianToxin;
                     if (this.RecoveryToxinData == null)
                     {
-                        this.RecoveryToxinData = new Dictionary<Pawn, int>();
+                        this.RecoveryToxinData = new Dictionary<Thing, int>();
                     }
                     this.RecoveryToxinData[alien] = new IntRange(30000, 60000).RandomInRange + Find.TickManager.TicksGame;
                     break;
@@ -310,14 +355,15 @@ namespace PurpleIvy
             ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, this.GetDirectlyHeldThings());
         }
 
-        public List<Pawn> Aliens
+        public List<Thing> Aliens
         {
             get
             {
-                List<Pawn> Aliens = new List<Pawn>();
+                List<Thing> Aliens = new List<Thing>();
                 for (int i = 0; i < this.innerContainer.Count; i++)
                 {
-                    Aliens.Add((Pawn)this.innerContainer[i]);
+
+                    Aliens.Add(this.innerContainer[i]);
                 }
                 return Aliens;
             }
@@ -330,21 +376,21 @@ namespace PurpleIvy
             {
                 this
             });
-            Scribe_Collections.Look<Pawn, int>(ref this.RecoveryBloodData, "RecoveryBloodData",
+            Scribe_Collections.Look<Thing, int>(ref this.RecoveryBloodData, "RecoveryBloodData",
                 LookMode.Reference, LookMode.Value, ref this.RecoveryBloodDataKeys, ref this.RecoveryBloodDataValues);
-            Scribe_Collections.Look<Pawn, int>(ref this.RecoveryToxinData, "RecoveryToxinData",
+            Scribe_Collections.Look<Thing, int>(ref this.RecoveryToxinData, "RecoveryToxinData",
                 LookMode.Reference, LookMode.Value, ref this.RecoveryToxinDataKeys, ref this.RecoveryToxinDataValues);
         }
 
-        public Dictionary<Pawn, int> RecoveryBloodData = new Dictionary<Pawn, int>();
+        public Dictionary<Thing, int> RecoveryBloodData = new Dictionary<Thing, int>();
 
-        public List<Pawn> RecoveryBloodDataKeys = new List<Pawn>();
+        public List<Thing> RecoveryBloodDataKeys = new List<Thing>();
 
         public List<int> RecoveryBloodDataValues = new List<int>();
 
-        public Dictionary<Pawn, int> RecoveryToxinData = new Dictionary<Pawn, int>();
+        public Dictionary<Thing, int> RecoveryToxinData = new Dictionary<Thing, int>();
 
-        public List<Pawn> RecoveryToxinDataKeys = new List<Pawn>();
+        public List<Thing> RecoveryToxinDataKeys = new List<Thing>();
 
         public List<int> RecoveryToxinDataValues = new List<int>();
 

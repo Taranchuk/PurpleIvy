@@ -21,24 +21,9 @@
 			<PI_ToxicSac>1</PI_ToxicSac>
 			<PI_AlphaBlood>10</PI_AlphaBlood>
 		</products>
-		<ingredients>
-			<li>
-				<filter>
-					<categories>
-						<li>Corpses</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
 		<specialProducts>
 			<li>Butchery</li>
 		</specialProducts>
-		<fixedIngredientFilter>
-			<categories>
-				<li>CorpsesAlienParasiteAlpha</li>
-			</categories>
-		</fixedIngredientFilter>
 	</RecipeDef> 
 
 	<RecipeDef>
@@ -61,24 +46,9 @@
 			<PI_ToxicSac>1</PI_ToxicSac>
 			<PI_BetaBlood>7</PI_BetaBlood>
 		</products>
-		<ingredients>
-			<li>
-				<filter>
-					<categories>
-						<li>Corpses</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
 		<specialProducts>
 			<li>Butchery</li>
 		</specialProducts>
-		<fixedIngredientFilter>
-			<categories>
-				<li>CorpsesAlienParasiteBeta</li>
-			</categories>
-		</fixedIngredientFilter>
 	</RecipeDef> 
 
 	<RecipeDef>
@@ -101,24 +71,9 @@
 			<PI_ToxicSac>1</PI_ToxicSac>
 			<PI_GammaBlood>7</PI_GammaBlood>
 		</products>
-		<ingredients>
-			<li>
-				<filter>
-					<categories>
-						<li>Corpses</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
 		<specialProducts>
 			<li>Butchery</li>
 		</specialProducts>
-		<fixedIngredientFilter>
-			<categories>
-				<li>CorpsesAlienParasiteGamma</li>
-			</categories>
-		</fixedIngredientFilter>
 	</RecipeDef> 
 
 	<RecipeDef>
@@ -141,24 +96,9 @@
 		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<ingredients>
-			<li>
-				<filter>
-					<categories>
-						<li>Corpses</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
 		<specialProducts>
 			<li>Butchery</li>
 		</specialProducts>
-		<fixedIngredientFilter>
-			<categories>
-				<li>CorpsesAlienParasiteOmega</li>
-			</categories>
-		</fixedIngredientFilter>
 	</RecipeDef> 
 
 </Defs>
