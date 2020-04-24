@@ -48,6 +48,9 @@
     <inspectorTabs>
       <li>ITab_Bills</li>
     </inspectorTabs>
+	<recipes>
+      <li>PI_MakeTestDrug</li>
+    </recipes>
     <comps>
       <li Class="CompProperties_Glower">
         <glowRadius>3</glowRadius>

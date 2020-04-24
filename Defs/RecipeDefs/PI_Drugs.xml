@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<RecipeDef>
+	<defName>PI_MakeTestDrug</defName>
+    <label>make TestDrug</label>
+    <description>Make a TestDrug.</description>
+    <jobString>Making TestDrug.</jobString>
+    <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
+    <workAmount>5000</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>PI_NervousSystem</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>PI_NervousSystem</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <PI_TestDrug>1</PI_TestDrug>
+    </products>
+    <skillRequirements>
+      <Crafting>7</Crafting>
+	  <Intellectual>7</Intellectual>
+    </skillRequirements>
+    <workSkill>Crafting</workSkill>
+	</RecipeDef> 
+
+</Defs>
