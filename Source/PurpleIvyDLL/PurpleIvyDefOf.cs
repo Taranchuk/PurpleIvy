@@ -92,6 +92,9 @@ namespace PurpleIvy
 
         public static ThingDef GasPump;
 
+        public static ThingDef PlantVenomousToothwort;
+
+
         public static ThingDef PI_Nectar;
 
         public static ThingDef PI_ContainmentBreach;

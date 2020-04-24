@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="StrangePlants">
+		<defName>PlantVenomousToothwort</defName>
+		<label>Venomous Toothwort</label>
+		<description>This medium plant named after it's similarity to worms emerging from ground and poisons juices is one of hardest plants you can ever try to grow. It have strong poison that gardener needs to be aware of, and it need good care to grow.</description>
+		<thingClass>PurpleIvy.Plant_VenomousToothwort</thingClass>    
+		<tickerType>Normal</tickerType>
+		<statBases>
+			<Flammability>0.2</Flammability>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Nutrition>0.05</Nutrition>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Plant/VenomousToothwort</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+		</graphicData>
+		<selectable>true</selectable>
+		<pathCost>35</pathCost>
+		<ingestible />
+		<plant>
+			<harvestWork>400</harvestWork>
+			<fertilitySensitivity>1.0</fertilitySensitivity>
+			<growDays>2.5</growDays>
+			<immatureGraphicPath>Things/Plant/ImmaturePlants/VenomousToothwort</immatureGraphicPath>
+			<dieIfLeafless>false</dieIfLeafless>
+			<harvestTag>Standard</harvestTag>
+			<harvestedThingDef>VenomousToothwort</harvestedThingDef>
+			<harvestYield>10</harvestYield>
+			<topWindExposure>0.1</topWindExposure>
+			<visualSizeRange>
+				<min>0</min>
+				<max>2</max>
+			</visualSizeRange>
+		</plant>
+	</ThingDef>
+
+</Defs>

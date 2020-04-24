@@ -55,7 +55,7 @@ namespace PurpleIvy
             if (GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, Map),
                 (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock))) return;
             Plant newivy = new Plant();
-            newivy = (Plant)ThingMaker.MakeThing(ThingDef.Named("PurpleIvy"));
+            newivy = (Plant)ThingMaker.MakeThing(PurpleIvyDefOf.PurpleIvy);
             GenSpawn.Spawn(newivy, dir, this.Map);
         }
 
@@ -63,7 +63,9 @@ namespace PurpleIvy
         {
             //List all things in that random direction cell
             List<Thing> list = this.Map.thingGrid.ThingsListAt(dir);
-            return list.Count > 0 && list.OfType<Plant>().Any(t => t.def.defName == "PurpleIvy" || t.def.defName == "PI_Nest");
+            return list.Count > 0 && list.OfType<Plant>().Any(t =>
+            t.def == PurpleIvyDefOf.PurpleIvy || t.def == PurpleIvyDefOf.PI_Nest
+            || t.def == PurpleIvyDefOf.PlantVenomousToothwort);
         }
 
         public bool IsSurroundedByIvy(IntVec3 dir)
@@ -204,7 +206,8 @@ namespace PurpleIvy
                     //If we find a plant
                     case Plant _:
                     {
-                        if (list[i].def.defName != "PurpleIvy" && list[i].def.defName != "PI_Nest")
+                        if (list[i].def != PurpleIvyDefOf.PurpleIvy && list[i].def != PurpleIvyDefOf.PI_Nest
+                                && list[i].def != PurpleIvyDefOf.PlantVenomousToothwort)
                         {
                             list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1));
                         }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+<GenStepDef>
+	<defName>AlienLairs</defName>
+	<order>400</order>
+	<genStep Class="PurpleIvy.GenStep_AlienLairs">
+		<count>1</count>
+		<nearMapCenter>true</nearMapCenter>
+	</genStep>
+</GenStepDef>
+</Defs>

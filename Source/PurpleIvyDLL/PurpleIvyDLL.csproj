@@ -315,6 +315,8 @@
     <Compile Include="GenerationWorker\SitePartWorker_ProceduralGeneration.cs" />
     <Compile Include="GenerationWorker\SymbolResolver_AdvancedGeneration.cs" />
     <Compile Include="GenerationWorker\ThingSetMakerDefOf.cs" />
+    <Compile Include="HarmonyPatches\AlienLairsBasesGeneration - Copy.cs" />
+    <Compile Include="HarmonyPatches\AlienLairsBasesGeneration.cs" />
     <Compile Include="HarmonyPatches\FloatMenuMakerMap_Patch.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatchesInit.cs" />
     <Compile Include="HarmonyPatches\ApplyWeatherOnNewMaps.cs" />
@@ -336,12 +338,14 @@
     <Compile Include="Jobs\JobDriver_TakeAlienToСontainmentBreach.cs" />
     <Compile Include="Jobs\JobDriver_AttackMeleePlus.cs" />
     <Compile Include="Jobs\JobDriver_ExtractNectar.cs" />
+    <Compile Include="Plants\Plant_VenomousToothwort.cs" />
     <Compile Include="Plants\Plant_Nest.cs" />
     <Compile Include="RaceWeapons\CompFutureDamage.cs" />
     <Compile Include="RaceWeapons\CompProperties_RaceDamage.cs" />
     <Compile Include="RaceWeapons\Projectile_HeatImpact.cs" />
     <Compile Include="RaceWeapons\ThingDefOf.cs" />
     <Compile Include="RaceWeapons\ThingDef_RaceWeapons.cs" />
+    <Compile Include="Sites\GenStep_AlienLairs.cs" />
     <Compile Include="Sites\Site_AbandonedBase.cs" />
     <Compile Include="Sites\Site_DefeatedSite.cs" />
     <Compile Include="AlienInfection\HediffInfected.cs" />

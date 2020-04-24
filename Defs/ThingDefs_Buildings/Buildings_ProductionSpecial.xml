@@ -4,7 +4,7 @@
   <!--====== Bio Lab ======-->
 
   <ThingDef ParentName="BenchBase">
-    <defName>BioLab</defName>
+    <defName>PI_BioLab</defName>
     <label>Bio Laboratory</label>
     <thingClass>Building_WorkTable</thingClass>
     <description>A complex Hi-Teach Bio Lab, allows to Manufacture synthetic food and Extremely advanced Cosmos Bionics.</description>

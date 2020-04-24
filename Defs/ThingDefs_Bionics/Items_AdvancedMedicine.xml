@@ -49,7 +49,7 @@
     <workAmount>18000</workAmount>
     <unfinishedThingDef>UnfinishedMedical</unfinishedThingDef>
     <recipeUsers>
-      <li>BioLab</li>
+      <li>PI_BioLab</li>
     </recipeUsers>
     <ingredients>
       <li>
@@ -119,7 +119,7 @@
     <workAmount>22000</workAmount>
     <unfinishedThingDef>UnfinishedMedical</unfinishedThingDef>
     <recipeUsers>
-      <li>BioLab</li>
+      <li>PI_BioLab</li>
     </recipeUsers>
     <ingredients>
       <li>
