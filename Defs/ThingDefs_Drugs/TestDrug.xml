@@ -14,7 +14,7 @@
     <tickerType>Rare</tickerType>
     <graphicData>
       <texPath>Things/Item/Drug/TestDrug</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
 	  <MaxHitPoints>50</MaxHitPoints>
