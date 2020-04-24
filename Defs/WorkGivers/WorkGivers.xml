@@ -9,7 +9,7 @@
 		<workType>Crafting</workType>
 		<priorityInType>50</priorityInType>
 		<fixedBillGiverDefs>
-			<li>BioLab</li>
+			<li>PI_BioLab</li>
 		</fixedBillGiverDefs>
 		<verb>create</verb>
 		<gerund>creating</gerund>

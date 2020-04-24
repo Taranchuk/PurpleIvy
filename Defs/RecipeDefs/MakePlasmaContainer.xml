@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<RecipeDef>
+		<defName>Make_PlasmaContainerFromPlasmaNucleus</defName>
+		<label>make plasma container from alien plasma nucleus</label>
+		<description>make plasma container from alien plasma nucleus.</description>
+		<jobString>Making plasma container from alien plasma nucleus.</jobString>
+		<workAmount>500</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>PI_PlasmaNucleus</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>PI_PlasmaNucleus</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<PI_PlasmaContainer>1</PI_PlasmaContainer>
+		</products>
+		<recipeUsers>
+			<li>PI_BioLab</li>
+		</recipeUsers>
+	</RecipeDef> 
+</Defs>

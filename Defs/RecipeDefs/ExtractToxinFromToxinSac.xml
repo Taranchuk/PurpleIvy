@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<RecipeDef>
+		<defName>Extract_ToxinFromToxinSac</defName>
+		<label>extract korsolian toxin from toxin sac</label>
+		<description>Dxtract korsolian toxin from toxin sac.</description>
+		<jobString>Extracting korsolian toxin from toxin sac.</jobString>
+		<workAmount>500</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>PI_ToxicSac</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>PI_ToxicSac</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<PI_KorsolianToxin>10</PI_KorsolianToxin>
+		</products>
+		<recipeUsers>
+			<li>PI_BioLab</li>
+		</recipeUsers>
+	</RecipeDef> 
+</Defs>
