@@ -86,82 +86,85 @@ namespace PurpleIvy
             jobDef = null;
             foreach (var alien in this.Aliens)
             {
-                if (job.bill.recipe == PurpleIvyDefOf.DrawAlienBlood)
+                if (alien is Pawn)
                 {
-                    result = this.HasBloodInAlien(alien);
-                    job.targetB = alien;
-                    jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
-                    if (result == true) break;
-                }
-                else if (job.bill.recipe == PurpleIvyDefOf.DrawAlphaAlienBlood && 
-                    "Genny_ParasiteAlpha" == alien.def.defName)
-                {
-                    result = this.HasBloodInAlien(alien);
-                    job.targetB = alien;
-                    jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
-                    if (result == true) break;
-                }
-                else if (job.bill.recipe == PurpleIvyDefOf.DrawBetaAlienBlood 
-                    && "Genny_ParasiteBeta" == alien.def.defName)
-                {
-                    result = this.HasBloodInAlien(alien);
-                    job.targetB = alien;
-                    jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
-                    if (result == true) break;
-                }
-                else if (job.bill.recipe == PurpleIvyDefOf.DrawGammaAlienBlood
-                    && "Genny_ParasiteGamma" == alien.def.defName)
-                {
-                    result = this.HasBloodInAlien(alien);
-                    job.targetB = alien;
-                    jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
-                    if (result == true) break;
-                }
-                else if (job.bill.recipe == PurpleIvyDefOf.DrawOmegaAlienBlood && "Genny_ParasiteOmega" == alien.def.defName)
-                {
-                    result = this.HasBloodInAlien(alien);
-                    job.targetB = alien;
-                    jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
-                    if (result == true) break;
-                }
-                else if (job.bill.recipe == PurpleIvyDefOf.DrawKorsolianToxin)
-                {
-                    result = this.HasToxinInAlien(alien);
-                    job.targetB = alien;
-                    jobDef = PurpleIvyDefOf.PI_DrawKorsolianToxin;
-                    if (result == true) break;
-                }
-                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionAlpha 
-                    && "Genny_ParasiteAlpha" == alien.def.defName)
-                {
-                    result = true;
-                    job.targetB = alien;
-                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
-                    break;
-                }
-                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionBeta && 
-                    "Genny_ParasiteBeta" == alien.def.defName)
-                {
-                    result = true;
-                    job.targetB = alien;
-                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
-                    break;
-                }
-                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionGamma &&
-                    "Genny_ParasiteGamma" == alien.def.defName)
-                {
-                    result = true;
-                    job.targetB = alien;
-                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
-                    break;
-                }
-                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionOmega 
-                    && "Genny_ParasiteOmega" == alien.def.defName)
-                {
-                    result = true;
-                    job.targetB = alien;
-                    jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
-                    break;
+                    if (job.bill.recipe == PurpleIvyDefOf.DrawAlienBlood)
+                    {
+                        result = this.HasBloodInAlien(alien);
+                        job.targetB = alien;
+                        jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
+                        if (result == true) break;
+                    }
+                    else if (job.bill.recipe == PurpleIvyDefOf.DrawAlphaAlienBlood &&
+                        "Genny_ParasiteAlpha" == alien.def.defName)
+                    {
+                        result = this.HasBloodInAlien(alien);
+                        job.targetB = alien;
+                        jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
+                        if (result == true) break;
+                    }
+                    else if (job.bill.recipe == PurpleIvyDefOf.DrawBetaAlienBlood
+                        && "Genny_ParasiteBeta" == alien.def.defName)
+                    {
+                        result = this.HasBloodInAlien(alien);
+                        job.targetB = alien;
+                        jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
+                        if (result == true) break;
+                    }
+                    else if (job.bill.recipe == PurpleIvyDefOf.DrawGammaAlienBlood
+                        && "Genny_ParasiteGamma" == alien.def.defName)
+                    {
+                        result = this.HasBloodInAlien(alien);
+                        job.targetB = alien;
+                        jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
+                        if (result == true) break;
+                    }
+                    else if (job.bill.recipe == PurpleIvyDefOf.DrawOmegaAlienBlood && "Genny_ParasiteOmega" == alien.def.defName)
+                    {
+                        result = this.HasBloodInAlien(alien);
+                        job.targetB = alien;
+                        jobDef = PurpleIvyDefOf.PI_DrawAlienBlood;
+                        if (result == true) break;
+                    }
+                    else if (job.bill.recipe == PurpleIvyDefOf.DrawKorsolianToxin)
+                    {
+                        result = this.HasToxinInAlien(alien);
+                        job.targetB = alien;
+                        jobDef = PurpleIvyDefOf.PI_DrawKorsolianToxin;
+                        if (result == true) break;
+                    }
+                    else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionAlpha
+                        && "Genny_ParasiteAlpha" == alien.def.defName)
+                    {
+                        result = true;
+                        job.targetB = alien;
+                        jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                        break;
+                    }
+                    else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionBeta &&
+                        "Genny_ParasiteBeta" == alien.def.defName)
+                    {
+                        result = true;
+                        job.targetB = alien;
+                        jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                        break;
+                    }
+                    else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionGamma &&
+                        "Genny_ParasiteGamma" == alien.def.defName)
+                    {
+                        result = true;
+                        job.targetB = alien;
+                        jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                        break;
+                    }
+                    else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionOmega
+                        && "Genny_ParasiteOmega" == alien.def.defName)
+                    {
+                        result = true;
+                        job.targetB = alien;
+                        jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                        break;
+                    }
                 }
             }
             if (result == false)

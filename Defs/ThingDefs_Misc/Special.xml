@@ -7,13 +7,12 @@
 		<thingClass>PurpleIvy.MeteorIncoming</thingClass>
 		<tickerType>Normal</tickerType>
 		<category>Ethereal</category>
-
-		<size>(2, 2)</size>
+		<size>(1, 1)</size>
 		<graphicData>
 			<texPath>Things/Meteor</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutFlying</shaderType>
-			<drawSize>(2, 2)</drawSize>
+			<drawSize>(1, 1)</drawSize>
 		</graphicData>
 		<skyfaller>
 			<shadowSize>(3, 3)</shadowSize>

@@ -13,6 +13,7 @@ namespace PurpleIvy
         public int startOfIncubation = 0;
         public int maxNumberOfCreatures = 0;
         public bool prevAngle = true;
+        public int tickStartHediff = 0;
 
         public CompProperties_AlienInfection Props => this.props as CompProperties_AlienInfection;
 
@@ -24,7 +25,7 @@ namespace PurpleIvy
 
         public void TryStartSpawn()
         {
-            if (this.Props.IncubationData.tickStartHediff.min > 0 &&
+            if (tickStartHediff > 0 &&
                 this.startOfIncubation + this.Props.IncubationData.tickStartHediff.RandomInRange
                 < Find.TickManager.TicksGame)
             {
@@ -33,7 +34,7 @@ namespace PurpleIvy
                     var hediff = HediffMaker.MakeHediff(HediffDef.Named(this.Props.IncubationData.hediff),
                     (Pawn)this.parent, null);
                     ((Pawn)this.parent).health.AddHediff(hediff, null, null, null);
-                    this.Props.IncubationData.tickStartHediff.min = 0;
+                    this.tickStartHediff = 0;
                 }
             }
             if (this.currentCountOfCreatures < this.maxNumberOfCreatures)
@@ -109,7 +110,11 @@ namespace PurpleIvy
 
             if (this.Props.typesOfCreatures == null) return;
             if (this.maxNumberOfCreatures != 0 && currentCountOfCreatures >= this.maxNumberOfCreatures) return;
-            foreach (var newPawn in from defName in this.Props.typesOfCreatures let numberOfSpawn = this.Props.numberOfCreaturesPerSpawn.RandomInRange where numberOfSpawn > 0 from i in Enumerable.Range(0, numberOfSpawn) select PawnKindDef.Named(defName) into pawnKindDef select PawnGenerator.GeneratePawn(pawnKindDef, null))
+            foreach (var newPawn in from defName in this.Props.typesOfCreatures
+                                    let numberOfSpawn = this.Props.numberOfCreaturesPerSpawn.RandomInRange
+                                    where numberOfSpawn > 0 from i in Enumerable.Range(0, numberOfSpawn)
+                                    select PawnKindDef.Named(defName) into pawnKindDef
+                                    select PawnGenerator.GeneratePawn(pawnKindDef, null))
             {
                 Log.Message(this.parent + " produces " + newPawn.Label);
                 if (this.Props.ageTick.RandomInRange > 0)
@@ -287,6 +292,7 @@ namespace PurpleIvy
             Scribe_Values.Look<int>(ref this.currentCountOfCreatures, "currentCountOfCreatures", 0, false);
             Scribe_Values.Look<int>(ref this.startOfIncubation, "startOfIncubation", 0, false);
             Scribe_Values.Look<int>(ref this.maxNumberOfCreatures, "maxNumberOfCreatures", 0, false);
+            Scribe_Values.Look<int>(ref this.tickStartHediff, "tickStartHediff", 0, false);
         }
     }
 }
