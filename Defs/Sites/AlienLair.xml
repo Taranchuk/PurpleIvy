@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <SitePartDef ParentName="Outpost">
+    <defName>AlienLair</defName>
+    <label>alien lair</label>
+    <description>An alien lair.</description>
+    <tags Inherit="False">
+      <li>AlienLair</li>
+    </tags>
+  </SitePartDef>
+
+  <GenStepDef>
+    <defName>AlienLair</defName>
+    <linkWithSite>AlienLair</linkWithSite>
+    <order>450</order>
+    <genStep Class="GenStep_Outpost"/>
+  </GenStepDef>
+
+  <GenStepDef>
+    <defName>AlienLairPower</defName>
+    <linkWithSite>AlienLair</linkWithSite>
+    <order>451</order>
+    <genStep Class="GenStep_Power"/>
+  </GenStepDef>
+
+</Defs>

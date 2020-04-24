@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <RulePackDef>
+    <defName>NamerFactionBaseAliens</defName>
+    <rulePack>
+      <rulesStrings>
+		<li>name->The Alien Hive</li>
+		<li>name->The Alien Lair</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

@@ -315,6 +315,8 @@
     <Compile Include="GenerationWorker\SitePartWorker_ProceduralGeneration.cs" />
     <Compile Include="GenerationWorker\SymbolResolver_AdvancedGeneration.cs" />
     <Compile Include="GenerationWorker\ThingSetMakerDefOf.cs" />
+    <Compile Include="HarmonyPatches\AlienLairsBasesGeneration - Copy.cs" />
+    <Compile Include="HarmonyPatches\AlienLairsBasesGeneration.cs" />
     <Compile Include="HarmonyPatches\FloatMenuMakerMap_Patch.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatchesInit.cs" />
     <Compile Include="HarmonyPatches\ApplyWeatherOnNewMaps.cs" />
@@ -343,6 +345,7 @@
     <Compile Include="RaceWeapons\Projectile_HeatImpact.cs" />
     <Compile Include="RaceWeapons\ThingDefOf.cs" />
     <Compile Include="RaceWeapons\ThingDef_RaceWeapons.cs" />
+    <Compile Include="Sites\GenStep_AlienLairs.cs" />
     <Compile Include="Sites\Site_AbandonedBase.cs" />
     <Compile Include="Sites\Site_DefeatedSite.cs" />
     <Compile Include="AlienInfection\HediffInfected.cs" />
