@@ -23,7 +23,11 @@ namespace PurpleIvy
             if (!pawn2.Downed)
             {
                 var verb = pawn.VerbTracker.AllVerbs.Where(x => x.IsMeleeAttack != true).FirstOrDefault();
-                Log.Message("CHOOSE ATTACK METHOD");
+                Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " CHOOSE ATTACK METHOD");
+                if (pawn.CurJob != null)
+                {
+                    Log.Message(pawn + " - " + pawn.CurJob.def.defName);
+                }
                 if (verb != null && Rand.Chance(0.8f) && pawn.Position.InHorDistOf(pawn2.Position, verb.verbProps.range))
                 {
                     Log.Message(pawn + " - SHOOT");
@@ -88,9 +92,10 @@ namespace PurpleIvy
         {
             Verb verb = pawn.TryGetAttackVerb(target, true);
             JobDef jobDef;
-            jobDef = JobDefOf.UseVerbOnThing;
+            jobDef = PurpleIvyDefOf.PI_AnimalRangeAttack;
             Job job = new Job(jobDef);
             job.verbToUse = verb;
+            job.expiryInterval = Rand.Range(420, 900);
             job.targetA = new LocalTargetInfo(target);
             job.playerForced = true;
             job.killIncappedTarget = true;

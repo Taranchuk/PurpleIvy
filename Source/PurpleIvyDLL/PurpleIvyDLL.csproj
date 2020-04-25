@@ -340,6 +340,11 @@
     <Compile Include="RaceWeapons\Projectile_HeatImpact.cs" />
     <Compile Include="RaceWeapons\ThingDefOf.cs" />
     <Compile Include="RaceWeapons\ThingDef_RaceWeapons.cs" />
+    <Compile Include="RangeAnimalFramework\AnimalRangeAttack.cs" />
+    <Compile Include="RangeAnimalFramework\ARA_AttackTargetFinder.cs" />
+    <Compile Include="RangeAnimalFramework\ExplodeProjectile.cs" />
+    <Compile Include="RangeAnimalFramework\FireProjectile.cs" />
+    <Compile Include="RangeAnimalFramework\Harmony.cs" />
     <Compile Include="Sites\GenStep_AlienLair.cs" />
     <Compile Include="Sites\Site_AbandonedBase.cs" />
     <Compile Include="Sites\Site_DefeatedSite.cs" />
