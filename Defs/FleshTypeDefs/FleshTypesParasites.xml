@@ -2,6 +2,8 @@
 <Defs>
 	<FleshTypeDef>
 		<defName>FleshParasiteAlpha</defName>
+		<label>Flesh Parasite</label>
+		<description>Flesh Parasite</description>
 		<ateDirect>AteInsectMeatDirect</ateDirect>
 		<ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
 		<corpseCategory>CorpsesAlienParasiteAlpha</corpseCategory>
@@ -23,6 +25,8 @@
 
 	<FleshTypeDef>
 		<defName>FleshParasiteBeta</defName>
+		<label>Flesh Parasite</label>
+		<description>Flesh Parasite</description>
 		<ateDirect>AteInsectMeatDirect</ateDirect>
 		<ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
 		<corpseCategory>CorpsesAlienParasiteBeta</corpseCategory>
@@ -44,6 +48,8 @@
 
 	<FleshTypeDef>
 		<defName>FleshParasiteGamma</defName>
+		<label>Flesh Parasite</label>
+		<description>Flesh Parasite</description>
 		<ateDirect>AteInsectMeatDirect</ateDirect>
 		<ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
 		<corpseCategory>CorpsesAlienParasiteGamma</corpseCategory>
@@ -65,6 +71,8 @@
 
 	<FleshTypeDef>
 		<defName>FleshParasiteOmega</defName>
+		<label>Flesh Parasite</label>
+		<description>Flesh Parasite</description>
 		<ateDirect>AteInsectMeatDirect</ateDirect>
 		<ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
 		<corpseCategory>CorpsesAlienParasiteOmega</corpseCategory>

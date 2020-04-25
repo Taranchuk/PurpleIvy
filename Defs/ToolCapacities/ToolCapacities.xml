@@ -5,6 +5,7 @@
 	<ToolCapacityDef>
 		<defName>AlienToxicSting</defName>
 		<label>toxic stinging</label>
+		<description>toxic stinging</description>
 	</ToolCapacityDef>
 	
 </Defs>

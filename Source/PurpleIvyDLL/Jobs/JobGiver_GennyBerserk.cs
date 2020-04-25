@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -21,12 +22,18 @@ namespace PurpleIvy
             if (pawn2 == null) return null;
             if (!pawn2.Downed)
             {
-                foreach (var verb in pawn.VerbTracker.AllVerbs)
+                var verb = pawn.VerbTracker.AllVerbs.Where(x => x.IsMeleeAttack != true).FirstOrDefault();
+                Log.Message("CHOOSE ATTACK METHOD");
+                if (verb != null && Rand.Chance(0.8f) && pawn.Position.InHorDistOf(pawn2.Position, verb.verbProps.range))
                 {
-                    Log.Message(pawn + " - " + verb.IsMeleeAttack);
+                    Log.Message(pawn + " - SHOOT: " + pawn.TryGetAttackVerb(pawn2, true).GetDamageDef().defName);
+                    return RangeAttackJob(pawn, pawn2);
                 }
-                Log.Message(pawn + " - DAMAGE DEF: " + pawn.TryGetAttackVerb(pawn2, true).GetDamageDef().defName);
-                return MeleeAttackJob(pawn, pawn2);
+                else
+                {
+                    Log.Message(pawn + " - MELEE: " + pawn.TryGetAttackVerb(pawn2, true).GetDamageDef().defName);
+                    return MeleeAttackJob(pawn, pawn2);
+                }
             }
             else if (pawn2.Downed)
             {

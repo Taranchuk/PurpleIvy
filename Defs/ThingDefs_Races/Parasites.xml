@@ -3,6 +3,8 @@
 
 	<!-- ============================ Gennys ========================== -->
 	<ThingDef Name="BaseParasite" ParentName="BasePawn" Abstract="True">
+		<label>Alien parasite</label>
+		<description>Alien parasite</description>
 		<thingClass>Pawn</thingClass>
 		<statBases>
 			<PsychicSensitivity>1</PsychicSensitivity>
@@ -194,10 +196,10 @@
 				<accuracyLong>1</accuracyLong>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>PI_ToxicBullet</defaultProjectile>
-				<warmupTime>3</warmupTime>
-				<burstShotCount>3</burstShotCount>
+				<warmupTime>0.1</warmupTime>
+				<burstShotCount>1</burstShotCount>
 				<minRange>1</minRange>
-				<range>25</range>
+				<range>5</range>
 				<soundCast>Shot_NeedleGun</soundCast>
 				<muzzleFlashScale>0</muzzleFlashScale>
 				<!--Commanility determines how frequent this range verb is chosen.-->
