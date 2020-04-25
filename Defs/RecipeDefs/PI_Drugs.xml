@@ -14,7 +14,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>PI_NervousSystem</li>
+            <li>PI_NeuralLiquid</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -22,7 +22,7 @@
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
-        <li>PI_NervousSystem</li>
+        <li>PI_NeuralLiquid</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

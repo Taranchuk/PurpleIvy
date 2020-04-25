@@ -50,6 +50,10 @@
     </inspectorTabs>
 	<recipes>
       <li>PI_MakeTestDrug</li>
+	  <li>PI_ExtractNeuralLiquidFromAlpha</li>
+	  <li>PI_ExtractNeuralLiquidFromBeta</li>
+	  <li>PI_ExtractNeuralLiquidFromGamma</li>
+	  <li>PI_ExtractNeuralLiquidFromOmega</li>
     </recipes>
     <comps>
       <li Class="CompProperties_Glower">

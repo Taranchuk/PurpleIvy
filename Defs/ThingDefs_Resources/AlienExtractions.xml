@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_NeuralLiquid</defName>
+		<label>NeuralLiquid</label>
+		<description>NeuralLiquid</description>
+		<graphicData>
+			<texPath>Things/Resources/Extractions/NeuralLiquid</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.026</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>4</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+
+</Defs>

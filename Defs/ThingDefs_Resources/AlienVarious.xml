@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_PlasmaNucleus</defName>
+		<label>PlasmaNucleus</label>
+		<description>PlasmaNucleus</description>
+		<graphicData>
+			<texPath>Things/Resources/Various/PlasmaNucleus</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.026</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>4</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+	
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_AlphaNervousSystem</defName>
+		<label>AlphaNervousSystem</label>
+		<description>AlphaNervousSystem</description>
+		<graphicData>
+			<texPath>Things/Resources/Various/AlphaNervousSystem</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.026</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>4</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+	
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_BetaNervousSystem</defName>
+		<label>BetaNervousSystem</label>
+		<description>BetaNervousSystem</description>
+		<graphicData>
+			<texPath>Things/Resources/Various/BetaNervousSystem</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.026</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>4</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+	
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_GammaNervousSystem</defName>
+		<label>GammaNervousSystem</label>
+		<description>GammaNervousSystem</description>
+		<graphicData>
+			<texPath>Things/Resources/Various/GammaNervousSystem</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.026</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>4</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+	
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_OmegaNervousSystem</defName>
+		<label>OmegaNervousSystem</label>
+		<description>OmegaNervousSystem</description>
+		<graphicData>
+			<texPath>Things/Resources/Various/OmegaNervousSystem</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.026</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>4</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+	
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_Tentacles</defName>
+		<label>Tentacles</label>
+		<description>Tentacles</description>
+		<graphicData>
+			<texPath>Things/Resources/Various/PI_Tentacles</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.026</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>4</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+	
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_BigTentacles</defName>
+		<label>BigTentacles</label>
+		<description>BigTentacles</description>
+		<graphicData>
+			<texPath>Things/Resources/Various/PI_BigTentacles</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.026</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>4</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+	
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_ToxicSac</defName>
+		<label>ToxicSac</label>
+		<description>ToxicSac</description>
+		<graphicData>
+			<texPath>Things/Resources/Various/PI_ToxicSac</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.026</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>4</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+
+</Defs>

@@ -15,11 +15,11 @@
 		<workSkill>Medicine</workSkill>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
 		<products>
-			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
-			<PI_NervousSystem>1</PI_NervousSystem>
-			<PI_Tentacles>6</PI_Tentacles>
-			<PI_ToxicSac>1</PI_ToxicSac>
-			<PI_AlphaBlood>10</PI_AlphaBlood>
+			<PI_PlasmaNucleus>3</PI_PlasmaNucleus>
+			<PI_AlphaNervousSystem>1</PI_AlphaNervousSystem>
+			<PI_BigTentacles>6</PI_BigTentacles>
+			<PI_ToxicSac>3</PI_ToxicSac>
+			<PI_AlphaBlood>30</PI_AlphaBlood>
 		</products>
 		<specialProducts>
 			<li>Butchery</li>
@@ -41,7 +41,7 @@
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
 		<products>
 			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
-			<PI_NervousSystem>1</PI_NervousSystem>
+			<PI_BetaNervousSystem>1</PI_BetaNervousSystem>
 			<PI_Tentacles>6</PI_Tentacles>
 			<PI_ToxicSac>1</PI_ToxicSac>
 			<PI_BetaBlood>7</PI_BetaBlood>
@@ -66,7 +66,7 @@
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
 		<products>
 			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
-			<PI_NervousSystem>1</PI_NervousSystem>
+			<PI_GammaNervousSystem>1</PI_GammaNervousSystem>
 			<PI_Tentacles>6</PI_Tentacles>
 			<PI_ToxicSac>1</PI_ToxicSac>
 			<PI_GammaBlood>7</PI_GammaBlood>
@@ -87,7 +87,7 @@
 		</recipeUsers>
 		<products>
 			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
-			<PI_NervousSystem>1</PI_NervousSystem>
+			<PI_OmegaNervousSystem>1</PI_OmegaNervousSystem>
 			<PI_Tentacles>6</PI_Tentacles>
 			<PI_ToxicSac>1</PI_ToxicSac>
 			<PI_OmegaBlood>5</PI_OmegaBlood>
