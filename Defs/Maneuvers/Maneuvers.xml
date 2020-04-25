@@ -3,6 +3,8 @@
 
 	<ManeuverDef>
 		<defName>AlienToxicSting</defName>
+		<label>toxic sting</label>
+		<description>toxic sting</description>
 		<requiredCapacity>AlienToxicSting</requiredCapacity>
 		<verb>
 			<verbClass>Verb_MeleeAttackDamage</verbClass>

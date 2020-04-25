@@ -4,6 +4,7 @@
 	<DamageDef>
 		<defName>AlienToxicSting</defName>
 		<label>toxic sting</label>
+		<description>toxic sting</description>
 		<workerClass>DamageWorker_Stab</workerClass>
 		<externalViolence>true</externalViolence>
 		<deathMessage>{0} has been stung to death.</deathMessage>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+
 	<ThingDef ParentName="BaseBullet">
 		<defName>PI_ToxicBullet</defName>
 		<label>toxic spit</label>
+		<thingClass>PurpleIvy.AlienProjectile</thingClass>
 		<graphicData>
 			<texPath>Things/Projectiles/OxalisSeed</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
