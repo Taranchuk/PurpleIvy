@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<DamageDef>
+		<defName>AlienTentacleGrapple</defName>
+		<label>tentacle grapple</label>
+		<description>tentacle grapple</description>
+		<makesBlood>false</makesBlood>
+		<workerClass>DamageWorker_Blunt</workerClass>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} has been choked to death.</deathMessage>
+		<hediff>Crush</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Blunt</armorCategory>
+	</DamageDef>
+
+</Defs>

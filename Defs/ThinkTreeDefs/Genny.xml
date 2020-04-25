@@ -14,6 +14,9 @@
 				<li Class="ThinkNode_Subtree">
 					<treeDef>Downed</treeDef>
 				</li>
+				<li Class="ThinkNode_Subtree">
+                <treeDef>BurningResponse</treeDef>
+                </li>
 
 				<li Class="ThinkNode_Tagger">
 					<tagToGive>SatisfyingNeeds</tagToGive>
