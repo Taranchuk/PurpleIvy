@@ -56,7 +56,6 @@ namespace PurpleIvy
                         {
                             try
                             {
-                                //Log.Message("FAIL ----------------", true);
                                 Log.Message("FAIL: " + job.bill.recipe.defName, true);
                                 //Log.Message("TARGET A: " + job.targetA.Thing, true);
                                 //Log.Message("TARGET B: " + job.targetB.Thing, true);

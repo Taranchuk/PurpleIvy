@@ -73,7 +73,7 @@ namespace PurpleIvy
             Thing corpse = null;
             var corpses = this.Map.listerThings.ThingsInGroup(ThingRequestGroup.Corpse).
     Where(x => x != null && x.def.thingCategories.Contains
-    (PurpleIvyDefOf.CorpsesAlienParasiteAlpha)).ToList();
+    (category)).ToList();
             if (corpses != null && corpses.Count > 0)
             {
                 corpse = corpses[0];

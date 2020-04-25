@@ -21,6 +21,11 @@ namespace PurpleIvy
             if (pawn2 == null) return null;
             if (!pawn2.Downed)
             {
+                foreach (var verb in pawn.VerbTracker.AllVerbs)
+                {
+                    Log.Message(pawn + " - " + verb.IsMeleeAttack);
+                }
+                Log.Message(pawn + " - DAMAGE DEF: " + pawn.TryGetAttackVerb(pawn2, true).GetDamageDef().defName);
                 return MeleeAttackJob(pawn, pawn2);
             }
             else if (pawn2.Downed)
@@ -69,6 +74,29 @@ namespace PurpleIvy
             job.expiryInterval = Rand.Range(420, 900);
             job.attackDoorIfTargetLost = true;
             job.canBash = true;
+            return job;
+        }
+
+        private static Job RangeAttackJob(Pawn pawn, Thing target)
+        {
+            Verb verb = pawn.TryGetAttackVerb(target, true);
+            JobDef jobDef;
+            if (verb.verbProps.ai_IsWeapon)
+            {
+                jobDef = JobDefOf.AttackStatic;
+            }
+            else
+            {
+                jobDef = JobDefOf.UseVerbOnThing;
+            }
+            Job job = new Job(jobDef);
+            job.verbToUse = verb;
+            job.targetA = new LocalTargetInfo(target);
+            job.playerForced = true;
+            job.killIncappedTarget = true;
+            job.ignoreForbidden = true;
+            job.ignoreDesignations = true;
+            job.ignoreJoyTimeAssignment = true;
             return job;
         }
         private Building FindTurretTarget(Pawn pawn)

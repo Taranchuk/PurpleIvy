@@ -5,7 +5,7 @@
 		<defName>Bullet_GenTurret</defName>
 		<label>Mucilage</label>
 		<graphicData>
-			<texPath>Things/Bullet_Slime</texPath>
+			<texPath>Things/Projectiles/Bullet_Slime</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile>

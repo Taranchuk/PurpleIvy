@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="BaseBullet">
+		<defName>PI_ToxicBullet</defName>
+		<label>toxic spit</label>
+		<graphicData>
+			<texPath>Things/Projectiles/OxalisSeed</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1</drawSize>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>AlienToxicSting</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<speed>15</speed>
+		</projectile>
+	</ThingDef>
+
+</Defs>
