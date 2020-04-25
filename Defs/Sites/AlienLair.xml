@@ -1,27 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+	<SitePartDef>
+		<defName>AlienLair</defName>
+		<label>alien lair</label>
+		<description>An alien lair.</description>
+		<siteTexture>World/WorldObjects/Sites/Outpost</siteTexture>
+		<expandingIconTexture>WorldIcons/Site/AlienLairs</expandingIconTexture>
+		<applyFactionColorToSiteTexture>false</applyFactionColorToSiteTexture>
+		<arrivedLetter>There are aliens in this area.</arrivedLetter>
+		<increasesPopulation>true</increasesPopulation>
+		<workerClass>PurpleIvy.SitePartWorker_AlienLair</workerClass>
+		<showFactionInInspectString>true</showFactionInInspectString>
+		<requiresFaction>true</requiresFaction>
+		<approachOrderString>Attack {0}</approachOrderString>
+		<approachingReportString>Attacking {0}</approachingReportString>
+		<arrivedLetterDef>NegativeEvent</arrivedLetterDef>
+		<wantsThreatPoints>true</wantsThreatPoints>
+		<minThreatPoints>300</minThreatPoints>
+		<tags>
+			<li>AlienLair</li>
+		</tags>
+		<excludesTags>
+			<li>Outpost</li>
+			<li>MineralScannerPreciousLumpThreat</li>
+			<li>ItemStashQuestThreat</li>
+			<li>DownedRefugeeQuestThreat</li>
+			<li>PrisonerRescueQuestThreat</li>
+			<li>QuestActiveThreatDefense</li>
+			<li>QuestActiveThreatDefenseNoHidden</li>
+			<li>MechCluster</li>
+			<li>SleepingMechanoids</li>
+			<li>Manhunters</li>
+		</excludesTags>
+	</SitePartDef>
 
-  <SitePartDef ParentName="Outpost">
-    <defName>AlienLair</defName>
-    <label>alien lair</label>
-    <description>An alien lair.</description>
-    <tags Inherit="False">
-      <li>AlienLair</li>
-    </tags>
-  </SitePartDef>
-
-  <GenStepDef>
-    <defName>AlienLair</defName>
-    <linkWithSite>AlienLair</linkWithSite>
-    <order>450</order>
-    <genStep Class="GenStep_Outpost"/>
-  </GenStepDef>
-
-  <GenStepDef>
-    <defName>AlienLairPower</defName>
-    <linkWithSite>AlienLair</linkWithSite>
-    <order>451</order>
-    <genStep Class="GenStep_Power"/>
-  </GenStepDef>
+<GenStepDef>
+	<defName>AlienLair</defName>
+	<order>450</order>
+	<genStep Class="PurpleIvy.GenStep_AlienLair">
+		<count>1</count>
+		<nearMapCenter>true</nearMapCenter>
+	</genStep>
+</GenStepDef>
 
 </Defs>

@@ -6,13 +6,6 @@ using Verse;
 
 namespace PurpleIvy
 {
-
-    //[HarmonyPatch(typeof(MapComponentUtility))]
-    //[HarmonyPatch("MapGenerated")]
-    //[HarmonyPatch(new Type[]
-    //{
-    //    typeof(Map)
-    //})]
     [HarmonyPatch(typeof(Map))]
     [HarmonyPatch("FinalizeInit")]
     [HarmonyPatch(new Type[]
@@ -24,7 +17,7 @@ namespace PurpleIvy
         [HarmonyPostfix]
         public static void Postfix(Map __instance)
         {
-            Log.Message(__instance.ToString());
+            Log.Message("WeatherChecker: " + __instance.ToString());
             bool comeFromOuterSource;
             var tempComp = new WorldObjectComp_InfectedTile();
             tempComp.infectedTile = __instance.Tile;
@@ -47,7 +40,6 @@ namespace PurpleIvy
                 __instance.Parent.AllComps.Add(tempComp);
 
             }
-            Log.Message("WeatherChecker", true);
         }
     }
 }

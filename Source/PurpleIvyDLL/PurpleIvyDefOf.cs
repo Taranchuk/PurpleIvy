@@ -1,5 +1,4 @@
 ﻿using System;
-using GenerationWorker;
 using RimWorld;
 using Verse;
 
@@ -60,6 +59,8 @@ namespace PurpleIvy
 
         public static ThingDef PI_KorsolianToxin;
 
+        public static ThingDef AlienBloodFilth;
+
         public static WeatherDef PI_PurpleFog;
 
         public static WeatherDef PI_PurpleFoggyRain;
@@ -93,7 +94,6 @@ namespace PurpleIvy
         public static ThingDef GasPump;
 
         public static ThingDef PlantVenomousToothwort;
-
 
         public static ThingDef PI_Nectar;
 
