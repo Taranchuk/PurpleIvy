@@ -333,6 +333,7 @@
     <Compile Include="Jobs\JobDriver_ExtractNectar.cs" />
     <Compile Include="Plants\Plant_VenomousToothwort.cs" />
     <Compile Include="Plants\Plant_Nest.cs" />
+    <Compile Include="PurpleIvyUtils.cs" />
     <Compile Include="RaceWeapons\CompFutureDamage.cs" />
     <Compile Include="RaceWeapons\CompProperties_RaceDamage.cs" />
     <Compile Include="RaceWeapons\Projectile_HeatImpact.cs" />
@@ -345,7 +346,6 @@
     <Compile Include="PurpleIvyData.cs" />
     <Compile Include="Sites\BiomeWorker_AlienBiome.cs" />
     <Compile Include="Sites\GenStep_InfectedTile.cs" />
-    <Compile Include="Sites\SitePartWorker_AlienLair.cs" />
     <Compile Include="Sites\WorldLayerRegenerateBiomes.cs" />
     <Compile Include="Sites\WorldObjectCompProperties_InfectedTile.cs" />
     <Compile Include="Sites\Site_InfectedSite.cs" />

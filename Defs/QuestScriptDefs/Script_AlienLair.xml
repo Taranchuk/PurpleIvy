@@ -15,8 +15,8 @@
 		</questNameRules>
 		<questDescriptionRules>
 			<rulesStrings>
-				<li>questDescription->[asker_nameFull], [asker_faction_leaderTitle] of [asker_faction_name], has sent us a message. Apparently, [siteFaction_pawnsPlural] based in a nearby camp have been raiding their caravans. The camp is controlled by [siteFaction_name].
-\n[asker_nameDef] is asking us to destroy the camp, which means eliminating all enemies and turrets. [asker_label] says that [sitePart0_description].
+				<li>questDescription->[asker_nameFull], [asker_faction_leaderTitle] of [asker_faction_name], has sent us a message. Apparently, strange, alien creatures have been raiding their caravans.
+\n[asker_nameDef] is asking us to destroy them. [asker_label] says that [sitePart0_description].
 \nIf we succeed, [allRewardsDescriptions]</li>
 			</rulesStrings>
 		</questDescriptionRules>
@@ -46,19 +46,18 @@
 					<preferCloserTiles>true</preferCloserTiles>
 				</li>
 
+				<li Class="QuestNode_Set">
+					<name>siteFaction</name>
+					<value>Genny</value>
+				</li>
+
 				<li Class="QuestNode_GetSitePartDefsByTagsAndFaction">
 					<storeAs>sitePartDefs</storeAs>
-					<storeFactionAs>siteFaction</storeFactionAs>
 					<sitePartsTags>
 						<li>
 							<tag>AlienLair</tag>
 						</li>
 					</sitePartsTags>
-				</li>
-
-				<li Class="QuestNode_Set">
-					<name>$siteFaction</name>
-					<value>Genny</value>
 				</li>
 
 				<li Class="QuestNode_GetDefaultSitePartsParams">
@@ -68,18 +67,9 @@
 					<storeSitePartsParamsAs>sitePartsParams</storeSitePartsParamsAs>
 				</li>
 
-				<li Class="QuestNode_Set">
-					<name>$siteFaction</name>
-					<value>Genny</value>
-				</li>
-
 				<li Class="QuestNode_GetSiteThreatPoints">
 					<storeAs>sitePoints</storeAs>
 					<sitePartsParams>$sitePartsParams</sitePartsParams>
-				</li>
-				<li Class="QuestNode_Set">
-					<name>$siteFaction</name>
-					<value>Genny</value>
 				</li>
 
 				<li Class="QuestNode_SubScript">
@@ -90,50 +80,12 @@
 					</parms>
 				</li>
 
-				<li Class="QuestNode_Set">
-					<name>$siteFaction</name>
-					<value>Genny</value>
-				</li>
-
-
 				<li Class="QuestNode_SubScript">
 					<def>Util_GenerateSite</def>
 				</li>
 
-				<li Class="QuestNode_Set">
-					<name>$siteFaction</name>
-					<value>Genny</value>
-				</li>
-
 				<li Class="QuestNode_SpawnWorldObjects">
 					<worldObjects>$site</worldObjects>
-				</li>
-
-				<li Class="QuestNode_Set">
-					<name>$siteFaction</name>
-					<value>Genny</value>
-				</li>
-				<li Class="QuestNode_WorldObjectTimeout">
-					<worldObject>$site</worldObject>
-					<isQuestTimeout>true</isQuestTimeout>
-					<delayTicks>$(randInt(12,28)*60000)</delayTicks>
-					<inSignalDisable>site.MapGenerated</inSignalDisable>
-					<node Class="QuestNode_Sequence">
-						<nodes>
-							<li Class="QuestNode_Letter">
-								<label>Quest expired: [resolvedQuestName]</label>
-								<text>The bandit camp has packed up and moved on. The quest [resolvedQuestName] has expired.</text>
-							</li>
-							<li Class="QuestNode_End">
-								<outcome>Fail</outcome>
-							</li>
-						</nodes>
-					</node>
-				</li>
-
-				<li Class="QuestNode_Set">
-					<name>$siteFaction</name>
-					<value>Genny</value>
 				</li>
 
 				<li Class="QuestNode_Signal">
@@ -145,7 +97,7 @@
 							<chosenPawnSignal>ChosenPawnForReward</chosenPawnSignal>
 						</parms>
 						<customLetterLabel>Payment arrived</customLetterLabel>
-						<customLetterText>You have defeated the bandit camp!\n\nThe payment from [asker_faction_name] has arrived.</customLetterText>
+						<customLetterText>You have defeated the alien creatures!\n\nThe payment from [asker_faction_name] has arrived.</customLetterText>
 						<nodeIfChosenPawnSignalUsed Class="QuestNode_Letter">
 							<letterDef>ChoosePawn</letterDef>
 							<label>[asker_faction_royalFavorLabel]</label>
@@ -156,20 +108,12 @@
 					</node>
 				</li>
 
-				<li Class="QuestNode_Set">
-					<name>$siteFaction</name>
-					<value>Genny</value>
-				</li>
-
 				<li Class="QuestNode_End">
 					<inSignal>site.AllEnemiesDefeated</inSignal>
 					<outcome>Success</outcome>
 				</li>
-				
-				<li Class="QuestNode_Set">
-					<name>$siteFaction</name>
-					<value>Genny</value>
-				</li>
+
+
 			</nodes>
 		</root>
 	</QuestScriptDef>

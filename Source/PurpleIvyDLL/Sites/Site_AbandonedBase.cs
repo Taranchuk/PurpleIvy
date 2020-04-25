@@ -12,10 +12,7 @@ namespace PurpleIvy
         public override void PostMapGenerate()
         {
             base.PostMapGenerate();
-            foreach (var pawn in this.Map.mapPawns.AllPawns.Where(pawn => pawn.Faction != Faction.OfPlayer))
-            {
-                pawn.Destroy(DestroyMode.Vanish);
-            }
+            PurpleIvyUtils.KillAllPawnsExceptAliens(this.Map);
             foreach (var item in this.Map.listerThings.AllThings.Where(item => item.Faction != Faction.OfPlayer))
             {
                 item.Destroy(DestroyMode.Vanish);

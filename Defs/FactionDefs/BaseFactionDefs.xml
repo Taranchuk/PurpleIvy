@@ -27,9 +27,11 @@
 		<techLevel>Animal</techLevel>
 		<factionIconPath>WorldIcons/Site/AlienLairs</factionIconPath>
 		<settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+		<!--
 		<colorSpectrum>
 			<li>(150,150,150)</li>
 		</colorSpectrum>
+		-->
 		<maxPawnCostPerTotalPointsCurve>
 			<points>
 				<li>(0,35)</li>

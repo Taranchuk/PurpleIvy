@@ -9,7 +9,6 @@
 		<applyFactionColorToSiteTexture>false</applyFactionColorToSiteTexture>
 		<arrivedLetter>There are aliens in this area.</arrivedLetter>
 		<increasesPopulation>true</increasesPopulation>
-		<workerClass>PurpleIvy.SitePartWorker_AlienLair</workerClass>
 		<showFactionInInspectString>true</showFactionInInspectString>
 		<requiresFaction>true</requiresFaction>
 		<approachOrderString>Attack {0}</approachOrderString>
@@ -34,13 +33,14 @@
 		</excludesTags>
 	</SitePartDef>
 
-<GenStepDef>
-	<defName>AlienLair</defName>
-	<order>450</order>
-	<genStep Class="PurpleIvy.GenStep_AlienLair">
-		<count>1</count>
-		<nearMapCenter>true</nearMapCenter>
-	</genStep>
-</GenStepDef>
+	<GenStepDef>
+		<defName>AlienLair</defName>
+		<order>460</order>
+		<linkWithSite>AlienLair</linkWithSite>
+		<genStep Class="PurpleIvy.GenStep_AlienLair">
+			<count>1</count>
+			<nearMapCenter>true</nearMapCenter>
+		</genStep>
+	</GenStepDef>
 
 </Defs>

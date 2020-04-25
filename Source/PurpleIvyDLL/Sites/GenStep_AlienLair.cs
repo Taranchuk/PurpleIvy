@@ -17,8 +17,6 @@ namespace PurpleIvy
 
         protected override bool CanScatterAt(IntVec3 c, Map map)
         {
-            Log.Message("ScatterAt2");
-
             if (!base.CanScatterAt(c, map))
             {
                 return false;
@@ -42,7 +40,6 @@ namespace PurpleIvy
 
         protected override void ScatterAt(IntVec3 c, Map map, GenStepParams parms, int stackCount = 1)
         {
-            Log.Message("ScatterAt1");
             int randomInRange = SettlementSizeRange.RandomInRange;
             int randomInRange2 = SettlementSizeRange.RandomInRange;
             CellRect rect = new CellRect(c.x - randomInRange / 2, c.z - randomInRange2 / 2, randomInRange, randomInRange2);
