@@ -20,22 +20,21 @@ namespace PurpleIvy
             //}
             var pawn2 = FindPawnTarget(pawn);
             if (pawn2 == null) return null;
+            //{
+            //    Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - NULL 0");
+            //}
             if (!pawn2.Downed)
             {
                 var verb = pawn.VerbTracker.AllVerbs.Where(x => x.IsMeleeAttack != true).FirstOrDefault();
-                Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " CHOOSE ATTACK METHOD");
-                if (pawn.CurJob != null)
+                if (Find.TickManager.TicksGame > PrevTick + 10 && verb != null && Rand.Chance(0.8f) && pawn.Position.InHorDistOf(pawn2.Position, verb.verbProps.range))
                 {
-                    Log.Message(pawn + " - " + pawn.CurJob.def.defName);
-                }
-                if (verb != null && Rand.Chance(0.8f) && pawn.Position.InHorDistOf(pawn2.Position, verb.verbProps.range))
-                {
-                    Log.Message(pawn + " - SHOOT");
+                    PrevTick = Find.TickManager.TicksGame;
+                    //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - SHOOT");
                     return RangeAttackJob(pawn, pawn2);
                 }
                 else
                 {
-                    Log.Message(pawn + " - MELEE");
+                    //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - MELEE");
                     return MeleeAttackJob(pawn, pawn2);
                 }
             }
@@ -46,8 +45,10 @@ namespace PurpleIvy
                 job2.expiryInterval = Rand.Range(420, 900);
                 job2.canBash = true;
                 job2.killIncappedTarget = true;
+                //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - KILL");
                 return job2;
             }
+            //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - NULL 1");
             //Building building = this.FindTurretTarget(pawn);
             //if (building != null)
             //{
@@ -142,5 +143,7 @@ namespace PurpleIvy
         private const int MinMeleeChaseTicks = 420;
 
         private const int MaxMeleeChaseTicks = 900;
+
+        private int PrevTick = 0;
     }
 }
