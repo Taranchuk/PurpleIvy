@@ -26,12 +26,12 @@ namespace PurpleIvy
                 Log.Message("CHOOSE ATTACK METHOD");
                 if (verb != null && Rand.Chance(0.8f) && pawn.Position.InHorDistOf(pawn2.Position, verb.verbProps.range))
                 {
-                    Log.Message(pawn + " - SHOOT: " + pawn.TryGetAttackVerb(pawn2, true).GetDamageDef().defName);
+                    Log.Message(pawn + " - SHOOT");
                     return RangeAttackJob(pawn, pawn2);
                 }
                 else
                 {
-                    Log.Message(pawn + " - MELEE: " + pawn.TryGetAttackVerb(pawn2, true).GetDamageDef().defName);
+                    Log.Message(pawn + " - MELEE");
                     return MeleeAttackJob(pawn, pawn2);
                 }
             }
@@ -88,14 +88,7 @@ namespace PurpleIvy
         {
             Verb verb = pawn.TryGetAttackVerb(target, true);
             JobDef jobDef;
-            if (verb.verbProps.ai_IsWeapon)
-            {
-                jobDef = JobDefOf.AttackStatic;
-            }
-            else
-            {
-                jobDef = JobDefOf.UseVerbOnThing;
-            }
+            jobDef = JobDefOf.UseVerbOnThing;
             Job job = new Job(jobDef);
             job.verbToUse = verb;
             job.targetA = new LocalTargetInfo(target);
@@ -108,10 +101,10 @@ namespace PurpleIvy
         }
         private Building FindTurretTarget(Pawn pawn)
         {
-            return (Building)AttackTargetFinder.BestAttackTarget(pawn, 
-                TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | 
-                TargetScanFlags.NeedReachable | TargetScanFlags.NeedThreat | 
-                TargetScanFlags.NeedAutoTargetable, (Thing t) => t is Building, 0f, 70f, 
+            return (Building)AttackTargetFinder.BestAttackTarget(pawn,
+                TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns |
+                TargetScanFlags.NeedReachable | TargetScanFlags.NeedThreat |
+                TargetScanFlags.NeedAutoTargetable, (Thing t) => t is Building, 0f, 70f,
                 default(IntVec3), float.MaxValue, false, true);
         }
 
@@ -126,9 +119,9 @@ namespace PurpleIvy
                 pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly,
                 TraverseMode.PassDoors, false)
                 , distance, Predicate);
-            
-        //worst   victim = (Pawn)GenClosest.ClosestThing_Global_Reachable(pawn.Position,
-            //    pawn.Map, allPawns, PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, 
+
+            //worst   victim = (Pawn)GenClosest.ClosestThing_Global_Reachable(pawn.Position,
+            //    pawn.Map, allPawns, PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly,
             //    TraverseMode.PassDoors, false)
             //    , distance, predicate);
 
@@ -146,4 +139,3 @@ namespace PurpleIvy
         private const int MaxMeleeChaseTicks = 900;
     }
 }
-

@@ -196,10 +196,10 @@
 				<accuracyLong>1</accuracyLong>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>PI_ToxicBullet</defaultProjectile>
-				<warmupTime>0.1</warmupTime>
+				<warmupTime>0</warmupTime>
 				<burstShotCount>1</burstShotCount>
 				<minRange>1</minRange>
-				<range>5</range>
+				<range>25</range>
 				<soundCast>Shot_NeedleGun</soundCast>
 				<muzzleFlashScale>0</muzzleFlashScale>
 				<!--Commanility determines how frequent this range verb is chosen.-->
