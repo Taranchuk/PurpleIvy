@@ -12,8 +12,8 @@
 		</graphicData>
 		<projectile>
 			<flyOverhead>false</flyOverhead>
-			<damageDef>AlienToxicSting</damageDef>
-			<damageAmountBase>15</damageAmountBase>
+			<damageDef>AlienToxicSpit</damageDef>
+			<damageAmountBase>4</damageAmountBase>
 			<speed>15</speed>
 		</projectile>
 	</ThingDef>
