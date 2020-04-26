@@ -49,6 +49,8 @@ namespace PurpleIvy
 
         public static RecipeDef DrawOmegaAlienBlood;
 
+        public static RecipeDef DrawGuardAlienBlood;
+
         public static RecipeDef DrawKorsolianToxin;
 
         public static RecipeDef PreciseVivisectionAlpha;
@@ -58,6 +60,8 @@ namespace PurpleIvy
         public static RecipeDef PreciseVivisectionGamma;
 
         public static RecipeDef PreciseVivisectionOmega;
+
+        public static RecipeDef PreciseVivisectionGuard;
 
         public static ThingDef InfectedCorpseDummy;
 
@@ -83,6 +87,8 @@ namespace PurpleIvy
 
         public static ThingDef Genny_ParasiteOmega;
 
+        public static ThingDef Genny_ParasiteNestGuard;
+
         public static ThingDef PI_Nest;
 
         public static ThingDef EggSac;
@@ -90,6 +96,8 @@ namespace PurpleIvy
         public static ThingDef EggSacBeta;
 
         public static ThingDef EggSacGamma;
+
+        public static ThingDef EggSacNestGuard;
 
         public static ThingDef ParasiteEgg;
 

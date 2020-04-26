@@ -3,6 +3,7 @@ using RimWorld;
 using Verse;
 using System.Linq;
 using System.Text;
+using Verse.AI;
 
 namespace PurpleIvy
 {
@@ -25,6 +26,19 @@ namespace PurpleIvy
 
         public void TryStartSpawn()
         {
+            Log.Message("Test 1");
+            if (this.Props.maxNumberOfCreaturesOnMap > 0)
+            {
+                int count = 0;
+                foreach (var type in this.Props.typesOfCreatures)
+                {
+                    count += this.parent.Map.mapPawns.AllPawns.Where(x => x.kindDef.defName == type).ToList().Count;
+                }
+                if (this.Props.maxNumberOfCreaturesOnMap <= count)
+                {
+                    return;
+                }
+            } 
             if (tickStartHediff > 0 &&
                 this.startOfIncubation + this.Props.IncubationData.tickStartHediff.RandomInRange
                 < Find.TickManager.TicksGame)
@@ -116,7 +130,7 @@ namespace PurpleIvy
                                     select PawnKindDef.Named(defName) into pawnKindDef
                                     select PawnGenerator.GeneratePawn(pawnKindDef, null))
             {
-                Log.Message(this.parent + " produces " + newPawn.Label);
+                Log.Message(this.parent + " produces " + newPawn, true);
                 if (this.Props.ageTick.RandomInRange > 0)
                 {
                     var ageTick = this.Props.ageTick.RandomInRange;
@@ -129,6 +143,14 @@ namespace PurpleIvy
                     newPawn.ageTracker.AgeChronologicalTicks = 0;
                 }
                 newPawn.SetFaction(PurpleIvyData.AlienFaction);
+                if (newPawn.def == PurpleIvyDefOf.Genny_ParasiteNestGuard)
+                {
+                    Log.Message("Test 2");
+                    PawnDuty duty = new PawnDuty(DutyDefOf.DefendBase);
+                    newPawn.mindState.duty = duty;
+                    newPawn.mindState.duty.focus = this.parent;
+                    Log.Message("Test 3");
+                }
                 switch (this.parent)
                 {
                     case Corpse _:

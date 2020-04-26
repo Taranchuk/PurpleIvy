@@ -113,7 +113,7 @@
 			</lifeStageAges>
 		</race>
 	</ThingDef>
-	
+
 	<ThingDef ParentName="BaseParasite">
 		<defName>Genny_ParasiteNestGuard</defName>
 		<label>NestGuard</label>
@@ -172,6 +172,7 @@
 			<baseHungerRate>0.5</baseHungerRate>
 			<baseHealthScale>4.0</baseHealthScale>
 			<lifeExpectancy>6</lifeExpectancy>
+			<thinkTreeMain>PI_NestGuard</thinkTreeMain>
 			<fleshType>FleshParasiteAlpha</fleshType>
 			<leatherDef>PI_AlienLeather</leatherDef>
 			<lifeStageAges>

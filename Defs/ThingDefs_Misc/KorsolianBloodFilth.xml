@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="BaseFilth">
+    <defName>KorsolianBlood</defName>
+    <label>blood</label>
+    <statBases>
+      <Beauty>-30</Beauty>
+      <Cleanliness>-10</Cleanliness>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Filth/Spatter</texPath>
+      <color>(52, 52, 52)</color>
+    </graphicData>
+    <filth>
+      <rainWashes>true</rainWashes>
+      <cleaningWorkToReduceThickness>90</cleaningWorkToReduceThickness>
+      <canFilthAttach>true</canFilthAttach>
+    </filth>
+  </ThingDef>  
+
+</Defs>

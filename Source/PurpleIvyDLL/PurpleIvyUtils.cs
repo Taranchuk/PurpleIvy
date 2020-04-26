@@ -23,7 +23,6 @@ namespace PurpleIvy
         }
         public static Job MeleeAttackJob(Pawn pawn, Thing target)
         {
-            Log.Message("MELEE @");
             var job = JobMaker.MakeJob(PurpleIvyDefOf.PI_AttackMelee, target);
             job.maxNumMeleeAttacks = 1;
             job.expiryInterval = Rand.Range(420, 900);

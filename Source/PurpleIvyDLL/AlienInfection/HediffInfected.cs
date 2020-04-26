@@ -44,6 +44,12 @@ namespace PurpleIvy
                 comp.maxNumberOfCreatures = range.RandomInRange;
                 comp.Props.maxNumberOfCreatures = range;
             }
+            else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteNestGuard.defName)
+            {
+                var range = new IntRange(1, 1);
+                comp.maxNumberOfCreatures = range.RandomInRange;
+                comp.Props.maxNumberOfCreatures = range;
+            }
             else if (parasite.defName != PurpleIvyDefOf.Genny_Queen.defName)
             {
                 Log.Error("1 Something went wrong while adding infected comp: " + comp.parent + " - " + parasite);

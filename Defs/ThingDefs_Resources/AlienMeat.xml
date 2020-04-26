@@ -6,7 +6,7 @@
 		<label>alien meat</label>
 		<description>Raw meat from alien parasites.</description>
 		<graphicData>
-			<texPath>Things/Item/Resource/AA_OcularJellyMeat</texPath>
+			<texPath>Things/Item/Resource/AlienMeat</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>

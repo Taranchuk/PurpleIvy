@@ -151,4 +151,34 @@
 		</fixedIngredientFilter>
 	</RecipeDef>
 	
+		<RecipeDef>
+		<defName>DrawGuardAlienBlood</defName>
+		<label>Draw blood from nest guard parasite</label>
+		<description>Draw blood from alien.</description>
+		<jobString>Drawing alien blood</jobString>
+		<surgerySuccessChanceFactor>1.0</surgerySuccessChanceFactor>
+		<deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+		<recipeUsers>
+			<li>PI_ContainmentBreach</li>
+			<li>PI_ContainmentBreachAdv</li>
+		</recipeUsers>
+		<workAmount>100</workAmount>
+		<targetsBodyPart>false</targetsBodyPart>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>Medicine</li>
+					</categories>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>Medicine</li>
+			</categories>
+		</fixedIngredientFilter>
+	</RecipeDef>
+	
 </Defs>

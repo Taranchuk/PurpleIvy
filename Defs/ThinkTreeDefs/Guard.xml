@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThinkTreeDef>
+		<defName>PI_NestGuard</defName>
+		<thinkRoot Class="ThinkNode_Priority">
+			<subNodes>
+				<!-- Keep lying down if we have to -->
+				<li Class="ThinkNode_ConditionalMustKeepLyingDown">
+					<subNodes>
+						<!-- Keep lying down -->
+						<li Class="JobGiver_KeepLyingDown"/>
+					</subNodes>
+				</li>
+				<li Class="ThinkNode_Subtree">
+					<treeDef>Downed</treeDef>
+				</li>
+				<li Class="ThinkNode_Subtree">
+					<treeDef>BurningResponse</treeDef>
+				</li>
+
+				<li Class="ThinkNode_Tagger">
+					<tagToGive>SatisfyingNeeds</tagToGive>
+					<subNodes>
+						<li Class="ThinkNode_PrioritySorter">
+							<subNodes>
+								<li Class="JobGiver_GetFood"/>
+							</subNodes>
+						</li>
+					</subNodes>
+				</li>
+
+				<li Class="PurpleIvy.JobGiver_GennyBerserk"/>
+
+				<!-- Wander -->
+				<li Class="JobGiver_WanderNearDutyLocation">
+					<wanderRadius>12</wanderRadius>
+				</li>
+			</subNodes>
+		</thinkRoot>
+	</ThinkTreeDef> 
+</Defs>

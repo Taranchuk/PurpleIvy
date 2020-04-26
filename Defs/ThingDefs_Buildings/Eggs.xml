@@ -83,10 +83,11 @@
 				</typesOfCreatures>
 				<numberOfCreaturesPerSpawn>1</numberOfCreaturesPerSpawn>
 				<resetIncubation>true</resetIncubation>
-				<maxNumberOfCreatures>1~1</maxNumberOfCreatures>
+				<maxNumberOfCreatures>1</maxNumberOfCreatures>
+				<maxNumberOfCreaturesOnMap>4</maxNumberOfCreaturesOnMap>
 				<ageTick>40000~50000</ageTick>
 				<ticksPerSpawn>2000~3000</ticksPerSpawn>
-				<incubationPeriod>60000~80000</incubationPeriod>
+				<incubationPeriod>20000~50000</incubationPeriod>
 			</li> 
 		</comps>
 		<thingCategories>

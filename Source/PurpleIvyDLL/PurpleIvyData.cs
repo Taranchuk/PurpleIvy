@@ -156,6 +156,11 @@ namespace PurpleIvy
             "Genny_ParasiteOmega"
         };
 
+        public static List<string> Genny_ParasiteNestGuard = new List<string>
+        {
+            "Genny_ParasiteNestGuard"
+        };
+
         public static Dictionary<int, int> RadiusData = new Dictionary<int, int>()
                 {
                     {1, 5},

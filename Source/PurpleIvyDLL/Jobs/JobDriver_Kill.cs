@@ -78,6 +78,12 @@ namespace PurpleIvy
                                     comp.maxNumberOfCreatures = range.RandomInRange;
                                     comp.Props.maxNumberOfCreatures = range;
                                 }
+                                else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteNestGuard.defName)
+                                {
+                                    var range = new IntRange(1, 1);
+                                    comp.maxNumberOfCreatures = range.RandomInRange;
+                                    comp.Props.maxNumberOfCreatures = range;
+                                }
                                 else if (actor.kindDef.defName != PurpleIvyDefOf.Genny_Queen.defName)
                                 {
                                     Log.Error("2 Something went wrong while adding infected comp: " + comp.parent + " - " + actor);
@@ -138,6 +144,12 @@ namespace PurpleIvy
                                 else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
                                 {
                                     var range = new IntRange(1, 5);
+                                    comp.maxNumberOfCreatures = range.RandomInRange;
+                                    comp.Props.maxNumberOfCreatures = range;
+                                }
+                                else if (actor.def.defName == PurpleIvyDefOf.Genny_ParasiteNestGuard.defName)
+                                {
+                                    var range = new IntRange(1, 1);
                                     comp.maxNumberOfCreatures = range.RandomInRange;
                                     comp.Props.maxNumberOfCreatures = range;
                                 }

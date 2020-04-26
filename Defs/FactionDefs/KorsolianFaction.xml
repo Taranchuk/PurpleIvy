@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<FactionDef>
+		<defName>KorsolianFaction</defName>
+		<label>Korsolians</label>
+		<description>Korsolians.</description>
+		<pawnSingular>Korsolian</pawnSingular>
+		<pawnsPlural>Korsolians</pawnsPlural>
+		<leaderTitle>Korsolian leader</leaderTitle>
+		<backstoryCategories>
+			<li>Korsolian</li>
+			<li>KorsolianChild</li>
+		</backstoryCategories>
+		<fixedName>Korsolians</fixedName>
+		<settlementNameMaker>PI_SETTLEMENT_NAMER_DEF</settlementNameMaker>
+		<pawnNameMaker>PI_NAMER_DEF</pawnNameMaker>
+		<colorSpectrum>
+			<li>(200, 200, 200)</li>
+		</colorSpectrum>
+		<factionIconPath>World/WorldObjects/Korsolian_Faction_Base</factionIconPath>
+		<settlementTexturePath>World/WorldObjects/Korsolian_Settlement</settlementTexturePath>
+		<canMakeRandomly>true</canMakeRandomly>
+		<requiredCountAtGameStart>0</requiredCountAtGameStart>
+		<settlementGenerationWeight>0.10</settlementGenerationWeight>
+		<hidden>true</hidden>
+		<geneticVariance>0.1</geneticVariance>
+		<hairTags>
+			<li>Urban</li>
+		</hairTags>
+		<apparelStuffFilter>
+			<thingDefs>
+				<li>Hyperweave</li>
+			</thingDefs>
+		</apparelStuffFilter>
+		<techLevel>Ultra</techLevel>
+		<allowedArrivalTemperatureRange>
+			<min>-100</min>
+			<max>60</max>
+		</allowedArrivalTemperatureRange>
+		<canSiege>true</canSiege>
+		<canStageAttacks>true</canStageAttacks>
+		<raidCommonalityFromPointsCurve>
+			<points>
+				<li>(0, 1)</li>
+			</points>
+		</raidCommonalityFromPointsCurve>
+		<maxPawnCostPerTotalPointsCurve>
+			<points>
+				<li>(0,40)</li>
+				<li>(50,50)</li>
+				<li>(70, 160)</li>
+				<li>(120, 240)</li>
+				<li>(180, 360)</li>
+				<li>(560, 1000)</li>
+				<li>(900, 1500)</li>
+				<li>(2000, 3000)</li>
+				<li>(5000, 6000)</li>
+				<li>(100000, 10000)</li>
+			</points>
+		</maxPawnCostPerTotalPointsCurve>
+		<pawnGroupMakers>
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>10</commonality>
+				<options>
+					<KorsolianSoldier>100</KorsolianSoldier>
+				</options>
+			</li>
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>20</commonality>
+				<options>
+					<KorsolianSoldier>100</KorsolianSoldier>
+				</options>
+			</li>    
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>30</commonality>
+				<options>
+					<KorsolianSoldier>100</KorsolianSoldier>
+				</options>
+			</li>
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>15</commonality>
+				<options>
+					<KorsolianSoldier>50</KorsolianSoldier>
+				</options>
+			</li>
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>15</commonality>
+				<options>
+					<KorsolianSoldier>100</KorsolianSoldier>
+				</options>
+			</li>
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>15</commonality>
+				<options>
+					<KorsolianSoldier>100</KorsolianSoldier>
+				</options>
+			</li>
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>20</commonality>
+				<options>
+					<KorsolianSoldier>100</KorsolianSoldier>
+				</options>
+			</li>
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>20</commonality>
+				<options>
+					<KorsolianSoldier>100</KorsolianSoldier>
+				</options>
+			</li>
+			<li>
+				<kindDef>Settlement</kindDef>
+				<options>
+					<KorsolianScientist>100</KorsolianScientist>
+					<KorsolianSoldier>20</KorsolianSoldier>
+					<KorsolianLeader>1</KorsolianLeader>
+				</options>
+			</li>
+		</pawnGroupMakers>
+
+	</FactionDef>
+</Defs>

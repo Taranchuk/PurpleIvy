@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<FleshTypeDef>
+		<defName>KorsolianFlesh</defName>
+		<ateDirect>AteHumanlikeMeatDirect</ateDirect>
+		<ateAsIngredient>AteHumanlikeMeatAsIngredient</ateAsIngredient>
+		<corpseCategory>CorpsesHumanlike</corpseCategory>
+		<wounds>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundA</texture>
+				<color>46, 46, 46</color>
+			</li>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundB</texture>
+				<color>46, 46, 46</color>
+			</li>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundC</texture>
+				<color>46, 46, 46</color>
+			</li>
+		</wounds>
+	</FleshTypeDef>
+</Defs>

@@ -100,5 +100,30 @@
 			<li>Butchery</li>
 		</specialProducts>
 	</RecipeDef> 
+	
+		<RecipeDef>
+		<defName>PreciseVivisectionGuard</defName>
+		<label>Precise vivisection (guard)</label>
+		<description>Precise vivisection (guard).</description>
+		<jobString>conducts vivisection on alien creature</jobString>
+		<recipeUsers>
+			<li>PI_ContainmentBreach</li>
+			<li>PI_ContainmentBreachAdv</li>
+		</recipeUsers>
+		<products>
+			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
+			<PI_OmegaNervousSystem>1</PI_OmegaNervousSystem>
+			<PI_Tentacles>6</PI_Tentacles>
+			<PI_ToxicSac>1</PI_ToxicSac>
+			<PI_OmegaBlood>5</PI_OmegaBlood>
+		</products>
+		<workAmount>300</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Medicine</workSkill>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<specialProducts>
+			<li>Butchery</li>
+		</specialProducts>
+	</RecipeDef> 
 
 </Defs>

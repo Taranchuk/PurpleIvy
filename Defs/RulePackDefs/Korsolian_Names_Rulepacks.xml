@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+<!--■■■■■■■■■■■■■■■■■■PAWN NAMES■■■■■■■■■■■■■■■■■■■■■■■-->
+  
+  <RulePackDef>
+    <defName>PI_NAMER_DEF</defName>
+    <rulePack>
+      <rulesFiles>
+        <li>PIname->Names/PI_Names</li>
+      </rulesFiles>
+      <rulesStrings>
+        <li>r_name->[PIname]</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+  
+  <RulePackDef>
+    <defName>PI_NAMER_MALE_DEF</defName>
+    <include>
+      <li>PI_NAMER_DEF</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name->[PIname]</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+  
+  <RulePackDef>
+    <defName>PI_NAMER_FEMALE_DEF</defName>
+    <include>
+      <li>PI_NAMER_DEF</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name->[PIname]</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+  
+<!--■■■■■■■■■■■■■■■■■■FACTION NAMES■■■■■■■■■■■■■■■■■■■■■■■-->
+  
+  <RulePackDef>
+    <defName>PI_FACTION_NAMER_DEF</defName>
+    <rulePack>
+      <rulesFiles>
+        <li>PIname->Names/PI_Factions</li>
+      </rulesFiles>
+      <rulesStrings>
+        <li>r_name->[PIname]</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+  
+  <RulePackDef>
+    <defName>PI_SETTLEMENT_NAMER_DEF</defName>
+    <rulePack>
+      <rulesFiles>
+        <li>PIname->Names/PI_Settlements</li>
+      </rulesFiles>
+      <rulesStrings>
+        <li>r_name->[PIname]</li>
+      </rulesStrings>
+   
+    </rulePack>
+  </RulePackDef>
+  
+</Defs>

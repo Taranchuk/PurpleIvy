@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ADULTHOOD■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
+
+	<AlienRace.BackstoryDef>
+		<defName>Korsolian</defName>
+		<title>Korsolian</title>
+		<titleShort>Korsolian</titleShort>
+		<baseDescription>[PAWN_nameDef] is a representative of an ancient race that was destroyed by infectious plants.</baseDescription>
+		<slot>Adulthood</slot>
+		<skillGains>
+			<li>
+				<defName>Crafting</defName>
+				<amount>-2</amount>
+			</li>
+			<li>
+				<defName>Construction</defName>
+				<amount>-2</amount>
+			</li>
+			<li>
+				<defName>Medicine</defName>
+				<amount>6</amount>
+			</li>
+			<li>
+				<defName>Plants</defName>
+				<amount>6</amount>
+			</li>
+			<li>
+				<defName>Intellectual</defName>
+				<amount>6</amount>
+			</li>
+		</skillGains> 
+
+		<spawnCategories>
+			<li>KorsolianRace</li>
+		</spawnCategories>
+	</AlienRace.BackstoryDef>
+
+	<AlienRace.BackstoryDef>
+		<defName>KorsolianChild</defName>
+		<title>Korsolian child</title>
+		<titleShort>Korsolian child</titleShort>
+		<baseDescription>[PAWN_nameDef] is a representative of an ancient race that was destroyed by infectious plants.</baseDescription>
+		<slot>Childhood</slot>
+		<skillGains>
+			<li>
+				<defName>Intellectual</defName>
+				<amount>2</amount>
+			</li>
+			<li>
+				<defName>Artistic</defName>
+				<amount>-20</amount>
+			</li>
+			<li>
+				<defName>Social</defName>
+				<amount>-20</amount>
+			</li>
+			<li>
+				<defName>Animals</defName>
+				<amount>-20</amount>
+			</li>
+		</skillGains> 
+		<spawnCategories>
+			<li>KorsolianRace</li>
+		</spawnCategories>
+	</AlienRace.BackstoryDef>
+
+</Defs>
