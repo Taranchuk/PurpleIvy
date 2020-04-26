@@ -324,6 +324,7 @@
     <Compile Include="HediffSpecial\Hediff_RegrowinBodyPart.cs" />
     <Compile Include="HediffSpecial\RemovableHediff.cs" />
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
+    <Compile Include="Jobs\JobDriver_JumpToTarget.cs" />
     <Compile Include="Jobs\WorkGiver_DoAlienBill.cs" />
     <Compile Include="Jobs\JobDriver_DoBillPlus.cs" />
     <Compile Include="Jobs\JobDriver_DrawKorsolianToxin.cs" />

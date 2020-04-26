@@ -26,29 +26,29 @@ namespace PurpleIvy
             if (!pawn2.Downed)
             {
                 var verb = pawn.VerbTracker.AllVerbs.Where(x => x.IsMeleeAttack != true).FirstOrDefault();
-                if (Find.TickManager.TicksGame > PrevTick + 10 && verb != null && Rand.Chance(0.8f) && pawn.Position.InHorDistOf(pawn2.Position, verb.verbProps.range))
+                if (pawn.def == PurpleIvyDefOf.Genny_ParasiteOmega && pawn.Position.InHorDistOf(pawn2.Position, 10) && Rand.Chance(0.7f))
+                {
+                    Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - JUMP");
+                    return PurpleIvyUtils.JumpOnTargetJob(pawn, pawn2);
+                }
+                else if (Find.TickManager.TicksGame > PrevTick + 10 && verb != null && Rand.Chance(0.8f) && pawn.Position.InHorDistOf(pawn2.Position, verb.verbProps.range))
                 {
                     PrevTick = Find.TickManager.TicksGame;
-                    //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - SHOOT");
-                    return RangeAttackJob(pawn, pawn2);
+                    Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - SHOOT");
+                    return PurpleIvyUtils.RangeAttackJob(pawn, pawn2);
                 }
                 else
                 {
-                    //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - MELEE");
-                    return MeleeAttackJob(pawn, pawn2);
+                    Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - MELEE");
+                    return PurpleIvyUtils.MeleeAttackJob(pawn, pawn2);
                 }
             }
             else if (pawn2.Downed)
             {
-                var job2 = JobMaker.MakeJob(PurpleIvyDefOf.PI_Kill, pawn2);
-                job2.maxNumMeleeAttacks = 1;
-                job2.expiryInterval = Rand.Range(420, 900);
-                job2.canBash = true;
-                job2.killIncappedTarget = true;
-                //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - KILL");
-                return job2;
+                Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - KILL");
+                return KillAttackJob(pawn, pawn2);
             }
-            //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - NULL 1");
+            Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - NULL 1");
             //Building building = this.FindTurretTarget(pawn);
             //if (building != null)
             //{
@@ -79,31 +79,14 @@ namespace PurpleIvy
             return null;
         }
 
-        private static Job MeleeAttackJob(Pawn pawn, Thing target)
+        private static Job KillAttackJob(Pawn pawn, Thing target)
         {
-            var job = JobMaker.MakeJob(PurpleIvyDefOf.PI_AttackMelee, target);
-            job.maxNumMeleeAttacks = 1;
-            job.expiryInterval = Rand.Range(420, 900);
-            job.attackDoorIfTargetLost = true;
-            job.canBash = true;
-            return job;
-        }
-
-        private static Job RangeAttackJob(Pawn pawn, Thing target)
-        {
-            Verb verb = pawn.TryGetAttackVerb(target, true);
-            JobDef jobDef;
-            jobDef = PurpleIvyDefOf.PI_AnimalRangeAttack;
-            Job job = new Job(jobDef);
-            job.verbToUse = verb;
-            job.expiryInterval = Rand.Range(420, 900);
-            job.targetA = new LocalTargetInfo(target);
-            job.playerForced = true;
-            job.killIncappedTarget = true;
-            job.ignoreForbidden = true;
-            job.ignoreDesignations = true;
-            job.ignoreJoyTimeAssignment = true;
-            return job;
+            var job2 = JobMaker.MakeJob(PurpleIvyDefOf.PI_Kill, target);
+            job2.maxNumMeleeAttacks = 1;
+            job2.expiryInterval = Rand.Range(420, 900);
+            job2.canBash = true;
+            job2.killIncappedTarget = true;
+            return job2;
         }
         private Building FindTurretTarget(Pawn pawn)
         {

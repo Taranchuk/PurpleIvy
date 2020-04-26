@@ -21,6 +21,8 @@ namespace PurpleIvy
 
         public static JobDef PI_AttackMelee;
 
+        public static JobDef PI_JumpOnTarget;
+
         public static JobDef PI_ExtractNectar;
 
         public static JobDef PI_DrawAlienBlood;

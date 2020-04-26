@@ -5,12 +5,49 @@ using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace PurpleIvy
 {
     [StaticConstructorOnStartup]
     public static class PurpleIvyUtils
     {
+        public static Job JumpOnTargetJob(Pawn pawn, Thing target)
+        {
+            var job = JobMaker.MakeJob(PurpleIvyDefOf.PI_JumpOnTarget, target);
+            job.maxNumMeleeAttacks = 1;
+            job.expiryInterval = Rand.Range(420, 900);
+            job.attackDoorIfTargetLost = true;
+            job.canBash = true;
+            return job;
+        }
+        public static Job MeleeAttackJob(Pawn pawn, Thing target)
+        {
+            Log.Message("MELEE @");
+            var job = JobMaker.MakeJob(PurpleIvyDefOf.PI_AttackMelee, target);
+            job.maxNumMeleeAttacks = 1;
+            job.expiryInterval = Rand.Range(420, 900);
+            job.attackDoorIfTargetLost = true;
+            job.canBash = true;
+            return job;
+        }
+
+        public static Job RangeAttackJob(Pawn pawn, Thing target)
+        {
+            Verb verb = pawn.TryGetAttackVerb(target, true);
+            JobDef jobDef;
+            jobDef = PurpleIvyDefOf.PI_AnimalRangeAttack;
+            Job job = new Job(jobDef);
+            job.verbToUse = verb;
+            job.expiryInterval = Rand.Range(420, 900);
+            job.targetA = new LocalTargetInfo(target);
+            job.playerForced = true;
+            job.killIncappedTarget = true;
+            job.ignoreForbidden = true;
+            job.ignoreDesignations = true;
+            job.ignoreJoyTimeAssignment = true;
+            return job;
+        }
         public static void KillAllPawnsExceptAliens(Map map)
         {
             for (int i = map.mapPawns.AllPawns.Count - 1; i >= 0; i--)

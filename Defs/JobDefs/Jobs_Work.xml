@@ -9,6 +9,15 @@
 		<suspendable>false</suspendable>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
+	
+	
+	<JobDef>
+		<defName>PI_JumpOnTarget</defName>
+		<driverClass>PurpleIvy.JobDriver_JumpToTarget</driverClass>
+		<reportString>jumping on TargetA.</reportString>
+		<suspendable>false</suspendable>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
 
 	<JobDef>
 		<defName>PI_AttackMelee</defName>
