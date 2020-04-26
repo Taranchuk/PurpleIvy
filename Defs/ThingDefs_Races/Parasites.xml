@@ -79,21 +79,22 @@
 		</comps>
 	    <verbs>			
 			<li>
-				<verbClass>Verb_Shoot</verbClass>
-				<accuracyTouch>1</accuracyTouch>
-				<accuracyShort>1</accuracyShort>
-				<accuracyMedium>1</accuracyMedium>
-				<accuracyLong>1</accuracyLong>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>PI_ToxicBullet</defaultProjectile>
-				<warmupTime>1.5</warmupTime>
-				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-				<burstShotCount>30</burstShotCount>
-				<minRange>2</minRange>
-				<range>20</range>
-				<soundCast>Shot_NeedleGun</soundCast>
-				<muzzleFlashScale>0</muzzleFlashScale>
-				<commonality>.8</commonality>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_Rocket</defaultProjectile>
+        <forcedMissRadius>0.5</forcedMissRadius>
+        <warmupTime>4.5</warmupTime>
+        <ai_AvoidFriendlyFireRadius>1</ai_AvoidFriendlyFireRadius>
+        <range>20.0</range>
+        <burstShotCount>1</burstShotCount>
+        <soundCast>InfernoCannon_Fire</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <onlyManualCast>true</onlyManualCast>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <muzzleFlashScale>1</muzzleFlashScale>
+        <commonality>.8</commonality>
 			</li>
 		</verbs>
 		<race>
