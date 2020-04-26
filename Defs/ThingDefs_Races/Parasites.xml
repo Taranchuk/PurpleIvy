@@ -424,6 +424,7 @@
 		</tools>
 		<race>
 			<body>ParasiteOmega</body>
+			<thinkTreeMain>PI_Omega</thinkTreeMain>
 			<baseBodySize>1.0</baseBodySize>
 			<baseHealthScale>1.0</baseHealthScale>
 			<baseHungerRate>1</baseHungerRate>

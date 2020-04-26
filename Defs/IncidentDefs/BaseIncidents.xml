@@ -5,6 +5,7 @@
 		<defName>PI_MeteorImpact</defName>
 		<workerClass>PurpleIvy.IncidentWorker_MeteorImpact</workerClass>
 		<baseChance>0.5</baseChance>
+		<minRefireDays>180</minRefireDays>
 		<category>ThreatBig</category>
 		<targetTags>
 			<li>Map_PlayerHome</li>
@@ -14,9 +15,10 @@
 			<li>Caravan</li>
 		</targetTags>
 	</IncidentDef>
-	
-		<IncidentDef>
+
+	<IncidentDef>
 		<defName>PI_QueenMeteorite</defName>
+		<minRefireDays>180</minRefireDays>
 		<workerClass>PurpleIvy.IncidentWorker_QueenMeteorite</workerClass>
 		<baseChance>0.2</baseChance>
 		<category>ThreatBig</category>
@@ -32,6 +34,7 @@
 	<IncidentDef>
 		<defName>PI_InfectedTile</defName>
 		<workerClass>PurpleIvy.IncidentWorker_InfectedTile</workerClass>
+		<minRefireDays>180</minRefireDays>
 		<baseChance>0.5</baseChance>
 		<category>ThreatBig</category>
 		<targetTags>
@@ -41,6 +44,7 @@
 
 	<IncidentDef>
 		<defName>PI_AlienRaid</defName>
+		<minRefireDays>180</minRefireDays>
 		<label>alien raid</label>
 		<targetTags>
 			<li>Map_PlayerHome</li>

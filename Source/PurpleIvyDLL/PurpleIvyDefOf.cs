@@ -39,6 +39,8 @@ namespace PurpleIvy
 
         public static JobDef PI_AnimalRangeAttack;
 
+        public static JobDef PI_HaulToCell;
+
         public static RecipeDef DrawAlienBlood;
 
         public static RecipeDef DrawAlphaAlienBlood;
