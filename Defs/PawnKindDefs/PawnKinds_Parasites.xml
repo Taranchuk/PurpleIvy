@@ -470,29 +470,29 @@
 			<li>
 				<bodyGraphicData>
 					<texPath>Things/Pawn/ParasiteOmega/ParasiteOmega</texPath>
-					<drawSize>0.3</drawSize>
+					<drawSize>0.7</drawSize>
 					<!--<color>(114,107,84)</color>-->
 				</bodyGraphicData>
 				<dessicatedBodyGraphicData>
 					<texPath>Things/Pawn/ParasiteOmega/ParasiteOmega_DessicatedChild</texPath>
-					<drawSize>0.3</drawSize>
+					<drawSize>0.7</drawSize>
 				</dessicatedBodyGraphicData>
 			</li>
 			<li>
 				<bodyGraphicData>
 					<texPath>Things/Pawn/ParasiteOmega/ParasiteOmega</texPath>
-					<drawSize>0.5</drawSize>
+					<drawSize>0.9</drawSize>
 					<!--<color>(114,107,84)</color>-->
 				</bodyGraphicData>
 				<dessicatedBodyGraphicData>
 					<texPath>Things/Pawn/ParasiteOmega/ParasiteOmega_DessicatedInmature</texPath>
-					<drawSize>0.6</drawSize>
+					<drawSize>0.9</drawSize>
 				</dessicatedBodyGraphicData>
 			</li>
 			<li>
 				<bodyGraphicData>
 					<texPath>Things/Pawn/ParasiteOmega/ParasiteOmega</texPath>
-					<drawSize>0.7</drawSize>
+					<drawSize>1.0</drawSize>
 					<!--<color>(114,107,84)</color>-->
 					<shadowData>
 						<volume>(0.2, 0.3, 0.2)</volume>
@@ -501,7 +501,7 @@
 				</bodyGraphicData>
 				<dessicatedBodyGraphicData>
 					<texPath>Things/Pawn/ParasiteOmega/ParasiteOmega_DessicatedAdult</texPath>
-					<drawSize>0.7</drawSize>
+					<drawSize>1.0</drawSize>
 				</dessicatedBodyGraphicData>
 			</li>
 		</lifeStages>
