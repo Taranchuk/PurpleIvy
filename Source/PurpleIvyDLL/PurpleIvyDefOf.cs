@@ -137,6 +137,8 @@ namespace PurpleIvy
 
         public static ThingCategoryDef CorpsesAlienParasiteOmega;
 
+        public static PawnKindDef Genny_ParasiteQueen;
+
     }
 }
 

@@ -2,6 +2,26 @@
 <Defs>
 
 	<ThingDef ParentName="SkyfallerBase">
+		<defName>PI_QueenIncoming</defName>
+		<label>queen (incoming)</label>
+		<thingClass>PurpleIvy.MeteorIncoming</thingClass>
+		<tickerType>Normal</tickerType>
+		<category>Ethereal</category>
+		<size>(1, 1)</size>
+		<graphicData>
+			<texPath>Things/Pawn/ParasiteQueen/ParasiteQueen_north</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutFlying</shaderType>
+			<drawSize>(5, 5)</drawSize>
+		</graphicData>
+		<skyfaller>
+			<shadowSize>(3, 3)</shadowSize>
+			<rotateGraphicTowardsDirection>true</rotateGraphicTowardsDirection>
+			<speed>1.2</speed>
+		</skyfaller>
+	</ThingDef>
+	
+	<ThingDef ParentName="SkyfallerBase">
 		<defName>PI_MeteorIncoming</defName>
 		<label>meteorite (incoming)</label>
 		<thingClass>PurpleIvy.MeteorIncoming</thingClass>
@@ -52,43 +72,6 @@
 			<Silver>300</Silver>
 			<Uranium>20</Uranium>
 			<Gold>50</Gold>
-			<PurpleIvy>1</PurpleIvy>
-		</killedLeavings>
-	</ThingDef>
-
-	<ThingDef ParentName="BuildingBase">
-		<defName>GasPump</defName>
-		<label>Gaseous Pustule</label>
-		<thingClass>PurpleIvy.Building_GasPump</thingClass>
-		<tickerType>Rare</tickerType>
-		<graphicData>
-			<texPath>Things/GasPump</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shadowData>
-				<volume>(0.3, 0.3, 0.3)</volume>
-				<offset>(0,0,-0.1)</offset>
-			</shadowData>
-		</graphicData>
-		<passability>Impassable</passability>
-		<altitudeLayer>Terrain</altitudeLayer>
-		<useHitPoints>true</useHitPoints>
-		<building>
-			<ai_combatDangerous>true</ai_combatDangerous>
-			<claimable>false</claimable>
-		</building>
-		<selectable>true</selectable>
-		<comps>
-			<li Class="CompProperties_Glower">
-				<glowRadius>3</glowRadius>
-				<glowColor>(150,255,255,0)</glowColor>
-			</li>
-		</comps>
-		<statBases>
-			<MaxHitPoints>200</MaxHitPoints>
-			<Flammability>0.3</Flammability>
-			<Beauty>-50</Beauty>     
-		</statBases>
-		<killedLeavings>
 			<PurpleIvy>1</PurpleIvy>
 		</killedLeavings>
 	</ThingDef>
