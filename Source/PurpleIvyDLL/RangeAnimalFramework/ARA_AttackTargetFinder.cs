@@ -5,7 +5,6 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-
 namespace PurpleIvy
 {
 	public static class ARA_AttackTargetFinder
@@ -219,7 +218,6 @@ namespace PurpleIvy
 			return true;
 		}
 
-
 		private static bool HasRangedAttack(IAttackTargetSearcher t)
 		{
 			Verb currentEffectiveVerb = t.CurrentEffectiveVerb;
@@ -410,3 +408,4 @@ namespace PurpleIvy
 
 	}
 }
+

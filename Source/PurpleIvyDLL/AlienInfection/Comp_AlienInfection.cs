@@ -26,7 +26,6 @@ namespace PurpleIvy
 
         public void TryStartSpawn()
         {
-            Log.Message("Test 1");
             if (this.Props.maxNumberOfCreaturesOnMap > 0)
             {
                 int count = 0;
@@ -145,11 +144,9 @@ namespace PurpleIvy
                 newPawn.SetFaction(PurpleIvyData.AlienFaction);
                 if (newPawn.def == PurpleIvyDefOf.Genny_ParasiteNestGuard)
                 {
-                    Log.Message("Test 2");
-                    PawnDuty duty = new PawnDuty(DutyDefOf.DefendBase);
+                    PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
                     newPawn.mindState.duty = duty;
                     newPawn.mindState.duty.focus = this.parent;
-                    Log.Message("Test 3");
                 }
                 switch (this.parent)
                 {

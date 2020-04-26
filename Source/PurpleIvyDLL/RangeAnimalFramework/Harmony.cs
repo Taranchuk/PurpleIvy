@@ -19,8 +19,6 @@ namespace PurpleIvy
 		}
 	}
 
-
-
 	//Current effective verb influence target pick.
 	[HarmonyPatch(typeof(Pawn), "TryGetAttackVerb")]
 	public static class ARA__VerbCheck_Patch
@@ -59,7 +57,6 @@ namespace PurpleIvy
 
             bool hasRangedVerb = false;
 
-
             List<Verb> verbList = pawn.verbTracker.AllVerbs;
             List<Verb> rangeList = new List<Verb>();
             for (int i = 0; i < verbList.Count; i++)
@@ -97,7 +94,6 @@ namespace PurpleIvy
                 enemyTarget = (Thing)ARA_AttackTargetFinder.BestAttackTarget((IAttackTargetSearcher)pawn, TargetScanFlags.NeedThreat, (Predicate<Thing>)(x =>
             x is Pawn || x is Building), 0.0f, 9999, new IntVec3(), float.MaxValue, false);
 
-
             if (enemyTarget == null)
             {
                 //Log.Warning("I can't find anything to fight.");
@@ -128,8 +124,6 @@ namespace PurpleIvy
             bool flag3 = rangeVerb.CanHitTarget(enemyTarget);
             bool flag4 = (pawn.Position - enemyTarget.Position).LengthHorizontalSquared < 25;
 
-
-
             if (flag1 && flag2 && flag3 || flag4 && flag3)
             {
                 //Log.Warning("Shooting");
@@ -142,7 +136,6 @@ namespace PurpleIvy
             }
             IntVec3 dest;
             bool canShootCondition = false;
-
 
             canShootCondition = CastPositionFinder.TryFindCastPosition(new CastPositionRequest
             {
@@ -157,7 +150,6 @@ namespace PurpleIvy
             if (!canShootCondition)
             {
                 //Log.Warning("I can't move to shooting position");
-
 
                 return true;
             }
@@ -332,7 +324,6 @@ namespace PurpleIvy
         }
     }
 
-
     ////Because of the opportunity of the patching, we can tamed animal are savvy and smarter at shooting than wild one
     //[HarmonyPatch(typeof(JobGiver_AIDefendMaster),"TryGiveJob")]
 	//static class ARA_FightAI_Patch
@@ -492,3 +483,4 @@ namespace PurpleIvy
 	
 
 }
+

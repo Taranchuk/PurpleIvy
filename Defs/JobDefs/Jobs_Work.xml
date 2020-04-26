@@ -9,8 +9,16 @@
 		<suspendable>false</suspendable>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
-	
-	
+
+	<JobDef>
+		<defName>PI_HaulToCell</defName>
+		<driverClass>PurpleIvy.JobDriver_HaulToCellPlus</driverClass>
+		<reportString>hauling TargetA.</reportString>
+		<suspendable>false</suspendable>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+
 	<JobDef>
 		<defName>PI_JumpOnTarget</defName>
 		<driverClass>PurpleIvy.JobDriver_JumpToTarget</driverClass>

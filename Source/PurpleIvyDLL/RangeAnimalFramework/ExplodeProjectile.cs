@@ -28,7 +28,6 @@ namespace PurpleIvy
 				MoteMaker.ThrowSmoke(Position.ToVector3Shifted() + Gen.RandomHorizontalVector(radius * 0.7f), map, radius * 0.6f);
 			}
 
-
 			//Fire explosion should be tiny.
 			if (this.def.projectile.explosionEffect != null)
 			{
@@ -50,3 +49,4 @@ namespace PurpleIvy
 		}
 	}
 }
+
