@@ -93,9 +93,7 @@ namespace PurpleIvy
                 AlienQueen.health.AddHediff(PurpleIvyDefOf.PI_CrashlandedDowned);
                 AlienQueen.recoveryTick = Find.TickManager.TicksGame + 
                     new IntRange(80000, 140000).RandomInRange;
-                PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
-                AlienQueen.mindState.duty = duty;
-                AlienQueen.mindState.duty.focus = new LocalTargetInfo(this.Position);
+                AlienQueen.SetFaction(PurpleIvyData.AlienFaction);
             }
             this.Destroy(DestroyMode.Vanish);
         }

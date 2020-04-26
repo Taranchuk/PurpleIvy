@@ -33,7 +33,7 @@
 
 				<!-- Wander -->
 				<li Class="JobGiver_WanderNearDutyLocation">
-					<wanderRadius>24</wanderRadius>
+					<wanderRadius>12</wanderRadius>
 				</li>
 			</subNodes>
 		</thinkRoot>
