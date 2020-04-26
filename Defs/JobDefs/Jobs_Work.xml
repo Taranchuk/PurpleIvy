@@ -6,6 +6,7 @@
 		<defName>PI_Kill</defName>
 		<driverClass>PurpleIvy.JobDriver_Kill</driverClass>
 		<reportString>killing TargetA.</reportString>
+		<neverFleeFromEnemies>true</neverFleeFromEnemies>
 		<suspendable>false</suspendable>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
@@ -14,6 +15,7 @@
 		<defName>PI_HaulToCell</defName>
 		<driverClass>PurpleIvy.JobDriver_HaulToCellPlus</driverClass>
 		<reportString>hauling TargetA.</reportString>
+		<neverFleeFromEnemies>true</neverFleeFromEnemies>
 		<suspendable>false</suspendable>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
@@ -22,6 +24,7 @@
 	<JobDef>
 		<defName>PI_JumpOnTarget</defName>
 		<driverClass>PurpleIvy.JobDriver_JumpToTarget</driverClass>
+		<neverFleeFromEnemies>true</neverFleeFromEnemies>
 		<reportString>jumping on TargetA.</reportString>
 		<suspendable>false</suspendable>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
@@ -30,6 +33,7 @@
 	<JobDef>
 		<defName>PI_AttackMelee</defName>
 		<driverClass>PurpleIvy.JobDriver_AttackMeleePlus</driverClass>
+		<neverFleeFromEnemies>true</neverFleeFromEnemies>
 		<reportString>melee attacking TargetA.</reportString>
 		<alwaysShowWeapon>true</alwaysShowWeapon>
 		<casualInterruptible>false</casualInterruptible>
