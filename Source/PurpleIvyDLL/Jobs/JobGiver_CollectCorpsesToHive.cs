@@ -18,9 +18,12 @@ namespace PurpleIvy
             {
                 Log.Message(pawn + " hauls " + thing);
                 Thing plant = pawn.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).RandomElement();
-                Job job = JobMaker.MakeJob(PurpleIvyDefOf.PI_HaulToCell, thing, plant.Position);
 
-                //Job job = HaulAIUtility.HaulToCellStorageJob(pawn, thing, plant.Position, false);
+                Job job = JobMaker.MakeJob(PurpleIvyDefOf.PI_HaulToCell, thing, plant.Position);
+                
+                //Job job = JobMaker.MakeJob(JobDefOf.HaulToCell, thing, plant.Position);
+
+                // Job job = HaulAIUtility.HaulToCellStorageJob(pawn, thing, plant.Position, false);
                 if (job != null && job.TryMakePreToilReservations(pawn, false))
                 {
                     ReservationUtility.Reserve(pawn, thing, job);
