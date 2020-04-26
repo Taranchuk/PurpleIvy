@@ -216,7 +216,7 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>PI_ToxicBullet</defaultProjectile>
 			<warmupTime>0</warmupTime>
-			<burstShotCount>1</burstShotCount>
+			<burstShotCount>3</burstShotCount>
 			<minRange>2</minRange>
 			<range>20</range>
 			<soundCast>Shot_NeedleGun</soundCast>
