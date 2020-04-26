@@ -310,6 +310,7 @@
     <Compile Include="Damages\SectionLayer_BuildingsToxicDamage.cs" />
     <Compile Include="HarmonyPatches\AlienLairs_GenStepPatch.cs" />
     <Compile Include="HarmonyPatches\AlienLairsBasesGeneration.cs" />
+    <Compile Include="HarmonyPatches\DisableAliensFlee.cs" />
     <Compile Include="HarmonyPatches\CheckAlienLairsDefeated.cs" />
     <Compile Include="HarmonyPatches\FloatMenuMakerMap_Patch.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatchesInit.cs" />

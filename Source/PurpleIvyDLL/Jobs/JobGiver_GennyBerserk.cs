@@ -18,6 +18,10 @@ namespace PurpleIvy
             //{
             //    return null;
             //}
+            if (pawn.CurJob != null)
+            {
+                Log.Message(pawn + " - " + pawn.CurJob.def.defName);
+            }
             var pawn2 = FindPawnTarget(pawn);
             if (pawn2 == null) return null;
             //{
@@ -47,7 +51,7 @@ namespace PurpleIvy
             else if (pawn2.Downed)
             {
                 //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - KILL");
-                return KillAttackJob(pawn, pawn2);
+                return PurpleIvyUtils.KillAttackJob(pawn, pawn2);
             }
             //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - NULL 1");
             //Building building = this.FindTurretTarget(pawn);
@@ -80,15 +84,6 @@ namespace PurpleIvy
             return null;
         }
 
-        private static Job KillAttackJob(Pawn pawn, Thing target)
-        {
-            var job2 = JobMaker.MakeJob(PurpleIvyDefOf.PI_Kill, target);
-            job2.maxNumMeleeAttacks = 1;
-            job2.expiryInterval = Rand.Range(420, 900);
-            job2.canBash = true;
-            job2.killIncappedTarget = true;
-            return job2;
-        }
         private Building FindTurretTarget(Pawn pawn)
         {
             return (Building)AttackTargetFinder.BestAttackTarget(pawn,
