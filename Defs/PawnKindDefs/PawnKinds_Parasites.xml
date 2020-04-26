@@ -58,6 +58,47 @@
 		<aiAvoidCover>true</aiAvoidCover>
 		<isFighter>true</isFighter>	
 	</PawnKindDef> 
+	
+	<PawnKindDef ParentName="BaseParasiteAlpha">
+		<defName>Genny_ParasiteNestGuard</defName>
+		<race>Genny_ParasiteNestGuard</race>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/ParasiteAlpha/ParasiteAlpha_A</texPath>
+					<drawSize>2</drawSize>
+				</bodyGraphicData>
+				<dessicatedBodyGraphicData>
+					<texPath>Things/Pawn/ParasiteAlpha/ParasiteAlpha_Dessicated</texPath>
+					<drawSize>1</drawSize>
+				</dessicatedBodyGraphicData>
+			</li>
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/ParasiteAlpha/ParasiteAlpha_A</texPath>
+					<drawSize>2.25</drawSize>
+				</bodyGraphicData>
+				<dessicatedBodyGraphicData>
+					<texPath>Things/Pawn/ParasiteAlpha/ParasiteAlpha_Dessicated</texPath>
+					<drawSize>2.25</drawSize>
+				</dessicatedBodyGraphicData>
+			</li>
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/ParasiteAlpha/ParasiteAlpha_A</texPath>
+					<drawSize>2.5</drawSize>
+					<shadowData>
+						<volume>(0.2, 0.3, 0.2)</volume>
+						<offset>(0,0,0)</offset>
+					</shadowData>
+				</bodyGraphicData>
+				<dessicatedBodyGraphicData>
+					<texPath>Things/Pawn/ParasiteAlpha/ParasiteAlpha_Dessicated</texPath>
+					<drawSize>2.5</drawSize>
+				</dessicatedBodyGraphicData>
+			</li>
+		</lifeStages>
+	</PawnKindDef> 
 
 	<PawnKindDef ParentName="BaseParasiteAlpha">
 		<defName>Genny_ParasiteAlphaA</defName>
