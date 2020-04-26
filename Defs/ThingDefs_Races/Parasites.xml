@@ -11,6 +11,7 @@
 			<ToxicSensitivity>1</ToxicSensitivity>
 			<ComfyTemperatureMin>-100</ComfyTemperatureMin>
 			<ComfyTemperatureMax>250</ComfyTemperatureMax>
+			<Mass>10</Mass>
 			<Flammability>0.3</Flammability>
 		</statBases>
 		<soundImpactDefault>BulletImpact_Flesh</soundImpactDefault>
@@ -38,7 +39,7 @@
 		<statBases>
 			<MoveSpeed>2.5</MoveSpeed>
 			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.6</ArmorRating_Heat>
 			<MeatAmount>35</MeatAmount>
 			<LeatherAmount>25</LeatherAmount>
@@ -63,6 +64,23 @@
 					</extraMeleeDamages>
 				</surpriseAttack>
 			</li>
+			<li>
+				<label>tentacle</label>
+				<capacities>
+					<li>AlienTentacleGrapple</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>2.0</cooldownTime>
+				<linkedBodyPartsGroup>PI_TentacleAttackTool</linkedBodyPartsGroup>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<extraMeleeDamages>
+						<li>
+							<def>Stun</def>
+							<amount>15</amount>
+							<chance>0.3</chance>
+						</li>
+				</extraMeleeDamages>
+			</li>
 		</tools>
 		<comps>
 		</comps>
@@ -70,7 +88,7 @@
 			<body>ParasiteAlpha</body>
 			<baseBodySize>3.0</baseBodySize>
 			<baseHungerRate>0.5</baseHungerRate>
-			<baseHealthScale>3.0</baseHealthScale>
+			<baseHealthScale>4.0</baseHealthScale>
 			<lifeExpectancy>6</lifeExpectancy>
 			<fleshType>FleshParasiteAlpha</fleshType>
 			<leatherDef>PI_AlienLeather</leatherDef>

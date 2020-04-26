@@ -8,4 +8,10 @@
 		<description>toxic stinging</description>
 	</ToolCapacityDef>
 	
+	<ToolCapacityDef>
+		<defName>AlienTentacleGrapple</defName>
+		<label>tentacle grappling</label>
+		<description>tentacle grappling</description>
+	</ToolCapacityDef>
+	
 </Defs>
