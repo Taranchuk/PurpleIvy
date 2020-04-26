@@ -90,7 +90,8 @@ namespace PurpleIvy
             {
                 var AlienQueen = this.contents.SingleContainedThing as AlienQueen;
                 AlienQueen.health.AddHediff(PurpleIvyDefOf.PI_CrashlandedDowned);
-                AlienQueen.recoveryTick = new IntRange(80000, 140000).RandomInRange;
+                AlienQueen.recoveryTick = Find.TickManager.TicksGame + 
+                    new IntRange(80000, 140000).RandomInRange;
             }
             this.Destroy(DestroyMode.Vanish);
         }

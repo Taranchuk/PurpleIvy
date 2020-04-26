@@ -54,6 +54,7 @@ namespace PurpleIvy
                 this.health.hediffSet.hediffs.Remove(hediff);
                 RestUtility.Awake(this);
                 this.health.Reset();
+                Log.Message("Reset 2");
             }
             base.PostApplyDamage(dinfo, totalDamageDealt);
         }
@@ -69,6 +70,8 @@ namespace PurpleIvy
                     this.health.hediffSet.hediffs.Remove(hediff);
                     RestUtility.Awake(this);
                     this.health.Reset();
+                    Log.Message("Reset 1");
+
                 }
             }
             spawnticks--;
