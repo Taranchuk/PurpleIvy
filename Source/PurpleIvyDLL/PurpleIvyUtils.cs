@@ -12,6 +12,7 @@ namespace PurpleIvy
     [StaticConstructorOnStartup]
     public static class PurpleIvyUtils
     {
+
         public static Job JumpOnTargetJob(Pawn pawn, Thing target)
         {
             var job = JobMaker.MakeJob(PurpleIvyDefOf.PI_JumpOnTarget, target);

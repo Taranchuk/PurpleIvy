@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using Verse;
@@ -10,10 +11,17 @@ namespace PurpleIvy
     {
         protected override Job TryGiveJob(Pawn pawn)
         {
+            Predicate<Thing> validator = delegate (Thing t)
+            {
+                List<Thing> list = pawn.Map.thingGrid.ThingsListAt(t.Position);
+                return !(list.Count > 0 && list.OfType<Plant>().Any(x =>
+                x.def == PurpleIvyDefOf.PurpleIvy || x.def == PurpleIvyDefOf.PI_Nest
+                || x.def == PurpleIvyDefOf.PlantVenomousToothwort));
+            };
 
             Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
                 ThingRequest.ForGroup(ThingRequestGroup.Corpse), PathEndMode.ClosestTouch,
-                TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn, false), 50f, null, null);
+                TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn, false), 50f, validator, null);
             if (thing != null && ReservationUtility.CanReserveAndReach(pawn, thing, PathEndMode.ClosestTouch, Danger.None))
             {
                 Log.Message(pawn + " hauls " + thing);
