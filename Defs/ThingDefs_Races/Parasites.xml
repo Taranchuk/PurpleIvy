@@ -201,36 +201,35 @@
 		<description>Medium alien parasite</description>
 		<statBases>
 			<MoveSpeed>0.80</MoveSpeed>
-			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.7</ArmorRating_Blunt>
+			<ArmorRating_Sharp>1.0</ArmorRating_Sharp>
 			<MeatAmount>30</MeatAmount>
 			<LeatherAmount>15</LeatherAmount>
-			<ArmorRating_Heat>2.00</ArmorRating_Heat>
+			<ArmorRating_Heat>0.4</ArmorRating_Heat>
 		</statBases>
 		<tools>
 			<li>
 				<label>tentacle</label>
 				<capacities>
-					<li>AlienToxicSting</li>
+					<li>AlienTentacleGrapple</li>
 				</capacities>
-				<power>13</power>
-				<cooldownTime>2.6</cooldownTime>
+				<power>7</power>
+				<cooldownTime>2.0</cooldownTime>
 				<linkedBodyPartsGroup>PI_TentacleAttackTool</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-				<surpriseAttack>
-					<extraMeleeDamages>
-						<li>
-							<def>Stun</def>
-							<amount>14</amount>
-						</li>
-					</extraMeleeDamages>
-				</surpriseAttack>
+				<extraMeleeDamages>
+					<li>
+						<def>Stun</def>
+						<amount>10</amount>
+						<chance>0.3</chance>
+					</li>
+				</extraMeleeDamages>
 			</li>
 		</tools>
 		<race>
 			<body>ParasiteBeta</body>
 			<baseBodySize>1.0</baseBodySize>
-			<baseHealthScale>1.0</baseHealthScale>
+			<baseHealthScale>2.0</baseHealthScale>
 			<lifeExpectancy>5</lifeExpectancy>
 			<baseHungerRate>0.7</baseHungerRate>
 			<fleshType>FleshParasiteBeta</fleshType>
@@ -266,7 +265,7 @@
 			<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
 			<MeatAmount>30</MeatAmount>
 			<LeatherAmount>15</LeatherAmount>
-			<ArmorRating_Heat>2.00</ArmorRating_Heat>
+			<ArmorRating_Heat>0.6</ArmorRating_Heat>
 		</statBases>
 		<tools>
 			<li>
@@ -345,7 +344,7 @@
 			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
 			<MeatAmount>10</MeatAmount>
 			<LeatherAmount>5</LeatherAmount>
-			<ArmorRating_Heat>2.00</ArmorRating_Heat>
+			<ArmorRating_Heat>0.60</ArmorRating_Heat>
 		</statBases>
 		<tools>
 			<li>
