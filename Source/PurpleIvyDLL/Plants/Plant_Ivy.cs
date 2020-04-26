@@ -227,35 +227,35 @@ namespace PurpleIvy
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenTurret");
                 
                 }
-                else if (randChance >= 44 && randChance <= 46)
+                else if (randChance >= 44 && randChance <= 45)
                 {
                     Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac");
                 }
-                else if (randChance >= 47 && randChance <= 49)
+                else if (randChance >= 46 && randChance <= 48)
                 {
                     Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSacBeta);
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac beta");
                 }
-                else if (randChance >= 50 && randChance <= 53)
+                else if (randChance >= 49 && randChance <= 52)
                 {
                     Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSacGamma);
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac gamma");
                 }
-                else if (randChance >= 54 && randChance <= 59)
+                else if (randChance >= 53 && randChance <= 57)
                 {
                     Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
                     ParasiteEgg.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(ParasiteEgg, Position, this.Map);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into ParasiteEgg");
                 }
-                else if (randChance >= 60 && randChance <= 64)
+                else if (randChance >= 58 && randChance <= 64)
                 {
                     var PlantVenomousToothwort = ThingMaker.MakeThing(PurpleIvyDefOf.PlantVenomousToothwort);
                     GenSpawn.Spawn(PlantVenomousToothwort, Position, this.Map);

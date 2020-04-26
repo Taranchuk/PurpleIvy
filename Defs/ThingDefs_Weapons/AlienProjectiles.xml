@@ -6,7 +6,7 @@
 		<label>toxic spit</label>
 		<thingClass>PurpleIvy.AlienProjectile</thingClass>
 		<graphicData>
-			<texPath>Things/Projectiles/OxalisSeed</texPath>
+			<texPath>Things/Projectiles/ToxicSpits</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>1</drawSize>
 		</graphicData>
