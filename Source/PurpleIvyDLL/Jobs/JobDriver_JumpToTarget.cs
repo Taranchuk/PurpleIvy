@@ -65,7 +65,7 @@ namespace PurpleIvy
                 actor.Position = thing.Position;
                 actor.pather.StopDead();
                 pawn1.pather.StopDead();
-                pawn1.TakeDamage(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 10, 0f, -1f, actor, null, null));
+                pawn1.TakeDamage(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 3, 0f, -1f, actor, null, null));
                 if (actor.jobs.curJob != null)
                 {
                     actor.jobs.curDriver.Notify_PatherArrived();
