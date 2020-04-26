@@ -13,6 +13,8 @@ namespace PurpleIvy
 
         public static HediffDef HarmfulBacteriaHediff;
 
+        public static HediffDef PI_CrashlandedDowned;
+
         public static DamageDef AlienToxicSting;
 
         public static FactionDef Genny;

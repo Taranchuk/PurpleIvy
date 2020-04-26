@@ -89,8 +89,7 @@ namespace PurpleIvy
             if (this.contents.SingleContainedThing is Pawn)
             {
                 var AlienQueen = this.contents.SingleContainedThing as AlienQueen;
-                HealthUtility.DamageUntilDowned(AlienQueen, true);
-                //AlienQueen.TakeDamage(new DamageInfo(DamageDefOf.Blunt, 150f, 0f, -1));
+                AlienQueen.health.AddHediff(PurpleIvyDefOf.PI_CrashlandedDowned);
                 AlienQueen.recoveryTick = new IntRange(80000, 140000).RandomInRange;
             }
             this.Destroy(DestroyMode.Vanish);

@@ -18,13 +18,31 @@ namespace PurpleIvy
             this.SetFactionDirect(PurpleIvyData.AlienFaction);
         }
 
+        public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
+        {
+            var hediff = this.health.hediffSet.hediffs
+.FirstOrDefault((Hediff h) => h.def == PurpleIvyDefOf.PI_CrashlandedDowned);
+            if (hediff != null)
+            {
+                this.health.hediffSet.hediffs.Remove(hediff);
+                RestUtility.Awake(this);
+                this.health.Reset();
+            }
+            base.PostApplyDamage(dinfo, totalDamageDealt);
+        }
         public override void Tick()
         {
             base.Tick();
-            if (Find.TickManager.TicksGame > this.recoveryTick && this.health.Downed)
+            if (Find.TickManager.TicksGame > this.recoveryTick)
             {
-                Log.Message("Test");
-                this.health.Reset();
+                var hediff = this.health.hediffSet.hediffs
+                .FirstOrDefault((Hediff h) => h.def == PurpleIvyDefOf.PI_CrashlandedDowned);
+                if (hediff != null)
+                {
+                    this.health.hediffSet.hediffs.Remove(hediff);
+                    RestUtility.Awake(this);
+                    this.health.Reset();
+                }
             }
             spawnticks--;
             if (spawnticks == 0)

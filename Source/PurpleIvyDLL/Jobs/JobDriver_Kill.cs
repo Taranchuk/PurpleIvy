@@ -77,7 +77,7 @@ namespace PurpleIvy
                                     comp.maxNumberOfCreatures = range.RandomInRange;
                                     comp.Props.maxNumberOfCreatures = range;
                                 }
-                                else
+                                else if (actor.kindDef.defName != PurpleIvyDefOf.Genny_ParasiteQueen.defName)
                                 {
                                     Log.Error("2 Something went wrong while adding infected comp: " + comp.parent + " - " + actor);
                                 }
@@ -138,7 +138,7 @@ namespace PurpleIvy
                             comp.maxNumberOfCreatures = range.RandomInRange;
                             comp.Props.maxNumberOfCreatures = range;
                         }
-                        else
+                        else if (actor.kindDef.defName != PurpleIvyDefOf.Genny_ParasiteQueen.defName)
                         {
                             Log.Error("3 Something went wrong while adding infected comp: " + comp.parent + " - " + actor);
                         }
