@@ -139,7 +139,7 @@ namespace PurpleIvy
 
         public static ThingCategoryDef CorpsesAlienParasiteOmega;
 
-        public static PawnKindDef Genny_ParasiteQueen;
+        public static PawnKindDef Genny_Queen;
 
     }
 }

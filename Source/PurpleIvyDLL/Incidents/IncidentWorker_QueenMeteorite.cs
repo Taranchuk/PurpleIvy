@@ -16,7 +16,7 @@ namespace PurpleIvy
                 && !GridsUtility.Fogged(sq, map)
                 && GenGrid.InBounds(sq, map), map);
             //SkyfallerMaker.SpawnSkyfaller(skyfaller, meteor, intVec, map);
-            Thing singleContainedThing = PawnGenerator.GeneratePawn(PurpleIvyDefOf.Genny_ParasiteQueen, null);
+            Thing singleContainedThing = PawnGenerator.GeneratePawn(PurpleIvyDefOf.Genny_Queen, null);
             var meteorIncoming = (MeteorIncoming)ThingMaker.MakeThing(ThingDef.Named("PI_QueenIncoming"), null);
             MeteorUtility.MakeMeteorAt(map, intVec, meteorIncoming, new MeteorInfo 
             {

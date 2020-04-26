@@ -2,10 +2,10 @@
 <Defs>
 
 	<PawnKindDef>
-		<defName>Genny_ParasiteQueen</defName>
+		<defName>Genny_Queen</defName>
 		<label>Alien queen parasite</label>
 		<combatPower>1000</combatPower>
-		<race>Genny_ParasiteQueen</race>
+		<race>Genny_Queen</race>
 		<defaultFactionType>Genny</defaultFactionType>
 		<aiAvoidCover>true</aiAvoidCover>
 		<isFighter>true</isFighter>	

@@ -33,7 +33,7 @@
 	</ThingDef>
 
 	<ThingDef ParentName="BaseParasite">
-		<defName>Genny_ParasiteQueen</defName>
+		<defName>Genny_Queen</defName>
 		<label>Alien queen parasite</label>
 		<description>Alien queen parasite</description>
 		<thingClass>PurpleIvy.AlienQueen</thingClass>

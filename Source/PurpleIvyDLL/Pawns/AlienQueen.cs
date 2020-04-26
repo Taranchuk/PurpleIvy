@@ -11,11 +11,38 @@ namespace PurpleIvy
 {
     public class AlienQueen : Pawn
     {
-        private int spawnticks = 1200;
+        private int spawnticks = new IntRange(15000, 30000).RandomInRange;
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
             this.SetFactionDirect(PurpleIvyData.AlienFaction);
+            foreach (IntVec3 current in GenAdj.CellsAdjacentCardinal(this))
+            {
+                if (GenGrid.InBounds(current, this.Map))
+                {
+                    if (current.GetPlant(this.Map) == null)
+                    {
+                        if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                        {
+                            Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                            GenSpawn.Spawn(newNest, current, this.Map);
+                        }
+                    }
+                    else
+                    {
+                        Plant plant = current.GetPlant(this.Map);
+                        if (plant.def.defName != "PI_Nest")
+                        {
+                            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                            {
+                                plant.Destroy();
+                                Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                                GenSpawn.Spawn(newNest, current, this.Map);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
@@ -47,34 +74,31 @@ namespace PurpleIvy
             spawnticks--;
             if (spawnticks == 0)
             {
-                foreach (IntVec3 current in GenAdj.CellsAdjacentCardinal(this))
+                if (GenGrid.InBounds(this.Position, this.Map))
                 {
-                    if (GenGrid.InBounds(current, this.Map))
+                    if (this.Position.GetPlant(this.Map) == null)
                     {
-                        if (current.GetPlant(this.Map) == null)
+                        if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(this.Position, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
                         {
-                            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
-                            {
-                                Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
-                                GenSpawn.Spawn(newNest, current, this.Map);
-                            }
+                            Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                            GenSpawn.Spawn(newNest, this.Position, this.Map);
                         }
-                        else
+                    }
+                    else
+                    {
+                        Plant plant = this.Position.GetPlant(this.Map);
+                        if (plant.def.defName != "PI_Nest")
                         {
-                            Plant plant = current.GetPlant(this.Map);
-                            if (plant.def.defName != "PI_Nest")
+                            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(this.Position, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
                             {
-                                if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
-                                {
-                                    plant.Destroy();
-                                    Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
-                                    GenSpawn.Spawn(newNest, current, this.Map);
-                                }
+                                plant.Destroy();
+                                Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                                GenSpawn.Spawn(newNest, this.Position, this.Map);
                             }
                         }
                     }
                 }
-                spawnticks = 1200;
+                spawnticks = new IntRange(15000, 30000).RandomInRange;
             }
         }
 
