@@ -79,6 +79,7 @@
 		</comps>
 		<race>
 			<body>ParasiteAlpha</body>
+			<thinkTreeMain>PI_Queen</thinkTreeMain>
 			<baseBodySize>5.0</baseBodySize>
 			<baseHungerRate>0.5</baseHungerRate>
 			<baseHealthScale>9.0</baseHealthScale>

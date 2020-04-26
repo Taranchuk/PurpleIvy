@@ -3,6 +3,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 using RimWorld;
+using Verse.AI;
 
 namespace PurpleIvy
 {
@@ -92,6 +93,9 @@ namespace PurpleIvy
                 AlienQueen.health.AddHediff(PurpleIvyDefOf.PI_CrashlandedDowned);
                 AlienQueen.recoveryTick = Find.TickManager.TicksGame + 
                     new IntRange(80000, 140000).RandomInRange;
+                PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
+                AlienQueen.mindState.duty = duty;
+                AlienQueen.mindState.duty.focus = new LocalTargetInfo(this.Position);
             }
             this.Destroy(DestroyMode.Vanish);
         }
