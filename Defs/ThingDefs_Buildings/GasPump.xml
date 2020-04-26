@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>GasPump</defName>
+		<label>Gaseous Pustule</label>
+		<thingClass>PurpleIvy.Building_GasPump</thingClass>
+		<tickerType>Rare</tickerType>
+		<graphicData>
+			<texPath>Things/GasPump</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shadowData>
+				<volume>(0.3, 0.3, 0.3)</volume>
+				<offset>(0,0,-0.1)</offset>
+			</shadowData>
+		</graphicData>
+		<passability>Impassable</passability>
+		<altitudeLayer>Terrain</altitudeLayer>
+		<useHitPoints>true</useHitPoints>
+		<building>
+			<ai_combatDangerous>true</ai_combatDangerous>
+			<claimable>false</claimable>
+		</building>
+		<selectable>true</selectable>
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>3</glowRadius>
+				<glowColor>(150,255,255,0)</glowColor>
+			</li>
+		</comps>
+		<statBases>
+			<MaxHitPoints>200</MaxHitPoints>
+			<Flammability>0.3</Flammability>
+			<Beauty>-50</Beauty>     
+		</statBases>
+		<killedLeavings>
+			<PurpleIvy>1</PurpleIvy>
+		</killedLeavings>
+	</ThingDef>
+
+</Defs>

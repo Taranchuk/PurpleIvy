@@ -33,6 +33,88 @@
 	</ThingDef>
 
 	<ThingDef ParentName="BaseParasite">
+		<defName>Genny_ParasiteQueen</defName>
+		<label>Alien queen parasite</label>
+		<description>Alien queen parasite</description>
+		<thingClass>PurpleIvy.AlienQueen</thingClass>
+		<statBases>
+			<MoveSpeed>2.5</MoveSpeed>
+			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.6</ArmorRating_Heat>
+			<MeatAmount>35</MeatAmount>
+			<LeatherAmount>25</LeatherAmount>
+			<Mass>40</Mass>
+		</statBases>
+		<tools>
+			<li>
+				<label>tentacle</label>
+				<capacities>
+					<li>AlienToxicSting</li>
+				</capacities>
+				<power>17</power>
+				<cooldownTime>2.6</cooldownTime>
+				<linkedBodyPartsGroup>PI_TentacleAttackTool</linkedBodyPartsGroup>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+							<def>Stun</def>
+							<amount>14</amount>
+						</li>
+					</extraMeleeDamages>
+				</surpriseAttack>
+			</li>
+			<li>
+				<label>tentacle</label>
+				<capacities>
+					<li>AlienTentacleGrapple</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>2.0</cooldownTime>
+				<linkedBodyPartsGroup>PI_TentacleAttackTool</linkedBodyPartsGroup>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<extraMeleeDamages>
+					<li>
+						<def>Stun</def>
+						<amount>15</amount>
+						<chance>0.3</chance>
+					</li>
+				</extraMeleeDamages>
+			</li>
+		</tools>
+		<comps>
+		</comps>
+		<race>
+			<body>ParasiteAlpha</body>
+			<baseBodySize>3.0</baseBodySize>
+			<baseHungerRate>0.5</baseHungerRate>
+			<baseHealthScale>4.0</baseHealthScale>
+			<lifeExpectancy>6</lifeExpectancy>
+			<fleshType>FleshParasiteAlpha</fleshType>
+			<leatherDef>PI_AlienLeather</leatherDef>
+			<lifeStageAges>
+				<li>
+					<def>ParasiteLarva</def>
+					<minAge>0</minAge>
+				</li>
+				<li>
+					<def>ParasiteJuvenile</def>
+					<minAge>0.1</minAge>
+				</li>
+				<li>
+					<def>ParasiteAdult</def>
+					<minAge>0.3</minAge>
+					<soundWounded>Pawn_BigInsect_Pain</soundWounded>
+					<soundDeath>Pawn_BigInsect_Death</soundDeath>
+					<soundCall>Pawn_BigInsect_Call</soundCall>
+					<soundAngry>Pawn_BigInsect_Angry</soundAngry>
+				</li>
+			</lifeStageAges>
+		</race>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseParasite">
 		<defName>Genny_ParasiteAlpha</defName>
 		<label>Big alien parasite</label>
 		<description>Big alien parasite</description>
@@ -74,11 +156,11 @@
 				<linkedBodyPartsGroup>PI_TentacleAttackTool</linkedBodyPartsGroup>
 				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 				<extraMeleeDamages>
-						<li>
-							<def>Stun</def>
-							<amount>15</amount>
-							<chance>0.3</chance>
-						</li>
+					<li>
+						<def>Stun</def>
+						<amount>15</amount>
+						<chance>0.3</chance>
+					</li>
 				</extraMeleeDamages>
 			</li>
 		</tools>
@@ -207,21 +289,21 @@
 			</li>
 		</tools>
 		<verbs>			
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<accuracyTouch>1</accuracyTouch>
-			<accuracyShort>1</accuracyShort>
-			<accuracyMedium>1</accuracyMedium>
-			<accuracyLong>1</accuracyLong>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>PI_ToxicBullet</defaultProjectile>
-			<warmupTime>0</warmupTime>
-			<burstShotCount>1</burstShotCount>
-			<minRange>2</minRange>
-			<range>20</range>
-			<soundCast>Shot_NeedleGun</soundCast>
-			<muzzleFlashScale>0</muzzleFlashScale>
-			<commonality>.8</commonality>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<accuracyTouch>1</accuracyTouch>
+				<accuracyShort>1</accuracyShort>
+				<accuracyMedium>1</accuracyMedium>
+				<accuracyLong>1</accuracyLong>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>PI_ToxicBullet</defaultProjectile>
+				<warmupTime>0</warmupTime>
+				<burstShotCount>1</burstShotCount>
+				<minRange>2</minRange>
+				<range>20</range>
+				<soundCast>Shot_NeedleGun</soundCast>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<commonality>.8</commonality>
 			</li>
 		</verbs>
 		<race>

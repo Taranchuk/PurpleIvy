@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+	<PawnKindDef>
+		<defName>Genny_ParasiteQueen</defName>
+		<label>Alien queen parasite</label>
+		<combatPower>1000</combatPower>
+		<race>Genny_ParasiteQueen</race>
+		<defaultFactionType>Genny</defaultFactionType>
+		<aiAvoidCover>true</aiAvoidCover>
+		<isFighter>true</isFighter>	
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/ParasiteQueen/ParasiteQueen</texPath>
+					<drawSize>4.7</drawSize>
+					<!--<color>(114,107,84)</color>-->
+				</bodyGraphicData>
+				<dessicatedBodyGraphicData>
+					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
+					<drawSize>4.7</drawSize>
+				</dessicatedBodyGraphicData>
+			</li>
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/ParasiteQueen/ParasiteQueen</texPath>
+					<drawSize>5</drawSize>
+					<!--<color>(114,107,84)</color>-->
+				</bodyGraphicData>
+				<dessicatedBodyGraphicData>
+					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
+					<drawSize>5</drawSize>
+				</dessicatedBodyGraphicData>
+			</li>
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/ParasiteQueen/ParasiteQueen</texPath>
+					<drawSize>5.25</drawSize>
+					<!--<color>(114,107,84)</color>-->
+					<shadowData>
+						<volume>(0.2, 0.3, 0.2)</volume>
+						<offset>(0,0,0)</offset>
+					</shadowData>
+				</bodyGraphicData>
+				<dessicatedBodyGraphicData>
+					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
+					<drawSize>5.25</drawSize>
+				</dessicatedBodyGraphicData>
+			</li>
+		</lifeStages>
+	</PawnKindDef>
+
 	<PawnKindDef Name="BaseParasiteAlpha" Abstract="True">
 		<label>Big alien parasite</label>
 		<combatPower>1000</combatPower>
@@ -142,7 +191,7 @@
 		<defaultFactionType>Genny</defaultFactionType>
 		<aiAvoidCover>true</aiAvoidCover>
 		<isFighter>true</isFighter>	
-	</PawnKindDef> 
+	</PawnKindDef>  
 
 	<PawnKindDef ParentName="BaseParasiteBeta">
 		<defName>Genny_ParasiteBetaA</defName>
@@ -150,29 +199,29 @@
 			<li>
 				<bodyGraphicData>
 					<texPath>Things/Pawn/ParasiteBeta/ParasiteBeta_A</texPath>
-					<drawSize>4.7</drawSize>
+					<drawSize>0.7</drawSize>
 					<!--<color>(114,107,84)</color>-->
 				</bodyGraphicData>
 				<dessicatedBodyGraphicData>
 					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
-					<drawSize>4.7</drawSize>
+					<drawSize>1</drawSize>
 				</dessicatedBodyGraphicData>
 			</li>
 			<li>
 				<bodyGraphicData>
 					<texPath>Things/Pawn/ParasiteBeta/ParasiteBeta_A</texPath>
-					<drawSize>5</drawSize>
+					<drawSize>1</drawSize>
 					<!--<color>(114,107,84)</color>-->
 				</bodyGraphicData>
 				<dessicatedBodyGraphicData>
 					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
-					<drawSize>5</drawSize>
+					<drawSize>1</drawSize>
 				</dessicatedBodyGraphicData>
 			</li>
 			<li>
 				<bodyGraphicData>
 					<texPath>Things/Pawn/ParasiteBeta/ParasiteBeta_A</texPath>
-					<drawSize>5.25</drawSize>
+					<drawSize>1.25</drawSize>
 					<!--<color>(114,107,84)</color>-->
 					<shadowData>
 						<volume>(0.2, 0.3, 0.2)</volume>
@@ -181,7 +230,7 @@
 				</bodyGraphicData>
 				<dessicatedBodyGraphicData>
 					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
-					<drawSize>5.25</drawSize>
+					<drawSize>1.25</drawSize>
 				</dessicatedBodyGraphicData>
 			</li>
 		</lifeStages>
@@ -193,12 +242,12 @@
 			<li>
 				<bodyGraphicData>
 					<texPath>Things/Pawn/ParasiteBeta/ParasiteBeta_B</texPath>
-					<drawSize>0.7</drawSize>
+					<drawSize>0.75</drawSize>
 					<!--<color>(114,107,84)</color>-->
 				</bodyGraphicData>
 				<dessicatedBodyGraphicData>
 					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
-					<drawSize>1</drawSize>
+					<drawSize>0.75</drawSize>
 				</dessicatedBodyGraphicData>
 			</li>
 			<li>
@@ -301,49 +350,6 @@
 			<li>
 				<bodyGraphicData>
 					<texPath>Things/Pawn/ParasiteBeta/ParasiteBeta_D</texPath>
-					<drawSize>1.25</drawSize>
-					<!--<color>(114,107,84)</color>-->
-					<shadowData>
-						<volume>(0.2, 0.3, 0.2)</volume>
-						<offset>(0,0,0)</offset>
-					</shadowData>
-				</bodyGraphicData>
-				<dessicatedBodyGraphicData>
-					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
-					<drawSize>1.25</drawSize>
-				</dessicatedBodyGraphicData>
-			</li>
-		</lifeStages>
-	</PawnKindDef> 
-
-	<PawnKindDef ParentName="BaseParasiteBeta">
-		<defName>Genny_ParasiteBetaE</defName>
-		<lifeStages>
-			<li>
-				<bodyGraphicData>
-					<texPath>Things/Pawn/ParasiteBeta/ParasiteBeta_E</texPath>
-					<drawSize>0.75</drawSize>
-					<!--<color>(114,107,84)</color>-->
-				</bodyGraphicData>
-				<dessicatedBodyGraphicData>
-					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
-					<drawSize>0.75</drawSize>
-				</dessicatedBodyGraphicData>
-			</li>
-			<li>
-				<bodyGraphicData>
-					<texPath>Things/Pawn/ParasiteBeta/ParasiteBeta_E</texPath>
-					<drawSize>1</drawSize>
-					<!--<color>(114,107,84)</color>-->
-				</bodyGraphicData>
-				<dessicatedBodyGraphicData>
-					<texPath>Things/Pawn/GenericDessicated/Parasite_Dessicated</texPath>
-					<drawSize>1</drawSize>
-				</dessicatedBodyGraphicData>
-			</li>
-			<li>
-				<bodyGraphicData>
-					<texPath>Things/Pawn/ParasiteBeta/ParasiteBeta_E</texPath>
 					<drawSize>1.25</drawSize>
 					<!--<color>(114,107,84)</color>-->
 					<shadowData>

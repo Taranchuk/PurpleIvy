@@ -14,6 +14,20 @@
 			<li>Caravan</li>
 		</targetTags>
 	</IncidentDef>
+	
+		<IncidentDef>
+		<defName>PI_QueenMeteorite</defName>
+		<workerClass>PurpleIvy.IncidentWorker_QueenMeteorite</workerClass>
+		<baseChance>0.2</baseChance>
+		<category>ThreatBig</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+			<li>Map_TempIncident</li>
+			<li>Map_Misc</li>
+			<li>Map_RaidBeacon</li>
+			<li>Caravan</li>
+		</targetTags>
+	</IncidentDef>
 
 	<IncidentDef>
 		<defName>PI_InfectedTile</defName>

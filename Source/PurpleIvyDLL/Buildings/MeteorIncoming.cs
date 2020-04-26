@@ -83,9 +83,16 @@ namespace PurpleIvy
             {
                 MoteMaker.ThrowAirPuffUp(base.Position.ToVector3Shifted(), this.Map);
             }
-            Meteor meteor = new Meteor(ThingDef.Named("PI_Meteorite"));
-            meteor.info = this.contents;
-            GenSpawn.Spawn(meteor.meteor, base.Position, this.Map, base.Rotation);
+            //Meteor meteor = new Meteor(ThingDef.Named("PI_Meteorite"));
+            //meteor.info = this.contents;
+            GenSpawn.Spawn(this.contents.SingleContainedThing, base.Position, this.Map, base.Rotation);
+            if (this.contents.SingleContainedThing is Pawn)
+            {
+                var AlienQueen = this.contents.SingleContainedThing as AlienQueen;
+                HealthUtility.DamageUntilDowned(AlienQueen, true);
+                //AlienQueen.TakeDamage(new DamageInfo(DamageDefOf.Blunt, 150f, 0f, -1));
+                AlienQueen.recoveryTick = new IntRange(80000, 140000).RandomInRange;
+            }
             this.Destroy(DestroyMode.Vanish);
         }
     }

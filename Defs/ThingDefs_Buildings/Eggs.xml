@@ -83,7 +83,6 @@
 					<li>Genny_ParasiteBetaB</li>
 					<li>Genny_ParasiteBetaC</li>
 					<li>Genny_ParasiteBetaD</li>
-					<li>Genny_ParasiteBetaE</li>
 				</typesOfCreatures>
 				<numberOfCreaturesPerSpawn>1</numberOfCreaturesPerSpawn>
 				<resetIncubation>true</resetIncubation>
