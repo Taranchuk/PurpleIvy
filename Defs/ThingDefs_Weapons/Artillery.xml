@@ -19,7 +19,7 @@
 			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 			<soundAmbient>MortarRound_Ambient</soundAmbient>
 			<explosionRadius>0</explosionRadius>
-			<postExplosionSpawnThingDef>PurpleIvy</postExplosionSpawnThingDef>
+			<postExplosionSpawnThingDef>PI_Nest</postExplosionSpawnThingDef>
 			<postExplosionSpawnChance>1</postExplosionSpawnChance>
 			<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
 			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>

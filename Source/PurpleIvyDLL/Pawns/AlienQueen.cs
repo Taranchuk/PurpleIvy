@@ -14,7 +14,7 @@ namespace PurpleIvy
     {
         private int spawnticks = new IntRange(15000, 30000).RandomInRange;
         private bool first = true;
-        private Thing focus = null;
+        private LocalTargetInfo focus = null;
         public override void PostMake()
         {
             base.PostMake();
@@ -37,9 +37,9 @@ namespace PurpleIvy
                             {
                                 PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
                                 this.mindState.duty = duty;
-                                this.mindState.duty.focus = newNest;
+                                this.mindState.duty.focus = new LocalTargetInfo(newNest.Position);
                                 Log.Message("Set focus to " + newNest);
-                                focus = newNest;
+                                focus = this.mindState.duty.focus;
                                 first = false;
                             }
                         }
@@ -58,7 +58,7 @@ namespace PurpleIvy
                                 {
                                     PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
                                     this.mindState.duty = duty;
-                                    this.mindState.duty.focus = newNest;
+                                    this.mindState.duty.focus = new LocalTargetInfo(newNest.Position);
                                     first = false;
                                     focus = newNest;
                                     Log.Message("Set focus to " + newNest);
@@ -140,7 +140,7 @@ namespace PurpleIvy
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.recoveryTick, "recoveryTick", 0);
             Scribe_Values.Look<bool>(ref this.first, "first", true);
-            Scribe_References.Look<Thing>(ref this.focus, "focus");
+            Scribe_Values.Look<LocalTargetInfo>(ref this.focus, "focus");
         }
 
         public int recoveryTick = 0;
