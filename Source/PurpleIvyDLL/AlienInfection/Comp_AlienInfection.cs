@@ -15,6 +15,7 @@ namespace PurpleIvy
         public int maxNumberOfCreatures = 0;
         public bool prevAngle = true;
         public int tickStartHediff = 0;
+        public bool stopSpawning = false;
 
         public CompProperties_AlienInfection Props => this.props as CompProperties_AlienInfection;
 
@@ -26,6 +27,7 @@ namespace PurpleIvy
 
         public void TryStartSpawn()
         {
+            if (this.stopSpawning == true) return;
             if (this.Props.maxNumberOfCreaturesOnMap > 0)
             {
                 int count = 0;
@@ -312,6 +314,7 @@ namespace PurpleIvy
             Scribe_Values.Look<int>(ref this.startOfIncubation, "startOfIncubation", 0, false);
             Scribe_Values.Look<int>(ref this.maxNumberOfCreatures, "maxNumberOfCreatures", 0, false);
             Scribe_Values.Look<int>(ref this.tickStartHediff, "tickStartHediff", 0, false);
+            Scribe_Values.Look<bool>(ref this.stopSpawning, "stopSpawning", false, false);
         }
     }
 }

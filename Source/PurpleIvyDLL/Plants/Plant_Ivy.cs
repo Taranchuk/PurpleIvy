@@ -159,34 +159,34 @@ namespace PurpleIvy
                     //speedup the spread a little
                 }
                 else switch (list[i])
-                {
-                    //If we find a pawn and its not a hatchling
-                    case Pawn _:
                     {
-                        var stuckPawn = (Pawn)list[i];
-                        var damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
-                        stuckPawn.TakeDamage(damageInfo);
-                        var hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
-                            stuckPawn, null);
-                        hediff.Severity = 0.1f;
-                        (stuckPawn).health.AddHediff(hediff, null, null, null);
-                        var hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
-                            stuckPawn, null);
-                        hediff2.Severity = 0.1f;
-                        (stuckPawn).health.AddHediff(hediff2, null, null, null);
-                        break;
+                        //If we find a pawn and its not a hatchling
+                        case Pawn _:
+                            {
+                                var stuckPawn = (Pawn)list[i];
+                                var damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
+                                stuckPawn.TakeDamage(damageInfo);
+                                var hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
+                                    stuckPawn, null);
+                                hediff.Severity = 0.1f;
+                                (stuckPawn).health.AddHediff(hediff, null, null, null);
+                                var hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
+                                    stuckPawn, null);
+                                hediff2.Severity = 0.1f;
+                                (stuckPawn).health.AddHediff(hediff2, null, null, null);
+                                break;
+                            }
+                        //If we find a plant
+                        case Plant _:
+                            {
+                                if (list[i].def != PurpleIvyDefOf.PurpleIvy && list[i].def != PurpleIvyDefOf.PI_Nest
+                                        && list[i].def != PurpleIvyDefOf.PlantVenomousToothwort)
+                                {
+                                    list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1));
+                                }
+                                break;
+                            }
                     }
-                    //If we find a plant
-                    case Plant _:
-                    {
-                        if (list[i].def != PurpleIvyDefOf.PurpleIvy && list[i].def != PurpleIvyDefOf.PI_Nest
-                                && list[i].def != PurpleIvyDefOf.PlantVenomousToothwort)
-                        {
-                            list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1));
-                        }
-                        break;
-                    }
-                }
             }
         }
 
@@ -211,21 +211,13 @@ namespace PurpleIvy
                     Log.Message(this + " mutate into Nest");
                     this.Destroy(DestroyMode.Vanish);
                 }
-                else if (randChance >= 0.30f && randChance <= 0.349f)
-                {
-                    Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(PurpleIvyDefOf.GasPump);
-                    GasPump.SetFactionDirect(PurpleIvyData.AlienFaction);
-                    GenSpawn.Spawn(GasPump, Position, this.Map);
-                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GasPump");
-                
-                }
                 else if (randChance >= 0.35f && randChance <= 0.379f)
                 {
                     Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
                     GenMortar.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(GenMortar, Position, this.Map);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenMortar");
-                
+
                 }
                 else if (randChance >= 0.38f && randChance <= 0.439f)
                 {
@@ -233,13 +225,17 @@ namespace PurpleIvy
                     GenTurret.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(GenTurret, Position, this.Map);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenTurret");
-                
                 }
-                else if (randChance >= 0.44f && randChance <= 0.44059f) // 0.005 - 0.5%
+                else if (randChance >= 0.44f && randChance <= 0.4459f) // 0.005 - 0.5%
                 {
                     Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
+                    if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteAlpha).Count
+                        > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha])
+                    {
+                        EggSac.TryGetComp<AlienInfection>().stopSpawning = true;
+                    }
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac");
                 }
                 else if (randChance >= 0.446f && randChance <= 0.4549f)
@@ -247,6 +243,11 @@ namespace PurpleIvy
                     Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSacBeta);
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
+                    if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacBeta).Count
+                        > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta])
+                    {
+                        EggSac.TryGetComp<AlienInfection>().stopSpawning = true;
+                    }
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac beta");
                 }
                 else if (randChance >= 0.455f && randChance <= 0.469f)
@@ -254,6 +255,11 @@ namespace PurpleIvy
                     Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSacGamma);
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
+                    if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma).Count 
+                        > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma])
+                    {
+                        EggSac.TryGetComp<AlienInfection>().stopSpawning = true;
+                    }
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac gamma");
                 }
                 else if (randChance >= 0.47f && randChance <= 0.499f)
@@ -268,10 +274,15 @@ namespace PurpleIvy
                 }
                 else if (randChance >= 0.50f && randChance <= 0.549f)
                 {
-                    Building_ParasiteEgg ParasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
-                    ParasiteEgg.SetFactionDirect(PurpleIvyData.AlienFaction);
-                    GenSpawn.Spawn(ParasiteEgg, Position, this.Map);
-                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into ParasiteEgg");
+                    Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
+                    EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
+                    GenSpawn.Spawn(EggSac, Position, this.Map);
+                    if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteOmega).Count
+                        > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega])
+                    {
+                        EggSac.TryGetComp<AlienInfection>().stopSpawning = true;
+                    }
+                    Log.Message(this + " mutate into ParasiteEgg");
                 }
                 else if (randChance >= 0.55f && randChance <= 0.59f)
                 {
@@ -279,6 +290,13 @@ namespace PurpleIvy
                     GenSpawn.Spawn(PlantVenomousToothwort, Position, this.Map);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into PlantVenomousToothwort");
                     this.Destroy(DestroyMode.Vanish);
+                }
+                else if (randChance >= 0.30f && randChance <= 0.329f)
+                {
+                    Building_GasPump GasPump = (Building_GasPump)ThingMaker.MakeThing(PurpleIvyDefOf.GasPump);
+                    GasPump.SetFactionDirect(PurpleIvyData.AlienFaction);
+                    GenSpawn.Spawn(GasPump, Position, this.Map);
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GasPump");
                 }
             }
         }

@@ -263,7 +263,7 @@
 		<defName>ParasiteEgg</defName>
 		<label>Parasite egg</label>
 		<description>A small cluster of alien eggs, slimy in texture and appear to move ever so slightly.</description>
-		<thingClass>PurpleIvy.Building_ParasiteEgg</thingClass>
+		<thingClass>PurpleIvy.Building_EggSac</thingClass>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<tickerType>Normal</tickerType>
 		<graphicData>

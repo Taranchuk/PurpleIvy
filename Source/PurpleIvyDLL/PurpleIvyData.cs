@@ -123,7 +123,7 @@ namespace PurpleIvy
         }
         public static float getFogProgress(int count)
         {
-            var result = (float)(count - 500) / (float)1000;
+            var result = (float)(count - 1000) / (float)3000;
             if (result < 0f)
             {
                 result = 0f;
@@ -161,7 +161,15 @@ namespace PurpleIvy
             "Genny_ParasiteNestGuard"
         };
 
-        public static Dictionary<int, int> RadiusData = new Dictionary<int, int>()
+        public static Dictionary<ThingDef, int> TotalAlienLimit = new Dictionary<ThingDef, int>()
+                {
+                    {PurpleIvyDefOf.Genny_ParasiteAlpha, 15},
+                    {PurpleIvyDefOf.Genny_ParasiteBeta, 30},
+                    {PurpleIvyDefOf.Genny_ParasiteGamma, 30},
+                    {PurpleIvyDefOf.Genny_ParasiteOmega, 50},
+                };
+
+    public static Dictionary<int, int> RadiusData = new Dictionary<int, int>()
                 {
                     {1, 5},
                     {2, 13},

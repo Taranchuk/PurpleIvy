@@ -299,7 +299,6 @@
   <ItemGroup>
     <Compile Include="Buildings\DefModExtension_СontainmentBreach.cs" />
     <Compile Include="Buildings\Building_СontainmentBreach.cs" />
-    <Compile Include="Buildings\Building_ParasiteEgg.cs" />
     <Compile Include="Buildings\Building_GasPump.cs" />
     <Compile Include="Buildings\Building_EggSac.cs" />
     <Compile Include="Buildings\Building_GenMortarGun.cs" />

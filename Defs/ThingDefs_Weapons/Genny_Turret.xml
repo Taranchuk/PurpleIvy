@@ -37,7 +37,7 @@
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
-				<defaultProjectile>Bullet_GenTurret</defaultProjectile>
+				<defaultProjectile>Bullet_MiniTurret</defaultProjectile>
 				<warmupTime>0</warmupTime>
 				<range>28.9</range>
 				<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
@@ -45,7 +45,6 @@
 				<soundCast>GunShotA</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
-				<consumeFuelPerShot>1</consumeFuelPerShot>
 			</li>
 		</verbs>
 	</ThingDef>

@@ -10,6 +10,7 @@ namespace PurpleIvy
 {
     public class Building_EggSac : Building
     {
+
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             this.SetFactionDirect(PurpleIvyData.AlienFaction);

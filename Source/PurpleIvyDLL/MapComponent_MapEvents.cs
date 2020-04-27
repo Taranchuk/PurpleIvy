@@ -69,28 +69,95 @@ namespace PurpleIvy
             }
             if (Find.TickManager.TicksGame % 60000 == 0)
             {
+                int count = 0;
+                var alphaEggs = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac);
+                var betaEggs = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacBeta);
+                var gammaEggs = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma);
+                var nestsEggs = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacNestGuard);
+                var omegaEggs = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg);
+
                 Log.Message("Total PurpleIvy count on the map: " + 
                     this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count.ToString(), true);
-                Log.Message("Total Genny_ParasiteAlpha count on the map: " +
-                    this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteAlpha).Count.ToString(), true);
-                Log.Message("Total Genny_ParasiteBeta count on the map: " +
-    this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteBeta).Count.ToString(), true);
-                Log.Message("Total Genny_ParasiteGamma count on the map: " +
-this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteGamma).Count.ToString(), true);
-                Log.Message("Total Genny_ParasiteOmega count on the map: " +
-    this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteOmega).Count.ToString(), true);
+
+                count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteAlpha).Count;
+                if (count > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha])
+                {
+                    foreach (var egg in alphaEggs)
+                    {
+                        var eggSac = (Building_EggSac)egg;
+                        eggSac.TryGetComp<AlienInfection>().stopSpawning = true;
+                    }
+                }
+                else
+                {
+                    foreach (var egg in alphaEggs)
+                    {
+                        var eggSac = (Building_EggSac)egg;
+                        eggSac.TryGetComp<AlienInfection>().stopSpawning = false;
+                    }
+                }
+                Log.Message("Total Genny_ParasiteAlpha count on the map: " + count.ToString(), true);
+                count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteBeta).Count;
+                if (count > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta])
+                {
+                    foreach (var egg in betaEggs)
+                    {
+                        var eggSac = (Building_EggSac)egg;
+                        eggSac.TryGetComp<AlienInfection>().stopSpawning = true;
+                    }
+                }
+                else
+                {
+                    foreach (var egg in betaEggs)
+                    {
+                        var eggSac = (Building_EggSac)egg;
+                        eggSac.TryGetComp<AlienInfection>().stopSpawning = false;
+                    }
+                }
+                Log.Message("Total Genny_ParasiteBeta count on the map: " + count.ToString(), true);
+                count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteGamma).Count;
+                if (count > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma])
+                {
+                    foreach (var egg in gammaEggs)
+                    {
+                        var eggSac = (Building_EggSac)egg;
+                        eggSac.TryGetComp<AlienInfection>().stopSpawning = true;
+                    }
+                }
+                else
+                {
+                    foreach (var egg in gammaEggs)
+                    {
+                        var eggSac = (Building_EggSac)egg;
+                        eggSac.TryGetComp<AlienInfection>().stopSpawning = false;
+                    }
+                }
+                Log.Message("Total Genny_ParasiteGamma count on the map: " + count.ToString(), true);
+                count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteOmega).Count;
+                if (count > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega])
+                {
+                    foreach (var egg in omegaEggs)
+                    {
+                        var eggSac = (Building_EggSac)egg;
+                        eggSac.TryGetComp<AlienInfection>().stopSpawning = true;
+                    }
+                }
+                else
+                {
+                    foreach (var egg in omegaEggs)
+                    {
+                        var eggSac = (Building_EggSac)egg;
+                        eggSac.TryGetComp<AlienInfection>().stopSpawning = false;
+                    }
+                }
+                Log.Message("Total Genny_ParasiteOmega count on the map: " + count.ToString(), true);
                 Log.Message("Total Genny_ParasiteNestGuard count on the map: " +
 this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteNestGuard).Count.ToString(), true);
-                Log.Message("Total EggSac count on the map: " +
-    this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count.ToString(), true);
-                Log.Message("Total EggSac beta count on the map: " +
-this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacBeta).Count.ToString(), true);
-                Log.Message("Total EggSac gamma count on the map: " +
-this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma).Count.ToString(), true);
-                Log.Message("Total EggSac NestGuard count on the map: " +
-this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacNestGuard).Count.ToString(), true);
-                Log.Message("Total ParasiteEgg count on the map: " +
-this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count.ToString(), true);
+                Log.Message("Total EggSac count on the map: " + alphaEggs.Count.ToString(), true);
+                Log.Message("Total EggSac beta count on the map: " + betaEggs.Count.ToString(), true);
+                Log.Message("Total EggSac gamma count on the map: " + gammaEggs.Count.ToString(), true);
+                Log.Message("Total EggSac NestGuard count on the map: " + nestsEggs.Count.ToString(), true);
+                Log.Message("Total ParasiteEgg count on the map: " + omegaEggs.Count.ToString(), true);
                 Log.Message("Total GasPump count on the map: " +
 this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.GasPump).Count.ToString(), true);
                 Log.Message("Total GenTurretBase count on the map: " +

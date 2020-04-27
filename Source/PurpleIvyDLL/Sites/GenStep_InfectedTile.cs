@@ -69,7 +69,7 @@ namespace PurpleIvy
                 return true;
             }
             if (mutateRate < 18 || mutateRate > 23) return false;
-            var parasiteEgg = (Building_ParasiteEgg)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
+            var parasiteEgg = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
             parasiteEgg.SetFactionDirect(PurpleIvyData.AlienFaction);
             GenSpawn.Spawn(parasiteEgg, dir, map);
             return true;
