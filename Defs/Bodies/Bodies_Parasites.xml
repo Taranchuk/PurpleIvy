@@ -5,10 +5,14 @@
 		<defName>ParasiteAlpha</defName>
 		<label>Alpha parasite</label>
 		<corePart>
-			<def>PI_ParasiteBody</def>
+			<def>PI_ParasiteShell</def>
 			<height>Middle</height>
 			<depth>Outside</depth>
 			<parts>
+				<li>
+					<def>PI_ParasiteBody</def>
+					<coverage>0.5</coverage>
+				</li>
 				<li>
 					<def>PI_ParasiteMouth</def>
 					<coverage>0.02</coverage>
