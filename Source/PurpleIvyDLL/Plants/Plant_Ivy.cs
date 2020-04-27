@@ -213,7 +213,7 @@ namespace PurpleIvy
                 }
                 else if (randChance >= 0.35f && randChance <= 0.379f)
                 {
-                    Building_Turret GenMortar = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
+                    var GenMortar = (Building_TurretGun)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
                     GenMortar.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(GenMortar, Position, this.Map);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenMortar");
@@ -221,9 +221,9 @@ namespace PurpleIvy
                 }
                 else if (randChance >= 0.38f && randChance <= 0.439f)
                 {
-                    Building_Turret GenTurret = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase);
-                    GenTurret.SetFactionDirect(PurpleIvyData.AlienFaction);
-                    GenSpawn.Spawn(GenTurret, Position, this.Map);
+                    Thing thing = ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase, null);
+                    thing.SetFactionDirect(PurpleIvyData.AlienFaction);
+                    GenSpawn.Spawn(thing, this.Position, this.Map, thing.Rotation, WipeMode.Vanish, false);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenTurret");
                 }
                 else if (randChance >= 0.44f && randChance <= 0.4459f) // 0.005 - 0.5%

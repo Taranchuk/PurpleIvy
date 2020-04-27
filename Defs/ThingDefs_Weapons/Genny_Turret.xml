@@ -15,6 +15,40 @@
 		</projectile>
 	</ThingDef>
 
+	<ThingDef ParentName="BaseArtilleryWeapon">
+		<defName>GunTurretGun</defName>
+		<label>Corchorus</label>
+		<description>A genetically modified Chorchorus plant species, its able to fire its Mucilage slime at will.</description>
+		<graphicData>
+			<texPath>Things/GenTurretGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<weaponTags>
+			<li>Artillery_BaseDestroyer</li>
+		</weaponTags>
+		<tradeability>None</tradeability>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<forcedMissRadius>13</forcedMissRadius>
+				<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_GenMortar</defaultProjectile>
+				<warmupTime>1.2</warmupTime>
+				<minRange>30</minRange>
+				<range>500</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>Mortar_LaunchA</soundCast>
+				<muzzleFlashScale>16</muzzleFlashScale>
+				<requireLineOfSight>false</requireLineOfSight>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<!--
 	<ThingDef ParentName="BaseWeaponTurret">
 		<defName>GunTurretGun</defName>
 		<label>Corchorus</label>
@@ -49,5 +83,5 @@
 			</li>
 		</verbs>
 	</ThingDef>
-
+-->
 </Defs>
