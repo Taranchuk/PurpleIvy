@@ -48,7 +48,7 @@ namespace PurpleIvy
                                     GenSpawn.Spawn(moteThrown, this.Position, this.Map, WipeMode.Vanish);
                                     moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
                                     list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1));
-                                    HealthUtility.AdjustSeverity((Pawn)list[i], HediffDefOf.ToxicBuildup, 0.1f);
+                                    HealthUtility.AdjustSeverity((Pawn)list[i], HediffDefOf.ToxicBuildup, 0.01f);
                                     HealthUtility.AdjustSeverity((Pawn)list[i], PurpleIvyDefOf.PI_AlienBlood, 1f);
                                 }
                                 catch { }
