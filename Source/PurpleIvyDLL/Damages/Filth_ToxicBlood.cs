@@ -36,16 +36,22 @@ namespace PurpleIvy
                         //If we find a pawn and its not a hatchling
                         case Pawn _:
                             {
-                                MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_Smoke, null);
-                                moteThrown.Scale = Rand.Range(0.5f, 0.9f);
-                                moteThrown.rotationRate = Rand.Range(-30f, 30f);
-                                moteThrown.exactPosition = this.Position.ToVector3Shifted();
-                                moteThrown.airTimeLeft = Rand.Range(0.1f, 0.4f);
-                                moteThrown.Speed = 0.3f;
-                                moteThrown.SetVelocity((float)Rand.Range(-20, 20), Rand.Range(0.5f, 0.7f));
-                                GenSpawn.Spawn(moteThrown, this.Position, this.Map, WipeMode.Vanish);
-                                moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
-                                list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1));
+                                try
+                                {
+                                    MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_Smoke, null);
+                                    moteThrown.Scale = Rand.Range(0.5f, 0.9f);
+                                    moteThrown.rotationRate = Rand.Range(-30f, 30f);
+                                    moteThrown.exactPosition = this.Position.ToVector3Shifted();
+                                    moteThrown.airTimeLeft = Rand.Range(0.1f, 0.4f);
+                                    moteThrown.Speed = 0.3f;
+                                    moteThrown.SetVelocity((float)Rand.Range(-20, 20), Rand.Range(0.5f, 0.7f));
+                                    GenSpawn.Spawn(moteThrown, this.Position, this.Map, WipeMode.Vanish);
+                                    moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
+                                    list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1));
+                                    HealthUtility.AdjustSeverity((Pawn)list[i], HediffDefOf.ToxicBuildup, 0.1f);
+                                    HealthUtility.AdjustSeverity((Pawn)list[i], PurpleIvyDefOf.PI_AlienBlood, 1f);
+                                }
+                                catch { }
                                 break;
                             }
                         //If we find a plant
