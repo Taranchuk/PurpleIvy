@@ -305,6 +305,7 @@
     <Compile Include="Damages\BuildingsToxicDamageSectionLayerUtility.cs" />
     <Compile Include="Damages\DamageWorker_ToxicBurn.cs" />
     <Compile Include="Damages\AlienProjectile.cs" />
+    <Compile Include="Damages\Filth_ToxicBlood.cs" />
     <Compile Include="Damages\SectionLayer_BuildingsToxicDamage.cs" />
     <Compile Include="HarmonyPatches\AlienLairs_GenStepPatch.cs" />
     <Compile Include="HarmonyPatches\AlienLairsBasesGeneration.cs" />

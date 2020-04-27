@@ -79,6 +79,7 @@ namespace PurpleIvy
                 this.health.hediffSet.hediffs.Remove(hediff);
                 RestUtility.Awake(this);
                 this.health.Reset();
+                this.health.AddHediff(PurpleIvyDefOf.PI_Regen);
                 PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
                 this.mindState.duty = duty;
                 this.mindState.duty.focus = focus;
@@ -98,6 +99,7 @@ namespace PurpleIvy
                     this.health.hediffSet.hediffs.Remove(hediff);
                     RestUtility.Awake(this);
                     this.health.Reset();
+                    this.health.AddHediff(PurpleIvyDefOf.PI_Regen);
                     PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
                     this.mindState.duty = duty;
                     this.mindState.duty.focus = focus;

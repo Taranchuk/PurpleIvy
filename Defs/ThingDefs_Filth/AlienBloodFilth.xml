@@ -2,7 +2,8 @@
 <Defs>
 
   <ThingDef Name="AlienFilth" Abstract="True">
-    <thingClass>Filth</thingClass>
+    <thingClass>PurpleIvy.Filth_ToxicBlood</thingClass>
+	<tickerType>Normal</tickerType>
     <category>Filth</category>
     <altitudeLayer>Filth</altitudeLayer>
     <useHitPoints>false</useHitPoints>
