@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="BaseFilth">
+    <defName>PI_ToxicFilth</defName>
+    <label>toxic filth</label>
+	<description>toxic filth.</description>
+    <statBases>
+      <Beauty>-30</Beauty>
+      <Cleanliness>-15</Cleanliness>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Filth/Spatter</texPath>
+      <color>(100, 152, 100, 170)</color>
+    </graphicData>
+	<pathCost>30</pathCost>
+    <filth>
+      <rainWashes>true</rainWashes>
+      <cleaningWorkToReduceThickness>90</cleaningWorkToReduceThickness>
+      <canFilthAttach>true</canFilthAttach>
+	  <maxThickness>2</maxThickness>
+    </filth>
+  </ThingDef>
+
+</Defs>

@@ -4,8 +4,8 @@
 		<defName>GenTurretBase</defName>
 		<label>Chorcorus</label>
 		<description>A genetically modified Chorchorus plant species, its able to fire its Mucilage slime at will.</description>
-		<!--<thingClass>Building_TurretGun</thingClass>-->
-		<thingClass>PurpleIvy.Building_GenTurretGun</thingClass>
+		<thingClass>PurpleIvy.Building_GenMortarGun</thingClass>
+		<!--<thingClass>PurpleIvy.Building_GenTurretGun</thingClass>-->
 		<graphicData>
 			<texPath>Things/GenTurretBase</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -17,30 +17,34 @@
 				<offset>(0,0,0)</offset>
 			</shadowData>
 		</graphicData>
-		<castEdgeShadows>true</castEdgeShadows>
-		<size>(1,1)</size>
 		<altitudeLayer>Building</altitudeLayer>
+		<castEdgeShadows>true</castEdgeShadows>
 		<stealable>false</stealable>
 		<rotatable>false</rotatable>
 		<statBases>
-			<MaxHitPoints>100</MaxHitPoints>
-			<Flammability>0.7</Flammability>
-			<Mass>8</Mass>
-			<Beauty>-20</Beauty>
-			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+			<MaxHitPoints>50</MaxHitPoints>
+			<Flammability>0.3</Flammability>
+			<WorkToBuild>0</WorkToBuild>
+			<Beauty>-60</Beauty>
 		</statBases>
 		<tickerType>Normal</tickerType>
-		<passability>PassThroughOnly</passability>
-		<pathCost>50</pathCost>
+		<size>(1,1)</size>
+		<passability>Impassable</passability>
 		<fillPercent>0.4</fillPercent>
-		<hasTooltip>true</hasTooltip>
 		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
 		<building>
-			<combatPower>45</combatPower>
 			<ai_combatDangerous>true</ai_combatDangerous>
 			<turretGunDef>GunTurretGun</turretGunDef>
-			<turretBurstCooldownTime>4.8</turretBurstCooldownTime>
+			<turretBurstWarmupTime>3</turretBurstWarmupTime>
+			<turretBurstCooldownTime>30</turretBurstCooldownTime>
+			<buildingTags>
+				<li>Artillery</li>
+				<li>Artillery_BaseDestroyer</li>
+			</buildingTags>
 		</building>
+		<placeWorkers>
+			<li>PlaceWorker_NotUnderRoof</li>
+		</placeWorkers>
 	</ThingDef>
 
 	<ThingDef ParentName="BuildingBase">

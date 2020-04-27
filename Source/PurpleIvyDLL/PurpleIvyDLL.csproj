@@ -302,7 +302,6 @@
     <Compile Include="Buildings\Building_GasPump.cs" />
     <Compile Include="Buildings\Building_EggSac.cs" />
     <Compile Include="Buildings\Building_GenMortarGun.cs" />
-    <Compile Include="Buildings\Building_GenTurretGun.cs" />
     <Compile Include="Damages\BuildingsToxicDamageSectionLayerUtility.cs" />
     <Compile Include="Damages\DamageWorker_ToxicBurn.cs" />
     <Compile Include="Damages\AlienProjectile.cs" />
