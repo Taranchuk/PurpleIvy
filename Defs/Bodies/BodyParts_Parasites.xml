@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+    <BodyPartDef>
+		<defName>PI_ParasiteShell</defName>
+		<label>parasite shell</label>
+		<hitPoints>120</hitPoints>
+		<skinCovered>true</skinCovered>
+	</BodyPartDef> 
+	
 	<BodyPartDef>
 		<defName>PI_ParasiteBody</defName>
 		<label>parasite body</label>
