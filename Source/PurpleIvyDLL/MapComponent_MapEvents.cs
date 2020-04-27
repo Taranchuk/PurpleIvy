@@ -81,8 +81,6 @@ this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteGamma).Count.ToSt
     this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteOmega).Count.ToString(), true);
                 Log.Message("Total Genny_ParasiteNestGuard count on the map: " +
 this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteNestGuard).Count.ToString(), true);
-                Log.Message("Total EggSacNestGuard count on the map: " +
-this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacNestGuard).Count.ToString(), true);
                 Log.Message("Total EggSac count on the map: " +
     this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count.ToString(), true);
                 Log.Message("Total EggSac beta count on the map: " +
