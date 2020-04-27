@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+
+
 	<ThingDef ParentName="BuildingBase">
 		<defName>GenTurretBase</defName>
 		<label>Chorcorus</label>
@@ -18,9 +20,13 @@
 		</graphicData>
 		<castEdgeShadows>true</castEdgeShadows>
 		<size>(1,1)</size>
+		<minifiedDef>MinifiedThing</minifiedDef>
 		<altitudeLayer>Building</altitudeLayer>
 		<stealable>false</stealable>
 		<rotatable>false</rotatable>
+		<thingCategories>
+			<li>BuildingsSecurity</li>
+		</thingCategories>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
 			<Flammability>0.7</Flammability>
@@ -38,8 +44,12 @@
 			<combatPower>45</combatPower>
 			<ai_combatDangerous>true</ai_combatDangerous>
 			<turretGunDef>GunTurretGun</turretGunDef>
-			<turretBurstCooldownTime>4.8</turretBurstCooldownTime>
+			<turretBurstCooldownTime>0.8</turretBurstCooldownTime>
 		</building>
+		<placeWorkers>
+			<li>PlaceWorker_TurretTop</li>
+			<li>PlaceWorker_ShowTurretRadius</li>
+		</placeWorkers>
 	</ThingDef>
 
 	<ThingDef ParentName="BuildingBase">
