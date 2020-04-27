@@ -8,7 +8,7 @@
 		<thingClass>Pawn</thingClass>
 		<statBases>
 			<PsychicSensitivity>1</PsychicSensitivity>
-			<ToxicSensitivity>1</ToxicSensitivity>
+			<ToxicSensitivity>0</ToxicSensitivity>
 			<ComfyTemperatureMin>-100</ComfyTemperatureMin>
 			<ComfyTemperatureMax>250</ComfyTemperatureMax>
 			<Mass>10</Mass>
@@ -81,7 +81,7 @@
 		<li>
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>PI_ToxicRocket</defaultProjectile>
+        <defaultProjectile>PI_ToxicRocketQueen</defaultProjectile>
         <warmupTime>4.5</warmupTime>
         <ai_AvoidFriendlyFireRadius>1</ai_AvoidFriendlyFireRadius>
         <range>20.0</range>

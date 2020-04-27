@@ -19,6 +19,24 @@
 	</ThingDef>
 	
    <ThingDef ParentName="BaseBullet">
+    <defName>PI_ToxicRocketQueen</defName>
+    <label>ToxicRocket</label>
+    <graphicData>
+      <texPath>Things/Projectile/Rocket_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>PurpleIvy.Projectile_Explode</thingClass>
+    <projectile>
+      <damageDef>PI_ToxicExplosion</damageDef>
+      <explosionRadius>5.0</explosionRadius>
+      <speed>20</speed>
+	  <preExplosionSpawnThingDef>PI_ToxicFilth</preExplosionSpawnThingDef>
+      <preExplosionSpawnChance>0.9</preExplosionSpawnChance>
+    </projectile>
+  </ThingDef>
+  
+   <ThingDef ParentName="BaseBullet">
     <defName>PI_ToxicRocket</defName>
     <label>ToxicRocket</label>
     <graphicData>
@@ -28,10 +46,11 @@
     </graphicData>
     <thingClass>PurpleIvy.Projectile_Explode</thingClass>
     <projectile>
-      <damageDef>Bomb</damageDef>
-      <!-- Use default damage from explosion def -->
-      <explosionRadius>3.9</explosionRadius>
-      <speed>50</speed>
+      <damageDef>PI_ToxicExplosion</damageDef>
+      <explosionRadius>3.0</explosionRadius>
+      <speed>20</speed>
+	  <preExplosionSpawnThingDef>PI_ToxicFilth</preExplosionSpawnThingDef>
+      <preExplosionSpawnChance>0.9</preExplosionSpawnChance>
     </projectile>
   </ThingDef>
 
