@@ -235,7 +235,7 @@ namespace PurpleIvy
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenTurret");
                 
                 }
-                else if (randChance >= 0.44f && randChance <= 0.4459f) // 0.005 - 0.5%
+                else if (randChance >= 0.44f && randChance <= 0.44059f) // 0.005 - 0.5%
                 {
                     Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);

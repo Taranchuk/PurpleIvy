@@ -128,7 +128,7 @@ namespace PurpleIvy
             {
                 result = 0f;
             }
-            return result;
+            return result / 3;
         }
 
         public static List<string> Genny_ParasiteAlpha = new List<string>
