@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <DamageDef Name="Bomb">
+    <defName>PI_ToxicExplosion</defName>
+    <label>toxic burn</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+    <deathMessage>{0} has died in a toxic explosion.</deathMessage>
+    <hediff>PI_ToxicBurn</hediff>
+			<additionalHediffs>
+			<li>
+				<hediff>ToxicBuildup</hediff>
+				<severityPerDamageDealt>0.04</severityPerDamageDealt>
+				<victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
+			</li>
+		</additionalHediffs>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Slice</impactSoundType>
+    <armorCategory>Heat</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>7</defaultDamage>
+    <defaultStoppingPower>1.0</defaultStoppingPower>
+    <defaultArmorPenetration>0.0</defaultArmorPenetration>
+    <buildingDamageFactor>0</buildingDamageFactor>
+    <plantDamageFactor>0</plantDamageFactor>
+    <explosionAffectOutsidePartsOnly>true</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastFlame</explosionCellMote>
+    <explosionColorCenter>(1, 0.7, 0.7)</explosionColorCenter>
+    <explosionColorEdge>(1, 1, 0.7)</explosionColorEdge>
+    <soundExplosion>Explosion_Flame</soundExplosion>
+    <combatLogRules>Damage_Flame</combatLogRules>
+    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+  </DamageDef>
+</Defs>
