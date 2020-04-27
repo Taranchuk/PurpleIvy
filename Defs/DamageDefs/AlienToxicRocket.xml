@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <DamageDef Name="Bomb">
+  <DamageDef>
     <defName>PI_ToxicExplosion</defName>
     <label>toxic burn</label>
     <workerClass>DamageWorker_AddInjury</workerClass>

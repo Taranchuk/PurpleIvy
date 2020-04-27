@@ -11,14 +11,14 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile>
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>20</damageAmountBase>
-			<speed>32</speed>
+			<damageDef>AlienToxicSpit</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<speed>15</speed>
 			<flyOverhead>true</flyOverhead>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 			<soundAmbient>MortarRound_Ambient</soundAmbient>
-			<explosionRadius>0</explosionRadius>
+			<explosionRadius>1</explosionRadius>
 			<postExplosionSpawnThingDef>PI_ToxicFilth</postExplosionSpawnThingDef>
 			<postExplosionSpawnChance>1</postExplosionSpawnChance>
 			<postExplosionSpawnThingCount>10</postExplosionSpawnThingCount>
@@ -46,8 +46,8 @@
 				<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_GenMortar</defaultProjectile>
-				<warmupTime>1.2</warmupTime>
-				<minRange>30</minRange>
+				<warmupTime>30</warmupTime>
+				<minRange>15</minRange>
 				<range>500</range>
 				<burstShotCount>1</burstShotCount>
 				<soundCast>Mortar_LaunchA</soundCast>
