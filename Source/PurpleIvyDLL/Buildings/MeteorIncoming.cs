@@ -91,6 +91,7 @@ namespace PurpleIvy
             {
                 var AlienQueen = this.contents.SingleContainedThing as AlienQueen;
                 AlienQueen.health.AddHediff(PurpleIvyDefOf.PI_CrashlandedDowned);
+                AlienQueen.health.AddHediff(PurpleIvyDefOf.PI_Regen);
                 AlienQueen.recoveryTick = Find.TickManager.TicksGame + 
                     new IntRange(80000, 140000).RandomInRange;
                 AlienQueen.SetFaction(PurpleIvyData.AlienFaction);

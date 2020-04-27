@@ -149,6 +149,7 @@ namespace PurpleIvy
                     PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
                     newPawn.mindState.duty = duty;
                     newPawn.mindState.duty.focus = new LocalTargetInfo(this.parent.Position);
+                    newPawn.health.AddHediff(PurpleIvyDefOf.PI_Regen);
                 }
                 switch (this.parent)
                 {

@@ -15,6 +15,8 @@ namespace PurpleIvy
 
         public static HediffDef PI_CrashlandedDowned;
 
+        public static HediffDef PI_Regen;
+
         public static DamageDef AlienToxicSting;
 
         public static FactionDef Genny;
@@ -72,6 +74,8 @@ namespace PurpleIvy
         public static ThingDef PI_KorsolianToxin;
 
         public static ThingDef AlienBloodFilth;
+
+        public static ThingDef PI_ToxicFilth;
 
         public static WeatherDef PI_PurpleFog;
 
