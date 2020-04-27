@@ -19,7 +19,7 @@ namespace PurpleIvy
         private static bool Prefix(ref bool __result, Pawn p)
         {
             bool result;
-            if (p.Faction.def == PurpleIvyDefOf.Genny)
+            if (p?.Faction?.def == PurpleIvyDefOf.Genny)
             {
                 __result = false;
                 result = false;
