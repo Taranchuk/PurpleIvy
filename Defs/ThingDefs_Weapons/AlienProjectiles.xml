@@ -17,5 +17,22 @@
 			<speed>15</speed>
 		</projectile>
 	</ThingDef>
+	
+   <ThingDef ParentName="BaseBullet">
+    <defName>PI_ToxicRocket</defName>
+    <label>ToxicRocket</label>
+    <graphicData>
+      <texPath>Things/Projectile/Rocket_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>PurpleIvy.Projectile_Explode</thingClass>
+    <projectile>
+      <damageDef>Bomb</damageDef>
+      <!-- Use default damage from explosion def -->
+      <explosionRadius>3.9</explosionRadius>
+      <speed>50</speed>
+    </projectile>
+  </ThingDef>
 
 </Defs>

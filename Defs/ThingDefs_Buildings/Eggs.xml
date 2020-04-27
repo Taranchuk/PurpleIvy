@@ -53,7 +53,58 @@
 		</killedLeavings>
 	</ThingDef>
 	
-		<ThingDef ParentName="BuildingBase">
+	<ThingDef ParentName="BuildingBase">
+		<defName>EggSacQueen</defName>
+		<label>Large Egg Sac</label>
+		<description>An alien egg sac, you can see something through the thin shell moving but can't make out what it is.</description>
+		<thingClass>PurpleIvy.Building_EggSac</thingClass>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<texPath>Things/Building/EggSac</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+			<shadowData>
+				<volume>(0.3, 0.3, 0.3)</volume>
+				<offset>(0,0,-0.1)</offset>
+			</shadowData>
+		</graphicData>
+		<altitudeLayer>Terrain</altitudeLayer>
+		<useHitPoints>true</useHitPoints>
+		<building>
+			<ai_combatDangerous>true</ai_combatDangerous>
+			<claimable>true</claimable>
+		</building>
+		<selectable>true</selectable>
+		<comps>
+			<li Class="PurpleIvy.CompProperties_AlienInfection">
+				<compClass>PurpleIvy.AlienInfection</compClass>
+				<typesOfCreatures>
+					<li>Genny_Queen</li>
+				</typesOfCreatures>
+				<numberOfCreaturesPerSpawn>1</numberOfCreaturesPerSpawn>
+				<resetIncubation>true</resetIncubation>
+				<maxNumberOfCreatures>1</maxNumberOfCreatures>
+				<maxNumberOfCreaturesOnMap>1</maxNumberOfCreaturesOnMap>
+				<ageTick>50000~100000</ageTick>
+				<ticksPerSpawn>10000~15000</ticksPerSpawn>
+				<incubationPeriod>20000~50000</incubationPeriod>
+			</li> 
+		</comps>
+		<thingCategories>
+			<li>BuildingsSpecial</li>
+		</thingCategories> 
+		<statBases>
+			<Mass>5</Mass>
+			<MaxHitPoints>200</MaxHitPoints>
+			<Flammability>0.3</Flammability>
+			<Beauty>-50</Beauty>     
+		</statBases>
+		<killedLeavings>
+			<PurpleIvy>1</PurpleIvy>
+		</killedLeavings>
+	</ThingDef>
+	
+	<ThingDef ParentName="BuildingBase">
 		<defName>EggSacNestGuard</defName>
 		<label>Big Egg Sac</label>
 		<description>An alien egg sac, you can see something through the thin shell moving but can't make out what it is.</description>

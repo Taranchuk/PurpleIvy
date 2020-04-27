@@ -78,11 +78,10 @@
 		<comps>
 		</comps>
 	    <verbs>			
-			<li>
+		<li>
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_Rocket</defaultProjectile>
-        <forcedMissRadius>0.5</forcedMissRadius>
+        <defaultProjectile>PI_ToxicRocket</defaultProjectile>
         <warmupTime>4.5</warmupTime>
         <ai_AvoidFriendlyFireRadius>1</ai_AvoidFriendlyFireRadius>
         <range>20.0</range>
@@ -95,7 +94,7 @@
         </targetParams>
         <muzzleFlashScale>1</muzzleFlashScale>
         <commonality>.8</commonality>
-			</li>
+		</li>
 		</verbs>
 		<race>
 			<body>ParasiteAlpha</body>
@@ -161,6 +160,25 @@
 		</tools>
 		<comps>
 		</comps>
+		<verbs>			
+		<li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>PI_ToxicRocket</defaultProjectile>
+        <warmupTime>4.5</warmupTime>
+        <ai_AvoidFriendlyFireRadius>1</ai_AvoidFriendlyFireRadius>
+        <range>20.0</range>
+        <burstShotCount>1</burstShotCount>
+        <soundCast>InfernoCannon_Fire</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <onlyManualCast>true</onlyManualCast>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <muzzleFlashScale>1</muzzleFlashScale>
+        <commonality>.8</commonality>
+		</li>
+		</verbs>
 		<race>
 			<body>ParasiteAlpha</body>
 			<baseBodySize>5.0</baseBodySize>
