@@ -340,6 +340,7 @@
     <Compile Include="Pawns\AlienQueen.cs" />
     <Compile Include="Plants\Plant_VenomousToothwort.cs" />
     <Compile Include="Plants\Plant_Nest.cs" />
+    <Compile Include="PurpleIvy_Mod.cs" />
     <Compile Include="PurpleIvySettings.cs" />
     <Compile Include="PurpleIvyUtils.cs" />
     <Compile Include="RaceWeapons\CompFutureDamage.cs" />

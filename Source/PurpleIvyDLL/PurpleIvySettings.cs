@@ -5,59 +5,72 @@ using System.Reflection;
 using HarmonyLib;
 namespace PurpleIvy
 {
+    [StaticConstructorOnStartup]
     public class PurpleIvySettings : ModSettings
     {
-
+        public PurpleIvySettings settings;
         public override void ExposeData()
         {
-            Scribe_Collections.Look<ThingDef, int>(ref PurpleIvyData.TotalAlienLimit, "TotalAlienLimit", LookMode.Def, LookMode.Value);
+            Scribe_Collections.Look<string, int>(ref TotalAlienLimit, "TotalAlienLimit",
+                LookMode.Value, LookMode.Value, ref this.TotalAlienLimitKeys, ref this.TotalAlienLimitValue);
             base.ExposeData();
         }
-    }
 
-    public class PurpleIvyMod : Mod
-    {
-        PurpleIvySettings settings;
-        public PurpleIvyMod(ModContentPack content) : base(content)
+        public static void Reset()
         {
-            Harmony harmonyInstance = new Harmony("rimworld.PurpleIvy.org");
-            harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
-            this.settings = GetSettings<PurpleIvySettings>();
+            TotalAlienLimit["Genny_ParasiteAlpha"] = 15;
+            TotalAlienLimit["Genny_ParasiteBeta"] = 30;
+            TotalAlienLimit["Genny_ParasiteGamma"] = 30;
+            TotalAlienLimit["Genny_ParasiteOmega"] = 50;
         }
 
-        public override void DoSettingsWindowContents(Rect inRect)
+        public static void DoWindowContents(Rect inRect)
         {
             Listing_Standard listingStandard = new Listing_Standard();
             listingStandard.Begin(inRect);
-
-            listingStandard.Label("TotalAlphaCreaturesOnMap".Translate());
-            PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha] = 
-            (int)listingStandard.Slider(PurpleIvyData.TotalAlienLimit
-            [PurpleIvyDefOf.Genny_ParasiteAlpha], 0, 1000);
-
-            listingStandard.Label("TotalBetaCreaturesOnMap".Translate());
-            PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta] =
-            (int)listingStandard.Slider(PurpleIvyData.TotalAlienLimit
-            [PurpleIvyDefOf.Genny_ParasiteBeta], 0, 1000);
-
-            listingStandard.Label("TotalGammaCreaturesOnMap".Translate());
-            PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma] =
-            (int)listingStandard.Slider(PurpleIvyData.TotalAlienLimit
-            [PurpleIvyDefOf.Genny_ParasiteGamma], 0, 1000);
-
-
-            listingStandard.Label("TotalOmegaCreaturesOnMap".Translate());
-            PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega] =
-            (int)listingStandard.Slider(PurpleIvyData.TotalAlienLimit
-            [PurpleIvyDefOf.Genny_ParasiteOmega], 0, 1000);
-
+        
+            listingStandard.Label("TotalAlphaCreaturesOnMap".Translate() 
+                + TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha.defName]);
+            TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha.defName] =
+            (int)listingStandard.Slider(TotalAlienLimit
+            [PurpleIvyDefOf.Genny_ParasiteAlpha.defName], 0, 1000);
+        
+            listingStandard.Label("TotalBetaCreaturesOnMap".Translate() 
+                + TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta.defName]);
+            TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta.defName] =
+            (int)listingStandard.Slider(TotalAlienLimit
+            [PurpleIvyDefOf.Genny_ParasiteBeta.defName], 0, 1000);
+        
+            listingStandard.Label("TotalGammaCreaturesOnMap".Translate() 
+                + TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma.defName]);
+            TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma.defName] =
+            (int)listingStandard.Slider(TotalAlienLimit
+            [PurpleIvyDefOf.Genny_ParasiteGamma.defName], 0, 1000);
+        
+            listingStandard.Label("TotalOmegaCreaturesOnMap".Translate()
+                + TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega.defName]);
+            TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega.defName] =
+            (int)listingStandard.Slider(TotalAlienLimit
+            [PurpleIvyDefOf.Genny_ParasiteOmega.defName], 0, 1000);
+            if (listingStandard.ButtonText("Reset to default values", null))
+            {
+                Reset();
+            }
             listingStandard.End();
-            base.DoSettingsWindowContents(inRect);
         }
 
-        public override string SettingsCategory()
+        public static Dictionary<string, int> TotalAlienLimit = new Dictionary<string, int>()
         {
-            return "Purple Ivy";
-        }
+            {"Genny_ParasiteAlpha", 15},
+            {"Genny_ParasiteBeta", 30},
+            {"Genny_ParasiteGamma", 30},
+            { "Genny_ParasiteOmega", 50},
+        };
+
+
+        private List<string> TotalAlienLimitKeys;
+
+        private List<int> TotalAlienLimitValue;
     }
 }
+

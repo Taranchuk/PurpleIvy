@@ -160,15 +160,7 @@ namespace PurpleIvy
             "Genny_ParasiteNestGuard"
         };
 
-        public static Dictionary<ThingDef, int> TotalAlienLimit = new Dictionary<ThingDef, int>()
-                {
-                    {PurpleIvyDefOf.Genny_ParasiteAlpha, 15},
-                    {PurpleIvyDefOf.Genny_ParasiteBeta, 30},
-                    {PurpleIvyDefOf.Genny_ParasiteGamma, 30},
-                    {PurpleIvyDefOf.Genny_ParasiteOmega, 50},
-                };
-
-    public static Dictionary<int, int> RadiusData = new Dictionary<int, int>()
+        public static Dictionary<int, int> RadiusData = new Dictionary<int, int>()
                 {
                     {1, 5},
                     {2, 13},

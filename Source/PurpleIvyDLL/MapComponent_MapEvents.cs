@@ -26,6 +26,10 @@ namespace PurpleIvy
             base.MapComponentTick();
             if (Find.TickManager.TicksGame % 250 == 0)
             {
+                Log.Message("Alpha limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha.defName]);
+                Log.Message("Beta limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta.defName]);
+                Log.Message("Gamma limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma.defName]);
+                Log.Message("Omega limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega.defName]);
                 int count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
                 bool comeFromOuterSource;
                 var tempComp = new WorldObjectComp_InfectedTile();
@@ -80,7 +84,7 @@ namespace PurpleIvy
                     this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count.ToString(), true);
 
                 count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteAlpha).Count;
-                if (count > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha])
+                if (count > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha.defName])
                 {
                     foreach (var egg in alphaEggs)
                     {
@@ -98,7 +102,7 @@ namespace PurpleIvy
                 }
                 Log.Message("Total Genny_ParasiteAlpha count on the map: " + count.ToString(), true);
                 count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteBeta).Count;
-                if (count > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta])
+                if (count > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta.defName])
                 {
                     foreach (var egg in betaEggs)
                     {
@@ -116,7 +120,7 @@ namespace PurpleIvy
                 }
                 Log.Message("Total Genny_ParasiteBeta count on the map: " + count.ToString(), true);
                 count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteGamma).Count;
-                if (count > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma])
+                if (count > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma.defName])
                 {
                     foreach (var egg in gammaEggs)
                     {
@@ -134,7 +138,7 @@ namespace PurpleIvy
                 }
                 Log.Message("Total Genny_ParasiteGamma count on the map: " + count.ToString(), true);
                 count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteOmega).Count;
-                if (count > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega])
+                if (count > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega.defName])
                 {
                     foreach (var egg in omegaEggs)
                     {

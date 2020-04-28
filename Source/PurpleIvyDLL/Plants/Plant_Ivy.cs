@@ -242,7 +242,7 @@ namespace PurpleIvy
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
                     if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteAlpha).Count
-                        > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha])
+                        > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha.defName])
                     {
                         EggSac.TryGetComp<AlienInfection>().stopSpawning = true;
                     }
@@ -254,7 +254,7 @@ namespace PurpleIvy
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
                     if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacBeta).Count
-                        > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta])
+                        > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta.defName])
                     {
                         EggSac.TryGetComp<AlienInfection>().stopSpawning = true;
                     }
@@ -266,7 +266,7 @@ namespace PurpleIvy
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
                     if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma).Count 
-                        > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma])
+                        > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma.defName])
                     {
                         EggSac.TryGetComp<AlienInfection>().stopSpawning = true;
                     }
@@ -288,7 +288,7 @@ namespace PurpleIvy
                     EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
                     if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteOmega).Count
-                        > PurpleIvyData.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega])
+                        > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega.defName])
                     {
                         EggSac.TryGetComp<AlienInfection>().stopSpawning = true;
                     }
