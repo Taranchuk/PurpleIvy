@@ -11,7 +11,6 @@ namespace PurpleIvy
     [StaticConstructorOnStartup]
     public static class PurpleIvyData
     {
-
         public static Faction AlienFaction => Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
 
         public static Color PurpleColor = new Color(0.368f, 0f, 1f);

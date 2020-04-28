@@ -314,7 +314,6 @@
     <Compile Include="HarmonyPatches\DisableAliensFlee.cs" />
     <Compile Include="HarmonyPatches\CheckAlienLairsDefeated.cs" />
     <Compile Include="HarmonyPatches\FloatMenuMakerMap_Patch.cs" />
-    <Compile Include="HarmonyPatches\HarmonyPatchesInit.cs" />
     <Compile Include="HarmonyPatches\ApplyWeatherOnNewMaps.cs" />
     <Compile Include="HediffSpecial\BodypartUtility.cs" />
     <Compile Include="HediffSpecial\ButcherUtility.cs" />
@@ -341,6 +340,7 @@
     <Compile Include="Pawns\AlienQueen.cs" />
     <Compile Include="Plants\Plant_VenomousToothwort.cs" />
     <Compile Include="Plants\Plant_Nest.cs" />
+    <Compile Include="PurpleIvySettings.cs" />
     <Compile Include="PurpleIvyUtils.cs" />
     <Compile Include="RaceWeapons\CompFutureDamage.cs" />
     <Compile Include="RaceWeapons\CompProperties_RaceDamage.cs" />
