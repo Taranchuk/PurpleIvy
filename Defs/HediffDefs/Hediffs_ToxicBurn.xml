@@ -2,9 +2,9 @@
 <Defs>
   <HediffDef ParentName="InjuryBase">
     <defName>PI_ToxicBurn</defName>
-    <label>ToxicBurn</label>
-    <labelNoun>a ToxicBurn</labelNoun>
-    <description>A ToxicBurn.</description>
+    <label>Toxic burn</label>
+    <labelNoun>a toxic burn</labelNoun>
+    <description>A toxic burn.</description>
     <comps>
       <li Class="HediffCompProperties_TendDuration">
         <labelTendedWell>bandaged</labelTendedWell>
@@ -12,18 +12,18 @@
         <labelSolidTendedWell>tended</labelSolidTendedWell>
       </li>
       <li Class="HediffCompProperties_Infecter">
-        <infectionChance>0.40</infectionChance>
+        <infectionChance>0.30</infectionChance>
       </li>
       <li Class="HediffCompProperties_GetsPermanent">
-        <permanentLabel>burn scar</permanentLabel>
+        <permanentLabel>toxic burn scar</permanentLabel>
       </li>
     </comps>
     <injuryProps>
       <painPerSeverity>0.01875</painPerSeverity>
       <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
-      <canMerge>false</canMerge>
+      <canMerge>true</canMerge>
       <destroyedLabel>Burned off</destroyedLabel>
       <destroyedOutLabel>Burned out</destroyedOutLabel>
     </injuryProps>
-  </HediffDef> 
+  </HediffDef>
 </Defs>

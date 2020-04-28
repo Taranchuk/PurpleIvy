@@ -47,7 +47,11 @@ namespace PurpleIvy
                                     moteThrown.SetVelocity((float)Rand.Range(-20, 20), Rand.Range(0.5f, 0.7f));
                                     GenSpawn.Spawn(moteThrown, this.Position, this.Map, WipeMode.Vanish);
                                     moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
-                                    list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1));
+                                    Pawn pawn = (Pawn)list[i];
+                                    pawn.TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1, 0, -1, this,
+                                        pawn.health.hediffSet.GetNotMissingParts(0, 0, null, null)
+                                        .Where(x => x.groups.Contains(BodyPartGroupDefOf.Legs))
+                                        .FirstOrDefault()));
                                     HealthUtility.AdjustSeverity((Pawn)list[i], HediffDefOf.ToxicBuildup, 0.005f);
                                     HealthUtility.AdjustSeverity((Pawn)list[i], PurpleIvyDefOf.PI_VaporToxicFilth, 1f);
                                 }
