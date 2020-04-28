@@ -36,7 +36,7 @@
 			<ai_combatDangerous>true</ai_combatDangerous>
 			<turretGunDef>GunTurretGun</turretGunDef>
 			<turretBurstWarmupTime>3</turretBurstWarmupTime>
-			<turretBurstCooldownTime>10</turretBurstCooldownTime>
+			<turretBurstCooldownTime>5</turretBurstCooldownTime>
 			<buildingTags>
 				<li>Artillery</li>
 				<li>Artillery_BaseDestroyer</li>

@@ -112,11 +112,11 @@
 				</li>
 				<li>
 					<def>ParasiteJuvenile</def>
-					<minAge>0.1</minAge>
+					<minAge>0.03</minAge>
 				</li>
 				<li>
 					<def>ParasiteAdult</def>
-					<minAge>0.3</minAge>
+					<minAge>0.6</minAge>
 					<soundWounded>Pawn_BigInsect_Pain</soundWounded>
 					<soundDeath>Pawn_BigInsect_Death</soundDeath>
 					<soundCall>Pawn_BigInsect_Call</soundCall>
@@ -195,11 +195,11 @@
 				</li>
 				<li>
 					<def>ParasiteJuvenile</def>
-					<minAge>0.1</minAge>
+					<minAge>0.02</minAge>
 				</li>
 				<li>
 					<def>ParasiteAdult</def>
-					<minAge>0.3</minAge>
+					<minAge>0.03</minAge>
 					<soundWounded>Pawn_BigInsect_Pain</soundWounded>
 					<soundDeath>Pawn_BigInsect_Death</soundDeath>
 					<soundCall>Pawn_BigInsect_Call</soundCall>
@@ -336,11 +336,11 @@
 				</li>
 				<li>
 					<def>ParasiteJuvenile</def>
-					<minAge>0.1</minAge>
+					<minAge>0.02</minAge>
 				</li>
 				<li>
 					<def>ParasiteAdult</def>
-					<minAge>0.3</minAge>
+					<minAge>0.03</minAge>
 					<soundWounded>Pawn_BigInsect_Pain</soundWounded>
 					<soundDeath>Pawn_BigInsect_Death</soundDeath>
 					<soundCall>Pawn_BigInsect_Call</soundCall>
@@ -477,11 +477,11 @@
 				</li>
 				<li>
 					<def>ParasiteJuvenile</def>
-					<minAge>0.1</minAge>
+					<minAge>0.01</minAge>
 				</li>
 				<li>
 					<def>ParasiteAdult</def>
-					<minAge>0.3</minAge>
+					<minAge>0.02</minAge>
 					<soundWounded>Pawn_Spelopede_Pain</soundWounded>
 					<soundDeath>Pawn_Spelopede_Death</soundDeath>
 					<soundCall>Pawn_Spelopede_Call</soundCall>
