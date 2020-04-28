@@ -19,6 +19,12 @@
 		<selectable>true</selectable>
 		<pathCost>10</pathCost>
 		<ingestible />
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>1</glowRadius>
+				<glowColor>(96, 172, 204)</glowColor>
+			</li>
+		</comps>
 		<plant>
 			<fertilitySensitivity>1.0</fertilitySensitivity>
 			<immatureGraphicPath>Things/Plant/ImmaturePlants/CreepyTulip</immatureGraphicPath>

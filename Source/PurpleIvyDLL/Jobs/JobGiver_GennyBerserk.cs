@@ -30,7 +30,7 @@ namespace PurpleIvy
             if (!pawn2.Downed)
             {
                 var verb = pawn.VerbTracker.AllVerbs.Where(x => x.IsMeleeAttack != true).FirstOrDefault();
-                if (Find.TickManager.TicksGame > PrevTick + 10 && pawn.def == PurpleIvyDefOf.Genny_ParasiteOmega && pawn.Position.InHorDistOf(pawn2.Position, 10) && Rand.Chance(0.7f))
+                if (Find.TickManager.TicksGame > PrevTick + 10 && pawn.def == PurpleIvyDefOf.Genny_ParasiteOmega && pawn.Position.InHorDistOf(pawn2.Position, 15) && Rand.Chance(0.7f))
                 {
                     PrevTick = Find.TickManager.TicksGame;
                     //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - JUMP");

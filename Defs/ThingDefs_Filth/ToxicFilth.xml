@@ -13,7 +13,14 @@
 		</statBases>
 		<graphicData>
 			<texPath>Things/Filth/Spatter</texPath>
-			<color>(100, 152, 100, 170)</color>
+			<!--<color>(41, 71, 66, 170)</color> v1-->
+			<!--<color>(100, 152, 100, 170)</color> v2-->
+			<!--<color>(43, 56, 54, 170)</color> v3 -->
+			<!--<color>(125, 156, 86, 170)</color> v4 -->
+			<!--<color>(121, 181, 121, 170)</color> v5 -->
+			<!--<color>(131, 199, 131, 170)</color> v6 -->
+			<color>(148, 227, 148, 170)</color>
+			<!--<color>(171, 255, 171, 170)</color> v8 -->
 		</graphicData>
 		<pathCost>30</pathCost>
 		<filth>

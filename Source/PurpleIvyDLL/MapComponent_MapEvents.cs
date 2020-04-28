@@ -26,10 +26,10 @@ namespace PurpleIvy
             base.MapComponentTick();
             if (Find.TickManager.TicksGame % 250 == 0)
             {
-                Log.Message("Alpha limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha.defName]);
-                Log.Message("Beta limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta.defName]);
-                Log.Message("Gamma limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma.defName]);
-                Log.Message("Omega limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega.defName]);
+                //Log.Message("Alpha limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha.defName]);
+                //Log.Message("Beta limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta.defName]);
+                //Log.Message("Gamma limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma.defName]);
+                //Log.Message("Omega limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega.defName]);
                 int count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
                 bool comeFromOuterSource;
                 var tempComp = new WorldObjectComp_InfectedTile();

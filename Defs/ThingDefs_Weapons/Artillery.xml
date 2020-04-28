@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!-- ================== Seed mortar ================== -->
-	<ThingDef ParentName="BaseBullet">
-		<defName>Bullet_GenMortar</defName>
-		<label>Oxalis Seed</label>
-		<thingClass>PurpleIvy.Projectile_Seed</thingClass>
-		<graphicData>
-			<texPath>Things/Projectiles/OxalisSeed</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile>
-			<damageDef>AlienToxicSpit</damageDef>
-			<damageAmountBase>5</damageAmountBase>
-			<speed>15</speed>
-			<flyOverhead>true</flyOverhead>
-			<soundExplode>MortarBomb_Explode</soundExplode>
-			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
-			<soundAmbient>MortarRound_Ambient</soundAmbient>
-			<explosionRadius>1</explosionRadius>
-			<postExplosionSpawnThingDef>PI_ToxicFilth</postExplosionSpawnThingDef>
-			<postExplosionSpawnChance>1</postExplosionSpawnChance>
-			<postExplosionSpawnThingCount>10</postExplosionSpawnThingCount>
-			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
-		</projectile>
-	</ThingDef>
 
 	<ThingDef ParentName="BaseArtilleryWeapon">
 		<defName>Artillery_MortarGenny</defName>

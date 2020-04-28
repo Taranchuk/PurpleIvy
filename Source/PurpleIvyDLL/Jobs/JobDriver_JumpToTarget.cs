@@ -61,7 +61,7 @@ namespace PurpleIvy
                         }
                     }
                 }
-                actor.pather.StartPath(thing, PathEndMode.Touch);
+                actor.pather.StartPath(thing, PathEndMode.OnCell);
                 actor.Position = thing.Position;
                 actor.pather.StopDead();
                 pawn1.pather.StopDead();

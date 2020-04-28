@@ -36,6 +36,20 @@ namespace PurpleIvy
             }
         }
 
+        public override void PostMake()
+        {
+            base.PostMake();
+            var glowerComp = new CompGlower();
+            glowerComp.parent = this;
+            var properties = new CompProperties_Glower();
+            glowerComp.props = properties;
+            properties.glowRadius = 0;
+            properties.glowColor = new ColorInt(0, 0, 0);
+            properties.overlightRadius = 0;
+            glowerComp.Initialize(properties);
+            this.AllComps.Add(glowerComp);
+        }
+
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
             base.Destroy(mode);
@@ -210,14 +224,15 @@ namespace PurpleIvy
                                 && list[i].def != PurpleIvyDefOf.PlantVenomousToothwort)
                         {
                             MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_Smoke, null);
-                            moteThrown.Scale = Rand.Range(0.5f, 0.9f);
+                            moteThrown.Scale = Rand.Range(2.5f, 3.9f);
                             moteThrown.rotationRate = Rand.Range(-30f, 30f);
                             moteThrown.exactPosition = this.Position.ToVector3Shifted();
                             moteThrown.airTimeLeft = Rand.Range(0.1f, 0.4f);
                             moteThrown.Speed = 0.3f;
                             moteThrown.SetVelocity((float)Rand.Range(-20, 20), Rand.Range(0.5f, 0.7f));
                             GenSpawn.Spawn(moteThrown, this.Position, this.Map, WipeMode.Vanish);
-                            moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
+                            //moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
+                            moteThrown.instanceColor = new ColorInt(43, 56, 54).ToColor;
                             FilthMaker.TryMakeFilth(this.Position, this.Map, PurpleIvyDefOf.PI_ToxicFilth);
                             list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1));
                         }
@@ -335,6 +350,28 @@ namespace PurpleIvy
             yield break;
         }
 
+        public CompGlower Glower
+        {
+            get
+            {
+                return (CompGlower)this.AllComps.Where(x => x is CompGlower).FirstOrDefault();
+            }
+        }
+        public void ChangeGlower(ColorInt colour, float radius)
+        {
+            if (this.Glower != null)
+            {
+                base.Map.glowGrid.DeRegisterGlower(this.Glower);
+                this.Glower.Initialize(new CompProperties_Glower
+                {
+                    compClass = typeof(CompGlower),
+                    glowColor = colour,
+                    glowRadius = radius
+                });
+                base.Map.mapDrawer.MapMeshDirty(base.Position, MapMeshFlag.Things);
+                base.Map.glowGrid.RegisterGlower(this.Glower);
+            }
+        }
         public override void Tick()
         {
             base.Tick();
@@ -347,6 +384,7 @@ namespace PurpleIvy
                     this.DoDamageToBuildings(Position);
                     this.nectarAmount++;
                 }
+                ChangeGlower(new ColorInt(96, 172, 204), this.Growth * 20);
             }
             if (Find.TickManager.TicksGame % 350 == 0)
             {

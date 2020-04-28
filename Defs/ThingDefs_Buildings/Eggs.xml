@@ -87,7 +87,7 @@
 				<maxNumberOfCreaturesOnMap>1</maxNumberOfCreaturesOnMap>
 				<ageTick>40000~50000</ageTick>
 				<ticksPerSpawn>10000~15000</ticksPerSpawn>
-				<incubationPeriod>40000~100000</incubationPeriod>
+				<incubationPeriod>60000~100000</incubationPeriod>
 			</li> 
 		</comps>
 		<thingCategories>
@@ -191,7 +191,7 @@
 				<maxNumberOfCreatures>1~1</maxNumberOfCreatures>
 				<ageTick>40000~50000</ageTick>
 				<ticksPerSpawn>2000~3000</ticksPerSpawn>
-				<incubationPeriod>30000~40000</incubationPeriod>
+				<incubationPeriod>50000~60000</incubationPeriod>
 			</li> 
 		</comps>
 		<thingCategories>
@@ -242,7 +242,7 @@
 				<maxNumberOfCreatures>2~3</maxNumberOfCreatures>
 				<ageTick>40000~50000</ageTick>
 				<ticksPerSpawn>2000~3000</ticksPerSpawn>
-				<incubationPeriod>30000~40000</incubationPeriod>
+				<incubationPeriod>50000~60000</incubationPeriod>
 			</li> 
 		</comps>
 		<thingCategories>
@@ -292,10 +292,10 @@
 				</typesOfCreatures>
 				<resetIncubation>true</resetIncubation>
 				<numberOfCreaturesPerSpawn>1~3</numberOfCreaturesPerSpawn>
-				<maxNumberOfCreatures>3~5</maxNumberOfCreatures>
+				<maxNumberOfCreatures>2~3</maxNumberOfCreatures>
 				<ageTick>40000~50000</ageTick>
 				<ticksPerSpawn>2000~3000</ticksPerSpawn>
-				<incubationPeriod>30000~40000</incubationPeriod>
+				<incubationPeriod>50000~60000</incubationPeriod>
 			</li> 
 		</comps>
 		<statBases>
