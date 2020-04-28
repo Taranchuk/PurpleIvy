@@ -26,7 +26,7 @@
     <plantDamageFactor>0</plantDamageFactor>
     <explosionAffectOutsidePartsOnly>true</explosionAffectOutsidePartsOnly>
     <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
-    <explosionCellMote>Mote_BlastFlame</explosionCellMote>
+    <explosionCellMote>Mote_EMPSmoke</explosionCellMote>
     <explosionColorCenter>(1, 0.7, 0.7)</explosionColorCenter>
     <explosionColorEdge>(1, 1, 0.7)</explosionColorEdge>
     <soundExplosion>Explosion_Flame</soundExplosion>

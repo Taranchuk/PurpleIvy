@@ -22,7 +22,7 @@
     <defName>PI_ToxicRocketQueen</defName>
     <label>ToxicRocket</label>
     <graphicData>
-      <texPath>Things/Projectile/Rocket_Big</texPath>
+      <texPath>Things/Projectiles/OxalisSeed</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
@@ -40,7 +40,7 @@
     <defName>PI_ToxicRocket</defName>
     <label>ToxicRocket</label>
     <graphicData>
-      <texPath>Things/Projectile/Rocket_Big</texPath>
+      <texPath>Things/Projectiles/OxalisSeed</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
