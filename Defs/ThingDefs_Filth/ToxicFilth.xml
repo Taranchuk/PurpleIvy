@@ -6,6 +6,7 @@
 		<label>toxic filth</label>
 		<description>toxic filth.</description>
 		<thingClass>PurpleIvy.Filth_ToxicFilth</thingClass>
+		<tickerType>Normal</tickerType>
 		<statBases>
 			<Beauty>-30</Beauty>
 			<Cleanliness>-15</Cleanliness>
