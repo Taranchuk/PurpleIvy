@@ -59,14 +59,14 @@
 		<label>Corchorus</label>
 		<thingClass>PurpleIvy.Projectile_Seed</thingClass>
 		<graphicData>
-			<texPath>Things/Projectiles/OxalisSeed</texPath>
+			<texPath>Things/Projectiles/Bullet_Slime</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile>
 			<damageDef>AlienToxicSpit</damageDef>
-			<damageAmountBase>5</damageAmountBase>
-			<speed>15</speed>
+			<damageAmountBase>1</damageAmountBase>
+			<speed>25</speed>
 			<flyOverhead>true</flyOverhead>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>

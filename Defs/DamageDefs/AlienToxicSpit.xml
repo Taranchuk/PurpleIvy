@@ -5,7 +5,7 @@
 		<defName>AlienToxicSpit</defName>
 		<label>toxic spit</label>
 		<description>toxic spit</description>
-		<workerClass>DamageWorker_AddInjury</workerClass>
+		<workerClass>PurpleIvy.DamageWorker_AddInjuryNoCamShaker</workerClass>
 		<externalViolence>true</externalViolence>
 		<deathMessage>{0} has been burned to death.</deathMessage>
 		<hediff>PI_ToxicBurn</hediff>
