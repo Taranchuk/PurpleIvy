@@ -142,7 +142,7 @@ namespace PurpleIvy
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.recoveryTick, "recoveryTick", 0);
             Scribe_Values.Look<bool>(ref this.first, "first", true);
-            Scribe_Values.Look<LocalTargetInfo>(ref this.focus, "focus");
+            Scribe_TargetInfo.Look(ref this.focus, "focus");
         }
 
         public int recoveryTick = 0;

@@ -19,7 +19,7 @@ namespace PurpleIvy
             if (!victim.Destroyed || map == null || pawn != null) return damageResult;
             foreach (var c in victim.OccupiedRect())
             {
-                FilthMaker.TryMakeFilth(c, map, ThingDefOf.Filth_Ash, 1, FilthSourceFlags.None);
+                FilthMaker.TryMakeFilth(c, map, PurpleIvyDefOf.PI_ToxicFilth, 1, FilthSourceFlags.None);
             }
 
             if (victim is Plant plant && victim.def.plant.IsTree && plant.LifeStage != PlantLifeStage.Sowing && victim.def != ThingDefOf.BurnedTree)
