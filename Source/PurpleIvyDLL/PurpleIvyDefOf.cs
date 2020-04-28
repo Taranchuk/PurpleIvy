@@ -19,6 +19,8 @@ namespace PurpleIvy
 
         public static HediffDef PI_AlienBlood;
 
+        public static HediffDef PI_VaporToxicFilth;
+
         public static DamageDef AlienToxicSting;
 
         public static FactionDef Genny;
