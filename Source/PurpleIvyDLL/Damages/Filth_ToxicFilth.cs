@@ -38,22 +38,22 @@ namespace PurpleIvy
                             {
                                 try
                                 {
-                                    MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_Smoke, null);
-                                    moteThrown.Scale = Rand.Range(0.5f, 0.9f);
-                                    moteThrown.rotationRate = Rand.Range(-30f, 30f);
-                                    moteThrown.exactPosition = this.Position.ToVector3Shifted();
-                                    moteThrown.airTimeLeft = Rand.Range(0.1f, 0.4f);
-                                    moteThrown.Speed = 0.3f;
-                                    moteThrown.SetVelocity((float)Rand.Range(-20, 20), Rand.Range(0.5f, 0.7f));
-                                    GenSpawn.Spawn(moteThrown, this.Position, this.Map, WipeMode.Vanish);
-                                    moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
+                                    //MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_Smoke, null);
+                                    //moteThrown.Scale = Rand.Range(0.5f, 0.9f);
+                                    //moteThrown.rotationRate = Rand.Range(-30f, 30f);
+                                    //moteThrown.exactPosition = this.Position.ToVector3Shifted();
+                                    //moteThrown.airTimeLeft = Rand.Range(0.1f, 0.4f);
+                                    //moteThrown.Speed = 0.3f;
+                                    //moteThrown.SetVelocity((float)Rand.Range(-20, 20), Rand.Range(0.5f, 0.7f));
+                                    //GenSpawn.Spawn(moteThrown, this.Position, this.Map, WipeMode.Vanish);
+                                    //moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
                                     Pawn pawn = (Pawn)list[i];
                                     pawn.TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1, 0, -1, this,
                                         pawn.health.hediffSet.GetNotMissingParts(0, 0, null, null)
                                         .Where(x => x.groups.Contains(BodyPartGroupDefOf.Legs))
                                         .FirstOrDefault()));
-                                    HealthUtility.AdjustSeverity((Pawn)list[i], HediffDefOf.ToxicBuildup, 0.005f);
-                                    HealthUtility.AdjustSeverity((Pawn)list[i], PurpleIvyDefOf.PI_VaporToxicFilth, 1f);
+                                    HealthUtility.AdjustSeverity(pawn, HediffDefOf.ToxicBuildup, 0.005f);
+                                    HealthUtility.AdjustSeverity(pawn, PurpleIvyDefOf.PI_VaporToxicFilth, 1f);
                                 }
                                 catch { }
                                 break;

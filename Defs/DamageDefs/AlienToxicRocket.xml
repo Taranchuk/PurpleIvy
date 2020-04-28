@@ -3,7 +3,7 @@
   <DamageDef>
     <defName>PI_ToxicExplosion</defName>
     <label>toxic burn</label>
-    <workerClass>DamageWorker_AddInjury</workerClass>
+    <workerClass>PurpleIvy.DamageWorker_AddInjuryNoCamShaker</workerClass>
     <externalViolence>true</externalViolence>
     <isExplosive>true</isExplosive>
     <deathMessage>{0} has died in a toxic explosion.</deathMessage>

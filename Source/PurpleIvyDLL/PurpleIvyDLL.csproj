@@ -303,6 +303,7 @@
     <Compile Include="Buildings\Building_EggSac.cs" />
     <Compile Include="Buildings\Building_GenMortarGun.cs" />
     <Compile Include="Damages\BuildingsToxicDamageSectionLayerUtility.cs" />
+    <Compile Include="Damages\DamageWorker_AddInjuryNoCamShaker.cs" />
     <Compile Include="Damages\DamageWorker_ToxicBurn.cs" />
     <Compile Include="Damages\AlienProjectile.cs" />
     <Compile Include="Damages\Filth_ToxicFilth.cs" />
