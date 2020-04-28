@@ -81,8 +81,8 @@
 		<building>
 			<ai_combatDangerous>true</ai_combatDangerous>
 			<turretGunDef>Artillery_MortarGenny</turretGunDef>
-			<turretBurstWarmupTime>3</turretBurstWarmupTime>
-			<turretBurstCooldownTime>30</turretBurstCooldownTime>
+			<turretBurstWarmupTime>5</turretBurstWarmupTime>
+			<turretBurstCooldownTime>300</turretBurstCooldownTime>
 			<buildingTags>
 				<li>Artillery</li>
 				<li>Artillery_BaseDestroyer</li>
