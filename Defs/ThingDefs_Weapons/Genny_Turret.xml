@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!-- ================ Improvised turret gun ============== -->
-	<ThingDef ParentName="BaseBullet">
-		<defName>Bullet_GenTurret</defName>
-		<label>Mucilage</label>
-		<graphicData>
-			<texPath>Things/Projectiles/Bullet_Slime</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>1</damageAmountBase>
-			<speed>32</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BaseArtilleryWeapon">
+    <ThingDef ParentName="BaseArtilleryWeapon">
 		<defName>GunTurretGun</defName>
 		<label>Corchorus</label>
 		<description>A genetically modified Chorchorus plant species, its able to fire its Mucilage slime at will.</description>
@@ -30,16 +16,15 @@
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
-				<forcedMissRadius>13</forcedMissRadius>
+				<forcedMissRadius>3</forcedMissRadius>
 				<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>Bullet_GenMortar</defaultProjectile>
-				<warmupTime>1.2</warmupTime>
-				<minRange>30</minRange>
-				<range>500</range>
-				<burstShotCount>1</burstShotCount>
+				<defaultProjectile>Bullet_GenTurret</defaultProjectile>
+				<minRange>1</minRange>
+				<range>24</range>
+				<burstShotCount>3</burstShotCount>
 				<soundCast>Mortar_LaunchA</soundCast>
-				<muzzleFlashScale>16</muzzleFlashScale>
+				<muzzleFlashScale>0</muzzleFlashScale>
 				<requireLineOfSight>false</requireLineOfSight>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>

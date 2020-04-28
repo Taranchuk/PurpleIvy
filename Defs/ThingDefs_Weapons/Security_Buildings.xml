@@ -23,7 +23,7 @@
 		<rotatable>false</rotatable>
 		<statBases>
 			<MaxHitPoints>50</MaxHitPoints>
-			<Flammability>0.3</Flammability>
+			<Flammability>0.1</Flammability>
 			<WorkToBuild>0</WorkToBuild>
 			<Beauty>-60</Beauty>
 		</statBases>
@@ -36,7 +36,7 @@
 			<ai_combatDangerous>true</ai_combatDangerous>
 			<turretGunDef>GunTurretGun</turretGunDef>
 			<turretBurstWarmupTime>3</turretBurstWarmupTime>
-			<turretBurstCooldownTime>30</turretBurstCooldownTime>
+			<turretBurstCooldownTime>10</turretBurstCooldownTime>
 			<buildingTags>
 				<li>Artillery</li>
 				<li>Artillery_BaseDestroyer</li>
@@ -68,7 +68,7 @@
 		<rotatable>false</rotatable>
 		<statBases>
 			<MaxHitPoints>50</MaxHitPoints>
-			<Flammability>0.3</Flammability>
+			<Flammability>0.1</Flammability>
 			<WorkToBuild>0</WorkToBuild>
 			<Beauty>-60</Beauty>
 		</statBases>
