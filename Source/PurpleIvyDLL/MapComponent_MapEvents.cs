@@ -4,6 +4,7 @@ using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI.Group;
 using Verse.Noise;
 
 namespace PurpleIvy
@@ -26,11 +27,11 @@ namespace PurpleIvy
         {
             base.MapComponentTick();
             if (Find.TickManager.TicksGame % 250 == 0)
-            { 
+            {
                 var plants = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);
                 Log.Message("Checking orbital strike, " + this.OrbitalHelpActive + " - " + plants.Count);
                 if (plants != null && ((this.OrbitalHelpActive == true && plants.Count > 0)
-                    || plants.Count > 1500))
+                    || plants.Count > 1500))// && Rand.Chance(PurpleIvyData.getFogProgress(plants.Count)))
                 {
                     if (this.OrbitalHelpActive == false)
                     {
@@ -63,14 +64,6 @@ namespace PurpleIvy
                     pawnCount += gamma.Count;
                     pawnCount += omega.Count;
                     pawnCount += guard.Count;
-                    foreach (var num in Enumerable.Range(1, pawnCount / 4))
-                    {
-                        Pawn NewPawn = PawnGenerator.GeneratePawn(PurpleIvyDefOf.KorsolianSoldier, null);
-                        NewPawn.SetFaction(PurpleIvyData.KorsolianFaction);
-                        Log.Message(NewPawn?.Faction?.def?.defName);
-                        list.Add(NewPawn);
-                    }
-                    Log.Message("Dropping");
                     Predicate<IntVec3> predicate = delegate (IntVec3 c)
                     {
                         return !GridsUtility.Fogged(c, map) &&
@@ -78,6 +71,32 @@ namespace PurpleIvy
                     };
                     IntVec3 position = CellFinder.RandomClosewalkCellNear(this.map.Center, this.map, 50,
                         predicate);
+
+                    foreach (var num in Enumerable.Range(1, pawnCount / 4))
+                    {
+                        Faction faction = FactionUtility.DefaultFactionFrom(PurpleIvyDefOf.KorsolianFaction);
+                        Pawn NewPawn = PawnGenerator.GeneratePawn(PurpleIvyDefOf.KorsolianSoldier, faction);
+                        if (faction != null && faction != Faction.OfPlayer)
+                        {
+                            Lord lord = null;
+                            if (this.map.mapPawns.SpawnedPawnsInFaction(faction).Any((Pawn p) =>
+                            p != NewPawn))
+                            {
+                                lord = ((Pawn)GenClosest.ClosestThing_Global(NewPawn.Position,
+                                    this.map.mapPawns.SpawnedPawnsInFaction(faction), 99999f,
+                                    (Thing p) => p != NewPawn && ((Pawn)p).GetLord() != null, null)).GetLord();
+                            }
+                            if (lord == null)
+                            {
+                                LordJob_DefendPoint lordJob = new LordJob_DefendPoint(position);
+                                lord = LordMaker.MakeNewLord(faction, lordJob, this.map, null);
+                            }
+                            lord.AddPawn(NewPawn);
+                        }
+                        NewPawn.SetFaction(PurpleIvyData.KorsolianFaction);
+                        Log.Message(NewPawn?.Faction?.def?.defName);
+                        list.Add(NewPawn);
+                    }
                     DropPodUtility.DropThingsNear(position, this.map, list, 30, false, true, true, true);
                     Find.LetterStack.ReceiveLetter("AncientsLandOnTheGround".Translate(),
                     "AncientsLandOnTheGroundDesc".Translate(),
@@ -91,7 +110,7 @@ namespace PurpleIvy
                 bool comeFromOuterSource;
                 var tempComp = new WorldObjectComp_InfectedTile();
                 tempComp.infectedTile = map.Tile;
-                if (PurpleIvyData.getFogProgressWithOuterSources(count, tempComp, out comeFromOuterSource) > 0f && 
+                if (PurpleIvyData.getFogProgressWithOuterSources(count, tempComp, out comeFromOuterSource) > 0f &&
                     !map.gameConditionManager.ConditionIsActive(PurpleIvyDefOf.PurpleFogGameCondition))
                 {
                     GameCondition_PurpleFog gameCondition =
@@ -107,7 +126,7 @@ namespace PurpleIvy
                     else
                     {
                         Find.LetterStack.ReceiveLetter("PurpleFogСomesFromInfectedSites.".Translate(),
-                        "PurpleFogСomesFromInfectedSitesDesc".Translate(), 
+                        "PurpleFogСomesFromInfectedSitesDesc".Translate(),
                         LetterDefOf.ThreatBig, new TargetInfo(map.Center, map, false));
                         Log.Message("PurpleFogСomesFromInfectedSites: " + map.ToString()
                             + " - " + Find.TickManager.TicksGame.ToString());
@@ -137,7 +156,7 @@ namespace PurpleIvy
                 var nestsEggs = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacNestGuard);
                 var omegaEggs = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg);
 
-                Log.Message("Total PurpleIvy count on the map: " + 
+                Log.Message("Total PurpleIvy count on the map: " +
                     this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count.ToString(), true);
 
                 count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteAlpha).Count;
@@ -233,11 +252,10 @@ this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest).Count.ToString(), true
         public bool OrbitalHelpActive = false;
 
         public Dictionary<Building, int> ToxicDamages = new Dictionary<Building, int>();
-        
+
         public List<Building> ToxicDamageKeys = new List<Building>();
-        
+
         public List<int> ToxicDamageValues = new List<int>();
 
     }
 }
-
