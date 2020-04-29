@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ThingDef Name="AlienFilth" Abstract="True">
-    <thingClass>PurpleIvy.Filth_ToxicBlood</thingClass>
-	<tickerType>Normal</tickerType>
-    <category>Filth</category>
-    <altitudeLayer>Filth</altitudeLayer>
-    <useHitPoints>false</useHitPoints>
-    <drawerType>MapMeshOnly</drawerType>
-    <graphicData>
-      <graphicClass>Graphic_Cluster</graphicClass>
-      <shaderType>Transparent</shaderType>
-    </graphicData>
-    <statBases>
-      <Beauty>-5</Beauty>
-      <Cleanliness>-5</Cleanliness>
-    </statBases>
-  </ThingDef>
+	<ThingDef Name="AlienFilth" Abstract="True">
+		<thingClass>PurpleIvy.Filth_ToxicBlood</thingClass>
+		<tickerType>Normal</tickerType>
+		<category>Filth</category>
+		<altitudeLayer>Filth</altitudeLayer>
+		<useHitPoints>false</useHitPoints>
+		<drawerType>MapMeshOnly</drawerType>
+		<graphicData>
+			<graphicClass>Graphic_Cluster</graphicClass>
+			<shaderType>Transparent</shaderType>
+		</graphicData>
+		<statBases>
+			<Beauty>-5</Beauty>
+			<Cleanliness>-5</Cleanliness>
+		</statBases>
+	</ThingDef>
 
-  <ThingDef ParentName="AlienFilth">
-    <defName>AlienBloodFilth</defName>
-    <label>alien blood</label>
-    <statBases>
-      <Beauty>10</Beauty>
-      <Cleanliness>-5</Cleanliness>
-    </statBases>
-    <graphicData>
-      <texPath>Things/Filth/Spatter</texPath>
-      <color>(14, 0, 42, 180)</color>
-    </graphicData>
-    <filth>
-      <rainWashes>true</rainWashes>
-      <cleaningWorkToReduceThickness>70</cleaningWorkToReduceThickness>
-      <canFilthAttach>true</canFilthAttach>
-    </filth>
-  </ThingDef>
+	<ThingDef ParentName="AlienFilth">
+		<defName>AlienBloodFilth</defName>
+		<label>alien blood</label>
+		<pathCost>1000</pathCost>
+		<statBases>
+			<Beauty>10</Beauty>
+			<Cleanliness>-5</Cleanliness>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Filth/Spatter</texPath>
+			<color>(14, 0, 42, 180)</color>
+		</graphicData>
+		<filth>
+			<rainWashes>true</rainWashes>
+			<cleaningWorkToReduceThickness>70</cleaningWorkToReduceThickness>
+			<canFilthAttach>true</canFilthAttach>
+		</filth>
+	</ThingDef>
 
 </Defs>
