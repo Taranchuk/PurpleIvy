@@ -67,9 +67,13 @@ namespace PurpleIvy
                     Predicate<IntVec3> predicate = delegate (IntVec3 c)
                     {
                         return !GridsUtility.Fogged(c, map) &&
-                        !GridsUtility.Roofed(c, map);
+                        !GridsUtility.Roofed(c, map) &&
+                        GenGrid.InBounds(c, map) && 
+                        GenRadial.RadialCellsAround(c, 10, true).Where(x => 
+                        map.thingGrid.ThingsListAt(x).Where(y => y.Faction == PurpleIvyData.AlienFaction)
+                        != null) != null;
                     };
-                    IntVec3 position = CellFinder.RandomClosewalkCellNear(this.map.Center, this.map, 50,
+                    IntVec3 position = CellFinder.RandomClosewalkCellNear(this.map.Center, this.map, 500,
                         predicate);
 
                     foreach (var num in Enumerable.Range(1, pawnCount / 4))
