@@ -13,6 +13,53 @@ namespace PurpleIvy
     public static class PurpleIvyUtils
     {
 
+        public static void DoExplosion(IntVec3 center, Map map, float radius, DamageDef damType, Thing instigator, int damAmount = -1, float armorPenetration = -1f, SoundDef explosionSound = null, ThingDef weapon = null, ThingDef projectile = null, Thing intendedTarget = null, ThingDef postExplosionSpawnThingDef = null, float postExplosionSpawnChance = 0f, int postExplosionSpawnThingCount = 1, bool applyDamageToExplosionCellsNeighbors = false, ThingDef preExplosionSpawnThingDef = null, float preExplosionSpawnChance = 0f, int preExplosionSpawnThingCount = 1, float chanceToStartFire = 0f, bool damageFalloff = false, float? direction = null, List<Thing> ignoredThings = null)
+        {
+            if (map == null)
+            {
+                Log.Warning("Tried to do explosion in a null map.", false);
+                return;
+            }
+            if (damAmount < 0)
+            {
+                damAmount = damType.defaultDamage;
+                armorPenetration = damType.defaultArmorPenetration;
+                if (damAmount < 0)
+                {
+                    Log.ErrorOnce("Attempted to trigger an explosion without defined damage", 91094882, false);
+                    damAmount = 1;
+                }
+            }
+            if (armorPenetration < 0f)
+            {
+                armorPenetration = (float)damAmount * 0.015f;
+            }
+            ExplosionPlus explosion = (ExplosionPlus)GenSpawn.Spawn(PurpleIvyDefOf.PI_ExplosionPlus, center, map, WipeMode.Vanish);
+            IntVec3? needLOSToCell = null;
+            IntVec3? needLOSToCell2 = null;
+            explosion.radius = radius;
+            explosion.damType = damType;
+            explosion.instigator = instigator;
+            explosion.damAmount = damAmount;
+            explosion.armorPenetration = armorPenetration;
+            explosion.weapon = weapon;
+            explosion.projectile = projectile;
+            explosion.intendedTarget = intendedTarget;
+            explosion.preExplosionSpawnThingDef = preExplosionSpawnThingDef;
+            explosion.preExplosionSpawnChance = preExplosionSpawnChance;
+            explosion.preExplosionSpawnThingCount = preExplosionSpawnThingCount;
+            explosion.postExplosionSpawnThingDef = postExplosionSpawnThingDef;
+            explosion.postExplosionSpawnChance = postExplosionSpawnChance;
+            explosion.postExplosionSpawnThingCount = postExplosionSpawnThingCount;
+            explosion.applyDamageToExplosionCellsNeighbors = applyDamageToExplosionCellsNeighbors;
+            explosion.chanceToStartFire = chanceToStartFire;
+            explosion.center = center;
+            explosion.damageFalloff = damageFalloff;
+            explosion.needLOSToCell1 = needLOSToCell;
+            explosion.needLOSToCell2 = needLOSToCell2;
+            explosion.StartExplosion(explosionSound, ignoredThings);
+        }
+
         public static Job KillAttackJob(Pawn pawn, Thing target)
         {
             var job2 = JobMaker.MakeJob(PurpleIvyDefOf.PI_Kill, target);

@@ -5,6 +5,7 @@
 		<label>Chorcorus</label>
 		<description>A genetically modified Chorchorus plant species, its able to fire its Mucilage slime at will.</description>
 		<thingClass>PurpleIvy.Building_GenMortarGun</thingClass>
+		<pathCost>100</pathCost>
 		<!--<thingClass>PurpleIvy.Building_GenTurretGun</thingClass>-->
 		<graphicData>
 			<texPath>Things/GenTurretBase</texPath>
@@ -51,6 +52,7 @@
 		<defName>Turret_GenMortarSeed</defName>
 		<label>Oxalis Seedpod</label>
 		<thingClass>PurpleIvy.Building_GenMortarGun</thingClass>
+		<pathCost>100</pathCost>
 		<graphicData>
 			<texPath>Things/GenMortarBase</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

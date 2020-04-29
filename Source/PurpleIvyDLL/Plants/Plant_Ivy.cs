@@ -11,7 +11,7 @@ namespace PurpleIvy
 {
     public class Plant_Ivy : Plant
     {
-        public bool CanMutate;
+        public bool CanMutate = false;
         ThingDef sporesThingDef = ThingDef.Named("Spores");
         private Gas Spores = null;
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -195,7 +195,7 @@ namespace PurpleIvy
                                     GenSpawn.Spawn(moteThrown, this.Position, this.Map, WipeMode.Vanish);
                                     //moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
                                     moteThrown.instanceColor = new ColorInt(43, 56, 54).ToColor;
-                                    FilthMaker.TryMakeFilth(this.Position, this.Map, PurpleIvyDefOf.PI_ToxicFilth);
+                                    //FilthMaker.TryMakeFilth(this.Position, this.Map, PurpleIvyDefOf.PI_ToxicFilth);
                                     list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1));
                                 }
                                 break;

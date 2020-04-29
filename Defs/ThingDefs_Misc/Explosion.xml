@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+  <ThingDef ParentName="EtherealThingBase">
+    <defName>PI_ExplosionPlus</defName>
+    <label>explosion</label>
+    <thingClass>PurpleIvy.ExplosionPlus</thingClass>
+    <tickerType>Normal</tickerType>
+  </ThingDef>
+  
+</Defs>

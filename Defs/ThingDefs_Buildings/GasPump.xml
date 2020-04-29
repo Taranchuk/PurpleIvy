@@ -14,6 +14,7 @@
 				<offset>(0,0,-0.1)</offset>
 			</shadowData>
 		</graphicData>
+		<pathCost>100</pathCost>
 		<passability>Impassable</passability>
 		<altitudeLayer>Terrain</altitudeLayer>
 		<useHitPoints>true</useHitPoints>

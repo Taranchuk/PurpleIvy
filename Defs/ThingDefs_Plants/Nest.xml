@@ -17,7 +17,7 @@
 			<graphicClass>Graphic_Random</graphicClass>
 		</graphicData>
 		<selectable>true</selectable>
-		<pathCost>10</pathCost>
+		<pathCost>100</pathCost>
 		<ingestible />
 		<comps>
 			<li Class="CompProperties_Glower">

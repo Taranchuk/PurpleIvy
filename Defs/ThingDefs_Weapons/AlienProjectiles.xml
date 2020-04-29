@@ -31,8 +31,9 @@
 			<damageDef>PI_ToxicExplosion</damageDef>
 			<explosionRadius>5.0</explosionRadius>
 			<speed>35</speed>
-			<preExplosionSpawnThingDef>PI_ToxicFilth</preExplosionSpawnThingDef>
-			<preExplosionSpawnChance>0.9</preExplosionSpawnChance>
+			<postExplosionSpawnThingDef>PI_ToxicFilth</postExplosionSpawnThingDef>
+			<postExplosionSpawnChance>1</postExplosionSpawnChance>
+			<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
 		</projectile>
 	</ThingDef>
 
@@ -49,8 +50,9 @@
 			<damageDef>PI_ToxicExplosion</damageDef>
 			<explosionRadius>3.0</explosionRadius>
 			<speed>35</speed>
-			<preExplosionSpawnThingDef>PI_ToxicFilth</preExplosionSpawnThingDef>
-			<preExplosionSpawnChance>0.9</preExplosionSpawnChance>
+			<postExplosionSpawnThingDef>PI_ToxicFilth</postExplosionSpawnThingDef>
+			<postExplosionSpawnChance>1</postExplosionSpawnChance>
+			<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
 		</projectile>
 	</ThingDef>
 

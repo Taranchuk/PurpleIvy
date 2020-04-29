@@ -85,6 +85,8 @@ namespace PurpleIvy
 
         public static ThingDef PI_PowerBeam;
 
+        public static ThingDef PI_ExplosionPlus;
+
         public static WeatherDef PI_PurpleFog;
 
         public static WeatherDef PI_PurpleFoggyRain;

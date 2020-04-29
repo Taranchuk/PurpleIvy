@@ -17,13 +17,15 @@ namespace PurpleIvy
             var map = victim.Map;
             var damageResult = base.Apply(dinfo, victim);
             if (!victim.Destroyed || map == null || pawn != null) return damageResult;
-            //foreach (var c in victim.OccupiedRect())
-            //{
-            //    if (Rand.Chance(0.3f))
-            //    {
-            //        FilthMaker.TryMakeFilth(c, map, PurpleIvyDefOf.PI_ToxicFilth, 1, FilthSourceFlags.None);
-            //    }
-            //}
+           //foreach (var c in victim.OccupiedRect())
+           //{
+           //    FilthMaker.TryMakeFilth(c, map, PurpleIvyDefOf.PI_ToxicFilth, 1, FilthSourceFlags.None);
+           //
+           //    if (Rand.Chance(0.3f))
+           //    {
+           //        FilthMaker.TryMakeFilth(c, map, PurpleIvyDefOf.PI_ToxicFilth, 1, FilthSourceFlags.None);
+           //    }
+           //}
 
             if (victim is Plant plant && victim.def.plant.IsTree && plant.LifeStage != PlantLifeStage.Sowing && victim.def != ThingDefOf.BurnedTree)
             {

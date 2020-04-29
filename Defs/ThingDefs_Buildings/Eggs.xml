@@ -16,6 +16,7 @@
 				<offset>(0,0,-0.1)</offset>
 			</shadowData>
 		</graphicData>
+		<pathCost>100</pathCost>
 		<altitudeLayer>Terrain</altitudeLayer>
 		<useHitPoints>true</useHitPoints>
 		<building>
@@ -52,7 +53,7 @@
 			<PurpleIvy>1</PurpleIvy>
 		</killedLeavings>
 	</ThingDef>
-	
+
 	<ThingDef ParentName="BuildingBase">
 		<defName>EggSacQueen</defName>
 		<label>Large Egg Sac</label>
@@ -60,6 +61,7 @@
 		<thingClass>PurpleIvy.Building_EggSac</thingClass>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<tickerType>Normal</tickerType>
+		<pathCost>100</pathCost>
 		<graphicData>
 			<texPath>Things/Building/EggSac</texPath>
 			<graphicClass>Graphic_Random</graphicClass>
@@ -103,7 +105,7 @@
 			<PurpleIvy>1</PurpleIvy>
 		</killedLeavings>
 	</ThingDef>
-	
+
 	<ThingDef ParentName="BuildingBase">
 		<defName>EggSacNestGuard</defName>
 		<label>Big Egg Sac</label>
@@ -111,6 +113,7 @@
 		<thingClass>PurpleIvy.Building_EggSac</thingClass>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<tickerType>Normal</tickerType>
+		<pathCost>100</pathCost>
 		<graphicData>
 			<texPath>Things/Building/EggSac</texPath>
 			<graphicClass>Graphic_Random</graphicClass>
@@ -154,14 +157,15 @@
 			<PurpleIvy>1</PurpleIvy>
 		</killedLeavings>
 	</ThingDef>
-	
-    <ThingDef ParentName="BuildingBase">
+
+	<ThingDef ParentName="BuildingBase">
 		<defName>EggSacBeta</defName>
 		<label>Egg Sac Beta</label>
 		<description>An alien egg sac, you can see something through the thin shell moving but can't make out what it is.</description>
 		<thingClass>PurpleIvy.Building_EggSac</thingClass>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<tickerType>Normal</tickerType>
+		<pathCost>100</pathCost>
 		<graphicData>
 			<texPath>Things/Building/EggSac</texPath>
 			<graphicClass>Graphic_Random</graphicClass>
@@ -216,6 +220,7 @@
 		<thingClass>PurpleIvy.Building_EggSac</thingClass>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<tickerType>Normal</tickerType>
+		<pathCost>100</pathCost>
 		<graphicData>
 			<texPath>Things/Building/GammaEgg</texPath>
 			<graphicClass>Graphic_Random</graphicClass>
@@ -266,6 +271,7 @@
 		<thingClass>PurpleIvy.Building_EggSac</thingClass>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<tickerType>Normal</tickerType>
+		<pathCost>100</pathCost>
 		<graphicData>
 			<texPath>Things/Building/ParasiteEgg</texPath>
 			<graphicClass>Graphic_Random</graphicClass>

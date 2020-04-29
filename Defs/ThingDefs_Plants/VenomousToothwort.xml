@@ -12,12 +12,12 @@
 			<MaxHitPoints>100</MaxHitPoints>
 			<Nutrition>0.05</Nutrition>
 		</statBases>
+		<pathCost>1000</pathCost>
 		<graphicData>
 			<texPath>Things/Plant/VenomousToothwort</texPath>
 			<graphicClass>Graphic_Random</graphicClass>
 		</graphicData>
 		<selectable>true</selectable>
-		<pathCost>35</pathCost>
 		<ingestible />
 		<plant>
 			<harvestWork>400</harvestWork>

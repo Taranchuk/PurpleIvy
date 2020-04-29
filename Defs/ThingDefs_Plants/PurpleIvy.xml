@@ -11,6 +11,7 @@
 			<MaxHitPoints>50</MaxHitPoints>
 			<Flammability>0.1</Flammability>
 		</statBases>  
+		<pathCost>100</pathCost>
 		<thingClass>PurpleIvy.Plant_Ivy</thingClass>    
 		<tickerType>Normal</tickerType>
 		<description>A genetically modified version of the Earth plant species "Glechoma hederacea".</description>

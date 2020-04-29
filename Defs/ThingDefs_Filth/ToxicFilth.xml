@@ -13,6 +13,7 @@
 			<Cleanliness>-15</Cleanliness>
 		</statBases>
 		<graphicData>
+			<drawSize>2</drawSize>
 			<texPath>Things/Filth/Spatter</texPath>
 			<!--<color>(41, 71, 66, 170)</color> v1-->
 			<!--<color>(100, 152, 100, 170)</color> v2-->
@@ -24,9 +25,8 @@
 			<!--<color>(171, 255, 171, 170)</color> v8 -->
 		</graphicData>
 		<filth>
-			<rainWashes>true</rainWashes>
+			<disappearsInDays>10~15</disappearsInDays>
 			<cleaningWorkToReduceThickness>90</cleaningWorkToReduceThickness>
-			<canFilthAttach>true</canFilthAttach>
 			<maxThickness>2</maxThickness>
 		</filth>
 	</ThingDef>
