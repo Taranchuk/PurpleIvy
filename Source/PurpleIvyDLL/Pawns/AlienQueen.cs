@@ -83,11 +83,12 @@ namespace PurpleIvy
                 comp.Props.maxNumberOfCreatures = range;
                 comp.maxNumberOfCreatures = range.RandomInRange;
                 comp.Props.ageTick = new IntRange(40000, 50000);
+                comp.Props.ticksPerSpawn = new IntRange(1, 50);
+                comp.Props.incubationPeriod = new IntRange(1, 50);
                 comp.Props.typesOfCreatures = new List<string>()
                 {
                     "Genny_ParasiteOmega"
                 };
-                comp.Props.incubationPeriod = new IntRange(10, 50);
                 corpse.AllComps.Add(comp);
                 foreach (var dir in GenRadial.RadialCellsAround(corpse.Position, 4, true))
                 {

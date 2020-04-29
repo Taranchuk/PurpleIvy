@@ -36,19 +36,19 @@ namespace PurpleIvy
             }
         }
 
-        public override void PostMake()
-        {
-            base.PostMake();
-            var glowerComp = new CompGlower();
-            glowerComp.parent = this;
-            var properties = new CompProperties_Glower();
-            glowerComp.props = properties;
-            properties.glowRadius = 0;
-            properties.glowColor = new ColorInt(0, 0, 0);
-            properties.overlightRadius = 0;
-            glowerComp.Initialize(properties);
-            this.AllComps.Add(glowerComp);
-        }
+        //public override void PostMake()
+        //{
+        //    base.PostMake();
+        //    var glowerComp = new CompGlower();
+        //    glowerComp.parent = this;
+        //    var properties = new CompProperties_Glower();
+        //    glowerComp.props = properties;
+        //    properties.glowRadius = 0;
+        //    properties.glowColor = new ColorInt(0, 0, 0);
+        //    properties.overlightRadius = 0;
+        //    glowerComp.Initialize(properties);
+        //    this.AllComps.Add(glowerComp);
+        //}
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
