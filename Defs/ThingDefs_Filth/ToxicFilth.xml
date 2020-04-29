@@ -23,7 +23,6 @@
 			<color>(148, 227, 148, 170)</color>
 			<!--<color>(171, 255, 171, 170)</color> v8 -->
 		</graphicData>
-		<pathCost>30</pathCost>
 		<filth>
 			<rainWashes>true</rainWashes>
 			<cleaningWorkToReduceThickness>90</cleaningWorkToReduceThickness>

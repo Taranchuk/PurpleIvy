@@ -72,18 +72,68 @@ namespace PurpleIvy
 
         public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
-            var hediff = this.health.hediffSet.hediffs
-.FirstOrDefault((Hediff h) => h.def == PurpleIvyDefOf.PI_CrashlandedDowned);
-            if (hediff != null)
+            if (base.Dead)
             {
-                this.health.hediffSet.hediffs.Remove(hediff);
-                RestUtility.Awake(this);
-                this.health.Reset();
-                this.health.AddHediff(PurpleIvyDefOf.PI_Regen);
-                PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
-                this.mindState.duty = duty;
-                this.mindState.duty.focus = focus;
-                Log.Message("Set focus to " + focus);
+                Log.Message("QUEEN DEEAD");
+                var dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
+                var comp = dummyCorpse.TryGetComp<AlienInfection>();
+                var corpse = (Corpse)this.ParentHolder;
+                comp.parent = corpse;
+                var range = new IntRange(30, 50);
+                comp.Props.maxNumberOfCreatures = range;
+                comp.maxNumberOfCreatures = range.RandomInRange;
+                comp.Props.ageTick = new IntRange(40000, 50000);
+                comp.Props.typesOfCreatures = new List<string>()
+                {
+                    "Genny_ParasiteOmega"
+                };
+                comp.Props.incubationPeriod = new IntRange(10, 50);
+                corpse.AllComps.Add(comp);
+                foreach (var dir in GenRadial.RadialCellsAround(corpse.Position, 4, true))
+                {
+                    if (GenGrid.InBounds(dir, corpse.Map))
+                    {
+                        if (dir.GetPlant(corpse.Map) == null)
+                        {
+                            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, corpse.Map),
+                                (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                            {
+                                Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                                GenSpawn.Spawn(newNest, dir, corpse.Map);
+                            }
+                        }
+                        else
+                        {
+                            Plant plant = dir.GetPlant(corpse.Map);
+                            if (plant.def.defName != "PI_Nest")
+                            {
+                                if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, corpse.Map),
+                                    (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                                {
+                                    plant.Destroy();
+                                    Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                                    GenSpawn.Spawn(newNest, dir, corpse.Map);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                var hediff = this.health.hediffSet.hediffs
+.FirstOrDefault((Hediff h) => h.def == PurpleIvyDefOf.PI_CrashlandedDowned);
+                if (hediff != null)
+                {
+                    this.health.hediffSet.hediffs.Remove(hediff);
+                    RestUtility.Awake(this);
+                    this.health.Reset();
+                    this.health.AddHediff(PurpleIvyDefOf.PI_Regen);
+                    PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
+                    this.mindState.duty = duty;
+                    this.mindState.duty.focus = focus;
+                    Log.Message("Set focus to " + focus);
+                }
             }
             base.PostApplyDamage(dinfo, totalDamageDealt);
         }
@@ -148,4 +198,3 @@ namespace PurpleIvy
         public int recoveryTick = 0;
     }
 }
-
