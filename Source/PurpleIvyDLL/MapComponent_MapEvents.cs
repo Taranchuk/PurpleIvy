@@ -18,6 +18,7 @@ namespace PurpleIvy
         public override void ExposeData()
         {
             Scribe_Collections.Look<Building, int>(ref this.ToxicDamages, "ToxicDamages", LookMode.Reference, LookMode.Value, ref this.ToxicDamageKeys, ref this.ToxicDamageValues);
+            Scribe_Values.Look<bool>(ref this.OrbitalHelpActive, "OrbitalHelpActive", false);
             base.ExposeData();
         }
 
@@ -25,12 +26,68 @@ namespace PurpleIvy
         {
             base.MapComponentTick();
             if (Find.TickManager.TicksGame % 250 == 0)
-            {
+            { 
+                var plants = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);
+                Log.Message("Checking orbital strike, " + this.OrbitalHelpActive + " - " + plants.Count);
+                if (plants != null && ((this.OrbitalHelpActive == true && plants.Count > 0)
+                    || plants.Count > 1500))
+                {
+                    if (this.OrbitalHelpActive == false)
+                    {
+                        this.OrbitalHelpActive = true;
+                        Find.LetterStack.ReceiveLetter("OrbitalHelpFromAncients".Translate(),
+                        "OrbitalHelpFromAncientsDesc".Translate(),
+                        LetterDefOf.NeutralEvent, new TargetInfo(plants.RandomElement().Position, map, false));
+                    }
+                    PowerBeam powerBeam = (PowerBeam)GenSpawn.Spawn(PurpleIvyDefOf.PI_PowerBeam,
+                        plants.RandomElement().Position, this.map, 0);
+                    powerBeam.duration = 200;
+                    powerBeam.instigator = null;
+                    powerBeam.weaponDef = null;
+                    powerBeam.StartStrike();
+                }
+                if ((plants.Count <= 0 || plants == null) && this.OrbitalHelpActive == true)
+                {
+                    Log.Message("Orbital help");
+                    this.OrbitalHelpActive = false;
+                    List<Pawn> list = new List<Pawn>();
+
+                    var alpha = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteAlpha);
+                    var beta = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteBeta);
+                    var gamma = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteGamma);
+                    var omega = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteOmega);
+                    var guard = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteNestGuard);
+
+                    int pawnCount = alpha.Count;
+                    pawnCount += beta.Count;
+                    pawnCount += gamma.Count;
+                    pawnCount += omega.Count;
+                    pawnCount += guard.Count;
+                    foreach (var num in Enumerable.Range(1, pawnCount / 4))
+                    {
+                        Pawn NewPawn = PawnGenerator.GeneratePawn(PurpleIvyDefOf.KorsolianSoldier, null);
+                        NewPawn.SetFaction(PurpleIvyData.KorsolianFaction);
+                        Log.Message(NewPawn?.Faction?.def?.defName);
+                        list.Add(NewPawn);
+                    }
+                    Log.Message("Dropping");
+                    Predicate<IntVec3> predicate = delegate (IntVec3 c)
+                    {
+                        return !GridsUtility.Fogged(c, map) &&
+                        !GridsUtility.Roofed(c, map);
+                    };
+                    IntVec3 position = CellFinder.RandomClosewalkCellNear(this.map.Center, this.map, 50,
+                        predicate);
+                    DropPodUtility.DropThingsNear(position, this.map, list, 30, false, true, true, true);
+                    Find.LetterStack.ReceiveLetter("AncientsLandOnTheGround".Translate(),
+                    "AncientsLandOnTheGroundDesc".Translate(),
+                    LetterDefOf.NeutralEvent, new TargetInfo(position, map, false));
+                }
                 //Log.Message("Alpha limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha.defName]);
                 //Log.Message("Beta limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta.defName]);
                 //Log.Message("Gamma limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma.defName]);
                 //Log.Message("Omega limit: " + PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega.defName]);
-                int count = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                int count = plants.Count;
                 bool comeFromOuterSource;
                 var tempComp = new WorldObjectComp_InfectedTile();
                 tempComp.infectedTile = map.Tile;
@@ -172,6 +229,8 @@ this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.Turret_GenMortarSeed).Count.ToS
 this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest).Count.ToString(), true);
             }
         }
+
+        public bool OrbitalHelpActive = false;
 
         public Dictionary<Building, int> ToxicDamages = new Dictionary<Building, int>();
         

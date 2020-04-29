@@ -12,6 +12,7 @@ namespace PurpleIvy
     public static class PurpleIvyData
     {
         public static Faction AlienFaction => Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.Genny);
+        public static Faction KorsolianFaction => Find.FactionManager.FirstFactionOfDef(PurpleIvyDefOf.KorsolianFaction);
 
         public static Color PurpleColor = new Color(0.368f, 0f, 1f);
 
@@ -122,12 +123,12 @@ namespace PurpleIvy
         }
         public static float getFogProgress(int count)
         {
-            var result = (float)(count - 1000) / (float)3000;
+            var result = (float)(count - 1000) / (float)1500;
             if (result < 0f)
             {
                 result = 0f;
             }
-            return result / 3;
+            return result / 1.5f;
         }
 
         public static List<string> Genny_ParasiteAlpha = new List<string>

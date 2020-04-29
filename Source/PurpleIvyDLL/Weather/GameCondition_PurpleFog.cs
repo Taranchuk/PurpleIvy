@@ -40,6 +40,15 @@ namespace PurpleIvy
             {
                 this.fogProgress[map] = 0f;
                 int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count;
+                count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacBeta).Count;
+                count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma).Count;
+                count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacNestGuard).Count;
+                count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count;
+                count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.GasPump).Count;
+                count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.GenTurretBase).Count;
+                count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.Turret_GenMortarSeed).Count;
+                count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest).Count;
                 var comp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
                 if (comp != null)
                 {
@@ -84,6 +93,15 @@ namespace PurpleIvy
                 if (Find.TickManager.TicksGame % 60 == 0) // for performance
                 {
                     int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacBeta).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacNestGuard).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.GasPump).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.GenTurretBase).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.Turret_GenMortarSeed).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest).Count;
                     var comp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
                     bool temp;
                     if (comp != null)
@@ -264,6 +282,15 @@ namespace PurpleIvy
                     Log.Message("Adding new comp, due missing the one in the mapParent");
                     comp = new WorldObjectComp_InfectedTile();
                     int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSac).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacBeta).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacNestGuard).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.ParasiteEgg).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.GasPump).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.GenTurretBase).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.Turret_GenMortarSeed).Count;
+                    count += map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest).Count;
                     comp.parent = map.Parent;
                     comp.StartInfection();
                     comp.gameConditionCaused = PurpleIvyDefOf.PurpleFogGameCondition;

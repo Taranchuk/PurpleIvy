@@ -25,6 +25,8 @@ namespace PurpleIvy
 
         public static FactionDef Genny;
 
+        public static FactionDef KorsolianFaction;
+
         public static JobDef PI_Kill;
 
         public static JobDef PI_AttackMelee;
@@ -80,6 +82,8 @@ namespace PurpleIvy
         public static ThingDef AlienBloodFilth;
 
         public static ThingDef PI_ToxicFilth;
+
+        public static ThingDef PI_PowerBeam;
 
         public static WeatherDef PI_PurpleFog;
 
@@ -158,6 +162,8 @@ namespace PurpleIvy
         public static ThingCategoryDef CorpsesAlienParasiteOmega;
 
         public static PawnKindDef Genny_Queen;
+
+        public static PawnKindDef KorsolianSoldier;
 
     }
 }

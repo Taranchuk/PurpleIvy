@@ -67,7 +67,6 @@ namespace PurpleIvy
             { "Genny_ParasiteOmega", 50},
         };
 
-
         private List<string> TotalAlienLimitKeys;
 
         private List<int> TotalAlienLimitValue;

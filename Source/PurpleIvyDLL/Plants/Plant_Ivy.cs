@@ -13,7 +13,7 @@ namespace PurpleIvy
     {
         public bool CanMutate;
         ThingDef sporesThingDef = ThingDef.Named("Spores");
-        private Thing Spores = null;
+        private Gas Spores = null;
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
@@ -348,6 +348,7 @@ namespace PurpleIvy
                 this.Spores.Graphic.drawSize.x = (this.Growth * 4f) - 1f;
                 this.Spores.Graphic.drawSize.y = (this.Growth * 4f) - 1f;
                 this.Spores.Graphic.color.a = this.Growth;
+                this.Spores.destroyTick = Find.TickManager.TicksGame + 3000;
             }
             else if (this.Position.InBounds(this.Map))
             {
@@ -369,7 +370,7 @@ namespace PurpleIvy
                     },
                     gas = new GasProperties
                     {
-                        expireSeconds = new FloatRange(29000f, 31000f),
+                        expireSeconds = new FloatRange(60f, 100f),
                         blockTurretTracking = true,
                         accuracyPenalty = 0.7f,
                         rotationSpeed = 10f
@@ -377,7 +378,8 @@ namespace PurpleIvy
                 };
                 Thing thing = ThingMaker.MakeThing(thingDef, null);
                 GenSpawn.Spawn(thing, this.Position, this.Map, 0);
-                this.Spores = thing;
+                this.Spores = (Gas)thing;
+                this.Spores.destroyTick = Find.TickManager.TicksGame + 3000;
             }
         }
 

@@ -20,9 +20,10 @@
 		<factionIconPath>World/WorldObjects/Korsolian_Faction_Base</factionIconPath>
 		<settlementTexturePath>World/WorldObjects/Korsolian_Settlement</settlementTexturePath>
 		<canMakeRandomly>true</canMakeRandomly>
-		<requiredCountAtGameStart>0</requiredCountAtGameStart>
+		<requiredCountAtGameStart>1</requiredCountAtGameStart>
 		<settlementGenerationWeight>0.10</settlementGenerationWeight>
 		<hidden>true</hidden>
+		<autoFlee>false</autoFlee>
 		<geneticVariance>0.1</geneticVariance>
 		<hairTags>
 			<li>Urban</li>

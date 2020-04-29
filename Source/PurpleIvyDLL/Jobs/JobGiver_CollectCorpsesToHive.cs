@@ -24,10 +24,14 @@ namespace PurpleIvy
                 TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn, false), 50f, validator, null);
             if (thing != null && ReservationUtility.CanReserveAndReach(pawn, thing, PathEndMode.ClosestTouch, Danger.None))
             {
-                Log.Message(pawn + " hauls " + thing);
-                Thing plant = pawn.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).RandomElement();
-
-                Job job = JobMaker.MakeJob(PurpleIvyDefOf.PI_HaulToCell, thing, plant.Position);
+                var plants = pawn.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);
+                if (plants == null || plants.Count <= 0)
+                {
+                    return null;
+                }
+                IntVec3 position = plants.RandomElement().Position;
+                Log.Message(pawn + " hauls " + thing + " - " + position + " position");
+                Job job = JobMaker.MakeJob(PurpleIvyDefOf.PI_HaulToCell, thing, position);
                 
                 //Job job = JobMaker.MakeJob(JobDefOf.HaulToCell, thing, plant.Position);
 
