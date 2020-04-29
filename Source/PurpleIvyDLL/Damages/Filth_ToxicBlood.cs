@@ -48,12 +48,15 @@ namespace PurpleIvy
                                     //GenSpawn.Spawn(moteThrown, this.Position, this.Map, WipeMode.Vanish);
                                     //moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
                                     Pawn pawn = (Pawn)list[i];
-                                    pawn.TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1, 0, -1, this,
+                                    if (!pawn.RaceProps.IsMechanoid)
+                                    {
+                                        pawn.TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1, 0, -1, this,
                                         pawn.health.hediffSet.GetNotMissingParts(0, 0, null, null)
                                         .Where(x => x.groups.Contains(BodyPartGroupDefOf.Legs))
                                         .FirstOrDefault()));
-                                    HealthUtility.AdjustSeverity(pawn, HediffDefOf.ToxicBuildup, 0.01f);
-                                    HealthUtility.AdjustSeverity(pawn, PurpleIvyDefOf.PI_AlienBlood, 1f);
+                                        HealthUtility.AdjustSeverity(pawn, HediffDefOf.ToxicBuildup, 0.01f);
+                                        HealthUtility.AdjustSeverity(pawn, PurpleIvyDefOf.PI_AlienBlood, 1f);
+                                    }
                                 }
                                 catch { }
                                 break;

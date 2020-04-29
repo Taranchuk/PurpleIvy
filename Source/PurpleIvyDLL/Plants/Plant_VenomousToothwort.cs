@@ -113,17 +113,20 @@ namespace PurpleIvy
                     //If we find a pawn and its not a hatchling
                     case Pawn _:
                     {
-                        var stuckPawn = (Pawn)list[i];
-                        var damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
-                        stuckPawn.TakeDamage(damageInfo);
-                        var hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
-                            stuckPawn, null);
-                        hediff.Severity = 0.1f;
-                        (stuckPawn).health.AddHediff(hediff, null, null, null);
-                        var hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
-                            stuckPawn, null);
-                        hediff2.Severity = 0.1f;
-                        (stuckPawn).health.AddHediff(hediff2, null, null, null);
+                        var pawn = (Pawn)list[i];
+                        if (!pawn.RaceProps.IsMechanoid)
+                        {
+                            var damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
+                                pawn.TakeDamage(damageInfo);
+                            var hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
+                                pawn, null);
+                            hediff.Severity = 0.1f;
+                            (pawn).health.AddHediff(hediff, null, null, null);
+                            var hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
+                                pawn, null);
+                            hediff2.Severity = 0.1f;
+                            (pawn).health.AddHediff(hediff2, null, null, null);
+                        }
                         break;
                     }
                     //If we find a plant
