@@ -31,7 +31,7 @@ namespace PurpleIvy
                 var plants = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);
                 Log.Message("Checking orbital strike, " + this.OrbitalHelpActive + " - " + plants.Count);
                 if (plants != null && ((this.OrbitalHelpActive == true && plants.Count > 0)
-                    || plants.Count > 1500))// && Rand.Chance(PurpleIvyData.getFogProgress(plants.Count)))
+                    || plants.Count > 1500)) // && Rand.Chance(PurpleIvyData.getFogProgress(plants.Count)))
                 {
                     if (this.OrbitalHelpActive == false)
                     {
@@ -75,8 +75,7 @@ namespace PurpleIvy
                     };
                     IntVec3 position = CellFinder.RandomClosewalkCellNear(this.map.Center, this.map, 500,
                         predicate);
-
-                    foreach (var num in Enumerable.Range(1, pawnCount / 4))
+                    foreach (var num in Enumerable.Range(1, pawnCount / 2))
                     {
                         Faction faction = FactionUtility.DefaultFactionFrom(PurpleIvyDefOf.KorsolianFaction);
                         Pawn NewPawn = PawnGenerator.GeneratePawn(PurpleIvyDefOf.KorsolianSoldier, faction);
@@ -92,12 +91,12 @@ namespace PurpleIvy
                             }
                             if (lord == null)
                             {
-                                LordJob_DefendPoint lordJob = new LordJob_DefendPoint(position);
+                                var lordJob = new LordJob_AssistColony(Faction.OfPlayer, position);
+                                //LordJob_DefendPoint lordJob = new LordJob_DefendPoint(position);
                                 lord = LordMaker.MakeNewLord(faction, lordJob, this.map, null);
                             }
                             lord.AddPawn(NewPawn);
                         }
-                        NewPawn.SetFaction(PurpleIvyData.KorsolianFaction);
                         Log.Message(NewPawn?.Faction?.def?.defName);
                         list.Add(NewPawn);
                     }
