@@ -167,6 +167,8 @@ namespace PurpleIvy
 
         public static PawnKindDef KorsolianSoldier;
 
+        public static SitePartDef PI_CrashedShip;
+
     }
 }
 

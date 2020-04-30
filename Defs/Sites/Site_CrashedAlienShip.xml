@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>  
+
+	<SitePartDef>
+		<defName>PI_CrashedShip</defName>
+		<label>crashed ship</label>
+		<description>The approximate place a ship came down.</description>
+		<siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
+		<expandingIconTexture>World/WorldObjects/Expanding/Sites/Ambush</expandingIconTexture>
+	</SitePartDef>
+
+	<GenStepDef>
+		<defName>PI_CrashedShipGen</defName>
+		<linkWithSite>PI_CrashedShip</linkWithSite>
+		<order>800</order>
+		<genStep Class="PurpleIvy.GenStep_CrashedAlienShip">
+		</genStep>
+	</GenStepDef>
+
+</Defs>
