@@ -74,6 +74,13 @@ namespace PurpleIvy
             leftWing.singleThingDef = ThingDefOf.Wall;
             BaseGen.symbolStack.Push("fillWithThings", leftWing, null);
 
+            //right wing
+            ResolveParams rightWing = rp;
+            rightWing.rect = new CellRect(rp.rect.minX + 6, rp.rect.maxX / 2 - 5, 9, 6);
+            rightWing.fillWithThingsPadding = new int?(rightWing.fillWithThingsPadding ?? 0);
+            rightWing.singleThingStuff = ThingDefOf.Plasteel;
+            rightWing.singleThingDef = ThingDefOf.Wall;
+            BaseGen.symbolStack.Push("fillWithThings", rightWing, null);
 
             //generators
             ResolveParams generators = rp;
@@ -94,6 +101,12 @@ namespace PurpleIvy
             ResolveParams laboratory = rp;
             laboratory.rect = new CellRect(rp.rect.minX + 10, rp.rect.maxX / 2 + 8, 18, 5);
             BaseGen.symbolStack.Push("emptyRoom", laboratory, null);
+
+            // pilot room
+            ResolveParams pilotRoom = rp;
+            pilotRoom.rect = new CellRect(rp.rect.minX + 27, rp.rect.maxX / 2 + 1, 8, 11);
+            BaseGen.symbolStack.Push("emptyRoom", pilotRoom, null);
+
             BaseGen.Generate();
 
             var doorsHalfway = new List<int>() { 4, 14, 25, 36, 46, 52 };
@@ -209,7 +222,6 @@ namespace PurpleIvy
             }
             var toRemove = new List<int>() { 26, 34, 35, 42, 43, 44, 50, 51, 52, 53 };
             List<Thing> list = new List<Thing>();
-
             for (var i = 0; i < leftWing.rect.ToList().Count(); i++)
             {
                 if (toRemove.Contains(i))
@@ -243,7 +255,83 @@ namespace PurpleIvy
                 }
                 Log.Message(leftWing.rect.ToList()[i] + " leftWing - position " + i);
             }
-            FloodFillerFog.FloodUnfog(leftWing.rect.CenterCell, map);
+
+            var toRemove2 = new List<int>() { 5, 6, 15, 7, 16, 25, 8, 17, 26, 35 };
+            List<Thing> list2 = new List<Thing>();
+            for (var i = 0; i < rightWing.rect.ToList().Count(); i++)
+            {
+                if (toRemove2.Contains(i))
+                {
+                    try
+                    {
+                        if (GenGrid.InBounds(rightWing.rect.ToList()[i], map))
+                        {
+                            list2 = map.thingGrid.ThingsListAt(rightWing.rect.ToList()[i]);
+                        }
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                    for (int ind = list2.Count - 1; ind >= 0; ind--)
+                    {
+                        if (list2[ind].def.IsBuildingArtificial)
+                        {
+                            list2[ind].DeSpawn(DestroyMode.Vanish);
+                        }
+                    }
+                }
+                else if (i == 28)
+                {
+                    Log.Message("SPAWN ENGINE");
+                    Thing thing = ThingMaker.MakeThing(ThingDefOf.Ship_Engine, null);
+                    thing.SetFaction(rp.faction, null);
+                    thing.Rotation = Rot4.West;
+                    GenSpawn.Spawn(thing, rightWing.rect.ToList()[i], map, Rot4.East, WipeMode.Vanish);
+                }
+                Log.Message(rightWing.rect.ToList()[i] + " rightWing - position " + i);
+            }
+
+            var toRemove3 = new List<int>() { 4, 5, 6, 7, 15, 84, 85, 86, 79, 87 };
+            var toBuildWalls = new List<int>() { 22, 11, 12, 13, 14, 70, 75, 76, 77, 78 };
+
+            List<Thing> list3 = new List<Thing>();
+            for (var i = 0; i < pilotRoom.rect.ToList().Count(); i++)
+            {
+                if (toRemove3.Contains(i))
+                {
+                    try
+                    {
+                        if (GenGrid.InBounds(pilotRoom.rect.ToList()[i], map))
+                        {
+                            list3 = map.thingGrid.ThingsListAt(pilotRoom.rect.ToList()[i]);
+                        }
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                    for (int ind = list3.Count - 1; ind >= 0; ind--)
+                    {
+                        if (list3[ind].def.IsBuildingArtificial)
+                        {
+                            list3[ind].DeSpawn(DestroyMode.Vanish);
+                        }
+                    }
+                    if (map.terrainGrid.TerrainAt(pilotRoom.rect.ToList()[i]).defName.Equals("SilverTile"))
+                    {
+                        map.terrainGrid.RemoveTopLayer(pilotRoom.rect.ToList()[i], true);
+                        map.roofGrid.SetRoof(pilotRoom.rect.ToList()[i], null);
+                    }
+                }
+                else if (toBuildWalls.Contains(i))
+                {
+                    Thing thing = ThingMaker.MakeThing(ThingDefOf.Wall, ThingDefOf.Plasteel);
+                    thing.SetFaction(rp.faction, null);
+                    GenSpawn.Spawn(thing, pilotRoom.rect.ToList()[i], map, WipeMode.Vanish);
+                }
+                Log.Message(pilotRoom.rect.ToList()[i] + " pilotRoom - position " + i);
+            }
         }
 
         protected CellRect adventureRegion;
