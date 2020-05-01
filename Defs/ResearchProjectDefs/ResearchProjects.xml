@@ -45,6 +45,34 @@
 	</ResearchProjectDef>
 	
 	<ResearchProjectDef>
+		<defName>PI_AlienContainment</defName>
+		<label>Alien containment</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>0</researchViewX>
+		<researchViewY>1.75</researchViewY>
+		<prerequisites>
+		<li>MultiAnalyzer</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>PI_AdvAlienContainment</defName>
+		<label>Advanced containment</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>1</researchViewX>
+		<researchViewY>1.75</researchViewY>
+		<prerequisites>
+		<li>PI_AlienContainment</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
 		<defName>PI_Vivisection</defName>
 		<label>Alien vivisection</label>
 		<description>wip</description>
@@ -54,6 +82,7 @@
 		<researchViewY>1</researchViewY>
 		<prerequisites>
         <li>PI_Biolab</li>
+		<li>PI_AlienContainment</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
@@ -195,15 +224,14 @@
 	</ResearchProjectDef>
 	
 	<ResearchProjectDef>
-		<defName>PI_AlienContainment</defName>
-		<label>Alien containment</label>
+		<defName>PI_LaserBench</defName>
+		<label>Laser bench</label>
 		<description>wip</description>
 		<baseCost>1000</baseCost>
 		<techLevel>Industrial</techLevel>
-		<researchViewX>1</researchViewX>
-		<researchViewY>2</researchViewY>
+		<researchViewX>0</researchViewX>
+		<researchViewY>2.5</researchViewY>
 		<prerequisites>
-        <li>PI_Vivisection</li>
 		<li>MultiAnalyzer</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
@@ -215,9 +243,10 @@
 		<description>wip</description>
 		<baseCost>1000</baseCost>
 		<techLevel>Industrial</techLevel>
-		<researchViewX>0</researchViewX>
+		<researchViewX>1</researchViewX>
 		<researchViewY>3</researchViewY>
 		<prerequisites>
+		<li>PI_LaserBench</li>
 		<li>Fabrication</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
@@ -229,7 +258,7 @@
 		<description>wip</description>
 		<baseCost>1000</baseCost>
 		<techLevel>Industrial</techLevel>
-		<researchViewX>1</researchViewX>
+		<researchViewX>2</researchViewX>
 		<researchViewY>3</researchViewY>
 		<prerequisites>
 		<li>PI_AlienArmor1</li>
@@ -244,7 +273,7 @@
 		<description>wip</description>
 		<baseCost>1000</baseCost>
 		<techLevel>Industrial</techLevel>
-		<researchViewX>2</researchViewX>
+		<researchViewX>3</researchViewX>
 		<researchViewY>3</researchViewY>
 		<prerequisites>
 		<li>PI_AlienArmor2</li>
@@ -259,9 +288,10 @@
 		<description>wip</description>
 		<baseCost>1000</baseCost>
 		<techLevel>Industrial</techLevel>
-		<researchViewX>0</researchViewX>
+		<researchViewX>1</researchViewX>
 		<researchViewY>4</researchViewY>
 		<prerequisites>
+		<li>PI_LaserBench</li>
 		<li>MultiAnalyzer</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
@@ -273,7 +303,7 @@
 		<description>wip</description>
 		<baseCost>1000</baseCost>
 		<techLevel>Industrial</techLevel>
-		<researchViewX>1</researchViewX>
+		<researchViewX>2</researchViewX>
 		<researchViewY>4</researchViewY>
 		<prerequisites>
 		<li>PI_AlienWeapons1</li>
@@ -288,7 +318,7 @@
 		<description>wip</description>
 		<baseCost>1000</baseCost>
 		<techLevel>Industrial</techLevel>
-		<researchViewX>2</researchViewX>
+		<researchViewX>3</researchViewX>
 		<researchViewY>4</researchViewY>
 		<prerequisites>
 		<li>PI_AlienWeapons2</li>
