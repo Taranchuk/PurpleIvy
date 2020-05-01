@@ -73,7 +73,6 @@
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
     </building>
     <researchPrerequisites>
-      <li>BioLabRes</li>
     </researchPrerequisites>
   </ThingDef>
 
@@ -147,7 +146,6 @@
       <heatPerTickWhileWorking>30.0</heatPerTickWhileWorking>
     </building>
     <researchPrerequisites>
-      <li>EnergyBenchRes</li>
     </researchPrerequisites>
   </ThingDef>
 

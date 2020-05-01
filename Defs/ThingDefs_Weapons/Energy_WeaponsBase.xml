@@ -186,7 +186,6 @@
       </li>
     </verbs>
     <recipeMaker>
-      <researchPrerequisite>CosmosRifleResearch</researchPrerequisite>
       <unfinishedThingDef>CosmosRifleUnfinished</unfinishedThingDef>
     </recipeMaker>
     <weaponTags>
@@ -263,7 +262,6 @@
       </li>
     </verbs>
     <recipeMaker>
-      <researchPrerequisite>CosmosSniperResearch</researchPrerequisite>
       <unfinishedThingDef>CosmosSniperUnfinished</unfinishedThingDef>
     </recipeMaker>
     <weaponTags>
@@ -340,7 +338,6 @@
       </li>
     </verbs>
     <recipeMaker>
-      <researchPrerequisite>CosmosPistolResearch</researchPrerequisite>
       <unfinishedThingDef>CosmosPistolUnfinished</unfinishedThingDef>
     </recipeMaker>
     <weaponTags>
@@ -422,7 +419,6 @@
       </li>
     </verbs>
     <recipeMaker>
-      <researchPrerequisite>PhaseResearch</researchPrerequisite>
       <unfinishedThingDef>PhaseUnfinished</unfinishedThingDef>
     </recipeMaker>
     <weaponTags>
@@ -499,7 +495,6 @@
       </li>
     </verbs>
     <recipeMaker>
-      <researchPrerequisite>PhaseResearch</researchPrerequisite>
       <unfinishedThingDef>PhaseUnfinished</unfinishedThingDef>
     </recipeMaker>
     <weaponTags>
@@ -580,7 +575,6 @@
       </li>
     </verbs>
     <recipeMaker>
-      <researchPrerequisite>FluxResearchOrange</researchPrerequisite>
       <unfinishedThingDef>EnergyFluxUnfinished</unfinishedThingDef>
     </recipeMaker>
     <weaponTags>
@@ -656,7 +650,6 @@
       </li>
     </verbs>
     <recipeMaker>
-      <researchPrerequisite>FluxResearchBlue</researchPrerequisite>
       <unfinishedThingDef>EnergyFluxUnfinished</unfinishedThingDef>
     </recipeMaker>
     <weaponTags>

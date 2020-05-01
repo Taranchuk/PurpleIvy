@@ -1,409 +1,300 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<!--====== Alien plants ======-->
-
+    <ResearchProjectDef>
+		<defName>PI_BasicBioprotection</defName>
+		<label>Basic bioprotection</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>0</researchViewX>
+		<researchViewY>0</researchViewY>
+		<prerequisites>
+        <li>ComplexClothing</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+	
 	<ResearchProjectDef>
-		<defName>BasicAlienPlants</defName>
-		<label>Basic Plants</label>
-		<description>Learn to grow the Creepy Tulip and Azure Hearth plants. Useful for food production.</description>
-		<baseCost>400</baseCost>
+		<defName>PI_AdvBioprotection</defName>
+		<label>Advanced bioprotection</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>1.0</researchViewX>
+		<researchViewY>0.0</researchViewY>
+		<prerequisites>
+        <li>PI_BasicBioprotection</li>
+		<li>PI_Biolab</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>PI_Biolab</defName>
+		<label>Biolaboratory</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>0</researchViewX>
+		<researchViewY>1</researchViewY>
+		<prerequisites>
+        <li>MicroelectronicsBasics</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>PI_Vivisection</defName>
+		<label>Alien vivisection</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>1</researchViewX>
+		<researchViewY>1</researchViewY>
+		<prerequisites>
+        <li>PI_Biolab</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>PI_BasicDrugs</defName>
+		<label>Basic drugs</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
 		<techLevel>Industrial</techLevel>
 		<researchViewX>2</researchViewX>
 		<researchViewY>1</researchViewY>
 		<prerequisites>
-			<li>AlienPlants</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
+        <li>PI_Vivisection</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
-
+	
 	<ResearchProjectDef>
-		<defName>IntermidiateAlienPlants</defName>
-		<label>Advanced Plants</label>
-		<description>Learn to grow the Nightmare Brier and Magmatite plants. Useful for food production and to Fabricate Flux-Medicine.</description>
-		<baseCost>800</baseCost>
+		<defName>PI_AdvDrugs</defName>
+		<label>Advanced drugs</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
 		<techLevel>Industrial</techLevel>
 		<researchViewX>3</researchViewX>
 		<researchViewY>1</researchViewY>
 		<prerequisites>
-			<li>BasicAlienPlants</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
+        <li>PI_BasicDrugs</li>
+		<li>MultiAnalyzer</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
-
+	
+    <ResearchProjectDef>
+		<defName>PI_MutagensA</defName>
+		<label>MutagensA</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>4</researchViewX>
+		<researchViewY>0.5</researchViewY>
+		<prerequisites>
+        <li>PI_AdvDrugs</li>
+		<li>Fabrication</li>
+		</prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+	
 	<ResearchProjectDef>
-		<defName>SporeAlienPlants</defName>
-		<label>Spore Plants</label>
-		<description>Learn to grow the Phoenix Juniper and Demon Lily plants. Useful for food production.</description>
+		<defName>PI_MutagensB</defName>
+		<label>MutagensB</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>4</researchViewX>
+		<researchViewY>1</researchViewY>
+		<prerequisites>
+        <li>PI_AdvDrugs</li>
+		<li>Fabrication</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>PI_MutagensC</defName>
+		<label>MutagensC</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>4</researchViewX>
+		<researchViewY>1.5</researchViewY>
+		<prerequisites>
+        <li>PI_AdvDrugs</li>
+		<li>Fabrication</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>PI_BasicBionics</defName>
+		<label>Basic bionics</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>2</researchViewX>
+		<researchViewY>0</researchViewY>
+		<prerequisites>
+        <li>PI_Vivisection</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>PI_AdvBionics</defName>
+		<label>Advanced bionics</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>3</researchViewX>
+		<researchViewY>0</researchViewY>
+		<prerequisites>
+        <li>PI_BasicBionics</li>
+		<li>MultiAnalyzer</li>
+		</prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>PI_Implantation</defName>
+		<label>Implantation</label>
+		<description>wip</description>
 		<baseCost>1000</baseCost>
 		<techLevel>Industrial</techLevel>
 		<researchViewX>4</researchViewX>
 		<researchViewY>0</researchViewY>
 		<prerequisites>
-			<li>IntermidiateAlienPlants</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
+        <li>PI_AdvBionics</li>
+		<li>Fabrication</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
-
+	
 	<ResearchProjectDef>
-		<defName>VenomousAlienPlants</defName>
-		<label>Venomous Plants</label>
-		<description>Learn to grow the Venomous Toothwort plants. This plant and be used for advanced food production and to fabricate a powerful Stimulator.</description>
-		<baseCost>1000</baseCost>
-		<techLevel>Industrial</techLevel>
-		<researchViewX>4</researchViewX>
-		<researchViewY>1</researchViewY>
-		<prerequisites>
-			<li>IntermidiateAlienPlants</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>MasterAlienPlants</defName>
-		<label>Master Plants</label>
-		<description>Learn to grow the Funeral Ivy plants. This Rare Plant is also used to create Advanced Simulators that can grant Extremely Powerful Abilities to any Pawn. The plant can also be used to produced Advanced synthetic food.</description>
-		<baseCost>2500</baseCost>
-		<techLevel>Industrial</techLevel>
-		<researchViewX>5</researchViewX>
-		<researchViewY>1</researchViewY>
-		<prerequisites>
-			<li>SporeAlienPlants</li>
-			<li>VenomousAlienPlants</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>DragonAlienPlants</defName>
-		<label>Draconic Plants</label>
-		<description>Learn to grow Draconic plants. This Rare Plant is also used to create Advanced Simulators that can grant Extremely Powerful Abilities to any Pawn. (Can only be grown on Hydroponics)</description>
-		<baseCost>3000</baseCost>
-		<techLevel>Industrial</techLevel>
-		<researchViewX>6</researchViewX>
-		<researchViewY>1</researchViewY>
-		<prerequisites>
-			<li>MasterAlienPlants</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
-	</ResearchProjectDef>
-
-	<!--====== Alien food ======-->
-
-	<ResearchProjectDef>
-		<defName>AlienFoodPatternGreen</defName>
-		<label>Cerelor Mimetic Meat</label>
-		<description>Learn the how to made artificial food with Cerelor plant-based structure. (Can be Made from Basic Alien Plants)</description>
-		<baseCost>600</baseCost>
-		<techLevel>Industrial</techLevel>
-		<researchViewX>2</researchViewX>
-		<researchViewY>3</researchViewY>
-		<tab>AlienProduction</tab>
-		<prerequisites>
-			<li>FoodProduction</li>
-		</prerequisites>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>AlienFoodPatternLightGreen</defName>
-		<label>Coroleon Bio Meat</label>
-		<description>Learn how to made artificial food with Coroleon structure suited for oxygen rich atmosphere. (Can be Made from Spore Plants)</description>
-		<baseCost>700</baseCost>
-		<techLevel>Industrial</techLevel>
-		<researchViewX>3</researchViewX>
-		<researchViewY>3</researchViewY>
-		<tab>AlienProduction</tab>
-		<prerequisites>
-			<li>AlienFoodPatternGreen</li>
-		</prerequisites>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>AlienFoodPatternBlue</defName>
-		<label>Avirion Synthetic Meat</label>
-		<description>Learn how to made artificial food with Avirion structure suited for methane atmosphere. (Can be Made from Advanced Plants)</description>
-		<baseCost>600</baseCost>
-		<techLevel>Industrial</techLevel>
-		<researchViewX>2</researchViewX>
-		<researchViewY>2</researchViewY>
-		<tab>AlienProduction</tab>
-		<prerequisites>
-			<li>FoodProduction</li>
-		</prerequisites>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>AlienFoodPatternDark</defName>
-		<label>Silrilion Synthetic Meat</label>
-		<description>Learn how to made artificial food with Silrilion from sulfuric acid rich atmosphere. (Can be Made from Venomous Plants)</description>
-		<baseCost>700</baseCost>
-		<techLevel>Industrial</techLevel>
-		<researchViewX>3</researchViewX>
-		<researchViewY>2</researchViewY>
-		<tab>AlienProduction</tab>
-		<prerequisites>
-			<li>AlienFoodPatternBlue</li>
-		</prerequisites>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>AlienFoodMixedSimple</defName>
-		<label>Advanced Bio Meat</label>
-		<description>Learn how to made artificial food with mixed structure made for better nutrition or substances transmission. (Can be Made from Master Plants)</description>
-		<baseCost>800</baseCost>
-		<techLevel>Industrial</techLevel>
-		<researchViewX>4</researchViewX>
-		<researchViewY>3</researchViewY>
-		<tab>AlienProduction</tab>
-		<prerequisites>
-			<li>AlienFoodPatternLightGreen</li>
-			<li>AlienFoodPatternDark</li>
-		</prerequisites>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>AlienFoodMixedAdvanced</defName>
-		<label>Meat Replication</label>
-		<description>Learn how to made artificial food with advanced mixed structure made for best nutrition or substances transmission. (Can be Made from Master Plants)</description>
+		<defName>PI_BioRepl</defName>
+		<label>bioprocess replacement</label>
+		<description>wip</description>
 		<baseCost>1000</baseCost>
 		<techLevel>Industrial</techLevel>
 		<researchViewX>5</researchViewX>
-		<researchViewY>3</researchViewY>
-		<tab>AlienProduction</tab>
+		<researchViewY>0</researchViewY>
 		<prerequisites>
-			<li>AlienFoodMixedSimple</li>
-		</prerequisites>
+        <li>PI_Implantation</li>
+		<li>AdvancedFabrication</li>
+		<li>PI_MutagensA</li>
+		<li>PI_MutagensB</li>
+		<li>PI_MutagensC</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
-
-	<!--====== Core ======-->
-
+	
 	<ResearchProjectDef>
-		<defName>AlienPlants</defName>
-		<label>Alien Plants</label>
-		<description>Learn to grow the Basics of Alien Plants. That can be useful to Produce Synthetic Food and extremely advanced Stimulator Bionics.</description>
-		<baseCost>500</baseCost>
-		<techLevel>Industrial</techLevel>
-		<researchViewX>1</researchViewX>
-		<researchViewY>1</researchViewY>
-		<tab>AlienProduction</tab>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>FoodProduction</defName>
-		<label>Bio Food Basics</label>
-		<description>Learn to manufacture food from Tier 1 of Basic Alien Plants</description>
-		<baseCost>500</baseCost>
-		<techLevel>Industrial</techLevel>
-		<researchViewX>1</researchViewX>
-		<researchViewY>3</researchViewY>
-		<prerequisites>
-			<li>BioLabRes</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>BioLabRes</defName>
-		<label>Bio Laboratory</label>
-		<description>Learn to build a complex Hi-Teach Bio Lab for producing Synthetic Food and advanced Bionics. Warning! This building consume a lot of energy.</description>
-		<baseCost>800</baseCost>
-		<techLevel>Industrial</techLevel>
-		<researchViewX>0</researchViewX>
-		<researchViewY>3</researchViewY>
-		<tab>AlienProduction</tab>
-	</ResearchProjectDef>
-
-
-	<!--====== Weapons ======-->
-
-
-	<ResearchProjectDef>
-		<defName>EnergyBenchRes</defName>
-		<label>Cosmos Bench</label>
-		<description>Learn to build an Advanced Bench that allows you to build energy based weaponry. Warning! This building consume a lot of energy.</description>
+		<defName>PI_AlienContainment</defName>
+		<label>Alien containment</label>
+		<description>wip</description>
 		<baseCost>1000</baseCost>
-		<techLevel>Spacer</techLevel>
-		<researchViewX>0</researchViewX>
-		<researchViewY>2</researchViewY>
-		<prerequisites>
-			<li>MultiAnalyzer</li>
-		</prerequisites>
-		<tab>AdvancedProduction</tab>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>FluxResearchBlue</defName>
-		<label>Flux Rifle</label>
-		<description>Learn to Manufacture an entry level Flux Energy Rifle. Decently strong at Long and Medium range.</description>
-		<baseCost>2500</baseCost>
-		<techLevel>Spacer</techLevel>
+		<techLevel>Industrial</techLevel>
 		<researchViewX>1</researchViewX>
 		<researchViewY>2</researchViewY>
 		<prerequisites>
-			<li>EnergyBenchRes</li>
-		</prerequisites>
-		<tab>AdvancedProduction</tab>
+        <li>PI_Vivisection</li>
+		<li>MultiAnalyzer</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
-
+	
 	<ResearchProjectDef>
-		<defName>FluxResearchOrange</defName>
-		<label>Advanced Flux Rifle</label>
-		<description>Learn to Manufacture a more Advanced Flux Energy Rifle. Capable of delivering a faster Rate of Fire and better Stability Control.</description>
-		<baseCost>2800</baseCost>
-		<techLevel>Spacer</techLevel>
-		<researchViewX>2</researchViewX>
-		<researchViewY>1</researchViewY>
+		<defName>PI_AlienArmor1</defName>
+		<label>Salvaged alien armor</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>0</researchViewX>
+		<researchViewY>3</researchViewY>
 		<prerequisites>
-			<li>FluxResearchBlue</li>
-		</prerequisites>
-		<tab>AdvancedProduction</tab>
+		<li>Fabrication</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
-
+	
 	<ResearchProjectDef>
-		<defName>PhaseResearch</defName>
-		<label>Phase Weaponry</label>
-		<description>Learn to Manufacture two Extremely useful Phase-Tech Pistol's. Really good at both Short and Medium range.</description>
-		<baseCost>2800</baseCost>
-		<techLevel>Spacer</techLevel>
+		<defName>PI_AlienArmor2</defName>
+		<label>Improvised alien armor</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>1</researchViewX>
+		<researchViewY>3</researchViewY>
+		<prerequisites>
+		<li>PI_AlienArmor1</li>
+		<li>MultiAnalyzer</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef>
+		<defName>PI_AlienArmor3</defName>
+		<label>Alien armor</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
 		<researchViewX>2</researchViewX>
 		<researchViewY>3</researchViewY>
 		<prerequisites>
-			<li>FluxResearchBlue</li>
-		</prerequisites>
-		<tab>AdvancedProduction</tab>
+		<li>PI_AlienArmor2</li>
+		<li>AdvancedFabrication</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
-
+	
 	<ResearchProjectDef>
-		<defName>CosmosPistolResearch</defName>
-		<label>Cosmos Pistol</label>
-		<description>Learn to Manufacture a Cosmos Energy-Pistol that comes directly from Cosmos Tech Ind. The Cosmos Energy-Pistol has a good Precision at Short and Medium range.</description>
-		<baseCost>2500</baseCost>
-		<techLevel>Spacer</techLevel>
-		<researchViewX>2</researchViewX>
-		<researchViewY>2</researchViewY>
+		<defName>PI_AlienWeapons1</defName>
+		<label>Salvaged alien weapons</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>0</researchViewX>
+		<researchViewY>4</researchViewY>
 		<prerequisites>
-			<li>FluxResearchBlue</li>
-		</prerequisites>
-		<tab>AdvancedProduction</tab>
+		<li>MultiAnalyzer</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
-
+	
 	<ResearchProjectDef>
-		<defName>CosmosRifleResearch</defName>
-		<label>Cosmos Rifle</label>
-		<description>Learn to Manufacture a Cosmos Energy Rifle. This Dark Energy-based assault rifle is capable of providing accurate and sustained fire at targets up to medium range.</description>
-		<baseCost>3000</baseCost>
-		<techLevel>Spacer</techLevel>
-		<researchViewX>3</researchViewX>
-		<researchViewY>2</researchViewY>
-		<prerequisites>
-			<li>CosmosPistolResearch</li>
-		</prerequisites>
-		<tab>AdvancedProduction</tab>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>CosmosSniperResearch</defName>
-		<label>Cosmos Sniper</label>
-		<description>Learn to Manufacture a Cosmos Energy Sniper. That features an Mysterious composite body capable of withstanding any number of rigorous environments both in atmosphere and out.</description>
-		<baseCost>4000</baseCost>
-		<techLevel>Spacer</techLevel>
-		<researchViewX>4</researchViewX>
-		<researchViewY>2</researchViewY>
-		<prerequisites>
-			<li>CosmosRifleResearch</li>
-		</prerequisites>
-		<tab>AdvancedProduction</tab>
-	</ResearchProjectDef>
-
-
-	<!--====== Cosmos Bionics ======-->
-
-
-	<ResearchProjectDef>
-		<defName>CosmosBionicResBase</defName>
-		<label>Basic Bionics</label>
-		<description>Learn to Manufacture Basic Bionics that are really Useful to replace lost Body Parts or Enchant existing ones such as Jaw, Lung, Eye and Hand.</description>
-		<baseCost>5000</baseCost>
-		<techLevel>Spacer</techLevel>
+		<defName>PI_AlienWeapons2</defName>
+		<label>Improvised alien weapons</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
 		<researchViewX>1</researchViewX>
 		<researchViewY>4</researchViewY>
 		<prerequisites>
-			<li>BioLabRes</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
+		<li>PI_AlienWeapons1</li>
+		<li>Fabrication</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
-
+	
 	<ResearchProjectDef>
-		<defName>CosmosBionicResPlus</defName>
-		<label>Advanced Bionics</label>
-		<description>Learn to Manufacture Advanced Bionics that are really Useful to improve or replace existing body parts such as Spine, Stomach, Ear, Leg and Foot.</description>
-		<baseCost>5500</baseCost>
-		<techLevel>Spacer</techLevel>
+		<defName>PI_AlienWeapons3</defName>
+		<label>Alien weapons</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
 		<researchViewX>2</researchViewX>
 		<researchViewY>4</researchViewY>
 		<prerequisites>
-			<li>CosmosBionicResBase</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
+		<li>PI_AlienWeapons2</li>
+		<li>AdvancedFabrication</li>
+        </prerequisites>
+		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>CosmosBionicResPro</defName>
-		<label>Cosmos-Tech Bionics</label>
-		<description>Learn to Manufacture an Extremely useful late game Cosmos Tech Bionics. That can Massively improve Body Parts stats such as Kidney, Liver, Heart and Brain.</description>
-		<baseCost>6000</baseCost>
-		<techLevel>Spacer</techLevel>
-		<researchViewX>3</researchViewX>
-		<researchViewY>4</researchViewY>
-		<prerequisites>
-			<li>CosmosBionicResPlus</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
-	</ResearchProjectDef>
-
-	<!--====== Still Cosmos Bionics But Abilites ======-->
-
-	<ResearchProjectDef>
-		<defName>LightningResRed</defName>
-		<label>Heart Stimulator</label>
-		<description>Learn to Manufacture a really mind heavy and incredibly strong Item. Grants an Ability to cast an Unstable Powerful bolt Strike. The tile of Impact is "3x Tiles". (Has some manageable side effects on Pawn Health). The Research also allows you to Manufacture a new type of Flux Medicine that is used to Create Heart Stimulator. (The Flux Medicine can also be used to cure any Pawn with Impressive Speed and Efficiency)</description>
-		<baseCost>5000</baseCost>
-		<techLevel>Ultra</techLevel>
-		<researchViewX>7</researchViewX>
-		<researchViewY>1</researchViewY>
-		<prerequisites>
-			<li>DragonAlienPlants</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>LightningResGreen</defName>
-		<label>Capability-Stimulator</label>
-		<description>Learn to Manufacture a powerful and Extremely Unstable Implant. Grants the Ability to cast a "Massive Lighting Strike" with a Huge Tile of Impact. The Research also allows you to Manufacture a new type of more advanced Flux Medicine that is used to Create Capability-Stimulator and the Powerful Growth Stimulator. (The Capability-Stimulator implant has Extremely Huge side effects on Pawn Health)</description>
-		<baseCost>6000</baseCost>
-		<techLevel>Ultra</techLevel>
-		<researchViewX>8</researchViewX>
-		<researchViewY>1</researchViewY>
-		<prerequisites>
-			<li>LightningResRed</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
-	</ResearchProjectDef>
-
-	<ResearchProjectDef>
-		<defName>SpecialResViolet</defName>
-		<label>Growth Stimulator</label>
-		<description>Learn to Manufacture Growth Stimulator BO-001, this Implant grants the Ability to Regrow any missing Body Part and it doesn't stop here, the Implant also allow Pawn's to heal from every Injury with an Impressive Speed without almost any Side Effect on Pawn Health.</description>
-		<baseCost>8000</baseCost>
-		<techLevel>Ultra</techLevel>
-		<researchViewX>9</researchViewX>
-		<researchViewY>1</researchViewY>
-		<prerequisites>
-			<li>LightningResGreen</li>
-		</prerequisites>
-		<tab>AlienProduction</tab>
-	</ResearchProjectDef>
-
 
 </Defs>

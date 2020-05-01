@@ -82,7 +82,6 @@
     <skillRequirements>
       <Crafting>6</Crafting>
     </skillRequirements>
-    <researchPrerequisite>LightningResRed</researchPrerequisite>
   </RecipeDef>
 
   <!--=============== Flux Medicine Advanced ====================-->
@@ -152,7 +151,6 @@
     <skillRequirements>
       <Crafting>8</Crafting>
     </skillRequirements>
-    <researchPrerequisite>LightningResGreen</researchPrerequisite>
   </RecipeDef>
 
 </Defs>

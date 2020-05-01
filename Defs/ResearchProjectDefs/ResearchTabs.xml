@@ -2,13 +2,8 @@
 <Defs>
 
   <ResearchTabDef>
-    <defName>AlienProduction</defName>
-    <label>Advanced Production</label>
-  </ResearchTabDef>
-
-  <ResearchTabDef>
-    <defName>AdvancedProduction</defName>
-    <label>Cosmos Tech</label>
+    <defName>PI_AlienStudy</defName>
+    <label>Alien study</label>
   </ResearchTabDef>
 
 </Defs>
