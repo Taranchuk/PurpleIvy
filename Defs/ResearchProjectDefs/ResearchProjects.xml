@@ -53,7 +53,7 @@
 		<researchViewX>0</researchViewX>
 		<researchViewY>1.75</researchViewY>
 		<prerequisites>
-		<li>MultiAnalyzer</li>
+		<li>MicroelectronicsBasics</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
