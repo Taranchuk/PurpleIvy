@@ -364,7 +364,6 @@
     <Compile Include="PurpleIvyData.cs" />
     <Compile Include="Sites\BiomeWorker_AlienBiome.cs" />
     <Compile Include="Sites\GenStep_InfectedTile.cs" />
-    <Compile Include="Sites\SymbolResolver_CrashedAlienShip.cs" />
     <Compile Include="Sites\WorldLayerRegenerateBiomes.cs" />
     <Compile Include="Sites\WorldObjectCompProperties_InfectedTile.cs" />
     <Compile Include="Sites\Site_InfectedSite.cs" />
