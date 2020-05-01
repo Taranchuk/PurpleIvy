@@ -55,4 +55,25 @@
 		<tale>Raid</tale>
 	</IncidentDef>
 
+	<IncidentDef>
+		<defName>PI_CrashedAlienShip</defName>
+		<label>Crashed AlienShip</label>
+		<category>Misc</category>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>PurpleIvy.IncidentWorker_CrashedShip</workerClass>
+		<letterLabel>Crashed unknown ship</letterLabel>
+		<letterText>Crashed unknown ship!</letterText>
+		<letterDef>NeutralEvent</letterDef>
+		<baseChance>6</baseChance>
+		<minRefireDays>8</minRefireDays>
+		<chanceFactorByPopulationCurve>
+			<points>
+				<li>(2,0)</li>
+				<li>(6,1)</li>
+			</points>
+		</chanceFactorByPopulationCurve>
+	</IncidentDef>
+
 </Defs>

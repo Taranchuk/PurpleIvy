@@ -326,6 +326,7 @@
     <Compile Include="HediffSpecial\Hediff_EnchantedBionic.cs" />
     <Compile Include="HediffSpecial\Hediff_RegrowinBodyPart.cs" />
     <Compile Include="HediffSpecial\RemovableHediff.cs" />
+    <Compile Include="Incidents\IncidentWorker_AlienRaid - Copy.cs" />
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
     <Compile Include="Incidents\IncidentWorker_QueenMeteorite.cs" />
     <Compile Include="Jobs\JobDriver_JumpToTarget.cs" />
@@ -356,6 +357,7 @@
     <Compile Include="RangeAnimalFramework\FireProjectile.cs" />
     <Compile Include="RangeAnimalFramework\Harmony.cs" />
     <Compile Include="Sites\GenStep_AlienLair.cs" />
+    <Compile Include="Sites\GenStep_CrashedShip.cs" />
     <Compile Include="Sites\Site_AbandonedBase.cs" />
     <Compile Include="Sites\Site_DefeatedSite.cs" />
     <Compile Include="AlienInfection\HediffInfected.cs" />
