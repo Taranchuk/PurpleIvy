@@ -1,229 +1,241 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
- <ThingDef ParentName="DrugBase">
-    <defName>PI_TestDrug</defName>
-    <label>TestDrug</label>
-    <description>test</description>
-    <descriptionHyperlinks>
-      <HediffDef>PI_TestDrugHigh</HediffDef>
-      <HediffDef>PI_TestDrugTolerance</HediffDef>
-      <HediffDef>PI_TestDrugAddiction</HediffDef>
-    </descriptionHyperlinks>
-    <tradeability>Sellable</tradeability>
-    <socialPropernessMatters>true</socialPropernessMatters>
-    <tickerType>Rare</tickerType>
-    <graphicData>
-      <texPath>Things/Item/Drug/TestDrug</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-	  <MaxHitPoints>50</MaxHitPoints>
-      <MarketValue>20</MarketValue>
-      <Mass>0.1</Mass>
-      <DeteriorationRate>10</DeteriorationRate>
-      <Nutrition>0.1</Nutrition>
-    </statBases>
-    <techLevel>Spacer</techLevel>
-    <ingestible>
-      <baseIngestTicks>500</baseIngestTicks>
-      <chairSearchRadius>1</chairSearchRadius>
-      <preferability>DesperateOnly</preferability>
-      <tasteThought>AteInsectMeatDirect</tasteThought>
-      <foodType>Meat</foodType>
-      <joyKind>Chemical</joyKind>
-      <joy>0.1</joy>
-      <nurseable>true</nurseable>
-      <drugCategory>Hard</drugCategory>
-      <outcomeDoers>
-        <li Class="IngestionOutcomeDoer_GiveHediff">
-          <hediffDef>PI_TestDrugHigh</hediffDef>
-          <severity>0.3</severity>
-          <toleranceChemical>PI_TestDrug</toleranceChemical>
-        </li>
-        <li Class="IngestionOutcomeDoer_GiveHediff">
-          <hediffDef>PI_TestDrugTolerance</hediffDef>
-          <severity>0.2</severity>
-          <divideByBodySize>true</divideByBodySize>
-        </li>
-      </outcomeDoers>
-    </ingestible>
-    <comps>
-      <li Class="CompProperties_Rottable">
-        <daysToRotStart>1</daysToRotStart>
-        <rotDestroys>true</rotDestroys>
-      </li>
-      <li Class="CompProperties_Drug">
-        <chemical>PI_TestDrug</chemical>
-        <addictiveness>0.1</addictiveness>
-        <minToleranceToAddict>0.4</minToleranceToAddict>
-        <existingAddictionSeverityOffset>0.1</existingAddictionSeverityOffset>
-        <needLevelOffset>1</needLevelOffset>
-        <listOrder>30</listOrder>
-      </li>
-    </comps>
-  </ThingDef>
+	<ThingDef ParentName="DrugBase">
+		<defName>PI_TestDrug</defName>
+		<label>TestDrug</label>
+		<description>test</description>
+		<descriptionHyperlinks>
+			<HediffDef>PI_TestDrugHigh</HediffDef>
+			<HediffDef>PI_TestDrugTolerance</HediffDef>
+			<HediffDef>PI_TestDrugAddiction</HediffDef>
+		</descriptionHyperlinks>
+		<tradeability>Sellable</tradeability>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<tickerType>Rare</tickerType>
+		<graphicData>
+			<texPath>Things/Item/Drug/Syringe</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>RGB(235, 219, 52)</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<MarketValue>20</MarketValue>
+			<Mass>0.1</Mass>
+			<DeteriorationRate>10</DeteriorationRate>
+			<Nutrition>0.1</Nutrition>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<ingestible>
+			<baseIngestTicks>500</baseIngestTicks>
+			<chairSearchRadius>1</chairSearchRadius>
+			<preferability>DesperateOnly</preferability>
+			<tasteThought>AteInsectMeatDirect</tasteThought>
+			<foodType>Meat</foodType>
+			<joyKind>Chemical</joyKind>
+			<joy>0.1</joy>
+			<nurseable>true</nurseable>
+			<drugCategory>Hard</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PI_TestDrugHigh</hediffDef>
+					<severity>0.3</severity>
+					<toleranceChemical>PI_TestDrug</toleranceChemical>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PI_TestDrugTolerance</hediffDef>
+					<severity>0.2</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li>
+				<compClass>CompColorable</compClass>
+			</li>
+			<li Class="CompProperties_Rottable">
+				<daysToRotStart>1</daysToRotStart>
+				<rotDestroys>true</rotDestroys>
+			</li>
+			<li Class="CompProperties_Drug">
+				<chemical>PI_TestDrug</chemical>
+				<addictiveness>0.1</addictiveness>
+				<minToleranceToAddict>0.4</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.1</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>30</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
 
-  <HediffDef>
-    <defName>PI_TestDrugHigh</defName>
-    <label>test drug</label>
-    <description>test</description>
-    <hediffClass>HediffWithComps</hediffClass>
-    <defaultLabelColor>(0.5,0.5,0.5)</defaultLabelColor>
-    <scenarioCanAdd>true</scenarioCanAdd>
-    <maxSeverity>1.0</maxSeverity>
-    <isBad>false</isBad>
-    <comps>
-      <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-0.400</severityPerDay>
-      </li>
-    </comps>
-    <stages>
-	     <li>
-		     <label>a</label>
-		     <minSeverity>0.1</minSeverity>
-             <painFactor>1.05</painFactor>
-			 <capMods>
-             <li>
-                 <capacity>Consciousness</capacity>
-                 <offset>0.05</offset>
-             </li>
-            </capMods>
-		 </li>
-		 <li>
-		     <label>b</label>
-		     <minSeverity>0.3</minSeverity>
-             <painFactor>1.10</painFactor>
-			 <capMods>
-             <li>
-                 <capacity>Consciousness</capacity>
-                 <offset>0.10</offset>
-             </li>
-            </capMods>
-		 </li>
-		 <li>
-		     <label>c</label>
-		     <minSeverity>0.5</minSeverity>
-             <painFactor>1.20</painFactor>
-			 <capMods>
-             <li>
-                 <capacity>Consciousness</capacity>
-                 <offset>0.15</offset>
-             </li>
-            </capMods>
-		 </li>
-		 <li>
-		     <label>d</label>
-		     <minSeverity>0.7</minSeverity>
-             <painFactor>1.30</painFactor>
-			 <socialFightChanceFactor>3.0</socialFightChanceFactor>
-			 <capMods>
-             <li>
-                 <capacity>Consciousness</capacity>
-                 <offset>0.20</offset>
-             </li>
-			 <li>
-                 <capacity>Moving</capacity>
-                 <offset>0.05</offset>
-             </li>
-            </capMods>
-		 </li>
-		 <li>
-		     <label>e</label>
-		     <minSeverity>0.9</minSeverity>
-             <painFactor>1.50</painFactor>
-			 <socialFightChanceFactor>5.0</socialFightChanceFactor>
-			 <capMods>
-             <li>
-                 <capacity>Consciousness</capacity>
-                 <offset>0.25</offset>
-             </li>
-			 <li>
-                 <capacity>Moving</capacity>
-                 <offset>0.10</offset>
-             </li>
-			 <li>
-                 <capacity>Manipulation</capacity>
-                 <offset>0.10</offset>
-			 </li>
-			 <li>
-			     <capacity>Sight</capacity>
-                 <offset>0.10</offset>
-			 </li>
-			 <li>
-			     <capacity>Talking</capacity>
-                 <offset>-0.5</offset>
-             </li>
-            </capMods>
-		 </li>
-    </stages>
-  </HediffDef>
+	<HediffDef>
+		<defName>PI_TestDrugHigh</defName>
+		<label>test drug</label>
+		<description>test</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.5,0.5,0.5)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.400</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>a</label>
+				<minSeverity>0.1</minSeverity>
+				<painFactor>1.05</painFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.05</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>b</label>
+				<minSeverity>0.3</minSeverity>
+				<painFactor>1.10</painFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.10</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>c</label>
+				<minSeverity>0.5</minSeverity>
+				<painFactor>1.20</painFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.15</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>d</label>
+				<minSeverity>0.7</minSeverity>
+				<painFactor>1.30</painFactor>
+				<socialFightChanceFactor>3.0</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.20</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.05</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>e</label>
+				<minSeverity>0.9</minSeverity>
+				<painFactor>1.50</painFactor>
+				<socialFightChanceFactor>5.0</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.25</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.10</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>0.10</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>0.10</offset>
+					</li>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.5</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
 
-  <!-- Ambrosia addiction -->
-  
-  <ChemicalDef>
-    <defName>PI_TestDrug</defName>
-    <label>PI_TestDrug</label>
-    <addictionHediff>PI_TestDrugAddiction</addictionHediff>
-    <toleranceHediff>PI_TestDrugTolerance</toleranceHediff>
-    <onGeneratedAddictedToleranceChance>0.0</onGeneratedAddictedToleranceChance>
-  </ChemicalDef>
-  
-  <NeedDef ParentName="DrugAddictionNeedBase">
-    <defName>PI_Chemical_TestDrug</defName>
-    <needClass>Need_Chemical</needClass>
-    <label>TestDrug</label>
-    <description>Because of a test</description>
-    <listPriority>20</listPriority>
-  </NeedDef>
+	<!-- Ambrosia addiction -->
 
-  <HediffDef ParentName="DrugToleranceBase">
-    <defName>PI_TestDrugTolerance</defName>
-    <label>TestDrug tolerance</label>
-    <description>A built-up tolerance to TestDrug</description>
-    <comps>
-      <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-0.5</severityPerDay>
-      </li>
-      <li Class="HediffCompProperties_DrugEffectFactor">
-        <chemical>PI_TestDrug</chemical>
-      </li>
-    </comps>
-  </HediffDef>
-  
-  <HediffDef ParentName="AddictionBase">
-    <defName>PI_TestDrugAddiction</defName>
-    <label>TestDrug addiction</label>
-    <description>A chemical addiction to TestDrug.</description>
-    <hediffClass>Hediff_Addiction</hediffClass>
-    <causesNeed>PI_Chemical_TestDrug</causesNeed>
-    <comps>
-      <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-0.1</severityPerDay>
-      </li>
-    </comps>
-    <stages>
-	 <li>
-     </li>
-     <li>
-        <label>withdrawal</label>
-     </li>
-    </stages>
-  </HediffDef>
+	<ChemicalDef>
+		<defName>PI_TestDrug</defName>
+		<label>PI_TestDrug</label>
+		<addictionHediff>PI_TestDrugAddiction</addictionHediff>
+		<toleranceHediff>PI_TestDrugTolerance</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.0</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
 
-  <ThoughtDef>
-    <defName>PI_TestDrugWithdrawal</defName>
-    <workerClass>ThoughtWorker_Hediff</workerClass>
-    <hediff>PI_TestDrugAddiction</hediff>
-    <validWhileDespawned>true</validWhileDespawned>
-    <stages>
-	   <li>
-        <visible>false</visible>
-      </li>
-      <li>
-        <label>TestDrug withdrawal</label>
-        <description>I feel test</description>
-        <baseMoodEffect>-10</baseMoodEffect>
-      </li>
-    </stages>
-  </ThoughtDef>
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>PI_Chemical_TestDrug</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>TestDrug</label>
+		<description>Because of a test</description>
+		<listPriority>20</listPriority>
+	</NeedDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>PI_TestDrugTolerance</defName>
+		<label>TestDrug tolerance</label>
+		<description>A built-up tolerance to TestDrug</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.5</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>PI_TestDrug</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>PI_TestDrugAddiction</defName>
+		<label>TestDrug addiction</label>
+		<description>A chemical addiction to TestDrug.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>PI_Chemical_TestDrug</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.1</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<ThoughtDef>
+		<defName>PI_TestDrugWithdrawal</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PI_TestDrugAddiction</hediff>
+		<validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<visible>false</visible>
+			</li>
+			<li>
+				<label>TestDrug withdrawal</label>
+				<description>I feel test</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 </Defs>

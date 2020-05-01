@@ -66,15 +66,24 @@ namespace PurpleIvy
             halfway.rect = new CellRect(rp.rect.minX + 4, rp.rect.maxX / 2 + 4, 24, 5);
             BaseGen.symbolStack.Push("emptyRoom", halfway, null);
 
-            //dining room
-            ResolveParams diningRoom = rp;
-            diningRoom.rect = new CellRect(rp.rect.minX + 4, rp.rect.maxX / 2, 8, 5);
-            BaseGen.symbolStack.Push("emptyRoom", diningRoom, null);
+            //left wing
+            ResolveParams leftWing = rp;
+            leftWing.rect = new CellRect(rp.rect.minX + 6, rp.rect.maxX / 2 + 12, 9, 6);
+            leftWing.fillWithThingsPadding = new int?(leftWing.fillWithThingsPadding ?? 0);
+            leftWing.singleThingStuff = ThingDefOf.Plasteel;
+            leftWing.singleThingDef = ThingDefOf.Wall;
+            BaseGen.symbolStack.Push("fillWithThings", leftWing, null);
+
 
             //generators
             ResolveParams generators = rp;
             generators.rect = new CellRect(rp.rect.minX + 4, rp.rect.maxX / 2 + 8, 8, 5);
             BaseGen.symbolStack.Push("emptyRoom", generators, null);
+
+            //dining room
+            ResolveParams diningRoom = rp;
+            diningRoom.rect = new CellRect(rp.rect.minX + 4, rp.rect.maxX / 2, 8, 5);
+            BaseGen.symbolStack.Push("emptyRoom", diningRoom, null);
 
             // tech rooms
             ResolveParams techRooms = rp;
@@ -86,6 +95,7 @@ namespace PurpleIvy
             laboratory.rect = new CellRect(rp.rect.minX + 10, rp.rect.maxX / 2 + 8, 18, 5);
             BaseGen.symbolStack.Push("emptyRoom", laboratory, null);
             BaseGen.Generate();
+
             var doorsHalfway = new List<int>() { 4, 14, 25, 36, 46, 52 };
             for (var i = 0; i < halfway.rect.EdgeCells.Count(); i++)
             {
@@ -122,10 +132,9 @@ namespace PurpleIvy
                     thing.SetFaction(rp.faction, null);
                     GenSpawn.Spawn(thing, diningRoom.rect.ToList()[i], map, Rot4.West);
                 }
-                Log.Message(diningRoom.rect.ToList()[i] + " diningRoom - position " + i);
             }
-            var generatorsInd = new List<int>() { 17, 18, 19, 20, 21, 22 };
 
+            var generatorsInd = new List<int>() { 17, 18, 19, 20, 21, 22 };
             for (var i = 0; i < generators.rect.ToList().Count(); i++)
             {
                 if (generatorsInd.Contains(i))
@@ -179,8 +188,6 @@ namespace PurpleIvy
                     thing.SetFaction(rp.faction, null);
                     GenSpawn.Spawn(thing, techRooms.rect.ToList()[i], map, Rot4.South);
                 }
-                Log.Message(techRooms.rect.ToList()[i] + " laboratory - position " + i);
-
             }
 
             for (var i = 0; i < laboratory.rect.ToList().Count(); i++)
@@ -200,6 +207,43 @@ namespace PurpleIvy
                     GenSpawn.Spawn(thing, laboratory.rect.ToList()[i], map, Rot4.West);
                 }
             }
+            var toRemove = new List<int>() { 26, 34, 35, 42, 43, 44, 50, 51, 52, 53 };
+            List<Thing> list = new List<Thing>();
+
+            for (var i = 0; i < leftWing.rect.ToList().Count(); i++)
+            {
+                if (toRemove.Contains(i))
+                {
+                    try
+                    {
+                        if (GenGrid.InBounds(leftWing.rect.ToList()[i], map))
+                        {
+                            list = map.thingGrid.ThingsListAt(leftWing.rect.ToList()[i]);
+                        }
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                    for (int ind = list.Count - 1; ind >= 0; ind--)
+                    {
+                        if (list[ind].def.IsBuildingArtificial)
+                        {
+                            list[ind].DeSpawn(DestroyMode.Vanish);
+                        }
+                    }
+                }
+                else if (i == 19)
+                {
+                    Log.Message("SPAWN ENGINE");
+                    Thing thing = ThingMaker.MakeThing(ThingDefOf.Ship_Engine, null);
+                    thing.SetFaction(rp.faction, null);
+                    thing.Rotation = Rot4.West;
+                    GenSpawn.Spawn(thing, leftWing.rect.ToList()[i], map, Rot4.East, WipeMode.Vanish);
+                }
+                Log.Message(leftWing.rect.ToList()[i] + " leftWing - position " + i);
+            }
+            FloodFillerFog.FloodUnfog(leftWing.rect.CenterCell, map);
         }
 
         protected CellRect adventureRegion;
