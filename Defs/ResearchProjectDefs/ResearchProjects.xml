@@ -262,7 +262,7 @@
 		<researchViewY>3</researchViewY>
 		<prerequisites>
 		<li>PI_AlienArmor1</li>
-		<li>MultiAnalyzer</li>
+		<li>AdvancedFabrication</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
@@ -277,7 +277,7 @@
 		<researchViewY>3</researchViewY>
 		<prerequisites>
 		<li>PI_AlienArmor2</li>
-		<li>AdvancedFabrication</li>
+		<li>ShipBasics</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
@@ -292,7 +292,7 @@
 		<researchViewY>4</researchViewY>
 		<prerequisites>
 		<li>PI_LaserBench</li>
-		<li>MultiAnalyzer</li>
+		<li>Fabrication</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
@@ -307,7 +307,7 @@
 		<researchViewY>4</researchViewY>
 		<prerequisites>
 		<li>PI_AlienWeapons1</li>
-		<li>Fabrication</li>
+		<li>AdvancedFabrication</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
@@ -322,7 +322,7 @@
 		<researchViewY>4</researchViewY>
 		<prerequisites>
 		<li>PI_AlienWeapons2</li>
-		<li>AdvancedFabrication</li>
+		<li>ShipBasics</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
