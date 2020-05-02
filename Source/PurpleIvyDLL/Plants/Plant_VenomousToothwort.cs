@@ -129,6 +129,7 @@ namespace PurpleIvy
                         }
                         break;
                     }
+
                     //If we find a plant
                     case Plant _:
                     {

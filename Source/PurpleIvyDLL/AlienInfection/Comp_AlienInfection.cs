@@ -73,9 +73,10 @@ namespace PurpleIvy
             }
         }
 
-        public void TryStartSpawn()
+        public bool CheckIfShouldSpawn()
         {
-            if (this.stopSpawning == true) return;
+            if (this.parent.AmbientTemperature < -21f) return false;
+            if (this.stopSpawning == true) return false;
             if (this.Props.maxNumberOfCreaturesOnMap > 0)
             {
                 int count = 0;
@@ -83,8 +84,18 @@ namespace PurpleIvy
                 {
                     count += this.parent.Map.mapPawns.AllPawns.Where(x => x.kindDef.defName == type).ToList().Count;
                 }
-                if (this.Props.maxNumberOfCreaturesOnMap <= count) return;
-            } 
+                if (this.Props.maxNumberOfCreaturesOnMap <= count) return false;
+            }
+            return true;
+        }
+
+        public void TryStartSpawn()
+        {
+            if (CheckIfShouldSpawn() != true)
+            {
+                this.startOfIncubation += 250;
+                return;
+            }
             if (tickStartHediff > 0 && this.startOfIncubation + 
                 this.Props.IncubationData.tickStartHediff.RandomInRange < Find.TickManager.TicksGame)
             {
