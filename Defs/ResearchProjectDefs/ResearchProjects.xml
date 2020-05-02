@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+    <ResearchProjectDef Abstract="True" Name="PI_AlienStudyParentA">
+    <baseCost>1000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <techprintCount>1</techprintCount>
+    <techprintCommonality>1</techprintCommonality>
+    <techprintMarketValue>1000</techprintMarketValue>
+	<heldByFactionCategoryTags><li>Empire</li></heldByFactionCategoryTags>
+    </ResearchProjectDef>
+	
+	<ResearchProjectDef Abstract="True" Name="PI_AlienStudyParentB">
+    <baseCost>1000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <techprintCount>1</techprintCount>
+    <techprintCommonality>0.5</techprintCommonality>
+    <techprintMarketValue>2000</techprintMarketValue>
+	<heldByFactionCategoryTags><li>Empire</li></heldByFactionCategoryTags>
+    </ResearchProjectDef>
+
     <ResearchProjectDef>
 		<defName>PI_BasicBioprotection</defName>
 		<label>Basic bioprotection</label>
@@ -15,7 +33,7 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_AdvBioprotection</defName>
 		<label>Advanced bioprotection</label>
 		<description>wip</description>
@@ -44,7 +62,7 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_AlienContainment</defName>
 		<label>Alien containment</label>
 		<description>wip</description>
@@ -87,7 +105,7 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_BasicDrugs</defName>
 		<label>Basic drugs</label>
 		<description>wip</description>
@@ -116,7 +134,7 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-    <ResearchProjectDef>
+    <ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_MutagensA</defName>
 		<label>MutagensA</label>
 		<description>wip</description>
@@ -131,7 +149,7 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_MutagensB</defName>
 		<label>MutagensB</label>
 		<description>wip</description>
@@ -146,7 +164,7 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_MutagensC</defName>
 		<label>MutagensC</label>
 		<description>wip</description>
@@ -161,7 +179,7 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_BasicBionics</defName>
 		<label>Basic bionics</label>
 		<description>wip</description>
@@ -237,8 +255,8 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<defName>PI_AlienArmor1</defName>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentB">
+		<defName>PI_AlienArmorA</defName>
 		<label>Salvaged alien armor</label>
 		<description>wip</description>
 		<baseCost>1000</baseCost>
@@ -252,8 +270,8 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<defName>PI_AlienArmor2</defName>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentB">
+		<defName>PI_AlienArmorB</defName>
 		<label>Improvised alien armor</label>
 		<description>wip</description>
 		<baseCost>1000</baseCost>
@@ -261,14 +279,14 @@
 		<researchViewX>2</researchViewX>
 		<researchViewY>3</researchViewY>
 		<prerequisites>
-		<li>PI_AlienArmor1</li>
+		<li>PI_AlienArmorA</li>
 		<li>AdvancedFabrication</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<defName>PI_AlienArmor3</defName>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentB">
+		<defName>PI_AlienArmorC</defName>
 		<label>Alien armor</label>
 		<description>wip</description>
 		<baseCost>1000</baseCost>
@@ -276,14 +294,14 @@
 		<researchViewX>3</researchViewX>
 		<researchViewY>3</researchViewY>
 		<prerequisites>
-		<li>PI_AlienArmor2</li>
+		<li>PI_AlienArmorB</li>
 		<li>ShipBasics</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<defName>PI_AlienWeapons1</defName>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentB">
+		<defName>PI_AlienWeaponsA</defName>
 		<label>Salvaged alien weapons</label>
 		<description>wip</description>
 		<baseCost>1000</baseCost>
@@ -297,8 +315,8 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<defName>PI_AlienWeapons2</defName>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentB">
+		<defName>PI_AlienWeaponsB</defName>
 		<label>Improvised alien weapons</label>
 		<description>wip</description>
 		<baseCost>1000</baseCost>
@@ -306,14 +324,14 @@
 		<researchViewX>2</researchViewX>
 		<researchViewY>4</researchViewY>
 		<prerequisites>
-		<li>PI_AlienWeapons1</li>
+		<li>PI_AlienWeaponsA</li>
 		<li>AdvancedFabrication</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<defName>PI_AlienWeapons3</defName>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentB">
+		<defName>PI_AlienWeaponsC</defName>
 		<label>Alien weapons</label>
 		<description>wip</description>
 		<baseCost>1000</baseCost>
@@ -321,7 +339,7 @@
 		<researchViewX>3</researchViewX>
 		<researchViewY>4</researchViewY>
 		<prerequisites>
-		<li>PI_AlienWeapons2</li>
+		<li>PI_AlienWeaponsB</li>
 		<li>ShipBasics</li>
         </prerequisites>
 		<tab>PI_AlienStudy</tab>
