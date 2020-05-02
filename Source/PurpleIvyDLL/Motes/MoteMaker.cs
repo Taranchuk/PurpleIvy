@@ -7,6 +7,16 @@ namespace PurpleIvy
 {
 	public static class PurpleIvyMoteMaker
 	{
+        public static void ThrowToxicGas(Vector3 loc, Map map)
+        {
+            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_Smoke, null);
+            moteThrown.Scale = Rand.Range(1.5f, 2.5f);
+            moteThrown.rotationRate = Rand.Range(-30f, 30f);
+            moteThrown.exactPosition = loc;
+            moteThrown.SetVelocity((float)Rand.Range(30, 40), Rand.Range(0.5f, 0.7f));
+            moteThrown.instanceColor = new Color(0.368f, 0f, 1f);
+            GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
+        }
         public static void ThrowToxicSmoke(Vector3 loc, Map map)
         {
             //moteThrown.instanceColor = new ColorInt(43, 56, 54).ToColor; // to investigate

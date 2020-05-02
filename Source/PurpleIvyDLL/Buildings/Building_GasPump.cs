@@ -23,8 +23,8 @@ namespace PurpleIvy
             pumpfreq--;
             if (pumpfreq == 0)
             {
-                MoteMaker.ThrowSmoke(base.Position.ToVector3Shifted(), this.Map, 2f);
-                pumpfreq = 10;
+                PurpleIvyMoteMaker.ThrowToxicGas(base.Position.ToVector3Shifted(), this.Map);
+                pumpfreq = 3;
             }
         }
     }

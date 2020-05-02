@@ -22,10 +22,12 @@ namespace PurpleIvy
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            UpdateGlower();
             if (!(this.Growth < 1)) return;
             var random = new System.Random();
             SpreadTick = random.Next(1, 3);
             OrigSpreadTick = SpreadTick;
+
         }
         public override void PostMapInit()
         {
@@ -294,7 +296,7 @@ namespace PurpleIvy
                         expireSeconds = new FloatRange(60f, 100f),
                         blockTurretTracking = true,
                         accuracyPenalty = 0.7f,
-                        rotationSpeed = 10f
+                        rotationSpeed = 20f
                     }
                 };
                 Thing thing = ThingMaker.MakeThing(thingDef, null);
@@ -340,7 +342,7 @@ namespace PurpleIvy
                 return (CompGlower)this.AllComps.Where(x => x is CompGlower).FirstOrDefault();
             }
         }
-        public void ChangeGlower(ColorInt colour, float radius)
+        public void UpdateGlower()
         {
             if (this.Glower != null)
             {
@@ -348,8 +350,12 @@ namespace PurpleIvy
                 this.Glower.Initialize(new CompProperties_Glower
                 {
                     compClass = typeof(CompGlower),
-                    glowColor = colour,
-                    glowRadius = radius
+                    glowColor = new ColorInt(96, 172, 204),
+                    //glowColor = new ColorInt(183, 168, 186),
+                    //glowColor = new ColorInt(148, 127, 153),
+                    glowRadius = this.Growth * 20,
+                    overlightRadius = 0
+
                 });
                 base.Map.mapDrawer.MapMeshDirty(base.Position, MapMeshFlag.Things);
                 base.Map.glowGrid.RegisterGlower(this.Glower);
@@ -367,7 +373,9 @@ namespace PurpleIvy
                     this.DoDamageToBuildings(Position);
                     this.nectarAmount++;
                 }
-                ChangeGlower(new ColorInt(96, 172, 204), this.Growth * 20);
+                UpdateGlower();
+                //ChangeGlower(new ColorInt(148, 127, 153), this.Growth * 20);
+                //ChangeGlower(, this.Growth * 20);
             }
             if (Find.TickManager.TicksGame % 350 == 0)
             {

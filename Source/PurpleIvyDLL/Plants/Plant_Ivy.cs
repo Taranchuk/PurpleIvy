@@ -361,7 +361,7 @@ namespace PurpleIvy
                         texPath = sporesThingDef.graphicData.texPath,
                         graphicClass = typeof(Graphic_Gas),
                         shaderType = ShaderTypeDefOf.Transparent,
-                        drawSize = new Vector2((this.Growth * 4f) - 1f, (this.Growth * 4f) - 1f),
+                        drawSize = new Vector2((this.Growth) * 2f - 1f, (this.Growth) * 2f - 1f),
                         color = new ColorInt(sporesThingDef.graphicData.color).ToColor
                     },
                     gas = new GasProperties
@@ -369,7 +369,7 @@ namespace PurpleIvy
                         expireSeconds = new FloatRange(60f, 100f),
                         blockTurretTracking = true,
                         accuracyPenalty = 0.7f,
-                        rotationSpeed = 10f
+                        rotationSpeed = 20f
                     }
                 };
                 Thing thing = ThingMaker.MakeThing(thingDef, null);

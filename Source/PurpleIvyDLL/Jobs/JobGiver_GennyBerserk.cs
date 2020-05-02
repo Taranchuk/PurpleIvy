@@ -44,9 +44,8 @@ namespace PurpleIvy
                         return PurpleIvyUtils.MeleeAttackJob(pawn, door);
                     }
                 }
-                return null;
             }
-            if (!pawn2.Downed)
+            else if (!pawn2.Downed)
             {
                 var verb = pawn.VerbTracker.AllVerbs.Where(x => x.IsMeleeAttack != true).FirstOrDefault();
                 if (Find.TickManager.TicksGame > PrevTick + 10 && pawn.def == PurpleIvyDefOf.Genny_ParasiteOmega && pawn.Position.InHorDistOf(pawn2.Position, 15) && Rand.Chance(0.7f))
