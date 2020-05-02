@@ -381,7 +381,6 @@ namespace PurpleIvy
                 Log.Message(pilotRoom.rect.ToList()[i] + " pilotRoom - position " + i);
             }
 
-
             for (var i = 0; i < diningRoom.rect.ToList().Count(); i++)
             {
 
@@ -472,3 +471,4 @@ namespace PurpleIvy
         protected ResolveParams rp;
     }
 }
+

@@ -36,7 +36,6 @@ namespace PurpleIvy
             }
         }
 
-
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
             base.Destroy(mode);

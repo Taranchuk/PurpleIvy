@@ -43,7 +43,7 @@ namespace PurpleIvy
                         }
                         if (10f >= Rand.Range(0f, 100f))
                         {
-                            if (PurpleIvyData.maxNumberOfCreatures.ContainsKey(actor.def.defName) && 
+                            if (PurpleIvyData.maxNumberOfCreatures.ContainsKey(actor.def.defName) &&
                             thing.TryGetComp<AlienInfection>() == null)
                             {
                                 var dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;

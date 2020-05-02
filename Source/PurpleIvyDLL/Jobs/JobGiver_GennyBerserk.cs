@@ -26,10 +26,26 @@ namespace PurpleIvy
                 Log.Message(pawn + " - " + pawn.CurJob.def.defName);
             }
             var pawn2 = FindPawnTarget(pawn);
-            if (pawn2 == null) return null;
-            //{
-            //    Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - NULL 0");
-            //}
+            if (pawn2 == null)
+            {
+                if (pawn.GetRoom() != null)
+                {
+                    Predicate<Thing> validator = delegate (Thing t)
+                    {
+                        return t.def.defName.ToLower().Contains("door");
+                    };
+                    var door = GenClosest.ClosestThingReachable(pawn.Position,
+                    pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly,
+                    TraverseMode.ByPawn, false)
+                    , 5f, validator);
+                    if (door != null)
+                    {
+                        Log.Message(door.Label);
+                        return PurpleIvyUtils.MeleeAttackJob(pawn, door);
+                    }
+                }
+                return null;
+            }
             if (!pawn2.Downed)
             {
                 var verb = pawn.VerbTracker.AllVerbs.Where(x => x.IsMeleeAttack != true).FirstOrDefault();

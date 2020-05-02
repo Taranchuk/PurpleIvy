@@ -61,12 +61,12 @@ namespace PurpleIvy
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            this.FailOnDestroyedOrNull(TargetIndex.A);
-            this.FailOnBurningImmobile(TargetIndex.B);
-            if (!this.forbiddenInitially)
-            {
-                this.FailOnForbidden(TargetIndex.A);
-            }
+            //this.FailOnDestroyedOrNull(TargetIndex.A);
+            //this.FailOnBurningImmobile(TargetIndex.B);
+            //if (!this.forbiddenInitially)
+            //{
+            //    this.FailOnForbidden(TargetIndex.A);
+            //}
             Toil reserveTargetA = Toils_Reserve.Reserve(TargetIndex.A, 1, -1, null);
             yield return reserveTargetA;
             Toil toilGoto = null;

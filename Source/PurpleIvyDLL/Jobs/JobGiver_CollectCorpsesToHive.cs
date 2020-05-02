@@ -21,7 +21,7 @@ namespace PurpleIvy
 
             Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
                 ThingRequest.ForGroup(ThingRequestGroup.Corpse), PathEndMode.ClosestTouch,
-                TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn, false), 50f, validator, null);
+                TraverseParms.For(pawn, Danger.None, TraverseMode.NoPassClosedDoors, false), 50f, validator, null);
             if (thing != null && ReservationUtility.CanReserveAndReach(pawn, thing, PathEndMode.ClosestTouch, Danger.None))
             {
                 var plants = pawn.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);
@@ -29,18 +29,23 @@ namespace PurpleIvy
                 {
                     return null;
                 }
-                IntVec3 position = plants.RandomElement().Position;
-                Log.Message(pawn + " hauls " + thing + " - " + position + " position");
-                Job job = JobMaker.MakeJob(PurpleIvyDefOf.PI_HaulToCell, thing, position);
-                
-                //Job job = JobMaker.MakeJob(JobDefOf.HaulToCell, thing, plant.Position);
-
-                // Job job = HaulAIUtility.HaulToCellStorageJob(pawn, thing, plant.Position, false);
-                if (job != null && job.TryMakePreToilReservations(pawn, false))
+                var plantToHaul = plants.RandomElement();
+                if (ReachabilityUtility.CanReach(pawn, plantToHaul, PathEndMode.ClosestTouch, Danger.None,
+                    true, TraverseMode.NoPassClosedDoors))
                 {
-                    ReservationUtility.Reserve(pawn, thing, job);
-                    return job;
+                    Log.Message(pawn + " hauls " + thing + " - " + plantToHaul.Position + " position");
+                    Job job = JobMaker.MakeJob(PurpleIvyDefOf.PI_HaulToCell, thing, plantToHaul.Position);
+                    job.attackDoorIfTargetLost = true;
+                    //Job job = JobMaker.MakeJob(JobDefOf.HaulToCell, thing, plant.Position);
+
+                    // Job job = HaulAIUtility.HaulToCellStorageJob(pawn, thing, plant.Position, false);
+                    if (job != null && job.TryMakePreToilReservations(pawn, false))
+                    {
+                        ReservationUtility.Reserve(pawn, thing, job);
+                        return job;
+                    }
                 }
+
             }
             return null;
         }

@@ -36,7 +36,7 @@ namespace PurpleIvy
                         return;
                     }
                     this.numMeleeAttacksMade++;
-                    if (1f >= Rand.Range(0f, 100f))
+                    if (thing is Pawn && 1f >= Rand.Range(0f, 100f))
                     {
                         if (PurpleIvyData.maxNumberOfCreatures.ContainsKey(this.pawn.def.defName) &&
                         thing.TryGetComp<AlienInfection>() == null)
