@@ -19,7 +19,7 @@ namespace PurpleIvy
             if (!victim.Destroyed || map == null || pawn != null) return damageResult;
             if (victim is Plant plant && victim.def.plant.IsTree && plant.LifeStage != PlantLifeStage.Sowing && victim.def != ThingDefOf.BurnedTree)
             {
-                ((DeadPlant)GenSpawn.Spawn(ThingDefOf.BurnedTree, victim.Position, map, WipeMode.Vanish)).Growth = plant.Growth;
+                ((DeadPlant)GenSpawn.Spawn(PurpleIvyDefOf.PI_CorruptedTree, victim.Position, map, WipeMode.Vanish)).Growth = plant.Growth;
             }
             return damageResult;
         }

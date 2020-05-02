@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef>
+    <defName>PI_CorruptedTree</defName>
+    <label>corrupted tree</label>
+    <description>A corrupted tree stump. It's ugly and yields no usable wood.</description>
+    <category>Plant</category>
+    <thingClass>DeadPlant</thingClass>
+    <altitudeLayer>Building</altitudeLayer>
+    <useHitPoints>True</useHitPoints>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>0</Flammability>
+      <Beauty>-8</Beauty>
+    </statBases>
+    <tickerType>Long</tickerType>
+    <selectable>true</selectable>
+    <fillPercent>0.20</fillPercent>
+    <neverMultiSelect>True</neverMultiSelect>
+    <drawerType>MapMeshOnly</drawerType>
+    <pathCostIgnoreRepeat>false</pathCostIgnoreRepeat>
+    <startingHpRange><min>0.5</min><max>1</max></startingHpRange>
+    <passability>PassThroughOnly</passability>
+    <pathCost>90</pathCost>
+    <messageOnDeteriorateInStorage>false</messageOnDeteriorateInStorage>
+    <graphicData>
+      <texPath>Things/Plant/CorruptedTree</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+      <shaderType>CutoutPlant</shaderType>
+      <shadowData>
+        <volume>(0.2, 0.15, 0.13)</volume>
+        <offset>(-0.03,0,-0.44)</offset>
+      </shadowData>
+    </graphicData>
+    <plant>
+      <harvestWork>180</harvestWork>
+      <harvestYield>0</harvestYield>
+      <fertilityMin>0.01</fertilityMin>
+      <fertilitySensitivity>0</fertilitySensitivity>
+      <soundHarvesting>Harvest_Tree</soundHarvesting>
+      <soundHarvestFinish>Harvest_Tree_Finish</soundHarvestFinish>
+      <topWindExposure>0.05</topWindExposure>
+      <blockAdjacentSow>true</blockAdjacentSow>
+      <harvestedThingDef>WoodLog</harvestedThingDef>
+      <harvestFailable>false</harvestFailable>
+      <harvestTag>Wood</harvestTag>
+      <growDays>30</growDays>
+      <growMinGlow>0</growMinGlow>
+      <lifespanDaysPerGrowDays>0</lifespanDaysPerGrowDays>
+      <visualSizeRange>1.2~1.9</visualSizeRange>
+    </plant>
+  </ThingDef>
+
+</Defs>

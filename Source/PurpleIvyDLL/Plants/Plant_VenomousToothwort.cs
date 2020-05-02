@@ -132,8 +132,10 @@ namespace PurpleIvy
                     //If we find a plant
                     case Plant _:
                     {
-                        if (list[i].def != PurpleIvyDefOf.PurpleIvy && list[i].def != PurpleIvyDefOf.PI_Nest
-                                && list[i].def != PurpleIvyDefOf.PlantVenomousToothwort)
+                        if (list[i].def != PurpleIvyDefOf.PurpleIvy
+                            && list[i].def != PurpleIvyDefOf.PI_Nest
+                            && list[i].def != PurpleIvyDefOf.PlantVenomousToothwort
+                            && list[i].def != PurpleIvyDefOf.PI_CorruptedTree)
                         {
                                 PurpleIvyMoteMaker.ThrowToxicSmoke(this.Position.ToVector3Shifted(), this.Map);
                                 //FilthMaker.TryMakeFilth(this.Position, this.Map, PurpleIvyDefOf.PI_ToxicFilth);

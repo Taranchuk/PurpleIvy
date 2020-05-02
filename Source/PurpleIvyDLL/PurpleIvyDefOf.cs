@@ -153,6 +153,8 @@ namespace PurpleIvy
 
         public static ThingDef Mote_EMPSmoke;
 
+        public static ThingDef PI_CorruptedTree;
+
         public static DamageDef PI_ToxicBurn;
 
         public static ThingCategoryDef CorpsesAlienParasiteAlpha;

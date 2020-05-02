@@ -319,9 +319,11 @@ namespace PurpleIvy
 
         private static readonly Material[] DefaultScratchMats = new Material[]
         {
-            MaterialPool.MatFrom("Damage/ToxicScratch1"),
-            MaterialPool.MatFrom("Damage/ToxicScratch2"),
-            MaterialPool.MatFrom("Damage/ToxicScratch3")
+            MaterialPool.MatFrom("Things/buildingVeins/buildingVeinsA"),
+            MaterialPool.MatFrom("Things/buildingVeins/buildingVeinsB"),
+            MaterialPool.MatFrom("Things/buildingVeins/buildingVeinsC"),
+            MaterialPool.MatFrom("Things/buildingVeins/buildingVeinsD"),
+            MaterialPool.MatFrom("Things/buildingVeins/buildingVeinsE")
         };
 
         private static List<DamageOverlay> availableOverlays = new List<DamageOverlay>();
