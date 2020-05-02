@@ -17,7 +17,7 @@ namespace PurpleIvy
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            if (Rand.Chance(0.3f))
+            if (Rand.Chance(0.15f))
             {
                 CanMutate = true;
             }
@@ -123,31 +123,41 @@ namespace PurpleIvy
             {
                 return;
             }
-            //Loop over things if there are things
+
             if (list == null || list.Count <= 0) return;
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i] == null || list[i].Faction == PurpleIvyData.AlienFaction) continue;
-                //If we find a corpse
+
                 if (list[i].def.IsCorpse)
                 {
                     var corpse = (Corpse)list[i];
-                    if (corpse.TryGetComp<AlienInfection>() == null)
+                    var compRottable = list[i].TryGetComp<CompRottable>();
+                    if (compRottable.Stage == RotStage.Dessicated)
                     {
-                        var dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
-                        var comp = dummyCorpse.TryGetComp<AlienInfection>();
-                        comp.parent = corpse;
-                        var range = PurpleIvyData.maxNumberOfCreatures["Genny_ParasiteOmega"];
-                        comp.Props.maxNumberOfCreatures = range;
-                        comp.maxNumberOfCreatures = range.RandomInRange;
-                        comp.Props.typesOfCreatures = new List<string>()
+                        corpse.TakeDamage(new DamageInfo(DamageDefOf.Scratch, 1));
+                    }
+                    else
+                    {
+                        this.Growth += 0.001f;
+                        Log.Message("Rotprogress, growth");
+                        if (corpse.TryGetComp<CompRottable>().Stage < RotStage.Dessicated &&
+                            corpse.TryGetComp<AlienInfection>() == null)
+                        {
+                            var dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
+                            var comp = dummyCorpse.TryGetComp<AlienInfection>();
+                            comp.parent = corpse;
+                            var range = PurpleIvyData.maxNumberOfCreatures["Genny_ParasiteOmega"];
+                            comp.Props.maxNumberOfCreatures = range;
+                            comp.maxNumberOfCreatures = range.RandomInRange;
+                            comp.Props.typesOfCreatures = new List<string>()
                         {
                             "Genny_ParasiteOmega"
                         };
-                        corpse.AllComps.Add(comp);
-                        Log.Message("5 Adding infected comp to " + corpse);
+                            corpse.AllComps.Add(comp);
+                            Log.Message("5 Adding infected comp to " + corpse);
+                        }
                     }
-                    //speedup the spread a little
                 }
                 else switch (list[i])
                     {

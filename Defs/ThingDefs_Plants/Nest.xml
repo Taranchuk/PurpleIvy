@@ -31,7 +31,7 @@
 			<dieIfLeafless>true</dieIfLeafless>
 			<harvestTag>Standard</harvestTag>
 			<harvestYield>6</harvestYield>
-			<growDays>3</growDays>
+			<growDays>2</growDays>
 			<topWindExposure>0.2</topWindExposure>
 			<visualSizeRange>
 				<min>0</min>

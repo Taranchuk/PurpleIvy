@@ -50,8 +50,10 @@ namespace PurpleIvy
                             }
                         case Plant _:
                             {
-                                if (list[i].def != PurpleIvyDefOf.PurpleIvy && list[i].def != PurpleIvyDefOf.PI_Nest
-                                        && list[i].def != PurpleIvyDefOf.PlantVenomousToothwort)
+                                if (list[i].def != PurpleIvyDefOf.PurpleIvy
+                                    && list[i].def != PurpleIvyDefOf.PI_Nest
+                                    && list[i].def != PurpleIvyDefOf.PlantVenomousToothwort
+                                    && list[i].def != PurpleIvyDefOf.PI_CorruptedTree)
                                 {
                                     PurpleIvyMoteMaker.ThrowToxicSmoke(this.Position.ToVector3Shifted(), this.Map);
                                     list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1));

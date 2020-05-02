@@ -156,7 +156,7 @@ namespace PurpleIvy
             bool flag = this.ShouldCellBeAffectedOnlyByDamage(c);
             if (!flag && Rand.Chance(this.preExplosionSpawnChance) && c.Walkable(base.Map))
             {                
-                if (c.DistanceTo(this.center) < 2)
+                if (c.DistanceTo(this.center) < 1)
                 {
                     this.TrySpawnExplosionThing(this.preExplosionSpawnThingDef, c, this.preExplosionSpawnThingCount);
                 }
@@ -164,7 +164,7 @@ namespace PurpleIvy
             this.damType.Worker.ExplosionAffectCell(this, c, this.damagedThings, this.ignoredThings, !flag);
             if (!flag && Rand.Chance(this.postExplosionSpawnChance) && c.Walkable(base.Map))
             {
-                if (c.DistanceTo(this.center) < 2)
+                if (c.DistanceTo(this.center) < 1)
                 {
                     this.TrySpawnExplosionThing(this.postExplosionSpawnThingDef, c, this.postExplosionSpawnThingCount);
                 }
