@@ -326,7 +326,6 @@
     <Compile Include="HediffSpecial\Hediff_EnchantedBionic.cs" />
     <Compile Include="HediffSpecial\Hediff_RegrowinBodyPart.cs" />
     <Compile Include="HediffSpecial\RemovableHediff.cs" />
-    <Compile Include="Incidents\IncidentWorker_AlienRaid - Copy.cs" />
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
     <Compile Include="Incidents\IncidentWorker_QueenMeteorite.cs" />
     <Compile Include="Jobs\JobDriver_JumpToTarget.cs" />

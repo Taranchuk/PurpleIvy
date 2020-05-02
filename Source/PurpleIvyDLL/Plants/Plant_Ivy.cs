@@ -140,7 +140,6 @@ namespace PurpleIvy
                     else
                     {
                         this.Growth += 0.001f;
-                        Log.Message("Rotprogress, growth");
                         if (corpse.TryGetComp<CompRottable>().Stage < RotStage.Dessicated &&
                             corpse.TryGetComp<AlienInfection>() == null)
                         {

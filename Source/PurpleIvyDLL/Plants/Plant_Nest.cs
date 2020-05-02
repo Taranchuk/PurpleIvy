@@ -157,25 +157,34 @@ namespace PurpleIvy
                 if (list[i].def.IsCorpse)
                 {
                     var corpse = (Corpse)list[i];
-                    if (corpse.TryGetComp<AlienInfection>() == null)
+                    var compRottable = list[i].TryGetComp<CompRottable>();
+                    if (compRottable.Stage == RotStage.Dessicated)
                     {
-                        var dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
-                        var comp = dummyCorpse.TryGetComp<AlienInfection>();
-                        comp.parent = corpse;
-                        var range = PurpleIvyData.maxNumberOfCreatures["Genny_ParasiteOmega"];
-                        comp.Props.maxNumberOfCreatures = range;
-                        comp.maxNumberOfCreatures = range.RandomInRange;
-                        comp.Props.typesOfCreatures = new List<string>()
+                        corpse.TakeDamage(new DamageInfo(DamageDefOf.Scratch, 1));
+                    }
+                    else
+                    {
+                        this.Growth += 0.001f;
+                        SpreadTick--;
+                        SpreadTick--;
+                        SpreadTick--;
+                        if (corpse.TryGetComp<CompRottable>().Stage < RotStage.Dessicated &&
+                            corpse.TryGetComp<AlienInfection>() == null)
+                        {
+                            var dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
+                            var comp = dummyCorpse.TryGetComp<AlienInfection>();
+                            comp.parent = corpse;
+                            var range = PurpleIvyData.maxNumberOfCreatures["Genny_ParasiteOmega"];
+                            comp.Props.maxNumberOfCreatures = range;
+                            comp.maxNumberOfCreatures = range.RandomInRange;
+                            comp.Props.typesOfCreatures = new List<string>()
                         {
                             "Genny_ParasiteOmega"
                         };
-                        corpse.AllComps.Add(comp);
-                        Log.Message("6 Adding infected comp to " + corpse);
+                            corpse.AllComps.Add(comp);
+                            Log.Message("5 Adding infected comp to " + corpse);
+                        }
                     }
-                    //speedup the spread a little
-                    SpreadTick--;
-                    SpreadTick--;
-                    SpreadTick--;
                 }
                 else switch (list[i])
                 {
