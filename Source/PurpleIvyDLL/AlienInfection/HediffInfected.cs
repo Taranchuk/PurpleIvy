@@ -58,7 +58,7 @@ namespace PurpleIvy
             comp.Props.IncubationData = new IncubationData
             {
                 tickStartHediff = new IntRange(2000, 4000),
-                deathChance = 90f,
+                deathChance = 90,
                 hediff = HediffDefOf.Pregnant.defName
             };
             this.pawn.AllComps.Add(comp);

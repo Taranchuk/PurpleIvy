@@ -25,33 +25,8 @@ namespace PurpleIvy
             this.startOfIncubation = Find.TickManager.TicksGame;
         }
 
-        public void TryStartSpawn()
+        public void DoWiggle()
         {
-            if (this.stopSpawning == true) return;
-            if (this.Props.maxNumberOfCreaturesOnMap > 0)
-            {
-                int count = 0;
-                foreach (var type in this.Props.typesOfCreatures)
-                {
-                    count += this.parent.Map.mapPawns.AllPawns.Where(x => x.kindDef.defName == type).ToList().Count;
-                }
-                if (this.Props.maxNumberOfCreaturesOnMap <= count)
-                {
-                    return;
-                }
-            } 
-            if (tickStartHediff > 0 &&
-                this.startOfIncubation + this.Props.IncubationData.tickStartHediff.RandomInRange
-                < Find.TickManager.TicksGame)
-            {
-                if (this.parent is Pawn && this.Props.IncubationData.hediff != null)
-                {
-                    var hediff = HediffMaker.MakeHediff(HediffDef.Named(this.Props.IncubationData.hediff),
-                    (Pawn)this.parent, null);
-                    ((Pawn)this.parent).health.AddHediff(hediff, null, null, null);
-                    this.tickStartHediff = 0;
-                }
-            }
             if (this.currentCountOfCreatures < this.maxNumberOfCreatures)
             {
                 if (this.parent is Corpse || this.parent.def.IsCorpse)
@@ -96,6 +71,33 @@ namespace PurpleIvy
                     Log.Message(this.parent + " not corpse 2");
                 }
             }
+        }
+
+        public void TryStartSpawn()
+        {
+            if (this.stopSpawning == true) return;
+            if (this.Props.maxNumberOfCreaturesOnMap > 0)
+            {
+                int count = 0;
+                foreach (var type in this.Props.typesOfCreatures)
+                {
+                    count += this.parent.Map.mapPawns.AllPawns.Where(x => x.kindDef.defName == type).ToList().Count;
+                }
+                if (this.Props.maxNumberOfCreaturesOnMap <= count) return;
+            } 
+            if (tickStartHediff > 0 && this.startOfIncubation + 
+                this.Props.IncubationData.tickStartHediff.RandomInRange < Find.TickManager.TicksGame)
+            {
+                if (this.parent is Pawn && this.Props.IncubationData.hediff != null)
+                {
+                    var hediff = HediffMaker.MakeHediff(HediffDef.Named(this.Props.IncubationData.hediff),
+                    (Pawn)this.parent, null);
+                    ((Pawn)this.parent).health.AddHediff(hediff, null, null, null);
+                    this.tickStartHediff = 0;
+                }
+            }
+
+            DoWiggle();
 
             if (this.Props.incubationPeriod.min > 0)
             {
@@ -184,7 +186,6 @@ namespace PurpleIvy
                 FilthMaker.TryMakeFilth(this.parent.Position, this.parent.Map, ThingDefOf.Filth_Blood);
             }
             GenSpawn.Spawn(newPawn, this.parent.Position, this.parent.Map);
-
         }
 
         public void HatchFromPawn(Pawn newPawn)
@@ -198,7 +199,7 @@ namespace PurpleIvy
                 FilthMaker.TryMakeFilth(corpse.Position, corpse.Map, ThingDefOf.Filth_Blood);
                 GenSpawn.Spawn(newPawn, corpse.Position, corpse.Map);
             }
-            else if (this.Props.IncubationData.deathChance >= Rand.Range(0f, 100f))
+            else if (this.Props.IncubationData.deathChance >= Rand.RangeInclusive(0, 100))
             {
                 this.parent.Kill();
                 var corpse = (Corpse)this.parent.ParentHolder;
@@ -208,6 +209,7 @@ namespace PurpleIvy
             }
             else
             {
+                FilthMaker.TryMakeFilth(this.parent.Position, this.parent.Map, ThingDefOf.Filth_Blood);
                 GenSpawn.Spawn(newPawn, this.parent.Position, this.parent.Map);
             }
         }

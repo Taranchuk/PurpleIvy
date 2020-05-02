@@ -11,7 +11,7 @@ namespace PurpleIvy
 
         public IntRange tickStartHediff;
 
-        public float deathChance;
+        public int deathChance;
 
         public string hediff;
 

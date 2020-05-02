@@ -12,7 +12,25 @@ namespace PurpleIvy
     [StaticConstructorOnStartup]
     public static class PurpleIvyUtils
     {
+        public static Pawn GenerateKorsolian(string PawnKind)
+        {
+            PawnKindDef pawnKindDef = PawnKindDef.Named(PawnKind);
+            Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
+            NewPawn.SetFaction(PurpleIvyData.KorsolianFaction);
+            NewPawn.ageTracker.AgeBiologicalTicks = new IntRange(40000000, 400000000).RandomInRange;
+            NewPawn.ageTracker.AgeChronologicalTicks = new IntRange(40000000, 400000000).RandomInRange;
+            return NewPawn;
+        }
 
+        public static Pawn GenerateParasite(List<string> PawnKinds)
+        {
+            PawnKindDef pawnKindDef = PawnKindDef.Named(PawnKinds.RandomElement());
+            Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
+            NewPawn.SetFaction(PurpleIvyData.AlienFaction);
+            NewPawn.ageTracker.AgeBiologicalTicks = 40000;
+            NewPawn.ageTracker.AgeChronologicalTicks = 40000;
+            return NewPawn;
+        }
         public static void DoExplosion(IntVec3 center, Map map, float radius, DamageDef damType, Thing instigator, int damAmount = -1, float armorPenetration = -1f, SoundDef explosionSound = null, ThingDef weapon = null, ThingDef projectile = null, Thing intendedTarget = null, ThingDef postExplosionSpawnThingDef = null, float postExplosionSpawnChance = 0f, int postExplosionSpawnThingCount = 1, bool applyDamageToExplosionCellsNeighbors = false, ThingDef preExplosionSpawnThingDef = null, float preExplosionSpawnChance = 0f, int preExplosionSpawnThingCount = 1, float chanceToStartFire = 0f, bool damageFalloff = false, float? direction = null, List<Thing> ignoredThings = null)
         {
             if (map == null)

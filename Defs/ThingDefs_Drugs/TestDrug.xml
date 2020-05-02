@@ -13,18 +13,9 @@
 		<socialPropernessMatters>true</socialPropernessMatters>
 		<tickerType>Rare</tickerType>
 		<graphicData>
-			<texPath>Things/Item/Drug/Syringe</texPath>
+			<texPath>Things/Item/Drug/Syringue/SyringueBlack01</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
-		<colorGenerator Class="ColorGenerator_Options">
-			<options>
-				<li>
-					<weight>10</weight>
-					<only>RGB(235, 219, 52)</only>
-				</li>
-			</options>
-		</colorGenerator>
 		<statBases>
 			<MaxHitPoints>50</MaxHitPoints>
 			<MarketValue>20</MarketValue>
@@ -57,9 +48,6 @@
 			</outcomeDoers>
 		</ingestible>
 		<comps>
-			<li>
-				<compClass>CompColorable</compClass>
-			</li>
 			<li Class="CompProperties_Rottable">
 				<daysToRotStart>1</daysToRotStart>
 				<rotDestroys>true</rotDestroys>

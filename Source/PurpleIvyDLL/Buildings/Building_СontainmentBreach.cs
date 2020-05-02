@@ -12,7 +12,6 @@ namespace PurpleIvy
 {
     public class Building_СontainmentBreach : Building_WorkTable, IThingHolder
     {
-
         public Building_СontainmentBreach()
         {
             this.innerContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
@@ -72,8 +71,7 @@ namespace PurpleIvy
         {
             Thing corpse = null;
             var corpses = this.Map.listerThings.ThingsInGroup(ThingRequestGroup.Corpse).
-    Where(x => x != null && x.def.thingCategories.Contains
-    (category)).ToList();
+            Where(x => x != null && x.def.thingCategories.Contains(category)).ToList();
             if (corpses != null && corpses.Count > 0)
             {
                 corpse = corpses[0];

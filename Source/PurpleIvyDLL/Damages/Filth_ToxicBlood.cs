@@ -38,15 +38,7 @@ namespace PurpleIvy
                             {
                                 try
                                 {
-                                    //MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_Smoke, null);
-                                    //moteThrown.Scale = Rand.Range(0.5f, 0.9f);
-                                    //moteThrown.rotationRate = Rand.Range(-30f, 30f);
-                                    //moteThrown.exactPosition = this.Position.ToVector3Shifted();
-                                    //moteThrown.airTimeLeft = Rand.Range(0.1f, 0.4f);
-                                    //moteThrown.Speed = 0.3f;
-                                    //moteThrown.SetVelocity((float)Rand.Range(-20, 20), Rand.Range(0.5f, 0.7f));
-                                    //GenSpawn.Spawn(moteThrown, this.Position, this.Map, WipeMode.Vanish);
-                                    //moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
+                                    //PurpleIvyMoteMaker.ThrowToxicSmoke(this.Position.ToVector3Shifted(), this.Map);
                                     Pawn pawn = (Pawn)list[i];
                                     if (!pawn.RaceProps.IsMechanoid)
                                     {
@@ -67,15 +59,7 @@ namespace PurpleIvy
                                 if (list[i].def != PurpleIvyDefOf.PurpleIvy && list[i].def != PurpleIvyDefOf.PI_Nest
                                         && list[i].def != PurpleIvyDefOf.PlantVenomousToothwort)
                                 {
-                                    MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_Smoke, null);
-                                    moteThrown.Scale = Rand.Range(0.5f, 0.9f);
-                                    moteThrown.rotationRate = Rand.Range(-30f, 30f);
-                                    moteThrown.exactPosition = this.Position.ToVector3Shifted();
-                                    moteThrown.airTimeLeft = Rand.Range(0.1f, 0.4f);
-                                    moteThrown.Speed = 0.3f;
-                                    moteThrown.SetVelocity((float)Rand.Range(-20, 20), Rand.Range(0.5f, 0.7f));
-                                    GenSpawn.Spawn(moteThrown, this.Position, this.Map, WipeMode.Vanish);
-                                    moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
+                                    PurpleIvyMoteMaker.ThrowToxicSmoke(this.Position.ToVector3Shifted(), this.Map);
                                     list[i].TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1));
                                 }
                                 break;

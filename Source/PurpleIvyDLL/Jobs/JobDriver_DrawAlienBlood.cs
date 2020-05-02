@@ -61,7 +61,6 @@ namespace PurpleIvy
                     var list = new List<Thing> { thing };
                     this.job.bill.Notify_IterationCompleted(this.pawn, list);
                     this.ReadyForNextToil();
-                    Log.Message(thing.Label);
                     thing.Destroy(DestroyMode.Vanish);
                 },
                 defaultCompleteMode = ToilCompleteMode.Never

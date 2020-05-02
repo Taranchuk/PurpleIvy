@@ -161,6 +161,14 @@ namespace PurpleIvy
             "Genny_ParasiteNestGuard"
         };
 
+        public static Dictionary<string, IntRange> maxNumberOfCreatures = new Dictionary<string, IntRange>()
+        {
+            { "Genny_ParasiteAlpha", new IntRange(1, 1) },
+            { "Genny_ParasiteBeta", new IntRange(1, 3) },
+            { "Genny_ParasiteGamma", new IntRange(1, 3) },
+            { "Genny_ParasiteOmega", new IntRange(1, 5) }
+        };
+
         public static Dictionary<int, int> RadiusData = new Dictionary<int, int>()
                 {
                     {1, 5},

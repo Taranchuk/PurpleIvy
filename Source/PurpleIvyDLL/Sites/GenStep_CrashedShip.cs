@@ -219,6 +219,12 @@ namespace PurpleIvy
                     thing.Rotation = Rot4.West;
                     GenSpawn.Spawn(thing, laboratory.rect.ToList()[i], map, Rot4.West);
                 }
+                else if (i == 80)
+                {
+                    Thing thing = ThingMaker.MakeThing(ThingDefOf.Door, ThingDefOf.Plasteel);
+                    thing.SetFaction(rp.faction, null);
+                    GenSpawn.Spawn(thing, laboratory.rect.ToList()[i], map);
+                }
             }
             var toRemove = new List<int>() { 26, 34, 35, 42, 43, 44, 50, 51, 52, 53 };
             List<Thing> list = new List<Thing>();
@@ -247,14 +253,16 @@ namespace PurpleIvy
                 }
                 else if (i == 19)
                 {
-                    Log.Message("SPAWN ENGINE");
                     Thing thing = ThingMaker.MakeThing(ThingDefOf.Ship_Engine, null);
                     thing.SetFaction(rp.faction, null);
                     thing.Rotation = Rot4.West;
                     GenSpawn.Spawn(thing, leftWing.rect.ToList()[i], map, Rot4.East, WipeMode.Vanish);
                 }
-                Log.Message(leftWing.rect.ToList()[i] + " leftWing - position " + i);
             }
+
+            Thing thing2 = ThingMaker.MakeThing(ThingDefOf.Turret_MiniTurret, ThingDefOf.Steel);
+            thing2.SetFaction(rp.faction, null);
+            GenSpawn.Spawn(thing2, leftWing.rect.ToList()[26], map, WipeMode.Vanish);
 
             var toRemove2 = new List<int>() { 5, 6, 15, 7, 16, 25, 8, 17, 26, 35 };
             List<Thing> list2 = new List<Thing>();
@@ -283,14 +291,16 @@ namespace PurpleIvy
                 }
                 else if (i == 28)
                 {
-                    Log.Message("SPAWN ENGINE");
                     Thing thing = ThingMaker.MakeThing(ThingDefOf.Ship_Engine, null);
                     thing.SetFaction(rp.faction, null);
                     thing.Rotation = Rot4.West;
                     GenSpawn.Spawn(thing, rightWing.rect.ToList()[i], map, Rot4.East, WipeMode.Vanish);
                 }
-                Log.Message(rightWing.rect.ToList()[i] + " rightWing - position " + i);
             }
+
+            Thing thing3 = ThingMaker.MakeThing(ThingDefOf.Turret_MiniTurret, ThingDefOf.Steel);
+            thing3.SetFaction(rp.faction, null);
+            GenSpawn.Spawn(thing3, rightWing.rect.ToList()[35], map, WipeMode.Vanish);
 
             var toRemove3 = new List<int>() { 4, 5, 6, 7, 15, 84, 85, 86, 79, 87 };
             var toBuildWalls = new List<int>() { 22, 11, 12, 13, 14, 70, 75, 76, 77, 78 };
@@ -330,8 +340,84 @@ namespace PurpleIvy
                     thing.SetFaction(rp.faction, null);
                     GenSpawn.Spawn(thing, pilotRoom.rect.ToList()[i], map, WipeMode.Vanish);
                 }
+                else if ( i == 73)
+                {
+                    Thing thing = ThingMaker.MakeThing(ThingDef.Named("Ship_CryptosleepCasket"));
+                    thing.SetFaction(rp.faction, null);
+                    GenSpawn.Spawn(thing, pilotRoom.rect.ToList()[i], map, Rot4.East, WipeMode.Vanish);
+                }
+
+                else if (i == 49 || i == 25)
+                {
+                    Thing thing = ThingMaker.MakeThing(ThingDef.Named("Ship_CryptosleepCasket"));
+                    thing.SetFaction(rp.faction, null);
+                    GenSpawn.Spawn(thing, pilotRoom.rect.ToList()[i], map, Rot4.North, WipeMode.Vanish);
+                }
+                else if (i == 10)
+                {
+                    Thing thing = ThingMaker.MakeThing(ThingDef.Named("Ship_CryptosleepCasket"));
+                    thing.SetFaction(rp.faction, null);
+                    GenSpawn.Spawn(thing, pilotRoom.rect.ToList()[i], map, Rot4.West, WipeMode.Vanish);
+                }
+                else if (i == 38)
+                {
+                    Thing thing = ThingMaker.MakeThing(ThingDef.Named("Ship_CryptosleepCasket"));
+                    thing.SetFaction(rp.faction, null);
+                    GenSpawn.Spawn(thing, pilotRoom.rect.ToList()[i], map, Rot4.South, WipeMode.Vanish);
+                }
+                else if (i == 69)
+                {
+                    Thing thing = ThingMaker.MakeThing(ThingDef.Named("Ship_ComputerCore"));
+                    thing.SetFaction(rp.faction, null);
+                    GenSpawn.Spawn(thing, pilotRoom.rect.ToList()[i], map, Rot4.South, WipeMode.Vanish);
+                }
+                else if (i == 62)
+                {
+                    Thing thing = ThingMaker.MakeThing(ThingDefOf.OrbitalTradeBeacon);
+                    thing.SetFaction(rp.faction, null);
+                    GenSpawn.Spawn(thing, pilotRoom.rect.ToList()[i], map, Rot4.South, WipeMode.Vanish);
+                }
                 Log.Message(pilotRoom.rect.ToList()[i] + " pilotRoom - position " + i);
             }
+
+            for (var i = 0; i < halfway.rect.EdgeCells.Count(); i++)
+            {
+
+            }
+
+            for (var i = 0; i < diningRoom.rect.ToList().Count(); i++)
+            {
+
+            }
+
+            for (var i = 0; i < generators.rect.ToList().Count(); i++)
+            {
+
+            }
+
+            for (var i = 0; i < techRooms.rect.ToList().Count(); i++)
+            {
+
+            }
+
+            var intvecList = laboratory.rect.ContractedBy(1).Where(x => map.thingGrid.ThingsListAt(x)
+            .Where(y => y is Building).Count() == 0);
+
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            Pawn pawn = PurpleIvyUtils.GenerateKorsolian("KorsolianSoldier");
+            GenSpawn.Spawn(pawn, intvecList.RandomElement(), map);
+            pawn.Kill(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 50f));
+            Pawn alien = PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega);
+            GenSpawn.Spawn(alien, intvecList.RandomElement(), map);
+
+            for (var i = 0; i < pilotRoom.rect.ToList().Count(); i++)
+            {
+
+            }
+
+
         }
 
         protected CellRect adventureRegion;

@@ -37,26 +37,19 @@ namespace PurpleIvy
                 this.Explode();
                 return;
             }
-            if (hitThing == null)
-            {
-
-                Log.Message("IMPACT NULL" + this.landed, true);
-            }
-            else
+            if (hitThing != null)
             {
                 foreach (IntVec3 current in hitThing.CellsAdjacent8WayAndInside())
                 {
                     MoteMaker.ThrowDustPuff(current, this.Map, 2f);
-
-                    var t = GenClosest.ClosestThingReachable(hitThing.Position, hitThing.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, TraverseParms.For((Pawn)hitThing, Danger.Deadly, TraverseMode.ByPawn), 9999, new Predicate<Thing>(this.IsValidTarget), null, 0, -1, false, RegionType.Set_Passable, false);
-
-                    //Thing t = GenAI.BestAttackTarget(hitThing.Position, this, new Predicate<Thing>(this.IsValidTarget), 2f, 0f, false, false, false, true);
-
+                    var t = GenClosest.ClosestThingReachable(hitThing.Position, hitThing.Map, 
+                        ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, 
+                        TraverseParms.For((Pawn)hitThing, Danger.Deadly, TraverseMode.ByPawn), 
+                        9999, new Predicate<Thing>(this.IsValidTarget), null, 0, -1, false, 
+                        RegionType.Set_Passable, false);
                     var pawn = t as Pawn;
                     pawn?.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.Wander_Psychotic, null,
                         false, false, null, false);
-
-                    //pawn.thinker.mindState.Sanity.Equals(SanityState.Psychotic);
                 }
             }
             this.landed = true;
@@ -85,18 +78,13 @@ namespace PurpleIvy
             ThingDef equipmentDef = this.equipmentDef;
             ThingDef def = this.def;
             Thing thing = this.intendedTarget.Thing;
-            ThingDef postExplosionSpawnThingDef = null;
-            if (launcher.plantToSpawn <= 5)
-            {
-                postExplosionSpawnThingDef = this.def.projectile.postExplosionSpawnThingDef;
-            }
+            ThingDef postExplosionSpawnThingDef = this.def.projectile.postExplosionSpawnThingDef;
             float postExplosionSpawnChance = this.def.projectile.postExplosionSpawnChance;
             int postExplosionSpawnThingCount = this.def.projectile.postExplosionSpawnThingCount;
             ThingDef preExplosionSpawnThingDef = this.def.projectile.preExplosionSpawnThingDef;
             float preExplosionSpawnChance = this.def.projectile.preExplosionSpawnChance;
             int preExplosionSpawnThingCount = this.def.projectile.preExplosionSpawnThingCount;
             PurpleIvyUtils.DoExplosion(position, map2, explosionRadius, damageDef, launcher, damageAmount, armorPenetration, soundExplode, equipmentDef, def, thing, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, this.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, preExplosionSpawnChance, preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff, new float?(this.origin.AngleToFlat(this.destination)), null);
-            launcher.plantToSpawn++;
         }
 
         private bool IsValidTarget(Thing t)
