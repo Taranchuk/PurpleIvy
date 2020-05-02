@@ -29,14 +29,42 @@ namespace PurpleIvy
             yield return Toils_Combat.FollowAndMeleeAttack(TargetIndex.A, delegate
             {
                 var thing = this.job.GetTarget(TargetIndex.A).Thing;
-                if (!this.pawn.meleeVerbs.TryMeleeAttack(thing, this.job.verbToUse, false)) return;
-                if (this.pawn.CurJob == null || this.pawn.jobs.curDriver != this)
+                if (this.pawn.meleeVerbs.TryMeleeAttack(thing, this.job.verbToUse, false))
                 {
-                    return;
+                    if (this.pawn.CurJob == null || this.pawn.jobs.curDriver != this)
+                    {
+                        return;
+                    }
+                    this.numMeleeAttacksMade++;
+                    if (1f >= Rand.Range(0f, 100f))
+                    {
+                        if (PurpleIvyData.maxNumberOfCreatures.ContainsKey(this.pawn.def.defName) &&
+                        thing.TryGetComp<AlienInfection>() == null)
+                        {
+                            var victim = (Pawn)thing;
+                            var dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
+                            var comp = new AlienInfection();
+                            comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
+                            comp.parent = victim;
+                            comp.Props.typesOfCreatures = new List<string>()
+                                {
+                                    this.pawn.kindDef.defName
+                                };
+                            var range = PurpleIvyData.maxNumberOfCreatures[this.pawn.def.defName];
+                            comp.maxNumberOfCreatures = range.RandomInRange;
+                            comp.Props.maxNumberOfCreatures = range;
+                            comp.Props.incubationPeriod = new IntRange(10000, 40000);
+                            comp.Props.IncubationData = new IncubationData();
+                            comp.Props.IncubationData.tickStartHediff = new IntRange(2000, 4000);
+                            comp.Props.IncubationData.deathChance = 90;
+                            comp.Props.IncubationData.hediff = HediffDefOf.Pregnant.defName;
+                            victim.AllComps.Add(comp);
+                            Log.Message("10 Adding infected comp to living creature " + victim);
+                        }
+                    }
+                    if (this.numMeleeAttacksMade < this.job.maxNumMeleeAttacks) return;
+                    base.EndJobWith(JobCondition.Succeeded);
                 }
-                this.numMeleeAttacksMade++;
-                if (this.numMeleeAttacksMade < this.job.maxNumMeleeAttacks) return;
-                base.EndJobWith(JobCondition.Succeeded);
                 return;
             }).FailOnDespawnedOrNull(TargetIndex.A);
             yield break;

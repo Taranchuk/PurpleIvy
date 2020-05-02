@@ -12,8 +12,11 @@ namespace PurpleIvy
     {
         protected override Job TryGiveJob(Pawn pawn)
         {
+            if (GridsUtility.Fogged(pawn.Position, pawn.Map))
+            {
+                return JobMaker.MakeJob(JobDefOf.LayDown);
+            }
             // Some optimizations here...
-
             //if (pawn.TryGetAttackVerb(null, false) == null)
             //{
             //    return null;

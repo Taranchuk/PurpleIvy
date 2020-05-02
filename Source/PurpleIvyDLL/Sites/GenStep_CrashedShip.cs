@@ -4,6 +4,7 @@ using System.Linq;
 using RimWorld;
 using RimWorld.BaseGen;
 using Verse;
+using Verse.AI;
 
 namespace PurpleIvy
 {
@@ -380,10 +381,6 @@ namespace PurpleIvy
                 Log.Message(pilotRoom.rect.ToList()[i] + " pilotRoom - position " + i);
             }
 
-            for (var i = 0; i < halfway.rect.EdgeCells.Count(); i++)
-            {
-
-            }
 
             for (var i = 0; i < diningRoom.rect.ToList().Count(); i++)
             {
@@ -406,17 +403,67 @@ namespace PurpleIvy
             FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
             FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
             FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
-            Pawn pawn = PurpleIvyUtils.GenerateKorsolian("KorsolianSoldier");
+            Pawn pawn = PurpleIvyUtils.GenerateKorsolian("KorsolianScientist");
             GenSpawn.Spawn(pawn, intvecList.RandomElement(), map);
             pawn.Kill(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 50f));
-            Pawn alien = PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega);
-            GenSpawn.Spawn(alien, intvecList.RandomElement(), map);
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega), 
+                intvecList.RandomElement(), map);
 
-            for (var i = 0; i < pilotRoom.rect.ToList().Count(); i++)
-            {
+            intvecList = halfway.rect.ContractedBy(1).Where(x => map.thingGrid.ThingsListAt(x)
+.Where(y => y is Building).Count() == 0);
 
-            }
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega), 
+                intvecList.RandomElement(), map);
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega),
+                intvecList.RandomElement(), map);
 
+            intvecList = techRooms.rect.ContractedBy(1).Where(x => map.thingGrid.ThingsListAt(x)
+.Where(y => y is Building).Count() == 0);
+
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega),
+    intvecList.RandomElement(), map);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            pawn = PurpleIvyUtils.GenerateKorsolian("KorsolianScientist");
+            GenSpawn.Spawn(pawn, intvecList.RandomElement(), map);
+            pawn.Kill(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 50f));
+
+            intvecList = generators.rect.ContractedBy(1).Where(x => map.thingGrid.ThingsListAt(x)
+.Where(y => y is Building).Count() == 0);
+
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega),
+    intvecList.RandomElement(), map);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            pawn = PurpleIvyUtils.GenerateKorsolian("KorsolianSoldier");
+            GenSpawn.Spawn(pawn, intvecList.RandomElement(), map);
+            pawn.Kill(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 50f));
+
+            intvecList = pilotRoom.rect.ContractedBy(1).Where(x => map.thingGrid.ThingsListAt(x)
+.Where(y => y is Building).Count() == 0);
+
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteAlpha),
+    intvecList.RandomElement(), map);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            pawn = PurpleIvyUtils.GenerateKorsolian("KorsolianSoldier");
+            GenSpawn.Spawn(pawn, intvecList.RandomElement(), map);
+            pawn.Kill(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 50f));
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            pawn = PurpleIvyUtils.GenerateKorsolian("KorsolianSoldier");
+            GenSpawn.Spawn(pawn, intvecList.RandomElement(), map);
+            pawn.Kill(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 50f));
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
+            pawn = PurpleIvyUtils.GenerateKorsolian("KorsolianSoldier");
+            GenSpawn.Spawn(pawn, intvecList.RandomElement(), map);
+            pawn.Kill(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 50f));
 
         }
 
