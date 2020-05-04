@@ -53,6 +53,7 @@
 
 	<JobDef>
 		<defName>PI_ConductResearchOnAliens</defName>
+		<casualInterruptible>false</casualInterruptible>
 		<driverClass>PurpleIvy.JobDriver_AlienStudy</driverClass>
 		<reportString>conducts research on aliens</reportString>
 	</JobDef>
