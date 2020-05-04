@@ -349,30 +349,6 @@ namespace PurpleIvy
             stringBuilder.Append(base.GetInspectString());
             return stringBuilder.ToString();
         }
-        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
-        {
-            foreach (FloatMenuOption fmo in base.GetFloatMenuOptions(selPawn))
-            {
-                yield return fmo;
-            }
-            if (this.Aliens != null && this.Aliens.Count > 0)
-            {
-                yield return new FloatMenuOption(Translator.Translate("ConductResearch"), delegate ()
-                {
-                    if (selPawn != null)
-                    {
-                        Job job = JobMaker.MakeJob(PurpleIvyDefOf.PI_ConductResearchOnAliens, this);
-                        selPawn.jobs.TryTakeOrderedJob(job, 0);
-                    }
-                }, MenuOptionPriority.Default, null, null, 0f, null, null);
-            }
-            else
-            {
-                yield return new FloatMenuOption("NoAliensToConductResearch".Translate(), null,
-                    MenuOptionPriority.Default, null, null, 0f, null, null);
-            }
-            yield break;
-        }
 
         public ThingOwner GetDirectlyHeldThings()
         {

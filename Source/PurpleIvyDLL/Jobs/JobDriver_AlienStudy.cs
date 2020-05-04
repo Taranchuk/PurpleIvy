@@ -75,7 +75,7 @@ namespace PurpleIvy
                             skill.Learn(0.11f * this.job.bill.recipe.workSkillLearnFactor, false);
                         }
                     }
-                    var research = PurpleIvyData.AlienStudy.Where(x => !x.IsFinished && 
+                    var research = PurpleIvyData.AlienStudy.Where(x => !x.IsFinished &&
                     GetActor().Map.listerThings.ThingsOfDef
                     (ThingDef.Named("Techprint_" + x.defName)).Count == 0).RandomElement();
                     if (research != null)
@@ -94,7 +94,7 @@ namespace PurpleIvy
             ToilEffects.WithProgressBar(toil, TargetIndex.A, delegate ()
             {
                 return PurpleIvyUtils.GetPercentageFromPartWhole
-                (this.job.bill.recipe.workAmount - this.workCycleProgress, 
+                (this.job.bill.recipe.workAmount - this.workCycleProgress,
                 (int)this.job.bill.recipe.workAmount) / 100f;
             }, false, 0.5f);
             ToilFailConditions.FailOn<Toil>(toil, delegate ()
