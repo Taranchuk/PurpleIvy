@@ -11,7 +11,7 @@
 		</recipeUsers>
 		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Intellectual</workSkill>
-		<workAmount>1000</workAmount>
+		<workAmount>40000</workAmount>
 	</RecipeDef> 
 
 </Defs>
