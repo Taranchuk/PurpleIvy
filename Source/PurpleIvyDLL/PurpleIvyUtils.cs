@@ -31,6 +31,111 @@ namespace PurpleIvy
             NewPawn.ageTracker.AgeChronologicalTicks = 40000;
             return NewPawn;
         }
+
+        public static void UpdateBiomes()
+        {
+            if (PurpleIvyData.BiomesToClear == true)
+            {
+                PurpleIvyUtils.ClearAlienBiomesOuterTheSources();
+                PurpleIvyData.BiomesToClear = false;
+            }
+            Find.World.renderer.SetDirty<WorldLayerRegenerateBiomes>();
+            PurpleIvyData.BiomesDirty = false;
+        }
+        public static void ClearAlienBiomesOuterTheSources()
+        {
+            for (int i = PurpleIvyData.TotalPollutedBiomes.Count - 1; i >= 0; i--)
+            {
+                int tile = PurpleIvyData.TotalPollutedBiomes[i];
+                if (PurpleIvyUtils.TileInRadiusOfInfectedSites(tile) != true)
+                {
+                    Log.Message("Return old biome: " + tile.ToString());
+                    BiomeDef origBiome = Find.WorldGrid[tile].biome;
+                    BiomeDef newBiome = BiomeDef.Named(origBiome.defName.ReplaceFirst("PI_", string.Empty));
+                    Find.WorldGrid[tile].biome = newBiome;
+                    PurpleIvyData.TotalPollutedBiomes.Remove(tile);
+                    PurpleIvyData.BiomesToRenderNow.Add(tile);
+                }
+            }
+        }
+        public static float GetPartFromPercentage(float percent, float whole)
+        {
+            return (float)(percent * whole) / 100f;
+        }
+
+        public static float GetPercentageFromPartWhole(float part, int whole)
+        {
+            return 100 * part / (float)(whole);
+        }
+
+        public static float getFogProgressWithOuterSources(int count, WorldObjectComp_InfectedTile comp, out bool comeFromOuterSource)
+        {
+            var result = PurpleIvyUtils.getFogProgress(count);
+            //Log.Message("fog progress: " + result.ToString());
+            var outerSource = 0f;
+            foreach (var data in PurpleIvyData.TotalFogProgress.Where(data => data.Key != comp))
+            {
+                int distance = Find.WorldGrid.TraversalDistanceBetween(comp.infectedTile, data.Key.infectedTile, true, int.MaxValue);
+                if (distance <= data.Key.radius)
+                {
+                    float floatRadius = ((float)data.Key.counter - 500f) / 100f;
+                    if (floatRadius < 0)
+                    {
+                        floatRadius = 0;
+                    }
+                    float newValue = GetPartFromPercentage(GetPercentageFromPartWhole(floatRadius, distance) - 100f, data.Value);
+                    if (newValue > data.Value)
+                    {
+                        outerSource += data.Value;
+                    }
+                    else
+                    {
+                        outerSource += newValue;
+                    }
+                }
+            }
+            if (outerSource < 0f)
+            {
+                outerSource = 0f;
+            }
+            if (result == 0f && outerSource > 0f)
+            {
+                comeFromOuterSource = true;
+            }
+            else
+            {
+                comeFromOuterSource = false;
+            }
+            return result + outerSource;
+        }
+
+        public static bool TileInRadiusOfInfectedSites(int tile)
+        {
+            foreach (var comp in PurpleIvyData.TotalFogProgress)
+            {
+                //Log.Message("Checking tile: " + tile.ToString() + " against "
+                //    + comp.Key.infectedTile.ToString() + " - radius: " + comp.Key.radius.ToString()
+                //    + " - distance: " + (Find.WorldGrid.TraversalDistanceBetween
+                //(comp.Key.infectedTile, tile, true, int.MaxValue)).ToString());
+                if (Find.WorldGrid.TraversalDistanceBetween
+                (comp.Key.infectedTile, tile, true, int.MaxValue) <= comp.Key.radius)
+                {
+                    //Log.Message("Tile in radius: " + tile.ToString());
+                    return true;
+                }
+            }
+            //Log.Message("Tile not in radius: " + tile.ToString());
+            return false;
+        }
+        public static float getFogProgress(int count)
+        {
+            var result = (float)(count - 1000) / (float)1500;
+            if (result < 0f)
+            {
+                result = 0f;
+            }
+            return result / 1.5f;
+        }
         public static void DoExplosion(IntVec3 center, Map map, float radius, DamageDef damType, Thing instigator, int damAmount = -1, float armorPenetration = -1f, SoundDef explosionSound = null, ThingDef weapon = null, ThingDef projectile = null, Thing intendedTarget = null, ThingDef postExplosionSpawnThingDef = null, float postExplosionSpawnChance = 0f, int postExplosionSpawnThingCount = 1, bool applyDamageToExplosionCellsNeighbors = false, ThingDef preExplosionSpawnThingDef = null, float preExplosionSpawnChance = 0f, int preExplosionSpawnThingCount = 1, float chanceToStartFire = 0f, bool damageFalloff = false, float? direction = null, List<Thing> ignoredThings = null)
         {
             if (map == null)

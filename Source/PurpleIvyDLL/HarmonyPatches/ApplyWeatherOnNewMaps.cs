@@ -21,7 +21,7 @@ namespace PurpleIvy
             bool comeFromOuterSource;
             var tempComp = new WorldObjectComp_InfectedTile();
             tempComp.infectedTile = __instance.Tile;
-            if (PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out comeFromOuterSource) > 0f &&
+            if (PurpleIvyUtils.getFogProgressWithOuterSources(0, tempComp, out comeFromOuterSource) > 0f &&
     !__instance.gameConditionManager.ConditionIsActive(PurpleIvyDefOf.PurpleFogGameCondition))
             {
                 GameCondition_PurpleFog gameCondition =
@@ -35,7 +35,7 @@ namespace PurpleIvy
                 tempComp.infected = false;
                 tempComp.infectedTile = __instance.Tile;
                 tempComp.radius = tempComp.GetRadius();
-                PurpleIvyData.TotalFogProgress[tempComp] = PurpleIvyData.getFogProgress(tempComp.counter);
+                PurpleIvyData.TotalFogProgress[tempComp] = PurpleIvyUtils.getFogProgress(tempComp.counter);
                 tempComp.fillRadius();
                 __instance.Parent.AllComps.Add(tempComp);
 

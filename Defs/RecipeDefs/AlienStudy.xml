@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<RecipeDef>
+		<defName>PI_AlienStudyRecipe</defName>
+		<label>Alien study on living aliens</label>
+		<description>Alien study on living aliens.</description>
+		<jobString>Studying living aliens</jobString>
+		<recipeUsers>
+			<li>PI_ContainmentBreach</li>
+			<li>PI_ContainmentBreachAdv</li>
+		</recipeUsers>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Intellectual</workSkill>
+		<workAmount>1000</workAmount>
+	</RecipeDef> 
+
+</Defs>

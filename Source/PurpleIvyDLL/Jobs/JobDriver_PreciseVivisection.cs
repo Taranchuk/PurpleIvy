@@ -125,6 +125,7 @@ namespace PurpleIvy
                     var alien = TargetB.Thing;
                     foreach (var product in alien.ButcherProducts(base.GetActor(), 1f))
                     {
+                        Log.Message(product.def.defName);
                         GenPlace.TryPlaceThing(product, base.GetActor().Position, base.GetActor().Map, ThingPlaceMode.Near);
                     }
                     var container = (Building_СontainmentBreach)TargetA.Thing;
@@ -161,7 +162,8 @@ namespace PurpleIvy
             }
             yield return new Toil
             {
-                initAction = delegate () {
+                initAction = delegate ()
+                {
                     Log.Message("Job ended");
                 }
             };

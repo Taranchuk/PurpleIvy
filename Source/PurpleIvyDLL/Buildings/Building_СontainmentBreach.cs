@@ -86,6 +86,12 @@ namespace PurpleIvy
             {
                 if (alien is Pawn)
                 {
+                    if (job.bill.recipe == PurpleIvyDefOf.PI_AlienStudyRecipe)
+                    {
+                        result = true;
+                        jobDef = PurpleIvyDefOf.PI_ConductResearchOnAliens;
+                        if (result == true) break;
+                    }
                     if (job.bill.recipe == PurpleIvyDefOf.DrawAlienBlood)
                     {
                         result = this.HasBloodInAlien(alien);

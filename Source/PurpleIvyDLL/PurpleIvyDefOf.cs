@@ -75,6 +75,8 @@ namespace PurpleIvy
 
         public static RecipeDef PreciseVivisectionGuard;
 
+        public static RecipeDef PI_AlienStudyRecipe;
+
         public static ThingDef InfectedCorpseDummy;
 
         public static ThingDef PurpleIvy;
@@ -172,6 +174,29 @@ namespace PurpleIvy
         public static PawnKindDef KorsolianSoldier;
 
         public static SitePartDef PI_CrashedShip;
+
+        public static ResearchProjectDef PI_BasicBioprotection;
+        public static ResearchProjectDef PI_AdvBioprotection;
+        public static ResearchProjectDef PI_Biolab;
+        public static ResearchProjectDef PI_AlienContainment;
+        public static ResearchProjectDef PI_AdvAlienContainment;
+        public static ResearchProjectDef PI_Vivisection;
+        public static ResearchProjectDef PI_BasicDrugs;
+        public static ResearchProjectDef PI_AdvDrugs;
+        public static ResearchProjectDef PI_MutagensA;
+        public static ResearchProjectDef PI_MutagensB;
+        public static ResearchProjectDef PI_MutagensC;
+        public static ResearchProjectDef PI_BasicBionics;
+        public static ResearchProjectDef PI_AdvBionics;
+        public static ResearchProjectDef PI_Implantation;
+        public static ResearchProjectDef PI_BioRepl;
+        public static ResearchProjectDef PI_LaserBench;
+        public static ResearchProjectDef PI_AlienArmorA;
+        public static ResearchProjectDef PI_AlienArmorB;
+        public static ResearchProjectDef PI_AlienArmorC;
+        public static ResearchProjectDef PI_AlienWeaponsA;
+        public static ResearchProjectDef PI_AlienWeaponsB;
+        public static ResearchProjectDef PI_AlienWeaponsC;
 
     }
 }

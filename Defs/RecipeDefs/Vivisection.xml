@@ -21,9 +21,6 @@
 			<PI_ToxicSac>3</PI_ToxicSac>
 			<PI_AlphaBlood>30</PI_AlphaBlood>
 		</products>
-		<specialProducts>
-			<li>Butchery</li>
-		</specialProducts>
 	</RecipeDef> 
 
 	<RecipeDef>
@@ -46,9 +43,6 @@
 			<PI_ToxicSac>1</PI_ToxicSac>
 			<PI_BetaBlood>7</PI_BetaBlood>
 		</products>
-		<specialProducts>
-			<li>Butchery</li>
-		</specialProducts>
 	</RecipeDef> 
 
 	<RecipeDef>
@@ -71,9 +65,6 @@
 			<PI_ToxicSac>1</PI_ToxicSac>
 			<PI_GammaBlood>7</PI_GammaBlood>
 		</products>
-		<specialProducts>
-			<li>Butchery</li>
-		</specialProducts>
 	</RecipeDef> 
 
 	<RecipeDef>
@@ -96,9 +87,6 @@
 		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<specialProducts>
-			<li>Butchery</li>
-		</specialProducts>
 	</RecipeDef> 
 	
 		<RecipeDef>
@@ -121,9 +109,6 @@
 		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-		<specialProducts>
-			<li>Butchery</li>
-		</specialProducts>
 	</RecipeDef> 
 
 </Defs>

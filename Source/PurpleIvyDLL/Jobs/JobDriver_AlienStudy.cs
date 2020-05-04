@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using RimWorld;
 using UnityEngine;
@@ -8,7 +9,7 @@ using Verse.AI;
 
 namespace PurpleIvy
 {
-    public class JobDriver_DrawKorsolianToxin : JobDriver_DoBillPlus
+    public class JobDriver_AlienStudy : JobDriver_DoBill
     {
         public override void ExposeData()
         {
@@ -20,8 +21,33 @@ namespace PurpleIvy
         {
             return this.pawn.Reserve(this.job.targetA, this.job, 1, -1, null, errorOnFailed);
         }
-        protected override Toil DoBill()
+        protected override IEnumerable<Toil> MakeNewToils()
         {
+            base.AddEndCondition(delegate ()
+            {
+                var thing = base.GetActor().jobs.curJob.GetTarget(TargetIndex.A).Thing;
+                if (thing is Building && !thing.Spawned)
+                {
+                    return JobCondition.Incompletable;
+                }
+                return JobCondition.Ongoing;
+            });
+            this.FailOnBurningImmobile<JobDriver_DoBill>(TargetIndex.A);
+            this.FailOn<JobDriver_DoBill>(delegate ()
+            {
+                if (!(this.job.GetTarget(TargetIndex.A).Thing is IBillGiver billGiver)) return false;
+                if (this.job.bill.DeletedOrDereferenced)
+                {
+                    return true;
+                }
+                if (!billGiver.CurrentlyUsableForBills())
+                {
+                    return true;
+                }
+                return false;
+            });
+            yield return Toils_Reserve.Reserve(TargetIndex.A, 1, -1, null);
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             var tableThing = this.job.GetTarget(TargetIndex.A).Thing as Building_СontainmentBreach;
             CompRefuelable refuelableComp = tableThing.GetComp<CompRefuelable>();
             Toil toil = new Toil();
@@ -32,11 +58,6 @@ namespace PurpleIvy
             };
             toil.tickAction = delegate ()
             {
-                Thing thing = this.job.GetTarget(TargetIndex.B).Thing;
-                if (thing == null || thing.Destroyed)
-                {
-                    this.pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true, true);
-                }
                 this.workCycleProgress -= StatExtension.GetStatValue(this.pawn, StatDefOf.WorkToMake, true);
                 tableThing.UsedThisTick();
                 if (!tableThing.CurrentlyUsableForBills() || (refuelableComp != null && !refuelableComp.HasFuel))
@@ -54,18 +75,17 @@ namespace PurpleIvy
                             skill.Learn(0.11f * this.job.bill.recipe.workSkillLearnFactor, false);
                         }
                     }
-                    GenSpawn.Spawn(tableThing.GetKorsolianToxin(this.job.bill.recipe), 
-                        tableThing.InteractionCell, thing.Map, 0);
-                    Toils_Reserve.Release(TargetIndex.B);
-                    Toils_Reserve.Release(TargetIndex.C);
+                    var research = PurpleIvyData.AlienStudy.Where(x => !x.IsFinished && 
+                    GetActor().Map.listerThings.ThingsOfDef
+                    (ThingDef.Named("Techprint_" + x.defName)).Count == 0).RandomElement();
+                    if (research != null)
+                    {
+                        GenSpawn.Spawn(ThingDef.Named("Techprint_" + research.defName),
+                            GetActor().Position, GetActor().Map);
+                    }
                     Toils_Reserve.Release(TargetIndex.A);
                     PawnUtility.GainComfortFromCellIfPossible(this.pawn, false);
-                    List<Thing> list = new List<Thing>();
-                    list.Add(thing);
-                    this.job.bill.Notify_IterationCompleted(this.pawn, list);
                     this.ReadyForNextToil();
-                    Log.Message(thing.Label);
-                    thing.Destroy(DestroyMode.Vanish);
                 }
             };
             toil.defaultCompleteMode = ToilCompleteMode.Never;
@@ -74,7 +94,7 @@ namespace PurpleIvy
             ToilEffects.WithProgressBar(toil, TargetIndex.A, delegate ()
             {
                 return PurpleIvyUtils.GetPercentageFromPartWhole
-                (this.job.bill.recipe.workAmount - this.workCycleProgress,
+                (this.job.bill.recipe.workAmount - this.workCycleProgress, 
                 (int)this.job.bill.recipe.workAmount) / 100f;
             }, false, 0.5f);
             ToilFailConditions.FailOn<Toil>(toil, delegate ()
@@ -82,10 +102,10 @@ namespace PurpleIvy
                 IBillGiver billGiver = this.job.GetTarget(TargetIndex.A).Thing as IBillGiver;
                 return this.job.bill.suspended || this.job.bill.DeletedOrDereferenced || (billGiver != null && !billGiver.CurrentlyUsableForBills());
             });
-            return toil;
+            yield return toil;
+            yield break;
         }
 
         private float workCycleProgress;
     }
 }
-

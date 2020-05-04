@@ -69,8 +69,9 @@ namespace PurpleIvy
             toil.PlaySustainerOrSound(() => toil.actor.CurJob.bill.recipe.soundWorking);
             toil.WithProgressBar(TargetIndex.A, delegate ()
             {
-                Thing thing = this.job.GetTarget(TargetIndex.B).Thing;
-                return (float)thing.HitPoints / (float)thing.MaxHitPoints;
+                return PurpleIvyUtils.GetPercentageFromPartWhole
+                (this.job.bill.recipe.workAmount - this.workCycleProgress,
+                (int)this.job.bill.recipe.workAmount) / 100f;
             }, false, 0.5f);
             toil.FailOn<Toil>(delegate ()
             {

@@ -33,7 +33,7 @@ namespace PurpleIvy
                 comp.counter = 600;
                 comp.infectedTile = site.Tile;
                 comp.radius = comp.GetRadius();
-                PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(comp.counter);
+                PurpleIvyData.TotalFogProgress[comp] = PurpleIvyUtils.getFogProgress(comp.counter);
                 comp.fillRadius(true);
                 site.GetComponent<TimeoutComp>().StartTimeout(30 * 60000);
                 Find.WorldObjects.Add(site);

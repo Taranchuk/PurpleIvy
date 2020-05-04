@@ -190,7 +190,7 @@ namespace PurpleIvy
                 bool comeFromOuterSource;
                 var tempComp = new WorldObjectComp_InfectedTile();
                 tempComp.infectedTile = map.Tile;
-                if (PurpleIvyData.getFogProgressWithOuterSources(count, tempComp, out comeFromOuterSource) > 0f &&
+                if (PurpleIvyUtils.getFogProgressWithOuterSources(count, tempComp, out comeFromOuterSource) > 0f &&
                     !map.gameConditionManager.ConditionIsActive(PurpleIvyDefOf.PurpleFogGameCondition))
                 {
                     GameCondition_PurpleFog gameCondition =
@@ -220,7 +220,7 @@ namespace PurpleIvy
                         comp.counter = count;
                         comp.infectedTile = map.Tile;
                         comp.radius = comp.GetRadius();
-                        PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(comp.counter);
+                        PurpleIvyData.TotalFogProgress[comp] = PurpleIvyUtils.getFogProgress(comp.counter);
                         comp.fillRadius();
                         map.Parent.AllComps.Add(comp);
                         Log.Message("Adding comp to: " + map.Parent.ToString());

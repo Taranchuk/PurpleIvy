@@ -35,7 +35,7 @@ namespace PurpleIvy
             this.radius = -1; // -1 is set to allow filRadius remove alien biome in the place
             PurpleIvyData.BiomesDirty = true;
             PurpleIvyData.BiomesToClear = true;
-            PurpleIvyData.UpdateBiomes();
+            PurpleIvyUtils.UpdateBiomes();
             base.PostPostRemove();
         }
 
@@ -138,7 +138,7 @@ PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
                                 comp.counter = 0;
                                 comp.infectedTile = site.Tile;
                                 comp.radius = comp.GetRadius();
-                                PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(comp.counter);
+                                PurpleIvyData.TotalFogProgress[comp] = PurpleIvyUtils.getFogProgress(comp.counter);
                                 comp.fillRadius();
                                 site.GetComponent<TimeoutComp>().StartTimeout(30 * 60000);
                                 Find.WorldObjects.Add(site);
@@ -165,7 +165,7 @@ PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
                             this.StopInfection();
                         }
                     }
-                    PurpleIvyData.TotalFogProgress[this] = PurpleIvyData.getFogProgress(this.counter);
+                    PurpleIvyData.TotalFogProgress[this] = PurpleIvyUtils.getFogProgress(this.counter);
                 }
             }
         }

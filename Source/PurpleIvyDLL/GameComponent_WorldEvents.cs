@@ -39,7 +39,7 @@ namespace PurpleIvy
                 var comp = worldObject.GetComponent<WorldObjectComp_InfectedTile>();
                 if (comp != null)
                 {
-                    PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(comp.counter);
+                    PurpleIvyData.TotalFogProgress[comp] = PurpleIvyUtils.getFogProgress(comp.counter);
                     //comp.fillRadius(forced: true); // causes crash when loading a save with infected sites
                 }
             }
@@ -149,7 +149,7 @@ namespace PurpleIvy
             bool temp;
             if (PurpleIvyData.BiomesDirty == true)
             {
-                PurpleIvyData.UpdateBiomes();
+                PurpleIvyUtils.UpdateBiomes();
             }
             if (Find.TickManager.TicksGame % 3451 == 0) // same as for toxic weather
             {
@@ -164,7 +164,7 @@ namespace PurpleIvy
                         if (worldObject is Caravan caravan)
                         {
                             tempComp.infectedTile = caravan.Tile;
-                            float fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
+                            float fogProgress = PurpleIvyUtils.getFogProgressWithOuterSources(0, tempComp, out temp);
                             if (fogProgress > 0f)
                             {
                                 foreach (Pawn p in caravan.pawns)
@@ -212,7 +212,7 @@ namespace PurpleIvy
                                 var infectedSites = getInfectedTilesNearby(mapParent.Tile);
                                 if (infectedSites != null && infectedSites.Count > 0)
                                 {
-                                    fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
+                                    fogProgress = PurpleIvyUtils.getFogProgressWithOuterSources(0, tempComp, out temp);
                                     int raidChance = (int)(fogProgress * 100) / 10;
                                     System.Random random = new System.Random();
                                     int randomChance = random.Next(1, 100);
@@ -232,7 +232,7 @@ namespace PurpleIvy
                             {
                                 if (!fogProgress.HasValue)
                                 {
-                                    fogProgress = PurpleIvyData.getFogProgressWithOuterSources(0, tempComp, out temp);
+                                    fogProgress = PurpleIvyUtils.getFogProgressWithOuterSources(0, tempComp, out temp);
                                 }
                                 if (fogProgress > 0f)
                                 {

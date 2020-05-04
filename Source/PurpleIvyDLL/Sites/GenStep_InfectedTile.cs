@@ -193,7 +193,7 @@ namespace PurpleIvy
             var count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
             Log.Message("New map created! plants - " + map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count.ToString());
             var comp = map.Parent.GetComponent<WorldObjectComp_InfectedTile>();
-            if (comp != null && PurpleIvyData.getFogProgressWithOuterSources(count, comp, out var temp) > 0f)
+            if (comp != null && PurpleIvyUtils.getFogProgressWithOuterSources(count, comp, out var temp) > 0f)
             {
                 GameCondition_PurpleFog gameCondition =
                 (GameCondition_PurpleFog)GameConditionMaker.MakeConditionPermanent

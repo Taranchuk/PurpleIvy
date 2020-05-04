@@ -53,7 +53,7 @@ namespace PurpleIvy
                 if (comp != null)
                 {
                     bool temp;
-                    this.fogProgress[map] = PurpleIvyData.getFogProgressWithOuterSources(count, comp, out temp);
+                    this.fogProgress[map] = PurpleIvyUtils.getFogProgressWithOuterSources(count, comp, out temp);
                     if (this.fogProgress[map] <= 0)
                     {
                         this.End();
@@ -106,7 +106,7 @@ namespace PurpleIvy
                     bool temp;
                     if (comp != null)
                     {
-                        this.fogProgress[map] = PurpleIvyData.getFogProgressWithOuterSources(count, comp, out temp);
+                        this.fogProgress[map] = PurpleIvyUtils.getFogProgressWithOuterSources(count, comp, out temp);
                         if (this.fogProgress[map] <= 0)
                         {
                             this.End();
@@ -297,11 +297,11 @@ namespace PurpleIvy
                     comp.counter = count;
                     comp.infectedTile = map.Tile;
                     comp.radius = comp.GetRadius();
-                    PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(comp.counter);
+                    PurpleIvyData.TotalFogProgress[comp] = PurpleIvyUtils.getFogProgress(comp.counter);
                     comp.fillRadius();
                     map.Parent.AllComps.Add(comp);
-                    PurpleIvyData.TotalFogProgress[comp] = PurpleIvyData.getFogProgress(count);
-                    this.fogProgress[map] = PurpleIvyData.getFogProgressWithOuterSources(count, comp, out temp);
+                    PurpleIvyData.TotalFogProgress[comp] = PurpleIvyUtils.getFogProgress(count);
+                    this.fogProgress[map] = PurpleIvyUtils.getFogProgressWithOuterSources(count, comp, out temp);
                 }
                 else
                 {
@@ -348,7 +348,7 @@ namespace PurpleIvy
                     {
                         int count = map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy).Count;
                         bool temp;
-                        this.fogProgress[map] = PurpleIvyData.getFogProgressWithOuterSources(count, comp, out temp);
+                        this.fogProgress[map] = PurpleIvyUtils.getFogProgressWithOuterSources(count, comp, out temp);
                     }
                     else
                     {
