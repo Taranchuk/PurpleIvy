@@ -12,8 +12,8 @@
 		<increasesPopulation>true</increasesPopulation>
 		<showFactionInInspectString>true</showFactionInInspectString>
 		<requiresFaction>true</requiresFaction>
-		<approachOrderString>Attack {0}</approachOrderString>
-		<approachingReportString>Attacking {0}</approachingReportString>
+		<approachOrderString>Go to {0}</approachOrderString>
+		<approachingReportString>Go to {0}</approachingReportString>
 		<arrivedLetterDef>NegativeEvent</arrivedLetterDef>
 		<wantsThreatPoints>true</wantsThreatPoints>
 		<minThreatPoints>300</minThreatPoints>

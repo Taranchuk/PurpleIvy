@@ -23,13 +23,90 @@ namespace PurpleIvy
             base.ExposeData();
         }
 
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            foreach (Thing t in this.map.listerThings.AllThings)
+            {
+                Pawn pawn = null;
+                if (t is Pawn)
+                {
+                    pawn = (Pawn)t;
+
+                }
+                else if (t is Corpse)
+                {
+                    Corpse corpse = (Corpse)t;
+                    pawn = corpse.InnerPawn;
+                }
+                else
+                {
+                    continue;
+                }
+                AlienInfectionHediff hediff = (AlienInfectionHediff)pawn.health.hediffSet.hediffs
+                    .Where(x => x is AlienInfectionHediff).FirstOrDefault();
+                if (hediff != null)
+                {
+                    var comp = pawn.TryGetComp<AlienInfection>();
+                    if (comp == null)
+                    {
+                        if (hediff.instigator != null)
+                        {
+                            Log.Message("EXPOSE DATA: " + pawn.Label + " - " + hediff.instigator.defName);
+                            var dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
+                            comp = new AlienInfection();
+                            comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
+                            comp.parent = pawn;
+                            comp.Props.typesOfCreatures = new List<string>()
+                            {
+                                hediff.instigator.defName
+                            };
+                            var range = PurpleIvyData.maxNumberOfCreatures[hediff.instigator.race.defName];
+                            comp.maxNumberOfCreatures = hediff.maxNumberOfCreatures;
+                            comp.currentCountOfCreatures = hediff.currentCountOfCreatures;
+                            comp.startOfIncubation = hediff.startOfIncubation;
+                            comp.tickStartHediff = hediff.tickStartHediff;
+                            comp.stopSpawning = hediff.stopSpawning;
+                            comp.Props.maxNumberOfCreatures = range;
+                            comp.Props.incubationPeriod = new IntRange(10000, 40000);
+                            comp.Props.IncubationData = new IncubationData();
+                            comp.Props.IncubationData.tickStartHediff = new IntRange(2000, 4000);
+                            comp.Props.IncubationData.deathChance = 90;
+                            comp.Props.IncubationData.hediff = HediffDefOf.Pregnant.defName;
+                            if (pawn.Dead)
+                            {
+                                var corpse = pawn.Corpse;
+                                Log.Message("6 Adding infected comp to " + corpse);
+                                corpse.AllComps.Add(comp);
+                            }
+                            else
+                            {
+                                Log.Message("5 Adding infected comp to " + pawn);
+                                pawn.AllComps.Add(comp);
+                            }
+                        }
+                        else
+                        {
+                            Log.Message(pawn.Label + " - instigator null");
+                        }
+                    }
+                    else if (pawn.Dead && comp != null)
+                    {
+                        var corpse = pawn.Corpse;
+                        Log.Message("4 Adding infected comp to " + corpse);
+                        corpse.AllComps.Add(comp);
+                    }
+                }
+            }
+        }
+
         public override void MapComponentTick()
         {
             base.MapComponentTick();
             if (Find.TickManager.TicksGame % 250 == 0)
             {
                 var plants = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);
-                Log.Message("Checking orbital strike, " + this.OrbitalHelpActive + " - " + plants.Count);
+                //Log.Message("Checking orbital strike, " + this.OrbitalHelpActive + " - " + plants.Count);
                 if (plants != null && ((this.OrbitalHelpActive == true && plants.Count > 0)
                     || plants.Count > 1500)) // && Rand.Chance(PurpleIvyData.getFogProgress(plants.Count)))
                 {

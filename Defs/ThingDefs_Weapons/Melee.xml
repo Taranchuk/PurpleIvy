@@ -48,14 +48,32 @@
         <compClass>CompEquippable</compClass>
       </li>
     </comps>
-    <verbs>
+    <tools>
       <li>
-        <verbClass>Verb_MeleeAttack</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <meleeDamageBaseAmount>12</meleeDamageBaseAmount>
-        <meleeDamageDef>Stab</meleeDamageDef>
+        <label>handle</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
       </li>
-    </verbs>
+      <li>
+        <label>point</label>
+        <capacities>
+          <li>Stab</li>
+        </capacities>
+        <power>16</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>edge</label>
+        <capacities>
+          <li>Cut</li>
+        </capacities>
+        <power>16</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
   </ThingDef>
 
   <ThingDef ParentName="BaseGenMeleeWeapon">
@@ -78,14 +96,32 @@
         <compClass>CompEquippable</compClass>
       </li>
     </comps>
-    <verbs>
+    <tools>
       <li>
-        <verbClass>Verb_MeleeAttack</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <meleeDamageBaseAmount>19</meleeDamageBaseAmount>
-        <meleeDamageDef>Cut</meleeDamageDef>
+        <label>handle</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
       </li>
-    </verbs>
+      <li>
+        <label>point</label>
+        <capacities>
+          <li>Stab</li>
+        </capacities>
+        <power>16</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>edge</label>
+        <capacities>
+          <li>Cut</li>
+        </capacities>
+        <power>16</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
   </ThingDef>
 
 </Defs>

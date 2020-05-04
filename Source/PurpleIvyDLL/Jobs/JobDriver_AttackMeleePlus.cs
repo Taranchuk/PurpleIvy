@@ -38,28 +38,14 @@ namespace PurpleIvy
                     this.numMeleeAttacksMade++;
                     if (thing is Pawn && 1f >= Rand.Range(0f, 100f))
                     {
-                        if (PurpleIvyData.maxNumberOfCreatures.ContainsKey(this.pawn.def.defName) &&
+                        var victim = (Pawn)thing;
+                        if (!victim.RaceProps.IsMechanoid && PurpleIvyData.maxNumberOfCreatures.ContainsKey(this.pawn.def.defName) &&
                         thing.TryGetComp<AlienInfection>() == null)
                         {
-                            var victim = (Pawn)thing;
-                            var dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
-                            var comp = new AlienInfection();
-                            comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
-                            comp.parent = victim;
-                            comp.Props.typesOfCreatures = new List<string>()
-                                {
-                                    this.pawn.kindDef.defName
-                                };
-                            var range = PurpleIvyData.maxNumberOfCreatures[this.pawn.def.defName];
-                            comp.maxNumberOfCreatures = range.RandomInRange;
-                            comp.Props.maxNumberOfCreatures = range;
-                            comp.Props.incubationPeriod = new IntRange(10000, 40000);
-                            comp.Props.IncubationData = new IncubationData();
-                            comp.Props.IncubationData.tickStartHediff = new IntRange(2000, 4000);
-                            comp.Props.IncubationData.deathChance = 90;
-                            comp.Props.IncubationData.hediff = HediffDefOf.Pregnant.defName;
-                            victim.AllComps.Add(comp);
-                            Log.Message("10 Adding infected comp to living creature " + victim);
+                            AlienInfectionHediff hediff = (AlienInfectionHediff)HediffMaker.MakeHediff
+                            (PurpleIvyDefOf.PI_AlienInfection, victim);
+                            hediff.instigator = this.pawn.kindDef;
+                            victim.health.AddHediff(hediff);
                         }
                     }
                     if (this.numMeleeAttacksMade < this.job.maxNumMeleeAttacks) return;

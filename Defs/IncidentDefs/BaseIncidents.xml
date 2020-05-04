@@ -50,7 +50,7 @@
 			<li>Map_PlayerHome</li>
 		</targetTags>
 		<workerClass>PurpleIvy.IncidentWorker_AlienRaid</workerClass>
-		<baseChance>0</baseChance>
+		<baseChance>0.3</baseChance>
 		<category>ThreatBig</category>
 		<tale>Raid</tale>
 	</IncidentDef>

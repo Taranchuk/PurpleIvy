@@ -121,19 +121,12 @@ namespace PurpleIvy
             List<Pawn> list = this.generateAliensFrom(site);
             Log.Message((map != null).ToString());
             incidentParms.target = map;
-            incidentParms.points = StorytellerUtility.DefaultThreatPointsNow(map);
-            incidentParms.faction = PurpleIvyData.AlienFaction;
             Dictionary<Pawn, int> pawnList = new Dictionary<Pawn, int>();
             foreach (Pawn alien in list)
             {
                 pawnList[alien] = 0;
             }
             incidentParms.pawnGroups = pawnList;
-            incidentParms.generateFightersOnly = true;
-            incidentParms.forced = true;
-            incidentParms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
-            incidentParms.raidNeverFleeIndividual = true;
-            incidentParms.spawnCenter = CellFinder.RandomEdgeCell(map);
             Find.Storyteller.incidentQueue.Add(PurpleIvyDefOf.PI_AlienRaid, Find.TickManager.TicksGame, incidentParms, 0);
         }
 

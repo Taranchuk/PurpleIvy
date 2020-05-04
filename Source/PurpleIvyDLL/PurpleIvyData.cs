@@ -169,6 +169,14 @@ namespace PurpleIvy
             { "Genny_ParasiteOmega", new IntRange(1, 5) }
         };
 
+        public static Dictionary<List<string>, int> combatPoints = new Dictionary<List<string>, int>()
+        {
+            { Genny_ParasiteAlpha, 150 },
+            { Genny_ParasiteBeta, 100 },
+            { Genny_ParasiteGamma, 50 },
+            { Genny_ParasiteOmega, 35 }
+        };
+
         public static Dictionary<int, int> RadiusData = new Dictionary<int, int>()
                 {
                     {1, 5},

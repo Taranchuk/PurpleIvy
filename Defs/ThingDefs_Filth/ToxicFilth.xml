@@ -7,7 +7,7 @@
 		<description>toxic filth.</description>
 		<thingClass>PurpleIvy.Filth_ToxicFilth</thingClass>
 		<tickerType>Normal</tickerType>
-		<pathCost>1000</pathCost>
+		<pathCost>100</pathCost>
 		<statBases>
 			<Beauty>-30</Beauty>
 			<Cleanliness>-15</Cleanliness>

@@ -75,21 +75,14 @@ namespace PurpleIvy
             if (base.Dead)
             {
                 Log.Message("QUEEN DEEAD");
-                var dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
-                var comp = dummyCorpse.TryGetComp<AlienInfection>();
-                var corpse = (Corpse)this.ParentHolder;
-                comp.parent = corpse;
+                AlienInfectionHediff hediff = (AlienInfectionHediff)HediffMaker.MakeHediff
+                (PurpleIvyDefOf.PI_AlienInfection, this);
+                hediff.instigator = PawnKindDef.Named("Genny_ParasiteOmega");
                 var range = new IntRange(30, 50);
-                comp.Props.maxNumberOfCreatures = range;
-                comp.maxNumberOfCreatures = range.RandomInRange;
-                comp.Props.ageTick = new IntRange(40000, 50000);
-                comp.Props.ticksPerSpawn = new IntRange(1, 50);
-                comp.Props.incubationPeriod = new IntRange(1, 50);
-                comp.Props.typesOfCreatures = new List<string>()
-                {
-                    "Genny_ParasiteOmega"
-                };
-                corpse.AllComps.Add(comp);
+                hediff.maxNumberOfCreatures = range.RandomInRange;
+                hediff.ageTicks = new IntRange(40000, 50000).RandomInRange;
+                this.health.AddHediff(hediff);
+                var corpse = (Corpse)this.ParentHolder;
                 foreach (var dir in GenRadial.RadialCellsAround(corpse.Position, 4, true))
                 {
                     if (GenGrid.InBounds(dir, corpse.Map))

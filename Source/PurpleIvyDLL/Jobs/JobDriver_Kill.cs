@@ -43,68 +43,15 @@ namespace PurpleIvy
                         }
                         if (10f >= Rand.Range(0f, 100f))
                         {
-                            if (PurpleIvyData.maxNumberOfCreatures.ContainsKey(actor.def.defName) &&
+                            if (!victim.RaceProps.IsMechanoid && PurpleIvyData.maxNumberOfCreatures.ContainsKey(actor.def.defName) &&
                             thing.TryGetComp<AlienInfection>() == null)
                             {
-                                var dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
-                                var comp = new AlienInfection();
-                                comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
-                                comp.parent = victim;
-                                comp.Props.typesOfCreatures = new List<string>()
-                                {
-                                    actor.kindDef.defName
-                                };
-                                var range = PurpleIvyData.maxNumberOfCreatures[actor.def.defName];
-                                comp.maxNumberOfCreatures = range.RandomInRange;
-                                comp.Props.maxNumberOfCreatures = range;
-                                comp.Props.incubationPeriod = new IntRange(10000, 40000);
-                                comp.Props.IncubationData = new IncubationData();
-                                comp.Props.IncubationData.tickStartHediff = new IntRange(2000, 4000);
-                                comp.Props.IncubationData.deathChance = 90;
-                                comp.Props.IncubationData.hediff = HediffDefOf.Pregnant.defName;
-                                victim.AllComps.Add(comp);
-                                Log.Message("1 Adding infected comp to living creature " + victim);
+                                AlienInfectionHediff hediff = (AlienInfectionHediff)HediffMaker.MakeHediff
+                                (PurpleIvyDefOf.PI_AlienInfection, victim);
+                                hediff.instigator = this.pawn.kindDef;
+                                victim.health.AddHediff(hediff);
                             }
                         }
-                    }
-                    try
-                    {
-                        if (!victim.Dead) return;
-                        var comp = victim.TryGetComp<AlienInfection>();
-                        var corpse = (Corpse)victim.ParentHolder;
-                        if (comp != null)
-                        {
-                            Log.Message("2 Moving infected comp from living creature to corpse " + corpse);
-                            corpse.AllComps.Add(comp);
-                        }
-                        if (corpse.TryGetComp<AlienInfection>() != null) return;
-                        if (10f >= Rand.Range(0f, 100f))
-                        {
-                            Log.Message("3 " + thing + " killed! Now trying to attach an infected comp");
-                            if (PurpleIvyData.maxNumberOfCreatures.ContainsKey(actor.def.defName)
-                                && corpse.TryGetComp<AlienInfection>() == null)
-                            {
-                                var dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
-                                comp = new AlienInfection();
-                                comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
-                                comp.parent = corpse;
-                                comp.Props.typesOfCreatures = new List<string>()
-                                {
-                                    actor.kindDef.defName
-                                };
-                                var range = PurpleIvyData.maxNumberOfCreatures[actor.def.defName];
-                                comp.maxNumberOfCreatures = range.RandomInRange;
-                                comp.Props.maxNumberOfCreatures = range;
-                                corpse.AllComps.Add(comp);
-                                Log.Message("4 Adding infected comp to " + corpse);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Message("it seems there is a error" +
-                                    " with the pawn or it is not killed " + thing);
-                        Log.Message(ex.Message);
                     }
                 }
             };

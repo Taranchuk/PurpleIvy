@@ -28,7 +28,7 @@ namespace PurpleIvy
             var pawn2 = FindPawnTarget(pawn);
             if (pawn2 == null)
             {
-                if (pawn.GetRoom() != null)
+                if (pawn.GetRoom() != null && !pawn.GetRoom().PsychologicallyOutdoors)
                 {
                     Predicate<Thing> validator = delegate (Thing t)
                     {
@@ -40,8 +40,22 @@ namespace PurpleIvy
                     , 5f, validator);
                     if (door != null)
                     {
-                        Log.Message(door.Label);
                         return PurpleIvyUtils.MeleeAttackJob(pawn, door);
+                    }
+                    else
+                    {
+                        Predicate<Thing> validator2 = delegate (Thing t)
+                        {
+                            return t.def.defName.ToLower().Contains("wall");
+                        };
+                        var wall = GenClosest.ClosestThingReachable(pawn.Position,
+                        pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly,
+                        TraverseMode.ByPawn, false)
+                        , 5f, validator2);
+                        if (wall != null)
+                        {
+                            return PurpleIvyUtils.MeleeAttackJob(pawn, wall);
+                        }
                     }
                 }
             }

@@ -115,7 +115,6 @@ namespace PurpleIvy
             {
                 if (doorsHalfway.Contains(i))
                 {
-                    Log.Message(halfway.rect.EdgeCells.ToList()[i] + " position " + i);
                     ThingDef stuff = ThingDefOf.Plasteel;
                     Thing thing = ThingMaker.MakeThing(ThingDefOf.Door, stuff);
                     thing.SetFaction(rp.faction, null);
@@ -139,12 +138,18 @@ namespace PurpleIvy
                     thing.SetFaction(rp.faction, null);
                     GenSpawn.Spawn(thing, diningRoom.rect.ToList()[i], map, Rot4.North);
                 }
-                else if (i == 18 ||i == 22)
+                else if (i == 18 || i == 22)
                 {
                     ThingDef stuff = ThingDefOf.Steel;
                     Thing thing = ThingMaker.MakeThing(ThingDefOf.Table1x2c, stuff);
                     thing.SetFaction(rp.faction, null);
                     GenSpawn.Spawn(thing, diningRoom.rect.ToList()[i], map, Rot4.West);
+                }
+                else if (i == 11)
+                {
+                    Thing thing = ThingMaker.MakeThing(ThingDefOf.PsychicEmanator);
+                    thing.SetFaction(rp.faction, null);
+                    GenSpawn.Spawn(thing, diningRoom.rect.ToList()[i], map);
                 }
             }
 
@@ -341,7 +346,7 @@ namespace PurpleIvy
                     thing.SetFaction(rp.faction, null);
                     GenSpawn.Spawn(thing, pilotRoom.rect.ToList()[i], map, WipeMode.Vanish);
                 }
-                else if ( i == 73)
+                else if (i == 73)
                 {
                     Thing thing = ThingMaker.MakeThing(ThingDef.Named("Ship_CryptosleepCasket"));
                     thing.SetFaction(rp.faction, null);
@@ -378,22 +383,6 @@ namespace PurpleIvy
                     thing.SetFaction(rp.faction, null);
                     GenSpawn.Spawn(thing, pilotRoom.rect.ToList()[i], map, Rot4.South, WipeMode.Vanish);
                 }
-                Log.Message(pilotRoom.rect.ToList()[i] + " pilotRoom - position " + i);
-            }
-
-            for (var i = 0; i < diningRoom.rect.ToList().Count(); i++)
-            {
-
-            }
-
-            for (var i = 0; i < generators.rect.ToList().Count(); i++)
-            {
-
-            }
-
-            for (var i = 0; i < techRooms.rect.ToList().Count(); i++)
-            {
-
             }
 
             var intvecList = laboratory.rect.ContractedBy(1).Where(x => map.thingGrid.ThingsListAt(x)
@@ -405,22 +394,44 @@ namespace PurpleIvy
             Pawn pawn = PurpleIvyUtils.GenerateKorsolian("KorsolianScientist");
             GenSpawn.Spawn(pawn, intvecList.RandomElement(), map);
             pawn.Kill(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 50f));
-            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega), 
+
+            var corpse = (Corpse)pawn.ParentHolder;
+            var dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
+            var comp = dummyCorpse.TryGetComp<AlienInfection>();
+            comp.parent = corpse;
+            var range = PurpleIvyData.maxNumberOfCreatures["Genny_ParasiteOmega"];
+            comp.Props.maxNumberOfCreatures = range;
+            comp.maxNumberOfCreatures = range.RandomInRange;
+            comp.Props.typesOfCreatures = new List<string>()
+            {
+                "Genny_ParasiteOmega"
+            };
+            corpse.AllComps.Add(comp);
+
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega),
                 intvecList.RandomElement(), map);
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega),
+    intvecList.RandomElement(), map);
 
             intvecList = halfway.rect.ContractedBy(1).Where(x => map.thingGrid.ThingsListAt(x)
 .Where(y => y is Building).Count() == 0);
 
-            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega), 
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega),
                 intvecList.RandomElement(), map);
             GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega),
+                intvecList.RandomElement(), map);
+
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteBeta),
+    intvecList.RandomElement(), map);
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteGamma),
                 intvecList.RandomElement(), map);
 
             intvecList = techRooms.rect.ContractedBy(1).Where(x => map.thingGrid.ThingsListAt(x)
 .Where(y => y is Building).Count() == 0);
-
             GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega),
     intvecList.RandomElement(), map);
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega),
+intvecList.RandomElement(), map);
             FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
             FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
             FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
@@ -430,7 +441,6 @@ namespace PurpleIvy
 
             intvecList = generators.rect.ContractedBy(1).Where(x => map.thingGrid.ThingsListAt(x)
 .Where(y => y is Building).Count() == 0);
-
             GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega),
     intvecList.RandomElement(), map);
             FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
@@ -440,11 +450,17 @@ namespace PurpleIvy
             GenSpawn.Spawn(pawn, intvecList.RandomElement(), map);
             pawn.Kill(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 50f));
 
+            intvecList = diningRoom.rect.ContractedBy(1).Where(x => map.thingGrid.ThingsListAt(x)
+.Where(y => y is Building).Count() == 0);
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega),
+intvecList.RandomElement(), map);
+
             intvecList = pilotRoom.rect.ContractedBy(1).Where(x => map.thingGrid.ThingsListAt(x)
 .Where(y => y is Building).Count() == 0);
-
             GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteAlpha),
     intvecList.RandomElement(), map);
+            GenSpawn.Spawn(PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteAlpha),
+intvecList.RandomElement(), map);
             FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
             FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
             FilthMaker.TryMakeFilth(intvecList.RandomElement(), map, ThingDefOf.Filth_Blood);
@@ -464,6 +480,21 @@ namespace PurpleIvy
             GenSpawn.Spawn(pawn, intvecList.RandomElement(), map);
             pawn.Kill(new DamageInfo(PurpleIvyDefOf.AlienToxicSting, 50f));
 
+            foreach (var vec in rp.rect.ToList())
+            {
+                foreach (var t in map.thingGrid.ThingsListAt(vec))
+                {
+                    if (t is Building)
+                    {
+                        var b = (Building)t;
+                        b.HitPoints = Enumerable.Range(10, b.MaxHitPoints / 2).RandomElement();
+                        if (b.GetComp<CompBreakdownable>() != null)
+                        {
+                            b.GetComp<CompBreakdownable>().DoBreakdown();
+                        }
+                    }
+                }
+            }
         }
 
         protected CellRect adventureRegion;

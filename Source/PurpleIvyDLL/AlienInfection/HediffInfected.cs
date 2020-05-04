@@ -6,64 +6,89 @@ using System.Collections.Generic;
 
 namespace PurpleIvy
 {
-    public class HediffInfected : HediffWithComps
+    public class AlienInfectionHediff : HediffWithComps
     {
+        public PawnKindDef instigator = null;
+
+        public int currentCountOfCreatures = 0;
+        public int startOfIncubation = 0;
+        public int maxNumberOfCreatures = 0;
+        public bool prevAngle = true;
+        public int tickStartHediff = 0;
+        public bool stopSpawning = false;
         public override void PostAdd(DamageInfo? dinfo)
         {
-            var dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
-            var comp = new AlienInfection();
-            comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
-            comp.parent = this.pawn;
-            var parasite = DefDatabase<PawnKindDef>.AllDefsListForReading
-                .Where(x => x.defName.Contains("Genny_Parasite")).ToList().RandomElement<PawnKindDef>();
-            comp.Props.typesOfCreatures = new List<string>()
+            var comp = this.pawn.TryGetComp<AlienInfection>();
+            if (comp == null)
             {
-                parasite.defName
-            };
-            if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteAlpha.defName)
-            {
-                var range = new IntRange(1, 1);
-                comp.maxNumberOfCreatures = range.RandomInRange;
-                comp.Props.maxNumberOfCreatures = range;
+                var dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
+                comp = new AlienInfection();
+                comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
+                comp.parent = this.pawn;
+                if (instigator == null)
+                {
+                    instigator = DefDatabase<PawnKindDef>.AllDefsListForReading
+                    .Where(x => x.defName.Contains("Genny_Parasite")).ToList().RandomElement<PawnKindDef>();
+                }
+                var range = PurpleIvyData.maxNumberOfCreatures[instigator.race.defName];
+                int randomRange = range.RandomInRange;
+                comp.maxNumberOfCreatures = (int)(randomRange * this.pawn.BodySize);
+                if (comp.maxNumberOfCreatures > 0)
+                {
+                    Log.Message("Infection count based on body size: " + this.pawn +
+                    " - body size: " + this.pawn.BodySize + " - initial value: " + randomRange +
+                    " after: " + comp.maxNumberOfCreatures);
+                    comp.Props.maxNumberOfCreatures = range;
+                    comp.Props.typesOfCreatures = new List<string>()
+                    {
+                        instigator.defName
+                    };
+                    comp.Props.incubationPeriod = new IntRange(10000, 40000);
+                    comp.Props.IncubationData = new IncubationData
+                    {
+                        tickStartHediff = new IntRange(2000, 4000),
+                        deathChance = 90,
+                        hediff = HediffDefOf.Pregnant.defName
+                    };
+                    Log.Message("1 Adding infected comp to " + this.pawn);
+                    this.pawn.AllComps.Add(comp);
+                }
+                else
+                {
+                    Log.Message(this.pawn + " - zero count of infection");
+                    this.pawn.health.hediffSet.hediffs.Remove(this);
+                    this.PostRemoved();
+                }
             }
-            else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteBeta.defName)
-            {
-                var range = new IntRange(1, 3);
-                comp.maxNumberOfCreatures = range.RandomInRange;
-                comp.Props.maxNumberOfCreatures = range;
-            }
-            else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteGamma.defName)
-            {
-                var range = new IntRange(1, 3);
-                comp.maxNumberOfCreatures = range.RandomInRange;
-                comp.Props.maxNumberOfCreatures = range;
-            }
-            else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteOmega.defName)
-            {
-                var range = new IntRange(1, 5);
-                comp.maxNumberOfCreatures = range.RandomInRange;
-                comp.Props.maxNumberOfCreatures = range;
-            }
-            else if (parasite.race.defName == PurpleIvyDefOf.Genny_ParasiteNestGuard.defName)
-            {
-                var range = new IntRange(1, 1);
-                comp.maxNumberOfCreatures = range.RandomInRange;
-                comp.Props.maxNumberOfCreatures = range;
-            }
-            else if (parasite.defName != PurpleIvyDefOf.Genny_Queen.defName)
-            {
-                Log.Error("1 Something went wrong while adding infected comp: " + comp.parent + " - " + parasite);
-            }
-            comp.Props.incubationPeriod = new IntRange(10000, 40000);
-            comp.Props.IncubationData = new IncubationData
-            {
-                tickStartHediff = new IntRange(2000, 4000),
-                deathChance = 90,
-                hediff = HediffDefOf.Pregnant.defName
-            };
-            this.pawn.AllComps.Add(comp);
         }
 
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                var comp = this.pawn.TryGetComp<AlienInfection>();
+                if (comp != null)
+                {
+                    this.currentCountOfCreatures = comp.currentCountOfCreatures;
+                    this.startOfIncubation = comp.startOfIncubation;
+                    this.maxNumberOfCreatures = comp.maxNumberOfCreatures;
+                    this.prevAngle = comp.prevAngle;
+                    this.tickStartHediff = comp.tickStartHediff;
+                    this.stopSpawning = comp.stopSpawning;
+                }
+            }
+            Scribe_Defs.Look<PawnKindDef>(ref this.instigator, "instigator");
+            Scribe_Values.Look<int>(ref this.currentCountOfCreatures, "currentCountOfCreatures", 0, false);
+            Scribe_Values.Look<int>(ref this.startOfIncubation, "startOfIncubation", 0, false);
+            Scribe_Values.Look<int>(ref this.maxNumberOfCreatures, "maxNumberOfCreatures", 0, false);
+            Scribe_Values.Look<int>(ref this.tickStartHediff, "tickStartHediff", 0, false);
+            Scribe_Values.Look<bool>(ref this.stopSpawning, "stopSpawning", false, false);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+
+            }
+        }
     }
 }
 

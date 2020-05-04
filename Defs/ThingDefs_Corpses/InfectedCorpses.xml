@@ -10,7 +10,7 @@
 		<li Class="PurpleIvy.CompProperties_AlienInfection">
 			<compClass>PurpleIvy.AlienInfection</compClass>
 			<numberOfCreaturesPerSpawn>1</numberOfCreaturesPerSpawn>
-			<maxNumberOfCreatures>0~0</maxNumberOfCreatures>
+			<maxNumberOfCreatures>1~1</maxNumberOfCreatures>
 			<ageTick>0</ageTick>
 			<ticksPerSpawn>1000~2000</ticksPerSpawn>
 			<rotProgressPerSpawn>20000~30000</rotProgressPerSpawn>

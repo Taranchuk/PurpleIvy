@@ -67,7 +67,7 @@
 							</li>
 							<li Class="QuestNode_AddHediff">
 								<pawns>$joiner</pawns>
-								<hediffDef>HediffInfected</hediffDef>
+								<hediffDef>PI_AlienInfection</hediffDef>
 							</li>
 						</nodes>
 					</node>

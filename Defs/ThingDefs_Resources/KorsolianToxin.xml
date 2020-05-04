@@ -6,7 +6,7 @@
 		<label>Korsolian toxin</label>
 		<description>Korsolian toxin.</description>
 		<graphicData>
-			<texPath>Things/Resources/KorsolianToxin</texPath>
+			<texPath>Things/Resources/Extractions/Toxin</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>

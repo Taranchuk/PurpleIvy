@@ -150,9 +150,9 @@ namespace PurpleIvy
                             comp.Props.maxNumberOfCreatures = range;
                             comp.maxNumberOfCreatures = range.RandomInRange;
                             comp.Props.typesOfCreatures = new List<string>()
-                        {
-                            "Genny_ParasiteOmega"
-                        };
+                            {
+                                "Genny_ParasiteOmega"
+                            };
                             corpse.AllComps.Add(comp);
                             Log.Message("5 Adding infected comp to " + corpse);
                         }

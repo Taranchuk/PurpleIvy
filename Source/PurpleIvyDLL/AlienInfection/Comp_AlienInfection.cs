@@ -176,8 +176,7 @@ namespace PurpleIvy
                         GenSpawn.Spawn(newPawn, this.parent.Position, this.parent.Map);
                         break;
                     default:
-                        Log.Error("Unknown parent. Cant spawn. " +
-                                  "Parent: " + this.parent);
+                        Log.Error("Unknown parent. Cant spawn. Parent: " + this.parent);
                         break;
                 }
                 currentCountOfCreatures++;
@@ -190,40 +189,48 @@ namespace PurpleIvy
         }
         public void HatchFromCorpse(Pawn newPawn)
         {
-            var compRottable = this.parent.TryGetComp<CompRottable>();
+            var corpse = (Corpse)this.parent;
+            var compRottable = corpse.TryGetComp<CompRottable>();
             if (compRottable != null && compRottable.Stage < RotStage.Dessicated)
             {
                 compRottable.RotProgress += this.Props.rotProgressPerSpawn.RandomInRange;
-                FilthMaker.TryMakeFilth(this.parent.Position, this.parent.Map, ThingDefOf.Filth_Blood);
+                FilthMaker.TryMakeFilth(corpse.Position, corpse.Map, corpse.InnerPawn.def.race.BloodDef);
             }
-            GenSpawn.Spawn(newPawn, this.parent.Position, this.parent.Map);
+            GenSpawn.Spawn(newPawn, corpse.Position, corpse.Map);
         }
 
         public void HatchFromPawn(Pawn newPawn)
         {
             var host = (Pawn)this.parent;
-            this.parent.TakeDamage(new DamageInfo(DamageDefOf.SurgicalCut, 25f));
+            host.TakeDamage(new DamageInfo(DamageDefOf.SurgicalCut, 25f));
             if (host.Dead)
             {
                 var corpse = (Corpse)this.parent.ParentHolder;
-                corpse.AllComps.Add(this);
-                FilthMaker.TryMakeFilth(corpse.Position, corpse.Map, ThingDefOf.Filth_Blood);
+                var compRottable = corpse.TryGetComp<CompRottable>();
+                if (compRottable != null && compRottable.Stage < RotStage.Dessicated)
+                {
+                    compRottable.RotProgress += this.Props.rotProgressPerSpawn.RandomInRange;
+                    FilthMaker.TryMakeFilth(corpse.Position, corpse.Map, corpse.InnerPawn.def.race.BloodDef);
+                }
                 GenSpawn.Spawn(newPawn, corpse.Position, corpse.Map);
             }
             else if (this.Props.IncubationData.deathChance >= Rand.RangeInclusive(0, 100))
             {
                 this.parent.Kill();
                 var corpse = (Corpse)this.parent.ParentHolder;
+                Log.Message("3 Adding infected comp to " + corpse);
                 corpse.AllComps.Add(this);
-                FilthMaker.TryMakeFilth(corpse.Position, corpse.Map, ThingDefOf.Filth_Blood);
+                this.parent.AllComps.Remove(this);
+                FilthMaker.TryMakeFilth(corpse.Position, corpse.Map, corpse.InnerPawn.def.race.BloodDef);
                 GenSpawn.Spawn(newPawn, corpse.Position, corpse.Map);
             }
             else
             {
-                FilthMaker.TryMakeFilth(this.parent.Position, this.parent.Map, ThingDefOf.Filth_Blood);
-                GenSpawn.Spawn(newPawn, this.parent.Position, this.parent.Map);
+                FilthMaker.TryMakeFilth(host.Position, host.Map, host.def.race.BloodDef);
+                GenSpawn.Spawn(newPawn, host.Position, host.Map);
             }
         }
+
         public override void CompTick()
         {
             base.CompTick();

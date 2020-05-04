@@ -21,7 +21,7 @@
 	<ThingDef ParentName="AlienFilth">
 		<defName>AlienBloodFilth</defName>
 		<label>alien blood</label>
-		<pathCost>1000</pathCost>
+		<pathCost>100</pathCost>
 		<statBases>
 			<Beauty>10</Beauty>
 			<Cleanliness>-5</Cleanliness>
