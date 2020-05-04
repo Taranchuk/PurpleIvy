@@ -7,6 +7,15 @@ namespace PurpleIvy
 {
 	public static class PurpleIvyMoteMaker
 	{
+        public static void ThrowLightningGlow(Vector3 loc, Map map, float size)
+        {
+            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_LightningGlow, null);
+            moteThrown.Scale = Rand.Range(4f, 6f) * size;
+            moteThrown.rotationRate = Rand.Range(-3f, 3f);
+            moteThrown.exactPosition = loc + size * new Vector3(Rand.Value - 0.5f, 0f, Rand.Value - 0.5f);
+            moteThrown.SetVelocity((float)Rand.Range(0, 360), 1.2f);
+            GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
+        }
         public static void ThrowToxicGas(Vector3 loc, Map map)
         {
             MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_Smoke, null);

@@ -56,6 +56,7 @@ namespace PurpleIvy
             }
             this.damType.Worker.ExplosionStart(this, this.cellsToAffect);
             this.PlayExplosionSound(explosionSound);
+            Log.Message("1 MoteMaker");
             MoteMaker.MakeWaterSplash(base.Position.ToVector3Shifted(), base.Map, this.radius * 6f, 20f);
             this.cellsToAffect.Sort((IntVec3 a, IntVec3 b) => this.GetCellAffectTick(b).CompareTo(this.GetCellAffectTick(a)));
             RegionTraverser.BreadthFirstTraverse(base.Position, base.Map, (Region from, Region to) => true, delegate (Region x)

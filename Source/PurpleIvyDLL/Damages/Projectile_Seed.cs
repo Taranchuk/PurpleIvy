@@ -41,6 +41,8 @@ namespace PurpleIvy
             {
                 foreach (IntVec3 current in hitThing.CellsAdjacent8WayAndInside())
                 {
+                    Log.Message("4 MoteMaker");
+
                     MoteMaker.ThrowDustPuff(current, this.Map, 2f);
                     var t = GenClosest.ClosestThingReachable(hitThing.Position, hitThing.Map, 
                         ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.ClosestTouch, 

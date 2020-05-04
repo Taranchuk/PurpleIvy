@@ -93,6 +93,9 @@ namespace PurpleIvy
             ToilEffects.PlaySustainerOrSound(toil, () => toil.actor.CurJob.bill.recipe.soundWorking);
             ToilEffects.WithProgressBar(toil, TargetIndex.A, delegate ()
             {
+                Log.Message((PurpleIvyUtils.GetPercentageFromPartWhole
+                (this.job.bill.recipe.workAmount - this.workCycleProgress,
+                (int)this.job.bill.recipe.workAmount) / 100f).ToString());
                 return PurpleIvyUtils.GetPercentageFromPartWhole
                 (this.job.bill.recipe.workAmount - this.workCycleProgress,
                 (int)this.job.bill.recipe.workAmount) / 100f;

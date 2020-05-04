@@ -13,6 +13,8 @@ namespace PurpleIvy
             {
                 GenTemperature.PushHeat(explosion.Position, explosion.Map, this.def.explosionHeatEnergyPerCell * (float)cellsToAffect.Count);
             }
+            Log.Message("5 MoteMaker");
+
             MoteMaker.MakeStaticMote(explosion.Position, explosion.Map, ThingDefOf.Mote_ExplosionFlash, explosion.radius * 6f);
             this.ExplosionVisualEffectCenter(explosion);
         }

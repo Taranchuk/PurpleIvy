@@ -17,6 +17,15 @@ namespace PurpleIvy
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            if (this.Growth >= 0.25f)
+            {
+                this.ThrowGasOrAdjustGasSize();
+            }
+        }
+
+        public override void PostMake()
+        {
+            base.PostMake();
             if (Rand.Chance(0.15f))
             {
                 CanMutate = true;
@@ -24,14 +33,6 @@ namespace PurpleIvy
             else
             {
                 CanMutate = false;
-            }
-        }
-        public override void PostMapInit()
-        {
-            base.PostMapInit();
-            if (this.Growth >= 0.25f)
-            {
-                this.ThrowGasOrAdjustGasSize();
             }
         }
 
@@ -401,7 +402,11 @@ namespace PurpleIvy
                 {
                     this.DoDamageToThings(Position);
                 }
-
+            }
+            if (this.Growth >= 0.75f && Find.TickManager.TicksGame % Rand.RangeInclusive(60, 100) == 0 
+                && Rand.Chance(0.3f))
+            {
+                PurpleIvyMoteMaker.ThrowEMPLightningGlow(this.Position.ToVector3Shifted(), this.Map, 0.3f);
             }
         }
         public override void ExposeData()
