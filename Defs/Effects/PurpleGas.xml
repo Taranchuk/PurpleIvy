@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="MoteBase">
+		<defName>PI_PurpleGas</defName>
+		<graphicData>
+			<texPath>MoteAbilities/Smoke/SmokeRed</texPath>
+			<color>(150, 0, 255, 125)</color>
+			<!--<color>(94, 0, 255, 125)</color>-->
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<fadeInTime>0.50</fadeInTime>
+			<solidTime>6</solidTime>
+			<fadeOutTime>3.2</fadeOutTime>
+			<growthRate>0.005</growthRate>
+		</mote>
+	</ThingDef> 
+
+</Defs>

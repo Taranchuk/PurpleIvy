@@ -112,3 +112,4 @@ namespace PurpleIvy
         private float workCycleProgress;
     }
 }
+

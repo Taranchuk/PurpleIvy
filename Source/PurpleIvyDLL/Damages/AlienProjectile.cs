@@ -38,15 +38,11 @@ namespace PurpleIvy
             else
             {
                 SoundStarter.PlayOneShot(SoundDefOf.BulletImpact_Ground, new TargetInfo(base.Position, map, false));
-                Log.Message("2 MoteMaker");
-
-                MoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                //MoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
                 bool takeSplashes = GridsUtility.GetTerrain(base.Position, map).takeSplashes;
                 if (takeSplashes)
                 {
-                    Log.Message("3 MoteMaker");
-
-                    MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)base.DamageAmount) * 1f, 4f);
+                    //MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)base.DamageAmount) * 1f, 4f);
                 }
             }
         }

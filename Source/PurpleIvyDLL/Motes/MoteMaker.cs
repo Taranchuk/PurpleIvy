@@ -7,6 +7,51 @@ namespace PurpleIvy
 {
 	public static class PurpleIvyMoteMaker
 	{
+        public static void ThrowDustPuff(Vector3 loc, Map map, float scale)
+        {
+            if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
+            {
+                return;
+            }
+            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_DustPuff, null);
+            moteThrown.Scale = 1.9f * scale;
+            moteThrown.rotationRate = (float)Rand.Range(-60, 60);
+            moteThrown.exactPosition = loc;
+            moteThrown.SetVelocity((float)Rand.Range(0, 360), Rand.Range(0.6f, 0.75f));
+            moteThrown.instanceColor = new Color(0.368f, 0f, 1f);
+
+            GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
+        }
+
+        public static void ThrowExplosionCell(IntVec3 cell, Map map, ThingDef moteDef, Color color)
+        {
+            if (!cell.ShouldSpawnMotesAt(map))
+            {
+                return;
+            }
+            Mote moteThrown = (Mote)ThingMaker.MakeThing(moteDef, null);
+            moteThrown.exactRotation = (float)(90 * Rand.RangeInclusive(0, 3));
+            moteThrown.exactPosition = cell.ToVector3Shifted();
+            moteThrown.instanceColor = new Color(0.368f, 0f, 1f);
+            GenSpawn.Spawn(moteThrown, cell, map, WipeMode.Vanish);
+            if (Rand.Value < 0.7f)
+            {
+                PurpleIvyMoteMaker.ThrowDustPuff(cell.ToVector3Shifted(), map, 1.2f);
+            }
+        }
+        public static Mote MakeStaticMote(Vector3 loc, Map map, ThingDef moteDef, float scale = 1f)
+        {
+            if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.Saturated)
+            {
+                return null;
+            }
+            Mote moteThrown = (Mote)ThingMaker.MakeThing(moteDef, null);
+            moteThrown.exactPosition = loc;
+            moteThrown.Scale = scale;
+            moteThrown.instanceColor = new Color(0.368f, 0f, 1f);
+            GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
+            return moteThrown;
+        }
         public static void ThrowLightningGlow(Vector3 loc, Map map, float size)
         {
             MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_LightningGlow, null);
@@ -30,7 +75,6 @@ namespace PurpleIvy
         {
             //moteThrown.instanceColor = new ColorInt(43, 56, 54).ToColor; // to investigate
             //moteThrown.Scale = Rand.Range(2.5f, 3.9f); to investigate
-
             MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_Smoke, null);
             moteThrown.Scale = Rand.Range(0.5f, 0.9f);
             moteThrown.rotationRate = Rand.Range(-30f, 30f);
@@ -41,7 +85,23 @@ namespace PurpleIvy
             moteThrown.instanceColor = new Color(0f, 0.0862f, 0.094117f);
             GenSpawn.Spawn(moteThrown, IntVec3Utility.ToIntVec3(loc), map, WipeMode.Vanish);
         }
-		public static void ThrowEMPMicroSparks(Vector3 loc, Map map)
+        
+        public static void ThrowToxicPostExplosionSmoke(Vector3 loc, Map map, float size)
+        {
+            if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
+            {
+                return;
+            }
+            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_Smoke, null);
+            moteThrown.Scale = Rand.Range(1.5f, 2.5f) * size;
+            moteThrown.rotationRate = Rand.Range(-30f, 30f);
+            moteThrown.exactPosition = loc;
+            moteThrown.SetVelocity((float)Rand.Range(30, 40), Rand.Range(0.5f, 0.7f));
+            moteThrown.instanceColor = new Color(0.368f, 0f, 1f);
+            GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
+        
+        }
+        public static void ThrowEMPMicroSparks(Vector3 loc, Map map)
 		{
 			if (!GenView.ShouldSpawnMotesAt(loc, map) || map.moteCounter.SaturatedLowPriority)
 			{
@@ -56,7 +116,7 @@ namespace PurpleIvy
 			moteThrown.SetVelocity((float)Rand.Range(35, 45), 1.2f);
 			GenSpawn.Spawn(moteThrown, IntVec3Utility.ToIntVec3(loc), map, 0);
 		}
-
+        
 		public static void ThrowEMPLightningGlow(Vector3 loc, Map map, float size)
 		{
 			if (!GenView.ShouldSpawnMotesAt(loc, map) || map.moteCounter.SaturatedLowPriority)
@@ -70,7 +130,7 @@ namespace PurpleIvy
 			moteThrown.SetVelocity((float)Rand.Range(0, 360), 1.2f);
 			GenSpawn.Spawn(moteThrown, IntVec3Utility.ToIntVec3(loc), map, 0);
 		}
-
+        
 		public static void ThrowEMPSmoke(Vector3 loc, Map map, float size)
 		{
 			if (!GenView.ShouldSpawnMotesAt(loc, map) || map.moteCounter.SaturatedLowPriority)

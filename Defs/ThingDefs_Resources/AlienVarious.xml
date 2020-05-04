@@ -28,6 +28,8 @@
 		<graphicData>
 			<texPath>Things/Resources/Various/AlphaNervousSystem</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
+      			<drawSize>2.25</drawSize>
+
 		</graphicData>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
@@ -48,6 +50,8 @@
 		<graphicData>
 			<texPath>Things/Resources/Various/AlphaNervousSystem</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
+      			<drawSize>2</drawSize>
+
 		</graphicData>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
@@ -68,6 +72,7 @@
 		<graphicData>
 			<texPath>Things/Resources/Various/AlphaNervousSystem</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
+      			<drawSize>2</drawSize>
 		</graphicData>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
@@ -166,8 +171,9 @@
 		<label>BigTentacles</label>
 		<description>BigTentacles</description>
 		<graphicData>
-			<texPath>Things/Resources/Various/PI_BigTentacles</texPath>
+			<texPath>Things/Resources/Various/PI_Tentacles</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
+      			<drawSize>2</drawSize>
 		</graphicData>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>

@@ -23,8 +23,6 @@ namespace PurpleIvy
 			var cellsToAffect = SimplePool<List<IntVec3>>.Get();
 			cellsToAffect.Clear();
 			cellsToAffect.AddRange(def.projectile.damageDef.Worker.ExplosionCellsToHit(Position, map, radius));
-
-			MoteMaker.MakeStaticMote(Position, map, ThingDefOf.Mote_ExplosionFlash, radius * 4f);
 			for (int i = 0; i < 4; i++)
 			{
 				MoteMaker.ThrowSmoke(Position.ToVector3Shifted() + Gen.RandomHorizontalVector(radius * 0.7f), map, radius * 0.6f);
