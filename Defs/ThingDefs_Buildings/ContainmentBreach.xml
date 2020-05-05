@@ -102,7 +102,6 @@
 		<label>PI_ContainmentBreachAdv</label>
 		<description>PI_ContainmentBreachAdv</description>
 		<graphicData>
-			<!--<texPath>Things/Building/ContainmentBreach/ContainmentBreach</texPath>-->
 			<texPath>Things/Building/ContainmentBreach/ContainmentBreachAdv</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>(3,3)</drawSize>

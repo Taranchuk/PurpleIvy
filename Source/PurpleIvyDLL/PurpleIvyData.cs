@@ -32,6 +32,12 @@ namespace PurpleIvy
             PurpleIvyDefOf.PI_BasicBionics
         };
 
+        public static List<ResearchProjectDef> BioStudy = new List<ResearchProjectDef>
+        {
+            PurpleIvyDefOf.PI_BasicDrugs,
+            PurpleIvyDefOf.PI_BasicBionics
+        };
+
         public static List<string> Genny_ParasiteAlpha = new List<string>
         {
             "Genny_ParasiteAlphaA",

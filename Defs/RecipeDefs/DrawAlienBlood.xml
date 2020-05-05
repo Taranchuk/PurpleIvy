@@ -11,6 +11,7 @@
 			<li>PI_ContainmentBreach</li>
 			<li>PI_ContainmentBreachAdv</li>
 		</recipeUsers>
+		<researchPrerequisite>PI_ResourceExtraction</researchPrerequisite>
 		<workAmount>100</workAmount>
 		<targetsBodyPart>false</targetsBodyPart>
 		<ingredients>
@@ -35,6 +36,7 @@
 		<label>Draw blood from alpha parasite</label>
 		<description>Draw blood from alien.</description>
 		<jobString>Drawing alien blood</jobString>
+		<researchPrerequisite>PI_ResourceExtraction</researchPrerequisite>
 		<surgerySuccessChanceFactor>1.0</surgerySuccessChanceFactor>
 		<deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
 		<recipeUsers>
@@ -65,6 +67,7 @@
 		<label>Draw blood from beta parasite</label>
 		<description>Draw blood from alien.</description>
 		<jobString>Drawing alien blood</jobString>
+		<researchPrerequisite>PI_ResourceExtraction</researchPrerequisite>
 		<surgerySuccessChanceFactor>1.0</surgerySuccessChanceFactor>
 		<deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
 		<recipeUsers>
@@ -96,6 +99,7 @@
 		<label>Draw blood from gamma parasite</label>
 		<description>Draw blood from alien.</description>
 		<jobString>Drawing alien blood</jobString>
+		<researchPrerequisite>PI_ResourceExtraction</researchPrerequisite>
 		<surgerySuccessChanceFactor>1.0</surgerySuccessChanceFactor>
 		<deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
 		<recipeUsers>
@@ -126,6 +130,7 @@
 		<label>Draw blood from omega parasite</label>
 		<description>Draw blood from alien.</description>
 		<jobString>Drawing alien blood</jobString>
+		<researchPrerequisite>PI_ResourceExtraction</researchPrerequisite>
 		<surgerySuccessChanceFactor>1.0</surgerySuccessChanceFactor>
 		<deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
 		<recipeUsers>
@@ -150,12 +155,13 @@
 			</categories>
 		</fixedIngredientFilter>
 	</RecipeDef>
-	
-		<RecipeDef>
+
+	<RecipeDef>
 		<defName>DrawGuardAlienBlood</defName>
 		<label>Draw blood from nest guard parasite</label>
 		<description>Draw blood from alien.</description>
 		<jobString>Drawing alien blood</jobString>
+		<researchPrerequisite>PI_ResourceExtraction</researchPrerequisite>
 		<surgerySuccessChanceFactor>1.0</surgerySuccessChanceFactor>
 		<deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
 		<recipeUsers>
@@ -180,5 +186,5 @@
 			</categories>
 		</fixedIngredientFilter>
 	</RecipeDef>
-	
+
 </Defs>

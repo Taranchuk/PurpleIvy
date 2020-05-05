@@ -6,7 +6,7 @@
   <ThingDef ParentName="BenchBase">
     <defName>PI_BioLab</defName>
     <label>Bio Laboratory</label>
-    <thingClass>Building_WorkTable</thingClass>
+    <thingClass>PurpleIvy.Building_BioLab</thingClass>
     <description>A complex Hi-Teach Bio Lab, allows to Manufacture synthetic food and Extremely advanced Cosmos Bionics.</description>
     <graphicData>
       <texPath>Things/Building/Production/BioBench/BioLab</texPath>

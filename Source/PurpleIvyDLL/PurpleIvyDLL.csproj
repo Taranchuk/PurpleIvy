@@ -297,6 +297,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buildings\Building_BioLab.cs" />
     <Compile Include="Buildings\DefModExtension_СontainmentBreach.cs" />
     <Compile Include="Buildings\Building_СontainmentBreach.cs" />
     <Compile Include="Buildings\Building_GasPump.cs" />
@@ -333,6 +334,7 @@
     <Compile Include="Jobs\JobDriver_JumpToTarget.cs" />
     <Compile Include="Jobs\JobDriver_HaulToCellPlus.cs" />
     <Compile Include="Jobs\JobGiver_CollectCorpsesToHive.cs" />
+    <Compile Include="Jobs\WorkGiver_DoBioBill.cs" />
     <Compile Include="Jobs\WorkGiver_DoAlienBill.cs" />
     <Compile Include="Jobs\JobDriver_DoBillPlus.cs" />
     <Compile Include="Jobs\JobDriver_DrawKorsolianToxin.cs" />

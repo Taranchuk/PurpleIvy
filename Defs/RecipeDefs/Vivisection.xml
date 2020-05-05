@@ -14,6 +14,7 @@
 		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<researchPrerequisite>PI_Vivisection</researchPrerequisite>
 		<products>
 			<PI_PlasmaNucleus>3</PI_PlasmaNucleus>
 			<PI_AlphaNervousSystem>1</PI_AlphaNervousSystem>
@@ -36,6 +37,7 @@
 		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<researchPrerequisite>PI_Vivisection</researchPrerequisite>
 		<products>
 			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
 			<PI_BetaNervousSystem>1</PI_BetaNervousSystem>
@@ -57,6 +59,7 @@
 		<workAmount>300</workAmount>
 		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>
+		<researchPrerequisite>PI_Vivisection</researchPrerequisite>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
 		<products>
 			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
@@ -83,13 +86,14 @@
 			<PI_ToxicSac>1</PI_ToxicSac>
 			<PI_OmegaBlood>5</PI_OmegaBlood>
 		</products>
+		<researchPrerequisite>PI_Vivisection</researchPrerequisite>
 		<workAmount>300</workAmount>
 		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>
 		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
 	</RecipeDef> 
-	
-		<RecipeDef>
+
+	<RecipeDef>
 		<defName>PreciseVivisectionGuard</defName>
 		<label>Precise vivisection (guard)</label>
 		<description>Precise vivisection (guard).</description>
@@ -98,6 +102,7 @@
 			<li>PI_ContainmentBreach</li>
 			<li>PI_ContainmentBreachAdv</li>
 		</recipeUsers>
+		<researchPrerequisite>PI_Vivisection</researchPrerequisite>
 		<products>
 			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
 			<PI_OmegaNervousSystem>1</PI_OmegaNervousSystem>

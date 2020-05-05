@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<RecipeDef>
+		<defName>PI_BiomaterialsStudyRecipe</defName>
+		<label>Biomaterials study</label>
+		<description>Biomaterials study.</description>
+		<jobString>Studying alien biomaterials</jobString>
+		<recipeUsers>
+			<li>PI_BioLab</li>
+		</recipeUsers>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Intellectual</workSkill>
+		<workAmount>30000</workAmount>
+	</RecipeDef> 
+
+</Defs>

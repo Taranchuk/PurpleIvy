@@ -403,8 +403,8 @@ namespace PurpleIvy
                     this.DoDamageToThings(Position);
                 }
             }
-            if (this.Growth >= 0.75f && Find.TickManager.TicksGame % Rand.RangeInclusive(60, 100) == 0 
-                && Rand.Chance(0.3f))
+            if (this.Growth >= 0.75f && Rand.Chance(0.3f) && Find.TickManager.TicksGame 
+                % Rand.RangeInclusive(60, 100) == 0)
             {
                 PurpleIvyMoteMaker.ThrowEMPLightningGlow(this.Position.ToVector3Shifted(), this.Map, 0.3f);
             }
