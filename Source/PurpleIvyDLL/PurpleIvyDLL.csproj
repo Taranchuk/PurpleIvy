@@ -313,6 +313,7 @@
     <Compile Include="Damages\SectionLayer_BuildingsToxicDamage.cs" />
     <Compile Include="HarmonyPatches\AlienLairs_GenStepPatch.cs" />
     <Compile Include="HarmonyPatches\AlienLairsBasesGeneration.cs" />
+    <Compile Include="HarmonyPatches\MakePawnsNotIgnoreAliens.cs" />
     <Compile Include="HarmonyPatches\MakeParasitesWalk.cs" />
     <Compile Include="HarmonyPatches\DisableAliensFlee.cs" />
     <Compile Include="HarmonyPatches\CheckAlienLairsDefeated.cs" />

@@ -35,7 +35,7 @@ namespace PurpleIvy
         {
             get
             {
-                return 1f;
+                return 0.1f;
             }
         }
 
@@ -46,15 +46,20 @@ namespace PurpleIvy
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            this.factionInt = PurpleIvyData.AlienFaction;
+            this.SetFaction(PurpleIvyData.AlienFaction);
+            if (this.Growth >= 0.25f)
+            {
+                this.ThrowGasOrAdjustGasSize();
+            }
+        }
+
+        public override void SetFaction(Faction newFaction, Pawn recruiter = null)
+        {
+            this.factionInt = newFaction;
             IAttackTarget attackTarget = this as IAttackTarget;
             if (attackTarget != null)
             {
                 this.Map.attackTargetsCache.UpdateTarget(attackTarget);
-            }
-            if (this.Growth >= 0.25f)
-            {
-                this.ThrowGasOrAdjustGasSize();
             }
         }
 
@@ -264,7 +269,6 @@ namespace PurpleIvy
             if (this.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacNestGuard).Count == 0)
             {
                 Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSacNestGuard);
-                EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                 GenSpawn.Spawn(EggSac, Position, this.Map);
                 Log.Message("No other guard eggs - " + this + " mutate into EggSac NestGuard");
             }
@@ -286,7 +290,6 @@ namespace PurpleIvy
                 else if (randChance >= 0.35f && randChance <= 0.359f)
                 {
                     var GenMortar = (Building_TurretGun)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
-                    GenMortar.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(GenMortar, Position, this.Map);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenMortar");
 
@@ -294,14 +297,12 @@ namespace PurpleIvy
                 else if (randChance >= 0.36f && randChance <= 0.369f)
                 {
                     Thing thing = ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase, null);
-                    thing.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(thing, this.Position, this.Map, thing.Rotation, WipeMode.Vanish, false);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenTurret");
                 }
                 else if (randChance >= 0.44f && randChance <= 0.4459f) // 0.005 - 0.5%
                 {
                     var EggSac = ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
-                    EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
                     if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteAlpha).Count
                         > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteAlpha.defName])
@@ -313,7 +314,6 @@ namespace PurpleIvy
                 else if (randChance >= 0.446f && randChance <= 0.4549f)
                 {
                     var EggSac = ThingMaker.MakeThing(PurpleIvyDefOf.EggSacBeta);
-                    EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
                     if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacBeta).Count
                         > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteBeta.defName])
@@ -325,7 +325,6 @@ namespace PurpleIvy
                 else if (randChance >= 0.455f && randChance <= 0.469f)
                 {
                     var EggSac = ThingMaker.MakeThing(PurpleIvyDefOf.EggSacGamma);
-                    EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
                     if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma).Count 
                         > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma.defName])
@@ -339,7 +338,6 @@ namespace PurpleIvy
                     if (this.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacNestGuard).Count < 4)
                     {
                         var EggSac = ThingMaker.MakeThing(PurpleIvyDefOf.EggSacNestGuard);
-                        EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                         GenSpawn.Spawn(EggSac, Position, this.Map);
                         Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac NestGuard");
                     }
@@ -347,7 +345,6 @@ namespace PurpleIvy
                 else if (randChance >= 0.50f && randChance <= 0.519f)
                 {
                     var EggSac = ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
-                    EggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
                     if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.Genny_ParasiteOmega).Count
                         > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteOmega.defName])
@@ -366,7 +363,6 @@ namespace PurpleIvy
                 else if (randChance >= 0.30f && randChance <= 0.329f)
                 {
                     var GasPump = ThingMaker.MakeThing(PurpleIvyDefOf.GasPump);
-                    GasPump.SetFactionDirect(PurpleIvyData.AlienFaction);
                     GenSpawn.Spawn(GasPump, Position, this.Map);
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GasPump");
                 }

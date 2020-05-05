@@ -9,6 +9,11 @@ namespace PurpleIvy
 {
     class Building_GenMortarGun : Building_TurretGun
     {
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            this.SetFaction(PurpleIvyData.AlienFaction);
+        }
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
         {
             Random random = new Random();

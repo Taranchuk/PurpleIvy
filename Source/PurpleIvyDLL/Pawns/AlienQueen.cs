@@ -23,6 +23,7 @@ namespace PurpleIvy
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            this.SetFaction(PurpleIvyData.AlienFaction);
             foreach (IntVec3 current in GenAdj.CellsAdjacentCardinal(this))
             {
                 if (GenGrid.InBounds(current, this.Map))
@@ -70,6 +71,15 @@ namespace PurpleIvy
             }
         }
 
+        public override void SetFaction(Faction newFaction, Pawn recruiter = null)
+        {
+            this.factionInt = newFaction;
+            IAttackTarget attackTarget = this as IAttackTarget;
+            if (attackTarget != null)
+            {
+                this.Map.attackTargetsCache.UpdateTarget(attackTarget);
+            }
+        }
         public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
             if (base.Dead)

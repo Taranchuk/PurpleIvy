@@ -39,7 +39,7 @@ namespace PurpleIvy
         {
             get
             {
-                return 1f;
+                return 0.3f;
             }
         }
 
@@ -50,17 +50,22 @@ namespace PurpleIvy
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            this.factionInt = PurpleIvyData.AlienFaction;
-            IAttackTarget attackTarget = this as IAttackTarget;
-            if (attackTarget != null)
-            {
-                this.Map.attackTargetsCache.UpdateTarget(attackTarget);
-            }
+            this.SetFaction(PurpleIvyData.AlienFaction);
             UpdateGlower();
             if (!(this.Growth < 1)) return;
             var random = new System.Random();
             SpreadTick = random.Next(1, 3);
             OrigSpreadTick = SpreadTick;
+        }
+
+        public override void SetFaction(Faction newFaction, Pawn recruiter = null)
+        {
+            this.factionInt = newFaction;
+            IAttackTarget attackTarget = this as IAttackTarget;
+            if (attackTarget != null)
+            {
+                this.Map.attackTargetsCache.UpdateTarget(attackTarget);
+            }
         }
         public override void PostMapInit()
         {

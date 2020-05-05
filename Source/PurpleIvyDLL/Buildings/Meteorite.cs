@@ -6,16 +6,55 @@ using Verse;
 using Verse.Sound;
 using RimWorld;
 using System.Linq;
+using Verse.AI;
 
 namespace PurpleIvy
 {
-    public class Building_Meteorite : Building
+    public class Building_Meteorite : Building, IAttackTarget
     {
         private int spawnticks = 1200;
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            this.SetFactionDirect(PurpleIvyData.AlienFaction);
+            this.SetFaction(PurpleIvyData.AlienFaction);
+        }
+
+        public override void SetFaction(Faction newFaction, Pawn recruiter = null)
+        {
+            this.factionInt = newFaction;
+            IAttackTarget attackTarget = this as IAttackTarget;
+            if (attackTarget != null)
+            {
+                this.Map.attackTargetsCache.UpdateTarget(attackTarget);
+            }
+        }
+
+        Thing IAttackTarget.Thing
+        {
+            get
+            {
+                return this;
+            }
+        }
+        public LocalTargetInfo TargetCurrentlyAimingAt
+        {
+            get
+            {
+                return LocalTargetInfo.Invalid;
+            }
+        }
+
+        public float TargetPriorityFactor
+        {
+            get
+            {
+                return 0.1f;
+            }
+        }
+
+        public bool ThreatDisabled(IAttackTargetSearcher disabledFor)
+        {
+            return false;
         }
 
         public override void Tick()
