@@ -11,6 +11,23 @@
 		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Intellectual</workSkill>
 		<workAmount>30000</workAmount>
+		<skillRequirements>
+			<Intellectual>6</Intellectual>
+		</skillRequirements>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>PI_AlienResources</li>
+					</categories>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>PI_AlienResources</li>
+			</categories>
+		</fixedIngredientFilter>
 	</RecipeDef> 
-
 </Defs>

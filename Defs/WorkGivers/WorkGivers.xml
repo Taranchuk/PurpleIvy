@@ -4,9 +4,9 @@
 
 	<WorkGiverDef>
 		<defName>BionicCabinet</defName>
-		<label>Crafting at the Advanced Lab.</label>
+		<label>Research at the Advanced Lab.</label>
 		<giverClass>PurpleIvy.WorkGiver_DoBioBill</giverClass>
-		<workType>Crafting</workType>
+		<workType>Research</workType>
 		<priorityInType>50</priorityInType>
 		<fixedBillGiverDefs>
 			<li>PI_BioLab</li>

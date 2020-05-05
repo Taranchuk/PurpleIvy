@@ -6,14 +6,56 @@ using Verse;
 using Verse.Sound;
 using RimWorld;
 using UnityEngine;
+using Verse.AI;
 
 namespace PurpleIvy
 {
-    public class Plant_VenomousToothwort : Plant
+    public class Plant_VenomousToothwort : Plant, IAttackTarget
     {
+        Thing IAttackTarget.Thing
+        {
+            get
+            {
+                return this;
+            }
+        }
+        public LocalTargetInfo TargetCurrentlyAimingAt
+        {
+            get
+            {
+                return LocalTargetInfo.Invalid;
+            }
+        }
+
+        public float TargetPriorityFactor
+        {
+            get
+            {
+                return 1f;
+            }
+        }
+
+        public bool ThreatDisabled(IAttackTargetSearcher disabledFor)
+        {
+            return false;
+        }
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            this.SetFaction(PurpleIvyData.AlienFaction);
+        }
+
+        public override void SetFaction(Faction newFaction, Pawn recruiter = null)
+        {
+            this.factionInt = newFaction;
+            if (this.Spawned)
+            {
+                IAttackTarget attackTarget = this as IAttackTarget;
+                if (attackTarget != null)
+                {
+                    this.Map.attackTargetsCache.UpdateTarget(attackTarget);
+                }
+            }
         }
         public override void PostMapInit()
         {
@@ -171,6 +213,8 @@ namespace PurpleIvy
         {
             base.ExposeData();
         }
+
+
     }
 }
 

@@ -6,17 +6,52 @@ using Verse;
 using Verse.Sound;
 using RimWorld;
 using UnityEngine;
+using Verse.AI;
 
 namespace PurpleIvy
 {
-    public class Plant_Ivy : Plant
+    public class Plant_Ivy : Plant, IAttackTarget
     {
         public bool CanMutate = false;
         ThingDef sporesThingDef = ThingDef.Named("Spores");
         private Gas Spores = null;
+
+        Thing IAttackTarget.Thing
+        {
+            get
+            {
+                return this;
+            }
+        }
+        public LocalTargetInfo TargetCurrentlyAimingAt
+        {
+            get
+            {
+                return LocalTargetInfo.Invalid;
+            }
+        }
+
+        public float TargetPriorityFactor
+        {
+            get
+            {
+                return 1f;
+            }
+        }
+
+        public bool ThreatDisabled(IAttackTargetSearcher disabledFor)
+        {
+            return false;
+        }
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            this.factionInt = PurpleIvyData.AlienFaction;
+            IAttackTarget attackTarget = this as IAttackTarget;
+            if (attackTarget != null)
+            {
+                this.Map.attackTargetsCache.UpdateTarget(attackTarget);
+            }
             if (this.Growth >= 0.25f)
             {
                 this.ThrowGasOrAdjustGasSize();

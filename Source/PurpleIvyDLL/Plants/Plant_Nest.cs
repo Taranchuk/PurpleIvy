@@ -10,7 +10,7 @@ using Verse.AI;
 
 namespace PurpleIvy
 {
-    public class Plant_Nest : Plant
+    public class Plant_Nest : Plant, IAttackTarget
     {
         private int SpreadTick;
         private int OrigSpreadTick;
@@ -19,15 +19,48 @@ namespace PurpleIvy
 
         ThingDef sporesThingDef = ThingDef.Named("Spores");
         private Gas Spores = null;
+
+        Thing IAttackTarget.Thing
+        {
+            get
+            {
+                return this;
+            }
+        }
+        public LocalTargetInfo TargetCurrentlyAimingAt
+        {
+            get
+            {
+                return LocalTargetInfo.Invalid;
+            }
+        }
+
+        public float TargetPriorityFactor
+        {
+            get
+            {
+                return 1f;
+            }
+        }
+
+        public bool ThreatDisabled(IAttackTargetSearcher disabledFor)
+        {
+            return false;
+        }
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            this.factionInt = PurpleIvyData.AlienFaction;
+            IAttackTarget attackTarget = this as IAttackTarget;
+            if (attackTarget != null)
+            {
+                this.Map.attackTargetsCache.UpdateTarget(attackTarget);
+            }
             UpdateGlower();
             if (!(this.Growth < 1)) return;
             var random = new System.Random();
             SpreadTick = random.Next(1, 3);
             OrigSpreadTick = SpreadTick;
-
         }
         public override void PostMapInit()
         {

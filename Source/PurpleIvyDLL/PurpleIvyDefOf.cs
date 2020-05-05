@@ -202,6 +202,21 @@ namespace PurpleIvy
         public static ResearchProjectDef PI_AlienWeaponsB;
         public static ResearchProjectDef PI_AlienWeaponsC;
 
+        public static ThingDef KorsolianLeather;
+        public static ThingDef PI_AlienLeather;
+        public static ThingDef PI_AlphaNervousSystem;
+        public static ThingDef PI_BetaNervousSystem;
+        public static ThingDef PI_BigTentacles;
+        public static ThingDef PI_GammaNervousSystem;
+        public static ThingDef PI_NestGuardNervousSystem;
+        public static ThingDef PI_NeuralLiquid;
+        public static ThingDef PI_OmegaNervousSystem;
+        public static ThingDef PI_PlasmaContainer;
+        public static ThingDef PI_PlasmaNucleus;
+        public static ThingDef PI_QueenNervousSystem;
+        public static ThingDef PI_Tentacles;
+        public static ThingDef PI_ToxicSac;
+
     }
 }
 

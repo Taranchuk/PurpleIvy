@@ -17,7 +17,13 @@ namespace PurpleIvy
                 foreach (var bill in job.bill.billStack.Bills)
                 {
                     job.bill = bill;
-                    //Log.Message("RECIPE: " + bill.recipe.defName);
+                    try
+                    {
+                        Log.Message("RECIPE: " + bill.recipe.defName);
+                        Log.Message("TARGET A: " + job.targetA.Thing, true);
+                        Log.Message("TARGET B: " + job.targetB.Thing, true);
+                    }
+                    catch { };
                     JobDef jobDef = null;
                     if (bill.recipe != null && billGiver is Building_BioLab building_BioLab
                         && ReservationUtility.CanReserveAndReach

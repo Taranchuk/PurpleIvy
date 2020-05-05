@@ -32,10 +32,12 @@ namespace PurpleIvy
             PurpleIvyDefOf.PI_BasicBionics
         };
 
-        public static List<ResearchProjectDef> BioStudy = new List<ResearchProjectDef>
+        public static Dictionary<ThingDef, ResearchProjectDef> BioStudy = new Dictionary<ThingDef, ResearchProjectDef>()
         {
-            PurpleIvyDefOf.PI_BasicDrugs,
-            PurpleIvyDefOf.PI_BasicBionics
+            {PurpleIvyDefOf.PI_AlphaBlood, PurpleIvyDefOf.PI_MutagensA},
+            {PurpleIvyDefOf.PI_BetaBlood, PurpleIvyDefOf.PI_MutagensB},
+            {PurpleIvyDefOf.PI_GammaBlood, PurpleIvyDefOf.PI_MutagensC},
+            {PurpleIvyDefOf.PI_OmegaBlood, PurpleIvyDefOf.PI_BasicDrugs},
         };
 
         public static List<string> Genny_ParasiteAlpha = new List<string>
