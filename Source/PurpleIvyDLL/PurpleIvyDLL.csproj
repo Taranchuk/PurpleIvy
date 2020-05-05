@@ -329,6 +329,7 @@
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
     <Compile Include="Incidents\IncidentWorker_QueenMeteorite.cs" />
     <Compile Include="Jobs\JobDriver_AlienStudy.cs" />
+    <Compile Include="Jobs\JobDriver_ThrowSmoke.cs" />
     <Compile Include="Jobs\JobDriver_JumpToTarget.cs" />
     <Compile Include="Jobs\JobDriver_HaulToCellPlus.cs" />
     <Compile Include="Jobs\JobGiver_CollectCorpsesToHive.cs" />

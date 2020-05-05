@@ -5,8 +5,7 @@
 		<defName>PI_PurpleGas</defName>
 		<graphicData>
 			<texPath>MoteAbilities/Smoke/SmokeRed</texPath>
-			<color>(150, 0, 255, 125)</color>
-			<!--<color>(94, 0, 255, 125)</color>-->
+			<color>(94, 0, 255, 125)</color>
 		</graphicData>
 		<altitudeLayer>MoteOverhead</altitudeLayer>
 		<mote>

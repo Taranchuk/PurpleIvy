@@ -68,6 +68,11 @@ namespace PurpleIvy
                     //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - JUMP");
                     return PurpleIvyUtils.JumpOnTargetJob(pawn, pawn2);
                 }
+                else if (pawn.def == PurpleIvyDefOf.Genny_ParasiteBeta && pawn.Position.InHorDistOf(pawn2.Position, 2) && Rand.Chance(0.1f))
+                {
+                    //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - SMOKE");
+                    return PurpleIvyUtils.SmokeAttackJob(pawn, pawn2);
+                }
                 else if (Find.TickManager.TicksGame > PrevTick + 10 && verb != null && Rand.Chance(0.8f) && pawn.Position.InHorDistOf(pawn2.Position, verb.verbProps.range))
                 {
                     PrevTick = Find.TickManager.TicksGame;

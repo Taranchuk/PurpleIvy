@@ -38,6 +38,15 @@
 		<alwaysShowWeapon>true</alwaysShowWeapon>
 		<casualInterruptible>false</casualInterruptible>
 	</JobDef>
+	
+		<JobDef>
+		<defName>PI_ThrowSmoke</defName>
+		<driverClass>PurpleIvy.JobDriver_ThrowSmoke</driverClass>
+		<neverFleeFromEnemies>true</neverFleeFromEnemies>
+		<reportString>throwing smoke at TargetA.</reportString>
+		<alwaysShowWeapon>true</alwaysShowWeapon>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
 
 	<JobDef>
 		<defName>PI_ExtractNectar</defName>

@@ -25,11 +25,15 @@ namespace PurpleIvy
 
         public static DamageDef AlienToxicSting;
 
+        public static DamageDef PI_ToxicExplosion;
+
         public static FactionDef Genny;
 
         public static FactionDef KorsolianFaction;
 
         public static JobDef PI_Kill;
+
+        public static JobDef PI_ThrowSmoke;
 
         public static JobDef PI_AttackMelee;
 

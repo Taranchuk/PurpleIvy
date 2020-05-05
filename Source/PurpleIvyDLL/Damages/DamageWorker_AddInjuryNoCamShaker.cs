@@ -42,11 +42,14 @@ namespace PurpleIvy
                 Thing thing = list[i];
                 if (thing.def.category != ThingCategory.Mote && thing.def.category != ThingCategory.Ethereal)
                 {
-                    DamageWorker_AddInjuryNoCamShaker.thingsToAffect.Add(thing);
-                    if (thing.def.Fillage == FillCategory.Full && thing.def.Altitude > num)
+                    if (thing.Faction != PurpleIvyData.AlienFaction)
                     {
-                        flag = true;
-                        num = thing.def.Altitude;
+                        DamageWorker_AddInjuryNoCamShaker.thingsToAffect.Add(thing);
+                        if (thing.def.Fillage == FillCategory.Full && thing.def.Altitude > num)
+                        {
+                            flag = true;
+                            num = thing.def.Altitude;
+                        }
                     }
                 }
             }
@@ -54,6 +57,12 @@ namespace PurpleIvy
             {
                 if (DamageWorker_AddInjuryNoCamShaker.thingsToAffect[j].def.Altitude >= num)
                 {
+                    if (DamageWorker_AddInjuryNoCamShaker.thingsToAffect[j] is Pawn)
+                    {
+                        Pawn pawn = (Pawn)DamageWorker_AddInjuryNoCamShaker.thingsToAffect[j];
+                        pawn.stances.stunner.StunFor(Rand.RangeInclusive(100, 200), explosion.instigator);
+
+                    }
                     this.ExplosionDamageThing(explosion, DamageWorker_AddInjuryNoCamShaker.thingsToAffect[j], damagedThings, ignoredThings, c);
                 }
             }
