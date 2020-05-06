@@ -55,6 +55,8 @@ namespace PurpleIvy
 
         public static JobDef PI_HaulToCell;
 
+        public static JobDef PI_EntangleTargetWithSlugs;
+
         public static RecipeDef DrawAlienBlood;
 
         public static RecipeDef DrawAlphaAlienBlood;
@@ -216,6 +218,7 @@ namespace PurpleIvy
         public static ThingDef PI_QueenNervousSystem;
         public static ThingDef PI_Tentacles;
         public static ThingDef PI_ToxicSac;
+        public static ThingDef PI_StickySlugs;
 
     }
 }

@@ -87,8 +87,18 @@ namespace PurpleIvy
             }
             else if (pawn2.Downed)
             {
+                if (pawn2.BodySize >= 0.5f && pawn.def != PurpleIvyDefOf.Genny_ParasiteOmega && 
+                    pawn.def != PurpleIvyDefOf.Genny_ParasiteGamma &&
+                    pawn.kindDef != PurpleIvyDefOf.Genny_Queen 
+                    && pawn.needs.food.CurCategory < HungerCategory.Hungry)
+                {
+                    return PurpleIvyUtils.EntagleWithSlugsJob(pawn, pawn2);
+                }
+                else
+                {
+                    return PurpleIvyUtils.KillAttackJob(pawn, pawn2);
+                }
                 //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - KILL");
-                return PurpleIvyUtils.KillAttackJob(pawn, pawn2);
             }
             //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - NULL 1");
             //Building building = this.FindTurretTarget(pawn);

@@ -331,6 +331,7 @@
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
     <Compile Include="Incidents\IncidentWorker_QueenMeteorite.cs" />
     <Compile Include="Jobs\JobDriver_AlienStudy.cs" />
+    <Compile Include="Jobs\JobDriver_EntangleTargetWithSlugs.cs" />
     <Compile Include="Jobs\JobDriver_ThrowSmoke.cs" />
     <Compile Include="Jobs\JobDriver_JumpToTarget.cs" />
     <Compile Include="Jobs\JobDriver_HaulToCellPlus.cs" />
@@ -378,6 +379,7 @@
     <Compile Include="Jobs\JobDriver_Kill.cs" />
     <Compile Include="Jobs\JobGiver_GennyBerserk.cs" />
     <Compile Include="Motes\MoteMaker.cs" />
+    <Compile Include="Things\StickySlugs.cs" />
     <Compile Include="Weather\WeatherEvent_EmpStorm.cs" />
     <Compile Include="Weather\GameCondition_PurpleFog.cs" />
     <Compile Include="GameComponent_WorldEvents.cs" />

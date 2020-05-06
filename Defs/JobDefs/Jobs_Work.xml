@@ -29,6 +29,15 @@
 		<suspendable>false</suspendable>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
+	
+		<JobDef>
+		<defName>PI_EntangleTargetWithSlugs</defName>
+		<driverClass>PurpleIvy.JobDriver_EntangleTargetWithSlugs</driverClass>
+		<neverFleeFromEnemies>true</neverFleeFromEnemies>
+		<reportString>entangle TargetA with slugs.</reportString>
+		<suspendable>false</suspendable>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
 
 	<JobDef>
 		<defName>PI_AttackMelee</defName>

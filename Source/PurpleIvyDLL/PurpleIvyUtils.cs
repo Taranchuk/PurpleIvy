@@ -183,6 +183,15 @@ namespace PurpleIvy
             explosion.StartExplosion(explosionSound, ignoredThings);
         }
 
+        public static Job EntagleWithSlugsJob(Pawn pawn, Thing target)
+        {
+            var job2 = JobMaker.MakeJob(PurpleIvyDefOf.PI_EntangleTargetWithSlugs, target);
+            job2.maxNumMeleeAttacks = 1;
+            job2.expiryInterval = Rand.Range(420, 900);
+            job2.canBash = true;
+            job2.killIncappedTarget = true;
+            return job2;
+        }
         public static Job SmokeAttackJob(Pawn pawn, Thing target)
         {
             var job2 = JobMaker.MakeJob(PurpleIvyDefOf.PI_ThrowSmoke, target);

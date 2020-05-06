@@ -20,8 +20,14 @@ namespace PurpleIvy
             };
 
             Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
-                ThingRequest.ForGroup(ThingRequestGroup.Corpse), PathEndMode.ClosestTouch,
-                TraverseParms.For(pawn, Danger.None, TraverseMode.NoPassClosedDoors, false), 50f, validator, null);
+    ThingRequest.ForDef(PurpleIvyDefOf.PI_StickySlugs), PathEndMode.ClosestTouch,
+    TraverseParms.For(pawn, Danger.None, TraverseMode.NoPassClosedDoors, false), 9999f, validator, null);
+            if (thing == null)
+            {
+                thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
+    ThingRequest.ForGroup(ThingRequestGroup.Corpse), PathEndMode.ClosestTouch,
+    TraverseParms.For(pawn, Danger.None, TraverseMode.NoPassClosedDoors, false), 50f, validator, null);
+            }
             if (thing != null && ReservationUtility.CanReserveAndReach(pawn, thing, PathEndMode.ClosestTouch, Danger.None))
             {
                 var plants = pawn.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);

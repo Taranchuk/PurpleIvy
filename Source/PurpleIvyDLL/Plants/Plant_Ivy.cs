@@ -150,6 +150,44 @@ namespace PurpleIvy
             }
         }
 
+        public void DoDamageToCorpse(Corpse corpse)
+        {
+            var compRottable = corpse.TryGetComp<CompRottable>();
+            if (compRottable.Stage == RotStage.Dessicated)
+            {
+                corpse.TakeDamage(new DamageInfo(DamageDefOf.Scratch, 1));
+            }
+            else
+            {
+                this.Growth += 0.001f;
+                if (corpse.TryGetComp<CompRottable>().Stage < RotStage.Dessicated &&
+                    corpse.TryGetComp<AlienInfection>() == null)
+                {
+                    var hediff = (AlienInfectionHediff)HediffMaker.MakeHediff
+                        (PurpleIvyDefOf.PI_AlienInfection, corpse.InnerPawn);
+                    hediff.instigator = PawnKindDef.Named("Genny_ParasiteOmega");
+                    corpse.InnerPawn.health.AddHediff(hediff);
+                }
+            }
+        }
+
+        public void DoDamageToPawn(Pawn pawn)
+        {
+            if (!pawn.RaceProps.IsMechanoid)
+            {
+                var damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
+                pawn.TakeDamage(damageInfo);
+                var hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
+                    pawn, null);
+                hediff.Severity = 0.1f;
+                (pawn).health.AddHediff(hediff, null, null, null);
+                var hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
+                    pawn, null);
+                hediff2.Severity = 0.1f;
+                (pawn).health.AddHediff(hediff2, null, null, null);
+            }
+        }
+
         public void DoDamageToThings(IntVec3 pos)
         {
             List<Thing> list = new List<Thing>();
@@ -169,61 +207,47 @@ namespace PurpleIvy
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i] == null || list[i].Faction == PurpleIvyData.AlienFaction) continue;
-
                 if (list[i].def.IsCorpse)
                 {
-                    var corpse = (Corpse)list[i];
-                    var compRottable = list[i].TryGetComp<CompRottable>();
-                    if (compRottable.Stage == RotStage.Dessicated)
-                    {
-                        corpse.TakeDamage(new DamageInfo(DamageDefOf.Scratch, 1));
-                    }
-                    else
-                    {
-                        this.Growth += 0.001f;
-                        if (corpse.TryGetComp<CompRottable>().Stage < RotStage.Dessicated &&
-                            corpse.TryGetComp<AlienInfection>() == null)
-                        {
-                            var dummyCorpse = ThingMaker.MakeThing(PurpleIvyDefOf.InfectedCorpseDummy);
-                            var comp = dummyCorpse.TryGetComp<AlienInfection>();
-                            comp.parent = corpse;
-                            var range = PurpleIvyData.maxNumberOfCreatures["Genny_ParasiteOmega"];
-                            comp.Props.maxNumberOfCreatures = range;
-                            comp.maxNumberOfCreatures = range.RandomInRange;
-                            comp.Props.typesOfCreatures = new List<string>()
-                            {
-                                "Genny_ParasiteOmega"
-                            };
-                            corpse.AllComps.Add(comp);
-                            Log.Message("5 Adding infected comp to " + corpse);
-                        }
-                    }
+                    this.DoDamageToCorpse((Corpse)list[i]);
                 }
                 else switch (list[i])
                     {
-                        //If we find a pawn and its not a hatchling
                         case Pawn _:
                             {
-                                var pawn = (Pawn)list[i];
-                                if (!pawn.RaceProps.IsMechanoid)
-                                {
-                                    var damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
-                                    pawn.TakeDamage(damageInfo);
-                                    var hediff = HediffMaker.MakeHediff(PurpleIvyDefOf.PoisonousPurpleHediff,
-                                        pawn, null);
-                                    hediff.Severity = 0.1f;
-                                    (pawn).health.AddHediff(hediff, null, null, null);
-                                    var hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
-                                        pawn, null);
-                                    hediff2.Severity = 0.1f;
-                                    (pawn).health.AddHediff(hediff2, null, null, null);
-                                }               
+                                this.DoDamageToPawn((Pawn)list[i]);
                                 break;
                             }
-                        //If we find a plant
+                        case StickySlugs stickySlugs:
+                            {
+                                if (stickySlugs.HasAnyContents)
+                                {
+                                    Log.Message(stickySlugs.ContainedThing.Label);
+                                    var thing = stickySlugs.ContainedThing;
+                                    if (thing is Pawn pawn)
+                                    {
+                                        var damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
+                                        pawn.TakeDamage(damageInfo);
+                                        this.Growth += 0.001f;
+                                        if (pawn.TryGetComp<AlienInfection>() == null)
+                                        {
+                                            var hediff = (AlienInfectionHediff)HediffMaker.MakeHediff
+                                                (PurpleIvyDefOf.PI_AlienInfection, pawn);
+                                            hediff.instigator = PawnKindDef.Named("Genny_ParasiteOmega");
+                                            pawn.health.AddHediff(hediff);
+                                        }
+                                    }
+                                    else if (thing is Corpse corpse)
+                                    {
+                                        this.DoDamageToCorpse(corpse);
+                                        stickySlugs.EjectContents();
+                                    }
+                                }
+                                break;
+                            }
                         case Plant _:
                             {
-                                if (list[i].def != PurpleIvyDefOf.PurpleIvy 
+                                if (list[i].def != PurpleIvyDefOf.PurpleIvy
                                     && list[i].def != PurpleIvyDefOf.PI_Nest
                                     && list[i].def != PurpleIvyDefOf.PlantVenomousToothwort
                                     && list[i].def != PurpleIvyDefOf.PI_CorruptedTree)
@@ -326,7 +350,7 @@ namespace PurpleIvy
                 {
                     var EggSac = ThingMaker.MakeThing(PurpleIvyDefOf.EggSacGamma);
                     GenSpawn.Spawn(EggSac, Position, this.Map);
-                    if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma).Count 
+                    if (EggSac.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacGamma).Count
                         > PurpleIvySettings.TotalAlienLimit[PurpleIvyDefOf.Genny_ParasiteGamma.defName])
                     {
                         EggSac.TryGetComp<AlienInfection>().stopSpawning = true;
@@ -434,7 +458,7 @@ namespace PurpleIvy
                     this.DoDamageToThings(Position);
                 }
             }
-            if (this.Growth >= 0.75f && Rand.Chance(0.3f) && Find.TickManager.TicksGame 
+            if (this.Growth >= 0.75f && Rand.Chance(0.3f) && Find.TickManager.TicksGame
                 % Rand.RangeInclusive(60, 100) == 0)
             {
                 PurpleIvyMoteMaker.ThrowEMPLightningGlow(this.Position.ToVector3Shifted(), this.Map, 0.3f);
@@ -447,4 +471,3 @@ namespace PurpleIvy
         }
     }
 }
-

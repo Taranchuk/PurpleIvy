@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="ResourceBase">
+		<defName>PI_StickySlugs</defName>
+		<label>sticky slugs</label>
+		<thingClass>PurpleIvy.StickySlugs</thingClass>
+		<graphicData>
+			<texPath>Things/Resources/Various/AlphaNervousSystem</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>2</drawSize>
+		</graphicData>
+		<altitudeLayer>Gas</altitudeLayer>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>1</MarketValue>
+			<Mass>0.1</Mass>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>30</DeteriorationRate>
+		</statBases>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+
+</Defs>
