@@ -49,7 +49,7 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
 	<recipes>
-      <li>PI_MakeTestDrug</li>
+      <li>PI_MakeNeurine</li>
 	  <li>PI_ExtractNeuralLiquidFromAlpha</li>
 	  <li>PI_ExtractNeuralLiquidFromBeta</li>
 	  <li>PI_ExtractNeuralLiquidFromGamma</li>

@@ -2,10 +2,10 @@
 <Defs>
 
 	<RecipeDef>
-	<defName>PI_MakeTestDrug</defName>
-    <label>make TestDrug</label>
-    <description>Make a TestDrug.</description>
-    <jobString>Making TestDrug.</jobString>
+	<defName>PI_MakeNeurine</defName>
+    <label>make Neurine-400</label>
+    <description>Make a Neurine.</description>
+    <jobString>Making Neurine.</jobString>
     <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
@@ -26,7 +26,7 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <PI_TestDrug>1</PI_TestDrug>
+      <PI_Neurine>1</PI_Neurine>
     </products>
     <skillRequirements>
       <Crafting>7</Crafting>
