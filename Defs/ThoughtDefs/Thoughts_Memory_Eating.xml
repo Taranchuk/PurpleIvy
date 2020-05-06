@@ -3,14 +3,14 @@
 
   <!-- ======= Basic quality thoughts ========= -->
   <ThoughtDef>
-    <defName>AteTestDrug</defName>
+    <defName>Ate_Neurine</defName>
     <showBubble>true</showBubble>
     <icon>Things/Mote/ThoughtSymbol/Food</icon>
-    <durationDays>1</durationDays>
+    <durationDays>0.7</durationDays>
     <stages>
       <li>
-        <label>test</label>
-        <description>test</description>
+        <label>took a Neurine injection</label>
+        <description>Diluted alien brains injected into my bloodstream. God, thats disgusting</description>
         <baseMoodEffect>-5</baseMoodEffect>
       </li>
     </stages>

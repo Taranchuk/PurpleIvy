@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<ThingDef ParentName="DrugBase">
-		<defName>PI_TestDrug</defName>
-		<label>TestDrug</label>
-		<description>test</description>
+		<defName>PI_Neurine</defName>
+		<label>Neurine-400</label>
+		<description>Neurine-400 is a syrupy liquid with a fishy odor, obtained during experiments with neural fluid of alien parasites. It sharpens the senses of those who took it, but their sensitivity to pain also increases.</description>
 		<descriptionHyperlinks>
-			<HediffDef>PI_TestDrugHigh</HediffDef>
-			<HediffDef>PI_TestDrugTolerance</HediffDef>
-			<HediffDef>PI_TestDrugAddiction</HediffDef>
+			<HediffDef>PI_NeurineHigh</HediffDef>
+			<HediffDef>PI_NeurineTolerance</HediffDef>
+			<HediffDef>PI_NeurineAddiction</HediffDef>
 		</descriptionHyperlinks>
 		<tradeability>Sellable</tradeability>
 		<socialPropernessMatters>true</socialPropernessMatters>
@@ -18,17 +18,17 @@
 		</graphicData>
 		<statBases>
 			<MaxHitPoints>50</MaxHitPoints>
-			<MarketValue>20</MarketValue>
+			<MarketValue>25</MarketValue>
 			<Mass>0.1</Mass>
 			<DeteriorationRate>10</DeteriorationRate>
 			<Nutrition>0.1</Nutrition>
 		</statBases>
 		<techLevel>Spacer</techLevel>
 		<ingestible>
-			<baseIngestTicks>500</baseIngestTicks>
+			<baseIngestTicks>300</baseIngestTicks>
 			<chairSearchRadius>1</chairSearchRadius>
 			<preferability>DesperateOnly</preferability>
-			<tasteThought>AteInsectMeatDirect</tasteThought>
+			<tasteThought>Ate_Neurine</tasteThought>
 			<foodType>Meat</foodType>
 			<joyKind>Chemical</joyKind>
 			<joy>0.1</joy>
@@ -36,12 +36,12 @@
 			<drugCategory>Hard</drugCategory>
 			<outcomeDoers>
 				<li Class="IngestionOutcomeDoer_GiveHediff">
-					<hediffDef>PI_TestDrugHigh</hediffDef>
+					<hediffDef>PI_NeurineHigh</hediffDef>
 					<severity>0.3</severity>
-					<toleranceChemical>PI_TestDrug</toleranceChemical>
+					<toleranceChemical>PI_Neurine</toleranceChemical>
 				</li>
 				<li Class="IngestionOutcomeDoer_GiveHediff">
-					<hediffDef>PI_TestDrugTolerance</hediffDef>
+					<hediffDef>PI_NeurineTolerance</hediffDef>
 					<severity>0.2</severity>
 					<divideByBodySize>true</divideByBodySize>
 				</li>
@@ -53,7 +53,7 @@
 				<rotDestroys>true</rotDestroys>
 			</li>
 			<li Class="CompProperties_Drug">
-				<chemical>PI_TestDrug</chemical>
+				<chemical>PI_Neurine</chemical>
 				<addictiveness>0.1</addictiveness>
 				<minToleranceToAddict>0.4</minToleranceToAddict>
 				<existingAddictionSeverityOffset>0.1</existingAddictionSeverityOffset>
@@ -64,11 +64,11 @@
 	</ThingDef>
 
 	<HediffDef>
-		<defName>PI_TestDrugHigh</defName>
-		<label>test drug</label>
-		<description>test</description>
+		<defName>PI_NeurineHigh</defName>
+		<label>neurine-400</label>
+		<description>active alien chemical compounds in the bloodstream</description>
 		<hediffClass>HediffWithComps</hediffClass>
-		<defaultLabelColor>(0.5,0.5,0.5)</defaultLabelColor>
+		<defaultLabelColor>(100,149,237)</defaultLabelColor>
 		<scenarioCanAdd>true</scenarioCanAdd>
 		<maxSeverity>1.0</maxSeverity>
 		<isBad>false</isBad>
@@ -79,19 +79,8 @@
 		</comps>
 		<stages>
 			<li>
-				<label>a</label>
+				<label>stable</label>
 				<minSeverity>0.1</minSeverity>
-				<painFactor>1.05</painFactor>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>0.05</offset>
-					</li>
-				</capMods>
-			</li>
-			<li>
-				<label>b</label>
-				<minSeverity>0.3</minSeverity>
 				<painFactor>1.10</painFactor>
 				<capMods>
 					<li>
@@ -101,8 +90,8 @@
 				</capMods>
 			</li>
 			<li>
-				<label>c</label>
-				<minSeverity>0.5</minSeverity>
+				<label>trembling</label>
+				<minSeverity>0.3</minSeverity>
 				<painFactor>1.20</painFactor>
 				<capMods>
 					<li>
@@ -112,30 +101,41 @@
 				</capMods>
 			</li>
 			<li>
-				<label>d</label>
-				<minSeverity>0.7</minSeverity>
+				<label>tremor</label>
+				<minSeverity>0.5</minSeverity>
 				<painFactor>1.30</painFactor>
-				<socialFightChanceFactor>3.0</socialFightChanceFactor>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
 						<offset>0.20</offset>
 					</li>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.05</offset>
-					</li>
 				</capMods>
 			</li>
 			<li>
-				<label>e</label>
-				<minSeverity>0.9</minSeverity>
+				<label>thrill</label>
+				<minSeverity>0.7</minSeverity>
 				<painFactor>1.50</painFactor>
-				<socialFightChanceFactor>5.0</socialFightChanceFactor>
+				<socialFightChanceFactor>3.0</socialFightChanceFactor>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
 						<offset>0.25</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.10</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>unstable</label>
+				<minSeverity>0.9</minSeverity>
+				<painFactor>2.00</painFactor>
+				<socialFightChanceFactor>5.0</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.30</offset>
 					</li>
 					<li>
 						<capacity>Moving</capacity>
@@ -154,6 +154,12 @@
 						<offset>-0.5</offset>
 					</li>
 				</capMods>
+				 <mentalStateGivers>
+                 <li>
+                 <mentalState>Berserk</mentalState>
+                 <mtbDays>0.1</mtbDays>
+                 </li>
+                 </mentalStateGivers>
 			</li>
 		</stages>
 	</HediffDef>
@@ -161,41 +167,41 @@
 	<!-- Ambrosia addiction -->
 
 	<ChemicalDef>
-		<defName>PI_TestDrug</defName>
-		<label>PI_TestDrug</label>
-		<addictionHediff>PI_TestDrugAddiction</addictionHediff>
-		<toleranceHediff>PI_TestDrugTolerance</toleranceHediff>
+		<defName>PI_Neurine</defName>
+		<label>Neurine</label>
+		<addictionHediff>PI_NeurineAddiction</addictionHediff>
+		<toleranceHediff>PI_NeurineTolerance</toleranceHediff>
 		<onGeneratedAddictedToleranceChance>0.0</onGeneratedAddictedToleranceChance>
 	</ChemicalDef>
 
 	<NeedDef ParentName="DrugAddictionNeedBase">
-		<defName>PI_Chemical_TestDrug</defName>
+		<defName>PI_Chemical_Neurine</defName>
 		<needClass>Need_Chemical</needClass>
-		<label>TestDrug</label>
-		<description>Because of a test</description>
+		<label>Neurine</label>
+		<description>Because of a Neurine-400 addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
 		<listPriority>20</listPriority>
 	</NeedDef>
 
 	<HediffDef ParentName="DrugToleranceBase">
-		<defName>PI_TestDrugTolerance</defName>
-		<label>TestDrug tolerance</label>
-		<description>A built-up tolerance to TestDrug</description>
+		<defName>PI_NeurineTolerance</defName>
+		<label>Neurine tolerance</label>
+		<description>A built-up tolerance to Neurine-400</description>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-0.5</severityPerDay>
 			</li>
 			<li Class="HediffCompProperties_DrugEffectFactor">
-				<chemical>PI_TestDrug</chemical>
+				<chemical>PI_Neurine</chemical>
 			</li>
 		</comps>
 	</HediffDef>
 
 	<HediffDef ParentName="AddictionBase">
-		<defName>PI_TestDrugAddiction</defName>
-		<label>TestDrug addiction</label>
-		<description>A chemical addiction to TestDrug.</description>
+		<defName>PI_NeurineAddiction</defName>
+		<label>Neurine addiction</label>
+		<description>A chemical addiction to Neurine.</description>
 		<hediffClass>Hediff_Addiction</hediffClass>
-		<causesNeed>PI_Chemical_TestDrug</causesNeed>
+		<causesNeed>PI_Chemical_Neurine</causesNeed>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-0.1</severityPerDay>
@@ -211,17 +217,17 @@
 	</HediffDef>
 
 	<ThoughtDef>
-		<defName>PI_TestDrugWithdrawal</defName>
+		<defName>PI_NeurineWithdrawal</defName>
 		<workerClass>ThoughtWorker_Hediff</workerClass>
-		<hediff>PI_TestDrugAddiction</hediff>
+		<hediff>PI_NeurineAddiction</hediff>
 		<validWhileDespawned>true</validWhileDespawned>
 		<stages>
 			<li>
 				<visible>false</visible>
 			</li>
 			<li>
-				<label>TestDrug withdrawal</label>
-				<description>I feel test</description>
+				<label>Neurine withdrawal</label>
+				<description>Everything around is so slow and colorless...</description>
 				<baseMoodEffect>-10</baseMoodEffect>
 			</li>
 		</stages>
