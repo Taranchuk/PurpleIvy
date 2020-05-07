@@ -266,9 +266,11 @@ namespace PurpleIvy
             WorkGiver_DoBioBillBase.relevantThings.Clear();
             WorkGiver_DoBioBillBase.processedThings.Clear();
             bool foundAll = false;
-            Predicate<Thing> baseValidator = (Thing t) => t.Spawned && PurpleIvyData.BioStudy.ContainsKey(t.def)
-            && PurpleIvyData.BioStudy[t.def].Where(x => x.PrerequisitesCompleted && !x.IsFinished
-            && t.Map.listerThings.ThingsOfDef(ThingDef.Named("Techprint_" + x.defName)).Count == 0).Count() > 0
+            Predicate<Thing> baseValidator = (Thing t) => t.Spawned && 
+            (bill.recipe != PurpleIvyDefOf.PI_BiomaterialsStudyRecipe || 
+            PurpleIvyData.BioStudy.ContainsKey(t.def) && PurpleIvyData.BioStudy[t.def]
+            .Where(x => x.PrerequisitesCompleted && !x.IsFinished && t.Map.listerThings.ThingsOfDef
+            (ThingDef.Named("Techprint_" + x.defName)).Count == 0).Count() > 0)
             && !t.IsForbidden(pawn) && (float)(t.Position - billGiver.Position).LengthHorizontalSquared
             < bill.ingredientSearchRadius * bill.ingredientSearchRadius && bill.IsFixedOrAllowedIngredient(t)
             && bill.recipe.ingredients.Any((IngredientCount ingNeed) => ingNeed.filter.Allows(t))
