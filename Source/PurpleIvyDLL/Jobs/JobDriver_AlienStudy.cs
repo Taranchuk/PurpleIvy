@@ -83,6 +83,14 @@ namespace PurpleIvy
                         GenSpawn.Spawn(ThingDef.Named("Techprint_" + research.defName),
                             GetActor().Position, GetActor().Map);
                     }
+                    job.bill.Notify_PawnDidWork(GetActor());
+                    Bill_Production bill_Production = this.pawn.jobs.curJob.bill as Bill_Production;
+                    if (bill_Production != null && bill_Production.repeatMode == BillRepeatModeDefOf.TargetCount)
+                    {
+                        this.Map.resourceCounter.UpdateResourceCounts();
+                    }
+                    Toils_Recipe.FinishRecipeAndStartStoringProduct();
+                    job.bill.Notify_IterationCompleted(GetActor(), null);
                     Toils_Reserve.Release(TargetIndex.A);
                     PawnUtility.GainComfortFromCellIfPossible(this.pawn, false);
                     this.ReadyForNextToil();

@@ -75,6 +75,14 @@ namespace PurpleIvy
                             skill.Learn(0.11f * this.job.bill.recipe.workSkillLearnFactor, false);
                         }
                     }
+                    job.bill.Notify_PawnDidWork(GetActor());
+                    Bill_Production bill_Production = this.pawn.jobs.curJob.bill as Bill_Production;
+                    if (bill_Production != null && bill_Production.repeatMode == BillRepeatModeDefOf.TargetCount)
+                    {
+                        this.Map.resourceCounter.UpdateResourceCounts();
+                    }
+                    Toils_Recipe.FinishRecipeAndStartStoringProduct();
+                    job.bill.Notify_IterationCompleted(GetActor(), null);
                     GenSpawn.Spawn(this.job.targetB.Thing, GetActor().Position, GetActor().Map);
                     Toils_Reserve.Release(TargetIndex.A);
                     PawnUtility.GainComfortFromCellIfPossible(this.pawn, false);
