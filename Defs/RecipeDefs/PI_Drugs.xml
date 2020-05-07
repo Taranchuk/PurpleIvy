@@ -10,6 +10,9 @@
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
     <workAmount>5000</workAmount>
+	<recipeUsers>
+	  <li>PI_BioLab</li>
+    </recipeUsers>
     <ingredients>
       <li>
         <filter>
