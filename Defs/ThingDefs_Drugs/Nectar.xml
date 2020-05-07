@@ -16,6 +16,7 @@
     <graphicData>
       <texPath>Things/Item/Drug/Ambrosia</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
+	  <drawSize>0.5</drawSize>
     </graphicData>
     <statBases>
       <MarketValue>15</MarketValue>

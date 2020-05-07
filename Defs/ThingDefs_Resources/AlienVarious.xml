@@ -28,9 +28,8 @@
 		<graphicData>
 			<texPath>Things/Resources/Various/AlphaNervousSystem</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
-      			<drawSize>2.25</drawSize>
-
-		</graphicData>
+            <drawSize>2.25</drawSize>
+			</graphicData>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
 			<MarketValue>1</MarketValue>

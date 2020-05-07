@@ -8,6 +8,7 @@
 		<graphicData>
 			<texPath>Things/Resources/Extractions/Toxin</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.5</drawSize>
 		</graphicData>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>

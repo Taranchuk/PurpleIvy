@@ -8,7 +8,8 @@
 		<graphicData>
 			<texPath>Things/Resources/Extractions/NeuralLiquid</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
+			<drawSize>0.5</drawSize>
+			</graphicData>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
 			<MarketValue>1</MarketValue>
