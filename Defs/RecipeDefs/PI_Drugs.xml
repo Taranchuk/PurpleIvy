@@ -3,13 +3,13 @@
 
 	<RecipeDef>
 	<defName>PI_MakeNeurine</defName>
-    <label>make Neurine-400</label>
-    <description>Make a Neurine.</description>
+    <label>make neurine</label>
+    <description>Make a neurine.</description>
     <jobString>Making Neurine.</jobString>
     <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
-    <workAmount>5000</workAmount>
+    <workAmount>2000</workAmount>
 	<recipeUsers>
 	  <li>PI_BioLab</li>
     </recipeUsers>
@@ -37,5 +37,43 @@
     </skillRequirements>
     <workSkill>Crafting</workSkill>
 	</RecipeDef> 
+	
+	<RecipeDef>
+	<defName>PI_MakeNeurineBulk</defName>
+    <label>make neurine x4</label>
+    <description>Make a neurine.</description>
+    <jobString>Making Neurine.</jobString>
+    <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
+    <workAmount>6000</workAmount>
+	<recipeUsers>
+	  <li>PI_BioLab</li>
+    </recipeUsers>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>PI_NeuralLiquid</li>
+          </thingDefs>
+        </filter>
+        <count>12</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>PI_NeuralLiquid</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <PI_Neurine>4</PI_Neurine>
+    </products>
+    <skillRequirements>
+      <Crafting>7</Crafting>
+	  <Intellectual>7</Intellectual>
+    </skillRequirements>
+    <workSkill>Crafting</workSkill>
+	</RecipeDef> 
+
 
 </Defs>

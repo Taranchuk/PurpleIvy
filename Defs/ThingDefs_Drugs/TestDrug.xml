@@ -2,7 +2,7 @@
 <Defs>
 	<ThingDef ParentName="DrugBase">
 		<defName>PI_Neurine</defName>
-		<label>Neurine-400</label>
+		<label>Neurine</label>
 		<description>Neurine-400 is a syrupy liquid with a fishy odor, obtained during experiments with neural fluid of alien parasites. It sharpens the senses of those who took it, but their sensitivity to pain also increases.</description>
 		<descriptionHyperlinks>
 			<HediffDef>PI_NeurineHigh</HediffDef>
@@ -178,14 +178,14 @@
 		<defName>PI_Chemical_Neurine</defName>
 		<needClass>Need_Chemical</needClass>
 		<label>Neurine</label>
-		<description>Because of a Neurine-400 addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+		<description>Because of a Neurine addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
 		<listPriority>20</listPriority>
 	</NeedDef>
 
 	<HediffDef ParentName="DrugToleranceBase">
 		<defName>PI_NeurineTolerance</defName>
 		<label>Neurine tolerance</label>
-		<description>A built-up tolerance to Neurine-400</description>
+		<description>A built-up tolerance to Neurine</description>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-0.5</severityPerDay>
