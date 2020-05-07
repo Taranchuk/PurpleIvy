@@ -150,7 +150,7 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_AdvDrugs</defName>
 		<label>Advanced drugs</label>
 		<description>wip</description>
@@ -224,7 +224,7 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_AdvBionics</defName>
 		<label>Advanced bionics</label>
 		<description>wip</description>
@@ -239,7 +239,7 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_Implantation</defName>
 		<label>Implantation</label>
 		<description>wip</description>
@@ -254,7 +254,7 @@
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_BioRepl</defName>
 		<label>bioprocess replacement</label>
 		<description>wip</description>

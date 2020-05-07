@@ -35,8 +35,9 @@ namespace PurpleIvy
             {
                 foreach (var data in PurpleIvyData.BioStudy[def])
                 {
+                    
                     if (data.PrerequisitesCompleted &&
-                        !data.IsFinished &&
+                        data.TechprintsApplied == 0 &&
                         this.Map.listerThings.ThingsOfDef
                         (ThingDef.Named("Techprint_" + data.defName)).Count == 0)
                     {

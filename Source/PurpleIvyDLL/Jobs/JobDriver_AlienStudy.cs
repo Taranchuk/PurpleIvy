@@ -75,7 +75,7 @@ namespace PurpleIvy
                             skill.Learn(0.11f * this.job.bill.recipe.workSkillLearnFactor, false);
                         }
                     }
-                    var research = PurpleIvyData.AlienStudy.Where(x => !x.IsFinished &&
+                    var research = PurpleIvyData.AlienStudy.Where(x => x.TechprintsApplied == 0 &&
                     GetActor().Map.listerThings.ThingsOfDef
                     (ThingDef.Named("Techprint_" + x.defName)).Count == 0).RandomElement();
                     if (research != null)
