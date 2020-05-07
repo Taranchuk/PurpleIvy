@@ -55,4 +55,17 @@
 		<tale>Raid</tale>
 	</IncidentDef>
 
+	<IncidentDef>
+		<defName>PI_OmegaDrops</defName>
+		<minRefireDays>120</minRefireDays>
+		<label>biological warfare</label>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>PurpleIvy.IncidentWorker_OmegaDrops</workerClass>
+		<baseChance>0.3</baseChance>
+		<category>ThreatBig</category>
+		<tale>Raid</tale>
+	</IncidentDef>
+
 </Defs>

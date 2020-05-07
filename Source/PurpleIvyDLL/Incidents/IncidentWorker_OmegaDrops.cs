@@ -8,7 +8,7 @@ using Verse.AI.Group;
 
 namespace PurpleIvy
 {
-    public class IncidentWorker_AlienRaid : IncidentWorker_RaidEnemy
+    public class IncidentWorker_OmegaDrops : IncidentWorker_RaidEnemy
     {
         protected override bool CanFireNowSub(IncidentParms parms)
         {
@@ -23,11 +23,11 @@ namespace PurpleIvy
             {
                 while (points >= 35f)
                 {
-                    var combatCandidat = PurpleIvyData.combatPoints.RandomElement();
-                    if (points >= combatCandidat.Value)
+                    var combatCandidat = PurpleIvyData.combatPoints[PurpleIvyData.Genny_ParasiteOmega];
+                    if (points >= combatCandidat)
                     {
-                        points -= combatCandidat.Value;
-                        Pawn alien = PurpleIvyUtils.GenerateParasite(combatCandidat.Key);
+                        points -= combatCandidat;
+                        Pawn alien = PurpleIvyUtils.GenerateParasite(PurpleIvyData.Genny_ParasiteOmega);
                         pawns.Add(alien);
                     }
                 }
@@ -48,9 +48,10 @@ namespace PurpleIvy
             parms.points = StorytellerUtility.DefaultThreatPointsNow(map);
             parms.generateFightersOnly = true;
             parms.forced = true;
-            parms.spawnCenter = CellFinder.RandomEdgeCell(map);
-
-            this.ResolveRaidArriveMode(parms);
+            IntVec3 spawncenter = CellFinder.RandomClosewalkCellNear(map.Center, map, 50, 
+                (IntVec3 x) => GenGrid.Walkable(x, map) && !GridsUtility.Fogged(x, map));
+            parms.spawnCenter = spawncenter;
+            parms.raidArrivalMode = PawnsArrivalModeDefOf.CenterDrop;
             Lord lord = null;
             List<Pawn> list = new List<Pawn>();
             if (parms.pawnGroups == null)
@@ -88,8 +89,9 @@ namespace PurpleIvy
             }
             else
             {
+                
                 parms.raidArrivalMode.Worker.Arrive(list, parms);
-                Find.LetterStack.ReceiveLetter("AlienRaid".Translate(), "AlienRaidDesc".Translate(), this.GetLetterDef(), list, parms.faction);
+                Find.LetterStack.ReceiveLetter("BiologicalWarfare".Translate(), "BiologicalWarfareDesc".Translate(), this.GetLetterDef(), list, parms.faction);
                 result = true;
                 Find.TickManager.CurTimeSpeed = TimeSpeed.Normal;
             }
