@@ -3,7 +3,7 @@
 	<ThingDef ParentName="DrugBase">
 		<defName>PI_Neurine</defName>
 		<label>Neurine</label>
-		<description>Neurine-400 is a syrupy liquid with a fishy odor, obtained during experiments with neural fluid of alien parasites. It sharpens the senses of those who took it, but their sensitivity to pain also increases.</description>
+		<description>Neurine is a syrupy liquid with a fishy odor, obtained during experiments with neural fluid of alien parasites. It sharpens the senses of those who took it, but their sensitivity to pain also increases.</description>
 		<descriptionHyperlinks>
 			<HediffDef>PI_NeurineHigh</HediffDef>
 			<HediffDef>PI_NeurineTolerance</HediffDef>
@@ -13,8 +13,8 @@
 		<socialPropernessMatters>true</socialPropernessMatters>
 		<tickerType>Rare</tickerType>
 		<graphicData>
-			<texPath>Things/Item/Drug/Syringue/SyringueBlack01</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Item/Drug/Neurine</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MaxHitPoints>50</MaxHitPoints>
