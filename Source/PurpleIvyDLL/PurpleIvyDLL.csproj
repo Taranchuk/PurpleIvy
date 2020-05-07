@@ -330,6 +330,7 @@
     <Compile Include="HediffSpecial\RemovableHediff.cs" />
     <Compile Include="Incidents\IncidentWorker_AlienRaid.cs" />
     <Compile Include="Incidents\IncidentWorker_QueenMeteorite.cs" />
+    <Compile Include="Jobs\JobDriver_BioStudy.cs" />
     <Compile Include="Jobs\JobDriver_AlienStudy.cs" />
     <Compile Include="Jobs\JobDriver_EntangleTargetWithSlugs.cs" />
     <Compile Include="Jobs\JobDriver_ThrowSmoke.cs" />
@@ -337,6 +338,7 @@
     <Compile Include="Jobs\JobDriver_HaulToCellPlus.cs" />
     <Compile Include="Jobs\JobGiver_CollectCorpsesToHive.cs" />
     <Compile Include="Jobs\WorkGiver_DoBioBill.cs" />
+    <Compile Include="Jobs\WorkGiver_DoBioBillBase.cs" />
     <Compile Include="Jobs\WorkGiver_DoAlienBill.cs" />
     <Compile Include="Jobs\JobDriver_DoBillPlus.cs" />
     <Compile Include="Jobs\JobDriver_DrawKorsolianToxin.cs" />

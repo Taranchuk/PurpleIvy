@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 using Verse.AI;
 
 namespace PurpleIvy
 {
-    public class WorkGiver_DoBioBill : WorkGiver_DoBill
+    public class WorkGiver_DoBioBill : WorkGiver_DoBioBillBase
     {
         public override Job JobOnThing(Pawn pawn, Thing thing, bool forced = false)
         {
@@ -17,13 +19,12 @@ namespace PurpleIvy
                 foreach (var bill in job.bill.billStack.Bills)
                 {
                     job.bill = bill;
-                    try
+                    Log.Message("RECIPE: " + bill.recipe.defName);
+                    foreach (var t in job.targetQueueB)
                     {
-                        Log.Message("RECIPE: " + bill.recipe.defName);
-                        Log.Message("TARGET A: " + job.targetA.Thing, true);
-                        Log.Message("TARGET B: " + job.targetB.Thing, true);
+                        Log.Message("THING: " + t.Thing, true);
                     }
-                    catch { };
+                    Log.Message("-----------");
                     JobDef jobDef = null;
                     if (bill.recipe != null && billGiver is Building_BioLab building_BioLab
                         && ReservationUtility.CanReserveAndReach

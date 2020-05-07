@@ -75,6 +75,13 @@
 		<driverClass>PurpleIvy.JobDriver_AlienStudy</driverClass>
 		<reportString>conducts research on aliens</reportString>
 	</JobDef>
+	
+		<JobDef>
+		<defName>PI_BiomaterialsStudy</defName>
+		<casualInterruptible>false</casualInterruptible>
+		<driverClass>PurpleIvy.JobDriver_BioStudy</driverClass>
+		<reportString>conducts research on aliens</reportString>
+	</JobDef>
 
 	<JobDef>
 		<defName>PI_DrawAlienBlood</defName>

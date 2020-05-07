@@ -87,7 +87,7 @@ namespace PurpleIvy
                 if (alien is Pawn)
                 {
                     if (job.bill.recipe == PurpleIvyDefOf.PI_AlienStudyRecipe &&
-                        PurpleIvyData.AlienStudy.Where(x => !x.IsFinished &&
+                        PurpleIvyData.AlienStudy.Where(x => x.PrerequisitesCompleted && !x.IsFinished &&
                     this.Map.listerThings.ThingsOfDef
                     (ThingDef.Named("Techprint_" + x.defName)).Count == 0).Count() > 0
                         )

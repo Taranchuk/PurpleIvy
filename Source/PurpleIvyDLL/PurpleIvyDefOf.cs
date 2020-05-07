@@ -49,6 +49,8 @@ namespace PurpleIvy
 
         public static JobDef PI_ConductResearchOnAliens;
 
+        public static JobDef PI_BiomaterialsStudy;
+
         public static JobDef PI_PreciseVivisection;
 
         public static JobDef PI_AnimalRangeAttack;
@@ -82,6 +84,8 @@ namespace PurpleIvy
         public static RecipeDef PreciseVivisectionGuard;
 
         public static RecipeDef PI_AlienStudyRecipe;
+
+        public static RecipeDef PI_BiomaterialsStudyRecipe;
 
         public static ThingDef InfectedCorpseDummy;
 
@@ -187,7 +191,9 @@ namespace PurpleIvy
         public static ResearchProjectDef PI_AlienContainment;
         public static ResearchProjectDef PI_AdvAlienContainment;
         public static ResearchProjectDef PI_Vivisection;
+        public static ResearchProjectDef PI_ResourceExtraction;
         public static ResearchProjectDef PI_BasicDrugs;
+        public static ResearchProjectDef PI_ResourceProcession;
         public static ResearchProjectDef PI_AdvDrugs;
         public static ResearchProjectDef PI_MutagensA;
         public static ResearchProjectDef PI_MutagensB;

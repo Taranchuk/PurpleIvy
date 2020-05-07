@@ -28,16 +28,132 @@ namespace PurpleIvy
 
         public static List<ResearchProjectDef> AlienStudy = new List<ResearchProjectDef>
         {
-            PurpleIvyDefOf.PI_BasicDrugs,
-            PurpleIvyDefOf.PI_BasicBionics
+            PurpleIvyDefOf.PI_Vivisection,
+            PurpleIvyDefOf.PI_ResourceExtraction,
+            PurpleIvyDefOf.PI_AdvAlienContainment
         };
 
-        public static Dictionary<ThingDef, ResearchProjectDef> BioStudy = new Dictionary<ThingDef, ResearchProjectDef>()
-        {
-            {PurpleIvyDefOf.PI_AlphaBlood, PurpleIvyDefOf.PI_MutagensA},
-            {PurpleIvyDefOf.PI_BetaBlood, PurpleIvyDefOf.PI_MutagensB},
-            {PurpleIvyDefOf.PI_GammaBlood, PurpleIvyDefOf.PI_MutagensC},
-            {PurpleIvyDefOf.PI_OmegaBlood, PurpleIvyDefOf.PI_BasicDrugs},
+        public static Dictionary<ThingDef, List<ResearchProjectDef>> BioStudy = new Dictionary<ThingDef, List<ResearchProjectDef>>() {
+            {
+                PurpleIvyDefOf.PI_AlphaBlood, new List <ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_AdvDrugs,
+                    PurpleIvyDefOf.PI_BasicDrugs,
+                    PurpleIvyDefOf.PI_MutagensA,
+                    PurpleIvyDefOf.PI_MutagensB,
+                    PurpleIvyDefOf.PI_MutagensC,
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_BasicBionics,
+                    PurpleIvyDefOf.PI_AdvBionics,
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_BetaBlood, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_AdvDrugs,
+                    PurpleIvyDefOf.PI_BasicDrugs,
+                    PurpleIvyDefOf.PI_MutagensB,
+                    PurpleIvyDefOf.PI_MutagensC,
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_BasicBionics,
+                    PurpleIvyDefOf.PI_AdvBionics,
+
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_GammaBlood, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_AdvDrugs,
+                    PurpleIvyDefOf.PI_BasicDrugs,
+                    PurpleIvyDefOf.PI_MutagensC,
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_BasicBionics
+
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_OmegaBlood, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_AdvDrugs,
+                    PurpleIvyDefOf.PI_BasicDrugs,
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_BasicBionics,
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_PlasmaNucleus, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_ResourceProcession
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_QueenNervousSystem, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_AdvDrugs,
+                    PurpleIvyDefOf.PI_BasicDrugs,
+                    PurpleIvyDefOf.PI_MutagensA,
+                    PurpleIvyDefOf.PI_MutagensB,
+                    PurpleIvyDefOf.PI_MutagensC,
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_NestGuardNervousSystem, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_AdvDrugs,
+                    PurpleIvyDefOf.PI_BasicDrugs,
+                    PurpleIvyDefOf.PI_MutagensA,
+                    PurpleIvyDefOf.PI_MutagensB,
+                    PurpleIvyDefOf.PI_MutagensC,
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_AlphaNervousSystem, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_AdvDrugs,
+                    PurpleIvyDefOf.PI_BasicDrugs,
+                    PurpleIvyDefOf.PI_MutagensA,
+                    PurpleIvyDefOf.PI_MutagensB,
+                    PurpleIvyDefOf.PI_MutagensC,
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_BetaNervousSystem, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_AdvDrugs,
+                    PurpleIvyDefOf.PI_BasicDrugs,
+                    PurpleIvyDefOf.PI_MutagensB,
+                    PurpleIvyDefOf.PI_MutagensC,
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_GammaNervousSystem, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_AdvDrugs,
+                    PurpleIvyDefOf.PI_BasicDrugs,
+                    PurpleIvyDefOf.PI_MutagensC,
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_OmegaNervousSystem, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_AdvDrugs,
+                    PurpleIvyDefOf.PI_BasicDrugs,
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_Tentacles, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_BasicBionics,
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_BigTentacles, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_BasicBionics,
+                    PurpleIvyDefOf.PI_AdvBionics,
+                }
+            },
+            {
+                PurpleIvyDefOf.PI_ToxicSac, new List<ResearchProjectDef> {
+                    PurpleIvyDefOf.PI_ResourceProcession,
+                    PurpleIvyDefOf.PI_AdvBioprotection
+                }
+            },
         };
 
         public static List<string> Genny_ParasiteAlpha = new List<string>

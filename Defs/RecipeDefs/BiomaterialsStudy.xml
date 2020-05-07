@@ -10,7 +10,7 @@
 		</recipeUsers>
 		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Intellectual</workSkill>
-		<workAmount>30000</workAmount>
+		<workAmount>300</workAmount>
 		<skillRequirements>
 			<Intellectual>6</Intellectual>
 		</skillRequirements>

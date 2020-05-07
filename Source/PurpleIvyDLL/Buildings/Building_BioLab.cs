@@ -29,9 +29,29 @@ namespace PurpleIvy
 
         public bool HasJobOnRecipe(Job job, out JobDef jobDef)
         {
-            bool result = false;
             jobDef = null;
-            return result;
+            ThingDef def = job.targetQueueB.First().Thing.def;
+            if (job.bill.recipe == PurpleIvyDefOf.PI_BiomaterialsStudyRecipe)
+            {
+                foreach (var data in PurpleIvyData.BioStudy[def])
+                {
+                    if (data.PrerequisitesCompleted &&
+                        !data.IsFinished &&
+                        this.Map.listerThings.ThingsOfDef
+                        (ThingDef.Named("Techprint_" + data.defName)).Count == 0)
+                    {
+                        jobDef = PurpleIvyDefOf.PI_BiomaterialsStudy;
+                        job.targetB = ThingMaker.MakeThing(ThingDef.Named("Techprint_" + data.defName));
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                jobDef = JobDefOf.DoBill;
+                return true;
+            }
+            return false;
         }
 
         public override void ExposeData()
