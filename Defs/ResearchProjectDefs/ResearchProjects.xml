@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-
-PI_MutagensA
-
-
-PI_MutagensB
-
-
-PI_MutagensC
-
-
-PI_BasicBionics
-
-
-PI_AlienArmorB
-
-
-PI_AlienWeaponsB
-
-
-PI_AlienWeaponsC
-
-
-
-
 	<ResearchProjectDef Abstract="True" Name="PI_AlienStudyParentA">
 		<baseCost>1000</baseCost>
 		<techLevel>Industrial</techLevel>
