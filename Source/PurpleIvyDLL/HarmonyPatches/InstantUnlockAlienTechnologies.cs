@@ -21,7 +21,9 @@ namespace PurpleIvy
             {
                 Find.ResearchManager.FinishProject(proj, false, applyingPawn);
                 applyingPawn.skills.Learn(SkillDefOf.Intellectual, 2000f, false);
-                Find.LetterStack.ReceiveLetter("LetterTechprintResearchedLabel".Translate(proj.Named("PROJECT")), "LetterTechprintResearchedDesc".Translate(proj.Named("PROJECT")), LetterDefOf.PositiveEvent, null);
+                Find.LetterStack.ReceiveLetter("LetterTechprintResearchedLabel".Translate(proj.Named("PROJECT"))
+                    , "LetterTechprintResearchedDesc".Translate(proj.Named("PROJECT"))
+                    , LetterDefOf.PositiveEvent, null);
                 return false;
             }
             return true;

@@ -13,22 +13,6 @@
 		</recipeUsers>
 		<researchPrerequisite>PI_ResourceExtraction</researchPrerequisite>
 		<workAmount>100</workAmount>
-		<targetsBodyPart>false</targetsBodyPart>
-		<ingredients>
-			<li>
-				<filter>
-					<categories>
-						<li>Medicine</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<categories>
-				<li>Medicine</li>
-			</categories>
-		</fixedIngredientFilter>
 	</RecipeDef> 
 
 	<RecipeDef>
@@ -44,22 +28,6 @@
 			<li>PI_ContainmentBreachAdv</li>
 		</recipeUsers>
 		<workAmount>100</workAmount>
-		<targetsBodyPart>false</targetsBodyPart>
-		<ingredients>
-			<li>
-				<filter>
-					<categories>
-						<li>Medicine</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<categories>
-				<li>Medicine</li>
-			</categories>
-		</fixedIngredientFilter>
 	</RecipeDef> 
 
 	<RecipeDef>
@@ -75,22 +43,6 @@
 			<li>PI_ContainmentBreachAdv</li>
 		</recipeUsers>
 		<workAmount>100</workAmount>
-		<targetsBodyPart>false</targetsBodyPart>
-		<ingredients>
-			<li>
-				<filter>
-					<categories>
-						<li>Medicine</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<categories>
-				<li>Medicine</li>
-			</categories>
-		</fixedIngredientFilter>
 	</RecipeDef> 
 
 
@@ -107,22 +59,6 @@
 			<li>PI_ContainmentBreachAdv</li>
 		</recipeUsers>
 		<workAmount>100</workAmount>
-		<targetsBodyPart>false</targetsBodyPart>
-		<ingredients>
-			<li>
-				<filter>
-					<categories>
-						<li>Medicine</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<categories>
-				<li>Medicine</li>
-			</categories>
-		</fixedIngredientFilter>
 	</RecipeDef> 
 
 	<RecipeDef>
@@ -138,22 +74,6 @@
 			<li>PI_ContainmentBreachAdv</li>
 		</recipeUsers>
 		<workAmount>100</workAmount>
-		<targetsBodyPart>false</targetsBodyPart>
-		<ingredients>
-			<li>
-				<filter>
-					<categories>
-						<li>Medicine</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<categories>
-				<li>Medicine</li>
-			</categories>
-		</fixedIngredientFilter>
 	</RecipeDef>
 
 	<RecipeDef>
@@ -169,22 +89,6 @@
 			<li>PI_ContainmentBreachAdv</li>
 		</recipeUsers>
 		<workAmount>100</workAmount>
-		<targetsBodyPart>false</targetsBodyPart>
-		<ingredients>
-			<li>
-				<filter>
-					<categories>
-						<li>Medicine</li>
-					</categories>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<categories>
-				<li>Medicine</li>
-			</categories>
-		</fixedIngredientFilter>
 	</RecipeDef>
 
 </Defs>

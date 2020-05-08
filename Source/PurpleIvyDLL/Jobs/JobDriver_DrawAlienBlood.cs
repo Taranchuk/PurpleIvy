@@ -8,7 +8,7 @@ using Verse.AI;
 
 namespace PurpleIvy
 {
-    public class JobDriver_DrawAlienBlood : JobDriver_DoBillPlus
+    public class JobDriver_DrawAlienBlood : JobDriver_DoBill
     {
         public override void ExposeData()
         {
@@ -20,8 +20,34 @@ namespace PurpleIvy
         {
             return this.pawn.Reserve(this.job.targetA, this.job, 1, -1, null, errorOnFailed);
         }
-        protected override Toil DoBill()
+
+        protected override IEnumerable<Toil> MakeNewToils()
         {
+            base.AddEndCondition(delegate ()
+            {
+                var thing = base.GetActor().jobs.curJob.GetTarget(TargetIndex.A).Thing;
+                if (thing is Building && !thing.Spawned)
+                {
+                    return JobCondition.Incompletable;
+                }
+                return JobCondition.Ongoing;
+            });
+            this.FailOnBurningImmobile<JobDriver_DoBill>(TargetIndex.A);
+            this.FailOn<JobDriver_DoBill>(delegate ()
+            {
+                if (!(this.job.GetTarget(TargetIndex.A).Thing is IBillGiver billGiver)) return false;
+                if (this.job.bill.DeletedOrDereferenced)
+                {
+                    return true;
+                }
+                if (!billGiver.CurrentlyUsableForBills())
+                {
+                    return true;
+                }
+                return false;
+            });
+            yield return Toils_Reserve.Reserve(TargetIndex.A, 1, -1, null);
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             var tableThing = this.job.GetTarget(TargetIndex.A).Thing as Building_СontainmentBreach;
             var refuelableComp = tableThing.GetComp<CompRefuelable>();  //I think you should check this for Null, but i'm not sure where are you using it.
             var toil = new Toil
@@ -33,11 +59,6 @@ namespace PurpleIvy
                 },
                 tickAction = delegate ()
                 {
-                    var thing = this.job.GetTarget(TargetIndex.B).Thing;
-                    if (thing == null || thing.Destroyed)
-                    {
-                        this.pawn.jobs.EndCurrentJob(JobCondition.Incompletable, true, true);
-                    }
                     this.workCycleProgress -= this.pawn.GetStatValue(StatDefOf.WorkToMake, true);
                     tableThing.UsedThisTick();
                     if (!tableThing.CurrentlyUsableForBills() || (refuelableComp != null && !refuelableComp.HasFuel))
@@ -53,15 +74,11 @@ namespace PurpleIvy
                         skill?.Learn(0.11f * this.job.bill.recipe.workSkillLearnFactor, false);
                     }
                     GenSpawn.Spawn(tableThing.GetAlienBloodByRecipe(this.job.bill.recipe),
-                        tableThing.InteractionCell, thing.Map, 0);
-                    Toils_Reserve.Release(TargetIndex.B);
-                    Toils_Reserve.Release(TargetIndex.C);
+                        tableThing.InteractionCell, tableThing.Map, 0);
                     Toils_Reserve.Release(TargetIndex.A);
                     this.pawn.GainComfortFromCellIfPossible(false);
-                    var list = new List<Thing> { thing };
-                    this.job.bill.Notify_IterationCompleted(this.pawn, list);
+                    this.job.bill.Notify_IterationCompleted(this.pawn, null);
                     this.ReadyForNextToil();
-                    thing.Destroy(DestroyMode.Vanish);
                 },
                 defaultCompleteMode = ToilCompleteMode.Never
             };
@@ -77,10 +94,10 @@ namespace PurpleIvy
             {
                 return this.job.bill.suspended || this.job.bill.DeletedOrDereferenced || (this.job.GetTarget(TargetIndex.A).Thing is IBillGiver billGiver && !billGiver.CurrentlyUsableForBills());
             });
-            return toil;
+            yield return toil;
+            yield break;
         }
 
         private float workCycleProgress;
     }
 }
-

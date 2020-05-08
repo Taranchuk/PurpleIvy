@@ -15,7 +15,7 @@ namespace PurpleIvy
         public static class AddHumanlikeOrders_Patch
         {
             [HarmonyPostfix]
-            public static void AddHumanlikeOrdersPostfix(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
+            public static void AddHumanlikeOrdersPostfix(Vector3 clickPos, Pawn pawn, ref List<FloatMenuOption> opts)
             {
                 foreach (LocalTargetInfo localTargetInfo in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true))
                 {
@@ -38,13 +38,21 @@ namespace PurpleIvy
                                 pawn.jobs.TryTakeOrderedJob(job, 0);
                             };
                             string text = TranslatorFormattedStringExtensions.Translate("TakeAlienToContainmentBreach", target.LabelCap, target);
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption
-                                (text, action, MenuOptionPriority.RescueOrCapture, null, target, 0f, null, null), pawn, target, "ReservedBy"));
+                            FloatMenuOption opt = new FloatMenuOption
+                                (text, action, MenuOptionPriority.RescueOrCapture, null, target, 0f, null, null);
+                            if (opts.Where(x => x.Label == text).Count() == 0)
+                            {
+                                opts.Add(opt);
+                            }
                         }
                         else
                         {
-                            opts.Add(new FloatMenuOption("NoContainersToTake".Translate(), null,
-                    MenuOptionPriority.Default, null, null, 0f, null, null));
+                            string text = "NoContainersToTake".Translate();
+                            if (opts.Where(x => x.Label == text).Count() == 0)
+                            {
+                                opts.Add(new FloatMenuOption(text, null, MenuOptionPriority.Default, null, null,
+                                    0f, null, null));
+                            }
                         }
                     }
                 }

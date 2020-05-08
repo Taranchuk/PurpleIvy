@@ -55,6 +55,37 @@ namespace PurpleIvy
             return false;
         }
 
+        public override string GetInspectString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            List<ResearchProjectDef> researches = new List<ResearchProjectDef>();
+            foreach (var data in PurpleIvyData.BioStudy)
+            {
+                foreach (var research in data.Value)
+                {
+                    if (!researches.Contains(research))
+                    {
+                        researches.Add(research);
+                    }
+                }
+            }
+            foreach (var research in researches)
+            {
+                if (research.TechprintsApplied == 0)
+                {
+                    string researchData = research.label + " - "
+                        + "Prerequisites: " + (research.PrerequisitesCompleted ? "Yes" : "No") + 
+                        " - No techprints: " + (this.Map.listerThings.ThingsOfDef
+                    (ThingDef.Named("Techprint_" + research.defName)).Count == 0 ? "Yes" : "No") + "\n";
+                    stringBuilder.Append(researchData);
+                }
+                else
+                {
+                    stringBuilder.Append(research.label + " completed\n");
+                }
+            }
+            return base.GetInspectString() + "\n" + GenText.TrimEndNewlines(stringBuilder.ToString());
+        }
         public override void ExposeData()
         {
             base.ExposeData();
