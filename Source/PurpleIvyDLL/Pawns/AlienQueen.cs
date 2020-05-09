@@ -24,47 +24,67 @@ namespace PurpleIvy
         {
             base.SpawnSetup(map, respawningAfterLoad);
             this.SetFaction(PurpleIvyData.AlienFaction);
-            foreach (IntVec3 current in GenAdj.CellsAdjacentCardinal(this))
+
+            int nestCount = 0;
+            List<IntVec3> freeTiles = new List<IntVec3>();
+            foreach (IntVec3 dir in GenRadial.RadialCellsAround(this.Position, 50, true))
             {
-                if (GenGrid.InBounds(current, this.Map))
+                if (GenGrid.InBounds(dir, this.Map) && this.Map.fertilityGrid.FertilityAt(dir) >= 0.5)
                 {
-                    if (current.GetPlant(this.Map) == null)
+                    var plant = dir.GetPlant(this.Map);
+                    if (plant?.def == PurpleIvyDefOf.PI_Nest)
                     {
-                        if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                        nestCount++;
+                    }
+                    if (plant?.Faction != PurpleIvyData.AlienFaction && !GenCollection.Any<Thing>
+                        (GridsUtility.GetThingList(dir, this.Map), (Thing t) => (t.def.IsBuildingArtificial
+                        || t.def.IsNonResourceNaturalRock)))
+                    {
+                        if (freeTiles.Count < 50)
                         {
-                            Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
-                            GenSpawn.Spawn(newNest, current, this.Map);
-                            if (first == true)
-                            {
-                                PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
-                                this.mindState.duty = duty;
-                                this.mindState.duty.focus = new LocalTargetInfo(newNest.Position);
-                                Log.Message("Set focus to " + newNest);
-                                focus = this.mindState.duty.focus;
-                                first = false;
-                            }
+                            freeTiles.Add(dir);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+                if (nestCount == 4) break;
+            }
+            if (nestCount < 4)
+            {
+                var rnd = new System.Random();
+                foreach (IntVec3 current in freeTiles.OrderBy(x => rnd.Next()).Take(4 - nestCount))
+                {
+                    var plant = current.GetPlant(this.Map);
+                    if (plant == null)
+                    {
+                        Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                        GenSpawn.Spawn(newNest, current, this.Map);
+                        if (first == true)
+                        {
+                            PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
+                            this.mindState.duty = duty;
+                            this.mindState.duty.focus = new LocalTargetInfo(newNest.Position);
+                            Log.Message("Set focus to " + newNest);
+                            focus = this.mindState.duty.focus;
+                            first = false;
                         }
                     }
                     else
                     {
-                        Plant plant = current.GetPlant(this.Map);
-                        if (plant.def.defName != "PI_Nest")
+                        plant.Destroy();
+                        Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                        GenSpawn.Spawn(newNest, current, this.Map);
+                        if (first == true)
                         {
-                            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
-                            {
-                                plant.Destroy();
-                                Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
-                                GenSpawn.Spawn(newNest, current, this.Map);
-                                if (first == true)
-                                {
-                                    PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
-                                    this.mindState.duty = duty;
-                                    this.mindState.duty.focus = new LocalTargetInfo(newNest.Position);
-                                    first = false;
-                                    focus = newNest;
-                                    Log.Message("Set focus to " + newNest);
-                                }
-                            }
+                            PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
+                            this.mindState.duty = duty;
+                            this.mindState.duty.focus = new LocalTargetInfo(newNest.Position);
+                            first = false;
+                            focus = newNest;
+                            Log.Message("Set focus to " + newNest);
                         }
                     }
                 }
@@ -93,32 +113,49 @@ namespace PurpleIvy
                 hediff.ageTicks = new IntRange(40000, 50000).RandomInRange;
                 this.health.AddHediff(hediff);
                 var corpse = (Corpse)this.ParentHolder;
-                foreach (var dir in GenRadial.RadialCellsAround(corpse.Position, 4, true))
+                int nestCount = 0;
+                List<IntVec3> freeTiles = new List<IntVec3>();
+                foreach (IntVec3 dir in GenRadial.RadialCellsAround(this.Position, 50, true))
                 {
-                    if (GenGrid.InBounds(dir, corpse.Map))
+                    if (GenGrid.InBounds(dir, corpse.Map) && corpse.Map.fertilityGrid.FertilityAt(dir) >= 0.5)
                     {
-                        if (dir.GetPlant(corpse.Map) == null)
+                        var plant = dir.GetPlant(corpse.Map);
+                        if (plant?.def == PurpleIvyDefOf.PI_Nest)
                         {
-                            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, corpse.Map),
-                                (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                            nestCount++;
+                        }
+                        if (plant?.Faction != PurpleIvyData.AlienFaction && !GenCollection.Any<Thing>
+                            (GridsUtility.GetThingList(dir, corpse.Map), (Thing t) => 
+                            (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                        {
+                            if (freeTiles.Count < 50)
                             {
-                                Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
-                                GenSpawn.Spawn(newNest, dir, corpse.Map);
+                                freeTiles.Add(dir);
                             }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    if (nestCount == 4) break;
+                }
+                if (nestCount < 4)
+                {
+                    var rnd = new System.Random();
+                    foreach (IntVec3 current in freeTiles.OrderBy(x => rnd.Next()).Take(4 - nestCount))
+                    {
+                        var plant = current.GetPlant(corpse.Map);
+                        if (plant == null)
+                        {
+                            Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                            GenSpawn.Spawn(newNest, current, corpse.Map);
                         }
                         else
                         {
-                            Plant plant = dir.GetPlant(corpse.Map);
-                            if (plant.def.defName != "PI_Nest")
-                            {
-                                if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(dir, corpse.Map),
-                                    (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
-                                {
-                                    plant.Destroy();
-                                    Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
-                                    GenSpawn.Spawn(newNest, dir, corpse.Map);
-                                }
-                            }
+                            plant.Destroy();
+                            Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                            GenSpawn.Spawn(newNest, current, corpse.Map);
                         }
                     }
                 }
@@ -163,27 +200,49 @@ namespace PurpleIvy
             spawnticks--;
             if (spawnticks == 0)
             {
-                if (GenGrid.InBounds(this.Position, this.Map))
+                int nestCount = 0;
+                List<IntVec3> freeTiles = new List<IntVec3>();
+                foreach (IntVec3 dir in GenRadial.RadialCellsAround(this.Position, 50, true))
                 {
-                    if (this.Position.GetPlant(this.Map) == null)
+                    if (GenGrid.InBounds(dir, this.Map) && this.Map.fertilityGrid.FertilityAt(dir) >= 0.5)
                     {
-                        if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(this.Position, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                        var plant = dir.GetPlant(this.Map);
+                        if (plant?.def == PurpleIvyDefOf.PI_Nest)
                         {
-                            Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
-                            GenSpawn.Spawn(newNest, this.Position, this.Map);
+                            nestCount++;
+                        }
+                        if (plant?.Faction != PurpleIvyData.AlienFaction && !GenCollection.Any<Thing>
+                            (GridsUtility.GetThingList(dir, this.Map), (Thing t) =>
+                            (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                        {
+                            if (freeTiles.Count < 50)
+                            {
+                                freeTiles.Add(dir);
+                            }
+                            else
+                            {
+                                break;
+                            }
                         }
                     }
-                    else
+                    if (nestCount == 4) break;
+                }
+                if (nestCount < 4)
+                {
+                    var rnd = new System.Random();
+                    foreach (IntVec3 current in freeTiles.OrderBy(x => rnd.Next()).Take(4 - nestCount))
                     {
-                        Plant plant = this.Position.GetPlant(this.Map);
-                        if (plant.def.defName != "PI_Nest")
+                        var plant = current.GetPlant(this.Map);
+                        if (plant == null)
                         {
-                            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(this.Position, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
-                            {
-                                plant.Destroy();
-                                Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
-                                GenSpawn.Spawn(newNest, this.Position, this.Map);
-                            }
+                            Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                            GenSpawn.Spawn(newNest, current, this.Map);
+                        }
+                        else
+                        {
+                            plant.Destroy();
+                            Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                            GenSpawn.Spawn(newNest, current, this.Map);
                         }
                     }
                 }

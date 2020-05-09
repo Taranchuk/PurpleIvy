@@ -106,6 +106,14 @@ namespace PurpleIvy
             if (Find.TickManager.TicksGame % 250 == 0)
             {
                 var plants = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);
+
+               //foreach (var pawn in this.map.mapPawns.FreeColonists)
+               //{
+               //    foreach (var plant in plants)
+               //    {
+               //        Log.Message(plant + "IsHostile to " + pawn + " - " + pawn.HostileTo(plant));
+               //    }
+               //}
                 //Log.Message("Checking orbital strike, " + this.OrbitalHelpActive + " - " + plants.Count);
                 if (plants != null && ((this.OrbitalHelpActive == true && plants.Count > 0)
                     || plants.Count > 1500)) // && Rand.Chance(PurpleIvyData.getFogProgress(plants.Count)))

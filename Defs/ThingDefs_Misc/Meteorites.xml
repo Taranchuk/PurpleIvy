@@ -20,7 +20,7 @@
 			<speed>1.2</speed>
 		</skyfaller>
 	</ThingDef>
-	
+
 	<ThingDef ParentName="SkyfallerBase">
 		<defName>PI_MeteorIncoming</defName>
 		<label>meteorite (incoming)</label>
@@ -58,12 +58,14 @@
 		<altitudeLayer>Building</altitudeLayer>
 		<useHitPoints>true</useHitPoints>
 		<building>
-			<ai_combatDangerous>true</ai_combatDangerous>
 			<claimable>false</claimable>
 		</building>
 		<selectable>true</selectable>
 		<statBases>
-			<MaxHitPoints>500</MaxHitPoints>
+			<ArmorRating_Blunt>10</ArmorRating_Blunt>
+			<ArmorRating_Sharp>10</ArmorRating_Sharp>
+			<ArmorRating_Heat>10</ArmorRating_Heat>
+			<MaxHitPoints>1000</MaxHitPoints>
 			<Flammability>0.0</Flammability>
 			<Beauty>-30</Beauty>     
 		</statBases>

@@ -53,6 +53,11 @@ namespace PurpleIvy
             }
         }
 
+        public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
+        {
+            PurpleIvyMoteMaker.ThrowToxicGas(this.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(1f), this.Map);
+            base.PreApplyDamage(ref dinfo, out absorbed);
+        }
         public override void SetFaction(Faction newFaction, Pawn recruiter = null)
         {
             this.factionInt = newFaction;

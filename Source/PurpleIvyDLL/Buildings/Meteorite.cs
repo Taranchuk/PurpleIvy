@@ -12,7 +12,7 @@ namespace PurpleIvy
 {
     public class Building_Meteorite : Building, IAttackTarget
     {
-        private int spawnticks = 1200;
+        private int spawnticks = 200;
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
@@ -63,30 +63,49 @@ namespace PurpleIvy
             spawnticks--;
             if (spawnticks == 0)
             {
-                foreach (IntVec3 current in GenAdj.CellsAdjacentCardinal(this))
+                int nestCount = 0;
+                List<IntVec3> freeTiles = new List<IntVec3>();
+                foreach (IntVec3 dir in GenRadial.RadialCellsAround(this.Position, 50, true))
                 {
-                    if (GenGrid.InBounds(current, this.Map))
+                    if (GenGrid.InBounds(dir, this.Map) && this.Map.fertilityGrid.FertilityAt(dir) >= 0.5)
                     {
-                        if (current.GetPlant(this.Map) == null)
+                        var plant = dir.GetPlant(this.Map);
+                        if (plant?.def == PurpleIvyDefOf.PI_Nest)
                         {
-                            if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                            nestCount++;
+                        }
+                        if (plant?.Faction != PurpleIvyData.AlienFaction && !GenCollection.Any<Thing>
+                            (GridsUtility.GetThingList(dir, this.Map), (Thing t) => (t.def.IsBuildingArtificial
+                            || t.def.IsNonResourceNaturalRock)))
+                        {
+                            if (freeTiles.Count < 50)
                             {
-                                Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
-                                GenSpawn.Spawn(newNest, current, this.Map);
+                                freeTiles.Add(dir);
                             }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    if (nestCount == 4) break;
+                }
+                if (nestCount < 4)
+                {
+                    var rnd = new System.Random();
+                    foreach (IntVec3 current in freeTiles.OrderBy(x => rnd.Next()).Take(4 - nestCount))
+                    {
+                        var plant = current.GetPlant(this.Map);
+                        if (plant == null)
+                        {
+                            Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                            GenSpawn.Spawn(newNest, current, this.Map);
                         }
                         else
                         {
-                            Plant plant = current.GetPlant(this.Map);
-                            if (plant.def.defName != "PI_Nest")
-                            {
-                                if (!GenCollection.Any<Thing>(GridsUtility.GetThingList(current, this.Map), (Thing t) => (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
-                                {
-                                    plant.Destroy();
-                                    Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
-                                    GenSpawn.Spawn(newNest, current, this.Map);
-                                }
-                            }
+                            plant.Destroy();
+                            Plant newNest = (Plant)ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                            GenSpawn.Spawn(newNest, current, this.Map);
                         }
                     }
                 }
