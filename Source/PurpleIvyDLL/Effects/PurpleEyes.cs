@@ -42,3 +42,4 @@ namespace PurpleIvy
             new Dictionary<Pair<bool, Color>, Graphic>();
     }
 }
+

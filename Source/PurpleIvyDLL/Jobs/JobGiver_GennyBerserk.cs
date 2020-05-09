@@ -25,7 +25,15 @@ namespace PurpleIvy
             {
                 Log.Message(pawn + " - " + pawn.CurJob.def.defName);
             }
-            var pawn2 = FindPawnTarget(pawn);
+            Pawn pawn2 = null;
+            if ((Find.TickManager.TicksGame - PurpleIvyData.LastAttacked) < 1000)
+            {
+                pawn2 = FindPawnTargetNearPlants(pawn);
+            }
+            else
+            {
+                pawn2 = FindPawnTarget(pawn);
+            }
             if (pawn2 == null)
             {
                 if (pawn.GetRoom() != null && !pawn.GetRoom().PsychologicallyOutdoors)
@@ -145,18 +153,32 @@ namespace PurpleIvy
             Pawn victim = null;
             bool Predicate(Thing p) => p != null && p != pawn
             && p.Faction != pawn.Faction;
-            //List<Pawn> allPawns = pawn.Map.mapPawns.AllPawns;
             const float distance = 25f;
             victim = (Pawn)GenClosest.ClosestThingReachable(pawn.Position,
                 pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly,
                 TraverseMode.PassDoors, false)
                 , distance, Predicate);
+            return victim;
+        }
 
-            //worst   victim = (Pawn)GenClosest.ClosestThing_Global_Reachable(pawn.Position,
-            //    pawn.Map, allPawns, PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly,
-            //    TraverseMode.PassDoors, false)
-            //    , distance, predicate);
-
+        private static Pawn FindPawnTargetNearPlants(Pawn pawn)
+        {
+            Pawn victim = null;
+            bool Predicate(Thing p) => p != null && p != pawn
+            && p.Faction != pawn.Faction;
+            const float distance = 25f;
+            var plants = pawn.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest);
+            if (plants.Count == 0)
+            {
+                plants = pawn.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);
+            }
+            if (plants.Count > 0)
+            {
+                victim = (Pawn)GenClosest.ClosestThingReachable(plants.RandomElement().Position,
+                    pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly,
+                    TraverseMode.PassDoors, false)
+                    , distance, Predicate);
+            }
             return victim;
         }
 

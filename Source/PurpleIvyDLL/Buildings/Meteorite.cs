@@ -94,7 +94,7 @@ namespace PurpleIvy
                 }
             }
             spawnticks--;
-            if (spawnticks == 0)
+            if (spawnticks <= 0)
             {
                 int nestCount = 0;
                 List<IntVec3> freeTiles = new List<IntVec3>();

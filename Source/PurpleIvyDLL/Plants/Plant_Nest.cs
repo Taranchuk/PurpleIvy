@@ -55,9 +55,12 @@ namespace PurpleIvy
             SpreadTick = random.Next(1, 3);
             OrigSpreadTick = SpreadTick;
         }
-
         public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
+            if (dinfo.Instigator is Pawn)
+            {
+                PurpleIvyData.LastAttacked = Find.TickManager.TicksGame;
+            }
             PurpleIvyMoteMaker.ThrowToxicGas(this.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(1f), this.Map);
             base.PreApplyDamage(ref dinfo, out absorbed);
         }

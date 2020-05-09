@@ -12,12 +12,48 @@ namespace PurpleIvy
         public int tickEndHediff = 0;
         public bool mutationActive = false;
         public int tickStartHediff = 0;
+        public bool forced = false;
         public override void PostAdd(DamageInfo? dinfo)
         {
             this.tickStartHediff = Find.TickManager.TicksGame;
             this.tickEndHediff = Find.TickManager.TicksGame + new IntRange(120000, 180000).RandomInRange;
         }
 
+        public void Mutate()
+        {
+            mutationActive = true;
+            this.Severity = 1f;
+
+            foreach (var tool in pawn.Tools)
+            {
+                if (tool.power > 0)
+                {
+                    tool.power *= 1.25f;
+                }
+            }
+            if (this.pawn.Faction != PurpleIvyData.AlienFaction)
+            {
+                this.pawn.SetFaction(PurpleIvyData.AlienFaction);
+            }
+            this.pawn.RaceProps.thinkTreeMain = PurpleIvyDefOf.PI_HumanlikeMutant;
+            Lord lord = null;
+            if (this.pawn.Map.mapPawns.SpawnedPawnsInFaction(pawn.Faction).Any((Pawn p) =>
+            p != this.pawn))
+            {
+                lord = ((Pawn)GenClosest.ClosestThing_Global(this.pawn.Position,
+                    this.pawn.Map.mapPawns.SpawnedPawnsInFaction(this.pawn.Faction), 99999f,
+                    (Thing p) => p != this.pawn && ((Pawn)p).GetLord() != null, null)).GetLord();
+            }
+            if (lord == null)
+            {
+                var lordJob = new LordJob_AssaultColony(this.pawn.Faction);
+                lord = LordMaker.MakeNewLord(this.pawn.Faction, lordJob, this.pawn.Map, null);
+            }
+            if (!lord.ownedPawns.Contains(this.pawn))
+            {
+                lord.AddPawn(this.pawn);
+            }
+        }
         public override void Tick()
         {
             base.Tick();
@@ -26,23 +62,7 @@ namespace PurpleIvy
                 .Where(x => GenGrid.InBounds(x, this.pawn.Map) && this.pawn.Map.thingGrid.ThingsListAt(x)
                 .Where(y => y.Faction == this.pawn.Faction).Count() > 0).Count() > 0)
             {
-                mutationActive = true;
-                this.pawn.SetFaction(PurpleIvyData.AlienFaction);
-                this.pawn.RaceProps.thinkTreeMain = PurpleIvyDefOf.PI_HumanlikeMutant;
-                Lord lord = null;
-                if (this.pawn.Map.mapPawns.SpawnedPawnsInFaction(pawn.Faction).Any((Pawn p) =>
-                p != this.pawn))
-                {
-                    lord = ((Pawn)GenClosest.ClosestThing_Global(this.pawn.Position,
-                        this.pawn.Map.mapPawns.SpawnedPawnsInFaction(this.pawn.Faction), 99999f,
-                        (Thing p) => p != this.pawn && ((Pawn)p).GetLord() != null, null)).GetLord();
-                }
-                if (lord == null)
-                {
-                    var lordJob = new LordJob_AssaultColony(this.pawn.Faction);
-                    lord = LordMaker.MakeNewLord(this.pawn.Faction, lordJob, this.pawn.Map, null);
-                }
-                lord.AddPawn(this.pawn);
+                Mutate();
             }
         }
 
@@ -55,4 +75,3 @@ namespace PurpleIvy
         }
     }
 }
-

@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-<HediffDef>
-    <defName>PI_AlienMutation</defName>
-	<hediffClass>PurpleIvy.AlienMutationHediff</hediffClass>
-	<defaultLabelColor>(0.5, 0.1, 0.5)</defaultLabelColor>
-    <label>Alien Mutation</label>
-    <labelNoun>Alien Mutation</labelNoun>
-	<description>Alien Mutation</description>
-	<isBad>true</isBad>
-  </HediffDef>
+	<HediffDef>
+		<defName>PI_AlienMutation</defName>
+		<hediffClass>PurpleIvy.AlienMutationHediff</hediffClass>
+		<defaultLabelColor>(0.5, 0.1, 0.5)</defaultLabelColor>
+		<label>Alien Mutation</label>
+		<labelNoun>Alien Mutation</labelNoun>
+		<description>Alien Mutation</description>
+		<isBad>true</isBad>
+		<stages>
+			<li>
+				<label>initial</label>
+			</li>
+			<li>
+				<label>mutated</label>
+				<minSeverity>1</minSeverity>
+				<naturalHealingFactor>100.0</naturalHealingFactor>
+				<capMods>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>0.05</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.05</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<MeleeHitChance>10</MeleeHitChance>
+					<ShootingAccuracyPawn>10</ShootingAccuracyPawn>
+					<AimingDelayFactor>-1</AimingDelayFactor>
+					<MeleeDodgeChance>16</MeleeDodgeChance>
+					<PsychicSensitivity>1</PsychicSensitivity>
+					<ToxicSensitivity>1</ToxicSensitivity>
+					<MoveSpeed>20.00</MoveSpeed>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
 </Defs>

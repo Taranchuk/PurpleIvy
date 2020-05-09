@@ -54,6 +54,19 @@
 		<category>ThreatBig</category>
 		<tale>Raid</tale>
 	</IncidentDef>
+	
+		<IncidentDef>
+		<defName>PI_MutantRaid</defName>
+		<minRefireDays>120</minRefireDays>
+		<label>mutant raid</label>
+		<targetTags>
+			<li>Map_PlayerHome</li>
+		</targetTags>
+		<workerClass>PurpleIvy.IncidentWorker_MutantRaid</workerClass>
+		<baseChance>0.3</baseChance>
+		<category>ThreatBig</category>
+		<tale>Raid</tale>
+	</IncidentDef>
 
 	<IncidentDef>
 		<defName>PI_OmegaDrops</defName>

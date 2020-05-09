@@ -59,7 +59,7 @@ namespace PurpleIvy
         {
             base.TickRare();
             pumpfreq--;
-            if (pumpfreq == 0)
+            if (pumpfreq <= 0)
             {
                 PurpleIvyMoteMaker.ThrowToxicGas(base.Position.ToVector3Shifted(), this.Map);
                 pumpfreq = 3;
