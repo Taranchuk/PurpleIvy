@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AlienRace;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -97,6 +98,31 @@ namespace PurpleIvy
                         corpse.AllComps.Add(comp);
                     }
                 }
+                AlienMutationHediff hediff2 = (AlienMutationHediff)pawn.health.hediffSet.hediffs
+                .Where(x => x is AlienMutationHediff).FirstOrDefault();
+                if (hediff2 != null)
+                {
+                    var comp = pawn.TryGetComp<AlienMutation>();
+                    if (comp == null)
+                    {
+                        comp = new AlienMutation();
+                        comp.Initialize(null);
+                        comp.parent = pawn;
+                        comp.mutationActive = hediff2.mutationActive;
+                        comp.tickStartHediff = hediff2.tickStartHediff;
+                        comp.tickEndHediff = hediff2.tickEndHediff;
+                        if (pawn.Dead)
+                        {
+                            var corpse = pawn.Corpse;
+                            corpse.AllComps.Add(comp);
+                        }
+                        else
+                        {
+                            pawn.AllComps.Add(comp);
+                        }
+                    }
+                }
+
             }
         }
 
@@ -106,14 +132,6 @@ namespace PurpleIvy
             if (Find.TickManager.TicksGame % 250 == 0)
             {
                 var plants = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);
-
-               //foreach (var pawn in this.map.mapPawns.FreeColonists)
-               //{
-               //    foreach (var plant in plants)
-               //    {
-               //        Log.Message(plant + "IsHostile to " + pawn + " - " + pawn.HostileTo(plant));
-               //    }
-               //}
                 //Log.Message("Checking orbital strike, " + this.OrbitalHelpActive + " - " + plants.Count);
                 if (plants != null && ((this.OrbitalHelpActive == true && plants.Count > 0)
                     || plants.Count > 1500)) // && Rand.Chance(PurpleIvyData.getFogProgress(plants.Count)))

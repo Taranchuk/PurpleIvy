@@ -37,6 +37,10 @@
       <HintPath>..\..\..\..\..\..\Files\devmods\SourceDLLs\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="AlienRace">
+      <HintPath>..\..\..\Humanoid Alien Races 2.0\1.1\Assemblies\AlienRace.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\..\Files\devmods\SourceDLLs\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
@@ -297,6 +301,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlienInfections\CompProperties_AlienMutation.cs" />
+    <Compile Include="AlienInfections\Comp_AlienMutation.cs" />
+    <Compile Include="AlienInfections\HediffMutated.cs" />
     <Compile Include="Buildings\Building_BioLab.cs" />
     <Compile Include="Buildings\DefModExtension_СontainmentBreach.cs" />
     <Compile Include="Buildings\Building_СontainmentBreach.cs" />
@@ -311,6 +318,8 @@
     <Compile Include="Damages\Filth_ToxicFilth.cs" />
     <Compile Include="Damages\Filth_ToxicBlood.cs" />
     <Compile Include="Damages\SectionLayer_BuildingsToxicDamage.cs" />
+    <Compile Include="Effects\PurpleEyes.cs" />
+    <Compile Include="HarmonyPatches\PurpleEyesRenderer.cs" />
     <Compile Include="HarmonyPatches\AlienLairs_GenStepPatch.cs" />
     <Compile Include="HarmonyPatches\AlienLairsBasesGeneration.cs" />
     <Compile Include="HarmonyPatches\FloatMenuMakerMap_Patch.cs" />
@@ -367,7 +376,7 @@
     <Compile Include="Sites\GenStep_CrashedShip.cs" />
     <Compile Include="Sites\Site_AbandonedBase.cs" />
     <Compile Include="Sites\Site_DefeatedSite.cs" />
-    <Compile Include="AlienInfection\HediffInfected.cs" />
+    <Compile Include="AlienInfections\HediffInfected.cs" />
     <Compile Include="PurpleIvyData.cs" />
     <Compile Include="Sites\BiomeWorker_AlienBiome.cs" />
     <Compile Include="Sites\GenStep_InfectedTile.cs" />
@@ -376,18 +385,18 @@
     <Compile Include="Sites\Site_InfectedSite.cs" />
     <Compile Include="Sites\WorldObjectComp_InfectedTile.cs" />
     <Compile Include="Incidents\IncidentWorker_InfectedTile.cs" />
-    <Compile Include="AlienInfection\IncubationData.cs" />
-    <Compile Include="AlienInfection\CompProperties_AlienInfection.cs" />
+    <Compile Include="AlienInfections\IncubationData.cs" />
+    <Compile Include="AlienInfections\CompProperties_AlienInfection.cs" />
     <Compile Include="Jobs\JobDriver_Kill.cs" />
     <Compile Include="Jobs\JobGiver_GennyBerserk.cs" />
-    <Compile Include="Motes\MoteMaker.cs" />
+    <Compile Include="Effects\MoteMaker.cs" />
     <Compile Include="Things\StickySlugs.cs" />
     <Compile Include="Weather\WeatherEvent_EmpStorm.cs" />
     <Compile Include="Weather\GameCondition_PurpleFog.cs" />
     <Compile Include="GameComponent_WorldEvents.cs" />
     <Compile Include="MapComponent_MapEvents.cs" />
     <Compile Include="PurpleIvyDefOf.cs" />
-    <Compile Include="AlienInfection\Comp_AlienInfection.cs" />
+    <Compile Include="AlienInfections\Comp_AlienInfection.cs" />
     <Compile Include="Buildings\Meteor.cs" />
     <Compile Include="Buildings\MeteorIncoming.cs" />
     <Compile Include="Buildings\MeteorInfo.cs" />

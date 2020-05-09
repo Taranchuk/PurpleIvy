@@ -23,6 +23,8 @@ namespace PurpleIvy
 
         public static HediffDef PI_AlienInfection;
 
+        public static HediffDef PI_AlienMutation;
+
         public static DamageDef AlienToxicSting;
 
         public static DamageDef PI_ToxicExplosion;

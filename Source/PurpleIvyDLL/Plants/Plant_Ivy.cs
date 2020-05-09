@@ -189,7 +189,12 @@ namespace PurpleIvy
                 var hediff2 = HediffMaker.MakeHediff(PurpleIvyDefOf.HarmfulBacteriaHediff,
                     pawn, null);
                 hediff2.Severity = 0.1f;
-                (pawn).health.AddHediff(hediff2, null, null, null);
+                pawn.health.AddHediff(hediff2, null, null, null);
+                if (Rand.Chance(0.1f) && pawn.TryGetComp<AlienMutation>() == null)
+                {
+                    var hediff3 = HediffMaker.MakeHediff(PurpleIvyDefOf.PI_AlienMutation, pawn, null);
+                    pawn.health.AddHediff(hediff3, null, null, null);
+                }
             }
         }
 
@@ -240,6 +245,11 @@ namespace PurpleIvy
                                                 (PurpleIvyDefOf.PI_AlienInfection, pawn);
                                             hediff.instigator = PawnKindDef.Named("Genny_ParasiteOmega");
                                             pawn.health.AddHediff(hediff);
+                                        }
+                                        if (Rand.Chance(0.1f) && pawn.TryGetComp<AlienMutation>() == null)
+                                        {
+                                            var hediff3 = HediffMaker.MakeHediff(PurpleIvyDefOf.PI_AlienMutation, pawn, null);
+                                            pawn.health.AddHediff(hediff3, null, null, null);
                                         }
                                     }
                                     else if (thing is Corpse corpse)
