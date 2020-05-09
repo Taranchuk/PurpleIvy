@@ -96,6 +96,19 @@ namespace PurpleIvy
                     new IntRange(80000, 140000).RandomInRange;
                 AlienQueen.SetFaction(PurpleIvyData.AlienFaction);
             }
+            else
+            {
+                var meteorite = (Building_Meteorite)this.contents.SingleContainedThing;
+                meteorite.activeSpores = true;
+                foreach (var dir in GenRadial.RadialCellsAround(this.contents.SingleContainedThing.Position, 5, true))
+                {
+                    Thing thing = ThingMaker.MakeThing(PurpleIvyDefOf.PI_Spores, null);
+                    GenSpawn.Spawn(thing, dir, this.Map, 0);
+                    var Spores = (Gas)thing;
+                    Spores.destroyTick = Find.TickManager.TicksGame + new IntRange(120000, 180000).RandomInRange;
+                }
+                meteorite.damageActiveTick = Find.TickManager.TicksGame + new IntRange(120000, 180000).RandomInRange;
+            }
             this.Destroy(DestroyMode.Vanish);
         }
     }

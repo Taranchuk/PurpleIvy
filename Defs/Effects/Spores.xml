@@ -2,11 +2,11 @@
 <Defs>
 
 	<ThingDef ParentName="BaseGas">
-		<defName>Spores</defName>
+		<defName>PI_Spores</defName>
 		<label>spores</label>
 		<graphicData>
 			<texPath>Things/Gas/Puff</texPath>
-			<drawSize>(0.75,0.75)</drawSize> 		
+			<drawSize>(3,3)</drawSize> 		
 			<color>(94, 0, 255, 125)</color>
 			<!--<color>(255.0,51.0,51.0,125.5)</color>-->
 		</graphicData>
@@ -16,7 +16,7 @@
 				<max>31000</max>
 			</expireSeconds>
 			<blockTurretTracking>true</blockTurretTracking>
-			<accuracyPenalty>0.7</accuracyPenalty>
+			<accuracyPenalty>0.9</accuracyPenalty>
 			<rotationSpeed>10</rotationSpeed>
 		</gas>
 	</ThingDef>

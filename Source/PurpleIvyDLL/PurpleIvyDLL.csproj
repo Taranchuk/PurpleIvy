@@ -301,8 +301,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlienInfections\CompProperties_AlienMutation.cs" />
-    <Compile Include="AlienInfections\Comp_AlienMutation.cs" />
     <Compile Include="AlienInfections\HediffMutated.cs" />
     <Compile Include="Buildings\Building_BioLab.cs" />
     <Compile Include="Buildings\DefModExtension_СontainmentBreach.cs" />

@@ -16,8 +16,6 @@ namespace PurpleIvy
         private int OrigSpreadTick;
 
         public int nectarAmount;
-
-        ThingDef sporesThingDef = ThingDef.Named("Spores");
         private Gas Spores = null;
 
         Thing IAttackTarget.Thing
@@ -329,11 +327,11 @@ namespace PurpleIvy
                     tickerType = TickerType.Normal,
                     graphicData = new GraphicData
                     {
-                        texPath = sporesThingDef.graphicData.texPath,
+                        texPath = PurpleIvyDefOf.PI_Spores.graphicData.texPath,
                         graphicClass = typeof(Graphic_Gas),
                         shaderType = ShaderTypeDefOf.Transparent,
                         drawSize = new Vector2((this.Growth * 4f) - 1f, (this.Growth * 4f) - 1f),
-                        color = new ColorInt(sporesThingDef.graphicData.color).ToColor
+                        color = new ColorInt(PurpleIvyDefOf.PI_Spores.graphicData.color).ToColor
                     },
                     gas = new GasProperties
                     {

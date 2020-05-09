@@ -13,6 +13,8 @@ namespace PurpleIvy
     public class Building_Meteorite : Building, IAttackTarget
     {
         private int spawnticks = 200;
+        public bool activeSpores = false;
+        public int damageActiveTick = 0;
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
@@ -60,6 +62,37 @@ namespace PurpleIvy
         public override void Tick()
         {
             base.Tick();
+            if (this.activeSpores && Find.TickManager.TicksGame % 60 == 0)
+            {
+                List<Pawn> pawnsToDamage = new List<Pawn>();
+                foreach (var dir in GenRadial.RadialCellsAround(this.Position, 5, true))
+                {
+                    foreach (var t in this.Map.thingGrid.ThingsListAt(dir))
+                    {
+                        if (t is Pawn pawn && pawn.Faction != PurpleIvyData.AlienFaction)
+                        {
+                            pawnsToDamage.Add(pawn);
+                        }
+                    }
+                }
+                foreach (var pawn in pawnsToDamage)
+                {
+                    pawn.TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1f));
+                    if (Rand.Chance(0.1f))
+                    {
+                        pawn.stances.stunner.StunFor(Rand.RangeInclusive(100, 200), null);
+                    }
+                    if (Rand.Chance(0.1f) && pawn.health.hediffSet.GetFirstHediffOfDef(PurpleIvyDefOf.PI_AlienMutation) == null)
+                    {
+                        var hediff3 = HediffMaker.MakeHediff(PurpleIvyDefOf.PI_AlienMutation, pawn, null);
+                        pawn.health.AddHediff(hediff3, null, null, null);
+                    }
+                }
+                if (Find.TickManager.TicksGame > this.damageActiveTick)
+                {
+                    this.activeSpores = false;
+                }
+            }
             spawnticks--;
             if (spawnticks == 0)
             {
@@ -109,8 +142,16 @@ namespace PurpleIvy
                         }
                     }
                 }
-                spawnticks = 1200;
+                spawnticks = 200;
             }
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look<int>(ref this.spawnticks, "spawnticks", 0, false);
+            Scribe_Values.Look<int>(ref this.damageActiveTick, "damageActiveTick", 0, false);
+            Scribe_Values.Look<bool>(ref this.activeSpores, "activeSpores", false, false);
         }
     }
 }

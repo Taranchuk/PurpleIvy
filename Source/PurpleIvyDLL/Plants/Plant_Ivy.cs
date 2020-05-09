@@ -13,7 +13,6 @@ namespace PurpleIvy
     public class Plant_Ivy : Plant, IAttackTarget
     {
         public bool CanMutate = false;
-        ThingDef sporesThingDef = ThingDef.Named("Spores");
         private Gas Spores = null;
 
         Thing IAttackTarget.Thing
@@ -190,7 +189,7 @@ namespace PurpleIvy
                     pawn, null);
                 hediff2.Severity = 0.1f;
                 pawn.health.AddHediff(hediff2, null, null, null);
-                if (Rand.Chance(0.1f) && pawn.TryGetComp<AlienMutation>() == null)
+                if (Rand.Chance(0.1f) && pawn.health.hediffSet.GetFirstHediffOfDef(PurpleIvyDefOf.PI_AlienMutation) == null)
                 {
                     var hediff3 = HediffMaker.MakeHediff(PurpleIvyDefOf.PI_AlienMutation, pawn, null);
                     pawn.health.AddHediff(hediff3, null, null, null);
@@ -246,7 +245,7 @@ namespace PurpleIvy
                                             hediff.instigator = PawnKindDef.Named("Genny_ParasiteOmega");
                                             pawn.health.AddHediff(hediff);
                                         }
-                                        if (Rand.Chance(0.1f) && pawn.TryGetComp<AlienMutation>() == null)
+                                        if (Rand.Chance(0.1f) && pawn.health.hediffSet.GetFirstHediffOfDef(PurpleIvyDefOf.PI_AlienMutation) == null)
                                         {
                                             var hediff3 = HediffMaker.MakeHediff(PurpleIvyDefOf.PI_AlienMutation, pawn, null);
                                             pawn.health.AddHediff(hediff3, null, null, null);
@@ -429,11 +428,11 @@ namespace PurpleIvy
                     tickerType = TickerType.Normal,
                     graphicData = new GraphicData
                     {
-                        texPath = sporesThingDef.graphicData.texPath,
+                        texPath = PurpleIvyDefOf.PI_Spores.graphicData.texPath,
                         graphicClass = typeof(Graphic_Gas),
                         shaderType = ShaderTypeDefOf.Transparent,
                         drawSize = new Vector2((this.Growth) * 2f - 1f, (this.Growth) * 2f - 1f),
-                        color = new ColorInt(sporesThingDef.graphicData.color).ToColor
+                        color = new ColorInt(PurpleIvyDefOf.PI_Spores.graphicData.color).ToColor
                     },
                     gas = new GasProperties
                     {

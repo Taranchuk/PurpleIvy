@@ -103,6 +103,8 @@ namespace PurpleIvy
 
         public static ThingDef PI_ExplosionPlus;
 
+        public static ThingDef PI_Spores;
+
         public static WeatherDef PI_PurpleFog;
 
         public static WeatherDef PI_PurpleFoggyRain;
@@ -184,6 +186,8 @@ namespace PurpleIvy
         public static PawnKindDef Genny_Queen;
 
         public static PawnKindDef KorsolianSoldier;
+
+        public static ThinkTreeDef PI_HumanlikeMutant;
 
         public static SitePartDef PI_CrashedShip;
 

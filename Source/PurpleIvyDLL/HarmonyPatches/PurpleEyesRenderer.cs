@@ -37,8 +37,8 @@ namespace PurpleIvy
             if (__instance != null)
             {
                 Pawn pawn = ___pawn;
-                var comp = pawn.TryGetComp<AlienMutation>();
-                if (pawn != null && !pawn.Dead && comp != null && comp.mutationActive
+                var hediff = (AlienMutationHediff)pawn.health.hediffSet.GetFirstHediffOfDef(PurpleIvyDefOf.PI_AlienMutation);
+                if (pawn != null && !pawn.Dead && hediff != null && hediff.mutationActive
                     && !headStump && ((!portrait && pawn?.jobs?.curDriver != null
                     ? !pawn.jobs.curDriver.asleep : portrait) || portrait))
                 {
