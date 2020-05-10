@@ -85,6 +85,8 @@ namespace PurpleIvy
 
         public static RecipeDef PreciseVivisectionGuard;
 
+        public static RecipeDef PreciseVivisectionQueen;
+
         public static RecipeDef PI_AlienStudyRecipe;
 
         public static RecipeDef PI_BiomaterialsStudyRecipe;
@@ -182,6 +184,10 @@ namespace PurpleIvy
         public static ThingCategoryDef CorpsesAlienParasiteGamma;
 
         public static ThingCategoryDef CorpsesAlienParasiteOmega;
+
+        public static ThingCategoryDef CorpsesAlienParasiteGuard;
+
+        public static ThingCategoryDef CorpsesAlienParasiteQueen;
 
         public static PawnKindDef Genny_Queen;
 

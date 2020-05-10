@@ -19,7 +19,7 @@
 		<tickerType>Normal</tickerType>
 		<designationCategory>Misc</designationCategory>
 		<hasInteractionCell>true</hasInteractionCell>
-		<defaultPlacingRot>South</defaultPlacingRot>
+		<defaultPlacingRot>North</defaultPlacingRot>
 		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
 		<scatterableOnMapGen>false</scatterableOnMapGen>
 		<useHitPoints>true</useHitPoints>
@@ -58,7 +58,7 @@
 			<Mass>40</Mass>
 		</statBases>
 		<size>(2,2)</size>
-		<interactionCellOffset>(0,0,2)</interactionCellOffset>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
 		<costList>
 			<Steel>180</Steel>
 			<Uranium>5</Uranium>
@@ -98,6 +98,66 @@
 	</ThingDef>
 
 	<ThingDef ParentName="ContainmentBreachBase">
+		<defName>PI_ContainmentBreachMobile</defName>
+		<label>Mobile containment breach</label>
+		<description>PI_ContainmentBreach</description>
+		<graphicData>
+			<texPath>Things/Building/ContainmentBreach/ContainmentBreachMobile</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(2, 1)</drawSize>
+			<shadowData>
+				<volume>(0.83, 0.3, 1.7)</volume>
+			</shadowData>
+		</graphicData>
+		<researchPrerequisites>
+			<li>Cryptosleep</li>
+		</researchPrerequisites>
+		<statBases>
+			<WorkToBuild>3200</WorkToBuild>
+			<MaxHitPoints>250</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<Mass>40</Mass>
+		</statBases>
+		<size>(2,1)</size>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<costList>
+			<Steel>60</Steel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+		<building>
+			<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+			<canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+			<ai_chillDestination>false</ai_chillDestination>
+		</building>
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>5</glowRadius>
+				<glowColor>(0,200,200,0)</glowColor>
+			</li>
+			<li Class="CompProperties_AffectedByFacilities">
+				<linkableFacilities>
+					<li>ToolCabinet</li>
+				</linkableFacilities>
+			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>700</basePowerConsumption>
+			</li>
+			<li>
+				<compClass>CompReportWorkSpeed</compClass>
+			</li>
+		</comps>
+		<modExtensions>
+			<li Class="PurpleIvy.DefModExtension_СontainmentBreach">
+				<maxNumAliens>1</maxNumAliens>
+				<blackoutProtection>true</blackoutProtection>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="ContainmentBreachBase">
 		<defName>PI_ContainmentBreachAdv</defName>
 		<label>PI_ContainmentBreachAdv</label>
 		<description>PI_ContainmentBreachAdv</description>
@@ -120,7 +180,7 @@
 			<Mass>40</Mass>
 		</statBases>
 		<size>(3,3)</size>
-		<interactionCellOffset>(0,0,2)</interactionCellOffset>
+		<interactionCellOffset>(0,0,-2)</interactionCellOffset>
 		<costList>
 			<Steel>3600</Steel>
 			<Uranium>10</Uranium>
@@ -154,5 +214,5 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
-	
+
 </Defs>

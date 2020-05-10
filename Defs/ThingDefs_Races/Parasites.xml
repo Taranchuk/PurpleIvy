@@ -103,7 +103,7 @@
 			<baseHungerRate>0.5</baseHungerRate>
 			<baseHealthScale>9.0</baseHealthScale>
 			<lifeExpectancy>6</lifeExpectancy>
-			<fleshType>FleshParasiteAlpha</fleshType>
+			<fleshType>FleshParasiteQueen</fleshType>
 			<leatherDef>PI_AlienLeather</leatherDef>
 			<lifeStageAges>
 				<li>
@@ -186,7 +186,7 @@
 			<baseHealthScale>8.0</baseHealthScale>
 			<lifeExpectancy>6</lifeExpectancy>
 			<thinkTreeMain>PI_NestGuard</thinkTreeMain>
-			<fleshType>FleshParasiteAlpha</fleshType>
+			<fleshType>FleshParasiteGuard</fleshType>
 			<leatherDef>PI_AlienLeather</leatherDef>
 			<lifeStageAges>
 				<li>

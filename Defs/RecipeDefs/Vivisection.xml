@@ -25,6 +25,53 @@
 	</RecipeDef> 
 
 	<RecipeDef>
+		<defName>PreciseVivisectionQueen</defName>
+		<label>Precise vivisection (queen)</label>
+		<description>Precise vivisection (queen).</description>
+		<jobString>conducts vivisection on alien creature</jobString>
+		<recipeUsers>
+			<li>PI_ContainmentBreach</li>
+			<li>PI_ContainmentBreachAdv</li>
+		</recipeUsers>
+		<workAmount>300</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Medicine</workSkill>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<researchPrerequisite>PI_Vivisection</researchPrerequisite>
+		<products>
+			<PI_PlasmaNucleus>6</PI_PlasmaNucleus>
+			<PI_QueenNervousSystem>1</PI_QueenNervousSystem>
+			<PI_BigTentacles>12</PI_BigTentacles>
+			<PI_ToxicSac>3</PI_ToxicSac>
+			<PI_QueenBlood>50</PI_QueenBlood>
+			<PI_PlasmaPoweredGenerator>1</PI_PlasmaPoweredGenerator>
+		</products>
+	</RecipeDef> 
+
+	<RecipeDef>
+		<defName>PreciseVivisectionGuard</defName>
+		<label>Precise vivisection (guard)</label>
+		<description>Precise vivisection (guard).</description>
+		<jobString>conducts vivisection on alien creature</jobString>
+		<recipeUsers>
+			<li>PI_ContainmentBreach</li>
+			<li>PI_ContainmentBreachAdv</li>
+		</recipeUsers>
+		<researchPrerequisite>PI_Vivisection</researchPrerequisite>
+		<products>
+			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
+			<PI_NestGuardNervousSystem>1</PI_NestGuardNervousSystem>
+			<PI_BigTentacles>6</PI_BigTentacles>
+			<PI_ToxicSac>3</PI_ToxicSac>
+			<PI_GuardBlood>50</PI_GuardBlood>
+		</products>
+		<workAmount>300</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Medicine</workSkill>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+	</RecipeDef> 
+	
+	<RecipeDef>
 		<defName>PreciseVivisectionBeta</defName>
 		<label>Precise vivisection (beta)</label>
 		<description>Precise vivisection (beta).</description>
@@ -87,29 +134,6 @@
 			<PI_OmegaBlood>5</PI_OmegaBlood>
 		</products>
 		<researchPrerequisite>PI_Vivisection</researchPrerequisite>
-		<workAmount>300</workAmount>
-		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-		<workSkill>Medicine</workSkill>
-		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
-	</RecipeDef> 
-
-	<RecipeDef>
-		<defName>PreciseVivisectionGuard</defName>
-		<label>Precise vivisection (guard)</label>
-		<description>Precise vivisection (guard).</description>
-		<jobString>conducts vivisection on alien creature</jobString>
-		<recipeUsers>
-			<li>PI_ContainmentBreach</li>
-			<li>PI_ContainmentBreachAdv</li>
-		</recipeUsers>
-		<researchPrerequisite>PI_Vivisection</researchPrerequisite>
-		<products>
-			<PI_PlasmaNucleus>1</PI_PlasmaNucleus>
-			<PI_OmegaNervousSystem>1</PI_OmegaNervousSystem>
-			<PI_Tentacles>6</PI_Tentacles>
-			<PI_ToxicSac>1</PI_ToxicSac>
-			<PI_OmegaBlood>5</PI_OmegaBlood>
-		</products>
 		<workAmount>300</workAmount>
 		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 		<workSkill>Medicine</workSkill>

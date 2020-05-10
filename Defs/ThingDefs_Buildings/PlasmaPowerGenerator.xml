@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>PI_PlasmaPoweredGenerator</defName>
+		<label>plasma powered generator</label>
+		<description>Produces power by consuming plasma. Must be periodically refueled by hand.</description>
+		<thingClass>Building</thingClass>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<graphicData>
+			<texPath>Things/Building/Power/PlasmaPoweredGenerator</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3,3)</drawSize>
+			<shadowData>
+				<volume>(1.93,1,1.69)</volume>
+				<offset>(-0.03,0,-0.1)</offset>
+			</shadowData>
+		</graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<pathCost>150</pathCost>
+		<blockWind>true</blockWind>
+		<fillPercent>1.0</fillPercent>
+		<rotatable>false</rotatable>
+		<statBases>
+			<Mass>5</Mass>
+			<MaxHitPoints>300</MaxHitPoints>
+			<WorkToBuild>2500</WorkToBuild>
+			<Flammability>1.0</Flammability>
+			<Beauty>-20</Beauty>
+		</statBases>
+		<tickerType>Normal</tickerType>
+		<canOverlapZones>false</canOverlapZones>
+		<size>(1,1)</size>
+		<thingCategories>
+			<li>BuildingsSpecial</li>
+		</thingCategories> 
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerPlant</compClass>
+				<basePowerConsumption>-1000</basePowerConsumption>
+				<transmitsPower>true</transmitsPower>
+			</li>
+			<li Class="CompProperties_Flickable" />
+			<li Class="CompProperties_Refuelable">
+				<fuelConsumptionRate>0.2</fuelConsumptionRate>
+				<fuelCapacity>1.0</fuelCapacity>
+				<fuelFilter>
+					<thingDefs>
+						<li>PI_PlasmaContainer</li>
+					</thingDefs>
+				</fuelFilter>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>6</glowRadius>
+				<glowColor>(80,112,180,0)</glowColor>
+			</li>
+			<li Class="CompProperties_HeatPusher">
+				<compClass>CompHeatPusherPowered</compClass>
+				<heatPerSecond>6</heatPerSecond>
+			</li>
+			<li Class="CompProperties_Breakdownable"/>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>0</explosiveRadius>
+				<explosiveExpandPerFuel>0.95</explosiveExpandPerFuel>
+				<explosiveDamageType>PI_ToxicBurn</explosiveDamageType>
+				<destroyThingOnExplosionSize>2</destroyThingOnExplosionSize>
+				<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
+				<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<wickTicks>70~150</wickTicks>
+			</li>
+		</comps>
+		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+	</ThingDef>
+
+</Defs>

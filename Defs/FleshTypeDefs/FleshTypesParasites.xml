@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+
+	<FleshTypeDef>
+		<defName>FleshParasiteQueen</defName>
+		<label>Flesh Parasite</label>
+		<description>Flesh Parasite</description>
+		<ateDirect>AteInsectMeatDirect</ateDirect>
+		<ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
+		<corpseCategory>CorpsesAlienParasiteGuard</corpseCategory>
+		<wounds>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundA</texture>
+				<color>(14, 0, 42)</color>
+			</li>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundB</texture>
+				<color>(14, 0, 42)</color>
+			</li>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundC</texture>
+				<color>(14, 0, 42)</color>
+			</li>
+		</wounds>
+	</FleshTypeDef>
+
+	<FleshTypeDef>
+		<defName>FleshParasiteGuard</defName>
+		<label>Flesh Parasite</label>
+		<description>Flesh Parasite</description>
+		<ateDirect>AteInsectMeatDirect</ateDirect>
+		<ateAsIngredient>AteInsectMeatAsIngredient</ateAsIngredient>
+		<corpseCategory>CorpsesAlienParasiteGuard</corpseCategory>
+		<wounds>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundA</texture>
+				<color>(14, 0, 42)</color>
+			</li>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundB</texture>
+				<color>(14, 0, 42)</color>
+			</li>
+			<li>
+				<texture>Things/Pawn/Wounds/WoundC</texture>
+				<color>(14, 0, 42)</color>
+			</li>
+		</wounds>
+	</FleshTypeDef>
 	<FleshTypeDef>
 		<defName>FleshParasiteAlpha</defName>
 		<label>Flesh Parasite</label>

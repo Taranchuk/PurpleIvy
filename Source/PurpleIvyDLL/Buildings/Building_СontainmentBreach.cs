@@ -20,15 +20,21 @@ namespace PurpleIvy
         public override void PostMake()
         {
             base.PostMake();
-            this.maxNumAliens = this.def.GetModExtension<DefModExtension_СontainmentBreach>().maxNumAliens;
-            this.blackoutProtection = this.def.GetModExtension<DefModExtension_СontainmentBreach>().blackoutProtection;
+            if (this.def.GetModExtension<DefModExtension_СontainmentBreach>() != null)
+            {
+                this.maxNumAliens = this.def.GetModExtension<DefModExtension_СontainmentBreach>().maxNumAliens;
+                this.blackoutProtection = this.def.GetModExtension<DefModExtension_СontainmentBreach>().blackoutProtection;
+            }
         }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            this.maxNumAliens = this.def.GetModExtension<DefModExtension_СontainmentBreach>().maxNumAliens;
-            this.blackoutProtection = this.def.GetModExtension<DefModExtension_СontainmentBreach>().blackoutProtection;
+            if (this.def.GetModExtension<DefModExtension_СontainmentBreach>() != null)
+            {
+                this.maxNumAliens = this.def.GetModExtension<DefModExtension_СontainmentBreach>().maxNumAliens;
+                this.blackoutProtection = this.def.GetModExtension<DefModExtension_СontainmentBreach>().blackoutProtection;
+            }
         }
 
         public bool HasBloodInAlien(Thing alien)
@@ -188,6 +194,14 @@ namespace PurpleIvy
                         jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
                         break;
                     }
+                    else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionQueen
+                        && "Genny_Queen" == alien.def.defName)
+                    {
+                        result = true;
+                        job.targetB = alien;
+                        jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                        break;
+                    }
                 }
             }
             if (result == false)
@@ -225,6 +239,28 @@ namespace PurpleIvy
                 else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionOmega)
                 {
                     var corpse = this.FindCorpse(PurpleIvyDefOf.CorpsesAlienParasiteOmega);
+                    if (corpse != null)
+                    {
+                        result = true;
+                        jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                        job.targetB = corpse;
+                    }
+                }
+
+                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionGuard)
+                {
+                    var corpse = this.FindCorpse(PurpleIvyDefOf.CorpsesAlienParasiteGuard);
+                    if (corpse != null)
+                    {
+                        result = true;
+                        jobDef = PurpleIvyDefOf.PI_PreciseVivisection;
+                        job.targetB = corpse;
+                    }
+                }
+
+                else if (job.bill.recipe == PurpleIvyDefOf.PreciseVivisectionQueen)
+                {
+                    var corpse = this.FindCorpse(PurpleIvyDefOf.CorpsesAlienParasiteQueen);
                     if (corpse != null)
                     {
                         result = true;

@@ -31,4 +31,16 @@
 		<parent>CorpsesAlienParasites</parent>
 	</ThingCategoryDef>
 
+	<ThingCategoryDef>
+		<defName>CorpsesAlienParasiteGuard</defName>
+		<label>Alien guard corpses</label>
+		<parent>CorpsesAlienParasites</parent>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>CorpsesAlienParasiteQueen</defName>
+		<label>Alien queen corpses</label>
+		<parent>CorpsesAlienParasites</parent>
+	</ThingCategoryDef>
+
 </Defs>
