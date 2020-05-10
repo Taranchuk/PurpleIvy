@@ -11,12 +11,18 @@
 		<stages>
 			<li>
 				<label>initial</label>
+				<becomeVisible>false</becomeVisible>
 			</li>
 			<li>
 				<label>mutated</label>
 				<minSeverity>1</minSeverity>
 				<naturalHealingFactor>100.0</naturalHealingFactor>
+				<painFactor>-1.0</painFactor>
 				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>1</offset>
+					</li>
 					<li>
 						<capacity>Sight</capacity>
 						<offset>0.05</offset>
@@ -27,6 +33,7 @@
 					</li>
 				</capMods>
 				<statOffsets>
+					<PainShockThreshold>-1</PainShockThreshold>
 					<MeleeHitChance>10</MeleeHitChance>
 					<ShootingAccuracyPawn>10</ShootingAccuracyPawn>
 					<AimingDelayFactor>-1</AimingDelayFactor>

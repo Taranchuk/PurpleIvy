@@ -215,7 +215,7 @@ namespace PurpleIvy
         {
             var job = JobMaker.MakeJob(PurpleIvyDefOf.PI_JumpOnTarget, target);
             job.maxNumMeleeAttacks = 1;
-            job.expiryInterval = Rand.Range(420, 900);
+            job.expiryInterval = Rand.Range(1, 60);
             job.attackDoorIfTargetLost = true;
             job.canBash = true;
             return job;

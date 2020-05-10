@@ -168,12 +168,6 @@ namespace PurpleIvy
                 {
                     this.health.hediffSet.hediffs.Remove(hediff);
                     RestUtility.Awake(this);
-                    this.health.Reset();
-                    this.health.AddHediff(PurpleIvyDefOf.PI_Regen);
-                    PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
-                    this.mindState.duty = duty;
-                    this.mindState.duty.focus = focus;
-                    Log.Message("Set focus to " + focus);
                 }
             }
             base.PostApplyDamage(dinfo, totalDamageDealt);
@@ -189,12 +183,6 @@ namespace PurpleIvy
                 {
                     this.health.hediffSet.hediffs.Remove(hediff);
                     RestUtility.Awake(this);
-                    this.health.Reset();
-                    this.health.AddHediff(PurpleIvyDefOf.PI_Regen);
-                    PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
-                    this.mindState.duty = duty;
-                    this.mindState.duty.focus = focus;
-                    Log.Message("Set focus to " + focus);
                 }
             }
             spawnticks--;
@@ -256,6 +244,9 @@ namespace PurpleIvy
             Scribe_Values.Look<int>(ref this.recoveryTick, "recoveryTick", 0);
             Scribe_Values.Look<bool>(ref this.first, "first", true);
             Scribe_TargetInfo.Look(ref this.focus, "focus");
+            PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
+            this.mindState.duty = duty;
+            this.mindState.duty.focus = focus;
         }
 
         public int recoveryTick = 0;

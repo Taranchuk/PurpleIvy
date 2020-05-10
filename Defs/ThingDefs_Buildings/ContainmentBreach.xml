@@ -92,7 +92,7 @@
 		<modExtensions>
 			<li Class="PurpleIvy.DefModExtension_СontainmentBreach">
 				<maxNumAliens>1</maxNumAliens>
-				<blackoutProtection>false</blackoutProtection>
+				<blackoutProtection>5000~10000</blackoutProtection>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -152,7 +152,7 @@
 		<modExtensions>
 			<li Class="PurpleIvy.DefModExtension_СontainmentBreach">
 				<maxNumAliens>1</maxNumAliens>
-				<blackoutProtection>true</blackoutProtection>
+				<blackoutProtection>0</blackoutProtection>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -210,7 +210,7 @@
 		<modExtensions>
 			<li Class="PurpleIvy.DefModExtension_СontainmentBreach">
 				<maxNumAliens>3</maxNumAliens>
-				<blackoutProtection>true</blackoutProtection>
+				<blackoutProtection>100000~120000</blackoutProtection>
 			</li>
 		</modExtensions>
 	</ThingDef>

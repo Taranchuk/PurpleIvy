@@ -30,6 +30,7 @@ namespace PurpleIvy
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            this.powerComp = this.TryGetComp<CompPowerTrader>();
             if (this.def.GetModExtension<DefModExtension_СontainmentBreach>() != null)
             {
                 this.maxNumAliens = this.def.GetModExtension<DefModExtension_СontainmentBreach>().maxNumAliens;
@@ -414,9 +415,32 @@ namespace PurpleIvy
             }
         }
 
+        public override void Tick()
+        {
+            base.Tick();
+            if (this.startOpenContainer == 0 && this.blackoutProtection.min > 0 && this.powerComp != null && !this.powerComp.PowerOn)
+            {
+                this.startOpenContainer = Find.TickManager.TicksGame + this.blackoutProtection.RandomInRange;
+            }
+            else if (this.startOpenContainer > 0 && Find.TickManager.TicksGame > this.startOpenContainer)
+            {
+                foreach (var pawn in this.Aliens)
+                {
+                    if (pawn is Pawn alien)
+                    {
+                        Log.Message("Gained");
+                        alien.health.AddHediff(PurpleIvyDefOf.PI_GainConsciousness);
+                    }
+                }
+                this.innerContainer.TryDropAll(this.Position, this.Map, ThingPlaceMode.Near);
+                this.startOpenContainer = 0;
+                this.TakeDamage(new DamageInfo(DamageDefOf.Blunt, 50f));
+            }
+        }
         public override void ExposeData()
         {
             base.ExposeData();
+            Scribe_Values.Look<int>(ref this.startOpenContainer, "startOpenContainer", 0);
             Scribe_Deep.Look<ThingOwner>(ref this.innerContainer, "innerContainer", new object[]
             {
                 this
@@ -443,7 +467,11 @@ namespace PurpleIvy
 
         public int maxNumAliens;
 
-        public bool blackoutProtection;
+        public int startOpenContainer;
+
+        public IntRange blackoutProtection;
+
+        public CompPowerTrader powerComp;
     }
 }
 

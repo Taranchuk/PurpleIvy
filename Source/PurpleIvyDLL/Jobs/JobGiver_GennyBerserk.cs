@@ -21,6 +21,7 @@ namespace PurpleIvy
             //{
             //    return null;
             //}
+
             if (pawn.CurJob != null)
             {
                 Log.Message(pawn + " - " + pawn.CurJob.def.defName);

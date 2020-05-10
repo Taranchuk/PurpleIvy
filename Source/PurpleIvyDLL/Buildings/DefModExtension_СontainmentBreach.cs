@@ -10,7 +10,7 @@ namespace PurpleIvy
 
         public int maxNumAliens = 0;
 
-        public bool blackoutProtection = false;
+        public IntRange blackoutProtection = new IntRange(0, 0);
     }
 }
 
