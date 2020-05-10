@@ -63,6 +63,8 @@ namespace PurpleIvy
 
         public static JobDef PI_EntangleTargetWithSlugs;
 
+        public static JobDef PI_SavePawnFromStickySlugs;
+
         public static RecipeDef DrawAlienBlood;
 
         public static RecipeDef DrawAlphaAlienBlood;

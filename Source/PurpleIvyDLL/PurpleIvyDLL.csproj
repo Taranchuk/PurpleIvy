@@ -342,6 +342,7 @@
     <Compile Include="Incidents\IncidentWorker_QueenMeteorite.cs" />
     <Compile Include="Jobs\JobDriver_BioStudy.cs" />
     <Compile Include="Jobs\JobDriver_AlienStudy.cs" />
+    <Compile Include="Jobs\JobDriver_SavePawnFromStickySlugs.cs" />
     <Compile Include="Jobs\JobDriver_EntangleTargetWithSlugs.cs" />
     <Compile Include="Jobs\JobDriver_ThrowSmoke.cs" />
     <Compile Include="Jobs\JobDriver_JumpToTarget.cs" />

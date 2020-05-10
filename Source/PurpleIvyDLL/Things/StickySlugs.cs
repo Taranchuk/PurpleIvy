@@ -4,6 +4,7 @@ using System.Text;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace PurpleIvy
 {
@@ -22,12 +23,17 @@ namespace PurpleIvy
             }
         }
 
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+            return base.GetGizmos();
+        }
         public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
-            if (this.innerContainer != null && this.innerContainer.Count > 0 && this.innerContainer[0] is Pawn pawn)
+            if (this.innerContainer != null && this.innerContainer.Count > 0 && (this.ContainedThing is Pawn || this.ContainedThing is Corpse))
             {
                 this.innerContainer[0].DrawAt(drawLoc, flip);
-                Graphics.DrawMesh(MeshPool.plane20, drawLoc, GenMath.ToQuat(0f), this.def.DrawMatSingle, 0);
+                base.DrawAt(drawLoc, flip);
+                //Graphics.DrawMesh(MeshPool.plane10, drawLoc, GenMath.ToQuat(0f), this.def.DrawMatSingle, 0);
             }
             else
             {
@@ -47,16 +53,36 @@ namespace PurpleIvy
             }
         }
 
+        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
+        {
+            foreach (FloatMenuOption floatMenuOption2 in base.GetFloatMenuOptions(myPawn))
+            {
+                yield return floatMenuOption2;
+            }
+            IEnumerator<FloatMenuOption> enumerator = null;
+            if (this.innerContainer.Count == 1)
+            {
+                    JobDef jobDef = PurpleIvyDefOf.PI_SavePawnFromStickySlugs;
+                    string label = "SavePawnFromStickySlugs".Translate();
+                    Action action = delegate ()
+                    {
+                        Job job = JobMaker.MakeJob(jobDef, this.ContainedThing, this);
+                        job.count = 1;
+                        myPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                    };
+                    yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, action, MenuOptionPriority.Default, null, null, 0f, null, null), myPawn, this, "ReservedBy");
+            }
+            yield break;
+            yield break;
+        }
         public override string GetInspectString()
         {
             if (this.innerContainer != null && this.innerContainer.Count > 0 && this.innerContainer[0] is Pawn pawn)
             {
-                Log.Message("Return pawn inspect");
                 return this.innerContainer.ContentsString;
             }
             else
             {
-                Log.Message("Return base inspect");
                 return base.GetInspectString();
             }
         }

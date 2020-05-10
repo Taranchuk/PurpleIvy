@@ -64,6 +64,12 @@
 	</JobDef>
 
 	<JobDef>
+		<defName>PI_SavePawnFromStickySlugs</defName>
+		<driverClass>PurpleIvy.JobDriver_SavePawnFromStickySlugs</driverClass>
+		<reportString>saves TargetA from TargetB</reportString>
+	</JobDef>
+	
+	<JobDef>
 		<defName>PI_TakeAlienToContainmentBreach</defName>
 		<driverClass>PurpleIvy.JobDriver_TakeAlienToСontainmentBreach</driverClass>
 		<reportString>transfers TargetA to TargetB</reportString>
