@@ -12,6 +12,51 @@ namespace PurpleIvy
     [StaticConstructorOnStartup]
     public static class PurpleIvyUtils
     {
+
+        public static List<Thing> SpawnNests(Thing spawner)
+        {
+            List<Thing> nests = new List<Thing>();
+            int nestCount = 0;
+            List<IntVec3> freeTiles = new List<IntVec3>();
+            foreach (IntVec3 dir in GenRadial.RadialCellsAround(spawner.Position, 50, true))
+            {
+                if (GenGrid.InBounds(dir, spawner.Map) && spawner.Map.fertilityGrid.FertilityAt(dir) >= 0.5)
+                {
+                    var plant = dir.GetPlant(spawner.Map);
+                    if (plant?.def == PurpleIvyDefOf.PI_Nest) nestCount++;
+                    if (plant?.Faction != PurpleIvyData.AlienFaction && !GenCollection.Any<Thing>
+                        (GridsUtility.GetThingList(dir, spawner.Map), (Thing t) => 
+                        (t.def.IsBuildingArtificial || t.def.IsNonResourceNaturalRock)))
+                    {
+                        if (freeTiles.Count < 50) freeTiles.Add(dir);
+                        else break;
+                    }
+                }
+                if (nestCount == 4) break;
+            }
+            if (nestCount < 4)
+            {
+                var rnd = new System.Random();
+                foreach (IntVec3 current in freeTiles.OrderBy(x => rnd.Next()).Take(4 - nestCount))
+                {
+                    var plant = current.GetPlant(spawner.Map);
+                    if (plant == null)
+                    {
+                        Thing newNest = ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                        GenSpawn.Spawn(newNest, current, spawner.Map);
+                        nests.Add(newNest);
+                    }
+                    else
+                    {
+                        plant.Destroy();
+                        Thing newNest = ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
+                        GenSpawn.Spawn(newNest, current, spawner.Map);
+                        nests.Add(newNest);
+                    }
+                }
+            }
+            return nests;
+        }
         public static Pawn GenerateKorsolian(string PawnKind)
         {
             PawnKindDef pawnKindDef = PawnKindDef.Named(PawnKind);

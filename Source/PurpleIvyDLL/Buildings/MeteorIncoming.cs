@@ -47,6 +47,11 @@ namespace PurpleIvy
         }
         public override void Tick()
         {
+            if (GenGrid.InBounds(DrawPos.ToIntVec3(), this.Map))
+            {
+                PurpleIvyMoteMaker.ThrowToxicGas(DrawPos, this.Map);
+                PurpleIvyMoteMaker.ThrowLightningGlow(DrawPos, this.Map, 1f);
+            }
             this.ticksToImpact--;
             if (this.ticksToImpact <= 0)
             {
@@ -76,7 +81,7 @@ namespace PurpleIvy
                 MoteMaker.ThrowDustPuff(spawnLoc, this.Map, 1.2f);
             }
             MoteMaker.ThrowLightningGlow(base.Position.ToVector3Shifted(), this.Map, 2f);
-            MoteMaker.ThrowSmoke(base.Position.ToVector3Shifted(), this.Map, 2f);
+            PurpleIvyMoteMaker.ThrowToxicGas(base.Position.ToVector3Shifted(), this.Map);
             //MoteMaker.ThrowExplosionCell(base.Position, this.Map);
 
             MeteorIncoming.ExplodeSound.PlayOneShot(new TargetInfo(base.Position, base.Map, false));
@@ -109,6 +114,7 @@ namespace PurpleIvy
                 }
                 meteorite.damageActiveTick = Find.TickManager.TicksGame + new IntRange(120000, 180000).RandomInRange;
             }
+            GenExplosion.DoExplosion(base.Position, this.Map, 5f, DamageDefOf.Bomb, null);
             this.Destroy(DestroyMode.Vanish);
         }
     }
