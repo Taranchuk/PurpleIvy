@@ -60,7 +60,10 @@ namespace PurpleIvy
                     if (DamageWorker_AddInjuryNoCamShaker.thingsToAffect[j] is Pawn)
                     {
                         Pawn pawn = (Pawn)DamageWorker_AddInjuryNoCamShaker.thingsToAffect[j];
-                        pawn.stances.stunner.StunFor(Rand.RangeInclusive(100, 200), explosion.instigator);
+                        if (Rand.Chance(0.3f))
+                        {
+                            pawn.stances.stunner.StunFor(Rand.RangeInclusive(100, 200), explosion.instigator);
+                        }
 
                     }
                     this.ExplosionDamageThing(explosion, DamageWorker_AddInjuryNoCamShaker.thingsToAffect[j], damagedThings, ignoredThings, c);

@@ -12,6 +12,11 @@ namespace PurpleIvy
     {
         protected override Job TryGiveJob(Pawn pawn)
         {
+            if (Find.TickManager.TicksGame < PrevTick + 10)
+            {
+                return null;
+            }
+            PrevTick = Find.TickManager.TicksGame;
             if (GridsUtility.Fogged(pawn.Position, pawn.Map))
             {
                 return JobMaker.MakeJob(JobDefOf.LayDown);
@@ -21,13 +26,17 @@ namespace PurpleIvy
             //{
             //    return null;
             //}
-
             if (pawn.CurJob != null)
             {
                 Log.Message(pawn + " - " + pawn.CurJob.def.defName);
             }
             Pawn pawn2 = null;
-            if ((Find.TickManager.TicksGame - PurpleIvyData.LastAttacked) < 1000)
+            if (pawn is Alien alien && (Find.TickManager.TicksGame - alien.lastAttacked) < 1000)
+            {
+                Log.Message("Last attacked");
+                pawn2 = alien.lastInstigator;
+            }
+            else if ((Find.TickManager.TicksGame - PurpleIvyData.LastAttacked) < 1000)
             {
                 pawn2 = FindPawnTargetNearPlants(pawn);
             }
@@ -71,26 +80,24 @@ namespace PurpleIvy
             else if (!pawn2.Downed)
             {
                 var verb = pawn.VerbTracker.AllVerbs.Where(x => x.IsMeleeAttack != true).FirstOrDefault();
-                if (Find.TickManager.TicksGame > PrevTick + 10 && pawn.def == PurpleIvyDefOf.Genny_ParasiteOmega && pawn.Position.InHorDistOf(pawn2.Position, 15) && Rand.Chance(0.7f))
+                if (pawn.def == PurpleIvyDefOf.Genny_ParasiteOmega && pawn.Position.InHorDistOf(pawn2.Position, 15) && Rand.Chance(0.7f))
                 {
-                    PrevTick = Find.TickManager.TicksGame;
-                    //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - JUMP");
+                    Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - JUMP");
                     return PurpleIvyUtils.JumpOnTargetJob(pawn, pawn2);
                 }
                 else if (pawn.def == PurpleIvyDefOf.Genny_ParasiteBeta && pawn.Position.InHorDistOf(pawn2.Position, 2) && Rand.Chance(0.1f))
                 {
-                    //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - SMOKE");
+                    Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - SMOKE");
                     return PurpleIvyUtils.SmokeAttackJob(pawn, pawn2);
                 }
-                else if (Find.TickManager.TicksGame > PrevTick + 10 && verb != null && Rand.Chance(0.8f) && pawn.Position.InHorDistOf(pawn2.Position, verb.verbProps.range))
+                else if (verb != null && Rand.Chance(0.8f) && pawn.Position.InHorDistOf(pawn2.Position, verb.verbProps.range))
                 {
-                    PrevTick = Find.TickManager.TicksGame;
-                    //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - SHOOT");
+                    Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - SHOOT");
                     return PurpleIvyUtils.RangeAttackJob(pawn, pawn2);
                 }
                 else
                 {
-                    //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - MELEE");
+                    Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - MELEE");
                     return PurpleIvyUtils.MeleeAttackJob(pawn, pawn2);
                 }
             }
@@ -101,15 +108,17 @@ namespace PurpleIvy
                     pawn.kindDef != PurpleIvyDefOf.Genny_Queen 
                     && pawn.needs.food.CurCategory < HungerCategory.Hungry)
                 {
+                    Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - SLUGS");
+
                     return PurpleIvyUtils.EntagleWithSlugsJob(pawn, pawn2);
                 }
                 else
                 {
+                    Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - KILL");
                     return PurpleIvyUtils.KillAttackJob(pawn, pawn2);
                 }
-                //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - KILL");
             }
-            //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - NULL 1");
+            Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - NULL 1");
             //Building building = this.FindTurretTarget(pawn);
             //if (building != null)
             //{
@@ -167,7 +176,7 @@ namespace PurpleIvy
             Pawn victim = null;
             bool Predicate(Thing p) => p != null && p != pawn
             && p.Faction != pawn.Faction;
-            const float distance = 25f;
+            const float distance = 9999f;
             var plants = pawn.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest);
             if (plants.Count == 0)
             {

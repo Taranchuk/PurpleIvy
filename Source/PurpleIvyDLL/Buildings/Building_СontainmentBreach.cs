@@ -445,6 +445,7 @@ namespace PurpleIvy
                 yield return gizmo;
             }
             IEnumerator<Gizmo> enumerator = null;
+
             if (base.Faction == Faction.OfPlayer && this.innerContainer.Count > 0)
             {
                 Command_Action command_Action = new Command_Action();

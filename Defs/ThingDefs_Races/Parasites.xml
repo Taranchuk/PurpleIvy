@@ -5,7 +5,7 @@
 	<ThingDef Name="BaseParasite" ParentName="BasePawn" Abstract="True">
 		<label>Alien parasite</label>
 		<description>Alien parasite</description>
-		<thingClass>Pawn</thingClass>
+		<thingClass>PurpleIvy.Alien</thingClass>
 		<statBases>
 			<PsychicSensitivity>1</PsychicSensitivity>
 			<ToxicSensitivity>0</ToxicSensitivity>
@@ -77,24 +77,24 @@
 		</tools>
 		<comps>
 		</comps>
-	    <verbs>			
-		<li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>PI_ToxicRocketQueen</defaultProjectile>
-        <warmupTime>4.5</warmupTime>
-        <ai_AvoidFriendlyFireRadius>1</ai_AvoidFriendlyFireRadius>
-        <range>20.0</range>
-        <burstShotCount>1</burstShotCount>
-        <soundCast>InfernoCannon_Fire</soundCast>
-        <soundCastTail>GunTail_Heavy</soundCastTail>
-        <onlyManualCast>true</onlyManualCast>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-        <muzzleFlashScale>1</muzzleFlashScale>
-        <commonality>.8</commonality>
-		</li>
+		<verbs>			
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>PI_ToxicRocketQueen</defaultProjectile>
+				<warmupTime>4.5</warmupTime>
+				<ai_AvoidFriendlyFireRadius>1</ai_AvoidFriendlyFireRadius>
+				<range>20.0</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<onlyManualCast>true</onlyManualCast>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<muzzleFlashScale>1</muzzleFlashScale>
+				<commonality>.8</commonality>
+			</li>
 		</verbs>
 		<race>
 			<body>ParasiteAlpha</body>
@@ -132,9 +132,9 @@
 		<description>NestGuard</description>
 		<statBases>
 			<MoveSpeed>2.8</MoveSpeed>
-			<ArmorRating_Blunt>1.0</ArmorRating_Blunt>
-			<ArmorRating_Sharp>1.2</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.9</ArmorRating_Heat>
+			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
 			<MeatAmount>62</MeatAmount>
 			<LeatherAmount>40</LeatherAmount>
 			<Mass>60</Mass>
@@ -158,26 +158,24 @@
 				</extraMeleeDamages>
 			</li>
 		</tools>
-		<comps>
-		</comps>
 		<verbs>			
-		<li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>PI_ToxicRocket</defaultProjectile>
-        <warmupTime>4.5</warmupTime>
-        <ai_AvoidFriendlyFireRadius>1</ai_AvoidFriendlyFireRadius>
-        <range>20.0</range>
-        <burstShotCount>1</burstShotCount>
-        <soundCast>InfernoCannon_Fire</soundCast>
-        <soundCastTail>GunTail_Heavy</soundCastTail>
-        <onlyManualCast>true</onlyManualCast>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-        <muzzleFlashScale>1</muzzleFlashScale>
-        <commonality>.8</commonality>
-		</li>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>PI_ToxicRocket</defaultProjectile>
+				<warmupTime>4.5</warmupTime>
+				<ai_AvoidFriendlyFireRadius>1</ai_AvoidFriendlyFireRadius>
+				<range>20.0</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<onlyManualCast>true</onlyManualCast>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<muzzleFlashScale>1</muzzleFlashScale>
+				<commonality>.8</commonality>
+			</li>
 		</verbs>
 		<race>
 			<body>ParasiteAlpha</body>

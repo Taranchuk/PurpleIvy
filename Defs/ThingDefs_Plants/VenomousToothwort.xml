@@ -22,7 +22,7 @@
 		<plant>
 			<harvestWork>400</harvestWork>
 			<fertilitySensitivity>1.0</fertilitySensitivity>
-			<growDays>2.5</growDays>
+			<growDays>1.5</growDays>
 			<immatureGraphicPath>Things/Plant/ImmaturePlants/VenomousToothwort</immatureGraphicPath>
 			<dieIfLeafless>false</dieIfLeafless>
 			<harvestTag>Standard</harvestTag>

@@ -10,7 +10,7 @@ using Verse.AI;
 
 namespace PurpleIvy
 {
-    public class AlienQueen : Pawn
+    public class AlienQueen : Alien
     {
         private int spawnticks = new IntRange(15000, 30000).RandomInRange;
         private bool first = true;

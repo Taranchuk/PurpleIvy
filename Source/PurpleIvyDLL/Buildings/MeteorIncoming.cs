@@ -107,12 +107,15 @@ namespace PurpleIvy
                 meteorite.activeSpores = true;
                 foreach (var dir in GenRadial.RadialCellsAround(this.contents.SingleContainedThing.Position, 5, true))
                 {
-                    Thing thing = ThingMaker.MakeThing(PurpleIvyDefOf.PI_Spores, null);
-                    GenSpawn.Spawn(thing, dir, this.Map, 0);
-                    var Spores = (Gas)thing;
-                    Spores.destroyTick = Find.TickManager.TicksGame + new IntRange(120000, 180000).RandomInRange;
+                    if (GenGrid.InBounds(dir, this.Map))
+                    {
+                        Thing thing = ThingMaker.MakeThing(PurpleIvyDefOf.PI_Spores, null);
+                        GenSpawn.Spawn(thing, dir, this.Map, 0);
+                        var Spores = (Gas)thing;
+                        Spores.destroyTick = Find.TickManager.TicksGame + new IntRange(160000, 180000).RandomInRange;
+                    }
                 }
-                meteorite.damageActiveTick = Find.TickManager.TicksGame + new IntRange(120000, 180000).RandomInRange;
+                meteorite.damageActiveTick = Find.TickManager.TicksGame + new IntRange(160000, 180000).RandomInRange;
             }
             GenExplosion.DoExplosion(base.Position, this.Map, 5f, DamageDefOf.Bomb, null);
             this.Destroy(DestroyMode.Vanish);

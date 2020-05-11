@@ -12,9 +12,6 @@ namespace PurpleIvy
 {
     public class Plant_Nest : Plant, IAttackTarget
     {
-        private int SpreadTick;
-        private int OrigSpreadTick;
-
         public int nectarAmount;
         private Gas Spores = null;
 
@@ -50,11 +47,12 @@ namespace PurpleIvy
             base.SpawnSetup(map, respawningAfterLoad);
             this.SetFaction(PurpleIvyData.AlienFaction);
             UpdateGlower();
-            if (!(this.Growth < 1)) return;
-            var random = new System.Random();
-            SpreadTick = random.Next(1, 3);
-            OrigSpreadTick = SpreadTick;
+            if (this.Growth >= 0.25f)
+            {
+                this.ThrowGasOrAdjustGasSize();
+            }
         }
+
         public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
             if (dinfo.Instigator is Pawn)
@@ -72,14 +70,6 @@ namespace PurpleIvy
             if (attackTarget != null)
             {
                 this.Map.attackTargetsCache.UpdateTarget(attackTarget);
-            }
-        }
-        public override void PostMapInit()
-        {
-            base.PostMapInit();
-            if (this.Growth >= 0.25f)
-            {
-                this.ThrowGasOrAdjustGasSize();
             }
         }
 
@@ -211,9 +201,6 @@ namespace PurpleIvy
                     else
                     {
                         this.Growth += 0.001f;
-                        SpreadTick--;
-                        SpreadTick--;
-                        SpreadTick--;
                         if (corpse.TryGetComp<CompRottable>().Stage < RotStage.Dessicated &&
                             corpse.TryGetComp<AlienInfection>() == null)
                         {
@@ -273,40 +260,36 @@ namespace PurpleIvy
 
         public void SpreadPlants()
         {
-            this.SpreadTick--;
-            if (this.SpreadTick <= 0)
+            //Pick a random direction cell
+            IntVec3 dir = new IntVec3();
+            //dir = GenAdj.RandomAdjacentCellCardinal(Position);
+            dir = GenRadial.RadialCellsAround(this.Position, Convert.ToInt32(this.Growth * 20), true)
+                .RandomElement();
+            //If in bounds
+            try
             {
-                //Pick a random direction cell
-                IntVec3 dir = new IntVec3();
-                //dir = GenAdj.RandomAdjacentCellCardinal(Position);
-                dir = GenRadial.RadialCellsAround(this.Position, Convert.ToInt32(this.Growth * 20), true).RandomElement();
-                //If in bounds
-                try
+                if (dir.InBounds(this.Map))
                 {
-                    if (dir.InBounds(this.Map))
+                    TerrainDef terrain = dir.GetTerrain(this.Map);
+                    if (terrain != null)
                     {
-                        TerrainDef terrain = dir.GetTerrain(this.Map);
-                        if (terrain != null)
+                        if (terrain.defName != "WaterDeep" &&
+                                 terrain.defName != "WaterShallow" &&
+                                 terrain.defName != "MarshyTerrain")
                         {
-                            if (terrain.defName != "WaterDeep" &&
-                                     terrain.defName != "WaterShallow" &&
-                                     terrain.defName != "MarshyTerrain")
+                            //if theres no ivy here
+                            if (!IvyInCell(dir))
                             {
-                                //if theres no ivy here
-                                if (!IvyInCell(dir))
-                                {
-                                    SpawnIvy(dir);
-                                }
+                                SpawnIvy(dir);
                             }
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    Log.Error("ERROR:" + ex.Message);
-                } 
-                SpreadTick = OrigSpreadTick;
             }
+            catch (Exception ex)
+            {
+                Log.Error("ERROR:" + ex.Message);
+            } 
         }
 
         public void ThrowGasOrAdjustGasSize()
@@ -419,8 +402,6 @@ namespace PurpleIvy
                     this.nectarAmount++;
                 }
                 UpdateGlower();
-                //ChangeGlower(new ColorInt(148, 127, 153), this.Growth * 20);
-                //ChangeGlower(, this.Growth * 20);
             }
             if (Find.TickManager.TicksGame % 350 == 0)
             {
@@ -438,8 +419,6 @@ namespace PurpleIvy
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<int>(ref this.SpreadTick, "SpreadTick", 0, true);
-            Scribe_Values.Look<int>(ref this.OrigSpreadTick, "OrigSpreadTick", 0, true);
             Scribe_Values.Look<int>(ref this.nectarAmount, "nectarAmount", 0, true);
         }
     }

@@ -356,6 +356,7 @@
     <Compile Include="Jobs\JobDriver_TakeAlienToСontainmentBreach.cs" />
     <Compile Include="Jobs\JobDriver_AttackMeleePlus.cs" />
     <Compile Include="Jobs\JobDriver_ExtractNectar.cs" />
+    <Compile Include="Pawns\Alien.cs" />
     <Compile Include="Pawns\AlienQueen.cs" />
     <Compile Include="Plants\Plant_VenomousToothwort.cs" />
     <Compile Include="Plants\Plant_Nest.cs" />

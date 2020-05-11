@@ -67,13 +67,16 @@ namespace PurpleIvy
                 List<Pawn> pawnsToDamage = new List<Pawn>();
                 foreach (var dir in GenRadial.RadialCellsAround(this.Position, 5, true))
                 {
-                    foreach (var t in this.Map.thingGrid.ThingsListAt(dir))
-                    {
-                        if (t is Pawn pawn && pawn.Faction != PurpleIvyData.AlienFaction)
-                        {
-                            pawnsToDamage.Add(pawn);
-                        }
-                    }
+                     if (GenGrid.InBounds(dir, this.Map))
+                     {
+                         foreach (var t in this.Map.thingGrid.ThingsListAt(dir))
+                         {
+                             if (t is Pawn pawn && pawn.Faction != PurpleIvyData.AlienFaction)
+                             {
+                                 pawnsToDamage.Add(pawn);
+                             }
+                         }
+                     }
                 }
                 foreach (var pawn in pawnsToDamage)
                 {
@@ -97,7 +100,7 @@ namespace PurpleIvy
             if (spawnticks <= 0)
             {
                 PurpleIvyUtils.SpawnNests(this);
-                spawnticks = 200;
+                spawnticks = 15000;
             }
         }
 

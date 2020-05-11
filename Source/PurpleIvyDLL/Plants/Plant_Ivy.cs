@@ -58,7 +58,10 @@ namespace PurpleIvy
             {
                 PurpleIvyData.LastAttacked = Find.TickManager.TicksGame;
             }
-            PurpleIvyMoteMaker.ThrowToxicGas(this.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(1f), this.Map);
+            if (GenGrid.InBounds(this.Position.ToVector3Shifted(), this.Map))
+            {
+                PurpleIvyMoteMaker.ThrowToxicGas(this.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(1f), this.Map);
+            }
             base.PreApplyDamage(ref dinfo, out absorbed);
         }
         public override void SetFaction(Faction newFaction, Pawn recruiter = null)
@@ -235,7 +238,6 @@ namespace PurpleIvy
                             {
                                 if (stickySlugs.HasAnyContents)
                                 {
-                                    Log.Message(stickySlugs.ContainedThing.Label);
                                     var thing = stickySlugs.ContainedThing;
                                     if (thing is Pawn pawn)
                                     {
@@ -375,7 +377,7 @@ namespace PurpleIvy
                     }
                     Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac gamma");
                 }
-                else if (randChance >= 0.47f && randChance <= 0.499f)
+                else if (randChance >= 0.47f && randChance <= 0.4739f)
                 {
                     if (this.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.EggSacNestGuard).Count < 4)
                     {
@@ -435,7 +437,7 @@ namespace PurpleIvy
                         texPath = PurpleIvyDefOf.PI_Spores.graphicData.texPath,
                         graphicClass = typeof(Graphic_Gas),
                         shaderType = ShaderTypeDefOf.Transparent,
-                        drawSize = new Vector2((this.Growth) * 2f - 1f, (this.Growth) * 2f - 1f),
+                        drawSize = new Vector2((this.Growth * 4f) - 1f, (this.Growth * 4f) - 1f),
                         color = new ColorInt(PurpleIvyDefOf.PI_Spores.graphicData.color).ToColor
                     },
                     gas = new GasProperties
@@ -453,9 +455,34 @@ namespace PurpleIvy
             }
         }
 
+        public bool NestsNearby()
+        {
+            try
+            {
+                foreach (var t in this.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest))
+                {
+                    var nest = t as Plant_Nest;
+                    if (this.Position.InHorDistOf(nest.Position, Convert.ToInt32(nest.Growth * 20)))
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch { };
+            return false;
+        }
         public override void Tick()
         {
             base.Tick();
+            if (this.Growth >= 0.75f && Rand.Chance(0.1f) && Find.TickManager.TicksGame
+                % Rand.RangeInclusive(60, 100) == 0)
+            {
+                //var empEffecter = PurpleIvyDefOf.DisabledByEMP.Spawn();
+                //empEffecter.EffectTick(this, this);
+
+                //PurpleIvyMoteMaker.ThrowEMPLightningGlow(this.Position.ToVector3Shifted(), this.Map, 0.3f);
+                PurpleIvyMoteMaker.ThrowLightningBolt(this.Position.ToVector3Shifted(), this.Map);
+            }
             if (Find.TickManager.TicksGame % 2000 == 0)
             {
                 base.TickLong();
@@ -469,18 +496,18 @@ namespace PurpleIvy
                     }
                 }
             }
-            if (Find.TickManager.TicksGame % 350 == 0)
+            if (Find.TickManager.TicksGame % Rand.RangeInclusive(250, 500) == 0)
             {
                 if (this.Growth >= 0.25f)
                 {
                     this.DoDamageToThings(Position);
                 }
+                if (!NestsNearby())
+                {
+                    this.TakeDamage(new DamageInfo(DamageDefOf.Deterioration, 1f));
+                }
             }
-            if (this.Growth >= 0.75f && Rand.Chance(0.3f) && Find.TickManager.TicksGame
-                % Rand.RangeInclusive(60, 100) == 0)
-            {
-                PurpleIvyMoteMaker.ThrowEMPLightningGlow(this.Position.ToVector3Shifted(), this.Map, 0.3f);
-            }
+
         }
         public override void ExposeData()
         {

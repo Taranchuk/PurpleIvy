@@ -16,7 +16,6 @@
     <rotatable>false</rotatable>
   </ThingDef>
 
-
   <!--====== EMP Weather Motes ======-->
 
   <ThingDef ParentName="VisualSupport" Name="EMP_Sparks">
