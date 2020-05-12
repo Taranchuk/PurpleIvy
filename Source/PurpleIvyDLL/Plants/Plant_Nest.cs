@@ -34,7 +34,7 @@ namespace PurpleIvy
         {
             get
             {
-                return 0.3f;
+                return 0.8f;
             }
         }
 

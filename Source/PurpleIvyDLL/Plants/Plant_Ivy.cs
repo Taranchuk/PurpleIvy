@@ -51,14 +51,13 @@ namespace PurpleIvy
                 this.ThrowGasOrAdjustGasSize();
             }
         }
-
         public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
             if (dinfo.Instigator is Pawn)
             {
                 PurpleIvyData.LastAttacked = Find.TickManager.TicksGame;
             }
-            if (GenGrid.InBounds(this.Position.ToVector3Shifted(), this.Map))
+            if (dinfo.Def != DamageDefOf.Deterioration && GenGrid.InBounds(this.Position.ToVector3Shifted(), this.Map))
             {
                 PurpleIvyMoteMaker.ThrowToxicGas(this.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(1f), this.Map);
             }
@@ -127,7 +126,6 @@ namespace PurpleIvy
                                 comp.ToxicDamages = new Dictionary<Building, int>();
                                 comp.ToxicDamages[b] = b.MaxHitPoints;
                             }
-                            Log.Message("Taking damage to " + b);
                             if (!comp.ToxicDamages.ContainsKey(b))
                             {
                                 oldDamage = b.MaxHitPoints;
@@ -314,11 +312,10 @@ namespace PurpleIvy
             {
                 Building_EggSac EggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSacNestGuard);
                 GenSpawn.Spawn(EggSac, Position, this.Map);
-                Log.Message("No other guard eggs - " + this + " mutate into EggSac NestGuard");
+                Log.Message("No other guard eggs - " + this + " mutate into EggSac NestGuard", true);
             }
             else if (HasNoBuildings(Position))
             {
-
                 float randChance = Rand.Range(0f, 1f);
                 Log.Message(this + " - rand chance: " + randChance.ToString());
                 if (randChance >= 0f && randChance <= 0.3f)
@@ -333,16 +330,16 @@ namespace PurpleIvy
                 }
                 else if (randChance >= 0.35f && randChance <= 0.359f)
                 {
-                    var GenMortar = (Building_TurretGun)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
+                    var GenMortar = ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
                     GenSpawn.Spawn(GenMortar, Position, this.Map);
-                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenMortar");
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenMortar", true);
 
                 }
                 else if (randChance >= 0.36f && randChance <= 0.369f)
                 {
                     Thing thing = ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase, null);
                     GenSpawn.Spawn(thing, this.Position, this.Map, thing.Rotation, WipeMode.Vanish, false);
-                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenTurret");
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GenTurret", true);
                 }
                 else if (randChance >= 0.44f && randChance <= 0.4459f) // 0.005 - 0.5%
                 {
@@ -353,7 +350,7 @@ namespace PurpleIvy
                     {
                         EggSac.TryGetComp<AlienInfection>().stopSpawning = true;
                     }
-                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac");
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac", true);
                 }
                 else if (randChance >= 0.446f && randChance <= 0.4549f)
                 {
@@ -364,7 +361,7 @@ namespace PurpleIvy
                     {
                         EggSac.TryGetComp<AlienInfection>().stopSpawning = true;
                     }
-                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac beta");
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac beta", true);
                 }
                 else if (randChance >= 0.455f && randChance <= 0.469f)
                 {
@@ -375,7 +372,7 @@ namespace PurpleIvy
                     {
                         EggSac.TryGetComp<AlienInfection>().stopSpawning = true;
                     }
-                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac gamma");
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac gamma", true);
                 }
                 else if (randChance >= 0.47f && randChance <= 0.4739f)
                 {
@@ -383,7 +380,7 @@ namespace PurpleIvy
                     {
                         var EggSac = ThingMaker.MakeThing(PurpleIvyDefOf.EggSacNestGuard);
                         GenSpawn.Spawn(EggSac, Position, this.Map);
-                        Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac NestGuard");
+                        Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into EggSac NestGuard", true);
                     }
                 }
                 else if (randChance >= 0.50f && randChance <= 0.519f)
@@ -401,14 +398,14 @@ namespace PurpleIvy
                 {
                     var PlantVenomousToothwort = ThingMaker.MakeThing(PurpleIvyDefOf.PlantVenomousToothwort);
                     GenSpawn.Spawn(PlantVenomousToothwort, Position, this.Map);
-                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into PlantVenomousToothwort");
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into PlantVenomousToothwort", true);
                     this.Destroy(DestroyMode.Vanish);
                 }
                 else if (randChance >= 0.30f && randChance <= 0.329f)
                 {
                     var GasPump = ThingMaker.MakeThing(PurpleIvyDefOf.GasPump);
                     GenSpawn.Spawn(GasPump, Position, this.Map);
-                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GasPump");
+                    Log.Message("Rand chance: " + randChance.ToString() + " - " + this + " mutate into GasPump", true);
                 }
             }
         }
@@ -477,9 +474,6 @@ namespace PurpleIvy
             if (this.Growth >= 0.75f && Rand.Chance(0.1f) && Find.TickManager.TicksGame
                 % Rand.RangeInclusive(60, 100) == 0)
             {
-                //var empEffecter = PurpleIvyDefOf.DisabledByEMP.Spawn();
-                //empEffecter.EffectTick(this, this);
-
                 //PurpleIvyMoteMaker.ThrowEMPLightningGlow(this.Position.ToVector3Shifted(), this.Map, 0.3f);
                 PurpleIvyMoteMaker.ThrowLightningBolt(this.Position.ToVector3Shifted(), this.Map);
             }

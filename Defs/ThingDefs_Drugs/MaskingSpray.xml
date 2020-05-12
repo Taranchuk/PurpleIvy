@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="DrugBase">
+		<defName>PI_MaskingSpray</defName>
+		<label>Masking spray</label>
+		<description>Masking spray.</description>
+		<descriptionHyperlinks>
+			<HediffDef>PI_MaskingSprayHigh</HediffDef>
+		</descriptionHyperlinks>
+		<tradeability>Sellable</tradeability>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<tickerType>Rare</tickerType>
+		<graphicData>
+			<texPath>Things/Item/Drug/MaskingSpray</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<MarketValue>25</MarketValue>
+			<Mass>0.1</Mass>
+			<DeteriorationRate>10</DeteriorationRate>
+			<Nutrition>0.1</Nutrition>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<ingestible>
+			<baseIngestTicks>300</baseIngestTicks>
+			<chairSearchRadius>1</chairSearchRadius>
+			<preferability>DesperateOnly</preferability>
+			<tasteThought>PI_MaskingSprayWithdrawal</tasteThought>
+			<foodType>Meat</foodType>
+			<joyKind>Chemical</joyKind>
+			<joy>0.1</joy>
+			<nurseable>true</nurseable>
+			<drugCategory>Hard</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PI_MaskingSprayHigh</hediffDef>
+					<severity>0.3</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Rottable">
+				<daysToRotStart>1</daysToRotStart>
+				<rotDestroys>true</rotDestroys>
+			</li>
+			<li Class="CompProperties_Drug">
+				<listOrder>30</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<HediffDef>
+		<defName>PI_MaskingSprayHigh</defName>
+		<label>MaskingSpray</label>
+		<description>MaskingSpray</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(100,149,237)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1.200</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>Invisible for parasites</label>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<ThoughtDef>
+		<defName>PI_MaskingSprayWithdrawal</defName>
+		<durationDays>0.6</durationDays>
+		<stages>
+			<li>
+				<label>MaskingSpray</label>
+				<description>It smells like shit...</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>

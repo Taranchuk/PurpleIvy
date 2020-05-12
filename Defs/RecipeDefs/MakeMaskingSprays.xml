@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<RecipeDef>
+		<defName>Make_MaskingSprays</defName>
+		<label>make masking sprays</label>
+		<description>make masking sprays.</description>
+		<jobString>Making masking sprays.</jobString>
+		<workAmount>500</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>PI_AlienBlood</li>
+					</categories>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>PI_KorsolianToxin</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<researchPrerequisite>PI_MaskingTechnologies</researchPrerequisite>
+		<fixedIngredientFilter>
+			<categories>
+				<li>PI_AlienBlood</li>
+			</categories>
+			<thingDefs>
+				<li>PI_KorsolianToxin</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<PI_MaskingSpray>1</PI_MaskingSpray>
+		</products>
+		<recipeUsers>
+			<li>PI_BioLab</li>
+		</recipeUsers>
+	</RecipeDef> 
+</Defs>

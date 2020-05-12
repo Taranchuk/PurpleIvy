@@ -162,7 +162,8 @@ namespace PurpleIvy
         {
             Pawn victim = null;
             bool Predicate(Thing p) => p != null && p != pawn
-            && p.Faction != pawn.Faction;
+            && p.Faction != pawn.Faction && 
+            ((Pawn)p).health.hediffSet.GetFirstHediffOfDef(PurpleIvyDefOf.PI_MaskingSprayHigh) == null;
             const float distance = 25f;
             victim = (Pawn)GenClosest.ClosestThingReachable(pawn.Position,
                 pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.Pawn), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly,
@@ -175,7 +176,8 @@ namespace PurpleIvy
         {
             Pawn victim = null;
             bool Predicate(Thing p) => p != null && p != pawn
-            && p.Faction != pawn.Faction;
+            && p.Faction != pawn.Faction && 
+                        ((Pawn)p).health.hediffSet.GetFirstHediffOfDef(PurpleIvyDefOf.PI_MaskingSprayHigh) == null;
             const float distance = 9999f;
             var plants = pawn.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest);
             if (plants.Count == 0)

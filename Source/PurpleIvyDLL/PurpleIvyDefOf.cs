@@ -27,6 +27,8 @@ namespace PurpleIvy
 
         public static HediffDef PI_GainConsciousness;
 
+        public static HediffDef PI_MaskingSprayHigh;
+
         public static DamageDef AlienToxicSting;
 
         public static DamageDef PI_ToxicExplosion;
@@ -225,6 +227,7 @@ namespace PurpleIvy
         public static ResearchProjectDef PI_AlienWeaponsA;
         public static ResearchProjectDef PI_AlienWeaponsB;
         public static ResearchProjectDef PI_AlienWeaponsC;
+        public static ResearchProjectDef PI_MaskingTechnologies;
 
         public static ThingDef KorsolianLeather;
         public static ThingDef PI_AlienLeather;

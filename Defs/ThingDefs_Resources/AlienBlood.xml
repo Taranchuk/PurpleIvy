@@ -17,7 +17,7 @@
 			<DeteriorationRate>4</DeteriorationRate>
 		</statBases>
 		<thingCategories>
-			<li>PI_AlienResources</li>
+			<li>PI_AlienBlood</li>
 		</thingCategories>
 	</ThingDef>
 
@@ -37,7 +37,7 @@
 			<DeteriorationRate>4</DeteriorationRate>
 		</statBases>
 		<thingCategories>
-			<li>PI_AlienResources</li>
+			<li>PI_AlienBlood</li>
 		</thingCategories>
 	</ThingDef>
 
@@ -57,7 +57,7 @@
 			<DeteriorationRate>4</DeteriorationRate>
 		</statBases>
 		<thingCategories>
-			<li>PI_AlienResources</li>
+			<li>PI_AlienBlood</li>
 		</thingCategories>
 	</ThingDef>
 
@@ -77,7 +77,7 @@
 			<DeteriorationRate>4</DeteriorationRate>
 		</statBases>
 		<thingCategories>
-			<li>PI_AlienResources</li>
+			<li>PI_AlienBlood</li>
 		</thingCategories>
 	</ThingDef>
 
@@ -97,7 +97,7 @@
 			<DeteriorationRate>4</DeteriorationRate>
 		</statBases>
 		<thingCategories>
-			<li>PI_AlienResources</li>
+			<li>PI_AlienBlood</li>
 		</thingCategories>
 	</ThingDef>
 
@@ -117,7 +117,7 @@
 			<DeteriorationRate>4</DeteriorationRate>
 		</statBases>
 		<thingCategories>
-			<li>PI_AlienResources</li>
+			<li>PI_AlienBlood</li>
 		</thingCategories>
 	</ThingDef>
 

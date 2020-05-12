@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>GenTurretBase</defName>
+		<label>Chorcorus</label>
+		<description>A genetically modified Chorchorus plant species, its able to fire its Mucilage slime at will.</description>
+		<thingClass>PurpleIvy.Building_GenMortarGun</thingClass>
+		<pathCost>100</pathCost>
+		<!--<thingClass>PurpleIvy.Building_GenTurretGun</thingClass>-->
+		<graphicData>
+			<texPath>Things/GenTurretBase</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(0.27,0.25,0.27)</volume>
+				<offset>(0,0,0)</offset>
+			</shadowData>
+		</graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+		<castEdgeShadows>true</castEdgeShadows>
+		<stealable>false</stealable>
+		<rotatable>false</rotatable>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<Flammability>0.1</Flammability>
+			<WorkToBuild>0</WorkToBuild>
+			<Beauty>-60</Beauty>
+		</statBases>
+		<tickerType>Normal</tickerType>
+		<size>(1,1)</size>
+		<passability>Impassable</passability>
+		<fillPercent>0.4</fillPercent>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<building>
+			<ai_combatDangerous>true</ai_combatDangerous>
+			<turretGunDef>GunTurretGun</turretGunDef>
+			<turretBurstWarmupTime>3</turretBurstWarmupTime>
+			<turretBurstCooldownTime>5</turretBurstCooldownTime>
+			<buildingTags>
+				<li>Artillery</li>
+				<li>Artillery_BaseDestroyer</li>
+			</buildingTags>
+		</building>
+		<placeWorkers>
+			<li>PlaceWorker_NotUnderRoof</li>
+		</placeWorkers>
+	</ThingDef>
+
+    <ThingDef ParentName="BaseArtilleryWeapon">
+		<defName>GunTurretGun</defName>
+		<label>Corchorus</label>
+		<description>A genetically modified Chorchorus plant species, its able to fire its Mucilage slime at will.</description>
+		<graphicData>
+			<texPath>Things/GenTurretGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<weaponTags>
+			<li>Artillery_BaseDestroyer</li>
+		</weaponTags>
+		<tradeability>None</tradeability>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<forcedMissRadius>3</forcedMissRadius>
+				<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_GenTurret</defaultProjectile>
+				<minRange>1</minRange>
+				<range>24</range>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>Mortar_LaunchA</soundCast>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<requireLineOfSight>false</requireLineOfSight>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+	</ThingDef>
+
+</Defs>

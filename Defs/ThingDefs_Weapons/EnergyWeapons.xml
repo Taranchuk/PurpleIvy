@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!--====== Core ======-->
+
+	<ThingDef Abstract="True" Name="EvaineQWeaponsBase">
+		<thingClass>ThingWithComps</thingClass>
+		<category>Item</category>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<altitudeLayer>Item</altitudeLayer>
+		<alwaysHaulable>true</alwaysHaulable>
+		<tickerType>Never</tickerType>
+		<equipmentType>Primary</equipmentType>
+		<useHitPoints>true</useHitPoints>
+		<pathCost>10</pathCost>
+		<selectable>true</selectable>
+		<statBases>
+			<MaxHitPoints>125</MaxHitPoints>
+			<Flammability>0.5</Flammability>
+			<DeteriorationRate>0.5</DeteriorationRate>
+			<Beauty>5</Beauty>
+			<SellPriceFactor>0.40</SellPriceFactor>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+		</comps>
+		<graphicData>
+			<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+		</graphicData>
+	</ThingDef>
+
+
+	<ThingDef Name="EvaineQBaseLaser" Abstract="True" ParentName="EvaineQWeaponsBase">
+		<techLevel>Industrial</techLevel>
+		<smeltable>true</smeltable>
+		<thingCategories>
+			<li>EnergyWeapons</li>
+		</thingCategories>
+		<inspectorTabs>
+			<li>ITab_Art</li>
+		</inspectorTabs>
+		<statBases>
+			<Flammability>0.5</Flammability>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponGun</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Name="BaseLaserQuality" Abstract="True" ParentName="EvaineQBaseLaser">
+		<comps>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Name="LaserMakeableGun" ParentName="BaseLaserQuality" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<skillRequirements>
+				<Crafting>12</Crafting>
+			</skillRequirements>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>EnergyBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>CosmosRifleUnfinished</unfinishedThingDef>
+		</recipeMaker>
+	</ThingDef>
+
+	<ThingDef Name="BaseLaserGun" ParentName="BaseLaserQuality" Abstract="True">
+		<weaponTags>
+			<li>CosmosRifle</li>
+			<li>CosmosSniper</li>
+			<li>CosmosPistol</li>
+			<li>PhasePistolNormal</li>
+			<li>PhasePistolMagma</li>
+			<li>FluxRifleNormal</li>
+			<li>FluxRifleBlue</li>
+		</weaponTags>
+	</ThingDef>
+
+	<ThingDef Name="EvaineQBaseLaserMakeableGun" ParentName="LaserMakeableGun" Abstract="True">
+		<weaponTags>
+			<li>CosmosRifle</li>
+			<li>CosmosSniper</li>
+			<li>CosmosPistol</li>
+			<li>PhasePistolNormal</li>
+			<li>PhasePistolMagma</li>
+			<li>FluxRifleNormal</li>
+			<li>FluxRifleBlue</li>
+		</weaponTags>
+	</ThingDef>
+
+	<ThingDef Name="EvaineQBullets" Abstract="True">
+		<category>Projectile</category>
+		<tickerType>Normal</tickerType>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<thingClass>Bullet</thingClass>
+		<label>Laser Cell</label>
+		<useHitPoints>False</useHitPoints>
+		<neverMultiSelect>True</neverMultiSelect>
+		<graphicData>
+			<shaderType>Transparent</shaderType>
+		</graphicData>
+	</ThingDef>
+
+	<!--====== Core End ======-->
+
+	<!--====== Cosmos Tech ======-->
+
+	<ThingDef Class="RaceWeapons.ThingDef_RaceWeapons" ParentName="EvaineQBullets">
+		<defName>EnergyProjectileRifle</defName>
+		<thingClass>RaceWeapons.Projectile_HeatImpact</thingClass>
+		<label>Laser Cell</label>
+		<graphicData>
+			<texPath>Things/EnergyProjectile/CosmosPurple</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>LaserImpact</damageDef>
+			<damageAmountBase>4</damageAmountBase>
+			<speed>45</speed>
+		</projectile>
+		<comps>
+			<li Class="RaceWeapons.CompProperties_RaceDamage">
+				<compClass>RaceWeapons.CompFutureDamage</compClass>
+				<damageDef>LaserHit</damageDef>
+				<damageAmount>4</damageAmount>
+				<chanceToProc>0.25</chanceToProc>
+			</li>
+		</comps>
+		<DrawingOffset>0</DrawingOffset>
+		<DrawingOffsetSecond>1</DrawingOffsetSecond>
+		<DrawingOffsetThird>1</DrawingOffsetThird>
+		<DrawingOffsetFourth>0</DrawingOffsetFourth>
+		<TickOffset>7</TickOffset>
+		<TickOffsetSecond>35</TickOffsetSecond>
+	</ThingDef>
+
+	<ThingDef ParentName="EvaineQBaseLaserMakeableGun">
+		<defName>CosmosEnergyRifle</defName>
+		<label>Cosmos Energy-Rifle</label>
+		<description>Built by Cosmos Tech Ind. Cosmos Energy-Rifle never go out of style. This Dark Energy-based assault rifle is capable of providing accurate and sustained fire at targets up to medium range.</description>
+		<graphicData>
+			<texPath>Things/EnergyWeaponsRace/CosmosTechIND/CosmosEnergyRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>CosmosPickup</soundInteract>
+		<statBases>
+			<MarketValue>2500</MarketValue>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.85</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<Mass>2.0</Mass>
+			<WorkToMake>58000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>250</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<techLevel>Industrial</techLevel>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>EnergyProjectileRifle</defaultProjectile>
+				<warmupTime>0.8</warmupTime>
+				<range>30</range>
+				<soundCast>CosmosHit</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<recipeMaker>
+			<unfinishedThingDef>CosmosRifleUnfinished</unfinishedThingDef>
+		</recipeMaker>
+		<weaponTags>
+			<li>CosmosRifle</li>
+		</weaponTags>
+	</ThingDef>
+
+
+
+	<ThingDef Class="RaceWeapons.ThingDef_RaceWeapons" ParentName="EvaineQBullets">
+		<defName>EnergyProjectileSniper</defName>
+		<thingClass>RaceWeapons.Projectile_HeatImpact</thingClass>
+		<label>Laser Cell</label>
+		<graphicData>
+			<texPath>Things/EnergyProjectile/CosmosPurple</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>LaserImpact</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<speed>65</speed>
+		</projectile>
+		<comps>
+			<li Class="RaceWeapons.CompProperties_RaceDamage">
+				<compClass>RaceWeapons.CompFutureDamage</compClass>
+				<damageDef>LaserHit</damageDef>
+				<damageAmount>4</damageAmount>
+				<chanceToProc>0.4</chanceToProc>
+			</li>
+		</comps>
+		<DrawingOffset>0</DrawingOffset>
+		<DrawingOffsetSecond>1</DrawingOffsetSecond>
+		<DrawingOffsetThird>1</DrawingOffsetThird>
+		<DrawingOffsetFourth>0</DrawingOffsetFourth>
+		<TickOffset>7</TickOffset>
+		<TickOffsetSecond>45</TickOffsetSecond>
+	</ThingDef>
+
+	<ThingDef ParentName="EvaineQBaseLaserMakeableGun">
+		<defName>CosmosEnergySniper</defName>
+		<label>Cosmos Energy-Sniper</label>
+		<description>Long-range Cosmos-Energy-Sniper built by Cosmos Tech Ind. Features an Mysterious composite body capable of withstanding any number of rigorous environments both in atmosphere and out. Built with a precision scope, the Cosmos Sniper offers a stable and devastating weapon for Pawn's who want to keep their distance but stay in the fight. WARNING! the Cosmos Energy-Sniper tends to be really Unstable due to Extremely High Recoil and Extreme bullet speed.</description>
+		<graphicData>
+			<texPath>Things/EnergyWeaponsRace/CosmosTechIND/CosmosEnergySniper</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>SniperCosmosPickup</soundInteract>
+		<statBases>
+			<MarketValue>3000</MarketValue>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.50</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.86</AccuracyLong>
+			<RangedWeapon_Cooldown>3.2</RangedWeapon_Cooldown>
+			<Mass>3</Mass>
+			<WorkToMake>65000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>300</Steel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<ComponentSpacer>5</ComponentSpacer>
+		</costList>
+		<techLevel>Industrial</techLevel>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>EnergyProjectileSniper</defaultProjectile>
+				<warmupTime>1.2</warmupTime>
+				<range>46</range>
+				<soundCast>SniperCosmosHit</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<recipeMaker>
+			<unfinishedThingDef>CosmosSniperUnfinished</unfinishedThingDef>
+		</recipeMaker>
+		<weaponTags>
+			<li>CosmosSniper</li>
+		</weaponTags>
+	</ThingDef>
+
+
+
+	<ThingDef Class="RaceWeapons.ThingDef_RaceWeapons" ParentName="EvaineQBullets">
+		<defName>EnergyProjectilePistol</defName>
+		<thingClass>RaceWeapons.Projectile_HeatImpact</thingClass>
+		<label>Laser Cell</label>
+		<graphicData>
+			<texPath>Things/EnergyProjectile/CosmosPurple</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>LaserImpact</damageDef>
+			<damageAmountBase>3</damageAmountBase>
+			<speed>40</speed>
+		</projectile>
+		<comps>
+			<li Class="RaceWeapons.CompProperties_RaceDamage">
+				<compClass>RaceWeapons.CompFutureDamage</compClass>
+				<damageDef>LaserHit</damageDef>
+				<damageAmount>3</damageAmount>
+				<chanceToProc>0.10</chanceToProc>
+			</li>
+		</comps>
+		<DrawingOffset>0</DrawingOffset>
+		<DrawingOffsetSecond>1</DrawingOffsetSecond>
+		<DrawingOffsetThird>1</DrawingOffsetThird>
+		<DrawingOffsetFourth>0</DrawingOffsetFourth>
+		<TickOffset>7</TickOffset>
+		<TickOffsetSecond>45</TickOffsetSecond>
+	</ThingDef>
+
+	<ThingDef ParentName="EvaineQBaseLaserMakeableGun">
+		<defName>CosmosEnergyPistol</defName>
+		<label>Cosmos Energy-Pistol</label>
+		<description>A hand-held laser built by a Cosmos Tech Ind, the Model II-2LK Cosmos Energy-Pistol has become extremely popular, due to it's low cost and high efficiency it is Popular among High tech Pirates on the Pawn's contraband market. The Model II-2LK offers a higher rate of fire than any of RimWorld Pistol counterparts.</description>
+		<graphicData>
+			<texPath>Things/EnergyWeaponsRace/CosmosTechIND/CosmosEnergyPistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>CosmosPistolPickup</soundInteract>
+		<statBases>
+			<MarketValue>1800</MarketValue>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+			<Mass>0.5</Mass>
+			<WorkToMake>48000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>100</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<techLevel>Industrial</techLevel>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>EnergyProjectilePistol</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>22</range>
+				<soundCast>CosmosPistolHit</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<recipeMaker>
+			<unfinishedThingDef>CosmosPistolUnfinished</unfinishedThingDef>
+		</recipeMaker>
+		<weaponTags>
+			<li>CosmosPistol</li>
+		</weaponTags>
+	</ThingDef>
+
+
+
+	<!--====== Phase Tech ======-->
+
+
+
+	<ThingDef Class="RaceWeapons.ThingDef_RaceWeapons" ParentName="EvaineQBullets">
+		<defName>EnergyProjectilePhase</defName>
+		<thingClass>RaceWeapons.Projectile_HeatImpact</thingClass>
+		<label>Laser Cell</label>
+		<graphicData>
+			<texPath>Things/EnergyProjectile/PhaseGreen</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>LaserImpact</damageDef>
+			<damageAmountBase>3</damageAmountBase>
+			<speed>40</speed>
+		</projectile>
+		<comps>
+			<li Class="RaceWeapons.CompProperties_RaceDamage">
+				<compClass>RaceWeapons.CompFutureDamage</compClass>
+				<damageDef>LaserHit</damageDef>
+				<damageAmount>3</damageAmount>
+				<chanceToProc>0.20</chanceToProc>
+			</li>
+		</comps>
+		<DrawingOffset>0</DrawingOffset>
+		<DrawingOffsetSecond>1</DrawingOffsetSecond>
+		<DrawingOffsetThird>1</DrawingOffsetThird>
+		<DrawingOffsetFourth>0</DrawingOffsetFourth>
+		<TickOffset>7</TickOffset>
+		<TickOffsetSecond>45</TickOffsetSecond>
+	</ThingDef>
+
+	<ThingDef ParentName="EvaineQBaseLaserMakeableGun">
+		<defName>PhasePistol</defName>
+		<label>Phase Pistol</label>
+		<description>The Phase-Pistol is a reliable sidearm that features lightweight polymer frame that helps to minimize recoil. It's easy to see why the versatile and dependable the Phase-Pistol has become a standard sidearm across the both Magma-Empire and Avian-Empire for both colonist's and enforcement Pawn's.</description>
+		<graphicData>
+			<texPath>Things/EnergyWeaponsRace/PhaseTechIND/PhasePistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.6</drawSize>
+		</graphicData>
+		<soundInteract>PhasePickup</soundInteract>
+		<statBases>
+			<MarketValue>3000</MarketValue>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.72</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>0.95</RangedWeapon_Cooldown>
+			<Mass>0.5</Mass>
+			<WorkToMake>48000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>150</Steel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<techLevel>Industrial</techLevel>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>EnergyProjectilePhase</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>22</range>
+				<soundCast>PhaseHit</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<recipeMaker>
+			<unfinishedThingDef>PhaseUnfinished</unfinishedThingDef>
+		</recipeMaker>
+		<weaponTags>
+			<li>PhasePistolNormal</li>
+		</weaponTags>
+	</ThingDef>
+
+
+	<ThingDef Class="RaceWeapons.ThingDef_RaceWeapons" ParentName="EvaineQBullets">
+		<defName>EnergyProjectilePhaseMagma</defName>
+		<thingClass>RaceWeapons.Projectile_HeatImpact</thingClass>
+		<label>Laser Cell</label>
+		<graphicData>
+			<texPath>Things/EnergyProjectile/PhaseLightOrange</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>LaserImpact</damageDef>
+			<damageAmountBase>3</damageAmountBase>
+			<speed>40</speed>
+		</projectile>
+		<comps>
+			<li Class="RaceWeapons.CompProperties_RaceDamage">
+				<compClass>RaceWeapons.CompFutureDamage</compClass>
+				<damageDef>LaserHit</damageDef>
+				<damageAmount>3</damageAmount>
+				<chanceToProc>0.30</chanceToProc>
+			</li>
+		</comps>
+		<DrawingOffset>0</DrawingOffset>
+		<DrawingOffsetSecond>1</DrawingOffsetSecond>
+		<DrawingOffsetThird>1</DrawingOffsetThird>
+		<DrawingOffsetFourth>0</DrawingOffsetFourth>
+		<TickOffset>7</TickOffset>
+		<TickOffsetSecond>35</TickOffsetSecond>
+	</ThingDef>
+
+	<ThingDef ParentName="EvaineQBaseLaserMakeableGun">
+		<defName>PhasePistolMagma</defName>
+		<label>Omega Phase-Pistol</label>
+		<description>The Omega Phase-Pistol is a Variant of Phase Pistol. It has been made by a Hi-Tech Group of Pirates in the 3505-IG (Avian Golden Age). It's easy to see why the versatile and dependable the Omega Phase-Pistol has become a standard sidearm across the both Magma-Empire and Avian-Empire for both colonist's and enforcement Pawn's.</description>
+		<graphicData>
+			<texPath>Things/EnergyWeaponsRace/PhaseTechIND/PhasePistolMagma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.6</drawSize>
+		</graphicData>
+		<soundInteract>PhasePickup</soundInteract>
+		<statBases>
+			<MarketValue>3000</MarketValue>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.65</AccuracyLong>
+			<RangedWeapon_Cooldown>0.95</RangedWeapon_Cooldown>
+			<Mass>0.5</Mass>
+			<WorkToMake>48000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>180</Steel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<techLevel>Industrial</techLevel>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>EnergyProjectilePhaseMagma</defaultProjectile>
+				<warmupTime>0.8</warmupTime>
+				<range>22</range>
+				<soundCast>PhaseHit</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<recipeMaker>
+			<unfinishedThingDef>PhaseUnfinished</unfinishedThingDef>
+		</recipeMaker>
+		<weaponTags>
+			<li>PhasePistolMagma</li>
+		</weaponTags>
+	</ThingDef>
+
+
+
+	<!--====== Flux Tech ======-->
+
+
+
+	<ThingDef Class="RaceWeapons.ThingDef_RaceWeapons" ParentName="EvaineQBullets">
+		<defName>EnergyProjectileFlux</defName>
+		<thingClass>RaceWeapons.Projectile_HeatImpact</thingClass>
+		<label>Laser Cell</label>
+		<graphicData>
+			<texPath>Things/EnergyProjectile/ProjectileFluxOrange</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>LaserImpact</damageDef>
+			<damageAmountBase>4</damageAmountBase>
+			<speed>45</speed>
+		</projectile>
+		<comps>
+			<li Class="RaceWeapons.CompProperties_RaceDamage">
+				<compClass>RaceWeapons.CompFutureDamage</compClass>
+				<damageDef>LaserHit</damageDef>
+				<damageAmount>3</damageAmount>
+				<chanceToProc>0.30</chanceToProc>
+			</li>
+		</comps>
+		<DrawingOffset>0</DrawingOffset>
+		<DrawingOffsetSecond>1</DrawingOffsetSecond>
+		<DrawingOffsetThird>1</DrawingOffsetThird>
+		<DrawingOffsetFourth>0</DrawingOffsetFourth>
+		<TickOffset>7</TickOffset>
+		<TickOffsetSecond>45</TickOffsetSecond>
+	</ThingDef>
+
+	<ThingDef ParentName="EvaineQBaseLaserMakeableGun">
+		<defName>FluxRifle</defName>
+		<label>Advanced Flux Rifle</label>
+		<description>The Advanced Flux-Rifle is a semi-automatic Energy Rifle capable of delivering sustained medium range, high-impact Energy Beams for close combat, Pawn's clearances and other combat operations. If the situation requires a high power presence, look no further than the Flux-Rifle. The Flux-Rifle is often used in Pirate's Incursions due to High Stability and a Decent availability in the Pawn's contraband market.</description>
+		<graphicData>
+			<texPath>Things/EnergyWeaponsRace/FluxTechIND/FluxRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>FluxPickup</soundInteract>
+		<statBases>
+			<MarketValue>2400</MarketValue>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.78</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.15</RangedWeapon_Cooldown>
+			<Mass>2.5</Mass>
+			<WorkToMake>55000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>220</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<techLevel>Industrial</techLevel>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>EnergyProjectileFlux</defaultProjectile>
+				<warmupTime>0.8</warmupTime>
+				<range>30</range>
+				<soundCast>FluxHit</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<recipeMaker>
+			<unfinishedThingDef>EnergyFluxUnfinished</unfinishedThingDef>
+		</recipeMaker>
+		<weaponTags>
+			<li>FluxRifleNormal</li>
+		</weaponTags>
+	</ThingDef>
+
+
+	<ThingDef Class="RaceWeapons.ThingDef_RaceWeapons" ParentName="EvaineQBullets">
+		<defName>EnergyProjectileFluxBlue</defName>
+		<thingClass>RaceWeapons.Projectile_HeatImpact</thingClass>
+		<label>Laser Cell</label>
+		<graphicData>
+			<texPath>Things/EnergyProjectile/ProjectileFluxBlue</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>LaserImpact</damageDef>
+			<damageAmountBase>4</damageAmountBase>
+			<speed>45</speed>
+		</projectile>
+		<comps>
+			<li Class="RaceWeapons.CompProperties_RaceDamage">
+				<compClass>RaceWeapons.CompFutureDamage</compClass>
+				<damageDef>LaserHit</damageDef>
+				<damageAmount>3</damageAmount>
+				<chanceToProc>0.15</chanceToProc>
+			</li>
+		</comps>
+		<DrawingOffset>0</DrawingOffset>
+		<DrawingOffsetSecond>1</DrawingOffsetSecond>
+		<DrawingOffsetThird>1</DrawingOffsetThird>
+		<DrawingOffsetFourth>0</DrawingOffsetFourth>
+		<TickOffset>7</TickOffset>
+		<TickOffsetSecond>35</TickOffsetSecond>
+	</ThingDef>
+
+	<ThingDef ParentName="EvaineQBaseLaserMakeableGun">
+		<defName>FluxRifleBlue</defName>
+		<label>Flux Rifle</label>
+		<description>The Flux-Rifle is an automatic Energy Rifle Modified by the Magma Empire for Better stability control. It was made as answer for overuse of close combat Flux-Rifles in whole sector that were used in pirate Hesis, and attacks. If the situation requires response to a high power presence, look no further than the Flux-Rifle.</description>
+		<graphicData>
+			<texPath>Things/EnergyWeaponsRace/FluxTechIND/FluxRifleBlue</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>FluxPickup</soundInteract>
+		<statBases>
+			<MarketValue>2200</MarketValue>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.68</AccuracyLong>
+			<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+			<Mass>2.5</Mass>
+			<WorkToMake>50000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>200</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<techLevel>Industrial</techLevel>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>EnergyProjectileFluxBlue</defaultProjectile>
+				<warmupTime>0.8</warmupTime>
+				<range>30</range>
+				<soundCast>FluxHit</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<recipeMaker>
+			<unfinishedThingDef>EnergyFluxUnfinished</unfinishedThingDef>
+		</recipeMaker>
+		<weaponTags>
+			<li>FluxRifleBlue</li>
+		</weaponTags>
+	</ThingDef>
+
+
+
+</Defs>

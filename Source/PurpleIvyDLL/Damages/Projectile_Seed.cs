@@ -62,7 +62,6 @@ namespace PurpleIvy
         protected override void Explode()
         {
             Map map = base.Map;
-            var launcher = (Building_GenMortarGun)this.launcher;
             this.Destroy(DestroyMode.Vanish);
             if (this.def.projectile.explosionEffect != null)
             {

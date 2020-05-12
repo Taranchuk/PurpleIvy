@@ -30,6 +30,7 @@ namespace PurpleIvy
 
         public static List<ResearchProjectDef> AlienStudy = new List<ResearchProjectDef>
         {
+            PurpleIvyDefOf.PI_MaskingTechnologies,
             PurpleIvyDefOf.PI_Vivisection,
             PurpleIvyDefOf.PI_ResourceExtraction,
             PurpleIvyDefOf.PI_AdvAlienContainment

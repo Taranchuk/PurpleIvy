@@ -123,6 +123,20 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
+		<defName>PI_MaskingTechnologies</defName>
+		<label>Masking technologies</label>
+		<description>wip</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<researchViewX>2.00</researchViewX>
+		<researchViewY>2.10</researchViewY>
+		<prerequisites>
+			<li>PI_AlienContainment</li>
+		</prerequisites>
+		<tab>PI_AlienStudy</tab>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_ResourceProcession</defName>
 		<label>Alien resources procession</label>
 		<description>wip</description>
@@ -135,7 +149,7 @@
 		</prerequisites>
 		<tab>PI_AlienStudy</tab>
 	</ResearchProjectDef>
-	
+
 	<ResearchProjectDef ParentName="PI_AlienStudyParentA">
 		<defName>PI_BasicDrugs</defName>
 		<label>Basic drugs</label>

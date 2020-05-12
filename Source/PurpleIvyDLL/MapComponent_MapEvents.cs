@@ -19,7 +19,10 @@ namespace PurpleIvy
 
         public override void ExposeData()
         {
-            Scribe_Collections.Look<Building, int>(ref this.ToxicDamages, "ToxicDamages", LookMode.Deep, LookMode.Value, ref this.ToxicDamageKeys, ref this.ToxicDamageValues);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                Scribe_Collections.Look<Building, int>(ref this.ToxicDamages, "ToxicDamages", LookMode.Reference, LookMode.Value, ref this.ToxicDamageKeys, ref this.ToxicDamageValues);
+            }
             Scribe_Values.Look<bool>(ref this.OrbitalHelpActive, "OrbitalHelpActive", false);
             base.ExposeData();
         }
@@ -109,7 +112,7 @@ namespace PurpleIvy
                 var plants = this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);
                 //Log.Message("Checking orbital strike, " + this.OrbitalHelpActive + " - " + plants.Count);
                 if (plants != null && ((this.OrbitalHelpActive == true && plants.Count > 0)
-                    || plants.Count > 1500)) // && Rand.Chance(PurpleIvyData.getFogProgress(plants.Count)))
+                    || plants.Count > 2500)) // && Rand.Chance(PurpleIvyData.getFogProgress(plants.Count)))
                 {
                     if (this.OrbitalHelpActive == false)
                     {

@@ -8,6 +8,13 @@
 		<parent>Root</parent>
 		<iconPath>UI/Icons/ThingCategories/AnimalProductRaw</iconPath>
 	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>PI_AlienBlood</defName>
+		<label>alien blood</label>
+		<parent>PI_AlienResources</parent>
+		<iconPath>UI/Icons/ThingCategories/AnimalProductRaw</iconPath>
+	</ThingCategoryDef>
 	<!--====== Food ======-->
 
 	<ThingCategoryDef>
