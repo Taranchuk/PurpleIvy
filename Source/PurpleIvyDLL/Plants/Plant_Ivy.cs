@@ -10,38 +10,38 @@ using Verse.AI;
 
 namespace PurpleIvy
 {
-    public class Plant_Ivy : Plant, IAttackTarget
+    public class Plant_Ivy : Plant//, IAttackTarget // tanks fps, had to disable it
     {
         public bool CanMutate = false;
         private Gas Spores = null;
 
-        Thing IAttackTarget.Thing
-        {
-            get
-            {
-                return this;
-            }
-        }
-        public LocalTargetInfo TargetCurrentlyAimingAt
-        {
-            get
-            {
-                return LocalTargetInfo.Invalid;
-            }
-        }
-
-        public float TargetPriorityFactor
-        {
-            get
-            {
-                return 0.1f;
-            }
-        }
-
-        public bool ThreatDisabled(IAttackTargetSearcher disabledFor)
-        {
-            return false;
-        }
+        //Thing IAttackTarget.Thing
+        //{
+        //    get
+        //    {
+        //        return this;
+        //    }
+        //}
+        //public LocalTargetInfo TargetCurrentlyAimingAt
+        //{
+        //    get
+        //    {
+        //        return LocalTargetInfo.Invalid;
+        //    }
+        //}
+        //
+        //public float TargetPriorityFactor
+        //{
+        //    get
+        //    {
+        //        return 0.1f;
+        //    }
+        //}
+        //
+        //public bool ThreatDisabled(IAttackTargetSearcher disabledFor)
+        //{
+        //    return false;
+        //}
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
@@ -123,21 +123,21 @@ namespace PurpleIvy
                             int oldDamage = 0;
                             if (comp.ToxicDamages == null)
                             {
-                                comp.ToxicDamages = new Dictionary<Building, int>();
-                                comp.ToxicDamages[b] = b.MaxHitPoints;
+                                comp.ToxicDamages = new Dictionary<IntVec3, int>();
+                                comp.ToxicDamages[b.Position] = b.MaxHitPoints;
                             }
-                            if (!comp.ToxicDamages.ContainsKey(b))
+                            if (!comp.ToxicDamages.ContainsKey(b.Position))
                             {
                                 oldDamage = b.MaxHitPoints;
-                                comp.ToxicDamages[b] = b.MaxHitPoints - 1;
+                                comp.ToxicDamages[b.Position] = b.MaxHitPoints - 1;
                             }
                             else
                             {
-                                oldDamage = comp.ToxicDamages[b];
-                                comp.ToxicDamages[b] -= 1;
+                                oldDamage = comp.ToxicDamages[b.Position];
+                                comp.ToxicDamages[b.Position] -= 1;
                             }
                             BuildingsToxicDamageSectionLayerUtility.Notify_BuildingHitPointsChanged((Building)list[i], oldDamage);
-                            if (comp.ToxicDamages[b] / 2 < b.MaxHitPoints)
+                            if (comp.ToxicDamages[b.Position] / 2 < b.MaxHitPoints)
                             {
                                 if (b.GetComp<CompBreakdownable>() != null)
                                 {

@@ -24,7 +24,7 @@ namespace PurpleIvy
                     Building building = list[i] as Building;
                     var comp = building?.Map?.GetComponent<MapComponent_MapEvents>();
                     if (building != null && building.def.useHitPoints 
-                        && comp != null && comp.ToxicDamages != null && comp.ToxicDamages.ContainsKey(building) && comp.ToxicDamages[building] 
+                        && comp != null && comp.ToxicDamages != null && comp.ToxicDamages.ContainsKey(building.Position) && comp.ToxicDamages[building.Position] 
                         < building.MaxHitPoints && building.def.drawDamagedOverlay 
                         && building.Position.x == intVec.x && building.Position.z == intVec.z)
                     {
@@ -37,7 +37,7 @@ namespace PurpleIvy
 
         private void PrintDamageVisualsFrom(Building b)
         {
-            if (!b.Map.GetComponent<MapComponent_MapEvents>().ToxicDamages.ContainsKey(b) || b.def.graphicData != null && b.def.graphicData.damageData != null && !b.def.graphicData.damageData.enabled)
+            if (!b.Map.GetComponent<MapComponent_MapEvents>().ToxicDamages.ContainsKey(b.Position) || b.def.graphicData != null && b.def.graphicData.damageData != null && !b.def.graphicData.damageData.enabled)
             {
                 return;
             }

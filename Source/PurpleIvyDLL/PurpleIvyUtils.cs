@@ -128,7 +128,7 @@ namespace PurpleIvy
                     {
                         floatRadius = 0;
                     }
-                    float newValue = GetPartFromPercentage(GetPercentageFromPartWhole(floatRadius, distance) - 100f, data.Value);
+                    float newValue = GetPartFromPercentage(GetPercentageFromPartWhole(floatRadius, distance) / 100f, data.Value);
                     if (newValue > data.Value)
                     {
                         outerSource += data.Value;

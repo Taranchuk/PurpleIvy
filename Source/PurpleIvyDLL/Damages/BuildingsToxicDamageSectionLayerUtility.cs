@@ -12,7 +12,7 @@ namespace PurpleIvy
         public static void Notify_BuildingHitPointsChanged(Building b, int oldHitPoints)
         {
             var comp = b.Map.GetComponent<MapComponent_MapEvents>();
-            if (comp == null || comp.ToxicDamages == null || !comp.ToxicDamages.ContainsKey(b) || comp.ToxicDamages[b] == oldHitPoints ||
+            if (comp == null || comp.ToxicDamages == null || !comp.ToxicDamages.ContainsKey(b.Position) || comp.ToxicDamages[b.Position] == oldHitPoints ||
                 !b.Spawned
                 || !b.def.drawDamagedOverlay)
             {
@@ -172,7 +172,7 @@ namespace PurpleIvy
             }
             Rand.PushState();
             Rand.Seed = Gen.HashCombineInt(b.thingIDNumber, 1958376471);
-            int damageOverlaysCount = BuildingsToxicDamageSectionLayerUtility.GetDamageOverlaysCount(b, b.Map.GetComponent<MapComponent_MapEvents>().ToxicDamages[b]);
+            int damageOverlaysCount = BuildingsToxicDamageSectionLayerUtility.GetDamageOverlaysCount(b, b.Map.GetComponent<MapComponent_MapEvents>().ToxicDamages[b.Position]);
             int num = 0;
             while (num < damageOverlaysCount && BuildingsToxicDamageSectionLayerUtility.overlaysWorkingList.Any<DamageOverlay>())
             {
@@ -289,8 +289,8 @@ namespace PurpleIvy
             {
                 var comp = thingList[i].Map.GetComponent<MapComponent_MapEvents>();
                 if (thingList[i].def == b.def && comp != null && comp.ToxicDamages != null
-                    && comp.ToxicDamages.ContainsKey((Building)thingList[i])
-                    && comp.ToxicDamages[(Building)thingList[i]] < thingList[i].MaxHitPoints)
+                    && comp.ToxicDamages.ContainsKey(((Building)thingList[i]).Position)
+                    && comp.ToxicDamages[((Building)thingList[i]).Position] < thingList[i].MaxHitPoints)
                 {
                     return true;
                 }

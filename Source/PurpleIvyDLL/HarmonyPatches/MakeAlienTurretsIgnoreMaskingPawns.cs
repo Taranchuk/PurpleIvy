@@ -19,14 +19,13 @@ namespace PurpleIvy
         public static bool Prefix(Building_TurretGun __instance, ref bool __result, Thing t)
         {
             bool result;
-            if (__instance.Faction == PurpleIvyData.AlienFaction && t is Pawn pawn && pawn.health.hediffSet.GetFirstHediffOfDef(PurpleIvyDefOf.PI_MaskingSprayHigh) != null)
+            if (__instance?.Faction == PurpleIvyData.AlienFaction && t is Pawn pawn && pawn.health.hediffSet.GetFirstHediffOfDef(PurpleIvyDefOf.PI_MaskingSprayHigh) != null)
             {
                 __result = false;
                 result = false;
             }
             else
             {
-                Log.Message(__instance + " aiming at " + t);
                 result = true;
             }
             return result;
