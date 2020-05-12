@@ -20,48 +20,13 @@ namespace PurpleIvy
         public override void ExposeData()
         {
             base.ExposeData();
-            //if (Scribe.mode == LoadSaveMode.PostLoadInit)
-            //{
-            //    Scribe_Collections.Look<IntVec3, int>(ref this.ToxicDamages, "ToxicDamages", LookMode.Value, LookMode.Value, ref this.ToxicDamageKeys, ref this.ToxicDamageValues);
-            //    Log.Message("INitializing toxic damages");
-            //    Log.Message("Count 1 - " + this.ToxicDamages.Count);
-            //    foreach (var b in this.ToxicDamages)
-            //    {
-            //        Log.Message("Notifying " + b.Key);
-            //        //BuildingsToxicDamageSectionLayerUtility.Notify_BuildingHitPointsChanged(b.Key, b.Value);
-            //    }
-            //}
-            if (Scribe.mode == LoadSaveMode.LoadingVars)
-            {
-                Scribe_Collections.Look<IntVec3, int>(ref this.ToxicDamages, "ToxicDamages", LookMode.Value, LookMode.Value, ref this.ToxicDamageKeys, ref this.ToxicDamageValues);
-                Log.Message("INitializing toxic damages");
-                Log.Message("Count 1 - " + this.ToxicDamages.Count);
-                foreach (var b in this.ToxicDamages)
-                {
-                    Log.Message("Notifying " + b.Key);
-                    //BuildingsToxicDamageSectionLayerUtility.Notify_BuildingHitPointsChanged(b.Key, b.Value);
-                }
-            }
-            else if (Scribe.mode == LoadSaveMode.Saving)
-            {
-                Scribe_Collections.Look<IntVec3, int>(ref this.ToxicDamages, "ToxicDamages", LookMode.Value, LookMode.Value, ref this.ToxicDamageKeys, ref this.ToxicDamageValues);
-            }
+            Scribe_Collections.Look<Building, int>(ref this.ToxicDamages, "ToxicDamages", LookMode.Reference, LookMode.Value, ref this.ToxicDamageKeys, ref this.ToxicDamageValues);
             Scribe_Values.Look<bool>(ref this.OrbitalHelpActive, "OrbitalHelpActive", false);
         }
 
         public override void FinalizeInit()
         {
             base.FinalizeInit();
-            Log.Message("INitializing toxic damages 2");
-            Log.Message("Count 2 - " + this.ToxicDamages.Count);
-
-            foreach (var b in this.ToxicDamages)
-            {
-                Log.Message("Notifying " + b.Key);
-                Building building = b.Key.GetFirstBuilding(this.map);
-                BuildingsToxicDamageSectionLayerUtility.Notify_BuildingHitPointsChanged(building, b.Value);
-            }
-
             foreach (Thing t in this.map.listerThings.AllThings)
             {
                 Pawn pawn = null;
@@ -367,9 +332,9 @@ this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest).Count.ToString(), true
 
         public bool OrbitalHelpActive = false;
 
-        public Dictionary<IntVec3, int> ToxicDamages = new Dictionary<IntVec3, int>();
+        public Dictionary<Building, int> ToxicDamages = new Dictionary<Building, int>();
 
-        public List<IntVec3> ToxicDamageKeys = new List<IntVec3>();
+        public List<Building> ToxicDamageKeys = new List<Building>();
 
         public List<int> ToxicDamageValues = new List<int>();
 

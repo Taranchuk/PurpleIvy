@@ -318,6 +318,7 @@
     <Compile Include="Damages\Filth_ToxicBlood.cs" />
     <Compile Include="Damages\SectionLayer_BuildingsToxicDamage.cs" />
     <Compile Include="Effects\PurpleEyes.cs" />
+    <Compile Include="HarmonyPatches\DropPurpleDustFromInfectedThings.cs" />
     <Compile Include="HarmonyPatches\MakeAlienTurretsIgnoreMaskingPawns.cs" />
     <Compile Include="HarmonyPatches\PurpleEyesRenderer.cs" />
     <Compile Include="HarmonyPatches\AlienLairs_GenStepPatch.cs" />

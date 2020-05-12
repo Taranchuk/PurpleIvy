@@ -123,21 +123,21 @@ namespace PurpleIvy
                             int oldDamage = 0;
                             if (comp.ToxicDamages == null)
                             {
-                                comp.ToxicDamages = new Dictionary<IntVec3, int>();
-                                comp.ToxicDamages[b.Position] = b.MaxHitPoints;
+                                comp.ToxicDamages = new Dictionary<Building, int>();
+                                comp.ToxicDamages[b] = b.MaxHitPoints;
                             }
-                            if (!comp.ToxicDamages.ContainsKey(b.Position))
+                            if (!comp.ToxicDamages.ContainsKey(b))
                             {
                                 oldDamage = b.MaxHitPoints;
-                                comp.ToxicDamages[b.Position] = b.MaxHitPoints - 1;
+                                comp.ToxicDamages[b] = b.MaxHitPoints - 1;
                             }
                             else
                             {
-                                oldDamage = comp.ToxicDamages[b.Position];
-                                comp.ToxicDamages[b.Position] -= 1;
+                                oldDamage = comp.ToxicDamages[b];
+                                comp.ToxicDamages[b] -= 1;
                             }
                             BuildingsToxicDamageSectionLayerUtility.Notify_BuildingHitPointsChanged((Building)list[i], oldDamage);
-                            if (comp.ToxicDamages[b.Position] / 2 < b.MaxHitPoints)
+                            if (comp.ToxicDamages[b] / 2 < b.MaxHitPoints)
                             {
                                 if (b.GetComp<CompBreakdownable>() != null)
                                 {
