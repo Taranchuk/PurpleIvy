@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<RecipeDef>
+	<defName>PI_MakeTentackleArm</defName>
+    <label>make tentackle arm</label>
+    <description>t</description>
+    <jobString>Making tentackle arm.</jobString>
+    <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
+    <workAmount>500</workAmount>
+	<recipeUsers>
+	  <li>PI_BioLab</li>
+    </recipeUsers>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>PI_BigTentacles</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+	  <li>
+        <filter>
+          <thingDefs>
+            <li>Neutroamine</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>PI_BigTentacles</li>
+		<li>Neutroamine</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <PI_TentackleArm>1</PI_TentackleArm>
+    </products>
+    <workSkill>Crafting</workSkill>
+	</RecipeDef> 	
+</Defs>

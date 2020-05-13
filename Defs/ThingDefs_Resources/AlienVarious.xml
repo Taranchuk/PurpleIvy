@@ -172,7 +172,7 @@
 		<graphicData>
 			<texPath>Things/Resources/Various/PI_Tentacles</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
-      			<drawSize>2</drawSize>
+      		<drawSize>2</drawSize>
 		</graphicData>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
