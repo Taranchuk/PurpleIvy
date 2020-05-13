@@ -17,16 +17,20 @@ namespace PurpleIvy
             [HarmonyPrefix]
             private static bool Prefix(Thing __instance, DestroyMode mode)
             {
-                if (__instance is Building building)
+                MapComponent_MapEvents comp = null;
+                if (__instance.Map != null)
                 {
-                    var comp = building.Map.GetComponent<MapComponent_MapEvents>();
-                    if (comp != null && comp.ToxicDamages.ContainsKey(building))
-                    {
-                        //Thing newNest = ThingMaker.MakeThing(ThingDefOf.AIPersonaCore);
-                        //GenSpawn.Spawn(newNest, building.Position, building.Map);
-
-                        comp.ToxicDamages.Remove(building);
-                    }
+                    comp = __instance.Map.GetComponent<MapComponent_MapEvents>();
+                }
+                else if (__instance.ParentHolder is Thing t && t.Map != null)
+                {
+                    comp = t.Map.GetComponent<MapComponent_MapEvents>();
+                }
+                if (comp != null && comp.ToxicDamages.ContainsKey(__instance))
+                {
+                    //Thing newNest = ThingMaker.MakeThing(ThingDefOf.AIPersonaCore);
+                    //GenSpawn.Spawn(newNest, building.Position, building.Map);
+                    comp.ToxicDamages.Remove(__instance);
                 }
                 return true;
             }

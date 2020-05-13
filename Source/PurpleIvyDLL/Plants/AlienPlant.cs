@@ -73,22 +73,23 @@ namespace PurpleIvy
                 }
                 for (int i = 0; i < list.Count; i++)
                 {
-                    if ((list[i] is Building || PurpleIvyUtils.IsChunk(list[i])) && list[i].Faction != PurpleIvyData.AlienFaction)
+                    if (list[i].Faction != PurpleIvyData.AlienFaction)
                     {
+                        if (list[i] is Pawn || list[i] is Gas || list[i] is Mote || list[i] is Filth) continue;
                         var comp = this.Map.GetComponent<MapComponent_MapEvents>();
-
                         if (comp != null)
                         {
                             int oldDamage = 0;
                             if (!comp.ToxicDamages.ContainsKey(list[i]))
                             {
-                                if (list[i] is Building)
+        
+                                if (PurpleIvyUtils.IsChunk(list[i]))
                                 {
-                                    comp.ToxicDamagesThings[list[i]] = list[i].MaxHitPoints - 1;
+                                    comp.ToxicDamagesChunksDeep[list[i]] = list[i].MaxHitPoints - 1;
                                 }
                                 else
                                 {
-                                    comp.ToxicDamagesChunksDeep[list[i]] = list[i].MaxHitPoints - 1;
+                                    comp.ToxicDamagesThings[list[i]] = list[i].MaxHitPoints - 1;
                                 }
                                 oldDamage = list[i].MaxHitPoints;
                                 comp.ToxicDamages[list[i]] = list[i].MaxHitPoints - 1;
@@ -98,10 +99,11 @@ namespace PurpleIvy
                                 oldDamage = comp.ToxicDamages[list[i]];
                                 comp.ToxicDamages[list[i]] -= 1;
                             }
+                            //Log.Message("Damaging " + list[i], true);
                             ThingsToxicDamageSectionLayerUtility.Notify_ThingHitPointsChanged(comp, list[i], oldDamage);
                             if (list[i] is Building b && comp.ToxicDamages[b] / 2 < b.MaxHitPoints)
                             {
-
+        
                                 if (b.GetComp<CompBreakdownable>() != null)
                                 {
                                     b.GetComp<CompBreakdownable>().DoBreakdown();
