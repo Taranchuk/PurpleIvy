@@ -14,7 +14,9 @@ namespace PurpleIvy
     {
         public MapComponent_MapEvents(Map map) : base(map)
         {
-
+            this.ToxicDamages = new Dictionary<Thing, int>();
+            this.ToxicDamagesThings = new Dictionary<Thing, int>();
+            this.ToxicDamagesChunksDeep = new Dictionary<Thing, int>();
         }
 
         public override void ExposeData()
@@ -46,12 +48,12 @@ namespace PurpleIvy
         {
             base.FinalizeInit();
             if (this.ToxicDamagesChunks != null)
-            {
+            {            
                 foreach (var b in this.ToxicDamagesChunks)
                 {
                     foreach (var t in this.map.thingGrid.ThingsListAt(b.Key))
                     {
-                        if (PurpleIvyUtils.IsChunk(t))
+                        if (PurpleIvyUtils.IsChunkOrMineable(t))
                         {
                             this.ToxicDamagesChunksDeep[t] = b.Value;
                         }
@@ -59,10 +61,6 @@ namespace PurpleIvy
                 }
             }
 
-            if (this.ToxicDamages == null) this.ToxicDamages = new Dictionary<Thing, int>();
-            if (this.ToxicDamagesThings == null) this.ToxicDamagesThings = new Dictionary<Thing, int>();
-            if (this.ToxicDamagesChunksDeep == null) this.ToxicDamagesChunksDeep = new Dictionary<Thing, int>();
-            
             foreach (var b in this.ToxicDamagesChunksDeep)
             {
                 this.ToxicDamages[b.Key] = b.Value;
@@ -73,7 +71,7 @@ namespace PurpleIvy
             }
             foreach (var b in this.ToxicDamages)
             {
-                //Log.Message("Notifying " + b.Key);
+                Log.Message("Notifying " + b.Key);
                 ThingsToxicDamageSectionLayerUtility.Notify_ThingHitPointsChanged(this, b.Key, b.Key.MaxHitPoints);
             }
 
@@ -103,7 +101,6 @@ namespace PurpleIvy
                     {
                         if (hediff.instigator != null)
                         {
-                            Log.Message("EXPOSE DATA: " + pawn.Label + " - " + hediff.instigator.defName);
                             var dummyCorpse = PurpleIvyDefOf.InfectedCorpseDummy;
                             comp = new AlienInfection();
                             comp.Initialize(dummyCorpse.GetCompProperties<CompProperties_AlienInfection>());
@@ -127,24 +124,17 @@ namespace PurpleIvy
                             if (pawn.Dead)
                             {
                                 var corpse = pawn.Corpse;
-                                Log.Message("6 Adding infected comp to " + corpse);
                                 corpse.AllComps.Add(comp);
                             }
                             else
                             {
-                                Log.Message("5 Adding infected comp to " + pawn);
                                 pawn.AllComps.Add(comp);
                             }
-                        }
-                        else
-                        {
-                            Log.Message(pawn.Label + " - instigator null");
                         }
                     }
                     else if (pawn.Dead && comp != null)
                     {
                         var corpse = pawn.Corpse;
-                        Log.Message("4 Adding infected comp to " + corpse);
                         corpse.AllComps.Add(comp);
                     }
                 }

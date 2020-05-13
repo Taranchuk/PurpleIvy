@@ -13,8 +13,12 @@ namespace PurpleIvy
     public static class PurpleIvyUtils
     {
 
-        public static bool IsChunk(Thing item)
+        public static bool IsChunkOrMineable(Thing item)
         {
+            if (item is Mineable)
+            {
+                return true;
+            }
             if (item?.def?.thingCategories != null)
             {
                 foreach (var category in item.def.thingCategories)

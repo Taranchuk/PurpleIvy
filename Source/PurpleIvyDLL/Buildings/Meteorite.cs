@@ -19,6 +19,19 @@ namespace PurpleIvy
         {
             base.SpawnSetup(map, respawningAfterLoad);
             this.SetFaction(PurpleIvyData.AlienFaction);
+            if (this.activeSpores == true)
+            {
+                foreach (var dir in GenRadial.RadialCellsAround(this.Position, 5, true))
+                {
+                    if (GenGrid.InBounds(dir, this.Map))
+                    {
+                        Thing thing = ThingMaker.MakeThing(PurpleIvyDefOf.PI_Spores, null);
+                        GenSpawn.Spawn(thing, dir, this.Map, 0);
+                        var Spores = (Gas)thing;
+                        Spores.destroyTick = Find.TickManager.TicksGame + new IntRange(160000, 180000).RandomInRange;
+                    }
+                }
+            }
         }
 
         public override void SetFaction(Faction newFaction, Pawn recruiter = null)

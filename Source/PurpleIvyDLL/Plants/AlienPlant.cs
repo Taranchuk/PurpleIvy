@@ -82,8 +82,7 @@ namespace PurpleIvy
                             int oldDamage = 0;
                             if (!comp.ToxicDamages.ContainsKey(list[i]))
                             {
-        
-                                if (PurpleIvyUtils.IsChunk(list[i]))
+                                if (PurpleIvyUtils.IsChunkOrMineable(list[i]))
                                 {
                                     comp.ToxicDamagesChunksDeep[list[i]] = list[i].MaxHitPoints - 1;
                                 }

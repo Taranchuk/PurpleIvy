@@ -26,13 +26,20 @@ namespace PurpleIvy
                 {
                     comp = t.Map.GetComponent<MapComponent_MapEvents>();
                 }
-                if (comp != null && comp.ToxicDamages.ContainsKey(__instance))
+                if (comp != null && (comp.ToxicDamages.ContainsKey(__instance)
+                    || comp.ToxicDamagesChunks.ContainsKey(__instance.Position)))
                 {
                     //Thing newNest = ThingMaker.MakeThing(ThingDefOf.AIPersonaCore);
                     //GenSpawn.Spawn(newNest, building.Position, building.Map);
-                    comp.ToxicDamages.Remove(__instance);
-                    comp.ToxicDamagesThings.Remove(__instance);
-                    comp.ToxicDamagesChunks.Remove(__instance.Position);
+                    if (comp.ToxicDamages.ContainsKey(__instance))
+                    {
+                        comp.ToxicDamages.Remove(__instance);
+                        comp.ToxicDamagesThings.Remove(__instance);
+                    }
+                    if (comp.ToxicDamagesChunks.ContainsKey(__instance.Position) && PurpleIvyUtils.IsChunkOrMineable(__instance))
+                    {
+                        comp.ToxicDamagesChunks.Remove(__instance.Position);
+                    }
                 }
                 return true;
             }
