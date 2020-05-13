@@ -20,13 +20,65 @@ namespace PurpleIvy
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Collections.Look<Building, int>(ref this.ToxicDamages, "ToxicDamages", LookMode.Reference, LookMode.Value, ref this.ToxicDamageKeys, ref this.ToxicDamageValues);
+            Scribe_Collections.Look<Thing, int>(ref this.ToxicDamagesThings, "ToxicDamagesThings", LookMode.Reference,
+                LookMode.Value, ref this.ToxicDamageThingsKeys, ref this.ToxicDamageThingsValues);
             Scribe_Values.Look<bool>(ref this.OrbitalHelpActive, "OrbitalHelpActive", false);
+            Scribe_Values.Look<int>(ref this.LastAttacked, "LastAttacked", 0);
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                //these hacks because Tynan doesn't save the chunks id
+                if (this.ToxicDamagesChunksDeep != null)
+                {
+                    if (this.ToxicDamagesChunks == null) this.ToxicDamagesChunks = new Dictionary<IntVec3, int>();
+                    foreach (var b in this.ToxicDamagesChunksDeep)
+                    {
+                        Log.Message("Saving b: " + b + " - " + b.Key.Position + " - " + b.Value);
+                        this.ToxicDamagesChunks[b.Key.Position] = b.Value;
+                    }
+                }
+                Scribe_Collections.Look<IntVec3, int>(ref this.ToxicDamagesChunks, "ToxicDamagesChunks", LookMode.Value,
+                LookMode.Value, ref this.ToxicDamageChunksKeys, ref this.ToxicDamageChunksValues);
+            }
+            Scribe_Collections.Look<IntVec3, int>(ref this.ToxicDamagesChunks, "ToxicDamagesChunks", LookMode.Value,
+                    LookMode.Value, ref this.ToxicDamageChunksKeys, ref this.ToxicDamageChunksValues);
         }
 
         public override void FinalizeInit()
         {
             base.FinalizeInit();
+            if (this.ToxicDamagesChunks != null)
+            {
+                foreach (var b in this.ToxicDamagesChunks)
+                {
+                    foreach (var t in this.map.thingGrid.ThingsListAt(b.Key))
+                    {
+                        if (PurpleIvyUtils.IsChunk(t))
+                        {
+                            Log.Message("Loading t: " + t + " - " + t.Position + " - " + b.Value);
+                            this.ToxicDamagesChunksDeep[t] = b.Value;
+                        }
+                    }
+                }
+            }
+
+            if (this.ToxicDamages == null) this.ToxicDamages = new Dictionary<Thing, int>();
+            if (this.ToxicDamagesThings == null) this.ToxicDamagesThings = new Dictionary<Thing, int>();
+            if (this.ToxicDamagesChunksDeep == null) this.ToxicDamagesChunksDeep = new Dictionary<Thing, int>();
+            
+            foreach (var b in this.ToxicDamagesChunksDeep)
+            {
+                this.ToxicDamages[b.Key] = b.Value;
+            }
+            foreach (var b in this.ToxicDamagesThings)
+            {
+                this.ToxicDamages[b.Key] = b.Value;
+            }
+            foreach (var b in this.ToxicDamages)
+            {
+                Log.Message("Notifying " + b.Key);
+                ThingsToxicDamageSectionLayerUtility.Notify_ThingHitPointsChanged(this, b.Key, b.Key.MaxHitPoints);
+            }
+
             foreach (Thing t in this.map.listerThings.AllThings)
             {
                 Pawn pawn = null;
@@ -330,13 +382,24 @@ this.map.listerThings.ThingsOfDef(PurpleIvyDefOf.PI_Nest).Count.ToString(), true
             }
         }
 
+        public int LastAttacked = 0;
+
         public bool OrbitalHelpActive = false;
 
-        public Dictionary<Building, int> ToxicDamages = new Dictionary<Building, int>();
+        public Dictionary<IntVec3, int> ToxicDamagesChunks = new Dictionary<IntVec3, int>();
+        public Dictionary<Thing, int> ToxicDamagesChunksDeep = new Dictionary<Thing, int>();
 
-        public List<Building> ToxicDamageKeys = new List<Building>();
+        public List<IntVec3> ToxicDamageChunksKeys = new List<IntVec3>();
 
-        public List<int> ToxicDamageValues = new List<int>();
+        public List<int> ToxicDamageChunksValues = new List<int>();
+
+        public Dictionary<Thing, int> ToxicDamagesThings = new Dictionary<Thing, int>();
+
+        public List<Thing> ToxicDamageThingsKeys = new List<Thing>();
+
+        public List<int> ToxicDamageThingsValues = new List<int>();
+
+        public Dictionary<Thing, int> ToxicDamages = new Dictionary<Thing, int>();
 
     }
 }

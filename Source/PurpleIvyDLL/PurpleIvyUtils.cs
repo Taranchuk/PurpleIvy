@@ -13,6 +13,20 @@ namespace PurpleIvy
     public static class PurpleIvyUtils
     {
 
+        public static bool IsChunk(Thing item)
+        {
+            if (item?.def?.thingCategories != null)
+            {
+                foreach (var category in item.def.thingCategories)
+                {
+                    if (category == ThingCategoryDefOf.Chunks || category == ThingCategoryDefOf.StoneChunks)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         public static List<Thing> SpawnNests(Thing spawner)
         {
             List<Thing> nests = new List<Thing>();

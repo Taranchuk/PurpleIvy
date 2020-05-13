@@ -35,7 +35,7 @@ namespace PurpleIvy
             {
                 pawn2 = alien.lastInstigator;
             }
-            else if ((Find.TickManager.TicksGame - PurpleIvyData.LastAttacked) < 1000)
+            else if ((Find.TickManager.TicksGame - pawn.Map.GetComponent<MapComponent_MapEvents>().LastAttacked) < 1000)
             {
                 pawn2 = FindPawnTargetNearPlants(pawn);
             }

@@ -26,8 +26,6 @@ namespace PurpleIvy
 
         public static bool BiomesToClear = false;
 
-        public static int LastAttacked = 0;
-
         public static List<ResearchProjectDef> AlienStudy = new List<ResearchProjectDef>
         {
             PurpleIvyDefOf.PI_MaskingTechnologies,
@@ -239,7 +237,6 @@ namespace PurpleIvy
                     {30, 2821}
                 };
     }
-
 
 }
 

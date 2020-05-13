@@ -310,13 +310,13 @@
     <Compile Include="Buildings\Building_GasPump.cs" />
     <Compile Include="Buildings\Building_EggSac.cs" />
     <Compile Include="Damages\ExplosionPlus.cs" />
-    <Compile Include="Damages\BuildingsToxicDamageSectionLayerUtility.cs" />
+    <Compile Include="Damages\ThingsToxicDamageSectionLayerUtility.cs" />
     <Compile Include="Damages\DamageWorker_AddInjuryNoCamShaker.cs" />
     <Compile Include="Damages\DamageWorker_ToxicBurn.cs" />
     <Compile Include="Damages\AlienProjectile.cs" />
     <Compile Include="Damages\Filth_ToxicFilth.cs" />
     <Compile Include="Damages\Filth_ToxicBlood.cs" />
-    <Compile Include="Damages\SectionLayer_BuildingsToxicDamage.cs" />
+    <Compile Include="Damages\SectionLayer_ThingsToxicDamage.cs" />
     <Compile Include="Effects\PurpleEyes.cs" />
     <Compile Include="HarmonyPatches\DropPurpleDustFromInfectedThings.cs" />
     <Compile Include="HarmonyPatches\MakeAlienTurretsIgnoreMaskingPawns.cs" />
@@ -361,6 +361,7 @@
     <Compile Include="Jobs\JobDriver_ExtractNectar.cs" />
     <Compile Include="Pawns\Alien.cs" />
     <Compile Include="Pawns\AlienQueen.cs" />
+    <Compile Include="Plants\AlienPlant.cs" />
     <Compile Include="Plants\Plant_VenomousToothwort.cs" />
     <Compile Include="Plants\Plant_Nest.cs" />
     <Compile Include="PurpleIvy_Mod.cs" />

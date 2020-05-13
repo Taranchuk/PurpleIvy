@@ -7,28 +7,26 @@ using Verse;
 namespace PurpleIvy
 {
     [StaticConstructorOnStartup]
-    public static class BuildingsToxicDamageSectionLayerUtility
+    public static class ThingsToxicDamageSectionLayerUtility
     {
-        public static void Notify_BuildingHitPointsChanged(Building b, int oldHitPoints)
+        public static void Notify_ThingHitPointsChanged(MapComponent_MapEvents comp, Thing b, int oldHitPoints)
         {
-            var comp = b.Map.GetComponent<MapComponent_MapEvents>();
-            if (comp == null || comp.ToxicDamages == null || !comp.ToxicDamages.ContainsKey(b) || comp.ToxicDamages[b] == oldHitPoints ||
-                !b.Spawned
-                || !b.def.drawDamagedOverlay)
+            if (comp == null || comp.ToxicDamages == null || !comp.ToxicDamages.ContainsKey(b) || 
+                comp.ToxicDamages[b] == oldHitPoints || !b.Spawned)
             {
                 return;
             }
-            b.Map.mapDrawer.MapMeshDirty(b.Position, MapMeshFlag.BuildingsDamage);
+            b.Map.mapDrawer.MapMeshDirty(b.Position, MapMeshFlag.Things);
         }
 
-        public static bool UsesLinkableCornersAndEdges(Building b)
+        public static bool UsesLinkableCornersAndEdges(Thing b)
         {
             return b.def.size.x == 1 && b.def.size.z == 1 && b.def.Fillage == FillCategory.Full;
         }
 
-        public static IList<Material> GetScratchMats(Building b)
+        public static IList<Material> GetScratchMats(Thing b)
         {
-            IList<Material> result = BuildingsToxicDamageSectionLayerUtility.DefaultScratchMats;
+            IList<Material> result = ThingsToxicDamageSectionLayerUtility.DefaultScratchMats;
             if (b.def.graphicData != null && b.def.graphicData.damageData != null && b.def.graphicData.damageData.scratchMats != null)
             {
                 result = b.def.graphicData.damageData.scratchMats;
@@ -36,13 +34,13 @@ namespace PurpleIvy
             return result;
         }
 
-        public static List<DamageOverlay> GetAvailableOverlays(Building b)
+        public static List<DamageOverlay> GetAvailableOverlays(Thing b)
         {
-            BuildingsToxicDamageSectionLayerUtility.availableOverlays.Clear();
-            if (BuildingsToxicDamageSectionLayerUtility.GetScratchMats(b).Any<Material>())
+            ThingsToxicDamageSectionLayerUtility.availableOverlays.Clear();
+            if (ThingsToxicDamageSectionLayerUtility.GetScratchMats(b).Any<Material>())
             {
                 int num = 3;
-                Rect damageRect = BuildingsToxicDamageSectionLayerUtility.GetDamageRect(b);
+                Rect damageRect = ThingsToxicDamageSectionLayerUtility.GetDamageRect(b);
                 float num2 = damageRect.width * damageRect.height;
                 if (num2 > 4f)
                 {
@@ -50,46 +48,46 @@ namespace PurpleIvy
                 }
                 for (int i = 0; i < num; i++)
                 {
-                    BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.Scratch);
+                    ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.Scratch);
                 }
             }
-            if (BuildingsToxicDamageSectionLayerUtility.UsesLinkableCornersAndEdges(b))
+            if (ThingsToxicDamageSectionLayerUtility.UsesLinkableCornersAndEdges(b))
             {
                 if (b.def.graphicData != null && b.def.graphicData.damageData != null)
                 {
                     IntVec3 position = b.Position;
                     DamageGraphicData damageData = b.def.graphicData.damageData;
-                    if (damageData.edgeTopMat != null && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x, position.z + 1) && BuildingsToxicDamageSectionLayerUtility.SameAndDamagedAt(b, position.x + 1, position.z) && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x + 1, position.z + 1))
+                    if (damageData.edgeTopMat != null && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x, position.z + 1) && ThingsToxicDamageSectionLayerUtility.SameAndDamagedAt(b, position.x + 1, position.z) && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x + 1, position.z + 1))
                     {
-                        BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.TopEdge);
+                        ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.TopEdge);
                     }
-                    if (damageData.edgeRightMat != null && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x + 1, position.z) && BuildingsToxicDamageSectionLayerUtility.SameAndDamagedAt(b, position.x, position.z + 1) && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x + 1, position.z + 1))
+                    if (damageData.edgeRightMat != null && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x + 1, position.z) && ThingsToxicDamageSectionLayerUtility.SameAndDamagedAt(b, position.x, position.z + 1) && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x + 1, position.z + 1))
                     {
-                        BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.RightEdge);
+                        ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.RightEdge);
                     }
-                    if (damageData.edgeBotMat != null && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x, position.z - 1) && BuildingsToxicDamageSectionLayerUtility.SameAndDamagedAt(b, position.x + 1, position.z) && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x + 1, position.z - 1))
+                    if (damageData.edgeBotMat != null && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x, position.z - 1) && ThingsToxicDamageSectionLayerUtility.SameAndDamagedAt(b, position.x + 1, position.z) && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x + 1, position.z - 1))
                     {
-                        BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.BotEdge);
+                        ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.BotEdge);
                     }
-                    if (damageData.edgeLeftMat != null && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x - 1, position.z) && BuildingsToxicDamageSectionLayerUtility.SameAndDamagedAt(b, position.x, position.z + 1) && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x - 1, position.z + 1))
+                    if (damageData.edgeLeftMat != null && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x - 1, position.z) && ThingsToxicDamageSectionLayerUtility.SameAndDamagedAt(b, position.x, position.z + 1) && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x - 1, position.z + 1))
                     {
-                        BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.LeftEdge);
+                        ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.LeftEdge);
                     }
-                    if (damageData.cornerTLMat != null && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x - 1, position.z) && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x, position.z + 1))
+                    if (damageData.cornerTLMat != null && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x - 1, position.z) && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x, position.z + 1))
                     {
-                        BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.TopLeftCorner);
+                        ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.TopLeftCorner);
                     }
-                    if (damageData.cornerTRMat != null && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x + 1, position.z) && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x, position.z + 1))
+                    if (damageData.cornerTRMat != null && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x + 1, position.z) && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x, position.z + 1))
                     {
-                        BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.TopRightCorner);
+                        ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.TopRightCorner);
                     }
-                    if (damageData.cornerBRMat != null && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x + 1, position.z) && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x, position.z - 1))
+                    if (damageData.cornerBRMat != null && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x + 1, position.z) && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x, position.z - 1))
                     {
-                        BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.BotRightCorner);
+                        ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.BotRightCorner);
                     }
-                    if (damageData.cornerBLMat != null && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x - 1, position.z) && BuildingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x, position.z - 1))
+                    if (damageData.cornerBLMat != null && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x - 1, position.z) && ThingsToxicDamageSectionLayerUtility.DifferentAt(b, position.x, position.z - 1))
                     {
-                        BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.BotLeftCorner);
+                        ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.BotLeftCorner);
                     }
                 }
             }
@@ -99,28 +97,28 @@ namespace PurpleIvy
                 Material x2;
                 Material x3;
                 Material x4;
-                BuildingsToxicDamageSectionLayerUtility.GetCornerMats(out x, out x2, out x3, out x4, b);
+                ThingsToxicDamageSectionLayerUtility.GetCornerMats(out x, out x2, out x3, out x4, b);
                 if (x != null)
                 {
-                    BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.TopLeftCorner);
+                    ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.TopLeftCorner);
                 }
                 if (x2 != null)
                 {
-                    BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.TopRightCorner);
+                    ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.TopRightCorner);
                 }
                 if (x4 != null)
                 {
-                    BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.BotLeftCorner);
+                    ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.BotLeftCorner);
                 }
                 if (x3 != null)
                 {
-                    BuildingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.BotRightCorner);
+                    ThingsToxicDamageSectionLayerUtility.availableOverlays.Add(DamageOverlay.BotRightCorner);
                 }
             }
-            return BuildingsToxicDamageSectionLayerUtility.availableOverlays;
+            return ThingsToxicDamageSectionLayerUtility.availableOverlays;
         }
 
-        public static void GetCornerMats(out Material topLeft, out Material topRight, out Material botRight, out Material botLeft, Building b)
+        public static void GetCornerMats(out Material topLeft, out Material topRight, out Material botRight, out Material botLeft, Thing b)
         {
             if (b.def.graphicData == null || b.def.graphicData.damageData == null)
             {
@@ -161,31 +159,31 @@ namespace PurpleIvy
             botLeft = damageData.cornerTLMat;
         }
 
-        public static List<DamageOverlay> GetOverlays(Building b)
+        public static List<DamageOverlay> GetOverlays(Thing b)
         {
-            BuildingsToxicDamageSectionLayerUtility.overlays.Clear();
-            BuildingsToxicDamageSectionLayerUtility.overlaysWorkingList.Clear();
-            BuildingsToxicDamageSectionLayerUtility.overlaysWorkingList.AddRange(BuildingsToxicDamageSectionLayerUtility.GetAvailableOverlays(b));
-            if (!BuildingsToxicDamageSectionLayerUtility.overlaysWorkingList.Any<DamageOverlay>())
+            ThingsToxicDamageSectionLayerUtility.overlays.Clear();
+            ThingsToxicDamageSectionLayerUtility.overlaysWorkingList.Clear();
+            ThingsToxicDamageSectionLayerUtility.overlaysWorkingList.AddRange(ThingsToxicDamageSectionLayerUtility.GetAvailableOverlays(b));
+            if (!ThingsToxicDamageSectionLayerUtility.overlaysWorkingList.Any<DamageOverlay>())
             {
-                return BuildingsToxicDamageSectionLayerUtility.overlays;
+                return ThingsToxicDamageSectionLayerUtility.overlays;
             }
             Rand.PushState();
             Rand.Seed = Gen.HashCombineInt(b.thingIDNumber, 1958376471);
-            int damageOverlaysCount = BuildingsToxicDamageSectionLayerUtility.GetDamageOverlaysCount(b, b.Map.GetComponent<MapComponent_MapEvents>().ToxicDamages[b]);
+            int damageOverlaysCount = ThingsToxicDamageSectionLayerUtility.GetDamageOverlaysCount(b, b.Map.GetComponent<MapComponent_MapEvents>().ToxicDamages[b]);
             int num = 0;
-            while (num < damageOverlaysCount && BuildingsToxicDamageSectionLayerUtility.overlaysWorkingList.Any<DamageOverlay>())
+            while (num < damageOverlaysCount && ThingsToxicDamageSectionLayerUtility.overlaysWorkingList.Any<DamageOverlay>())
             {
-                DamageOverlay item = BuildingsToxicDamageSectionLayerUtility.overlaysWorkingList.RandomElement<DamageOverlay>();
-                BuildingsToxicDamageSectionLayerUtility.overlaysWorkingList.Remove(item);
-                BuildingsToxicDamageSectionLayerUtility.overlays.Add(item);
+                DamageOverlay item = ThingsToxicDamageSectionLayerUtility.overlaysWorkingList.RandomElement<DamageOverlay>();
+                ThingsToxicDamageSectionLayerUtility.overlaysWorkingList.Remove(item);
+                ThingsToxicDamageSectionLayerUtility.overlays.Add(item);
                 num++;
             }
             Rand.PopState();
-            return BuildingsToxicDamageSectionLayerUtility.overlays;
+            return ThingsToxicDamageSectionLayerUtility.overlays;
         }
 
-        public static Rect GetDamageRect(Building b)
+        public static Rect GetDamageRect(Thing b)
         {
             DamageGraphicData damageGraphicData = null;
             if (b.def.graphicData != null)
@@ -252,14 +250,14 @@ namespace PurpleIvy
             return result;
         }
 
-        private static int GetDamageOverlaysCount(Building b, int hp)
+        private static int GetDamageOverlaysCount(Thing b, int hp)
         {
             float num = (float)hp / (float)b.MaxHitPoints;
-            int count = BuildingsToxicDamageSectionLayerUtility.GetAvailableOverlays(b).Count;
+            int count = ThingsToxicDamageSectionLayerUtility.GetAvailableOverlays(b).Count;
             return count - Mathf.FloorToInt((float)count * num);
         }
 
-        private static bool DifferentAt(Building b, int x, int z)
+        private static bool DifferentAt(Thing b, int x, int z)
         {
             IntVec3 c = new IntVec3(x, 0, z);
             if (!c.InBounds(b.Map))
@@ -277,7 +275,7 @@ namespace PurpleIvy
             return true;
         }
 
-        private static bool SameAndDamagedAt(Building b, int x, int z)
+        private static bool SameAndDamagedAt(Thing b, int x, int z)
         {
             IntVec3 c = new IntVec3(x, 0, z);
             if (!c.InBounds(b.Map))
@@ -289,8 +287,8 @@ namespace PurpleIvy
             {
                 var comp = thingList[i].Map.GetComponent<MapComponent_MapEvents>();
                 if (thingList[i].def == b.def && comp != null && comp.ToxicDamages != null
-                    && comp.ToxicDamages.ContainsKey((Building)thingList[i])
-                    && comp.ToxicDamages[(Building)thingList[i]] < thingList[i].MaxHitPoints)
+                    && comp.ToxicDamages.ContainsKey((Thing)thingList[i])
+                    && comp.ToxicDamages[(Thing)thingList[i]] < thingList[i].MaxHitPoints)
                 {
                     return true;
                 }
@@ -304,13 +302,13 @@ namespace PurpleIvy
             {
                 return;
             }
-            Building building = Find.Selector.FirstSelectedObject as Building;
-            if (building == null)
+            Thing Thing = Find.Selector.FirstSelectedObject as Thing;
+            if (Thing == null)
             {
                 return;
             }
             Material material = DebugSolidColorMats.MaterialOf(Color.red);
-            Rect damageRect = BuildingsToxicDamageSectionLayerUtility.GetDamageRect(building);
+            Rect damageRect = ThingsToxicDamageSectionLayerUtility.GetDamageRect(Thing);
             float y = 14.99f;
             Vector3 pos = new Vector3(damageRect.x + damageRect.width / 2f, y, damageRect.y + damageRect.height / 2f);
             Vector3 s = new Vector3(damageRect.width, 1f, damageRect.height);
@@ -319,11 +317,11 @@ namespace PurpleIvy
 
         private static readonly Material[] DefaultScratchMats = new Material[]
         {
-            MaterialPool.MatFrom("Things/buildingVeins/buildingVeinsA"),
-            MaterialPool.MatFrom("Things/buildingVeins/buildingVeinsB"),
-            MaterialPool.MatFrom("Things/buildingVeins/buildingVeinsC"),
-            MaterialPool.MatFrom("Things/buildingVeins/buildingVeinsD"),
-            MaterialPool.MatFrom("Things/buildingVeins/buildingVeinsE")
+            MaterialPool.MatFrom("Things/Veins/VeinsA"),
+            MaterialPool.MatFrom("Things/Veins/VeinsB"),
+            MaterialPool.MatFrom("Things/Veins/VeinsC"),
+            MaterialPool.MatFrom("Things/Veins/VeinsD"),
+            MaterialPool.MatFrom("Things/Veins/VeinsE")
         };
 
         private static List<DamageOverlay> availableOverlays = new List<DamageOverlay>();

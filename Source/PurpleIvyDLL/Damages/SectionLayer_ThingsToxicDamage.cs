@@ -5,13 +5,12 @@ using Verse;
 
 namespace PurpleIvy
 {
-    public class SectionLayer_BuildingsToxicDamage : SectionLayer
+    public class SectionLayer_ThingsToxicDamage : SectionLayer
     {
-        public SectionLayer_BuildingsToxicDamage(Section section) : base(section)
+        public SectionLayer_ThingsToxicDamage(Section section) : base(section)
         {
-            this.relevantChangeTypes = (MapMeshFlag.Buildings | MapMeshFlag.BuildingsDamage);
+            this.relevantChangeTypes = (MapMeshFlag.Things);
         }
-
         public override void Regenerate()
         {
             base.ClearSubMeshes(MeshParts.All);
@@ -21,21 +20,21 @@ namespace PurpleIvy
                 int count = list.Count;
                 for (int i = 0; i < count; i++)
                 {
-                    Building building = list[i] as Building;
-                    var comp = building?.Map?.GetComponent<MapComponent_MapEvents>();
-                    if (building != null && building.def.useHitPoints 
-                        && comp != null && comp.ToxicDamages != null && comp.ToxicDamages.ContainsKey(building) && comp.ToxicDamages[building] 
-                        < building.MaxHitPoints && building.def.drawDamagedOverlay 
-                        && building.Position.x == intVec.x && building.Position.z == intVec.z)
+                    Thing Thing = list[i] as Thing;
+                    var comp = Thing?.Map?.GetComponent<MapComponent_MapEvents>();
+                    if (Thing != null && Thing.def.useHitPoints
+                        && comp != null && comp.ToxicDamages != null && comp.ToxicDamages.ContainsKey(Thing) && comp.ToxicDamages[Thing]
+                        < Thing.MaxHitPoints && Thing.def.drawDamagedOverlay
+                        && Thing.Position.x == intVec.x && Thing.Position.z == intVec.z)
                     {
-                        this.PrintDamageVisualsFrom(building);
+                        this.PrintDamageVisualsFrom(Thing);
                     }
                 }
             }
             base.FinalizeMesh(MeshParts.All);
         }
 
-        private void PrintDamageVisualsFrom(Building b)
+        private void PrintDamageVisualsFrom(Thing b)
         {
             if (!b.Map.GetComponent<MapComponent_MapEvents>().ToxicDamages.ContainsKey(b) || b.def.graphicData != null && b.def.graphicData.damageData != null && !b.def.graphicData.damageData.enabled)
             {
@@ -45,10 +44,10 @@ namespace PurpleIvy
             this.PrintCornersAndEdges(b);
         }
 
-        private void PrintScratches(Building b)
+        private void PrintScratches(Thing b)
         {
             int num = 0;
-            List<DamageOverlay> overlays = BuildingsToxicDamageSectionLayerUtility.GetOverlays(b);
+            List<DamageOverlay> overlays = ThingsToxicDamageSectionLayerUtility.GetOverlays(b);
             for (int i = 0; i < overlays.Count; i++)
             {
                 if (overlays[i] == DamageOverlay.Scratch)
@@ -60,7 +59,7 @@ namespace PurpleIvy
             {
                 return;
             }
-            Rect rect = BuildingsToxicDamageSectionLayerUtility.GetDamageRect(b);
+            Rect rect = ThingsToxicDamageSectionLayerUtility.GetDamageRect(b);
             float num2 = Mathf.Min(0.5f * Mathf.Min(rect.width, rect.height), 1f);
             rect = rect.ContractedBy(num2 / 2f);
             if (rect.width <= 0f || rect.height <= 0f)
@@ -68,7 +67,7 @@ namespace PurpleIvy
                 return;
             }
             float num3 = Mathf.Max(rect.width, rect.height) * 0.7f;
-            SectionLayer_BuildingsToxicDamage.scratches.Clear();
+            SectionLayer_ThingsToxicDamage.scratches.Clear();
             Rand.PushState();
             Rand.Seed = b.thingIDNumber * 3697;
             for (int j = 0; j < num; j++)
@@ -77,13 +76,13 @@ namespace PurpleIvy
             }
             Rand.PopState();
             float damageTexturesAltitude = this.GetDamageTexturesAltitude(b);
-            IList<Material> scratchMats = BuildingsToxicDamageSectionLayerUtility.GetScratchMats(b);
+            IList<Material> scratchMats = ThingsToxicDamageSectionLayerUtility.GetScratchMats(b);
             Rand.PushState();
             Rand.Seed = b.thingIDNumber * 7;
-            for (int k = 0; k < SectionLayer_BuildingsToxicDamage.scratches.Count; k++)
+            for (int k = 0; k < SectionLayer_ThingsToxicDamage.scratches.Count; k++)
             {
-                float x = SectionLayer_BuildingsToxicDamage.scratches[k].x;
-                float y = SectionLayer_BuildingsToxicDamage.scratches[k].y;
+                float x = SectionLayer_ThingsToxicDamage.scratches[k].x;
+                float y = SectionLayer_ThingsToxicDamage.scratches[k].y;
                 float rot = Rand.Range(0f, 360f);
                 float num4 = num2;
                 if (rect.width > 0.95f && rect.height > 0.95f)
@@ -96,7 +95,7 @@ namespace PurpleIvy
             Rand.PopState();
         }
 
-        private void AddScratch(Building b, float rectWidth, float rectHeight, ref float minDist)
+        private void AddScratch(Thing b, float rectWidth, float rectHeight, ref float minDist)
         {
             bool flag = false;
             float num = 0f;
@@ -108,9 +107,9 @@ namespace PurpleIvy
                     num = Rand.Value * rectWidth;
                     num2 = Rand.Value * rectHeight;
                     float num3 = float.MaxValue;
-                    for (int j = 0; j < SectionLayer_BuildingsToxicDamage.scratches.Count; j++)
+                    for (int j = 0; j < SectionLayer_ThingsToxicDamage.scratches.Count; j++)
                     {
-                        float num4 = (num - SectionLayer_BuildingsToxicDamage.scratches[j].x) * (num - SectionLayer_BuildingsToxicDamage.scratches[j].x) + (num2 - SectionLayer_BuildingsToxicDamage.scratches[j].y) * (num2 - SectionLayer_BuildingsToxicDamage.scratches[j].y);
+                        float num4 = (num - SectionLayer_ThingsToxicDamage.scratches[j].x) * (num - SectionLayer_ThingsToxicDamage.scratches[j].x) + (num2 - SectionLayer_ThingsToxicDamage.scratches[j].y) * (num2 - SectionLayer_ThingsToxicDamage.scratches[j].y);
                         if (num4 < num3)
                         {
                             num3 = num4;
@@ -133,15 +132,15 @@ namespace PurpleIvy
             }
             if (flag)
             {
-                SectionLayer_BuildingsToxicDamage.scratches.Add(new Vector2(num, num2));
+                SectionLayer_ThingsToxicDamage.scratches.Add(new Vector2(num, num2));
             }
         }
 
-        private void PrintCornersAndEdges(Building b)
+        private void PrintCornersAndEdges(Thing b)
         {
             Rand.PushState();
             Rand.Seed = b.thingIDNumber * 3;
-            if (BuildingsToxicDamageSectionLayerUtility.UsesLinkableCornersAndEdges(b))
+            if (ThingsToxicDamageSectionLayerUtility.UsesLinkableCornersAndEdges(b))
             {
                 this.DrawLinkableCornersAndEdges(b);
             }
@@ -152,7 +151,7 @@ namespace PurpleIvy
             Rand.PopState();
         }
 
-        private void DrawLinkableCornersAndEdges(Building b)
+        private void DrawLinkableCornersAndEdges(Thing b)
         {
             if (b.def.graphicData == null)
             {
@@ -164,7 +163,7 @@ namespace PurpleIvy
                 return;
             }
             float damageTexturesAltitude = this.GetDamageTexturesAltitude(b);
-            List<DamageOverlay> overlays = BuildingsToxicDamageSectionLayerUtility.GetOverlays(b);
+            List<DamageOverlay> overlays = ThingsToxicDamageSectionLayerUtility.GetOverlays(b);
             IntVec3 position = b.Position;
             Vector3 vector = new Vector3((float)position.x + 0.5f, damageTexturesAltitude, (float)position.z + 0.5f);
             float x = Rand.Range(0.4f, 0.6f);
@@ -203,7 +202,7 @@ namespace PurpleIvy
             }
         }
 
-        private void DrawFullThingCorners(Building b)
+        private void DrawFullThingCorners(Thing b)
         {
             if (b.def.graphicData == null)
             {
@@ -213,19 +212,19 @@ namespace PurpleIvy
             {
                 return;
             }
-            Rect damageRect = BuildingsToxicDamageSectionLayerUtility.GetDamageRect(b);
+            Rect damageRect = ThingsToxicDamageSectionLayerUtility.GetDamageRect(b);
             float damageTexturesAltitude = this.GetDamageTexturesAltitude(b);
             float num = Mathf.Min(Mathf.Min(damageRect.width, damageRect.height), 1.5f);
             Material mat;
             Material mat2;
             Material mat3;
             Material mat4;
-            BuildingsToxicDamageSectionLayerUtility.GetCornerMats(out mat, out mat2, out mat3, out mat4, b);
+            ThingsToxicDamageSectionLayerUtility.GetCornerMats(out mat, out mat2, out mat3, out mat4, b);
             float num2 = num * Rand.Range(0.9f, 1f);
             float num3 = num * Rand.Range(0.9f, 1f);
             float num4 = num * Rand.Range(0.9f, 1f);
             float num5 = num * Rand.Range(0.9f, 1f);
-            List<DamageOverlay> overlays = BuildingsToxicDamageSectionLayerUtility.GetOverlays(b);
+            List<DamageOverlay> overlays = ThingsToxicDamageSectionLayerUtility.GetOverlays(b);
             for (int i = 0; i < overlays.Count; i++)
             {
                 switch (overlays[i])
@@ -258,7 +257,7 @@ namespace PurpleIvy
             }
         }
 
-        private float GetDamageTexturesAltitude(Building b)
+        private float GetDamageTexturesAltitude(Thing b)
         {
             return b.def.Altitude + 0.0454545468f;
         }
