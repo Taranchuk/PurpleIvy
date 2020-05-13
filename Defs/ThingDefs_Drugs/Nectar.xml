@@ -14,7 +14,7 @@
     <socialPropernessMatters>true</socialPropernessMatters>
     <tickerType>Rare</tickerType>
     <graphicData>
-      <texPath>Things/Item/Drug/Ambrosia</texPath>
+      <texPath>Things/Resources/Extractions/Nectar</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
 	  <drawSize>0.5</drawSize>
     </graphicData>
