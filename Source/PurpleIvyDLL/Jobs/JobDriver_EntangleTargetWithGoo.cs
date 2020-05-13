@@ -7,7 +7,7 @@ using Verse.Sound;
 
 namespace PurpleIvy
 {
-    public class JobDriver_EntangleTargetWithSlugs : JobDriver
+    public class JobDriver_EntangleTargetWithGoo : JobDriver
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
@@ -43,9 +43,9 @@ namespace PurpleIvy
                 initAction = delegate ()
                 {
                     this.pawn.jobs.curJob.count = 1;
-                    var stickySlugs = (StickySlugs)ThingMaker.MakeThing(PurpleIvyDefOf.PI_StickySlugs);
-                    GenSpawn.Spawn(stickySlugs, this.pawn.Position, this.pawn.Map);
-                    stickySlugs.TryAcceptThing(Takee);
+                    var stickyGoo = (StickyGoo)ThingMaker.MakeThing(PurpleIvyDefOf.PI_StickyGoo);
+                    GenSpawn.Spawn(stickyGoo, this.pawn.Position, this.pawn.Map);
+                    stickyGoo.TryAcceptThing(Takee);
                 },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };

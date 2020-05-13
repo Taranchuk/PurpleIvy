@@ -8,9 +8,9 @@ using Verse.AI;
 
 namespace PurpleIvy
 {
-    public class StickySlugs : ThingWithComps, IThingHolder, IOpenable
+    public class StickyGoo : ThingWithComps, IThingHolder, IOpenable
     {
-        public StickySlugs()
+        public StickyGoo()
         {
             this.innerContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
         }
@@ -62,8 +62,8 @@ namespace PurpleIvy
             IEnumerator<FloatMenuOption> enumerator = null;
             if (this.innerContainer.Count == 1)
             {
-                    JobDef jobDef = PurpleIvyDefOf.PI_SavePawnFromStickySlugs;
-                    string label = "SavePawnFromStickySlugs".Translate();
+                    JobDef jobDef = PurpleIvyDefOf.PI_SavePawnFromStickyGoo;
+                    string label = "SavePawnFromStickyGoo".Translate();
                     Action action = delegate ()
                     {
                         Job job = JobMaker.MakeJob(jobDef, this.ContainedThing, this);

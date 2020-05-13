@@ -31,6 +31,8 @@ namespace PurpleIvy
                     //Thing newNest = ThingMaker.MakeThing(ThingDefOf.AIPersonaCore);
                     //GenSpawn.Spawn(newNest, building.Position, building.Map);
                     comp.ToxicDamages.Remove(__instance);
+                    comp.ToxicDamagesThings.Remove(__instance);
+                    comp.ToxicDamagesChunks.Remove(__instance.Position);
                 }
                 return true;
             }

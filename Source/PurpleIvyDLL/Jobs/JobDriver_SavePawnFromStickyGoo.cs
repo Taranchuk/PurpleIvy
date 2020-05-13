@@ -7,7 +7,7 @@ using Verse.AI.Group;
 
 namespace PurpleIvy
 {
-    public class JobDriver_SavePawnFromStickySlugs : JobDriver
+    public class JobDriver_SavePawnFromStickyGoo : JobDriver
     {
         private Thing PawnToRescue
         {
@@ -17,19 +17,19 @@ namespace PurpleIvy
             }
         }
 
-        private StickySlugs Slugs
+        private StickyGoo Goo
         {
             get
             {
-                return (StickySlugs)this.job.GetTarget(TargetIndex.B).Thing;
+                return (StickyGoo)this.job.GetTarget(TargetIndex.B).Thing;
             }
         }
 
-        private bool InSlugs
+        private bool InGoo
         {
             get
             {
-                return this.Slugs != null;
+                return this.Goo != null;
             }
         }
 
@@ -37,7 +37,7 @@ namespace PurpleIvy
         {
             get
             {
-                return this.Slugs ?? this.PawnToRescue;
+                return this.Goo ?? this.PawnToRescue;
             }
         }
 
@@ -48,9 +48,9 @@ namespace PurpleIvy
 
         public override string GetReport()
         {
-            if (this.InSlugs && this.Slugs.def == PurpleIvyDefOf.PI_StickySlugs)
+            if (this.InGoo && this.Goo.def == PurpleIvyDefOf.PI_StickyGoo)
             {
-                return "ReportSavingPawnFromStickySlugs".Translate();
+                return "ReportSavingPawnFromStickyGoo".Translate();
             }
             return base.GetReport();
         }

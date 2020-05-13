@@ -20,7 +20,7 @@ namespace PurpleIvy
             };
 
             Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
-    ThingRequest.ForDef(PurpleIvyDefOf.PI_StickySlugs), PathEndMode.ClosestTouch,
+    ThingRequest.ForDef(PurpleIvyDefOf.PI_StickyGoo), PathEndMode.ClosestTouch,
     TraverseParms.For(pawn, Danger.None, TraverseMode.NoPassClosedDoors, false), 9999f, validator, null);
             if (thing == null)
             {

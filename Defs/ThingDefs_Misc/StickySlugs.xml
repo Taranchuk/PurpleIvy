@@ -2,9 +2,9 @@
 <Defs>
 
 	<ThingDef ParentName="ResourceBase">
-		<defName>PI_StickySlugs</defName>
-		<label>sticky slugs</label>
-		<thingClass>PurpleIvy.StickySlugs</thingClass>
+		<defName>PI_StickyGoo</defName>
+		<label>sticky goo</label>
+		<thingClass>PurpleIvy.StickyGoo</thingClass>
 		<graphicData>
 			<texPath>Things/Resources/Various/AlphaNervousSystem</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>

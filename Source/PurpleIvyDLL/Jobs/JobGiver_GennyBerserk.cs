@@ -107,8 +107,8 @@ namespace PurpleIvy
                     pawn.kindDef != PurpleIvyDefOf.Genny_Queen 
                     && pawn.needs.food.CurCategory < HungerCategory.Hungry)
                 {
-                    //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - SLUGS");
-                    return PurpleIvyUtils.EntagleWithSlugsJob(pawn, pawn2);
+                    //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - Goo");
+                    return PurpleIvyUtils.EntagleWithGooJob(pawn, pawn2);
                 }
                 else
                 {

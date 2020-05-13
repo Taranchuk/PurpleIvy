@@ -89,6 +89,7 @@ namespace PurpleIvy
                                 }
                                 else
                                 {
+                                    Log.Message("Loading: " + list[i], true);
                                     comp.ToxicDamagesThings[list[i]] = list[i].MaxHitPoints - 1;
                                 }
                                 oldDamage = list[i].MaxHitPoints;
@@ -196,11 +197,11 @@ namespace PurpleIvy
                                 this.DoDamageToPawn((Pawn)list[i]);
                                 break;
                             }
-                        case StickySlugs stickySlugs:
+                        case StickyGoo stickyGoo:
                             {
-                                if (stickySlugs.HasAnyContents)
+                                if (stickyGoo.HasAnyContents)
                                 {
-                                    var thing = stickySlugs.ContainedThing;
+                                    var thing = stickyGoo.ContainedThing;
                                     if (thing is Pawn pawn)
                                     {
                                         var damageInfo = new DamageInfo(DamageDefOf.Scratch, 1, 0f, -1f, this, null, null);
@@ -222,7 +223,7 @@ namespace PurpleIvy
                                     else if (thing is Corpse corpse)
                                     {
                                         this.DoDamageToCorpse(corpse);
-                                        stickySlugs.EjectContents();
+                                        stickyGoo.EjectContents();
                                     }
                                 }
                                 break;

@@ -31,10 +31,10 @@
 	</JobDef>
 	
 		<JobDef>
-		<defName>PI_EntangleTargetWithSlugs</defName>
-		<driverClass>PurpleIvy.JobDriver_EntangleTargetWithSlugs</driverClass>
+		<defName>PI_EntangleTargetWithGoo</defName>
+		<driverClass>PurpleIvy.JobDriver_EntangleTargetWithGoo</driverClass>
 		<neverFleeFromEnemies>true</neverFleeFromEnemies>
-		<reportString>entangle TargetA with slugs.</reportString>
+		<reportString>entangle TargetA with Goo.</reportString>
 		<suspendable>false</suspendable>
 		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
 	</JobDef>
@@ -64,8 +64,8 @@
 	</JobDef>
 
 	<JobDef>
-		<defName>PI_SavePawnFromStickySlugs</defName>
-		<driverClass>PurpleIvy.JobDriver_SavePawnFromStickySlugs</driverClass>
+		<defName>PI_SavePawnFromStickyGoo</defName>
+		<driverClass>PurpleIvy.JobDriver_SavePawnFromStickyGoo</driverClass>
 		<reportString>saves TargetA from TargetB</reportString>
 	</JobDef>
 	

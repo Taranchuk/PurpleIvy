@@ -242,9 +242,9 @@ namespace PurpleIvy
             explosion.StartExplosion(explosionSound, ignoredThings);
         }
 
-        public static Job EntagleWithSlugsJob(Pawn pawn, Thing target)
+        public static Job EntagleWithGooJob(Pawn pawn, Thing target)
         {
-            var job2 = JobMaker.MakeJob(PurpleIvyDefOf.PI_EntangleTargetWithSlugs, target);
+            var job2 = JobMaker.MakeJob(PurpleIvyDefOf.PI_EntangleTargetWithGoo, target);
             job2.maxNumMeleeAttacks = 1;
             job2.expiryInterval = Rand.Range(420, 900);
             job2.canBash = true;

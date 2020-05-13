@@ -32,7 +32,6 @@ namespace PurpleIvy
                     if (this.ToxicDamagesChunks == null) this.ToxicDamagesChunks = new Dictionary<IntVec3, int>();
                     foreach (var b in this.ToxicDamagesChunksDeep)
                     {
-                        Log.Message("Saving b: " + b + " - " + b.Key.Position + " - " + b.Value);
                         this.ToxicDamagesChunks[b.Key.Position] = b.Value;
                     }
                 }
@@ -54,7 +53,6 @@ namespace PurpleIvy
                     {
                         if (PurpleIvyUtils.IsChunk(t))
                         {
-                            Log.Message("Loading t: " + t + " - " + t.Position + " - " + b.Value);
                             this.ToxicDamagesChunksDeep[t] = b.Value;
                         }
                     }
@@ -75,7 +73,7 @@ namespace PurpleIvy
             }
             foreach (var b in this.ToxicDamages)
             {
-                Log.Message("Notifying " + b.Key);
+                //Log.Message("Notifying " + b.Key);
                 ThingsToxicDamageSectionLayerUtility.Notify_ThingHitPointsChanged(this, b.Key, b.Key.MaxHitPoints);
             }
 
