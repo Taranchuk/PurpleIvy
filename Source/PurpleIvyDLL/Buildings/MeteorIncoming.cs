@@ -94,8 +94,6 @@ namespace PurpleIvy
             {
                 MoteMaker.ThrowAirPuffUp(base.Position.ToVector3Shifted(), this.Map);
             }
-            GenSpawn.Spawn(this.contents.SingleContainedThing, base.Position, this.Map, base.Rotation);
-            GenExplosion.DoExplosion(base.Position, this.Map, 5f, DamageDefOf.Bomb, null);
             if (this.contents.SingleContainedThing is AlienQueen queen)
             {
                 queen.health.AddHediff(PurpleIvyDefOf.PI_CrashlandedDowned);
@@ -107,6 +105,8 @@ namespace PurpleIvy
                 meteorite.activeSpores = true;
                 meteorite.damageActiveTick = Find.TickManager.TicksGame + new IntRange(160000, 180000).RandomInRange;
             }
+            GenSpawn.Spawn(this.contents.SingleContainedThing, base.Position, this.Map, base.Rotation);
+            GenExplosion.DoExplosion(base.Position, this.Map, 5f, DamageDefOf.Bomb, this);
             this.Destroy(DestroyMode.Vanish);
         }
     }

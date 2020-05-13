@@ -65,7 +65,7 @@ namespace PurpleIvy
                 var corpse = (Corpse)this.ParentHolder;
                 PurpleIvyUtils.SpawnNests(this);
             }
-            else
+            else if (!(dinfo.Instigator is MeteorIncoming))
             {
                 var hediff = this.health.hediffSet.hediffs
                     .FirstOrDefault((Hediff h) => h.def == PurpleIvyDefOf.PI_CrashlandedDowned);
@@ -112,4 +112,3 @@ namespace PurpleIvy
         public int recoveryTick = 0;
     }
 }
-

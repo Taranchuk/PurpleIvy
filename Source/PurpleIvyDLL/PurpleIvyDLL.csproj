@@ -367,11 +367,11 @@
     <Compile Include="PurpleIvy_Mod.cs" />
     <Compile Include="PurpleIvySettings.cs" />
     <Compile Include="PurpleIvyUtils.cs" />
-    <Compile Include="AlienWeapons\CompFutureDamage.cs" />
-    <Compile Include="AlienWeapons\CompProperties_RaceDamage.cs" />
-    <Compile Include="AlienWeapons\Projectile_HeatImpact.cs" />
-    <Compile Include="AlienWeapons\ThingDefOf.cs" />
-    <Compile Include="AlienWeapons\ThingDef_RaceWeapons.cs" />
+    <Compile Include="Weapons\CompFutureDamage.cs" />
+    <Compile Include="Weapons\CompProperties_RaceDamage.cs" />
+    <Compile Include="Weapons\Projectile_HeatImpact.cs" />
+    <Compile Include="Weapons\ThingDefOf.cs" />
+    <Compile Include="Weapons\ThingDef_RaceWeapons.cs" />
     <Compile Include="RangeAnimalFramework\AnimalRangeAttack.cs" />
     <Compile Include="RangeAnimalFramework\ARA_AttackTargetFinder.cs" />
     <Compile Include="RangeAnimalFramework\ExplodeProjectile.cs" />

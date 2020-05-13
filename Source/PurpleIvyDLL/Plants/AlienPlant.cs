@@ -88,7 +88,7 @@ namespace PurpleIvy
                                 }
                                 else
                                 {
-                                    Log.Message("Loading: " + list[i], true);
+                                    //Log.Message("Loading: " + list[i], true);
                                     comp.ToxicDamagesThings[list[i]] = list[i].MaxHitPoints - 1;
                                 }
                                 oldDamage = list[i].MaxHitPoints;
