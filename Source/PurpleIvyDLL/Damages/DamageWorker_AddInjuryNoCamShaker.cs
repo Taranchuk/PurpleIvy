@@ -100,7 +100,7 @@ namespace PurpleIvy
         {
             for (int i = 0; i < 4; i++)
             {
-                PurpleIvyMoteMaker.ThrowToxicGas(explosion.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(explosion.radius * 0.7f), explosion.Map);
+                PurpleIvyMoteMaker.ThrowToxicGas(explosion.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(explosion.radius * 0.7f), explosion.Map, 1f);
             }
             //if (this.def.explosionInteriorMote != null)
             //{

@@ -59,7 +59,7 @@ namespace PurpleIvy
             }
             if (dinfo.Def != DamageDefOf.Deterioration && GenGrid.InBounds(this.Position.ToVector3Shifted(), this.Map))
             {
-                PurpleIvyMoteMaker.ThrowToxicGas(this.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(1f), this.Map);
+                PurpleIvyMoteMaker.ThrowToxicGas(this.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(1f), this.Map, 1f);
             }
             base.PreApplyDamage(ref dinfo, out absorbed);
         }

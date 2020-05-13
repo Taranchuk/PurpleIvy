@@ -59,7 +59,7 @@ namespace PurpleIvy
             {
                 this.Map.GetComponent<MapComponent_MapEvents>().LastAttacked = Find.TickManager.TicksGame;
             }
-            PurpleIvyMoteMaker.ThrowToxicGas(this.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(1f), this.Map);
+            PurpleIvyMoteMaker.ThrowToxicGas(this.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(1f), this.Map, 1f);
             base.PreApplyDamage(ref dinfo, out absorbed);
         }
 

@@ -54,7 +54,7 @@ namespace PurpleIvy
         }
         public static void ThrowLightningGlow(Vector3 loc, Map map, float size)
         {
-            if (!loc.ShouldSpawnMotesAt(map))
+            if (!loc.ToIntVec3().InBounds(map))
             {
                 return;
             }
@@ -65,14 +65,14 @@ namespace PurpleIvy
             moteThrown.SetVelocity((float)Rand.Range(0, 360), 1.2f);
             GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
         }
-        public static void ThrowToxicGas(Vector3 loc, Map map)
+        public static void ThrowToxicGas(Vector3 loc, Map map, float size)
         {
-            if (!loc.ShouldSpawnMotesAt(map))
+            if (!loc.ToIntVec3().InBounds(map))
             {
                 return;
             }
             MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDefOf.Mote_Smoke, null);
-                moteThrown.Scale = Rand.Range(1.5f, 2.5f);
+                moteThrown.Scale = Rand.Range(1.5f, 2.5f) * size;
                 moteThrown.rotationRate = Rand.Range(-30f, 30f);
                 moteThrown.exactPosition = loc;
                 moteThrown.SetVelocity((float)Rand.Range(30, 40), Rand.Range(0.5f, 0.7f));
