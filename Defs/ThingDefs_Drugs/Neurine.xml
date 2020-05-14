@@ -65,7 +65,7 @@
 
 	<HediffDef>
 		<defName>PI_NeurineHigh</defName>
-		<label>neurine-400</label>
+		<label>neurine</label>
 		<description>active alien chemical compounds in the bloodstream</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(100,149,237)</defaultLabelColor>
