@@ -27,8 +27,9 @@ namespace PurpleIvy
                     {
                         Thing thing = ThingMaker.MakeThing(PurpleIvyDefOf.PI_Spores, null);
                         GenSpawn.Spawn(thing, dir, this.Map, 0);
-                        var Spores = (Gas)thing;
+                        var Spores = (PurpleGas)thing;
                         Spores.destroyTick = Find.TickManager.TicksGame + new IntRange(160000, 180000).RandomInRange;
+                        Spores.activeDamage = true;
                     }
                 }
             }
@@ -75,40 +76,6 @@ namespace PurpleIvy
         public override void Tick()
         {
             base.Tick();
-            if (this.activeSpores && Find.TickManager.TicksGame % 60 == 0)
-            {
-                List<Pawn> pawnsToDamage = new List<Pawn>();
-                foreach (var dir in GenRadial.RadialCellsAround(this.Position, 5, true))
-                {
-                     if (GenGrid.InBounds(dir, this.Map))
-                     {
-                         foreach (var t in this.Map.thingGrid.ThingsListAt(dir))
-                         {
-                             if (t is Pawn pawn && !pawn.Dead && pawn.Faction != PurpleIvyData.AlienFaction)
-                             {
-                                 pawnsToDamage.Add(pawn);
-                             }
-                         }
-                     }
-                }
-                foreach (var pawn in pawnsToDamage)
-                {
-                    pawn.TakeDamage(new DamageInfo(PurpleIvyDefOf.PI_ToxicBurn, 1f));
-                    if (Rand.Chance(0.1f))
-                    {
-                        pawn.stances.stunner.StunFor(Rand.RangeInclusive(100, 200), null);
-                    }
-                    if (Rand.Chance(0.1f) && pawn.health.hediffSet.GetFirstHediffOfDef(PurpleIvyDefOf.PI_AlienMutation) == null)
-                    {
-                        var hediff3 = HediffMaker.MakeHediff(PurpleIvyDefOf.PI_AlienMutation, pawn, null);
-                        pawn.health.AddHediff(hediff3, null, null, null);
-                    }
-                }
-                if (Find.TickManager.TicksGame > this.damageActiveTick)
-                {
-                    this.activeSpores = false;
-                }
-            }
             spawnticks--;
             if (spawnticks <= 0)
             {

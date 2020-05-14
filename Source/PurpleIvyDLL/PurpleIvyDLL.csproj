@@ -367,6 +367,7 @@
     <Compile Include="PurpleIvy_Mod.cs" />
     <Compile Include="PurpleIvySettings.cs" />
     <Compile Include="PurpleIvyUtils.cs" />
+    <Compile Include="Things\PurpleGas.cs" />
     <Compile Include="Weapons\CompFutureDamage.cs" />
     <Compile Include="Weapons\CompProperties_RaceDamage.cs" />
     <Compile Include="Weapons\Projectile_HeatImpact.cs" />

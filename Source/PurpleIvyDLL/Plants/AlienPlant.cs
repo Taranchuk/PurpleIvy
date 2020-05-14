@@ -12,7 +12,7 @@ namespace PurpleIvy
 {
     public class AlienPlant : Plant
     {
-        public Gas Spores = null;
+        public PurpleGas Spores = null;
         public void ThrowGasOrAdjustGasSize(float size)
         {
             if (this.Spores != null)
@@ -27,7 +27,7 @@ namespace PurpleIvy
                 ThingDef thingDef = new ThingDef
                 {
                     defName = "Spores" + this.ThingID.GetHashCode(),
-                    thingClass = typeof(Gas),
+                    thingClass = typeof(PurpleGas),
                     category = ThingCategory.Gas,
                     altitudeLayer = AltitudeLayer.Gas,
                     useHitPoints = false,
@@ -50,7 +50,7 @@ namespace PurpleIvy
                 };
                 Thing thing = ThingMaker.MakeThing(thingDef, null);
                 GenSpawn.Spawn(thing, this.Position, this.Map, 0);
-                this.Spores = (Gas)thing;
+                this.Spores = (PurpleGas)thing;
                 this.Spores.destroyTick = Find.TickManager.TicksGame + 3000;
             }
         }
