@@ -52,7 +52,7 @@
 			<li>PI_ExtractNeuralLiquidFromBeta</li>
 			<li>PI_ExtractNeuralLiquidFromGamma</li>
 			<li>PI_ExtractNeuralLiquidFromOmega</li>
-			<li>PI_MakeTentackleArm</li>
+			<li>PI_MakeTentacleArm</li>
 		</recipes>
 		<comps>
 			<li Class="CompProperties_Glower">

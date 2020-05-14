@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 <HediffDef ParentName="AddedBodyPartBase">
-    <defName>PI_TentackleArm</defName>
-    <label>tentackle arm</label>
-    <labelNoun>tentackle arm</labelNoun>
+    <defName>PI_TentacleArm</defName>
+    <label>tentacle arm</label>
+    <labelNoun>tentacle arm</labelNoun>
     <description>t</description>
-    <descriptionHyperlinks><ThingDef>PI_TentackleArm</ThingDef></descriptionHyperlinks>
+    <descriptionHyperlinks><ThingDef>PI_TentacleArm</ThingDef></descriptionHyperlinks>
     <addedPartProps>
       <solid>true</solid>
 	  <partEfficiency>0.7</partEfficiency>
@@ -23,7 +23,7 @@
       <li Class="HediffCompProperties_VerbGiver">
         <tools>
           <li>
-            <label>tentackle</label>
+            <label>tentacle</label>
             <capacities>
               <li>Blunt</li>
             </capacities>
@@ -34,25 +34,25 @@
         </tools>
       </li>
     </comps>
-    <spawnThingOnRemoved>PI_TentackleArm</spawnThingOnRemoved>
+    <spawnThingOnRemoved>PI_TentacleArm</spawnThingOnRemoved>
   </HediffDef>
 
   <ThingDef ParentName="BodyPartProstheticBase">
-    <defName>PI_TentackleArm</defName>
-    <label>tentackle arm</label>
+    <defName>PI_TentacleArm</defName>
+    <label>tentacle arm</label>
     <description>t</description>
-    <descriptionHyperlinks><RecipeDef>PI_InstallTentackleArm</RecipeDef></descriptionHyperlinks>
+    <descriptionHyperlinks><RecipeDef>PI_InstallTentacleArm</RecipeDef></descriptionHyperlinks>
 	<graphicData>
-      <texPath>Things/Item/Bionics/PI_TentackleArm</texPath>
+      <texPath>Things/Item/Bionics/PI_TentacleArm</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>1.0</drawSize>
+      <drawSize>0.8</drawSize>
     </graphicData>
   </ThingDef>
   
     <ThoughtDef>
-    <defName>PI_TentackleArmThought</defName>
+    <defName>PI_TentacleArmThought</defName>
     <workerClass>ThoughtWorker_Hediff</workerClass>
-    <hediff>PI_TentackleArm</hediff>
+    <hediff>PI_TentacleArm</hediff>
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
@@ -64,11 +64,11 @@
   </ThoughtDef>
 
   <RecipeDef ParentName="SurgeryInstallImplantBase">
-    <defName>PI_InstallTentackleArm</defName>
-    <label>install tentackle arm</label>
+    <defName>PI_InstallTentacleArm</defName>
+    <label>install tentacle arm</label>
     <description>t</description>
-    <descriptionHyperlinks><ThingDef>PI_TentackleArm</ThingDef></descriptionHyperlinks>
-    <jobString>Installing tentackle arm.</jobString>
+    <descriptionHyperlinks><ThingDef>PI_TentacleArm</ThingDef></descriptionHyperlinks>
+    <jobString>Installing tentacle arm.</jobString>
 	<skillRequirements>
       <Medicine>1</Medicine>
     </skillRequirements>
@@ -77,7 +77,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>PI_TentackleArm</li>
+            <li>PI_TentacleArm</li>
           </thingDefs>
         </filter>
         <count>1</count>
@@ -85,12 +85,12 @@
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
-        <li>PI_TentackleArm</li>
+        <li>PI_TentacleArm</li>
       </thingDefs>
     </fixedIngredientFilter>
     <appliedOnFixedBodyParts>
       <li>Arm</li>
     </appliedOnFixedBodyParts>
-    <addsHediff>PI_TentackleArm</addsHediff>
+    <addsHediff>PI_TentacleArm</addsHediff>
   </RecipeDef>
 </Defs>

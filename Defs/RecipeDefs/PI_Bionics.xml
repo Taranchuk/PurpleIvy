@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<RecipeDef>
-	<defName>PI_MakeTentackleArm</defName>
-    <label>make tentackle arm</label>
+	<defName>PI_MakeTentacleArm</defName>
+    <label>make tentacle arm</label>
     <description>t</description>
-    <jobString>Making tentackle arm.</jobString>
+    <jobString>Making tentacle arm.</jobString>
     <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
@@ -37,7 +37,7 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <PI_TentackleArm>1</PI_TentackleArm>
+      <PI_TentacleArm>1</PI_TentacleArm>
     </products>
     <workSkill>Crafting</workSkill>
 	</RecipeDef> 	
