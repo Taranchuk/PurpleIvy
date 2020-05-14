@@ -163,6 +163,10 @@ namespace PurpleIvy
                     var hediff3 = HediffMaker.MakeHediff(PurpleIvyDefOf.PI_AlienMutation, pawn, null);
                     pawn.health.AddHediff(hediff3, null, null, null);
                 }
+                if (Rand.Chance(0.1f))
+                {
+                    PurpleIvyUtils.MakeFlee(pawn, this);
+                }
             }
         }
 

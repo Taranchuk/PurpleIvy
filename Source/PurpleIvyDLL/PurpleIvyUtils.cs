@@ -12,6 +12,60 @@ namespace PurpleIvy
     [StaticConstructorOnStartup]
     public static class PurpleIvyUtils
     {
+        public static void MakeFlee(Pawn pawn, Thing danger)
+        {
+            Job job = null;
+            IntVec3 intVec;
+            if (pawn.CurJob != null && pawn.CurJob.def == JobDefOf.Flee)
+            {
+                intVec = pawn.CurJob.targetA.Cell;
+            }
+            else
+            {
+                var dangers = new List<Thing>();
+                List<Thing> list = new List<Thing>();
+                foreach (var dir in GenRadial.RadialCellsAround(pawn.Position, 5, true))
+                {
+                    if (GenGrid.InBounds(dir, pawn.Map))
+                    {
+                        try
+                        {
+                            if (GenGrid.InBounds(pawn.Position, pawn.Map))
+                            {
+                                list = pawn.Map.thingGrid.ThingsListAt(pawn.Position);
+                            }
+                        }
+                        catch
+                        {
+                            return;
+                        }
+
+                        foreach (var t in list)
+                        {
+                            if (t is PurpleGas || t.Faction == PurpleIvyData.AlienFaction)
+                            {
+                                dangers.Add(t);
+                            }
+                        }
+                    }
+                }
+                intVec = CellFinderLoose.GetFleeDest(pawn, dangers, 24f);
+            }
+
+            if (intVec == pawn.Position)
+            {
+                intVec = GenRadial.RadialCellsAround(pawn.Position, 6, 6).RandomElement();
+            }
+            if (intVec != pawn.Position)
+            {
+                job = JobMaker.MakeJob(JobDefOf.Flee, intVec, danger);
+            }
+            if (job != null)
+            {
+                Log.Message(pawn + " flee");
+                pawn.jobs.TryTakeOrderedJob(job);
+            }
+        }
 
         public static bool IsChunkOrMineable(Thing item)
         {
