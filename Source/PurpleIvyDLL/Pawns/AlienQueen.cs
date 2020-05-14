@@ -12,8 +12,7 @@ namespace PurpleIvy
 {
     public class AlienQueen : Alien
     {
-        private int spawnticks = new IntRange(15000, 30000).RandomInRange;
-        private bool first = true;
+        private int spawnticks = 200;
         private LocalTargetInfo focus = null;
         public override void PostMake()
         {
@@ -24,21 +23,6 @@ namespace PurpleIvy
         {
             base.SpawnSetup(map, respawningAfterLoad);
             this.SetFaction(PurpleIvyData.AlienFaction);
-            if (this.first == true)
-            {
-                var nests = PurpleIvyUtils.SpawnNests(this);
-                if (nests.Count > 0)
-                {
-                    Thing choosen = nests.RandomElement();
-                    PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
-                    this.mindState.duty = duty;
-                    this.mindState.duty.focus = new LocalTargetInfo(choosen.Position);
-                    first = false;
-                    focus = choosen;
-                    Log.Message("Set focus to " + choosen);
-                }
-            }
-
         }
 
         public override void SetFaction(Faction newFaction, Pawn recruiter = null)
@@ -93,7 +77,16 @@ namespace PurpleIvy
             spawnticks--;
             if (spawnticks <= 0)
             {
-                PurpleIvyUtils.SpawnNests(this);
+                var nests = PurpleIvyUtils.SpawnNests(this);
+                if (this.mindState?.duty?.focus == null && nests.Count > 0)
+                {
+                    Thing choosen = nests.RandomElement();
+                    PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
+                    this.mindState.duty = duty;
+                    this.mindState.duty.focus = new LocalTargetInfo(choosen.Position);
+                    focus = choosen;
+                    Log.Message("Set focus to " + choosen);
+                }
                 spawnticks = new IntRange(15000, 30000).RandomInRange;
             }
         }
@@ -102,7 +95,6 @@ namespace PurpleIvy
         {
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.recoveryTick, "recoveryTick", 0);
-            Scribe_Values.Look<bool>(ref this.first, "first", true);
             Scribe_TargetInfo.Look(ref this.focus, "focus");
             PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
             this.mindState.duty = duty;
@@ -112,3 +104,4 @@ namespace PurpleIvy
         public int recoveryTick = 0;
     }
 }
+

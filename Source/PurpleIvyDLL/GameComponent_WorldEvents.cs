@@ -26,10 +26,9 @@ namespace PurpleIvy
             base.StartedNewGame();
             PurpleIvyData.TotalFogProgress = new Dictionary<WorldObjectComp_InfectedTile, float>();
             PurpleIvyData.TotalPollutedBiomes = new List<int>();
+        }
 
-    }
-
-    public override void LoadedGame()
+        public override void LoadedGame()
         {
             base.LoadedGame();
             PurpleIvyData.TotalFogProgress = new Dictionary<WorldObjectComp_InfectedTile, float>();

@@ -133,6 +133,8 @@ namespace PurpleIvy
 
         public static ThingDef PI_Nest;
 
+        public static ThingDef PI_NestFruit;
+
         public static ThingDef EggSac;
 
         public static ThingDef EggSacBeta;

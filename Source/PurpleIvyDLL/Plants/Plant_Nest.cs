@@ -196,6 +196,13 @@ namespace PurpleIvy
                 base.Map.glowGrid.RegisterGlower(this.Glower);
             }
         }
+
+        public void SpawnFruit()
+        {
+            var fruit = ThingMaker.MakeThing(PurpleIvyDefOf.PI_NestFruit);
+            GenSpawn.Spawn(fruit, GenRadial.RadialCellsAround(this.Position, 1, 1).RandomElement(), this.Map);
+            fruit.SetForbidden(true);
+        }
         public override void Tick()
         {
             base.Tick();
@@ -207,6 +214,10 @@ namespace PurpleIvy
                     base.ThrowGasOrAdjustGasSize(4f);
                     base.DoDamageToBuildings();
                     this.nectarAmount++;
+                }
+                if (this.Growth >= 0.75f)
+                {
+                    this.SpawnFruit();
                 }
                 UpdateGlower();
             }

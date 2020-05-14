@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="OrganicProductBase">
+		<defName>PI_NestFruit</defName>
+		<label>nest fruit</label>
+		<description>nest fruit.</description>
+		<graphicData>
+			<texPath>Things/Item/Food/NestFruit</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.5</drawSize>
+		</graphicData>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<statBases>
+			<MarketValue>8.0</MarketValue>
+			<Mass>0.025</Mass>
+			<Nutrition>0.25</Nutrition>
+			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+		</statBases>
+		<ingestible>
+			<foodType>Corpse, OmnivoreHuman</foodType>
+			<preferability>MealFine</preferability>
+			<joy>0.08</joy>
+			<joyKind>Gluttonous</joyKind>
+			<ingestEffect>EatVegetarian</ingestEffect>
+			<ingestSound>Meal_Eat</ingestSound>
+		</ingestible>
+		<thingCategories>
+			<li>PI_AlienResources</li>
+		</thingCategories>
+	</ThingDef>
+
+
+
+
+</Defs>
+

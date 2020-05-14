@@ -84,7 +84,7 @@ namespace PurpleIvy
                      {
                          foreach (var t in this.Map.thingGrid.ThingsListAt(dir))
                          {
-                             if (t is Pawn pawn && pawn.Faction != PurpleIvyData.AlienFaction)
+                             if (t is Pawn pawn && !pawn.Dead && pawn.Faction != PurpleIvyData.AlienFaction)
                              {
                                  pawnsToDamage.Add(pawn);
                              }

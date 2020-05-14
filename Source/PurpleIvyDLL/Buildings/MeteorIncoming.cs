@@ -54,7 +54,7 @@ namespace PurpleIvy
             }
             else if (this.contents.SingleContainedThing is AlienQueen)
             {
-                PurpleIvyMoteMaker.ThrowToxicGas(DrawPos, this.Map, 3f);
+                MoteMaker.ThrowSmoke(DrawPos, this.Map, 3f);
                 PurpleIvyMoteMaker.ThrowLightningGlow(DrawPos, this.Map, 3f);
             }
             this.ticksToImpact--;
@@ -86,8 +86,7 @@ namespace PurpleIvy
                 MoteMaker.ThrowDustPuff(spawnLoc, this.Map, 1.2f);
             }
             MoteMaker.ThrowLightningGlow(base.Position.ToVector3Shifted(), this.Map, 2f);
-            PurpleIvyMoteMaker.ThrowToxicGas(base.Position.ToVector3Shifted(), this.Map, 1f);
-            //MoteMaker.ThrowExplosionCell(base.Position, this.Map);
+            MoteMaker.ThrowSmoke(base.Position.ToVector3Shifted(), this.Map, 1f);
 
             MeteorIncoming.ExplodeSound.PlayOneShot(new TargetInfo(base.Position, base.Map, false));
             foreach (IntVec3 current in GenAdj.CellsAdjacent8Way(this))
