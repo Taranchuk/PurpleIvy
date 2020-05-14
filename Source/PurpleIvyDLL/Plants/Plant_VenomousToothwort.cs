@@ -92,13 +92,14 @@ namespace PurpleIvy
         {
             List<Thing> list = new List<Thing>();
             List<Pawn> pawnsToAttack = new List<Pawn>();
-            foreach (var pos in GenRadial.RadialCellsAround(this.Position, 1, 1))
+            foreach (var pos in GenAdj.CellsAdjacent8Way(this))
             {
                 if (GenGrid.InBounds(pos, this.Map))
                 {
                     foreach (var t in this.Map.thingGrid.ThingsListAt(pos))
                     {
-                        if (t is Pawn pawn && pawn.Faction != PurpleIvyData.AlienFaction)
+                        if (t is Pawn pawn && pawn.Faction != PurpleIvyData.AlienFaction && pawn?.health?.hediffSet?
+                            .GetFirstHediffOfDef(PurpleIvyDefOf.PI_MaskingSprayHigh) == null)
                         {
                             pawnsToAttack.Add(pawn);
                         }
