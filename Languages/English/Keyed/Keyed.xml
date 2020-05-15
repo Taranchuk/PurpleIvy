@@ -11,4 +11,39 @@
 	<InfectedTileSpreadingDesc>The infection is spreading!</InfectedTileSpreadingDesc>
 	<PurpleFogСomesFromInfectedSites>Purple fog comes from infected sites</PurpleFogСomesFromInfectedSites>
 	<PurpleFogСomesFromInfectedSitesDesc>Purple fog comes from infected sites</PurpleFogСomesFromInfectedSitesDesc>
+	<AbandonedBase></AbandonedBase>
+	<AbandonedBaseDesc></AbandonedBaseDesc>
+	<AlienAmbush></AlienAmbush>
+	<AlienAmbushDesc></AlienAmbushDesc>
+	<AlienEject></AlienEject>
+	<AlienEjectDesc></AlienEjectDesc>
+	<AlienRaid></AlienRaid>
+	<AlienRaidDesc></AlienRaidDesc>
+	<AncientsLandOnTheGround></AncientsLandOnTheGround>
+	<AncientsLandOnTheGroundDesc></AncientsLandOnTheGroundDesc>
+	<BiologicalWarfare></BiologicalWarfare>
+	<BiologicalWarfareDesc></BiologicalWarfareDesc>
+	<CannotRescue></CannotRescue>
+	<DefeatedBase></DefeatedBase>
+	<DefeatedBaseDesc></DefeatedBaseDesc>
+	<EmpStormTripleToxicDamage></EmpStormTripleToxicDamage>
+	<EmpStormTripleToxicDamageDesc></EmpStormTripleToxicDamageDesc>
+	<LetterTechprintResearchedDesc></LetterTechprintResearchedDesc>
+	<LetterTechprintResearchedLabel></LetterTechprintResearchedLabel>
+	<NectarAmount></NectarAmount>
+	<NoContainersToTake></NoContainersToTake>
+	<OrbitalHelpFromAncients></OrbitalHelpFromAncients>
+	<OrbitalHelpFromAncientsDesc></OrbitalHelpFromAncientsDesc>
+	<PurpleRainTripleToxicDamage></PurpleRainTripleToxicDamage>
+	<PurpleRainTripleToxicDamageDesc></PurpleRainTripleToxicDamageDesc>
+	<ReportSavingPawnFromStickyGoo></ReportSavingPawnFromStickyGoo>
+	<SavePawnFromStickyGoo></SavePawnFromStickyGoo>
+	<TotalAlphaCreaturesOnMap></TotalAlphaCreaturesOnMap>
+	<TotalBetaCreaturesOnMap></TotalBetaCreaturesOnMap>
+	<TotalGammaCreaturesOnMap></TotalGammaCreaturesOnMap>
+	<totalNumberOfCreatures></totalNumberOfCreatures>
+	<TotalOmegaCreaturesOnMap></TotalOmegaCreaturesOnMap>
+	<ExtractNectar></ExtractNectar>
+	<NestsDoesNotHaveNectar></NestsDoesNotHaveNectar>
+	<TakeAlienToContainmentBreach></TakeAlienToContainmentBreach>
 </LanguageData>

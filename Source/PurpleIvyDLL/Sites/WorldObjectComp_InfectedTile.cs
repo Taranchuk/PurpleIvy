@@ -127,8 +127,8 @@ namespace PurpleIvy
                             if (infected == true)
                             {
                                 site.AddPart(new SitePart(site, PurpleIvyDefOf.InfectedSite,
-PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
-(StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.AlienFaction)));
+                                    PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
+                                    (StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.AlienFaction)));
                                 site.AddPart(new SitePart(site, PurpleIvyDefOf.InfectedSite,
                                     PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
                                     (StorytellerUtility.DefaultSiteThreatPointsNow(), num, PurpleIvyData.AlienFaction)));
@@ -194,6 +194,7 @@ PurpleIvyDefOf.InfectedSite.Worker.GenerateDefaultParams
             MapParent infectedSite = Find.World.worldObjects.ObjectsAt(this.infectedTile) as MapParent;
             if (infectedSite != null && infectedSite.Map != null)
             {
+
                 GameConditionManager gameConditionManager = infectedSite.Map.gameConditionManager;
                 if (gameConditionManager.ConditionIsActive(this.gameConditionCaused))
                 {

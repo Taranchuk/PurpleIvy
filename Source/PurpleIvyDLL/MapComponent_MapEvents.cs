@@ -48,7 +48,7 @@ namespace PurpleIvy
         {
             base.FinalizeInit();
             if (this.ToxicDamagesChunks != null)
-            {            
+            {
                 foreach (var b in this.ToxicDamagesChunks)
                 {
                     foreach (var t in this.map.thingGrid.ThingsListAt(b.Key))
@@ -60,19 +60,29 @@ namespace PurpleIvy
                     }
                 }
             }
+            if (this.ToxicDamagesChunksDeep != null)
+            {
+                foreach (var b in this.ToxicDamagesChunksDeep)
+                {
+                    this.ToxicDamages[b.Key] = b.Value;
+                }
+            }
 
-            foreach (var b in this.ToxicDamagesChunksDeep)
+            if (this.ToxicDamagesThings != null)
             {
-                this.ToxicDamages[b.Key] = b.Value;
+                foreach (var b in this.ToxicDamagesThings)
+                {
+                    this.ToxicDamages[b.Key] = b.Value;
+                }
             }
-            foreach (var b in this.ToxicDamagesThings)
+
+            if (this.ToxicDamagesThings != null)
             {
-                this.ToxicDamages[b.Key] = b.Value;
-            }
-            foreach (var b in this.ToxicDamages)
-            {
-                Log.Message("Notifying " + b.Key);
-                ThingsToxicDamageSectionLayerUtility.Notify_ThingHitPointsChanged(this, b.Key, b.Key.MaxHitPoints);
+                foreach (var b in this.ToxicDamages)
+                {
+                    Log.Message("Notifying " + b.Key);
+                    ThingsToxicDamageSectionLayerUtility.Notify_ThingHitPointsChanged(this, b.Key, b.Key.MaxHitPoints);
+                }
             }
 
             foreach (Thing t in this.map.listerThings.AllThings)
@@ -246,7 +256,7 @@ namespace PurpleIvy
                     }
                     else
                     {
-                        Find.LetterStack.ReceiveLetter("PurpleFogСomesFromInfectedSites.".Translate(),
+                        Find.LetterStack.ReceiveLetter("PurpleFogСomesFromInfectedSites".Translate(),
                         "PurpleFogСomesFromInfectedSitesDesc".Translate(),
                         LetterDefOf.ThreatBig, new TargetInfo(map.Center, map, false));
                         Log.Message("PurpleFogСomesFromInfectedSites: " + map.ToString()
