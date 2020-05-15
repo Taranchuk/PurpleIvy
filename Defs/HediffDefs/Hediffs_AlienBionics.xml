@@ -37,7 +37,7 @@
     <spawnThingOnRemoved>PI_TentacleArm</spawnThingOnRemoved>
   </HediffDef>
 
-  <ThingDef ParentName="BodyPartProstheticBase">
+  <ThingDef ParentName="BodyPartNaturalBase">
     <defName>PI_TentacleArm</defName>
     <label>tentacle arm</label>
     <description>t</description>
@@ -92,5 +92,95 @@
       <li>Arm</li>
     </appliedOnFixedBodyParts>
     <addsHediff>PI_TentacleArm</addsHediff>
+  </RecipeDef>
+  
+  <HediffDef ParentName="AddedBodyPartBase">
+    <defName>PI_TentacleArmAdv</defName>
+    <label>adapted tentacle arm</label>
+    <labelNoun>adapted tentacle arm</labelNoun>
+    <description>t</description>
+    <descriptionHyperlinks><ThingDef>PI_TentacleArm</ThingDef></descriptionHyperlinks>
+    <addedPartProps>
+      <solid>true</solid>
+	  <partEfficiency>0.7</partEfficiency>
+    </addedPartProps>
+    <stages>
+      <li>
+        <statOffsets>
+          <RestRateMultiplier>-0.03</RestRateMultiplier>
+		  <ImmunityGainSpeed>0.07</ImmunityGainSpeed>
+		  <MentalBreakThreshold>0.01</MentalBreakThreshold>
+        </statOffsets>
+		<naturalHealingFactor>1.2</naturalHealingFactor>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_VerbGiver">
+        <tools>
+          <li>
+            <label>tentacle</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>15</power>
+            <cooldownTime>1.6</cooldownTime>
+            <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+          </li>
+        </tools>
+      </li>
+    </comps>
+    <spawnThingOnRemoved>PI_TentacleArm</spawnThingOnRemoved>
+  </HediffDef>
+  
+    <RecipeDef ParentName="SurgeryInstallImplantBase">
+    <defName>PI_InstallTentacleArmAdv</defName>
+    <label>install adapted tentacle arm</label>
+    <description>t</description>
+    <descriptionHyperlinks><ThingDef>PI_TentacleArm</ThingDef></descriptionHyperlinks>
+    <jobString>Installing tentacle arm.</jobString>
+	<skillRequirements>
+      <Medicine>10</Medicine>
+    </skillRequirements>
+	<surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
+	<researchPrerequisites>
+      <li>PI_BasicBionics</li>
+    </researchPrerequisites>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>PI_TentacleArm</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+	  <li>
+        <filter>
+          <thingDefs>
+            <li>Neutroamine</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+	  <li>
+        <filter>
+          <thingDefs>
+            <li>PI_NeuralLiquid</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>PI_TentacleArm</li>
+		<li>Neutroamine</li>
+		<li>PI_NeuralLiquid</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <appliedOnFixedBodyParts>
+      <li>Arm</li>
+    </appliedOnFixedBodyParts>
+    <addsHediff>PI_TentacleArmAdv</addsHediff>
   </RecipeDef>
 </Defs>

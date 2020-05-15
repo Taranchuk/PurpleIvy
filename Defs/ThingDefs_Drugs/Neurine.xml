@@ -164,8 +164,6 @@
 		</stages>
 	</HediffDef>
 
-	<!-- Ambrosia addiction -->
-
 	<ChemicalDef>
 		<defName>PI_Neurine</defName>
 		<label>Neurine</label>
