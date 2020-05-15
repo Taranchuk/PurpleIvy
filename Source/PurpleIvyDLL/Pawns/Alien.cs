@@ -14,6 +14,10 @@ namespace PurpleIvy
     {
         public int lastAttacked = 0;
         public Pawn lastInstigator = null;
+        public bool canJump = false;
+        public bool canHaul = false;
+        public bool canFight = false;
+        public bool canSpawnNests = false;
         public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
             if (!base.Dead)
@@ -31,6 +35,10 @@ namespace PurpleIvy
         {
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.lastAttacked, "lastAttacked", 0);
+            Scribe_Values.Look<bool>(ref this.canJump, "canJump", false);
+            Scribe_Values.Look<bool>(ref this.canJump, "canHaul", false);
+            Scribe_Values.Look<bool>(ref this.canJump, "canFight", false);
+            Scribe_Values.Look<bool>(ref this.canJump, "canSpawnNests", false);
         }
     }
 }

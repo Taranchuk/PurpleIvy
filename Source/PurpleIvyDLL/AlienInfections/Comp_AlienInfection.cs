@@ -174,6 +174,10 @@ namespace PurpleIvy
                         break;
                     case Building _:
                         GenSpawn.Spawn(newPawn, this.parent.Position, this.parent.Map);
+                        if (newPawn is Alien alien && alien.def == PurpleIvyDefOf.Genny_ParasiteOmega)
+                        {
+                            alien.canHaul = true;
+                        }
                         break;
                     default:
                         Log.Error("Unknown parent. Cant spawn. Parent: " + this.parent);
@@ -189,6 +193,10 @@ namespace PurpleIvy
         }
         public void HatchFromCorpse(Pawn newPawn)
         {
+            if (newPawn is Alien alien && alien.def == PurpleIvyDefOf.Genny_ParasiteOmega)
+            {
+                alien.canHaul = false;
+            }
             var corpse = (Corpse)this.parent;
             var compRottable = corpse.TryGetComp<CompRottable>();
             if (compRottable != null && compRottable.Stage < RotStage.Dessicated)
@@ -201,6 +209,10 @@ namespace PurpleIvy
 
         public void HatchFromPawn(Pawn newPawn)
         {
+            if (newPawn is Alien alien && alien.def == PurpleIvyDefOf.Genny_ParasiteOmega)
+            {
+                alien.canHaul = false;
+            }
             var host = (Pawn)this.parent;
             host.TakeDamage(new DamageInfo(DamageDefOf.SurgicalCut, 25f));
             if (host.Dead)

@@ -21,6 +21,8 @@ namespace PurpleIvy
             {
                 return JobMaker.MakeJob(JobDefOf.LayDown);
             }
+
+            Alien alien = pawn as Alien;
             // Some optimizations here...
             //if (pawn.TryGetAttackVerb(null, false) == null)
             //{
@@ -31,7 +33,7 @@ namespace PurpleIvy
                 Log.Message(pawn + " - " + pawn.CurJob.def.defName);
             }
             Pawn pawn2 = null;
-            if (pawn is Alien alien && (Find.TickManager.TicksGame - alien.lastAttacked) < 1000)
+            if ((Find.TickManager.TicksGame - alien.lastAttacked) < 1000)
             {
                 pawn2 = alien.lastInstigator;
             }
@@ -116,6 +118,48 @@ namespace PurpleIvy
                     return PurpleIvyUtils.KillAttackJob(pawn, pawn2);
                 }
             }
+
+            if (alien.canHaul)
+            {
+                Predicate<Thing> validator = delegate (Thing t)
+                {
+                    List<Thing> list = pawn.Map.thingGrid.ThingsListAt(t.Position);
+                    return !(list.Count > 0 && list.OfType<Plant>().Any(x =>
+                    x.def == PurpleIvyDefOf.PurpleIvy || x.def == PurpleIvyDefOf.PI_Nest
+                    || x.def == PurpleIvyDefOf.PlantVenomousToothwort));
+                };
+
+                Thing thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
+                    ThingRequest.ForDef(PurpleIvyDefOf.PI_StickyGoo), PathEndMode.ClosestTouch,
+                    TraverseParms.For(pawn, Danger.None, TraverseMode.NoPassClosedDoors, false), 9999f, validator, null);
+                if (thing == null)
+                {
+                    thing = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
+                        ThingRequest.ForGroup(ThingRequestGroup.Corpse), PathEndMode.ClosestTouch,
+                        TraverseParms.For(pawn, Danger.None, TraverseMode.NoPassClosedDoors, false), 50f, validator, null);
+                }
+                if (thing != null && ReservationUtility.CanReserveAndReach(pawn, thing, PathEndMode.ClosestTouch, Danger.None))
+                {
+                    var plants = pawn.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);
+                    if (plants == null || plants.Count <= 0)
+                    {
+                        return null;
+                    }
+                    var plantToHaul = plants.RandomElement();
+                    if (ReachabilityUtility.CanReach(pawn, plantToHaul, PathEndMode.ClosestTouch, Danger.None,
+                        true, TraverseMode.NoPassClosedDoors))
+                    {
+                        Job job = JobMaker.MakeJob(PurpleIvyDefOf.PI_HaulToCell, thing, plantToHaul.Position);
+                        job.attackDoorIfTargetLost = true;
+                        if (job != null && job.TryMakePreToilReservations(pawn, false))
+                        {
+                            ReservationUtility.Reserve(pawn, thing, job);
+                            return job;
+                        }
+                    }
+                }
+            }
+
             //Log.Message(Find.TickManager.TicksGame.ToString() + " - " + pawn + " - " + pawn.jobs?.curJob?.def?.defName + " - NULL 1");
             //Building building = this.FindTurretTarget(pawn);
             //if (building != null)

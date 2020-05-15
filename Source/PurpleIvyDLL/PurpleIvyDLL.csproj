@@ -350,7 +350,6 @@
     <Compile Include="Jobs\JobDriver_ThrowSmoke.cs" />
     <Compile Include="Jobs\JobDriver_JumpToTarget.cs" />
     <Compile Include="Jobs\JobDriver_HaulToCellPlus.cs" />
-    <Compile Include="Jobs\JobGiver_CollectCorpsesToHive.cs" />
     <Compile Include="Jobs\WorkGiver_DoAlienBill.cs" />
     <Compile Include="Jobs\WorkGiver_DoBioBill.cs" />
     <Compile Include="Jobs\JobDriver_DrawKorsolianToxin.cs" />
