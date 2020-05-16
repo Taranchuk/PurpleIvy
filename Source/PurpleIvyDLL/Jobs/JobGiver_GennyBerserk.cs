@@ -118,7 +118,14 @@ namespace PurpleIvy
                     return PurpleIvyUtils.KillAttackJob(pawn, pawn2);
                 }
             }
-
+            if (alien.canGuard)
+            {
+                if (alien.mindState?.duty?.focus == null || !PurpleIvyUtils.AlienPlantInCell
+                    (alien.Map, alien.mindState.duty.focus.Cell))
+                {
+                    alien.SetFocus();
+                }
+            }
             if (alien.canHaul)
             {
                 Predicate<Thing> validator = delegate (Thing t)

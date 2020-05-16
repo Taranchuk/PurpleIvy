@@ -10,7 +10,6 @@ namespace PurpleIvy
 {
     public class Building_EggSac : Building, IAttackTarget
     {
-
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);

@@ -22,6 +22,7 @@ namespace PurpleIvy
         public override void ExposeData()
         {
             base.ExposeData();
+
             Scribe_Collections.Look<Thing, int>(ref this.ToxicDamagesThings, "ToxicDamagesThings", LookMode.Reference,
                 LookMode.Value, ref this.ToxicDamageThingsKeys, ref this.ToxicDamageThingsValues);
             Scribe_Values.Look<bool>(ref this.OrbitalHelpActive, "OrbitalHelpActive", false);

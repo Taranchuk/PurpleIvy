@@ -12,6 +12,13 @@ namespace PurpleIvy
     [StaticConstructorOnStartup]
     public static class PurpleIvyUtils
     {
+
+        public static bool AlienPlantInCell(Map map, IntVec3 dir)
+        {
+            List<Thing> list = map.thingGrid.ThingsListAt(dir);
+            return list.Count > 0 && list.OfType<Plant>().Any(t =>
+            t is AlienPlant);
+        }
         public static void MakeFlee(Pawn pawn, Thing danger)
         {
             Job job = null;
@@ -85,9 +92,8 @@ namespace PurpleIvy
             }
             return false;
         }
-        public static List<Thing> SpawnNests(Thing spawner)
+        public static void SpawnNests(Thing spawner)
         {
-            List<Thing> nests = new List<Thing>();
             int nestCount = 0;
             List<IntVec3> freeTiles = new List<IntVec3>();
             foreach (IntVec3 dir in GenRadial.RadialCellsAround(spawner.Position, 50, true))
@@ -116,18 +122,15 @@ namespace PurpleIvy
                     {
                         Thing newNest = ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
                         GenSpawn.Spawn(newNest, current, spawner.Map);
-                        nests.Add(newNest);
                     }
                     else
                     {
                         plant.Destroy();
                         Thing newNest = ThingMaker.MakeThing(ThingDef.Named("PI_Nest"));
                         GenSpawn.Spawn(newNest, current, spawner.Map);
-                        nests.Add(newNest);
                     }
                 }
             }
-            return nests;
         }
         public static Pawn GenerateKorsolian(string PawnKind)
         {
@@ -143,7 +146,6 @@ namespace PurpleIvy
         {
             PawnKindDef pawnKindDef = PawnKindDef.Named(PawnKinds.RandomElement());
             Pawn NewPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-            NewPawn.SetFaction(PurpleIvyData.AlienFaction);
             NewPawn.ageTracker.AgeBiologicalTicks = 40000;
             NewPawn.ageTracker.AgeChronologicalTicks = 40000;
             return NewPawn;

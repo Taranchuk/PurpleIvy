@@ -93,18 +93,29 @@ namespace PurpleIvy
             {
                 MoteMaker.ThrowAirPuffUp(base.Position.ToVector3Shifted(), this.Map);
             }
+            GenSpawn.Spawn(this.contents.SingleContainedThing, base.Position, this.Map, base.Rotation);
             if (this.contents.SingleContainedThing is AlienQueen queen)
             {
                 queen.health.AddHediff(PurpleIvyDefOf.PI_CrashlandedDowned);
                 queen.health.AddHediff(PurpleIvyDefOf.PI_Regen);
                 queen.recoveryTick = Find.TickManager.TicksGame + new IntRange(80000, 140000).RandomInRange;
+                queen.canGuard = true;
             }
             else if (this.contents.SingleContainedThing is Building_Meteorite meteorite)
             {
-                meteorite.activeSpores = true;
-                meteorite.damageActiveTick = Find.TickManager.TicksGame + new IntRange(160000, 180000).RandomInRange;
+                foreach (var dir in GenRadial.RadialCellsAround(meteorite.Position, 5, true))
+                {
+                    if (GenGrid.InBounds(dir, meteorite.Map))
+                    {
+                        Thing thing = ThingMaker.MakeThing(PurpleIvyDefOf.PI_Spores, null);
+                        GenSpawn.Spawn(thing, dir, meteorite.Map, 0);
+                        var Spores = (PurpleGas)thing;
+                        Spores.destroyTick = Find.TickManager.TicksGame + new IntRange(160000, 180000).RandomInRange;
+                        Spores.activeDamage = true;
+                        meteorite.spores.Add(Spores);
+                    }
+                }
             }
-            GenSpawn.Spawn(this.contents.SingleContainedThing, base.Position, this.Map, base.Rotation);
             GenExplosion.DoExplosion(base.Position, this.Map, 5f, DamageDefOf.Bomb, this);
             this.Destroy(DestroyMode.Vanish);
         }

@@ -38,13 +38,13 @@ namespace PurpleIvy
             return cellRect.FullyContainedWithin(new CellRect(0, 0, map.Size.x, map.Size.z));
         }
 
-        protected override void ScatterAt(IntVec3 c, Map map, GenStepParams parms, int stackCount = 1)
+        public static void DoScatterAt(IntVec3 c, Map map, GenStepParams parms, int stackCount = 1)
         {
             int randomInRange = SettlementSizeRange.RandomInRange;
             int randomInRange2 = SettlementSizeRange.RandomInRange;
             CellRect rect = new CellRect(c.x - randomInRange / 2, c.z - randomInRange2 / 2, randomInRange, randomInRange2);
             rect.ClipInsideMap(map);
-            Faction faction = PurpleIvyData.AlienFaction;
+            Faction faction = map.ParentFaction;
             ResolveParams rp = default(ResolveParams);
             rp.rect = rect;
             TraverseParms traverseParms = TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false);
@@ -67,6 +67,10 @@ namespace PurpleIvy
             BaseGen.globalSettings.minBuildings = 0;
             BaseGen.globalSettings.minBarracks = 0;
             BaseGen.Generate();
+        }
+        protected override void ScatterAt(IntVec3 c, Map map, GenStepParams parms, int stackCount = 1)
+        {
+            GenStep_AlienLair.DoScatterAt(c, map, parms, stackCount);
         }
 
         private static readonly IntRange SettlementSizeRange = new IntRange(34, 38);

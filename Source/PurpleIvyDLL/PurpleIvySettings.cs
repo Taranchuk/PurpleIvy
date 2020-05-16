@@ -18,10 +18,10 @@ namespace PurpleIvy
 
         public static void Reset()
         {
-            TotalAlienLimit["Genny_ParasiteAlpha"] = 15;
-            TotalAlienLimit["Genny_ParasiteBeta"] = 30;
-            TotalAlienLimit["Genny_ParasiteGamma"] = 30;
-            TotalAlienLimit["Genny_ParasiteOmega"] = 50;
+            TotalAlienLimit["Genny_ParasiteAlpha"] = 7;
+            TotalAlienLimit["Genny_ParasiteBeta"] = 15;
+            TotalAlienLimit["Genny_ParasiteGamma"] = 15;
+            TotalAlienLimit["Genny_ParasiteOmega"] = 25;
         }
 
         public static void DoWindowContents(Rect inRect)
@@ -61,10 +61,10 @@ namespace PurpleIvy
 
         public static Dictionary<string, int> TotalAlienLimit = new Dictionary<string, int>()
         {
-            {"Genny_ParasiteAlpha", 15},
-            {"Genny_ParasiteBeta", 30},
-            {"Genny_ParasiteGamma", 30},
-            { "Genny_ParasiteOmega", 50},
+            {"Genny_ParasiteAlpha", 7},
+            {"Genny_ParasiteBeta", 15},
+            {"Genny_ParasiteGamma", 15},
+            { "Genny_ParasiteOmega", 25},
         };
 
         private List<string> TotalAlienLimitKeys;

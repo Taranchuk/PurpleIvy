@@ -13,26 +13,9 @@ namespace PurpleIvy
     public class AlienQueen : Alien
     {
         private int spawnticks = 200;
-        private LocalTargetInfo focus = null;
         public override void PostMake()
         {
             base.PostMake();
-        }
-
-        public override void SpawnSetup(Map map, bool respawningAfterLoad)
-        {
-            base.SpawnSetup(map, respawningAfterLoad);
-            this.SetFaction(PurpleIvyData.AlienFaction);
-        }
-
-        public override void SetFaction(Faction newFaction, Pawn recruiter = null)
-        {
-            this.factionInt = newFaction;
-            IAttackTarget attackTarget = this as IAttackTarget;
-            if (attackTarget != null)
-            {
-                this.Map.attackTargetsCache.UpdateTarget(attackTarget);
-            }
         }
         public override void PostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
@@ -77,16 +60,7 @@ namespace PurpleIvy
             spawnticks--;
             if (spawnticks <= 0)
             {
-                var nests = PurpleIvyUtils.SpawnNests(this);
-                if (this.mindState?.duty?.focus == null && nests.Count > 0)
-                {
-                    Thing choosen = nests.RandomElement();
-                    PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
-                    this.mindState.duty = duty;
-                    this.mindState.duty.focus = new LocalTargetInfo(choosen.Position);
-                    focus = choosen;
-                    Log.Message("Set focus to " + choosen);
-                }
+                PurpleIvyUtils.SpawnNests(this);
                 spawnticks = new IntRange(15000, 30000).RandomInRange;
             }
         }
@@ -95,10 +69,6 @@ namespace PurpleIvy
         {
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.recoveryTick, "recoveryTick", 0);
-            Scribe_TargetInfo.Look(ref this.focus, "focus");
-            PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
-            this.mindState.duty = duty;
-            this.mindState.duty.focus = focus;
         }
 
         public int recoveryTick = 0;

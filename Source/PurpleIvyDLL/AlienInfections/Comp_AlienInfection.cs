@@ -144,6 +144,7 @@ namespace PurpleIvy
                                     select PawnKindDef.Named(defName) into pawnKindDef
                                     select PawnGenerator.GeneratePawn(pawnKindDef, null))
             {
+
                 Log.Message(this.parent + " produces " + newPawn, true);
                 if (this.Props.ageTick.RandomInRange > 0)
                 {
@@ -156,14 +157,7 @@ namespace PurpleIvy
                     newPawn.ageTracker.AgeBiologicalTicks = 0;
                     newPawn.ageTracker.AgeChronologicalTicks = 0;
                 }
-                newPawn.SetFaction(PurpleIvyData.AlienFaction);
-                if (newPawn.def == PurpleIvyDefOf.Genny_ParasiteNestGuard)
-                {
-                    PawnDuty duty = new PawnDuty(DutyDefOf.DefendHiveAggressively);
-                    newPawn.mindState.duty = duty;
-                    newPawn.mindState.duty.focus = new LocalTargetInfo(this.parent.Position);
-                    newPawn.health.AddHediff(PurpleIvyDefOf.PI_Regen);
-                }
+                Alien alien = newPawn as Alien;
                 switch (this.parent)
                 {
                     case Corpse _:
@@ -174,7 +168,7 @@ namespace PurpleIvy
                         break;
                     case Building _:
                         GenSpawn.Spawn(newPawn, this.parent.Position, this.parent.Map);
-                        if (newPawn is Alien alien && alien.def == PurpleIvyDefOf.Genny_ParasiteOmega)
+                        if (alien.def == PurpleIvyDefOf.Genny_ParasiteOmega)
                         {
                             alien.canHaul = true;
                         }
@@ -182,6 +176,12 @@ namespace PurpleIvy
                     default:
                         Log.Error("Unknown parent. Cant spawn. Parent: " + this.parent);
                         break;
+                }
+                if (alien.def == PurpleIvyDefOf.Genny_ParasiteNestGuard)
+                {
+                    alien.canGuard = true;
+                    alien.SetFocus();
+                    alien.health.AddHediff(PurpleIvyDefOf.PI_Regen);
                 }
                 currentCountOfCreatures++;
             }

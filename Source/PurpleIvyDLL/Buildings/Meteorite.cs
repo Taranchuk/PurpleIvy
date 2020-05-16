@@ -13,23 +13,20 @@ namespace PurpleIvy
     public class Building_Meteorite : Building, IAttackTarget
     {
         private int spawnticks = 200;
-        public bool activeSpores = false;
-        public int damageActiveTick = 0;
+        public List<PurpleGas> spores = new List<PurpleGas>();
+
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
             this.SetFaction(PurpleIvyData.AlienFaction);
-            if (this.activeSpores == true)
+            if (this.spores != null && this.spores.Count > 0)
             {
-                foreach (var dir in GenRadial.RadialCellsAround(this.Position, 5, true))
+                foreach (var spore in this.spores)
                 {
-                    if (GenGrid.InBounds(dir, this.Map))
+                    if (!spore.Destroyed)
                     {
-                        Thing thing = ThingMaker.MakeThing(PurpleIvyDefOf.PI_Spores, null);
-                        GenSpawn.Spawn(thing, dir, this.Map, 0);
-                        var Spores = (PurpleGas)thing;
-                        Spores.destroyTick = Find.TickManager.TicksGame + new IntRange(160000, 180000).RandomInRange;
-                        Spores.activeDamage = true;
+                        Log.Message(spore + " spore " + spore.destroyTick);
+                        GenSpawn.Spawn(spore, spore.Position, this.Map);
                     }
                 }
             }
@@ -64,7 +61,7 @@ namespace PurpleIvy
         {
             get
             {
-                return 0.1f;
+                return 1f;
             }
         }
 
@@ -88,8 +85,7 @@ namespace PurpleIvy
         {
             base.ExposeData();
             Scribe_Values.Look<int>(ref this.spawnticks, "spawnticks", 0, false);
-            Scribe_Values.Look<int>(ref this.damageActiveTick, "damageActiveTick", 0, false);
-            Scribe_Values.Look<bool>(ref this.activeSpores, "activeSpores", false, false);
+            Scribe_Collections.Look<PurpleGas>(ref this.spores, "spores", LookMode.Deep, Array.Empty<object>());
         }
     }
 }

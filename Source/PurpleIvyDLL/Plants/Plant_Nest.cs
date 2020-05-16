@@ -87,20 +87,6 @@ namespace PurpleIvy
             GenSpawn.Spawn(newivy, dir, this.Map);
         }
 
-        public bool IvyInCell(IntVec3 dir)
-        {
-            //List all things in that random direction cell
-            List<Thing> list = this.Map.thingGrid.ThingsListAt(dir);
-            return list.Count > 0 && list.OfType<Plant>().Any(t =>
-            t.def == PurpleIvyDefOf.PurpleIvy || t.def == PurpleIvyDefOf.PI_Nest
-            || t.def == PurpleIvyDefOf.PlantVenomousToothwort);
-        }
-
-        public bool IsSurroundedByIvy(IntVec3 dir)
-        {
-            return GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)).All(IvyInCell);
-        }
-
         public bool HasNoBuildings(IntVec3 dir)
         {
             return GenAdj.CellsAdjacent8Way(new TargetInfo(dir, this.Map, false)).All(current => current.Standable(this.Map));
@@ -125,8 +111,7 @@ namespace PurpleIvy
                                  terrain.defName != "WaterShallow" &&
                                  terrain.defName != "MarshyTerrain")
                         {
-                            //if theres no ivy here
-                            if (!IvyInCell(dir))
+                            if (!PurpleIvyUtils.AlienPlantInCell(this.Map, dir))
                             {
                                 SpawnIvy(dir);
                             }
@@ -200,7 +185,8 @@ namespace PurpleIvy
         public void SpawnFruit()
         {
             var fruit = ThingMaker.MakeThing(PurpleIvyDefOf.PI_NestFruit);
-            GenSpawn.Spawn(fruit, GenRadial.RadialCellsAround(this.Position, 1, 1).RandomElement(), this.Map);
+            GenSpawn.Spawn(fruit, GenRadial.RadialCellsAround(this.Position, 1, 1)
+                .Where(x => GenGrid.InBounds(x, this.Map)).RandomElement(), this.Map);
             fruit.SetForbidden(true);
         }
         public override void Tick()

@@ -16,44 +16,13 @@ namespace PurpleIvy
     [HarmonyPatch("ScatterAt")]
     public static class AlienLairs_GenStepPatch
     {
-        public static void ScatterAt(IntVec3 c, Map map, GenStepParams parms, int stackCount = 1)
-        {
-            int randomInRange = SettlementSizeRange.RandomInRange;
-            int randomInRange2 = SettlementSizeRange.RandomInRange;
-            CellRect rect = new CellRect(c.x - randomInRange / 2, c.z - randomInRange2 / 2, randomInRange, randomInRange2);
-            rect.ClipInsideMap(map);
-            Faction faction = map.ParentFaction;
-            ResolveParams rp = default(ResolveParams);
-            rp.rect = rect;
-            TraverseParms traverseParms = TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false);
-            ResolveParams resolveParams = rp;
-            resolveParams.rect = rp.rect;
-            resolveParams.faction = faction;
-            resolveParams.pawnGroupKindDef = (rp.pawnGroupKindDef ?? PawnGroupKindDefOf.Settlement);
-            resolveParams.singlePawnSpawnCellExtraPredicate = (rp.singlePawnSpawnCellExtraPredicate ?? ((IntVec3 x) => map.reachability.CanReachMapEdge(x, traverseParms)));
-            if (resolveParams.pawnGroupMakerParams == null)
-            {
-                resolveParams.pawnGroupMakerParams = new PawnGroupMakerParms();
-                resolveParams.pawnGroupMakerParams.tile = map.Tile;
-                resolveParams.pawnGroupMakerParams.faction = faction;
-                resolveParams.pawnGroupMakerParams.points = (rp.settlementPawnGroupPoints ?? SymbolResolver_Settlement.DefaultPawnsPoints.RandomInRange);
-                resolveParams.pawnGroupMakerParams.inhabitants = true;
-                resolveParams.pawnGroupMakerParams.seed = rp.settlementPawnGroupSeed;
-            }
-            BaseGen.symbolStack.Push("pawnGroup", resolveParams, null);
-            BaseGen.globalSettings.map = map;
-            BaseGen.globalSettings.minBuildings = 0;
-            BaseGen.globalSettings.minBarracks = 0;
-            BaseGen.Generate();
-        }
-
         [HarmonyPrefix]
         private static bool Prefix(IntVec3 c, Map map, GenStepParams parms, int stackCount = 1)
         {
             bool result;
             if (map.Parent.Faction.def == PurpleIvyDefOf.Genny)
             {
-                AlienLairs_GenStepPatch.ScatterAt(c, map, parms, stackCount);
+                GenStep_AlienLair.DoScatterAt(c, map, parms, stackCount);
                 result = false;
             }
             else

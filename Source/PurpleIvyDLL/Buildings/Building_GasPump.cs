@@ -11,7 +11,7 @@ namespace PurpleIvy
 {
     public class Building_GasPump : Building, IAttackTarget
     {
-        private int pumpfreq = 10;
+        private int pumpfreq = 3;
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);

@@ -126,20 +126,16 @@ namespace PurpleIvy
         public void DoDamageToCorpse(Corpse corpse)
         {
             var compRottable = corpse.TryGetComp<CompRottable>();
-            if (compRottable.Stage == RotStage.Dessicated)
+            if (compRottable != null)
             {
-                corpse.TakeDamage(new DamageInfo(DamageDefOf.Scratch, 1));
-            }
-            else
-            {
-                this.Growth += 0.001f;
-                if (corpse.TryGetComp<CompRottable>().Stage < RotStage.Dessicated &&
-                    corpse.TryGetComp<AlienInfection>() == null)
+                if (compRottable.Stage == RotStage.Dessicated)
                 {
-                    var hediff = (AlienInfectionHediff)HediffMaker.MakeHediff
-                        (PurpleIvyDefOf.PI_AlienInfection, corpse.InnerPawn);
-                    hediff.instigator = PawnKindDef.Named("Genny_ParasiteOmega");
-                    corpse.InnerPawn.health.AddHediff(hediff);
+                    corpse.TakeDamage(new DamageInfo(DamageDefOf.Scratch, 1));
+                }
+                else
+                {
+                    corpse.TakeDamage(new DamageInfo(DamageDefOf.Scratch, 1));
+                    this.Growth += 0.001f;
                 }
             }
         }

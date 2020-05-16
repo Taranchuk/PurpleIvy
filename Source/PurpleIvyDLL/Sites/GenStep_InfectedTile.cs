@@ -29,51 +29,43 @@ namespace PurpleIvy
             if (mutateRate >= 0 && mutateRate <= 5)
             {
                 var gasPump = (Building_GasPump)ThingMaker.MakeThing(PurpleIvyDefOf.GasPump);
-                gasPump.SetFactionDirect(PurpleIvyData.AlienFaction);
                 GenSpawn.Spawn(gasPump, dir, map);
                 return true;
             }
             if (mutateRate >= 6 && mutateRate <= 10)
             {
                 var genMortar = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.Turret_GenMortarSeed);
-                genMortar.SetFactionDirect(PurpleIvyData.AlienFaction);
                 GenSpawn.Spawn(genMortar, dir, map);
                 return true;
             }
             if (mutateRate >= 11 && mutateRate <= 15)
             {
                 var genTurret = (Building_Turret)ThingMaker.MakeThing(PurpleIvyDefOf.GenTurretBase);
-                genTurret.SetFactionDirect(PurpleIvyData.AlienFaction);
                 GenSpawn.Spawn(genTurret, dir, map);
                 return true;
             }
             if (mutateRate >= 16 && mutateRate <= 17)
             {
                 var eggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSac);
-                eggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                 GenSpawn.Spawn(eggSac, dir, map);
                 return true;
             }
             if (mutateRate >= 18 && mutateRate <= 19)
             {
                 var eggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSacBeta);
-                eggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                 GenSpawn.Spawn(eggSac, dir, map);
                 return true;
             }
             if (mutateRate >= 20 && mutateRate <= 21)
             {
                 var eggSac = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.EggSacGamma);
-                eggSac.SetFactionDirect(PurpleIvyData.AlienFaction);
                 GenSpawn.Spawn(eggSac, dir, map);
                 return true;
             }
             if (mutateRate < 18 || mutateRate > 23) return false;
             var parasiteEgg = (Building_EggSac)ThingMaker.MakeThing(PurpleIvyDefOf.ParasiteEgg);
-            parasiteEgg.SetFactionDirect(PurpleIvyData.AlienFaction);
             GenSpawn.Spawn(parasiteEgg, dir, map);
             return true;
-
         }
 
         public static int GetRadius(Map map)
@@ -146,7 +138,6 @@ namespace PurpleIvy
                 radialCells.Remove(spawnPlace);
                 var pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteAlpha.RandomElement());
                 var newPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                newPawn.SetFaction(PurpleIvyData.AlienFaction);
                 newPawn.ageTracker.AgeBiologicalTicks = 40000;
                 newPawn.ageTracker.AgeChronologicalTicks = 40000;
                 GenSpawn.Spawn(newPawn, spawnPlace, map);
@@ -157,7 +148,6 @@ namespace PurpleIvy
                 radialCells.Remove(spawnPlace);
                 var pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteBeta.RandomElement());
                 var newPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                newPawn.SetFaction(PurpleIvyData.AlienFaction);
                 newPawn.ageTracker.AgeBiologicalTicks = 40000;
                 newPawn.ageTracker.AgeChronologicalTicks = 40000;
                 GenSpawn.Spawn(newPawn, spawnPlace, map);
@@ -169,7 +159,6 @@ namespace PurpleIvy
                 radialCells.Remove(spawnPlace);
                 var pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteGamma.RandomElement());
                 var newPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                newPawn.SetFaction(PurpleIvyData.AlienFaction);
                 newPawn.ageTracker.AgeBiologicalTicks = 40000;
                 newPawn.ageTracker.AgeChronologicalTicks = 40000;
                 GenSpawn.Spawn(newPawn, spawnPlace, map);
@@ -181,7 +170,6 @@ namespace PurpleIvy
                 radialCells.Remove(spawnPlace);
                 var pawnKindDef = PawnKindDef.Named(PurpleIvyData.Genny_ParasiteOmega.RandomElement());
                 var newPawn = PawnGenerator.GeneratePawn(pawnKindDef, null);
-                newPawn.SetFaction(PurpleIvyData.AlienFaction);
                 newPawn.ageTracker.AgeBiologicalTicks = 40000;
                 newPawn.ageTracker.AgeChronologicalTicks = 40000;
                 GenSpawn.Spawn(newPawn, spawnPlace, map);
