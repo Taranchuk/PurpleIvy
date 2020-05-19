@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
 	<!-- ======= Basic quality thoughts ========= -->
@@ -12,6 +12,34 @@
 				<label>took a neurine injection</label>
 				<description>Diluted alien brains injected into my bloodstream. God, thats disgusting</description>
 				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>Ate_Euphorin</defName>
+		<showBubble>true</showBubble>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<durationDays>3</durationDays>
+		<stages>
+			<li>
+				<label>took an euphorin</label>
+				<description>took an euphorin</description>
+				<baseMoodEffect>20</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+		<ThoughtDef>
+		<defName>Ate_WillSuppressor</defName>
+		<showBubble>true</showBubble>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<durationDays>0.7</durationDays>
+		<stages>
+			<li>
+				<label>took a will suppressor</label>
+				<description>These unnatural visions haunt me constantly, driving me crazy. God, save me!</description>
+				<baseMoodEffect>-20</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>

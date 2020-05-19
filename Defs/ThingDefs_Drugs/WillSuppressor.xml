@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="DrugBase">
+		<defName>PI_WillSuppressor</defName>
+		<label>WillSuppressor</label>
+		<description>WillSuppressor is a syrupy liquid with a fishy odor, obtained during experiments with neural fluid of alien parasites. It sharpens the senses of those who took it, but their sensitivity to pain also increases.</description>
+		<descriptionHyperlinks>
+			<HediffDef>PI_WillSuppressorHigh</HediffDef>
+			<HediffDef>PI_WillSuppressorTolerance</HediffDef>
+			<HediffDef>PI_WillSuppressorAddiction</HediffDef>
+		</descriptionHyperlinks>
+		<tradeability>Sellable</tradeability>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<tickerType>Rare</tickerType>
+		<graphicData>
+			<texPath>Things/Item/Drug/WillSuppressor</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<MarketValue>25</MarketValue>
+			<Mass>0.1</Mass>
+			<DeteriorationRate>10</DeteriorationRate>
+			<Nutrition>0.1</Nutrition>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<ingestible>
+			<baseIngestTicks>300</baseIngestTicks>
+			<chairSearchRadius>1</chairSearchRadius>
+			<preferability>DesperateOnly</preferability>
+			<tasteThought>Ate_WillSuppressor</tasteThought>
+			<foodType>Meat</foodType>
+			<joyKind>Chemical</joyKind>
+			<joy>0.1</joy>
+			<nurseable>true</nurseable>
+			<drugCategory>Hard</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PI_WillSuppressorHigh</hediffDef>
+					<severity>0.3</severity>
+					<toleranceChemical>PI_WillSuppressor</toleranceChemical>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PI_WillSuppressorTolerance</hediffDef>
+					<severity>0.2</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Rottable">
+				<daysToRotStart>1</daysToRotStart>
+				<rotDestroys>true</rotDestroys>
+			</li>
+			<li Class="CompProperties_Drug">
+				<chemical>PI_WillSuppressor</chemical>
+				<addictiveness>0.1</addictiveness>
+				<minToleranceToAddict>0.4</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.1</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>30</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<HediffDef>
+		<defName>PI_WillSuppressorHigh</defName>
+		<label>WillSuppressor</label>
+		<description>active alien chemical compounds in the bloodstream</description>
+		<hediffClass>PurpleIvy.Hediff_WillSuppressor</hediffClass>
+		<defaultLabelColor>(100,149,237)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<initialSeverity>1</initialSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.400</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>suppressed</label>
+				<minSeverity>0.2</minSeverity>
+				<socialFightChanceFactor>5.0</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.30</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.10</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.10</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.10</offset>
+					</li>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.5</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Berserk</mentalState>
+						<mtbDays>0.1</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+			<li>
+				<label>shaking</label>
+				<minSeverity>1</minSeverity>
+				<socialFightChanceFactor>5.0</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.30</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.10</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.10</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.10</offset>
+					</li>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.5</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Berserk</mentalState>
+						<mtbDays>0.1</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<ChemicalDef>
+		<defName>PI_WillSuppressor</defName>
+		<label>WillSuppressor</label>
+		<addictionHediff>PI_WillSuppressorAddiction</addictionHediff>
+		<toleranceHediff>PI_WillSuppressorTolerance</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.0</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>PI_Chemical_WillSuppressor</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>WillSuppressor</label>
+		<description>Because of a WillSuppressor addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+		<listPriority>20</listPriority>
+	</NeedDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>PI_WillSuppressorTolerance</defName>
+		<label>WillSuppressor tolerance</label>
+		<description>A built-up tolerance to WillSuppressor</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.5</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>PI_WillSuppressor</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>PI_WillSuppressorAddiction</defName>
+		<label>WillSuppressor addiction</label>
+		<description>A chemical addiction to WillSuppressor.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>PI_Chemical_WillSuppressor</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.1</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<ThoughtDef>
+		<defName>PI_WillSuppressorWithdrawal</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PI_WillSuppressorAddiction</hediff>
+		<validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<visible>false</visible>
+			</li>
+			<li>
+				<label>WillSuppressor withdrawal</label>
+				<description>Everything around is so slow and colorless...</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="DrugBase">
+		<defName>PI_Euphorin</defName>
+		<label>Euphorin</label>
+		<description>Euphorin.</description>
+		<descriptionHyperlinks>
+			<HediffDef>PI_EuphorinHigh</HediffDef>
+			<HediffDef>PI_EuphorinTolerance</HediffDef>
+			<HediffDef>PI_EuphorinAddiction</HediffDef>
+		</descriptionHyperlinks>
+		<tradeability>Sellable</tradeability>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<tickerType>Rare</tickerType>
+		<graphicData>
+			<texPath>Things/Item/Drug/Euphorin</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<MarketValue>25</MarketValue>
+			<Mass>0.1</Mass>
+			<DeteriorationRate>10</DeteriorationRate>
+			<Nutrition>0.1</Nutrition>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<ingestible>
+			<baseIngestTicks>300</baseIngestTicks>
+			<chairSearchRadius>1</chairSearchRadius>
+			<preferability>DesperateOnly</preferability>
+			<tasteThought>Ate_Euphorin</tasteThought>
+			<foodType>Meat</foodType>
+			<joyKind>Chemical</joyKind>
+			<joy>0.2</joy>
+			<nurseable>true</nurseable>
+			<drugCategory>Hard</drugCategory>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PI_EuphorinHigh</hediffDef>
+					<severity>0.3</severity>
+					<toleranceChemical>PI_Euphorin</toleranceChemical>
+				</li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PI_EuphorinTolerance</hediffDef>
+					<severity>0.2</severity>
+					<divideByBodySize>true</divideByBodySize>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Rottable">
+				<daysToRotStart>1</daysToRotStart>
+				<rotDestroys>true</rotDestroys>
+			</li>
+			<li Class="CompProperties_Drug">
+				<chemical>PI_Euphorin</chemical>
+				<addictiveness>0.1</addictiveness>
+				<minToleranceToAddict>0.4</minToleranceToAddict>
+				<existingAddictionSeverityOffset>0.1</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>30</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<HediffDef>
+		<defName>PI_EuphorinHigh</defName>
+		<label>Euphorin</label>
+		<description>active alien chemical compounds in the bloodstream</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(100,149,237)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.400</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>stable</label>
+				<minSeverity>0.1</minSeverity>
+			</li>
+			<li>
+				<label>trembling</label>
+				<minSeverity>0.3</minSeverity>
+			</li>
+			<li>
+				<label>tremor</label>
+				<minSeverity>0.5</minSeverity>
+			</li>
+			<li>
+				<label>thrill</label>
+				<minSeverity>0.7</minSeverity>
+			</li>
+			<li>
+				<label>unstable</label>
+				<minSeverity>0.9</minSeverity>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Berserk</mentalState>
+						<mtbDays>0.1</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<ChemicalDef>
+		<defName>PI_Euphorin</defName>
+		<label>Euphorin</label>
+		<addictionHediff>PI_EuphorinAddiction</addictionHediff>
+		<toleranceHediff>PI_EuphorinTolerance</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.0</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>PI_Chemical_Euphorin</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>Euphorin</label>
+		<description>Because of a Euphorin addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+		<listPriority>20</listPriority>
+	</NeedDef>
+
+	<HediffDef ParentName="DrugToleranceBase">
+		<defName>PI_EuphorinTolerance</defName>
+		<label>Euphorin tolerance</label>
+		<description>A built-up tolerance to Euphorin</description>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.5</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_DrugEffectFactor">
+				<chemical>PI_Euphorin</chemical>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>PI_EuphorinAddiction</defName>
+		<label>Euphorin addiction</label>
+		<description>A chemical addiction to Euphorin.</description>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<causesNeed>PI_Chemical_Euphorin</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.1</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>withdrawal</label>
+			</li>
+		</stages>
+	</HediffDef>
+	
+	<ThoughtDef>
+		<defName>PI_EuphorinWithdrawal</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>PI_EuphorinAddiction</hediff>
+		<validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<visible>false</visible>
+			</li>
+			<li>
+				<label>Euphorin withdrawal</label>
+				<description>Everything around is so slow and colorless...</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

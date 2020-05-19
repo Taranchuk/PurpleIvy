@@ -336,6 +336,7 @@
     <Compile Include="Hediffs\ExtensionUtility.cs" />
     <Compile Include="Hediffs\HediffDefOf_CosmosInd.cs" />
     <Compile Include="Hediffs\HediffGiver_CosmosSpecial.cs" />
+    <Compile Include="Hediffs\Hediff_WillSuppressor.cs" />
     <Compile Include="Hediffs\Hediff_EnchantedBionic.cs" />
     <Compile Include="Hediffs\Hediff_RegrowinBodyPart.cs" />
     <Compile Include="Hediffs\RemovableHediff.cs" />

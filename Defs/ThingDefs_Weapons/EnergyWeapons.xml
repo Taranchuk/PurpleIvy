@@ -569,7 +569,7 @@
 				<defaultProjectile>EnergyProjectileFlux</defaultProjectile>
 				<warmupTime>0.8</warmupTime>
 				<range>30</range>
-				<soundCast>FluxHit</soundCast>
+				<soundCast>Shot_AssaultRifle</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
 			</li>
@@ -644,7 +644,7 @@
 				<defaultProjectile>EnergyProjectileFluxBlue</defaultProjectile>
 				<warmupTime>0.8</warmupTime>
 				<range>30</range>
-				<soundCast>FluxHit</soundCast>
+				<soundCast>Shot_AssaultRifle</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
 			</li>

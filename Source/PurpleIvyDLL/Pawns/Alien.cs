@@ -42,6 +42,18 @@ namespace PurpleIvy
             base.PostApplyDamage(dinfo, totalDamageDealt);
         }
 
+        public override void Tick()
+        {
+            if (this.canGuard && this.mindState?.duty?.focus == null )
+            {
+                this.SetFocus();
+            }
+            if (this.Faction != PurpleIvyData.AlienFaction)
+            {
+                this.SetFaction(PurpleIvyData.AlienFaction);
+            }
+            base.Tick();
+        }
         public void SetFocus()
         {
             var plants = this.Map.listerThings.ThingsOfDef(PurpleIvyDefOf.PurpleIvy);

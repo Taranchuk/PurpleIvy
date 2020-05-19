@@ -26,6 +26,13 @@ namespace PurpleIvy
             base.StartedNewGame();
             PurpleIvyData.TotalFogProgress = new Dictionary<WorldObjectComp_InfectedTile, float>();
             PurpleIvyData.TotalPollutedBiomes = new List<int>();
+            if (Find.FactionManager.AllFactions.Where(x => x.def == PurpleIvyDefOf.Genny).Count() == 0)
+            {
+                Log.Message("No alien faction in the game, fixing it");
+                Faction faction = FactionGenerator.NewGeneratedFaction(PurpleIvyDefOf.Genny);
+                faction.TrySetRelationKind(Faction.OfPlayer, FactionRelationKind.Hostile, false, null, null);
+                Find.FactionManager.Add(faction);
+            }
         }
 
         public override void LoadedGame()
@@ -48,6 +55,13 @@ namespace PurpleIvy
                 {
                     PurpleIvyData.TotalPollutedBiomes.Add(i);
                 }
+            }
+            if (Find.FactionManager.AllFactions.Where(x => x.def == PurpleIvyDefOf.Genny).Count() == 0)
+            {
+                Log.Message("No alien faction in the game, fixing it");
+                Faction faction = FactionGenerator.NewGeneratedFaction(PurpleIvyDefOf.Genny);
+                faction.TrySetRelationKind(Faction.OfPlayer, FactionRelationKind.Hostile, false, null, null);
+                Find.FactionManager.Add(faction);
             }
 
         }
@@ -168,7 +182,7 @@ namespace PurpleIvy
                             {
                                 foreach (Pawn p in caravan.pawns)
                                 {
-                                    if (p.Faction?.def?.defName != PurpleIvyDefOf.Genny.defName && p.RaceProps.IsFlesh)
+                                    if (p.Faction != PurpleIvyData.AlienFaction && p.RaceProps.IsFlesh)
                                     {
                                         float num = fogProgress / 20; //TODO: balance it
                                         num *= p.GetStatValue(StatDefOf.ToxicSensitivity, true);
